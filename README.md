@@ -1,4 +1,4 @@
-# Vertical GTM Skills for Claude Code
+# Vertical SaaS GTM Skills for Claude Code
 
 **14 production-ready sales methodology skills for vertical SaaS GTM teams, built for [Claude Code](https://claude.ai/code).**
 
