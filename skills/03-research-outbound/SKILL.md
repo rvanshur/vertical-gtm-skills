@@ -1,11 +1,11 @@
 ---
 name: gtm-research-outbound
 description: "Deep-research POV brief and outbound package from public filings (10-K), private company intelligence, or quarterly earnings calls. Generates ICP qualification, signal mapping, quantified financial wedge, persona-tailored email sequences, and single-page outbound cheatsheet"
-version: 1.0.0
+version: 1.1.0
 category: GTM-Enablement
 author: Ryan Vanshur
 license: MIT
-updated: 2026-03-04
+updated: 2026-07-06
 tags: [research-outbound, 10k-analysis, earnings-call, private-company, pov-brief, enterprise-prospecting, persona-sequences]
 requires:
   skills: []
@@ -21,80 +21,72 @@ Deep-research outbound package that analyzes a company through one of three inte
 
 ---
 
-## Client Profile
+## Role
 
-> **Configure this block for your company.** Replace the placeholder values below with your actual company data, ICP definitions, personas, and competitive landscape.
+You are a **senior enterprise researcher and POV writer for a vertical SaaS company** — not a template maker. You analyze deep company intelligence (10-K filings, private company research, or earnings calls), extract verified facts tied to product value, quantify financial wedges with evidence, and write persona-tailored outbound sequences backed by specifics. Everything company-specific — the ICP, the competitors, the proof points — comes from the client profile (see **Context** below), so the same skill serves any vertical without modification.
 
-### Company
-- **Name:** [Your Company]
-- **Industry:** [Your vertical] (B2B SaaS)
-- **Product:** [One-line product description]
+---
 
-### ICP Definitions
+## Input Contract
 
-**ICP1: [Primary Segment Name] (Core)**
-- [Description of ideal customer segment]
-- Enterprise ($500M+) and Mid-Market ($100-500M) preferred; minimum viable at $50M+
-- Key indicator: [What makes them a fit]
+What this skill needs before it starts. **If a required input is missing, ask — do not guess.**
 
-**ICP2: [Expansion Segment Name]**
-- [Description of secondary segment]
-- Revenue threshold: [Minimum viable size]
-- Key indicator: [What makes them a fit]
-- [Priority qualifier, e.g., PE-backed is highest priority]
+| Input | Required | Notes |
+|-------|----------|-------|
+| Company name | ✅ Required | The account to research |
+| Research type | ✅ Required | 10k_filing / private_company / earnings_call — determines intelligence source and sequence depth |
+| Intelligence source | ✅ Required | The 10-K filing content, private company research, or earnings transcript |
 
-**No Fit**
-- [Describe who is NOT a fit]
+**Role detection:** From CRM; used to shape recommendations. Fallback: Ask "Are you a BDR or AE?"
 
-### Buyer Personas
-| # | Persona | Hook Focus |
-|---|---------|------------|
-| 1 | **[Title]** | [Top priorities and pain themes] |
-| 2 | **[Title]** | [Top priorities and pain themes] |
-| 3 | **[Title]** | [Top priorities and pain themes] |
-| 4 | **[Title]** | [Top priorities and pain themes] |
-| 5 | **[Title]** | [Top priorities and pain themes] |
-| 6 | **[Title]** | [Top priorities and pain themes] |
+---
 
-### Qualification Zones
-1. [Zone 1: Primary segment description]
-2. [Zone 2: Operational signal]
-3. [Zone 3: Geographic or regulatory signal]
-4. [Zone 4: Scale threshold]
-5. [Zone 5: Process maturity signal]
+## Output Contract
 
-### Value Propositions
-1. [Value prop 1]
-2. [Value prop 2]
-3. [Value prop 3]
-4. [Value prop 4]
-5. [Value prop 5]
+Every run produces a **research-backed outbound package with the same structure, in the same order** — the content changes per company and research type; the layout never does.
 
-### Proof Points
-| Context | Best Proof Point |
-|---------|-----------------|
-| [Profile 1] | [Customer]: [Metric] |
-| [Profile 2] | [Customer]: [Metric] |
-| [Profile 3] | [Customer]: [Metric] |
-| [Profile 4] | [Customer]: [Metric] |
-| [Profile 5] | [Customer]: [Metric] |
+Core commitments: **ICP verdict**, **signal mapping**, **quantified financial wedge** (when data supports it), **POV brief**, **persona-tailored email sequences**, and **intelligence appendix** — organized into 8 fixed sections (see *Artifact Generation* below).
 
-### Industry Context (weave in where relevant)
-- [Macro trend 1]
-- [Macro trend 2]
-- [Macro trend 3]
-- [Macro trend 4]
-- [Macro trend 5]
+---
 
-### Competitive Landscape
-| Competitor | Type | Your Advantage |
-|-----------|------|---------------|
-| [Competitor 1] | [Category] | [Why you win] |
-| [Competitor 2] | [Category] | [Why you win] |
-| [Competitor 3] | [Category] | [Why you win] |
-| Status Quo / Manual | Do nothing | [Cost of inaction] |
+## Context
 
-### Revenue Estimation Methods (for private companies)
+**This skill does not contain client-specific information. It points to it.**
+
+> **Load the client profile from [`profiles/client-profile.md`](../../profiles/client-profile.md) before starting.** That single file is shared by all 14 skills in this suite — update it once and every skill inherits the change on its next run.
+
+Throughout this skill, `{Client Profile: X}` means "section X of `profiles/client-profile.md`". Sections this skill reads:
+
+| Profile section | Used for |
+|---|---|
+| ICP Definitions | Qualification gate (GREENLIGHT / MANUAL REVIEW / DISQUALIFY) and market/geographic tiers |
+| Buyer Personas | Persona-tailored sequences (6 personas x up to 4 emails per research type) |
+| Value Propositions | Connecting extracted signals to product capability |
+| Proof Points | Selecting reference customers matched to prospect vertical and persona |
+| Competitive Landscape | Objection handling and competitive positioning |
+
+`{Methodology: X}` means "subsection X of the **Methodology** section below."
+
+---
+
+## Methodology
+
+Your research frameworks and evidence standards. The structures below are the skill's defaults — use them as-is unless `{Client Profile}` names different frameworks.
+
+### Research Type Selection
+
+This skill operates in three modes based on the intelligence source. Select the research type based on available intelligence and desired sequence depth:
+
+| Research Type | Best For | Sequence Depth | Word Limit | Relevance Window |
+|--------------|---------|----------------|------------|-----------------|
+| **10-K Filing** | Public companies; annual deep-dive | 6 personas × 4 emails (24) | ≤120 words | Months |
+| **Private Company** | Private companies; multi-source research | 6 personas × 4 emails (24) | ≤120 words | Months |
+| **Earnings Call** | Public companies; quarterly signals | 2-3 personas × 2 emails (4-6) | ≤100 words | 7-14 days |
+
+### Revenue Estimation Methods
+
+When revenue is unavailable for private companies, use these formulas to estimate:
+
 | Method | Formula | Label |
 |--------|---------|-------|
 | Employee benchmark | Employees × $[range] per employee | `[Estimated — employee benchmark]` |
@@ -120,20 +112,6 @@ Deep-research outbound package that analyzes a company through one of three inte
 
 **User roles:** BDR, AE
 **Expected time:** 20-45 minutes per account
-
----
-
-## Research Type Selection
-
-This skill operates in three modes based on the intelligence source:
-
-| Research Type | Best For | Sequence Depth | Word Limit | Relevance Window |
-|--------------|---------|----------------|------------|-----------------|
-| **10-K Filing** | Public companies; annual deep-dive | 6 personas × 4 emails (24) | ≤120 words | Months |
-| **Private Company** | Private companies; multi-source research | 6 personas × 4 emails (24) | ≤120 words | Months |
-| **Earnings Call** | Public companies; quarterly signals | 2-3 personas × 2 emails (4-6) | ≤100 words | 7-14 days |
-
-Select the research type based on available intelligence. If multiple sources are available, the 10-K provides the deepest analysis; earnings calls provide the most time-sensitive signals.
 
 ---
 
@@ -242,9 +220,9 @@ Output: Verdict + 3-6 bullet reasons, each with source tags.
 
 ---
 
-### Step 4: Map Intelligence to Qualification Zones
+### Step 4: Map Intelligence to Company Profile
 
-Map extracted signals/facts to `{Client Profile: Qualification Zones}`.
+Map extracted signals/facts to company characteristics from `{Client Profile: ICP Definitions}` (which include market and geographic tiers).
 
 Create a signal mapping table:
 
@@ -482,6 +460,12 @@ Rules: ≤100 words (urgency demands brevity), subject line references earnings,
 ---
 
 ## Changelog
+
+### Version 1.1.0 (2026-07-06)
+- Restructured around the five-part skill anatomy: Role, Input Contract, Output Contract, Context, Methodology
+- Client-specific data de-embedded: the skill now reads the shared `profiles/client-profile.md` instead of carrying an embedded Client Profile block (one profile powers every skill)
+- Framework machinery (research type selection, revenue estimation methods) moved to an explicit Methodology section — `{Methodology: X}` references
+- No functional changes to the workflow, examples, or output formats
 
 ### Version 1.0.0 (2026-03-04)
 - Initial release — merged from three research intelligence workflows (10-K POV, Private Company POV, Earnings Call)

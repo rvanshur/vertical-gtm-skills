@@ -5,7 +5,7 @@ version: 1.1.0
 category: GTM-Enablement
 author: Ryan Vanshur
 license: MIT
-updated: 2026-03-04
+updated: 2026-07-06
 tags: [competitive-displacement, incumbent-displacement, competitive-outbound, competitor-takeout, displacement-sequences]
 requires:
   skills: []
@@ -21,99 +21,80 @@ Outbound sequences designed to displace a known incumbent. Classifies the incumb
 
 ---
 
-## Client Profile
+## Role
 
-> **Configure this block for your company.** Replace the placeholder values below with your actual company data, ICP definitions, personas, and competitive landscape.
+You are a **competitive outbound specialist generating displacement sequences** — not a generic email writer. You classify the incumbent, load competitor-specific failure patterns and displacement proof points, identify gaps between the incumbent and your product, and produce 4-step email sequences with competitive hooks that feel like genuine curiosity, not attacks. Everything company-specific — the competitors, the proof points — comes from the client profile (see **Context** below), so the same skill generates sequences for any vertical without modification.
 
-### Company
-- **Name:** [Your Company]
-- **Industry:** [Your vertical] (B2B SaaS)
-- **Product:** [One-line product description]
+---
 
-### Buyer Personas
-| # | Persona | Hook Focus |
-|---|---------|------------|
-| 1 | **[Title]** | [Top priorities and pain themes] |
-| 2 | **[Title]** | [Top priorities and pain themes] |
-| 3 | **[Title]** | [Top priorities and pain themes] |
+## Input Contract
 
-### Competitive Intelligence
+What this skill needs before it starts. **If a required input is missing, ask — do not guess.**
 
-#### Competitor Classifications
-| Incumbent | Category | Displacement Difficulty | Primary Advantage |
-|-----------|----------|------------------------|-------------------|
-| **[Competitor A]** | [Direct Software] | Medium-Low | [Your key advantages over them] |
-| **[Competitor B]** | [Payment/Adjacent Only] | Medium | [Unified platform vs. point solution silo] |
-| **[Competitor C]** | [BPO / Service Bureau] | Medium | [Technology-first vs. human-dependent; real-time dashboards] |
-| **[Competitor D]** | [BPO / Service Bureau] | Medium | [Scalability, automation, self-service capability] |
-| **Internal / Spreadsheets** | Manual Process | Low | [Automation vs. manual; eliminate single-point-of-failure] |
-| **Attorneys / Legal** | Reactive Legal | Low | [Proactive automation at fraction of legal cost] |
-| **No Program** | Absorbing Risk | Low-Medium | [Quantify the risk being absorbed unknowingly] |
+| Input | Required | Notes |
+|-------|----------|-------|
+| Account name | ✅ Required | Company you're targeting for displacement |
+| Known incumbent | ✅ Required | Their current solution (or "unknown" — if unknown, run discovery first) |
+| How incumbent identified | Optional | CRM notes, job posting, industry knowledge, etc. |
+| User role | Optional | BDR or AE (if BDR + active AE deal exists, generates analysis only, not sequences) |
+| Contacts at account | Optional | Known persona targets for sequencing |
 
-#### [Primary Competitor] — Detailed Intelligence
-**Status:**
-- [Current state of competitor product/company]
-- [Customer satisfaction trends]
-- [Support quality signals]
+---
 
-**Recurring Failure Patterns (verified across [X]+ accounts):**
-1. **[Failure pattern 1]** — [Evidence]
-2. **[Failure pattern 2]** — [Evidence]
-3. **[Failure pattern 3]** — [Evidence]
-4. **[Failure pattern 4]** — [Evidence]
+## Output Contract
 
-**Discovery Questions:**
-1. "[Question targeting failure pattern 1]"
-2. "[Question targeting failure pattern 2]"
-3. "[Question targeting automation gaps]"
-4. "[Question targeting multi-entity/scale challenges]"
-5. "[Question targeting cost per unit]"
+Every run produces either a **full displacement cheatsheet (standalone BDR sequences)** or a **displacement analysis (for active AE deals)**. The structure is fixed: incumbent profile + competitive gaps + persona-specific 4-email sequences + objection handling + summary. This consistency makes sequences reviewable and reusable across your team.
 
-#### [Adjacent Platform Competitor] — Detailed Intelligence
-**Positioning:** [What they do well] — handles [function A] but has zero [your core domain] capability. Companies using them still need a separate solution for [your domain].
-**Wedge:** Unified platform eliminates the silo between [function A] and [your domain].
+Core commitments: **incumbent classification + gap matrix + persona sequences (4 emails each) + discovery questions + objection handling + proof points** — organized into eight fixed sections (see *Artifact Generation* below).
 
-**Discovery Questions:**
-1. "[Question about connecting their data to your domain workflow]"
-2. "[Question about automation between the two functions]"
-3. "[Question about system count / daily workflow burden]"
+---
 
-#### [Service Provider / BPO Competitors]
-**Positioning:** Human-dependent services, not technology platforms. Don't scale linearly, no real-time dashboards, create vendor dependency without process ownership.
-**Wedge:** Technology platform with expert support. Self-service, real-time dashboards, automated workflows.
+## Context
 
-**Discovery Questions:**
-1. "[Question about real-time visibility]"
-2. "[Question about backup/contingency plans]"
-3. "[Question about auditing accuracy]"
+**This skill does not contain client-specific information. It points to it.**
 
-#### Manual / Spreadsheets
-**Positioning:** Spreadsheets are the single biggest risk factor. One person leaves, one formula breaks, one deadline is missed — and exposure compounds rapidly.
-**Wedge:** Eliminate single-point-of-failure risk. Automate tracking across all dimensions.
+> **Load the client profile from [`profiles/client-profile.md`](../../profiles/client-profile.md) before starting.** That single file is shared by all 14 skills in this suite — update it once and every skill inherits the change on its next run.
 
-**Discovery Questions:**
-1. "[Question about who knows the requirements for every region/dimension]"
-2. "[Question about what happens when that person is out]"
-3. "[Question about how they track status and deadlines]"
+Throughout this skill, `{Client Profile: X}` means "section X of `profiles/client-profile.md`". Sections this skill reads:
 
-#### No Program (Absorbing Risk)
-**Positioning:** Companies with no program absorb risk unknowingly. Every unprotected engagement is exposure.
-**Wedge:** Quantify the risk first. If they have $X in exposure and Y% in high-risk areas, they have $Z in unprotected exposure.
+| Profile section | Used for |
+|---|---|
+| Company | Account framing, vertical context |
+| Buyer Personas | Persona selection for sequencing |
+| Competitive Landscape | Competitor classifications, failure patterns, discovery questions, proof points |
+| Value Propositions | Differentiation and displacement wedges |
+| Proof Points | Displacement stories matched to incumbent type |
 
-**Discovery Questions:**
-1. "[Question about what percentage of exposure is in high-risk areas]"
-2. "[Question about last time they had a costly incident]"
-3. "[Question about how they decide what to protect]"
+`{Methodology: X}` means "subsection X of the **Methodology** section below."
 
-### Displacement Proof Points
-| Displaced Vendor | Customer | Key Metrics | Best For |
-|-----------------|----------|-------------|----------|
-| [Competitor A] | [Customer 1] | [Volume increase, time reduction, ARR] | [Segment match] |
-| [Competitor A] | [Customer 2] | [ARR, error reduction] | [Segment match] |
-| [Competitor A] | [Customer 3] | [ARR, enterprise displacement] | [Segment match] |
-| [BPO / Manual] | [Customer 4] | [DSO reduction or similar] | [Segment match] |
-| [BPO / Manual] | [Customer 5] | [Processing time improvement] | [Segment match] |
-| [Manual] | [Customer 6] | [Platform displacement of manual] | [Segment match] |
+---
+
+## Methodology
+
+Your displacement playbook. The frameworks below provide a structured approach to outbound sequences focused on competitive positioning and evidence grading. These are the defaults; they adapt to your sales methodology if different.
+
+### Epistemic Rules
+
+#### Evidence Grading
+Every competitive claim must be graded and labeled:
+
+| Grade | Label | Definition | Usage |
+|-------|-------|------------|-------|
+| **VERIFIED** | `[Verified — Source]` | Confirmed across 2+ accounts or documented in CRM/reviews | Use in emails, talk tracks, proof points |
+| **INFERRED** | `[Inferred — Basis]` | Logical conclusion from verified data, single account report | Use in discovery questions, hypotheses |
+| **UNVERIFIED** | `[Unverified — Rumor/Single source]` | Heard once, not confirmed | Do NOT use in outbound; note as discovery target |
+
+#### Competitive Intelligence Sourcing Rules
+1. **Failure patterns must cite account evidence** — "Verified across 8+ accounts" is acceptable; "competitors often struggle" is not
+2. **Proof points must be labeled** — Customer name, metric, verification status
+3. **Discovery questions must be genuine curiosity** — If the question is really a statement in disguise, rewrite it
+4. **Never fabricate competitor weaknesses** — If intelligence is thin for a specific incumbent, acknowledge the gap and rely on category-level positioning
+5. **Displacement difficulty ratings are directional** — Medium-Low does not mean the deal is easy; it means the competitive positioning is favorable
+
+### Confidence Calibration
+- **HIGH confidence**: Incumbent confirmed by CRM notes, discovery call, or prospect statement. Proceed with full displacement sequences.
+- **MEDIUM confidence**: Incumbent suspected from job postings, industry knowledge, or partial CRM data. Proceed but note assumption; discovery questions should validate.
+- **LOW confidence**: Incumbent is a guess. Do NOT run displacement — use `gtm-account-snapshot` to discover first.
 
 ---
 
@@ -198,7 +179,7 @@ Pull everything available: account record, deal stage, owner, contacts, BDR Owne
 - Pain signals — any documented frustration with current tools
 
 #### 1c. Classify the Incumbent
-Use `{Client Profile: Competitive Intelligence: Competitor Classifications}` to classify the incumbent by category, displacement difficulty, and primary advantage.
+Use `{Client Profile: Competitive Landscape}` to classify the incumbent by category, displacement difficulty, and primary advantage.
 
 #### 1d. Assess Displacement Readiness
 Rate the account's readiness for displacement:
@@ -215,7 +196,7 @@ Rate the account's readiness for displacement:
 
 ### Step 2: Load Competitor-Specific Intelligence
 
-Based on the incumbent classification, load the detailed intelligence from `{Client Profile: Competitive Intelligence}`:
+Based on the incumbent classification, load the detailed intelligence from `{Client Profile: Competitive Landscape}`:
 - Failure patterns / weaknesses
 - Discovery questions that expose gaps
 - Objection handling specific to this competitor
@@ -485,16 +466,11 @@ How does your team currently track which actions have been taken and which deadl
 
 ## Changelog
 
-### Version 1.1.0 (2026-03-04)
-- Added Epistemic Rules section with evidence grading (VERIFIED / INFERRED / UNVERIFIED) and confidence calibration
-- Expanded Example 1 with full step-by-step detail including email sample, displacement readiness assessment, and evidence grading
-- Expanded Example 2 with BDR role detection, job-posting inference, and MEDIUM confidence handling
-- Added Example 3 demonstrating Active Deal Guard triggered for BDR with full coordination guidance
-- Added Step 1d (Displacement Readiness assessment) to workflow
-- Added "Why It Matters" column to competitive gap matrix
-- Added 2 new troubleshooting entries (MEDIUM confidence handling, multiple tools across divisions)
-- Expanded Best Practices with evidence grading and gap matrix personalization guidance
-- Updated quality checklist with evidence grading and gap matrix requirements
+### Version 1.1.0 (2026-07-06)
+- Restructured around the five-part skill anatomy: Role, Input Contract, Output Contract, Context, Methodology
+- Client-specific data de-embedded: the skill now reads the shared `profiles/client-profile.md` instead of carrying a copy-in Client Profile block (one profile powers every skill)
+- Framework machinery (Epistemic Rules, Confidence Calibration) moved to an explicit Methodology section — `{Methodology: X}` references
+- No functional changes to the workflow, examples, or output formats
 
 ### Version 1.0.0 (2026-03-04)
 - Initial release — migrated from competitive displacement skill

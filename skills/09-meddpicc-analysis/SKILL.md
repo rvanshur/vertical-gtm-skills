@@ -1,11 +1,11 @@
 ---
 name: gtm-meddpicc-analysis
 description: "Scores active deals across all 8 MEDDPICC elements using evidence-graded rubrics, computes weighted health, flags risk patterns, and generates coaching"
-version: 1.0.0
+version: 1.1.0
 category: GTM-Enablement
 author: Ryan Vanshur
 license: MIT
-updated: 2026-03-04
+updated: 2026-07-06
 tags: [meddpicc, deal-analysis, deal-scoring, pipeline-review, sales-methodology, deal-qualification]
 requires:
   skills: ["gtm-deal-pulse"]
@@ -21,67 +21,175 @@ Scores an active deal across all 8 MEDDPICC elements using evidence-graded rubri
 
 ---
 
-## Client Profile
+## Role
 
-> **Configure this block for your company.** Replace the placeholder values below with your actual company data, ICP definitions, personas, and competitive landscape.
+You are a **senior sales manager and deal analyst for a vertical SaaS company** — not a generic assistant. You score individual deals with evidence-grounded discipline, identifying gaps early and recommending methodology-aligned coaching. Everything company-specific — the pain taxonomy, the buyer personas, the competitive landscape — comes from the client profile (see **Context** below), so the same skill serves any vertical without modification.
 
-### Company
-- **Name:** [Your Company]
-- **Industry:** [Your vertical] (B2B SaaS)
-- **Product:** [One-line product description]
+---
 
-### Core Pain Points
-| # | Pain Point | What to Listen For | Business Impact |
-|---|-----------|-------------------|----------------|
-| 1 | **[Pain 1]** | [Signals] | [Impact] |
-| 2 | **[Pain 2]** | [Signals] | [Impact] |
-| 3 | **[Pain 3]** | [Signals] | [Impact] |
+## Input Contract
 
-### Value Propositions
-1. [Value prop 1]
-2. [Value prop 2]
-3. [Value prop 3]
+What this skill needs before it starts. **If a required input is missing, ask — do not guess.**
 
-### Proof Points
-| Customer | Key Metric | Use When |
-|----------|-----------|----------|
-| [Customer 1] | [Metric] | [Scenario] |
-| [Customer 2] | [Metric] | [Scenario] |
+| Input | Required | Notes |
+|-------|----------|-------|
+| Account name | ✅ Required | Account with active opportunity |
+| Opportunity amount (ARR or total contract value) | ✅ Required | For health benchmarking |
+| Deal stage | ✅ Required | Used to set stage-appropriate thresholds |
+| CRM access (interaction history, contact data, notes) | ✅ Required | Evidence for element scoring |
+| Contact names and titles | Optional | For Economic Buyer and Champion identification |
 
-### Competitive Landscape
-| Competitor | Type | Your Advantage |
-|-----------|------|---------------|
-| [Competitor 1] | [Category] | [Why you win] |
-| [Competitor 2] | [Category] | [Why you win] |
-| Status Quo / Manual | Do nothing | [Cost of inaction] |
+---
 
-### Buyer Personas
-| Role | Title Examples | ICP Pattern |
-|------|---------------|------------|
-| Economic Buyer | [Titles] | [Pattern] |
-| Champion | [Titles] | [Pattern] |
-| Evaluator | [Titles] | [Pattern] |
+## Output Contract
 
-### Methodology Frameworks
-- **SPIN Discovery:** Situation → Problem → Implication → Need-Payoff
-- **Challenger:** Teach → Tailor → Take Control
-- **MEDDPICC:** Metrics, Economic Buyer, Decision Criteria, Decision Process, Paper Process, Identified Pain, Champion, Competition
+Every run produces a **MEDDPICC health assessment with the same structure** — so deal quality can be compared across pipeline. The content changes per deal; the structure never does.
 
-### Qualification Criteria (Winning Zones)
-1. [Zone 1 — e.g., unified platform advantage]
-2. [Zone 2 — e.g., multi-region automation]
-3. [Zone 3 — e.g., integration depth]
-4. [Zone 4 — e.g., unique differentiator]
-5. [Zone 5 — e.g., expert support model]
-6. [Zone 6 — e.g., implementation speed]
+Core commitments: **8-element scorecard with weighted scores**, **overall health score (0-100)**, **stage-appropriate verdict**, **stakeholder map**, **top 3 risks**, and **5 prioritized next actions**.
 
-### Deal Stage Definitions
-| Stage | Meaning |
-|-------|---------|
-| Discovery | Initial qualification and pain identification |
-| Trial & Evaluation | Active evaluation, demos, technical review |
-| Negotiation | Pricing, terms, contracting discussions |
-| Closing | Final approvals, paper process, signature |
+---
+
+## Context
+
+**This skill does not contain client-specific information. It points to it.**
+
+> **Load the client profile from [`profiles/client-profile.md`](../../profiles/client-profile.md) before starting.** That single file is shared by all 14 skills in this suite — update it once and every skill inherits the change on its next run.
+
+Throughout this skill, `{Client Profile: X}` means "section X of `profiles/client-profile.md`". Sections this skill reads:
+
+| Profile section | Used for |
+|---|---|
+| Core Pain Points | Identified Pain element scoring |
+| Value Propositions | Metrics and product alignment assessment |
+| Competitive Landscape | Competition element scoring, incumbent identification |
+| Buyer Personas | Economic Buyer and Champion role identification |
+| Qualification Criteria | Decision criteria and winning zone assessment |
+
+`{Methodology: X}` means "subsection X of the **Methodology** section below."
+
+---
+
+## Methodology
+
+Your playbook for MEDDPICC scoring. The 8 elements, weighting system, 1-5 scoring rubrics, health calculation, stage minimums, risk patterns, and coaching framework are your operational blueprint.
+
+### The Eight MEDDPICC Elements and Weights
+
+| Element | Weight | What It Measures |
+|---------|--------|-----------------|
+| **M — Metrics** | 15% | Are success metrics defined and aligned? |
+| **E — Economic Buyer** | 20% | Is the budget owner identified and engaged? |
+| **D — Decision Criteria** | 10% | Do we know the evaluation criteria? |
+| **D — Decision Process** | 10% | Do we understand the buying process and committee? |
+| **P — Paper Process** | 10% | Are legal, security, and procurement mapped? |
+| **I — Identified Pain** | 15% | Is business pain confirmed and quantified? |
+| **C — Champion** | 15% | Is there an active internal advocate? |
+| **C — Competition** | 5% | Do we understand the competitive landscape? |
+
+### MEDDPICC Scoring Rubrics (1-5 Scale)
+
+#### M — Metrics (Weight: 15%)
+| Score | Evidence Required |
+|-------|------------------|
+| 5 | Success metrics defined, baseline measured, target improvements quantified, ROI agreed with economic buyer. |
+| 4 | Metrics discussed, prospect shared current-state numbers. ROI framework shared but not formally agreed. |
+| 3 | General pain quantified but no specific baselines or targets established. |
+| 2 | Pain acknowledged but not quantified. No numbers shared. |
+| 1 | No metrics discussion has occurred. |
+
+#### E — Economic Buyer (Weight: 20%)
+| Score | Evidence Required |
+|-------|------------------|
+| 5 | EB identified by name/title, attended meeting, confirmed budget, expressed personal investment. |
+| 4 | EB identified, direct access established, budget discussed but not confirmed. |
+| 3 | EB identified by name but no direct access. Communicating through champion only. |
+| 2 | We think we know the EB based on title/org chart but haven't confirmed. |
+| 1 | Economic buyer not identified. |
+
+#### D — Decision Criteria (Weight: 10%)
+| Score | Evidence Required |
+|-------|------------------|
+| 5 | Written evaluation criteria received. We map favorably to all critical criteria. We've influenced criteria toward our winning zones. |
+| 4 | Criteria discussed verbally. Know must-haves vs. nice-to-haves. Strong on most. |
+| 3 | Some criteria known from discovery. Haven't mapped to capabilities formally. |
+| 2 | Vague sense of what matters. No specific requirements documented. |
+| 1 | No discussion of evaluation criteria. |
+
+#### D — Decision Process (Weight: 10%)
+| Score | Evidence Required |
+|-------|------------------|
+| 5 | Full process mapped: steps, committee members by name, timeline with dates, approval sequence confirmed. |
+| 4 | Process mostly understood. Key steps and stakeholders known, some dates fuzzy. |
+| 3 | General process known. Specific stakeholders and dates not confirmed. |
+| 2 | Champion said "I'll handle it internally" without specifics. |
+| 1 | No discussion of decision process. |
+
+#### P — Paper Process (Weight: 10%)
+| Score | Evidence Required |
+|-------|------------------|
+| 5 | Legal requirements known, procurement mapped, contract terms discussed, signature authority confirmed. |
+| 4 | Most paper process understood. MSA structure known. Legal review expected, timeline estimated. |
+| 3 | Aware legal/procurement review exists but details unclear. |
+| 2 | Paper process assumed based on company size, not confirmed. |
+| 1 | No discussion of paper process. |
+
+#### I — Identified Pain (Weight: 15%)
+| Score | Evidence Required |
+|-------|------------------|
+| 5 | Multiple pains across stakeholders, quantified impact in prospect's words, urgent timeline, maps to winning zones. |
+| 4 | Primary pain clearly articulated with some quantification. Urgency present but not deadline-driven. |
+| 3 | Pain acknowledged but generic. Not quantified. No expressed urgency. |
+| 2 | We think there's pain based on profile, but prospect hasn't confirmed. |
+| 1 | No pain identified. Deal is feature-led or relationship-led. |
+
+#### C — Champion (Weight: 15%)
+| Score | Evidence Required |
+|-------|------------------|
+| 5 | Champion identified, has influence, actively selling internally, sharing insider info, giving political guidance. |
+| 4 | Identified and engaged, shows investment, has introduced stakeholders. Not yet demonstrated active internal selling. |
+| 3 | Strong contact who likes us but may lack influence or willingness to advocate. |
+| 2 | Contact engages in meetings but shows no championing signs. Evaluating, not advocating. |
+| 1 | No champion identified. Engaging with someone who can't influence the decision. |
+
+#### C — Competition (Weight: 5%)
+| Score | Evidence Required |
+|-------|------------------|
+| 5 | Competitive landscape fully understood. Incumbent known, differentiated strategy confirmed, criteria favor our winning zones. |
+| 4 | Competition identified, strategy exists, prospect perception not yet confirmed. |
+| 3 | Competitor or alternative known but no specific strategy. |
+| 2 | Competition suspected but not confirmed. |
+| 1 | No competitive intelligence. |
+
+### Health Score Calculation & Interpretation
+
+**Formula:** For each element, multiply its score (1-5) by its weight (%). Sum all weighted scores, then divide by 5 and multiply by 100.
+
+| Health Score | Health | Meaning |
+|-------|--------|---------|
+| 80-100 | 🟢 Green | Strong. Well-qualified, progressing. Focus on execution. |
+| 60-79 | 🟡 Yellow | Moderate risk. Key gaps addressable. Fill gaps before advancing. |
+| 40-59 | 🟠 Orange | High risk. Multiple weak elements. Consider re-qualifying. |
+| 0-39 | 🔴 Red | Critical. Lacks fundamentals. Downgrade or disqualify. |
+
+### Stage-Appropriate Minimums
+
+| Stage | Min Health | Critical Elements ≥3 |
+|-------|-----------|----------------------|
+| Discovery | 30+ | Identified Pain |
+| Trial & Evaluation | 50+ | Identified Pain, Champion, Decision Criteria |
+| Negotiation | 65+ | All except Competition ≥3, EB ≥4 |
+| Closing | 75+ | All ≥3, EB ≥4, Paper ≥4 |
+
+### Risk Patterns to Flag
+
+| Pattern | Evidence | Action |
+|---------|----------|--------|
+| Happy ears | High confidence, low CRM evidence | Manager should join next call |
+| Single-threaded | Only one contact, no multi-stakeholder meetings | Multi-thread immediately |
+| Zombie deal | Same stage >45 days, no recent activity | Re-engage or downgrade |
+| Close date fantasy | 2+ slips, or close <30 days with Paper ≤2 | Reset close date (+30 days minimum) |
+| Feature-led deal | No documented pain, demo notes focus on features shown | Go back to discovery |
+| Competitor blind | No competitive intel past Discovery | Ask directly about alternatives |
 
 ---
 
@@ -160,7 +268,7 @@ Score each element 1-5 based on evidence criteria. Be honest.
 | 2 | We think we know the EB based on title/org chart but haven't confirmed. |
 | 1 | Economic buyer not identified. |
 
-**Client context:** EB patterns from `{Client Profile: Buyer Personas — Economic Buyer}`.
+**Client context:** economic-buyer patterns from `{Client Profile: Buyer Personas}` (the persona that owns budget).
 
 **Coaching:** If below 3, ask champion: "If you decided this was the right move, could you make it happen — or does someone else need to approve?"
 
@@ -296,7 +404,7 @@ Score each element 1-5 based on evidence criteria. Be honest.
 
 Generate 5 prioritized next actions, each targeting a specific MEDDPICC gap:
 
-1. **Reference specific methodology** from `{Client Profile: Methodology Frameworks}`
+1. **Reference specific methodology** from `{Client Profile: Sales Methodology}` (or your company's sales frameworks if not specified in the profile)
 2. **Include success criteria** — how will we know the action was effective?
 3. **Assign an owner** — AE, BDR, SE, or manager
 4. **Set a deadline** — 5 business days for critical, 10 for moderate
@@ -427,6 +535,12 @@ Generate 5 prioritized next actions, each targeting a specific MEDDPICC gap:
 ---
 
 ## Changelog
+
+### Version 1.1.0 (2026-07-06)
+- Restructured around the five-part skill anatomy: Role, Input Contract, Output Contract, Methodology, Context
+- Client-specific data de-embedded: the skill now reads the shared `profiles/client-profile.md` instead of carrying a copy-in Client Profile block (one profile powers every skill)
+- MEDDPICC element rubrics, weighting system, health calculation, stage minimums, risk patterns, and coaching framework moved to an explicit Methodology section — `{Methodology: X}` references
+- No functional changes to the workflow, element definitions, scoring logic, examples, or output formats
 
 ### Version 1.0.0 (2026-03-04)
 

@@ -1,11 +1,11 @@
 ---
 name: gtm-deal-pulse
 description: "Scores active pipeline deals across 16 signals in 4 pillars to produce evidence-graded health assessments with risk levels and next actions"
-version: 1.0.0
+version: 1.1.0
 category: GTM-Enablement
 author: Ryan Vanshur
 license: MIT
-updated: 2026-03-04
+updated: 2026-07-06
 tags: [deal-scoring, pipeline-health, signal-scorecard, opportunity-assessment, sales-methodology]
 requires:
   skills: ["gtm-meddpicc-analysis", "gtm-meeting-prep"]
@@ -21,67 +21,228 @@ Scores active pipeline opportunities across 16 signals in 4 strategic pillars �
 
 ---
 
-## Client Profile
+## Role
 
-> **Configure this block for your company.** Replace the placeholder values below with your actual company data, ICP definitions, personas, and competitive landscape.
+You are a **senior sales manager and deal analyst for a vertical SaaS company** — not a generic assistant. You score pipeline opportunities with evidence-grounded rigor, identifying gaps early and recommending methodology-aligned next steps. Everything company-specific — the pain taxonomy, the buyer personas, the competitive landscape — comes from the client profile (see **Context** below), so the same skill serves any vertical without modification.
 
-### Company
-- **Name:** [Your Company]
-- **Industry:** [Your vertical] (B2B SaaS)
-- **Product:** [One-line product description]
+---
 
-### ICP Summary
-- **ICP1 (Core):** [Primary segment description]
-- **ICP2 (Expansion):** [Secondary segment description]
+## Input Contract
 
-### Core Pain Points
-| # | Pain Point | What to Listen For | Business Impact |
-|---|-----------|-------------------|----------------|
-| 1 | **[Pain 1]** | [Signals] | [Impact] |
-| 2 | **[Pain 2]** | [Signals] | [Impact] |
-| 3 | **[Pain 3]** | [Signals] | [Impact] |
+What this skill needs before it starts. **If a required input is missing, ask — do not guess.**
 
-### Value Propositions
-1. [Value prop 1]
-2. [Value prop 2]
-3. [Value prop 3]
+| Input | Required | Notes |
+|-------|----------|-------|
+| Account name | ✅ Required | Account with active opportunity |
+| Opportunity stage | ✅ Required | Deal stage in pipeline |
+| Deal amount (ARR or total contract value) | ✅ Required | Helps contextualize risk levels |
+| Primary contact name + title | ✅ Required | For stakeholder and champion context |
+| CRM access (interaction history, notes, activity) | ✅ Required | Evidence for signal scoring |
+| Days in current stage | Optional | Used for stalled-deal detection |
 
-### Proof Points
-| Customer | Key Metric | Use When |
-|----------|-----------|----------|
-| [Customer 1] | [Metric] | [Scenario] |
-| [Customer 2] | [Metric] | [Scenario] |
+---
 
-### Competitive Landscape
-| Competitor | Type | Your Advantage |
-|-----------|------|---------------|
-| [Competitor 1] | [Category] | [Why you win] |
-| [Competitor 2] | [Category] | [Why you win] |
-| Status Quo / Manual | Do nothing | [Cost of inaction] |
+## Output Contract
 
-### Buyer Personas
-| Role | Title Examples | Pain Sensitivity |
-|------|---------------|-----------------|
-| Economic Buyer | [Titles] | [Focus areas] |
-| Champion | [Titles] | [Focus areas] |
-| Evaluator | [Titles] | [Focus areas] |
-| Technical | [Titles] | [Focus areas] |
-| Influencer | [Titles] | [Focus areas] |
-| End User | [Titles] | [Focus areas] |
+Every run produces a **Deal Pulse Report with the same structure and sections** — so deal health can be compared across pipeline. The content changes per deal; the structure never does.
 
-### Methodology Frameworks
-> Replace with your company's frameworks if different. These are proven defaults.
+Core commitments: **16-signal scorecard across 4 pillars**, **health score (0-100)**, **risk level with pillar breakdown**, **top risks identified**, and **specific recommended actions for each RED signal**.
 
-- **SPIN Discovery:** Situation → Problem → Implication → Need-Payoff
-- **Challenger:** Teach → Tailor → Take Control
-- **MEDDPICC:** Metrics, Economic Buyer, Decision Criteria, Decision Process, Paper Process, Identified Pain, Champion, Competition
+---
 
-### Qualification Criteria (Winning Zones)
-1. [Zone 1 — e.g., target customer segments]
-2. [Zone 2 — e.g., organizational structure signals]
-3. [Zone 3 — e.g., regulatory or compliance triggers]
-4. [Zone 4 — e.g., volume or revenue thresholds]
-5. [Zone 5 — e.g., tech stack or process signals]
+## Context
+
+**This skill does not contain client-specific information. It points to it.**
+
+> **Load the client profile from [`profiles/client-profile.md`](../../profiles/client-profile.md) before starting.** That single file is shared by all 14 skills in this suite — update it once and every skill inherits the change on its next run.
+
+Throughout this skill, `{Client Profile: X}` means "section X of `profiles/client-profile.md`". Sections this skill reads:
+
+| Profile section | Used for |
+|---|---|
+| Company | Framing and context |
+| Buyer Personas | Multi-threaded role expectations, influence assessment |
+| Core Pain Points | Pain clarity scoring, pain hypothesis mapping |
+| Value Propositions | Competitive positioning assessment |
+| Competitive Landscape | Competitive signal scoring, incumbent identification |
+| Qualification Criteria | Winning Zone mapping for Strategic Initiative signal |
+
+`{Methodology: X}` means "subsection X of the **Methodology** section below."
+
+---
+
+## Methodology
+
+Your playbook for scoring deals. The 16-signal framework, signal rubrics, health calculation, risk levels, and recommended actions are your operational blueprint.
+
+### Four Pillars and Sixteen Signals
+
+| Pillar | Focus | Signals |
+|--------|-------|---------|
+| **Why Anything** (💡) | Does a genuine need exist? | 1. Business Pain Clarity, 2. Compelling Reason to Change, 3. Strategic Initiative Alignment, 4. Champion Strength |
+| **Why Us** (⚙️) | Can we solve it better than alternatives? | 5. Solution Fit, 6. Technical Readiness, 7. Competitive Landscape, 8. Product Alignment |
+| **Why Now** (⏰) | Is there urgency and budget to act? | 9. Budget Path Identified, 10. Decision Process Clarity, 11. Timeline Alignment, 12. Procurement Awareness |
+| **Execution** (🤝) | Can we move the deal forward? | 13. Buyer Responsiveness, 14. Multi-Threaded Engagement, 15. Follow-Through on Commitments, 16. Meeting Progression |
+
+### Signal Scoring Rubrics (Why Anything Pillar)
+
+#### Signal 1: Business Pain Clarity
+| Score | Criteria |
+|-------|----------|
+| 🟢 GREEN | Pain is specific, quantified ($ or time impact), and acknowledged by the buyer with examples. Buyer has described the problem in their own words with measurable impact. |
+| 🟡 YELLOW | Pain is stated generally but not quantified, or only acknowledged by the champion — not validated by economic buyer or multiple stakeholders. |
+| 🔴 RED | No pain articulated, or pain is vague/aspirational with no business impact stated. We are projecting pain onto the buyer. |
+
+#### Signal 2: Compelling Reason to Change
+| Score | Criteria |
+|-------|----------|
+| 🟢 GREEN | Clear trigger event or deadline forcing action — contract expiration, compliance risk, M&A integration, system failure, leadership mandate, or regulatory change. |
+| 🟡 YELLOW | General dissatisfaction with status quo but no forcing event. Buyer acknowledges problems but has no deadline to solve them. |
+| 🔴 RED | No urgency indicators. "Looking for the future," "exploring options." Status quo is tolerable. |
+
+#### Signal 3: Strategic Initiative Alignment
+| Score | Criteria |
+|-------|----------|
+| 🟢 GREEN | Solution maps to a stated company priority, OKR, board initiative, or executive mandate. Confirmed by director level or above. |
+| 🟡 YELLOW | Connects to departmental goals but not confirmed as company-wide priority. |
+| 🔴 RED | No known connection to strategic initiatives. Driven by individual interest only. |
+
+#### Signal 4: Champion Strength
+| Score | Criteria |
+|-------|----------|
+| 🟢 GREEN | Identified champion with decision influence who is actively selling internally, sharing insider information, and coaching us on how to win. |
+| 🟡 YELLOW | Friendly contact who supports us but has limited influence or hasn't demonstrated internal advocacy. |
+| 🔴 RED | No champion identified, or primary contact is purely informational/transactional. |
+
+### Signal Scoring Rubrics (Why Us Pillar)
+
+#### Signal 5: Solution Fit
+| Score | Criteria |
+|-------|----------|
+| 🟢 GREEN | Capabilities directly address identified pain. Buyer has confirmed fit — "this solves our problem." Feature requirements mapped and validated. |
+| 🟡 YELLOW | General fit acknowledged but specific use case mapping incomplete. |
+| 🔴 RED | Significant gaps between buyer needs and capabilities, or fit hasn't been validated at all. |
+
+#### Signal 6: Technical Readiness
+| Score | Criteria |
+|-------|----------|
+| 🟢 GREEN | IT/technical stakeholders engaged, system requirements identified, integration scoped, no blockers. |
+| 🟡 YELLOW | Technical requirements partially understood. IT not yet fully involved. |
+| 🔴 RED | Technical requirements unknown, IT hasn't been engaged, or known blockers exist. |
+
+#### Signal 7: Competitive Landscape
+| Score | Criteria |
+|-------|----------|
+| 🟢 GREEN | We are the frontrunner or sole vendor. Competitive differentiators clearly communicated. Buyer has expressed preference. |
+| 🟡 YELLOW | Competitors known but positioning unclear. Buyer evaluating multiple vendors with no stated preference. |
+| 🔴 RED | Strong competitor entrenched or competitive landscape completely unknown. |
+
+#### Signal 8: Product Alignment
+| Score | Criteria |
+|-------|----------|
+| 🟢 GREEN | Product capabilities match >80% of stated requirements. Demo or POC confirmed strong alignment. |
+| 🟡 YELLOW | Core features fit but secondary requirements have gaps or haven't been validated. |
+| 🔴 RED | Major feature gaps identified, or product hasn't been demonstrated against requirements. |
+
+### Signal Scoring Rubrics (Why Now Pillar)
+
+#### Signal 9: Budget Path Identified
+| Score | Criteria |
+|-------|----------|
+| 🟢 GREEN | Budget owner identified (name and title), funding confirmed or allocated, pricing discussed or proposal delivered. |
+| 🟡 YELLOW | Budget exists in principle but not formally allocated. Economic buyer identified but not engaged in pricing. |
+| 🔴 RED | No budget confirmed, no economic buyer engaged, or buyer has said "no budget this year." |
+
+#### Signal 10: Decision Process Clarity
+| Score | Criteria |
+|-------|----------|
+| 🟢 GREEN | Decision criteria, evaluation timeline, and committee members clearly mapped and confirmed by buyer. |
+| 🟡 YELLOW | General understanding but not all decision-makers identified, or timeline is vague. |
+| 🔴 RED | Decision process unknown. Single-threaded with no visibility into approvals. |
+
+#### Signal 11: Timeline Alignment
+| Score | Criteria |
+|-------|----------|
+| 🟢 GREEN | Internal deadline confirmed — fiscal year end, contract renewal, project start, compliance deadline. Close date is buyer-validated. |
+| 🟡 YELLOW | General timeline discussed but not tied to a specific internal event. Close date is rep-estimated. |
+| 🔴 RED | No timeline pressure. Close date pushed 2+ times or arbitrary. |
+
+#### Signal 12: Procurement Awareness
+| Score | Criteria |
+|-------|----------|
+| 🟢 GREEN | Legal, security review, and vendor onboarding requirements identified. Procurement timeline scoped. |
+| 🟡 YELLOW | Aware procurement steps exist but details unclear. |
+| 🔴 RED | Procurement process completely unknown. Potential for surprise 30-60 day delays. |
+
+### Signal Scoring Rubrics (Execution Pillar)
+
+#### Signal 13: Buyer Responsiveness
+| Score | Criteria |
+|-------|----------|
+| 🟢 GREEN | Buyer responds within 24-48 hours, proactively shares information, attends all meetings, initiates contact. |
+| 🟡 YELLOW | Responsive but requires follow-up prompts. Occasional delays (3-5 days). |
+| 🔴 RED | Unresponsive — multiple unanswered emails, gone dark 2+ weeks, consistently cancels meetings. |
+
+#### Signal 14: Multi-Threaded Engagement
+| Score | Criteria |
+|-------|----------|
+| 🟢 GREEN | 3+ contacts engaged across different roles or departments. Relationships at multiple org levels. |
+| 🟡 YELLOW | 2 contacts engaged but concentrated in one department or level. |
+| 🔴 RED | Single-threaded — only one contact engaged. |
+
+#### Signal 15: Follow-Through on Commitments
+| Score | Criteria |
+|-------|----------|
+| 🟢 GREEN | Both buyer and rep consistently deliver on agreed next steps. Commitments completed before next meeting. |
+| 🟡 YELLOW | Some follow-through but occasional missed commitments on either side. |
+| 🔴 RED | Pattern of missed commitments. "Happy ears" risk. |
+
+#### Signal 16: Meeting Progression
+| Score | Criteria |
+|-------|----------|
+| 🟢 GREEN | Meetings progressing through stages with increasing stakeholder seniority. Each meeting advances the deal. |
+| 🟡 YELLOW | Meetings occurring but not clearly advancing. Same topics, same attendees. Lateral movement. |
+| 🔴 RED | No meetings in last 30 days, stalled progression, or only intro-level conversations after months. |
+
+### Health Score Calculation
+
+**Numeric mapping:** GREEN = 100, YELLOW = 50, RED = 0
+
+1. **Overall health score** = Average of all 16 signal values (round to nearest integer)
+2. **Pillar scores** = Average of each pillar's 4 signals
+
+### Risk Level Assignment
+
+| Health Score | Risk Level |
+|-------------|------------|
+| 85-100 | 🟢 Low Risk |
+| 46-84 | 🟡 Medium Risk |
+| 0-45 | 🔴 High Risk |
+
+**Pillar weakness bump:** If any single pillar average is below 30, bump risk up one level. This catches deals that look healthy overall but have a catastrophic weakness.
+
+### Recommended Actions Framework
+
+For each RED signal, recommend a specific action mapped to your sales methodology:
+
+| Red Signal Area | Recommended Action |
+|----------------|-------------------|
+| Business Pain Clarity | Run discovery framework to probe and quantify pain. Ask "What happens if you do nothing for 12 months?" |
+| Compelling Reason to Change | Use urgency framework to create timeline pressure. Explore contract renewals, compliance deadlines, incidents. |
+| Strategic Initiative Alignment | Ask champion: "Where does this sit on your company's priority list this year?" Seek executive validation. |
+| Champion Strength | Use rapport framework to diagnose and develop an internal advocate. Identify who has most to gain. |
+| Solution Fit | Schedule tailored demo against specific use cases. Use "Day in the Life" approach, not feature walkthrough. |
+| Technical Readiness | Request technical discovery with IT team. Identify key integration variables. |
+| Competitive Landscape | Deploy competitive displacement playbook. Lead with proof points from similar wins. |
+| Product Alignment | Build requirements matrix and validate feature-by-feature. Address gaps with roadmap or workarounds. |
+| Budget Path | Engage economic buyer directly. Build ROI/financial justification. Ask: "Who signs the check?" |
+| Decision Process | Run discovery framework. Ask: "Walk me through how your company has purchased software like this before." |
+| Timeline Alignment | Identify internal deadlines. Ask: "What happens if this slips to next quarter/year?" Work backward from implementation timeline. |
+| Procurement Awareness | Ask: "What does your vendor onboarding process look like? Legal review? Security? Board approval?" |
+| Buyer Responsiveness | Use momentum framework. If dark >14 days, send breakup email. |
+| Multi-Threaded | Request introductions: "To build the right solution, I'd love perspectives from [other stakeholders]." |
+| Follow-Through | Address directly with champion. Propose mutual action plan to keep things on track. |
+| Meeting Progression | Propose clear next step with specific agenda and new stakeholder. Avoid "check-in" meetings. |
 
 ---
 
@@ -160,205 +321,52 @@ Organize chronologically with emphasis on the most recent 90 days. Count:
 
 ### Step 3: Score "Why Anything" Pillar
 
-Score 4 signals using collected evidence. For each signal, assign GREEN, YELLOW, or RED and write a 2-3 sentence justification citing specific evidence.
+Score the 4 signals in the Why Anything pillar using the rubrics from `{Methodology: Why Anything Pillar}`. For each signal, assign GREEN, YELLOW, or RED and write a 2-3 sentence justification citing specific evidence from CRM data.
 
-#### Signal 1: Business Pain Clarity
-
-| Score | Criteria |
-|-------|----------|
-| 🟢 GREEN | Pain is specific, quantified ($ or time impact), and acknowledged by the buyer with examples. Buyer has described the problem in their own words with measurable impact. |
-| 🟡 YELLOW | Pain is stated generally but not quantified, or only acknowledged by the champion — not validated by economic buyer or multiple stakeholders. |
-| 🔴 RED | No pain articulated, or pain is vague/aspirational with no business impact stated. We are projecting pain onto the buyer. |
-
-**Client context:** Map to `{Client Profile: Core Pain Points}`. Deals with quantified pain in these areas score GREEN.
-
-#### Signal 2: Compelling Reason to Change
-
-| Score | Criteria |
-|-------|----------|
-| 🟢 GREEN | Clear trigger event or deadline forcing action — contract expiration, compliance risk, M&A integration, system failure, leadership mandate, or regulatory change. |
-| 🟡 YELLOW | General dissatisfaction with status quo but no forcing event. Buyer acknowledges problems but has no deadline to solve them. |
-| 🔴 RED | No urgency indicators. "Looking for the future," "exploring options." Status quo is tolerable. |
-
-#### Signal 3: Strategic Initiative Alignment
-
-| Score | Criteria |
-|-------|----------|
-| 🟢 GREEN | Solution maps to a stated company priority, OKR, board initiative, or executive mandate. Confirmed by director level or above. |
-| 🟡 YELLOW | Connects to departmental goals but not confirmed as company-wide priority. |
-| 🔴 RED | No known connection to strategic initiatives. Driven by individual interest only. |
-
-#### Signal 4: Champion Strength
-
-| Score | Criteria |
-|-------|----------|
-| 🟢 GREEN | Identified champion with decision influence who is actively selling internally, sharing insider information, and coaching us on how to win. |
-| 🟡 YELLOW | Friendly contact who supports us but has limited influence or hasn't demonstrated internal advocacy. |
-| 🔴 RED | No champion identified, or primary contact is purely informational/transactional. |
-
-**Client context:** A strong champion matches `{Client Profile: Buyer Personas — Champion}` — someone who feels the pain daily and has influence with the economic buyer.
+**Signals 1-4:** Business Pain Clarity, Compelling Reason to Change, Strategic Initiative Alignment, Champion Strength
 
 ---
 
 ### Step 4: Score "Why Us" Pillar
 
-#### Signal 5: Solution Fit
+Score the 4 signals in the Why Us pillar using the rubrics from `{Methodology: Why Us Pillar}`. For each signal, assign GREEN, YELLOW, or RED with specific evidence citations.
 
-| Score | Criteria |
-|-------|----------|
-| 🟢 GREEN | Capabilities directly address identified pain. Buyer has confirmed fit — "this solves our problem." Feature requirements mapped and validated. |
-| 🟡 YELLOW | General fit acknowledged but specific use case mapping incomplete. |
-| 🔴 RED | Significant gaps between buyer needs and capabilities, or fit hasn't been validated at all. |
-
-#### Signal 6: Technical Readiness
-
-| Score | Criteria |
-|-------|----------|
-| 🟢 GREEN | IT/technical stakeholders engaged, system requirements identified, integration scoped, no blockers. |
-| 🟡 YELLOW | Technical requirements partially understood. IT not yet fully involved. |
-| 🔴 RED | Technical requirements unknown, IT hasn't been engaged, or known blockers exist. |
-
-#### Signal 7: Competitive Landscape
-
-| Score | Criteria |
-|-------|----------|
-| 🟢 GREEN | We are the frontrunner or sole vendor. Competitive differentiators clearly communicated. Buyer has expressed preference. |
-| 🟡 YELLOW | Competitors known but positioning unclear. Buyer evaluating multiple vendors with no stated preference. |
-| 🔴 RED | Strong competitor entrenched or competitive landscape completely unknown. |
-
-**Client context:** Reference `{Client Profile: Competitive Landscape}` for known competitors and `{Client Profile: Proof Points}` for displacement evidence.
-
-#### Signal 8: Product Alignment
-
-| Score | Criteria |
-|-------|----------|
-| 🟢 GREEN | Product capabilities match >80% of stated requirements. Demo or POC confirmed strong alignment. |
-| 🟡 YELLOW | Core features fit but secondary requirements have gaps or haven't been validated. |
-| 🔴 RED | Major feature gaps identified, or product hasn't been demonstrated against requirements. |
+**Signals 5-8:** Solution Fit, Technical Readiness, Competitive Landscape, Product Alignment
 
 ---
 
 ### Step 5: Score "Why Now" Pillar
 
-#### Signal 9: Budget Path Identified
+Score the 4 signals in the Why Now pillar using the rubrics from `{Methodology: Why Now Pillar}`. For each signal, assign GREEN, YELLOW, or RED with specific evidence citations.
 
-| Score | Criteria |
-|-------|----------|
-| 🟢 GREEN | Budget owner identified (name and title), funding confirmed or allocated, pricing discussed or proposal delivered. |
-| 🟡 YELLOW | Budget exists in principle but not formally allocated. Economic buyer identified but not engaged in pricing. |
-| 🔴 RED | No budget confirmed, no economic buyer engaged, or buyer has said "no budget this year." |
+**Signals 9-12:** Budget Path Identified, Decision Process Clarity, Timeline Alignment, Procurement Awareness
 
-#### Signal 10: Decision Process Clarity
-
-| Score | Criteria |
-|-------|----------|
-| 🟢 GREEN | Decision criteria, evaluation timeline, and committee members clearly mapped and confirmed by buyer. |
-| 🟡 YELLOW | General understanding but not all decision-makers identified, or timeline is vague. |
-| 🔴 RED | Decision process unknown. Single-threaded with no visibility into approvals. |
-
-#### Signal 11: Timeline Alignment
-
-| Score | Criteria |
-|-------|----------|
-| 🟢 GREEN | Internal deadline confirmed — fiscal year end, contract renewal, project start, compliance deadline. Close date is buyer-validated. |
-| 🟡 YELLOW | General timeline discussed but not tied to a specific internal event. Close date is rep-estimated. |
-| 🔴 RED | No timeline pressure. Close date pushed 2+ times or arbitrary. |
-
-**Scoring note:** If close date has been pushed more than twice (from Step 1), this is automatically YELLOW at best.
-
-#### Signal 12: Procurement Awareness
-
-| Score | Criteria |
-|-------|----------|
-| 🟢 GREEN | Legal, security review, and vendor onboarding requirements identified. Procurement timeline scoped. |
-| 🟡 YELLOW | Aware procurement steps exist but details unclear. |
-| 🔴 RED | Procurement process completely unknown. Potential for surprise 30-60 day delays. |
+**Scoring note:** If close date has been pushed more than twice (from Step 1), Timeline Alignment is automatically YELLOW at best.
 
 ---
 
 ### Step 6: Score "Execution" Pillar
 
-#### Signal 13: Buyer Responsiveness
+Score the 4 signals in the Execution pillar using the rubrics from `{Methodology: Execution Pillar}`. For each signal, assign GREEN, YELLOW, or RED with specific evidence citations.
 
-| Score | Criteria |
-|-------|----------|
-| 🟢 GREEN | Buyer responds within 24-48 hours, proactively shares information, attends all meetings, initiates contact. |
-| 🟡 YELLOW | Responsive but requires follow-up prompts. Occasional delays (3-5 days). |
-| 🔴 RED | Unresponsive — multiple unanswered emails, gone dark 2+ weeks, consistently cancels meetings. |
+**Signals 13-16:** Buyer Responsiveness, Multi-Threaded Engagement, Follow-Through on Commitments, Meeting Progression
 
-**Scoring note:** If most recent buyer-initiated contact is >14 days ago, YELLOW at best. If >30 days, RED.
-
-#### Signal 14: Multi-Threaded Engagement
-
-| Score | Criteria |
-|-------|----------|
-| 🟢 GREEN | 3+ contacts engaged across different roles or departments. Relationships at multiple org levels. |
-| 🟡 YELLOW | 2 contacts engaged but concentrated in one department or level. |
-| 🔴 RED | Single-threaded — only one contact engaged. |
-
-**Client context:** Ideal multi-threading targets `{Client Profile: Buyer Personas}` across Champion + Evaluator + Technical + Economic Buyer roles.
-
-#### Signal 15: Follow-Through on Commitments
-
-| Score | Criteria |
-|-------|----------|
-| 🟢 GREEN | Both buyer and rep consistently deliver on agreed next steps. Commitments completed before next meeting. |
-| 🟡 YELLOW | Some follow-through but occasional missed commitments on either side. |
-| 🔴 RED | Pattern of missed commitments. "Happy ears" risk. |
-
-#### Signal 16: Meeting Progression
-
-| Score | Criteria |
-|-------|----------|
-| 🟢 GREEN | Meetings progressing through stages with increasing stakeholder seniority. Each meeting advances the deal. |
-| 🟡 YELLOW | Meetings occurring but not clearly advancing. Same topics, same attendees. Lateral movement. |
-| 🔴 RED | No meetings in last 30 days, stalled progression, or only intro-level conversations after months. |
+**Scoring notes:** 
+- If most recent buyer-initiated contact is >14 days ago, Buyer Responsiveness is YELLOW at best. If >30 days, RED.
+- Ideal multi-threading targets `{Client Profile: Buyer Personas}` across Champion + Evaluator + Technical + Economic Buyer roles.
 
 ---
 
 ### Step 7: Compute Health Score & Recommended Actions
 
-#### Health Score Calculation
+Using the scoring rubrics and calculation methods from `{Methodology: Health Score Calculation}` and `{Methodology: Risk Level Assignment}`:
 
-Assign numeric values: GREEN = 100, YELLOW = 50, RED = 0
-
-1. **Overall health score** = Average of all 16 signal values (round to nearest integer)
-2. **Pillar scores** = Average of each pillar's 4 signals
-
-#### Risk Level Assignment
-
-| Health Score | Risk Level |
-|-------------|------------|
-| 85-100 | 🟢 Low Risk |
-| 46-84 | 🟡 Medium Risk |
-| 0-45 | 🔴 High Risk |
-
-**Pillar weakness bump:** If any single pillar average is below 30, bump risk up one level. This catches deals that look healthy overall but have a catastrophic weakness.
-
-#### Recommended Actions
-
-For each RED signal, recommend a specific methodology action from `{Client Profile: Methodology Frameworks}`:
-
-| Red Signal Area | Recommended Action |
-|----------------|-------------------|
-| Business Pain Clarity | Run discovery framework to probe and quantify pain. Ask "What happens if you do nothing for 12 months?" |
-| Compelling Reason to Change | Use urgency framework to create timeline pressure. Explore contract renewals, compliance deadlines, incidents. |
-| Strategic Initiative Alignment | Ask champion: "Where does this sit on your company's priority list this year?" Seek executive validation. |
-| Champion Strength | Use rapport framework to diagnose and develop an internal advocate. Identify who has most to gain. |
-| Solution Fit | Schedule tailored demo against specific use cases. Use "Day in the Life" approach, not feature walkthrough. |
-| Technical Readiness | Request technical discovery with IT team. Identify key integration variables. |
-| Competitive Landscape | Deploy competitive displacement playbook. Lead with proof points from similar wins. |
-| Product Alignment | Build requirements matrix and validate feature-by-feature. Address gaps with roadmap or workarounds. |
-| Budget Path | Engage economic buyer directly. Build ROI/financial justification. Ask: "Who signs the check?" |
-| Decision Process | Run discovery framework. Ask: "Walk me through how your company has purchased software like this before." |
-| Timeline Alignment | Identify internal deadlines. Ask: "What happens if this slips to next quarter/year?" Work backward from implementation timeline. |
-| Procurement Awareness | Ask: "What does your vendor onboarding process look like? Legal review? Security? Board approval?" |
-| Buyer Responsiveness | Use momentum framework. If dark >14 days, send breakup email. |
-| Multi-Threaded | Request introductions: "To build the right solution, I'd love perspectives from [other stakeholders]." |
-| Follow-Through | Address directly with champion. Propose mutual action plan to keep things on track. |
-| Meeting Progression | Propose clear next step with specific agenda and new stakeholder. Avoid "check-in" meetings. |
-
-For YELLOW signals, note what evidence is needed to move them to GREEN.
+1. Assign numeric values to each signal: GREEN = 100, YELLOW = 50, RED = 0
+2. Calculate overall health score = Average of all 16 signal values (round to nearest integer)
+3. Calculate pillar scores = Average of each pillar's 4 signals
+4. Assign risk level using the health score bands and apply pillar weakness bump if any pillar averages below 30
+5. For each RED signal, identify the specific recommended action from `{Methodology: Recommended Actions Framework}`
+6. For YELLOW signals, note what evidence is needed to move them to GREEN
 
 ---
 
@@ -563,6 +571,12 @@ Before delivering the report:
 ---
 
 ## Changelog
+
+### Version 1.1.0 (2026-07-06)
+- Restructured around the five-part skill anatomy: Role, Input Contract, Output Contract, Methodology, Context
+- Client-specific data de-embedded: the skill now reads the shared `profiles/client-profile.md` instead of carrying a copy-in Client Profile block (one profile powers every skill)
+- Signal scoring methodology (all 16 signals + 4 pillars, GREEN/YELLOW/RED rubrics, health calculation, risk assignment, recommended actions) moved to an explicit Methodology section — `{Methodology: X}` references
+- No functional changes to the workflow, scoring logic, examples, or output formats
 
 ### Version 1.0.0 (2026-03-04)
 
