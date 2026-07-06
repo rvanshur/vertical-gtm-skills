@@ -4,7 +4,7 @@
 
 Turn Claude into your team's sales methodology engine. These aren't prompt templates. They're codified playbooks that score deals, prep meetings, coach calls, build outbound sequences, and map stakeholders, all grounded in your company's actual ICP, personas, competitors, and proof points.
 
-One configuration block. Fourteen skills. Every GTM motion covered.
+One client profile file. Fourteen skills that read it. Every GTM motion covered.
 
 ---
 
@@ -12,7 +12,19 @@ One configuration block. Fourteen skills. Every GTM motion covered.
 
 A complete AI-powered sales methodology suite designed for vertical SaaS companies. Each skill encodes proven frameworks (SPIN, MEDDPICC, Challenger) into structured Claude Code instructions that produce operational output: call sheets, deal scorecards, battlecards, outbound sequences, and coaching reports.
 
-**The key insight:** You configure one Client Profile with your company's data. All 14 skills read from it. When you move to a new vertical or client engagement, you swap the profile. The methodology stays the same.
+**The key insight:** Your company's data lives in **one file** — [`profiles/client-profile.md`](profiles/client-profile-template.md). All 14 skills read from it; none of them contain it. Update the profile once and every skill inherits the change on its next run. When you move to a new vertical or client engagement, you swap that one file. The methodology stays the same — the profile is the fuel.
+
+### Anatomy of a Skill
+
+Every skill in this suite has the same five parts. Learn to read one and you can read them all:
+
+| Part | What it does |
+|---|---|
+| **Role** | Who the AI is for this task — a senior operator, not a generic assistant |
+| **Input Contract** | What it needs before it starts — and it asks rather than guesses |
+| **Output Contract** | The shape of the artifact — same sections, same order, every run |
+| **Methodology** | Your playbook, in code — SPIN, MEDDPICC, Challenger, scoring rubrics |
+| **Context** | The pointer to `profiles/client-profile.md` — the skill reads your data, it doesn't own it |
 
 ### Who This Is For
 
@@ -85,27 +97,31 @@ git clone https://github.com/rvanshur/vertical-gtm-skills.git
 cd vertical-gtm-skills
 ```
 
-### Step 2: Configure your Client Profile
-Every skill has a `## Client Profile` section at the top. This is where you plug in your company's data.
-
-Open the **[Client Profile Template](client-profile-template.md)** and fill it out for your company. Then copy that profile into each skill you plan to use.
-
-> **Pro tip:** Start with 3 skills, not 14. See the [Getting Started Guide](docs/getting-started.md) for role-based recommendations.
-
-### Step 3: Install skills in Claude Code
-Copy any skill's `SKILL.md` into your Claude Code project directory:
+### Step 2: Wire in your Client Profile
+Fill out the **[Client Profile Template](profiles/client-profile-template.md)** for your company (a completed [legal-ops example](profiles/examples/legal-ops-example.md) shows the target density), then save it at the path every skill reads from:
 
 ```bash
-# Example: install the Meeting Prep skill
-mkdir -p ~/.claude/skills
-cp skills/06-meeting-prep/SKILL.md ~/.claude/skills/meeting-prep.md
+cp your-completed-profile.md profiles/client-profile.md
 ```
 
-Or reference skills directly in your `CLAUDE.md`:
+That's the wiring. Every skill already includes the line that reads from this path — no per-skill configuration.
+
+### Step 3: Pick your three
+**Do not start with all 14.** Pick the three that hit your role's biggest friction, run them on real accounts, then expand:
+
+| Role | Your first three |
+|------|-----------------|
+| **BDR / SDR** | Account Snapshot (02) · Trigger Event Outbound (04) · Daily Prospecting (07) |
+| **AE** | Meeting Prep (06) · Deal Pulse (08) · Stakeholder Mapping (10) |
+| **Sales Manager / VP** | Account Pre-Qualification (01) · Deal Pulse (08) · Call Coaching (13) |
+| **RevOps / Enablement** | Account Pre-Qualification (01) · MEDDPICC Analysis (09) · Sales-to-CS Handoff (14) |
+
+Then point Claude Code at the suite — run it from the cloned repo (this keeps every skill's pointer to `profiles/client-profile.md` intact), or reference skills in your `CLAUDE.md`:
 ```markdown
 ## Skills
 When I ask for meeting prep, read and follow the instructions in:
 `/path/to/vertical-gtm-skills/skills/06-meeting-prep/SKILL.md`
+(Client profile lives at /path/to/vertical-gtm-skills/profiles/client-profile.md)
 ```
 
 ### Step 4: Run your first skill
@@ -123,11 +139,11 @@ Claude reads your Meeting Prep skill, pulls from your Client Profile, and genera
 
 ### The Client Profile Pattern
 
-Every skill reads from the same Client Profile block. This is what makes the system portable:
+Every skill reads from the same file — `profiles/client-profile.md`. The skills don't contain your data; they point to it. This is what makes the system portable, and what keeps 14 skills from drifting apart:
 
 ```
 ┌─────────────────────────────────────────┐
-│           CLIENT PROFILE                │
+│      profiles/client-profile.md         │
 │  Company, ICP, Personas, Competitors,   │
 │  Pain Points, Value Props, Proof Points │
 └──────────────────┬──────────────────────┘
@@ -167,7 +183,8 @@ Skills compound when used together. A typical 30-day deployment:
 | Guide | Description |
 |-------|-------------|
 | **[Getting Started](docs/getting-started.md)** | Role-based setup (BDR, AE, Manager), first-week playbook, common patterns |
-| **[Client Profile Template](client-profile-template.md)** | Blank template with instructions for every field |
+| **[Client Profile Template](profiles/client-profile-template.md)** | Blank template with instructions for every field |
+| **[Legal-Ops Example Profile](profiles/examples/legal-ops-example.md)** | A completed profile showing the target density and specificity |
 | **[Skill Reference](docs/skill-reference.md)** | Decision tree, input/output specs, chaining patterns |
 | **[Starter Kit](starter-kit/)** | Pre-built templates for identity files, taxonomy, and folder structure |
 | **[Customization Guide](docs/customization.md)** | How to modify skills for your methodology, add new frameworks, extend scoring |
