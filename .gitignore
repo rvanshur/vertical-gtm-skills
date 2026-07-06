@@ -11,3 +11,6 @@ output/
 
 # Environment
 .env
+
+# Your completed client profile contains your competitive data — keep it out of forks/PRs
+profiles/client-profile.md
