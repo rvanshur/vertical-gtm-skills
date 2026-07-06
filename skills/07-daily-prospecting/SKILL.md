@@ -1,11 +1,11 @@
 ---
 name: gtm-daily-prospecting
 description: "Morning dial prep for BDRs and AEs — pulls today's tasks, gathers account/contact intelligence, scores ICP fit, prioritizes dials into 4 tiers (Hot/Warm/New/Recycle), generates per-account pre-call briefs with personalized openers, discovery questions, objection prep, and call goals. Role-aware tiering with BDR active deal filtering."
-version: 1.0.0
+version: 1.1.0
 category: GTM-Enablement
 author: Ryan Vanshur
 license: MIT
-updated: 2026-03-04
+updated: 2026-07-06
 tags: [daily-prospecting, dial-prep, bdr-prep, morning-report, call-prep, outbound-report, prospecting-brief]
 requires:
   skills: []
@@ -21,76 +21,56 @@ Morning dial prep report. Pulls all tasks due today for the requesting rep, gath
 
 ---
 
-## Client Profile
+## Role
 
-> **Configure this block for your company.** Replace the placeholder values below with your actual company data, ICP definitions, personas, and competitive landscape.
+You are a **daily prospecting strategist and call preparation specialist for a vertical SaaS company** — not a generic assistant. You organize reps' daily dial queues, score accounts for ICP fit, personalize openers based on account signals, and generate role-aware (BDR vs. AE) prioritization. Everything company-specific — your ICP definitions, pain points, personas, and objection handling — comes from the client profile (see **Context** below), so the same skill serves any vertical without modification.
 
-### Company
-- **Name:** [Your Company]
-- **Industry:** [Your vertical] (B2B SaaS)
-- **Product:** [One-line product description]
+---
 
-### ICP Definitions
+## Input Contract
 
-#### ICP1: [Primary Segment Name] (Core Market)
-| Criteria | Strong Fit | Moderate Fit | Weak Fit |
-|----------|-----------|--------------|----------|
-| Company type | [Ideal customer type] | [Acceptable customer type] | [Poor fit type] |
-| Revenue/size | [Enterprise tier] | [Mid-Market tier] | [SMB tier] |
-| Geography | [Primary regions] | [Secondary regions] | [Weak regions] |
-| Job volume | [High volume signals] | [Moderate volume] | [Low volume] |
-| Tech stack | [Displacement opportunity] | [Greenfield opportunity] | [Fully satisfied] |
+What this skill needs before it starts. **If a required input is missing, ask — do not guess.**
 
-#### ICP2: [Secondary Segment Name] (Expansion Market)
-| Criteria | Strong Fit | Moderate Fit | Weak Fit |
-|----------|-----------|--------------|----------|
-| Sub-segment | [Ideal sub-segments] | [Acceptable sub-segments] | [Poor fit sub-segments] |
-| Revenue | [Target range high] | [Target range mid] | [Below threshold] |
-| Ownership | [Ideal ownership types] | [Acceptable types] | [Poor fit types] |
-| Buying trigger | [Strong triggers] | [Moderate triggers] | [No identifiable trigger] |
+| Input | Required | Notes |
+|-------|----------|-------|
+| Rep name | ✅ Required | Whose tasks to pull for today |
+| Rep role (BDR / AE) | ✅ Required | Determines tiering logic and filtering (BDRs exclude active AE deals) |
+| Date | Optional | Defaults to today; allows prep for future dates |
 
-#### Disqualification Signals
-- [Signal 1 — e.g., wrong industry segment]
-- [Signal 2 — e.g., outside geography]
-- [Signal 3 — e.g., too small or wrong business model]
+**Prerequisite check:** CRM query for all open tasks due today. If no tasks found, expand to overdue tasks (past 3 days).
 
-### Core Pain Points
-| # | Pain Point | Discovery Question Template |
-|---|-----------|---------------------------|
-| 1 | **[Pain Point 1]** | "[Discovery question for pain 1]" |
-| 2 | **[Pain Point 2]** | "[Discovery question for pain 2]" |
-| 3 | **[Pain Point 3]** | "[Discovery question for pain 3]" |
-| 4 | **[Pain Point 4]** | "[Discovery question for pain 4]" |
-| 5 | **[Pain Point 5]** | "[Discovery question for pain 5]" |
+---
 
-### Buyer Personas
-| # | Persona | Hook Focus |
-|---|---------|------------|
-| 1 | **[Title 1]** | [Top priorities and pain themes] |
-| 2 | **[Title 2]** | [Top priorities and pain themes] |
-| 3 | **[Title 3]** | [Top priorities and pain themes] |
-| 4 | **[Title 4]** | [Top priorities and pain themes] |
+## Output Contract
 
-### Value Propositions
-1. [Value prop 1]
-2. [Value prop 2]
-3. [Value prop 3]
-4. [Value prop 4]
-5. [Value prop 5]
+Every run produces **a prioritized dial queue with per-account pre-call briefs** — the structure is fixed (tier, account, opener, questions, goals); the content changes per rep and per day. Core commitments: 4-tier ranking (Hot/Warm/New/Recycle), ICP fit scoring, role-aware filtering (BDR coordination), and a scannable dial sheet with top 8 accounts detailed.
 
-### Proof Points
-| Customer | Key Metric | Use When |
-|----------|-----------|----------|
-| [Customer 1] | [Metric] | [Scenario] |
-| [Customer 2] | [Metric] | [Scenario] |
-| [Customer 3] | [Metric] | [Scenario] |
+---
 
-### Qualification Zones
-1. [Zone 1 — e.g., target customer segments]
-2. [Zone 2 — e.g., organizational structure signals]
-3. [Zone 3 — e.g., regulatory or compliance triggers]
-4. [Zone 4 — e.g., volume or revenue thresholds]
-5. [Zone 5 — e.g., tech stack or process signals]
+## Context
+
+**This skill does not contain client-specific information. It points to it.**
+
+> **Load the client profile from [`profiles/client-profile.md`](../../profiles/client-profile.md) before starting.** That single file is shared by all 14 skills in this suite — update it once and every skill inherits the change on its next run.
+
+Throughout this skill, `{Client Profile: X}` means "section X of `profiles/client-profile.md`". Sections this skill reads:
+
+| Profile section | Used for |
+|---|---|
+| ICP Definitions | Fit scoring at Step 4 |
+| Core Pain Points | Discovery question templates |
+| Buyer Personas | Personalization and persona-matching |
+| Value Propositions | Hook selection for openers |
+| Proof Points | Social proof in pre-call briefs |
+| Qualification Zones | Account signal interpretation |
+
+`{Methodology: X}` means "subsection X of the **Methodology** section below."
+
+---
+
+## Methodology
+
+Your playbook for prioritization, call framing, and discovery questioning. The frameworks below define the BDR vs. AE tiering logic, the cold call structure, and the hooks and objections that drive daily dial success.
 
 ### Cold Call Framework: Three-Step Turnaround
 | Step | Purpose | Template |
@@ -220,7 +200,7 @@ For each account, score against `{Client Profile: ICP Definitions}`:
 - **Strong Fit** / **Moderate Fit** / **Weak Fit** / **No Fit**
 - Include reasoning for the score
 
-Flag disqualification signals from `{Client Profile: Disqualification Signals}`.
+Flag disqualification signals from `{Client Profile: Qualification Criteria}` (Disqualifiers).
 
 ---
 
@@ -253,19 +233,19 @@ Within each tier, sub-rank by ICP fit (Strong > Moderate > Weak).
 For each account in the prioritized list:
 
 #### A. Why This Account (1-2 sentences)
-Connect to `{Client Profile: Qualification Zones}`.
+Connect to `{Methodology: Qualification Zones}`.
 
 #### B. Personalized Conversation Opener
-Use `{Client Profile: Cold Call Framework}`:
+Use `{Methodology: Cold Call Framework: Three-Step Turnaround}`:
 1. **Interrupt** — Name + company
-2. **Hook** — Select from `{Client Profile: Hook Templates}` based on account signal
+2. **Hook** — Select from `{Methodology: Hook Templates}` based on account signal
 3. **Transition** — Move into discovery questioning
 
 #### C. Discovery Questions (3 per account)
 Tailored to the account's context. Map to `{Client Profile: Core Pain Points}`.
 
 #### D. Objection Prep (1-2 per account)
-Based on account stage and history. Use `{Client Profile: Common Objections}`.
+Based on account stage and history. Use `{Methodology: Common Objections}`.
 
 #### E. Call Goal (1 specific, measurable goal)
 | Dial Type | Goal Template |
@@ -417,6 +397,12 @@ Reminders to log dispositions, create follow-up tasks, add accounts to sequences
 ---
 
 ## Changelog
+
+### Version 1.1.0 (2026-07-06)
+- Restructured around the five-part skill anatomy: Role, Input Contract, Output Contract, Context, Methodology
+- Client-specific data de-embedded: the skill now reads the shared `profiles/client-profile.md` instead of carrying a copy-in Client Profile block
+- Cold Call Framework, Hook Templates, and Common Objections moved to explicit Methodology section — `{Methodology: X}` references
+- No functional changes to the workflow, tiering logic, or output formats
 
 ### Version 1.0.0 (2026-03-04)
 - Initial release

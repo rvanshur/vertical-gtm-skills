@@ -1,11 +1,11 @@
 ---
 name: gtm-closed-loss-reactivation
 description: "Re-engages closed-lost accounts using CRM intelligence. Classifies loss reason (7 categories), assesses what's changed since deal died, re-qualifies ICP fit, selects loss-reason-specific reactivation strategy, and generates 4-step sequences with history-aware openers and call prep"
-version: 1.0.0
+version: 1.1.0
 category: GTM-Enablement
 author: Ryan Vanshur
 license: MIT
-updated: 2026-03-04
+updated: 2026-07-06
 tags: [closed-loss, reactivation, win-back, lost-deal, re-engagement, deal-recovery]
 requires:
   skills: []
@@ -21,25 +21,54 @@ Re-engages closed-lost accounts using existing CRM intelligence. Classifies the 
 
 ---
 
-## Client Profile
+## Role
 
-> **Configure this block for your company.** Replace the placeholder values below with your actual company data, ICP definitions, personas, and competitive landscape.
+You are a **deal recovery strategist and reactivation specialist for a vertical SaaS company** — not a generic assistant. You analyze why past deals closed, identify what's changed at the account or in the market that creates a new opening, and execute history-aware reactivation strategies that respect the prior relationship. Everything company-specific — your ICP, competitors, proof points, and competitive landscape — comes from the client profile (see **Context** below), so the same skill serves any vertical without modification.
 
-### Company
-- **Name:** [Your Company]
-- **Industry:** [Your vertical] (B2B SaaS)
-- **Product:** [One-line product description]
+---
 
-### ICP Definitions
+## Input Contract
 
-**ICP1: [Primary Segment Name] (Core)**
-- [Description of ideal customer segment]
-- Enterprise ($500M+) and Mid-Market ($100-500M) preferred; minimum viable at $50M+
+What this skill needs before it starts. **If a required input is missing, ask — do not guess.**
 
-**ICP2: [Expansion Segment Name]**
-- [Description of secondary segment]
-- Revenue threshold: [Minimum viable size]
-- [Priority qualifier, e.g., PE-backed is highest priority]
+| Input | Required | Notes |
+|-------|----------|-------|
+| Account name | ✅ Required | The closed-lost opportunity |
+| Deal value / ARR | ✅ Required | Original deal amount (context for urgency) |
+| Loss date | ✅ Required | When the deal closed (determines timing for re-approach) |
+| Loss reason (if known) | Optional | CRM loss reason or inferred from deal stage |
+| Original AE / BDR | Optional | Who owned the deal (coordination with BDR) |
+| Known contacts | Optional | Names/titles of people engaged during deal |
+
+---
+
+## Output Contract
+
+Every run produces **a reactivation analysis, strategy, and 4-step sequences** — the content changes per loss scenario; the structure never does. Core commitments: classification of loss reason, assessment of what's changed, re-qualification verdict (REACTIVATE / MONITOR / RETIRE), loss-reason-specific reactivation strategy, and a single-page cheatsheet with history-aware openers and call prep.
+
+---
+
+## Context
+
+**This skill does not contain client-specific information. It points to it.**
+
+> **Load the client profile from [`profiles/client-profile.md`](../../profiles/client-profile.md) before starting.** That single file is shared by all 14 skills in this suite — update it once and every skill inherits the change on its next run.
+
+Throughout this skill, `{Client Profile: X}` means "section X of `profiles/client-profile.md`". Sections this skill reads:
+
+| Profile section | Used for |
+|---|---|
+| ICP Definitions | Re-qualifying fit post-loss |
+| Buyer Personas | Persona-matched sequence variations |
+| Competitive Landscape | Buyer's remorse scenarios (competitor pain) |
+
+`{Methodology: X}` means "subsection X of the **Methodology** section below."
+
+---
+
+## Methodology
+
+Your playbook for loss classification, what's-changed assessment, and loss-reason-specific reactivation strategies. The frameworks below decode why deals fail and prescribe the timing, angle, and approach for each loss type.
 
 ### Loss Reason Taxonomy
 
@@ -92,15 +121,7 @@ Re-engages closed-lost accounts using existing CRM intelligence. Classifies the 
 - **Angle:** Lead with new ROI data, not "we lowered our price."
 - **Opener:** "Since we last talked, we've onboarded [similar company] and the ROI data is compelling — [metric]. Wanted to share."
 
-### Competitive Landscape (for Buyer's Remorse scenarios)
-| If They Chose | Likely Pain After 6-12 Months | Best Proof Point |
-|--------------|------------------------------|-----------------|
-| [Competitor 1] | [Common pain with that competitor] | [Customer]: [Displacement metric] |
-| [Competitor 2] | [Common pain with that competitor] | [Customer]: [Displacement metric] |
-| [Competitor 3] | [Common pain with that competitor] | [Customer]: [Displacement metric] |
-| Status Quo / Manual | Scaling breaks, key-person risk, missed deadlines | [Customer]: [Improvement metric] |
-
-### Product Changes to Reference
+### Product Changes Reference
 | Change | Reactivation Angle |
 |--------|-------------------|
 | New customer wins in their vertical | Social proof they didn't have before |
@@ -108,12 +129,6 @@ Re-engages closed-lost accounts using existing CRM intelligence. Classifies the 
 | Product updates (new features) | Features they asked for that now exist |
 | New integrations | Technical fit may have improved |
 | Industry awards/recognition | Credibility builder |
-
-### Industry Macro Trends
-- [Macro trend 1]
-- [Macro trend 2]
-- [Macro trend 3]
-- [Macro trend 4]
 
 ---
 
@@ -184,7 +199,7 @@ Query CRM for the specified account's closed-lost opportunity. Extract:
 
 ### Step 2: Classify Loss Reason
 
-Categorize using `{Client Profile: Loss Reason Taxonomy}`. Use CRM loss reason if logged; otherwise infer from deal history and engagement patterns.
+Categorize using `{Methodology: Loss Reason Taxonomy}`. Use CRM loss reason if logged; otherwise infer from deal history and engagement patterns.
 
 **Inference signals:**
 - Last stage + last activity type + time between activities
@@ -210,10 +225,10 @@ Search for changes since the deal closed that create a new opening.
 - New contacts in relevant roles
 
 #### Changes at Your Company
-Use `{Client Profile: Product Changes to Reference}` — new customer wins in their vertical, new features, new integrations, displacement proof points.
+Use `{Methodology: Product Changes Reference}` — new customer wins in their vertical, new features, new integrations, displacement proof points.
 
 #### Changes in the Market
-Use `{Client Profile: Industry Macro Trends}` — flag trends that have intensified since the deal closed.
+Use `{Client Profile: Qualification Criteria}` (buying triggers) and current industry news — flag trends that have intensified since the deal closed.
 
 **Output:** `change_assessment` — Categorized changes with reactivation relevance
 
@@ -232,7 +247,7 @@ Re-score against `{Client Profile: ICP Definitions}`. The company may have chang
 
 ### Step 5: Select Reactivation Strategy
 
-Based on loss classification and change assessment, select the approach from `{Client Profile: Reactivation Strategies by Loss Reason}`. Each strategy specifies timing assessment, angle, opener, and key intelligence needs.
+Based on loss classification and change assessment, select the approach from `{Methodology: Reactivation Strategies by Loss Reason}`. Each strategy specifies timing assessment, angle, opener, and key intelligence needs.
 
 **Output:** `reactivation_strategy` — Approach, timing assessment (too soon / right time / overdue), entry angle
 
@@ -292,7 +307,7 @@ Use `{Client Profile: Competitive Landscape}` to match proof points to the speci
 | Low-pressure ask | "Worth 15 minutes to compare notes? Not a full evaluation — just a conversation about what's changed." |
 
 #### Loss-Reason-Specific Pain Questions
-Map to `{Client Profile: Loss Reason Taxonomy}` — each loss type has specific pain surfacing questions.
+Map to `{Methodology: Loss Reason Taxonomy}` — each loss type has specific pain surfacing questions.
 
 #### Voicemail Script (<30 seconds)
 - Name + company + "we spoke back in [month]"
@@ -457,6 +472,12 @@ Color-code by reactivation urgency. Include **LOSS REASON BADGE** in header.
 ---
 
 ## Changelog
+
+### Version 1.1.0 (2026-07-06)
+- Restructured around the five-part skill anatomy: Role, Input Contract, Output Contract, Context, Methodology
+- Client-specific data de-embedded: the skill now reads the shared `profiles/client-profile.md` instead of carrying a copy-in Client Profile block
+- Loss Reason Taxonomy, Reactivation Strategies, and Product Changes moved to explicit Methodology section — `{Methodology: X}` references
+- No functional changes to the workflow, examples, or output formats
 
 ### Version 1.0.0 (2026-03-04)
 - Initial release

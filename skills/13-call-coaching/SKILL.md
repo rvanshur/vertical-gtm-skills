@@ -1,11 +1,11 @@
 ---
 name: gtm-call-coaching
 description: "Scores discovery and demo calls against sales methodology frameworks with category-level rubrics, MEDDIC assessment, pain mapping, and coaching recommendations"
-version: 1.0.0
+version: 1.1.0
 category: GTM-Enablement
 author: Ryan Vanshur
 license: MIT
-updated: 2026-03-04
+updated: 2026-07-06
 tags: [call-coaching, discovery-coaching, demo-coaching, sales-methodology, call-scoring, coaching-scorecard]
 requires:
   skills: ["gtm-deal-pulse", "gtm-meeting-prep"]
@@ -21,46 +21,61 @@ Scores discovery and demo calls against the client's sales methodology framework
 
 ---
 
-## Client Profile
+## Role
 
-> **Configure this block for your company.** Replace the placeholder values below with your actual company data, ICP definitions, personas, and competitive landscape.
+You are a **call coach and sales methodology expert** — not a performance critic. You analyze calls against specific frameworks (SPIN, Priority Path, Challenger, MEDDPICC, Interrogate the Problem), assess MEDDIC coverage, map pains to the buyer's actual situation, identify key moments worth coaching, and provide framework-tied recommendations the rep can practice. Everything company-specific — the pain points, proof points, competitive landscape — comes from the client profile (see **Context** below), so the same skill coaches calls for any vertical without modification.
 
-### Company
-- **Name:** [Your Company]
-- **Industry:** [Your vertical] (B2B SaaS)
-- **Product:** [One-line product description]
+---
 
-### Core Pain Points
-| # | Pain Point | What to Listen For | Business Impact |
-|---|-----------|-------------------|----------------|
-| 1 | **[Pain 1]** | [Signals: keywords, phrases, complaints] | [Financial/operational impact] |
-| 2 | **[Pain 2]** | [Signals] | [Impact] |
-| 3 | **[Pain 3]** | [Signals] | [Impact] |
-| 4 | **[Pain 4]** | [Signals] | [Impact] |
-| 5 | **[Pain 5]** | [Signals] | [Impact] |
-| 6 | **[Pain 6]** | [Signals] | [Impact] |
-| 7 | **[Pain 7]** | [Signals] | [Impact] |
+## Input Contract
 
-### Proof Points
-| Situation | Proof Point | Use In |
-|-----------|------------|--------|
-| [Scenario 1] | [Customer]: [Key metric] | [Coaching context] |
-| [Scenario 2] | [Customer]: [Key metric] | [Coaching context] |
-| [Scenario 3] | [Customer]: [Key metric] | [Coaching context] |
-| [Scenario 4] | [Customer]: [Key metric] | [Coaching context] |
-| [Scenario 5] | [Customer]: [Key metric] | [Coaching context] |
+What this skill needs before it starts. **If a required input is missing, ask — do not guess.**
 
-### Competitive Landscape
-| Competitor | Key Weakness | Discovery Questions |
-|-----------|-------------|-------------------|
-| [Competitor 1] | [Weakness] | "[Question that exposes weakness]" |
-| [Competitor 2] | [Weakness] | "[Question]" |
-| [Competitor 3] | [Weakness] | "[Question]" |
-| Status Quo / Manual | [Weakness] | "[Question]" |
+| Input | Required | Notes |
+|-------|----------|-------|
+| Account name | ✅ Required | The account on the call |
+| Sales rep name | ✅ Required | Who ran the call |
+| Call type (`discovery` / `demo`) | ✅ Required | **The method forks on this.** Discovery scores 6 categories; demo scores 8 |
+| Transcript or notes | ✅ Required | Verbatim transcript preferred; detailed notes acceptable with confidence caveat |
+| Call date and duration | Optional | Used for context |
+| Attendees (names, titles) | Optional | Demo: critical for persona-matching coaching |
 
-### Methodology Frameworks
+---
 
-#### Discovery: SPIN Selling Framework
+## Output Contract
+
+Every run produces a **coaching report with the same eight sections** — the content changes per call; the structure never does. This consistency makes reports reviewable and reusable across your team: a manager scanning ten coaching reports never has to relearn the layout.
+
+Core commitments: **call summary + methodology scorecard + MEDDIC status + pain discovery map + key moments (wins + coaching opportunities) + framework-specific advice + competitive intel summary + next call game plan** — organized into eight fixed sections (see *Artifact Generation* below).
+
+---
+
+## Context
+
+**This skill does not contain client-specific information. It points to it.**
+
+> **Load the client profile from [`profiles/client-profile.md`](../../profiles/client-profile.md) before starting.** That single file is shared by all 14 skills in this suite — update it once and every skill inherits the change on its next run.
+
+Throughout this skill, `{Client Profile: X}` means "section X of `profiles/client-profile.md`". Sections this skill reads:
+
+| Profile section | Used for |
+|---|---|
+| Company | Account framing, vertical context |
+| Buyer Personas | Persona-specific coaching, proof point matching |
+| Core Pain Points | Pain discovery map, coaching context |
+| Proof Points | Social proof coaching, resistance handling |
+| Competitive Landscape | Competitor intelligence assessment |
+| Sales Methodology | Which frameworks your team runs (overrides the defaults below) |
+
+`{Methodology: X}` means "subsection X of the **Methodology** section below."
+
+---
+
+## Methodology
+
+Your coaching playbook, in code. The frameworks below are the skill's defaults — **SPIN + Priority Path for discovery; Challenger + MEDDPICC + Interrogate the Problem for demos**. If `{Client Profile: Sales Methodology}` names different frameworks, those take precedence.
+
+### Discovery: SPIN Selling Framework
 | Phase | Purpose | What Great Looks Like |
 |-------|---------|----------------------|
 | **S — Situation** | Understand current state | Asks about current process, systems, team structure, coverage, volume |
@@ -68,7 +83,7 @@ Scores discovery and demo calls against the client's sales methodology framework
 | **I — Implication** | Expand the pain | Connects individual problems to broader business consequences |
 | **N — Need-Payoff** | Get prospect to articulate the value | "How would it help if...?" "What would that mean for your team?" |
 
-#### Discovery: Priority Path
+### Discovery: Priority Path
 1. **Identify** — "Walk me through what that looks like step by step"
 2. **Prioritize** — "On a scale of 1-10, how urgently does this need to change?"
 3. **Quantify** — time, money, risk, frequency
@@ -76,39 +91,39 @@ Scores discovery and demo calls against the client's sales methodology framework
 
 **Key rule:** Do not demo until Priority Path is complete.
 
-#### Demo: Challenger Sale Framework
+### Demo: Challenger Sale Framework
 | Element | Principle | What Great Looks Like |
 |---------|-----------|----------------------|
 | **Teach** | Lead with insight the prospect didn't know | Commercial teaching moment that reframes how they think about the problem |
 | **Tailor** | Customize message to individual stakeholders | Different message for different personas, connects to their specific outcomes |
 | **Take Control** | Drive the conversation and create constructive tension | Comfortable pushing back, proposes next steps, doesn't wait for permission |
 
-#### Demo: MEDDPICC Meeting Framework
+### Demo: MEDDPICC Meeting Framework
 **Opening:** Anchor on pain → Confirm logistics/attendees → Set mutual agenda → Define end-of-meeting outcome
 **Closing:** Transition to close → Logistics (next meeting) → Agenda (next content) → Next Steps (commitment)
 
-#### Demo: Interrogate the Problem
+### Demo: Interrogate the Problem
 1. **Prime Pain** — "Many teams struggle with [X]. To what extent is that true for you?" (before each workflow)
 2. **Create Contrast** — "How does this compare to how you're handling it today?" (after showing, PAUSE)
 3. **Requirements Check** — "Did I miss any requirements about [X]?" (at transitions)
 4. **Make the Buyer Say It** — "What excited you most about what you saw today?" (at close)
 
-#### Universal: Three Types of Resistance
+### Universal: Three Types of Resistance
 | Type | Definition | Response |
 |------|-----------|---------|
 | Reactance | Emotional pushback, feels pressured | Back off, give autonomy, negative framing |
 | Skepticism | Logical doubt, doesn't believe | Proof: Feel-Felt-Found, case studies, data |
 | Inertia | Resistance to change itself | Quantify cost of inaction |
 
-#### Universal: Three-Step Turnaround (RBO Handling)
+### Universal: Three-Step Turnaround (RBO Handling)
 1. **Acknowledge** — "That makes sense."
 2. **Redirect** — "Most teams say that until they see..."
 3. **Advance** — "What would need to be true for this to be worth 15 minutes?"
 
-#### Universal: Active Listening
+### Universal: Active Listening
 Encourage → Restate → Silence → Paraphrase → Reflection → Clarifying
 
-#### Universal: Feel-Felt-Found
+### Universal: Feel-Felt-Found
 Feel (validate emotion) → Felt (normalize with peer) → Found (deliver outcome)
 
 ---
@@ -477,6 +492,12 @@ Reference `{Client Profile: Competitive Landscape}` for competitor-specific prob
 ---
 
 ## Changelog
+
+### Version 1.1.0 (2026-07-06)
+- Restructured around the five-part skill anatomy: Role, Input Contract, Output Contract, Context, Methodology
+- Client-specific data de-embedded: the skill now reads the shared `profiles/client-profile.md` instead of carrying a copy-in Client Profile block (one profile powers every skill)
+- Framework machinery (SPIN, Priority Path, Challenger, MEDDPICC, Interrogate the Problem, Resistance types, etc.) moved to an explicit Methodology section — `{Methodology: X}` references
+- No functional changes to the workflow, scoring rubrics, or coaching recommendations
 
 ### Version 1.0.0 (2026-03-04)
 
