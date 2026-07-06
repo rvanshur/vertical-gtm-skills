@@ -1,11 +1,11 @@
 ---
 name: gtm-sales-handoff
 description: "Post-sale implementation readiness assessment — scores 6 dimensions (stakeholder, workflow, technical, data, resource, change management), builds a 3-date handoff plan, evaluates integration readiness, identifies risks with mitigations, maps quick wins for early value delivery, and generates a readiness card for CS team handoff"
-version: 1.0.0
+version: 1.1.0
 category: GTM-Enablement
 author: Ryan Vanshur
 license: MIT
-updated: 2026-03-04
+updated: 2026-07-06
 tags: [sales-handoff, customer-readiness, implementation-readiness, onboarding, cs-handoff, post-sale, kickoff-prep]
 requires:
   skills: []
@@ -21,48 +21,118 @@ Assesses post-sale implementation readiness across 6 dimensions: stakeholder, wo
 
 ---
 
-## Client Profile
+## Role
 
-> **Configure this block for your company.** Replace the placeholder values below with your actual company data, product modules, pain points, and implementation profile.
+You are a **customer readiness strategist and CS handoff architect** — not a deal reviewer. You assess implementation readiness across six dimensions, build a defensible 3-date handoff plan, identify risks with specific mitigations, map quick wins for early value delivery, and produce a readiness card that signals to CS whether they're walking into a smooth onboarding or a minefield. Everything company-specific — the product modules, pain points, quick win examples — comes from the client profile (see **Context** below), so the same skill assesses readiness for any vertical without modification.
 
-### Company
-- **Name:** [Your Company]
-- **Industry:** [Your vertical] (B2B SaaS)
-- **Product:** [One-line product description]
+---
 
-### Product Modules
-| Module | What It Does |
-|--------|-------------|
-| [Module 1] | [Description] |
-| [Module 2] | [Description] |
-| [Module 3] | [Description] |
-| [Module 4] | [Description] |
+## Input Contract
 
-### Implementation Profile
-- **Average implementation timeline:** ~[X] days from start to go-live
-- **Implementation model:** [Description of data flow / setup process]
-- **Key variables:** [What determines complexity, e.g., system type, data volume, number of entities]
-- **Data format:** [What you ingest and how]
+What this skill needs before it starts. **If a required input is missing, ask — do not guess.**
 
-### Pain Points (for "Why They Bought" Context)
-| # | Pain Point |
-|---|-----------|
-| 1 | [Pain 1 — e.g., Manual processes, spreadsheets, double entry] |
-| 2 | [Pain 2 — e.g., Fragmented systems, no single source of truth] |
-| 3 | [Pain 3 — e.g., Vendor deficiencies, errors, delays] |
-| 4 | [Pain 4 — e.g., Lack of support, unresponsive vendor] |
-| 5 | [Pain 5 — e.g., Inconsistent processes across locations] |
-| 6 | [Pain 6 — e.g., Admin burden on teams] |
-| 7 | [Pain 7 — e.g., Financial risk from missed deadlines or errors] |
+| Input | Required | Notes |
+|-------|----------|-------|
+| Account name + deal value | ✅ Required | Basic deal data |
+| Modules/products purchased | ✅ Required | What's contracted; determines implementation scope |
+| Discovery notes (summarized) | ✅ Required | Why they bought, success criteria, technical context |
+| Current stakeholder contacts | ✅ Required | Who's involved; maps to implementation roles |
+| Source system (if known) | Optional | Known or discovered during sales? |
+| Timeline commitments made | Optional | What was promised to the customer |
+
+---
+
+## Output Contract
+
+Every run produces a **readiness card with the same seven sections** — the content changes per account; the structure never does. This consistency makes readiness assessments comparable across your team: a sales manager reviewing ten cards never has to relearn the layout.
+
+Core commitments: **composite readiness score (0-100) + six dimension scores + 3-date handoff plan + stakeholder map + risk flags + quick wins + handoff checklist** — organized into seven fixed sections (see *Artifact Generation* below).
+
+---
+
+## Context
+
+**This skill does not contain client-specific information. It points to it.**
+
+> **Load the client profile from [`profiles/client-profile.md`](../../profiles/client-profile.md) before starting.** That single file is shared by all 14 skills in this suite — update it once and every skill inherits the change on its next run.
+
+Throughout this skill, `{Client Profile: X}` means "section X of `profiles/client-profile.md`". Sections this skill reads:
+
+| Profile section | Used for |
+|---|---|
+| Company | Account framing, vertical context |
+| Product Modules | Determining implementation scope and complexity |
+| Pain Points | Mapping why they bought (motivation for quick wins) |
+
+`{Methodology: X}` means "subsection X of the **Methodology** section below."
+
+---
+
+## Methodology
+
+Your readiness assessment framework. The dimensions and scoring rules below provide a structured approach to evaluating customer readiness and identifying implementation risks.
+
+### 6 Readiness Dimensions (1-5 scale each)
+
+#### Dimension 1: Stakeholder Readiness (Weight: 20%)
+- **5** = All roles filled, all contacts responsive
+- **4** = Key roles filled, minor gaps
+- **3** = Champion identified but sponsor unclear or disengaged
+- **2** = Only sales champion engaged, no other stakeholders introduced
+- **1** = No clear implementation owner on customer side
+
+#### Dimension 2: Workflow Readiness (Weight: 20%)
+- **5** = Workflows fully documented, volume baselines established, success criteria defined
+- **4** = Mostly understood, some baselines available
+- **3** = General understanding, specific steps and volumes not well documented
+- **2** = Limited discovery notes, pain exists but process not mapped
+- **1** = No workflow documentation, shallow discovery
+
+#### Dimension 3: Technical Readiness (Weight: 20%)
+- **5** = Source system identified and familiar, IT available and engaged, export confirmed, clean data
+- **4** = Source system identified, IT available but not briefed, minor data concerns
+- **3** = Source system known but unfamiliar format, IT shared or 2-4 week lead, some gaps
+- **2** = Source system unclear or multi-system, IT outsourced or constrained, significant data concerns
+- **1** = Source system unknown, no IT engagement, never done integration, major data issues
+
+#### Dimension 4: Data Readiness (Weight: 15%)
+- **5** = All critical data elements available, clean, customer already exports elsewhere
+- **4** = Most data available, minor gaps solvable
+- **3** = Core data exists but quality uneven, some manual entry during transition
+- **2** = Significant gaps, multiple systems, fragmented data
+- **1** = No clear data source, data may not exist in structured format
+
+#### Dimension 5: Resource Readiness (Weight: 15%)
+- **5** = Dedicated project resources, realistic timeline, no competing initiatives
+- **4** = Resources identified, some competing priorities but manageable
+- **3** = Shared resources, may need to work around other initiatives
+- **2** = Significant constraints (freeze, migration, key people on leave)
+- **1** = No resources allocated, haven't thought about implementation
+
+#### Dimension 6: Change Management Readiness (Weight: 10%)
+- **5** = Strong executive mandate, team enthusiastic, champion has communication plan
+- **4** = Leadership supports, team open but needs training
+- **3** = Some team members resistant, champion will need to manage expectations
+- **2** = Significant inertia, multiple skeptics during discovery
+- **1** = High resistance, current team sees product as threat, no change champion
+
+**Composite score:** Weighted sum / 5 × 100 = 0-100 score.
+
+| Score | Level | Recommendation |
+|-------|-------|----------------|
+| 80-100 | Green — Ready | Proceed to kickoff. Standard timeline. |
+| 60-79 | Yellow — Ready with conditions | Address gaps before kickoff. May add 2-4 weeks. |
+| 40-59 | Orange — At risk | Significant gaps. Delay kickoff until critical dimensions reach 3+. |
+| 0-39 | Red — Not ready | Major failures. Sales may need to re-engage. |
 
 ### Implementation Stakeholder Roles
-| Role | Who Fills It | Why They Matter |
-|------|-------------|-----------------|
-| **Executive Sponsor** | [Typical titles] | Escalation path, removes blockers, ensures commitment |
+| Role | Why They Matter | How to Identify |
+|------|-----------------|----------------|
+| **Executive Sponsor** | Escalation path, removes blockers, ensures commitment | Senior-most person engaged during sales |
 | **Implementation Champion** | Day-to-day rollout owner | Drives adoption, coordinates resources, attends all sessions |
-| **IT Lead** | IT director, systems admin, or outsourced IT | Sets up integrations, manages system connections, handles authentication |
-| **Power Users** | [Typical roles] | First to learn the system, train peers, provide feedback |
-| **Data Owner** | Person who understands the source data model | Validates data mapping, confirms field accuracy, identifies gaps |
+| **IT Lead** | Sets up integrations, manages system connections | Technical person from prospect's IT team |
+| **Power Users** | First to learn, train peers | Front-line staff who understand the workflow |
+| **Data Owner** | Validates data mapping, confirms accuracy | Person who understands source data model |
 
 ### Technical Assessment Dimensions
 | Dimension | Green | Yellow | Red |
@@ -75,14 +145,6 @@ Assesses post-sale implementation readiness across 6 dimensions: stakeholder, wo
 | Security/compliance | Standard, SOC 2 sufficient | Additional documentation needed | Full security audit required |
 | Multi-system complexity | Single source system | 2 systems, known pattern | 3+ systems or custom middleware |
 
-### Quick Win Types
-| Type | Example | Impact |
-|------|---------|--------|
-| [Quick Win 1] | [Specific action for top use case] | Immediate time savings |
-| [Quick Win 2] | [Specific action for key stakeholders] | Visible daily workflow improvement |
-| [Quick Win 3] | [Specific action to build trust] | Builds trust, demonstrates value |
-| [Quick Win 4] | [Specific action to eliminate pain] | Tangible proof of purchase decision |
-
 ### Risk Categories
 | Category | Common Risks | Mitigation Strategy |
 |----------|-------------|-------------------|
@@ -92,6 +154,20 @@ Assesses post-sale implementation readiness across 6 dimensions: stakeholder, wo
 | **Data** | Poor quality, missing fields, duplicates | Data quality audit in week 1. Cleanup sprint before go-live. Accept manual workarounds initially. |
 | **Expectation** | Unrealistic timeline promises, expecting immediate ROI | Align expectations at kickoff. Reference typical timeline. Set 30/60/90 day milestones. |
 | **Vendor transition** | Existing provider contract still active, overlapping services | Map contract end dates. Plan parallel-run period. Ensure no service gaps. |
+
+### The 3-Date Handoff Plan
+**Date 1 — Signing Date:** Contract signing date. Revenue books; starting gun for operations.
+
+**Date 2 — Implementation Start Date:** When customer is ready to begin. Based on:
+- IT availability
+- Competing priorities (system migration, year-end freeze, seasonal)
+- Contract terms (deferred billing?)
+- Readiness scores: Green (80+) = immediate, Yellow (60-79) = 2-4 week buffer, Orange/Red = resolve blockers first
+
+**Date 3 — Full Service Date:** Implementation Start + 2 months (default). Adjusted based on:
+- Familiar format → faster (shave 2-3 weeks)
+- Multi-system or phased rollout → slower (add 2-4 weeks)
+- Subsidiary on different system → phased timeline with separate dates per entity
 
 ---
 
@@ -122,14 +198,14 @@ Query CRM for the specified account:
 **Deal basics:**
 - Account name, industry, sub-industry
 - Contract value (ARR) and deal type
-- Contracted modules (from `{Client Profile: Product Modules}`)
+- Contracted modules (from the closed-won opportunity record; product/module names per `{Client Profile: Company}`)
 - Contract signing date (or expected close)
 - AE / opportunity owner
 - CS owner (if already assigned)
 - How the deal was won (competitive displacement, greenfield, expansion)
 
 **Discovery context (from deal notes and call transcripts):**
-- What pain drove the purchase? (Map to `{Client Profile: Pain Points}`)
+- What pain drove the purchase? (Map to `{Client Profile: Core Pain Points}`)
 - What does the customer expect success to look like?
 - Implementation concerns raised during sales
 - Competitors displaced (if any) — contract termination timeline
@@ -146,7 +222,7 @@ Query CRM for the specified account:
 
 ### Step 2: Build Stakeholder Map
 
-Identify all contacts and assign implementation roles from `{Client Profile: Implementation Stakeholder Roles}`:
+Identify all contacts and assign implementation roles from `{Methodology: Implementation Stakeholder Roles}`:
 
 For each contact:
 - Name, title, department, email, phone
@@ -183,7 +259,7 @@ Analyze how the customer handles their processes today. Pull from discovery note
 
 ### Step 4: Assess Technical Readiness
 
-Evaluate the customer's technical environment using `{Client Profile: Technical Assessment Dimensions}`.
+Evaluate the customer's technical environment using `{Methodology: Technical Assessment Dimensions}`.
 
 Score each dimension as Green / Yellow / Red based on the evidence gathered.
 
@@ -276,14 +352,14 @@ Weighted sum / 5 × 100 = score out of 100.
 **Volume projection:** "Expect to take on [X] units per month for this customer."
 
 #### Risk Mitigations
-For each identified risk, document using `{Client Profile: Risk Categories}`:
+For each identified risk, document using `{Methodology: Risk Categories}`:
 - What the risk is
 - Severity (HIGH / MEDIUM / LOW)
 - Likelihood
 - Specific mitigation plan
 
 #### Quick Wins
-Identify 2-3 items from `{Client Profile: Quick Win Types}` matched to the customer's actual situation:
+Identify 2-3 items from `{Methodology: Quick Win Types}` matched to the customer's actual situation:
 - Week 1 quick win
 - Month 1 value milestone
 - 90-day success criteria (measurable outcomes)
@@ -474,6 +550,12 @@ Week 1, Month 1, 90-day success criteria.
 ---
 
 ## Changelog
+
+### Version 1.1.0 (2026-07-06)
+- Restructured around the five-part skill anatomy: Role, Input Contract, Output Contract, Context, Methodology
+- Client-specific data de-embedded: the skill now reads the shared `profiles/client-profile.md` instead of carrying a copy-in Client Profile block (one profile powers every skill)
+- Framework machinery (6 Readiness Dimensions, Stakeholder Roles taxonomy, Technical Assessment, Risk Categories, 3-Date Plan structure) moved to an explicit Methodology section — `{Methodology: X}` references
+- No functional changes to the workflow, scoring rubrics, or readiness assessment logic
 
 ### Version 1.0.0 (2026-03-04)
 - Initial release — migrated from customer readiness index

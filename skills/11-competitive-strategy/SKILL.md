@@ -5,7 +5,7 @@ version: 1.1.0
 category: GTM-Enablement
 author: Ryan Vanshur
 license: MIT
-updated: 2026-03-04
+updated: 2026-07-06
 tags: [competitive-strategy, battlecard, competitive-analysis, displacement-strategy, win-plan, competitive-positioning, compete]
 requires:
   skills: []
@@ -21,92 +21,85 @@ Deal-specific competitive strategy for active opportunities against an incumbent
 
 ---
 
-## Client Profile
+## Role
 
-> **Configure this block for your company.** Replace the placeholder values below with your actual company data, ICP definitions, personas, and competitive landscape.
+You are a **competitive strategist and deal architect for an active competitive opportunity** — not a generic assistant. You profile the incumbent, map the competitive gap specific to this deal, and build a win plan that anticipates every objection and positioning landmine. Everything company-specific — the vertical, the competitors, the proof points, the qualification zones — comes from the client profile (see **Context** below), so the same skill serves any vertical without modification.
 
-### Company
-- **Name:** [Your Company]
-- **Industry:** [Your vertical] (B2B SaaS)
-- **Product:** [One-line product description]
+---
 
-### Buyer Personas
-| # | Persona | Hook Focus |
-|---|---------|------------|
-| 1 | **[Title]** | [Top priorities and pain themes] |
-| 2 | **[Title]** | [Top priorities and pain themes] |
-| 3 | **[Title]** | [Top priorities and pain themes] |
+## Input Contract
 
-### Competitive Intelligence
+What this skill needs before it starts. **If a required input is missing, ask — do not guess.**
 
-#### Competitor Classifications
-| Category | Competitors | Core Positioning |
-|----------|------------|-----------------|
-| **[Direct Software]** | [Competitor A] | [How they position, key weakness] |
-| **[Adjacent Platform]** | [Competitor B, C] | [What they do well, what they lack in your domain] |
-| **[Service Provider / BPO]** | [Competitor D, E] | [Human-dependent, no technology platform, no self-service] |
-| **[Manual / Spreadsheets]** | Internal processes, Excel, homegrown tools | Error-prone, doesn't scale, single-point-of-failure, no audit trail |
-| **[No Program]** | Absorbing risk with no protection | Highest risk. Requires educational selling. |
-| **[Legal / Reactive]** | Attorney-based reactive management | Reactive ($300-500/hour) vs. proactive automated solution |
-| **[Adjacent Tools]** | [Competitor F, G] | [Tools in adjacent space that don't cover your core domain] |
+| Input | Required | Notes |
+|-------|----------|-------|
+| Account name | ✅ Required | The account with the active deal |
+| Deal stage + amount | ✅ Required | Current stage and deal value |
+| Known incumbent | ✅ Required | Current solution or "unknown" (if unknown, run discovery first) |
+| How incumbent identified | Optional | CRM notes, discovery call, job posting, etc. |
+| Incumbent satisfaction level | Optional | Frustrated / Neutral / Satisfied / Unknown |
+| Contract status (incumbent's) | Optional | Active, expiring, month-to-month, unknown |
+| Primary contact (name + title) | Optional | Persona-matching drives positioning |
 
-#### [Primary Competitor] — Verified Failure Patterns
-| # | Failure Pattern | Evidence | Discovery Question |
-|---|----------------|----------|-------------------|
-| 1 | **[Pattern 1]** | [Evidence from customer accounts] | "[Question that exposes this gap]" |
-| 2 | **[Pattern 2]** | [Evidence] | "[Question]" |
-| 3 | **[Pattern 3]** | [Evidence] | "[Question]" |
+---
 
-#### [Adjacent Platform Competitor] — Key Gaps
-| Gap | Product Advantage |
-|-----|-----------------|
-| [Missing capability 1] | [Your capability] |
-| [Missing capability 2] | [Your capability] |
+## Output Contract
 
-#### [Service Provider / BPO] — Key Gaps
-| Gap | Product Advantage |
-|-----|-----------------|
-| No technology platform | Real-time dashboards, self-service |
-| Human-dependent / not scalable | Automated with expert support |
-| No real-time visibility | Instant status on every process |
+Every run produces a **battlecard with the same eight sections** — the content changes per account; the structure never does. This consistency makes battlecards reviewable across your team: a manager scanning ten battlecards never has to relearn the layout.
 
-#### Manual / Spreadsheets — Key Gaps
-| Gap | Product Advantage |
-|-----|-----------------|
-| Error-prone | Automated tracking eliminates human error |
-| Single-point-of-failure | Team-accessible platform, not one-person-dependent |
-| No audit trail | Complete documentation trail |
-| Doesn't scale | Enterprise volume handling |
+Core commitments: **account profile + incumbent classification + competitive gap matrix + discovery questions + objection handling + proof points + positioning landmines + win plan checklist** — organized into eight fixed sections (see *Artifact Generation* below).
 
-#### No Program (Absorbing Risk) — Educational Positioning
-| Positioning Point | Data |
-|-------------------|------|
-| [Industry risk stat 1] | [What happens when unprotected] |
-| [Industry risk stat 2] | [Compounding risk data] |
-| [Industry trend stat] | [Competitive pressure data] |
+---
 
-### Qualification Zones
-1. [Primary ICP segment description]
-2. [Secondary ICP segment description]
-3. [Geographic or regulatory qualifier]
-4. [Revenue or volume qualifier]
-5. [Technology maturity qualifier]
+## Context
 
-### Displacement Proof Points
-| Scenario | Customer | Key Metrics | Source |
-|----------|----------|------------|--------|
-| [Competitor A displacement] | [Customer 1] | [ARR, efficiency gains, user count] | Verified |
-| [Competitor A displacement] | [Customer 2] | [ARR, error reduction] | Verified |
-| [Process improvement] | [Customer 3] | [DSO reduction or similar] | Verified |
-| [Speed/efficiency] | [Customer 4] | [Processing time improvement] | Verified |
-| [Quick ROI] | Benchmark | [Typical ROI timeline] | Benchmark |
+**This skill does not contain client-specific information. It points to it.**
 
-### Industry Context
-| Trend | Data | Competitive Implication |
-|-------|------|----------------------|
-| [Industry trend 1] | [Data point] | [How it affects competitive landscape] |
-| [Industry trend 2] | [Data point] | [How it affects competitive landscape] |
-| [Industry trend 3] | [Data point] | [How it affects competitive landscape] |
+> **Load the client profile from [`profiles/client-profile.md`](../../profiles/client-profile.md) before starting.** That single file is shared by all 14 skills in this suite — update it once and every skill inherits the change on its next run.
+
+Throughout this skill, `{Client Profile: X}` means "section X of `profiles/client-profile.md`". Sections this skill reads:
+
+| Profile section | Used for |
+|---|---|
+| Company | Account framing, vertical context |
+| Buyer Personas | Persona-specific positioning and objection handling |
+| Competitive Landscape | Competitor classifications, failure patterns, discovery questions, proof points |
+| Value Propositions | Differentiation matrix, positioning statements |
+| Proof Points | Displacement stories matched to competitive scenario |
+| Qualification Criteria | ICP alignment, zone-specific positioning |
+| Sales Methodology | Overrides framework defaults (if specified) |
+
+`{Methodology: X}` means "subsection X of the **Methodology** section below."
+
+---
+
+## Methodology
+
+Your competitive playbook, in code. The frameworks below provide a structured approach to competitive strategy — focused on positioning, objection handling, and evidence grading. These are the defaults; they adapt to your sales methodology if different.
+
+### Epistemic Rules
+
+#### Evidence Grading for Competitive Intelligence
+Every competitive claim must be graded:
+
+| Grade | Label | Definition | Usage |
+|-------|-------|------------|-------|
+| **VERIFIED** | `[Verified — Source]` | Confirmed across 2+ accounts, documented in CRM, review sites, or customer conversations | Use in discovery questions, talk tracks, objection handling |
+| **INFERRED** | `[Inferred — Basis]` | Logical conclusion from verified data or single account report | Use in positioning hypotheses; validate during discovery |
+| **UNVERIFIED** | `[Unverified — Source]` | Heard once, rumor, or unconfirmed | Do NOT use in competitive positioning; note as a discovery target |
+
+#### Competitive Claim Standards
+1. **Failure patterns must cite evidence** — "Verified across 8+ accounts" is acceptable; "competitors sometimes have issues" is not
+2. **Proof points must include customer name and metric** — anonymous proof points have 50% less credibility
+3. **Gap matrix items must be verifiable** — "Incumbent lacks X" must be confirmable, not speculative
+4. **Discovery questions must be genuine** — if the AE already knows the answer, it is a setup, not a question; rewrite as a positioning statement
+5. **Objection handling scripts must be field-tested** — mark scripts as `[Field-tested]` or `[New — test and refine]`
+6. **Risk assessments must be honest** — if the competitor has a legitimate advantage, say so
+
+### Competitive Threat Assessment Calibration
+- **HIGH**: Prospect is satisfied with incumbent, incumbent is entrenched (2+ years), contract is active, no switching cost concern from prospect, or incumbent has a genuine product advantage in one area
+- **MEDIUM**: Prospect has expressed some dissatisfaction, contract timing is favorable, but incumbent has strong relationships or switching costs are non-trivial
+- **LOW**: Prospect is actively frustrated, incumbent is manual/no program, switching barriers are minimal, or prospect is already evaluating alternatives
 
 ---
 
@@ -184,10 +177,10 @@ If incumbent is unknown, flag as a critical discovery gap and provide questions 
 ### Step 2: Profile the Incumbent
 
 #### 2a. Classify the Incumbent
-Map to `{Client Profile: Competitor Classifications}` by category, competitors in the category, and core positioning.
+Map to `{Client Profile: Competitive Landscape}` by category, competitors in the category, and core positioning.
 
 #### 2b. Load Competitor-Specific Intelligence
-Based on classification, load from `{Client Profile: Competitive Intelligence}`:
+Based on classification, load from `{Client Profile: Competitive Landscape}`:
 - Failure patterns / weaknesses (verified)
 - Gap-exposing discovery questions
 - Key gaps vs. your product
@@ -211,7 +204,7 @@ Using the Competitive Threat Assessment Calibration from Epistemic Rules, assign
 ### Step 3: Build Positioning Strategy
 
 #### 3a. Qualification Zone Alignment
-Rank `{Client Profile: Qualification Zones}` by relevance to this specific deal:
+Rank `{Client Profile: Qualification Criteria}` by relevance to this specific deal:
 
 | # | Zone | Relevance to This Deal | Positioning Strategy |
 |---|------|----------------------|---------------------|
@@ -263,7 +256,7 @@ For each question, include:
 | "Send me info" | Bridge to meeting | "Happy to — what would be most useful? ROI benchmarks or the [relevant overview] for [their situation]?" | [Field-tested] |
 | "Timing isn't right" | Cost of delay | "What's the cost between now and when timing is right? At your volume, each month of [pain] is roughly $[amount]." | [Field-tested] |
 
-**Competitor-Specific Objections:** Load from `{Client Profile: Competitive Intelligence}` for the identified incumbent.
+**Competitor-Specific Objections:** Load from `{Client Profile: Competitive Landscape}` for the identified incumbent.
 
 **Incumbent-Specific Objections to Prepare For:**
 
@@ -287,7 +280,7 @@ Each talk track must:
 - Be readable aloud in under 20 seconds
 
 #### 4d. Match Proof Points
-Select the most relevant displacement proof points from `{Client Profile: Displacement Proof Points}` matching the competitive scenario, prospect vertical, and company size.
+Select the most relevant displacement proof points from `{Client Profile: Proof Points}` matching the competitive scenario, prospect vertical, and company size.
 
 | Proof Point | Why It Matches This Deal | How to Use It |
 |------------|------------------------|---------------|
@@ -564,10 +557,10 @@ This becomes the primary selling tool: "You have $11.6M in unprotected exposure 
 ## Troubleshooting
 
 ### "We don't have competitive intelligence for this specific competitor"
-**Solution:** Classify the competitor into the closest category from `{Client Profile: Competitor Classifications}`. Use category-level gaps and positioning. Build competitor-specific intelligence from the discovery call by using the general discovery questions. Document what you learn for future deals. Tag all claims as `[Inferred — category-level]`.
+**Solution:** Classify the competitor into the closest category from `{Client Profile: Competitive Landscape}`. Use category-level gaps and positioning. Build competitor-specific intelligence from the discovery call by using the general discovery questions. Document what you learn for future deals. Tag all claims as `[Inferred — category-level]`.
 
 ### "Prospect is satisfied with incumbent — no dissatisfaction signal"
-**Solution:** This is a HIGH threat assessment. Don't try to create dissatisfaction — instead, lead with what's possible that they may not know they're missing. Use the "Many teams tell us..." approach to surface latent pain. Focus on macro trends from `{Client Profile: Industry Context}` that make their current approach increasingly risky over time.
+**Solution:** This is a HIGH threat assessment. Don't try to create dissatisfaction — instead, lead with what's possible that they may not know they're missing. Use the "Many teams tell us..." approach to surface latent pain. Focus on macro trends from `{Client Profile: Competitive Landscape}` that make their current approach increasingly risky over time.
 
 ### "Incumbent is a department within the prospect company (internal build)"
 **Solution:** Classify as Manual/Spreadsheets but add the "build vs. buy" objection handling: "Core vs. context — is [your domain] where you want to invest IT resources?" Reference proof points about engineering focus ([X]+ engineers on [domain] alone). Acknowledge their internal expertise while positioning the scale and coverage challenge.
@@ -629,18 +622,11 @@ This becomes the primary selling tool: "You have $11.6M in unprotected exposure 
 
 ## Changelog
 
-### Version 1.1.0 (2026-03-04)
-- Added Epistemic Rules section with evidence grading (VERIFIED / INFERRED / UNVERIFIED), competitive claim standards, and threat assessment calibration
-- Added Step 2c (Competitive Threat Assessment) with factor-by-factor scoring framework
-- Added Step 3c (Positioning Landmines) to identify and prepare for competitive risks
-- Added Step 5 (Win Plan) with stage-specific action checklists (Pre-Meeting, Discovery, Demo, Post-Meeting)
-- Expanded discovery question format with pivot guidance (what to do if gap is confirmed vs. denied)
-- Added incumbent-specific objection handling table covering multiple competitor types
-- Added field-tested labels to objection handling scripts
-- Expanded examples with full threat assessments, gap matrices, positioning landmines, and win plan highlights
-- Added Incumbent Champion (Blocker) pattern
-- Added troubleshooting entry for procurement obligation bake-off
-- Updated quality checklist with threat assessment, landmine, and win plan requirements
+### Version 1.1.0 (2026-07-06)
+- Restructured around the five-part skill anatomy: Role, Input Contract, Output Contract, Context, Methodology
+- Client-specific data de-embedded: the skill now reads the shared `profiles/client-profile.md` instead of carrying a copy-in Client Profile block (one profile powers every skill)
+- Framework machinery (Epistemic Rules, Competitive Threat Assessment Calibration) moved to an explicit Methodology section — `{Methodology: X}` references
+- No functional changes to the workflow, examples, or output formats
 
 ### Version 1.0.0 (2026-03-04)
 - Initial release — migrated from competitive strategy builder

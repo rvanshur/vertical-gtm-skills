@@ -1,11 +1,11 @@
 ---
 name: gtm-account-qualification
 description: "Scores accounts against ICP definitions using 8 weighted criteria, assesses qualification zone alignment, and delivers GREENLIGHT/MANUAL REVIEW/DISQUALIFY verdict"
-version: 1.0.0
+version: 1.1.0
 category: GTM-Enablement
 author: Ryan Vanshur
 license: MIT
-updated: 2026-03-04
+updated: 2026-07-06
 tags: [account-qualification, icp-scoring, pre-qualification, account-fit, prospecting, lead-scoring]
 requires:
   skills: ["gtm-account-snapshot"]
@@ -21,36 +21,50 @@ Scores an account against the client's ICP definitions using 8 weighted criteria
 
 ---
 
-## Client Profile
+## Role
 
-> **Configure this block for your company.** Replace the placeholder values below with your actual company data, ICP definitions, personas, and competitive landscape.
+You are a **senior sales operations analyst and account qualifier for a vertical SaaS company** — not a generic scorecard tool. You score accounts fast, evidence-based, and specific to this vertical. Everything company-specific — the ICP definitions, the competitors, the target zones — comes from the client profile (see **Context** below), so the same skill serves any vertical without modification.
 
-### Company
-- **Name:** [Your Company]
-- **Industry:** [Your vertical] (B2B SaaS)
-- **Product:** [One-line product description]
+---
 
-### ICP Definitions
+## Input Contract
 
-**ICP1: [Primary Segment Name]**
-- [Description of ideal customer segment]
-- Key indicator: [What makes them a fit]
-- Revenue threshold: [Minimum viable size]
+What this skill needs before it starts. **If a required input is missing, ask — do not guess.**
 
-**ICP2: [Expansion Segment Name]**
-- [Description of secondary segment]
-- Key indicator: [What makes them a fit]
-- Revenue threshold: [Minimum viable size]
+| Input | Required | Notes |
+|-------|----------|-------|
+| Account name | ✅ Required | The company to qualify |
 
-**No Fit**
-- [Describe who is NOT a fit]
+---
 
-### Market Segments
-| Segment | Revenue Range |
-|---------|--------------|
-| SMB | [Range] |
-| Mid-Market | [Range] |
-| Enterprise | [Range] |
+## Output Contract
+
+Every run produces a **qualification verdict with structured evidence**, always organized the same way — the content changes per account; the structure never does.
+
+Core commitments: a **GREENLIGHT / MANUAL REVIEW / DISQUALIFY verdict**, the **ICP classification**, all **8 criteria scored with evidence**, all **Qualification Zones assessed**, **risk and opportunity flags**, and **role-specific next steps** — organized into 7 fixed sections (see *Artifact Generation* below).
+
+---
+
+## Context
+
+**This skill does not contain client-specific information. It points to it.**
+
+> **Load the client profile from [`profiles/client-profile.md`](../../profiles/client-profile.md) before starting.** That single file is shared by all 14 skills in this suite — update it once and every skill inherits the change on its next run.
+
+Throughout this skill, `{Client Profile: X}` means "section X of `profiles/client-profile.md`". Sections this skill reads:
+
+| Profile section | Used for |
+|---|---|
+| ICP Definitions | Classifying account type (ICP1 vs ICP2 vs No Fit) and zone alignment |
+| Competitive Landscape | Risk flags and competitive lock-in assessment |
+
+`{Methodology: X}` means "subsection X of the **Methodology** section below."
+
+---
+
+## Methodology
+
+Your qualification frameworks. The criteria and zones below are the skill's defaults — use them as-is unless `{Client Profile}` names different frameworks.
 
 ### Qualification Criteria — ICP1
 
@@ -78,21 +92,10 @@ Scores an account against the client's ICP definitions using 8 weighted criteria
 | 7 | Buying Trigger Present | PE acquisition, new region expansion, process failure, new leadership |
 | 8 | Current Solution Gap | No solution, manual tracking, or underperforming vendor |
 
-### Qualification Zones (Winning Zones)
-1. [Zone 1: Your strongest segment match]
-2. [Zone 2: Organizational structure that signals fit]
-3. [Zone 3: Geographic or regulatory complexity]
-4. [Zone 4: Volume or scale threshold]
-5. [Zone 5: Technology or process gap]
+### Revenue Estimation Methods
 
-### Competitive Landscape
-| Competitor | Type | Your Advantage |
-|-----------|------|---------------|
-| [Competitor 1] | [Category] | [Why you win] |
-| [Competitor 2] | [Category] | [Why you win] |
-| Status Quo / Manual | Do nothing | [Cost of inaction] |
+When revenue is unavailable, use these formulas to estimate:
 
-### Revenue Estimation Methods (for private companies)
 | Method | Formula | Label |
 |--------|---------|-------|
 | Employee benchmark | Employees x $[X-Y]K per employee | `[Estimated — employee benchmark]` |
@@ -163,7 +166,7 @@ Check against `{Client Profile: ICP Definitions}` target codes. Score: CONFIRMED
 Search for evidence of relevant transactions in public records, company website, or CRM data. Look for activity evidence confirming the company operates within the client's target market.
 
 #### 1e. Revenue Estimation
-When revenue is unavailable, use `{Client Profile: Revenue Estimation Methods}`.
+When revenue is unavailable, use `{Methodology: Revenue Estimation Methods}`.
 
 ---
 
@@ -175,13 +178,13 @@ Determine which ICP category from `{Client Profile: ICP Definitions}` this compa
 - **Adjacent** — Near-fit with minimum thresholds
 - **No Fit** — Does not match any ICP definition
 
-Assign market segment from `{Client Profile: Market Segments}`.
+Assign market segment based on `{Client Profile: ICP Definitions}`.
 
 ---
 
 ### Step 3: Score Against 8 Qualification Criteria
 
-Use the ICP-appropriate criteria table from `{Client Profile}`. Score each as:
+Use the ICP-appropriate criteria table from `{Methodology: Qualification Criteria — ICP1}` or `{Methodology: Qualification Criteria — ICP2}`. Score each as:
 - **STRONG** — Clear evidence confirming fit
 - **PARTIAL** — Some evidence, gaps remain
 - **WEAK** — Evidence against fit or no evidence
@@ -193,7 +196,7 @@ Include a brief evidence note with source label for each.
 
 ### Step 4: Assess Qualification Zone Alignment
 
-Score each of the `{Client Profile: Qualification Zones}` as HIGH / MEDIUM / LOW / UNKNOWN:
+Assessment zones are defined in `{Client Profile: ICP Definitions}`. Score alignment for each zone as HIGH / MEDIUM / LOW / UNKNOWN:
 
 | Rating | Meaning |
 |--------|---------|
@@ -388,6 +391,12 @@ Score each of the `{Client Profile: Qualification Zones}` as HIGH / MEDIUM / LOW
 ---
 
 ## Changelog
+
+### Version 1.1.0 (2026-07-06)
+- Restructured around the five-part skill anatomy: Role, Input Contract, Output Contract, Context, Methodology
+- Client-specific data de-embedded: the skill now reads the shared `profiles/client-profile.md` instead of carrying an embedded Client Profile block (one profile powers every skill)
+- Framework machinery (8-criteria scoring, revenue estimation formulas) moved to an explicit Methodology section — `{Methodology: X}` references
+- No functional changes to the workflow, examples, or verdict logic
 
 ### Version 1.0.0 (2026-03-04)
 
