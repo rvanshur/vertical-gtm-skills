@@ -5,7 +5,7 @@ version: 1.1.0
 category: GTM-Enablement
 author: Ryan Vanshur
 license: MIT
-updated: 2026-03-04
+updated: 2026-07-06
 tags: [trigger-event, news-outbound, acquisition, leadership-change, expansion, event-driven-prospecting, urgency-sequences]
 requires:
   skills: []
@@ -21,24 +21,56 @@ Capitalizes on time-sensitive business events — acquisitions, leadership chang
 
 ---
 
-## Client Profile
+## Role
 
-> **Configure this block for your company.** Replace the placeholder values below with your actual company data, ICP definitions, personas, and competitive landscape.
+You are a **trigger event strategist and outbound specialist for a vertical SaaS company** — not a generic assistant. You identify time-sensitive business events, classify them into urgency windows, and generate rapid-response sequences that capitalize on 7-14 day peaks in prospect responsiveness. Everything company-specific — your personas, competitors, proof points, and value propositions — comes from the client profile (see **Context** below), so the same skill serves any vertical without modification.
 
-### Company
-- **Name:** [Your Company]
-- **Industry:** [Your vertical] (B2B SaaS)
-- **Product:** [One-line product description]
+---
 
-### Buyer Personas
-| # | Persona | Hook Focus |
-|---|---------|------------|
-| 1 | **[Title]** | [Top priorities and pain themes] |
-| 2 | **[Title]** | [Top priorities and pain themes] |
-| 3 | **[Title]** | [Top priorities and pain themes] |
-| 4 | **[Title]** | [Top priorities and pain themes] |
-| 5 | **[Title]** | [Top priorities and pain themes] |
-| 6 | **[Title]** | [Top priorities and pain themes] |
+## Input Contract
+
+What this skill needs before it starts. **If a required input is missing, ask — do not guess.**
+
+| Input | Required | Notes |
+|-------|----------|-------|
+| Company name | ✅ Required | The account where the trigger occurred |
+| Trigger event description | ✅ Required | What happened (specific detail, not "news") |
+| Source | ✅ Required | Where you discovered this (press release, LinkedIn, earnings call, news article) |
+| Event date | ✅ Required | When the event occurred or was announced (timeliness matters) |
+| Evidence grade | Optional | Is this VERIFIED, INFERRED, or UNVERIFIED per Epistemic Rules? |
+| Known contacts | Optional | Names/titles of contacts at the company |
+
+---
+
+## Output Contract
+
+Every run produces **rapid-response sequences and an urgency-scored brief** — the content changes per event; the structure never does. Core commitments: classification of trigger type, calculation of remaining urgency window, identification of affected personas, generation of 3-step email sequences per persona, and a single-page cheatsheet ranked by timeliness.
+
+---
+
+## Context
+
+**This skill does not contain client-specific information. It points to it.**
+
+> **Load the client profile from [`profiles/client-profile.md`](../../profiles/client-profile.md) before starting.** That single file is shared by all 14 skills in this suite — update it once and every skill inherits the change on its next run.
+
+Throughout this skill, `{Client Profile: X}` means "section X of `profiles/client-profile.md`". Sections this skill reads:
+
+| Profile section | Used for |
+|---|---|
+| Company | Framing, company description |
+| Buyer Personas | Persona-targeted sequence variations |
+| Value Propositions | Event-to-implication mapping |
+| Proof Points | Trigger-type-matched social proof |
+| Industry Context | Macro trend references |
+
+`{Methodology: X}` means "subsection X of the **Methodology** section below."
+
+---
+
+## Methodology
+
+Your playbook for trigger event classification and value connection. The frameworks below are the skill's core decision tools — trigger taxonomy for classification, the decision tree for ambiguous cases, and event-to-value mapping for connecting business implications to product value.
 
 ### Trigger Type Taxonomy
 
@@ -106,32 +138,6 @@ When classifying ambiguous events, apply this decision tree:
 - High-value deal = high-value exposure if operations fail
 - Requirements may differ from the company's typical work
 - Resource strain from large projects can cause gaps on other work
-
-### Value Propositions
-1. [Value prop 1]
-2. [Value prop 2]
-3. [Value prop 3]
-4. [Value prop 4]
-5. [Value prop 5]
-
-### Proof Points (matched to trigger type)
-| Trigger Type | Best Proof Point |
-|-------------|-----------------|
-| Acquisition / M&A | [Customer]: [Integration metric] |
-| New Leader | [Customer]: [Adoption metric] |
-| Geographic Expansion | [Customer]: [Multi-region metric] |
-| Compliance Failure | [Customer]: [Recovery metric] |
-| Competitor Event | [Customer]: [Displacement metric] |
-| Earnings / Margin | [Customer]: [Efficiency metric] |
-| PE Investment | [Customer]: [Integration metric] |
-| Large Contract Win | [Customer]: [Coverage metric] |
-
-### Industry Context
-- [Macro trend 1]
-- [Macro trend 2]
-- [Macro trend 3]
-- [Macro trend 4]
-- [Macro trend 5]
 
 ---
 
@@ -207,7 +213,7 @@ Determine whether the user is a BDR or AE.
 - URL or reference to the source material (if available)
 
 #### 1b. Classify the Trigger Type
-Map the event to `{Client Profile: Trigger Type Taxonomy}`. If the event is ambiguous, use the `{Client Profile: Trigger Classification Decision Tree}`. Determine:
+Map the event to `{Methodology: Trigger Type Taxonomy}`. If the event is ambiguous, use the `{Methodology: Trigger Classification Decision Tree}`. Determine:
 - **Trigger Type**: Classification
 - **Urgency Window**: Days remaining before event becomes stale
 - **Primary Persona**: Who cares most about this event
@@ -240,7 +246,7 @@ If EXPIRED: recommend a different approach (snapshot, research outbound) unless 
 - **Timeliness Assessment:** URGENT / CLOSING / STALE / EXPIRED
 
 #### Business Implications
-Connect the event to specific product value using `{Client Profile: Event-to-Value Mapping}`. Identify 4-6 business implications, each connecting the event to a specific value proposition.
+Connect the event to specific product value using `{Methodology: Event-to-Value Mapping}`. Identify 4-6 business implications, each connecting the event to a specific value proposition.
 
 Format each implication:
 ```
@@ -256,7 +262,7 @@ Format each implication:
 Produce a **3-step rapid-response sequence** for each recommended persona. Trigger events use 3 steps (not 4) because the urgency window is shorter.
 
 #### Persona Selection
-Based on the trigger type, recommend top 2-3 personas from `{Client Profile: Trigger Type Taxonomy}`.
+Based on the trigger type, recommend top 2-3 personas from `{Methodology: Trigger Type Taxonomy}`.
 
 #### Rules for Every Email
 - Include a **subject line** referencing the event (not generic)
@@ -510,6 +516,12 @@ Happy to share how other PE-backed companies are approaching this.
 ---
 
 ## Changelog
+
+### Version 1.1.0 (2026-07-06)
+- Restructured around the five-part skill anatomy: Role, Input Contract, Output Contract, Context, Methodology
+- Client-specific data de-embedded: the skill now reads the shared `profiles/client-profile.md` instead of carrying a copy-in Client Profile block
+- Trigger Type Taxonomy, Trigger Classification Decision Tree, and Event-to-Value Mapping moved to explicit Methodology section — `{Methodology: X}` references
+- No functional changes to the workflow, examples, or output formats
 
 ### Version 1.1.0 (2026-03-04)
 - Added Epistemic Rules section with evidence grading (VERIFIED / INFERRED / UNVERIFIED), timeliness rules, and urgency window calculation methodology

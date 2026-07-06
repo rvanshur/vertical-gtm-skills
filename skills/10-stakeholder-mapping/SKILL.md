@@ -1,11 +1,11 @@
 ---
 name: gtm-stakeholder-mapping
 description: "Builds complete stakeholder intelligence maps — contact inventory with buying role classification, organizational hierarchy with ghost nodes, 7-dimension weighted multi-threading score, political landscape mapping, and prioritized engagement strategy"
-version: 1.0.0
+version: 1.1.0
 category: GTM-Enablement
 author: Ryan Vanshur
 license: MIT
-updated: 2026-03-04
+updated: 2026-07-06
 tags: [stakeholder-mapping, org-map, org-chart, multi-threading, buying-committee, influence-map, contact-mapping, deal-strategy]
 requires:
   skills: []
@@ -21,57 +21,136 @@ Builds a complete stakeholder intelligence map for a target account. Queries CRM
 
 ---
 
-## Client Profile
+## Role
 
-> **Configure this block for your company.** Replace the placeholder values below with your actual company data, ICP definitions, personas, and competitive landscape.
+You are a **senior account executive and org chart strategist for a vertical SaaS company** — not a generic assistant. You build complete stakeholder maps from CRM data, identifying buying roles, multi-threading gaps, and political dynamics. Everything company-specific — the buyer personas, the ghost node expectations, the value propositions — comes from the client profile (see **Context** below), so the same skill serves any vertical without modification.
 
-### Company
-- **Name:** [Your Company]
-- **Industry:** [Your vertical] (B2B SaaS)
-- **Product:** [One-line product description]
+---
 
-### Buyer Personas
-| # | Persona | Typical Titles | Default Buying Role | Department |
-|---|---------|---------------|-------------------|-----------|
-| 1 | **[Title 1]** | [Title variants] | Economic Buyer | [Department] |
-| 2 | **[Title 2]** | [Title variants] | Influencer / Economic Buyer | [Department] |
-| 3 | **[Title 3]** | [Title variants] | Champion (primary target) | [Department] |
-| 4 | **[Title 4]** | [Title variants] | Champion / Influencer | [Department] |
-| 5 | **[Title 5]** | [Title variants] | End User / Influencer | [Department] |
-| 6 | **[Title 6]** | [Title variants] | End User | [Department] |
+## Input Contract
 
-### Non-Buyer Personas to Track
-| Persona | Why They Matter | Common Stance |
-|---------|----------------|---------------|
-| IT Director/CIO | Technical evaluator — can veto on integration/security | Neutral to skeptical |
-| ERP/Systems Admin | Integration champion or blocker — knows the systems | Can become technical champion |
-| General Counsel | Legal/compliance angle — can accelerate if risk is real | Neutral |
-| COO | Operational efficiency sponsor — cares about process improvement | Supportive if shown ROI |
-| Procurement | Can slow deal with vendor review process | Neutral |
+What this skill needs before it starts. **If a required input is missing, ask — do not guess.**
 
-### Value Propositions
-1. [Value prop 1]
-2. [Value prop 2]
-3. [Value prop 3]
-4. [Value prop 4]
-5. [Value prop 5]
+| Input | Required | Notes |
+|-------|----------|-------|
+| Account name | ✅ Required | Account in CRM with contact records |
+| User role (BDR / AE) | ✅ Required | Framing of engagement strategy (entry point vs. multi-threading) |
+| CRM access (all contacts, titles, departments, engagement) | ✅ Required | Complete contact inventory is essential |
+| Company size / revenue (if available) | Optional | Used for ghost node identification |
+| Active deal status | Optional | If AE with active deal, coordination guidance applies |
 
-### Proof Points
-| Customer | Key Metric | Use When |
-|----------|-----------|----------|
-| [Customer 1] | [Metric] | [Scenario] |
-| [Customer 2] | [Metric] | [Scenario] |
-| [Customer 3] | [Metric] | [Scenario] |
+---
 
-### Ghost Node Expectations
-Expected positions by company size (adjust for your target market):
+## Output Contract
 
-| Revenue Threshold | Expected Roles |
-|-------------------|---------------|
-| $50M+ | [List of roles expected at this tier] |
-| $100M+ | [Additional roles at this tier] |
-| $200M+ | [Additional roles at this tier] |
-| $500M+ | [Additional roles at this tier] |
+Every run produces a **complete stakeholder map with the same 8 sections** — so buying committee strategy can be compared across accounts. The content changes per account; the structure never does.
+
+Core commitments: **contact inventory with buying roles classified**, **organizational hierarchy with ghost nodes**, **7-dimension multi-threading score**, **political landscape**, **coverage gaps and risks**, and **prioritized engagement strategy**.
+
+---
+
+## Context
+
+**This skill does not contain client-specific information. It points to it.**
+
+> **Load the client profile from [`profiles/client-profile.md`](../../profiles/client-profile.md) before starting.** That single file is shared by all 14 skills in this suite — update it once and every skill inherits the change on its next run.
+
+Throughout this skill, `{Client Profile: X}` means "section X of `profiles/client-profile.md`". Sections this skill reads:
+
+| Profile section | Used for |
+|---|---|
+| Buyer Personas | Buying role classification, department inference |
+| Qualification Criteria | Winning zone assessment, org structure expectations |
+| Value Propositions | Engagement messaging, persona relevance |
+
+`{Methodology: X}` means "subsection X of the **Methodology** section below."
+
+---
+
+## Methodology
+
+Your playbook for stakeholder mapping. The 7 buying roles, multi-threading dimensions and weighting, influence assessment framework, engagement status classification, political landscape quadrant, and ghost node identification logic are your operational blueprint.
+
+### Seven Buying Roles
+
+| Role | Definition | Typical Influence | Key Signals |
+|------|-----------|------------------|-----------|
+| **Economic Buyer** | Can approve budget and sign contracts | HIGH | Budget authority, P&L responsibility, signature authority |
+| **Champion** | Actively advocates internally, sells when you're not in room | HIGH | Shares insider info, coaches on politics, enables other introductions |
+| **Technical Evaluator** | Assesses integration, security, technical fit; can veto | HIGH | Tests architecture, asks integration questions, flags blockers |
+| **Influencer** | Shapes decision through opinion/expertise; cannot approve alone | MEDIUM | Submits analysis, participates in meetings, frames requirements |
+| **End User** | Will use product daily; cares about workflow and ease | MEDIUM | Daily pain points, process feedback, adoption risk signals |
+| **Blocker** | Opposes or delays deal; may prefer incumbent | MEDIUM | Raises objections, advocates for status quo, flags concerns |
+| **Coach** | Internal ally who provides intel about buying process and politics | LOW-MEDIUM | Shares confidential process details, warns of threats, accelerates timelines |
+
+### Influence Levels
+
+| Level | Criteria |
+|-------|----------|
+| HIGH | C-level title, confirmed budget authority, demonstrated seniority in meetings |
+| MEDIUM | Director/VP, participates actively, asks detailed questions |
+| LOW | Manager/IC, end user, referred to by others, minimal participation |
+| UNKNOWN | No notes, no meetings, contact added from list |
+
+### Engagement Status
+
+| Status | Criteria |
+|--------|----------|
+| Actively Engaged | 2+ interactions in last 30 days |
+| Partially Engaged | 1 interaction in last 30 days, or 2+ in last 90 days |
+| Disengaged/Cold | No interaction in 90+ days |
+| Never Contacted | On file but no recorded outreach |
+| Active Blocker | Has expressed opposition in notes/calls |
+
+### Relationship Strength (1-5)
+
+| Score | Evidence |
+|-------|----------|
+| 5 | Champion-level. Actively advocates. Internal conversations on your behalf. |
+| 4 | Strong advocate. Responds quickly. Provides intel. |
+| 3 | Positive/neutral. Engages when prompted. |
+| 2 | Building rapport. Limited interaction history. |
+| 1 | Cold/unknown. No meaningful engagement. |
+
+### Multi-Threading Score (7 Dimensions, Weighted)
+
+| Dimension | Weight | 0 (Weak) | 1 (Developing) | 2 (Strong) |
+|-----------|--------|----------|---------------|-----------|
+| **C-Level Access** | 2x | No C-level contacts | 1 contact, no engagement | 1+ engaged |
+| **Champion Identified** | 2x | No champion | Potential champion | Confirmed, active champion |
+| **Department Breadth** | 1x | 1 dept only | 2-3 depts | 4+ depts represented |
+| **Technical Evaluator** | 1x | No IT contact | IT contact, not engaged | IT engaged/supportive |
+| **Economic Buyer Engaged** | 2x | No EB identified | EB identified, not engaged | EB actively engaged |
+| **End User Validation** | 1x | No end users known | End users identified | End users engaged |
+| **Blocker Mitigation** | 1x | Known blocker, no strategy | Blocker identified, strategy exists | No blockers, or all neutralized |
+
+**Calculation:** Sum all weighted dimension scores (max 20). Normalize to 10-point scale. Interpretation:
+- 9-10 = Excellent coverage
+- 7-8 = Good coverage with 1-2 gaps
+- 5-6 = Developing, material gaps
+- 3-4 = Weak, narrow coverage
+- 1-2 = Critical, almost no contacts
+
+### Political Landscape Positioning
+
+Classify influential contacts on two axes: **Influence (Y-axis: high to low)** × **Support (X-axis: opponent to strong supporter)**
+
+**Quadrants:**
+- **Top-Right (High Influence + Support):** Leverage — your champion, enabler
+- **Top-Left (High Influence + Opposition):** Neutralize — the blocker with power
+- **Bottom-Right (Low Influence + Support):** Keep Informed — friendly contact
+- **Bottom-Left (Low Influence + Opposition):** Monitor — low threat, watch
+
+### Ghost Node Identification
+
+Expected positions that SHOULD exist based on company size but have no contact on file. By revenue threshold:
+
+| Revenue Threshold | Typical Expected Roles |
+|-------------------|-----|
+| $50M+ | CEO, CFO, CIO/IT Director, VP Operations, VP Sales, General Counsel |
+| $100M+ | Add: VP Finance, Chief Procurement Officer, Board members (if relevant) |
+| $200M+ | Add: COO, Multiple VPs by function, Regional managers (if multi-region) |
+| $500M+ | Add: Senior Director layer, Treasury, Investor Relations |
 
 ---
 
@@ -224,7 +303,7 @@ Build a hierarchical tree from classified contacts:
 4. **Flag confirmed vs. inferred relationships:**
    - **Confirmed:** CRM explicitly shows relationship, or notes reference it
    - **Inferred:** Based on title hierarchy and department
-5. **Identify ghost nodes:** Positions that SHOULD exist based on company size and industry but have no contact on file. Use `{Client Profile: Ghost Node Expectations}` as reference.
+5. **Identify ghost nodes:** Positions that SHOULD exist based on company size and industry but have no contact on file. Use `{Methodology: Ghost Node Identification}` as reference for expected roles by revenue threshold.
 
 Present as a department-grouped table showing:
 - Name (or "UNKNOWN — [Expected Title]" for ghost nodes)
@@ -458,6 +537,12 @@ For each recommended action:
 ---
 
 ## Changelog
+
+### Version 1.1.0 (2026-07-06)
+- Restructured around the five-part skill anatomy: Role, Input Contract, Output Contract, Methodology, Context
+- Client-specific data de-embedded: the skill now reads the shared `profiles/client-profile.md` instead of carrying a copy-in Client Profile block (one profile powers every skill)
+- Buying role definitions (7 roles), influence levels, engagement status, relationship strength framework, multi-threading dimensions (7-weighted), and ghost node expectations moved to an explicit Methodology section — `{Methodology: X}` references
+- No functional changes to the workflow, contact classification logic, threading algorithm, political landscape assessment, or output formats
 
 ### Version 1.0.0 (2026-03-04)
 - Initial release

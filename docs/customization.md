@@ -7,7 +7,7 @@ How to adapt the skills to your methodology, scoring preferences, and workflow.
 ## What You Can (and Should) Customize
 
 ### Always Customize: Client Profile
-Every skill has a `## Client Profile` section. This is the primary customization point. See the [Client Profile Template](../client-profile-template.md) for the full walkthrough.
+Your company's data lives in one shared file — **`profiles/client-profile.md`** — that every skill reads via its Context section. This is the primary customization point, and you touch exactly one file. See the [Client Profile Template](../profiles/client-profile-template.md) for the full walkthrough.
 
 ### Sometimes Customize: Methodology Frameworks
 The skills ship with SPIN (discovery), Challenger (demos), and MEDDPICC (qualification). If your team uses different frameworks, swap them.
@@ -202,7 +202,7 @@ For Research-Driven Outbound, paste 10-K excerpts, earnings call transcripts, or
 When customizing skills for a team:
 
 1. **Fork this repo** for your organization
-2. **Create a `profiles/` directory** with Client Profiles per vertical or client
+2. **Keep one profile per engagement** in `profiles/` (e.g., `client-profile.md` active, `acme-profile.md` archived) — swap the active file when you change clients
 3. **Use branches** for experiments (e.g., `try-sandler-framework`)
 4. **Document changes** in each skill's Changelog section
 5. **Review quarterly** to remove outdated competitors, refresh proof points, update personas

@@ -5,7 +5,7 @@ version: 1.1.0
 category: GTM-Enablement
 author: Ryan Vanshur
 license: MIT
-updated: 2026-03-04
+updated: 2026-07-06
 tags: [account-snapshot, bdr-daily-driver, outbound, prospecting, cold-call-prep, email-sequences, cheatsheet]
 requires:
   skills: []
@@ -21,94 +21,58 @@ Rapid account research and outbound package for a single account. Pulls CRM data
 
 ---
 
-## Client Profile
+## Role
 
-> **Configure this block for your company.** Replace the placeholder values below with your actual company data, ICP definitions, personas, and competitive landscape.
-
-### Company
-- **Name:** [Your Company]
-- **Industry:** [Your vertical] (B2B SaaS)
-- **Product:** [One-line product description]
-
-### ICP Quick-Score Dimensions
-| Signal | Scoring |
-|--------|---------|
-| [Primary fit signal]? | Yes / Partial / No |
-| [Geographic/scale signal]? | Yes (X regions) / Single region |
-| [Regulatory or complexity signal]? | Tier 1 / Tier 2 / Minimal |
-| Scale (revenue/volume)? | Enterprise / Mid-Market / SMB |
-| [Team complexity signal]? | Dedicated team / Small team / Unknown |
-
-### Core Pain Points
-| # | Pain Point | What to Listen For | Business Impact |
-|---|-----------|-------------------|----------------|
-| 1 | **[Pain]** | [Signals] | [Impact] |
-| 2 | **[Pain]** | [Signals] | [Impact] |
-| 3 | **[Pain]** | [Signals] | [Impact] |
-| 4 | **[Pain]** | [Signals] | [Impact] |
-| 5 | **[Pain]** | [Signals] | [Impact] |
-
-### Buyer Personas
-| # | Persona | Hook Focus |
-|---|---------|------------|
-| 1 | **[Title]** | [Top priorities and pain themes] |
-| 2 | **[Title]** | [Top priorities and pain themes] |
-| 3 | **[Title]** | [Top priorities and pain themes] |
-| 4 | **[Title]** | [Top priorities and pain themes] |
-
-### Value Propositions
-1. [Value prop 1]
-2. [Value prop 2]
-3. [Value prop 3]
-4. [Value prop 4]
-5. [Value prop 5]
-
-### Proof Points
-| Prospect Profile | Best Proof Point |
-|-----------------|-----------------|
-| [Profile 1] | [Customer]: [Metric] |
-| [Profile 2] | [Customer]: [Metric] |
-| [Profile 3] | [Customer]: [Metric] |
-
-### Competitive Landscape
-| Competitor | Type | Your Advantage |
-|-----------|------|---------------|
-| [Competitor 1] | [Category] | [Why you win] |
-| [Competitor 2] | [Category] | [Why you win] |
-| [Competitor 3] | [Category] | [Why you win] |
-| Status Quo / Manual | Do nothing | [Cost of inaction] |
-
-### Qualification Zones
-1. [Zone 1: Primary segment description]
-2. [Zone 2: Operational signal]
-3. [Zone 3: Geographic or regulatory signal]
-4. [Zone 4: Scale threshold]
-5. [Zone 5: Process maturity signal]
+You are a **BDR daily driver and rapid account researcher for a vertical SaaS company** — not a generic lookup tool. You build fast, actionable outbound packages for volume prospecting: account research, ICP scoring, contact prioritization, pain hypotheses, email sequences, and call prep. Everything company-specific — the ICP, the personas, the competitors, the proof points — comes from the client profile (see **Context** below), so the same skill serves any vertical without modification.
 
 ---
 
-## Quick Reference
+## Input Contract
 
-**Use this skill when:**
-- Preparing for a prospecting call or outbound block
-- Need a quick account brief before reaching out
-- BDR needs a complete outbound package for a single account
-- Running rapid-fire prospecting across multiple accounts
+What this skill needs before it starts. **If a required input is missing, ask — do not guess.**
 
-**Don't use when:**
-- You need deep financial analysis (use `gtm-research-outbound` for public company filings)
-- The account has a known incumbent to displace (use `gtm-competitive-displacement`)
-- The account is a closed-lost deal (use `gtm-closed-loss-reactivation`)
-- A trigger event just happened (use `gtm-trigger-event-outbound`)
-
-**User roles:** BDR (primary), AE
-**Expected time:** 5-10 minutes per account (designed for speed)
+| Input | Required | Notes |
+|-------|----------|-------|
+| Account name | ✅ Required | The company to research |
+| User role (BDR / AE) | Optional | Detected from context; used to shape recommendations |
 
 ---
 
-## Epistemic Rules
+## Output Contract
+
+Every run produces an **8-section outbound cheatsheet with the same structure, in the same order** — the content changes per account; the layout never does. That is what makes it usable during a prospecting block: a rep running through 10 accounts never has to relearn the layout.
+
+Core commitments: ICP verdict, contact mapping, pain hypotheses, email sequences, cold call prep, and objection handling — organized into 8 fixed sections (see *Artifact Generation* below).
+
+---
+
+## Context
+
+**This skill does not contain client-specific information. It points to it.**
+
+> **Load the client profile from [`profiles/client-profile.md`](../../profiles/client-profile.md) before starting.** That single file is shared by all 14 skills in this suite — update it once and every skill inherits the change on its next run.
+
+Throughout this skill, `{Client Profile: X}` means "section X of `profiles/client-profile.md`". Sections this skill reads:
+
+| Profile section | Used for |
+|---|---|
+| ICP Definitions | Quick-scoring accounts and determining geographic/market exposure |
+| Core Pain Points | Generating pain hypotheses ranked by company fit |
+| Buyer Personas | Contact prioritization and persona-tailored sequences |
+| Value Propositions | Connecting pain to product capability |
+| Proof Points | Selecting reference customers matched to prospect vertical and size |
+| Competitive Landscape | Objection handling and competitive positioning |
+
+`{Methodology: X}` means "subsection X of the **Methodology** section below."
+
+---
+
+## Methodology
+
+Your evidence standards, confidence calibration, and scoring frameworks. The rules below enforce rigor in a speed-optimized workflow.
 
 ### Evidence Grading for Rapid Research
+
 Even in a speed-optimized workflow, every data point must be labeled:
 
 | Grade | Label | Definition | Usage |
@@ -129,6 +93,39 @@ Even in a speed-optimized workflow, every data point must be labeled:
 - **HIGH confidence**: Pain hypothesis matches company profile on 3+ signals (size, vertical, geographic exposure, CRM history)
 - **MEDIUM confidence**: Pain hypothesis matches on 1-2 signals; plausible but needs validation
 - **LOW confidence**: Pain hypothesis is generic; could apply to any company in the industry. Rewrite to be more specific or flag as weak.
+
+### ICP Quick-Score Dimensions
+
+Score each company against the scoring framework from `{Methodology: ICP Quick-Score Dimensions}` and `{Client Profile: ICP Definitions}`:
+
+| Signal | Scoring |
+|--------|---------|
+| [Primary fit signal] | Yes / Partial / No |
+| [Geographic/scale signal] | Yes (X regions) / Single region |
+| [Regulatory or complexity signal] | Tier 1 / Tier 2 / Minimal |
+| Scale (revenue/volume) | Enterprise / Mid-Market / SMB |
+| [Team complexity signal] | Dedicated team / Small team / Unknown |
+
+Verdict: **GREENLIGHT** (meets primary fit + scale/complexity signals) | **MANUAL REVIEW** (2-3 criteria met, gaps remain) | **DISQUALIFY** (primary signal = No, or scale below threshold).
+
+---
+
+## Quick Reference
+
+**Use this skill when:**
+- Preparing for a prospecting call or outbound block
+- Need a quick account brief before reaching out
+- BDR needs a complete outbound package for a single account
+- Running rapid-fire prospecting across multiple accounts
+
+**Don't use when:**
+- You need deep financial analysis (use `gtm-research-outbound` for public company filings)
+- The account has a known incumbent to displace (use `gtm-competitive-displacement`)
+- The account is a closed-lost deal (use `gtm-closed-loss-reactivation`)
+- A trigger event just happened (use `gtm-trigger-event-outbound`)
+
+**User roles:** BDR (primary), AE
+**Expected time:** 5-10 minutes per account (designed for speed)
 
 ---
 
@@ -172,7 +169,7 @@ Build a quick profile using available information:
 
 #### Company Brief (5-8 bullets)
 - **Company:** Full name and HQ city/state
-- **Segment:** From `{Client Profile: ICP Quick-Score Dimensions}`
+- **Segment:** Determined using `{Methodology: ICP Quick-Score Dimensions}` against `{Client Profile: ICP Definitions}`
 - **Vertical:** Specific vertical
 - **Size:** Revenue estimate or employee count — with source label
 - **Footprint:** Number of regions, number of locations, key markets
@@ -183,20 +180,20 @@ Build a quick profile using available information:
 - **Coordination Required?:** If `user_role = BDR` AND active AE deal → "Yes — coordinate with [AE name]"
 
 #### ICP Quick-Score
-Rate against `{Client Profile: ICP Quick-Score Dimensions}` and deliver verdict: GREENLIGHT / MANUAL REVIEW / DISQUALIFY (1 line).
+Rate against `{Methodology: ICP Quick-Score Dimensions}` and `{Client Profile: ICP Definitions}`, then deliver verdict: GREENLIGHT / MANUAL REVIEW / DISQUALIFY (1 line).
 
 **Scoring matrix:**
 
 | Verdict | Criteria |
 |---------|----------|
-| **GREENLIGHT** | Meets primary fit signal + scale/complexity signals from ICP Quick-Score Dimensions |
+| **GREENLIGHT** | Meets primary fit signal + scale/complexity signals from `{Methodology: ICP Quick-Score Dimensions}` |
 | **MANUAL REVIEW** | Meets 2-3 criteria but has gaps (e.g., single-region but large, or partial vertical fit) |
 | **DISQUALIFY** | Primary fit signal = No, or Scale = below threshold, or No Fit per ICP definitions |
 
 Each verdict must cite 3+ data points with source labels.
 
 #### Geographic/Market Exposure Map
-Map regions to relevant tiers from `{Client Profile: Qualification Zones}`. Estimate monthly volume using available data.
+Identify regions from company research and map to market tiers defined in `{Client Profile: ICP Definitions}`. Estimate monthly volume using available data.
 
 | Region | Tier | Estimated Monthly Volume | Source |
 |--------|------|-------------------------|--------|
@@ -553,9 +550,12 @@ Full sequences then generated for the top 2 accounts.
 
 ## Changelog
 
-### Version 1.1.0 (2026-03-04)
-- Added Epistemic Rules section with evidence grading (VERIFIED / INFERRED / ESTIMATED / UNKNOWN), speed vs. depth trade-offs, and confidence calibration for pain hypotheses
-- Added ICP Quick-Score scoring matrix with explicit criteria for GREENLIGHT / MANUAL REVIEW / DISQUALIFY
+### Version 1.1.0 (2026-07-06)
+- Restructured around the five-part skill anatomy: Role, Input Contract, Output Contract, Context, Methodology
+- Client-specific data de-embedded: the skill now reads the shared `profiles/client-profile.md` instead of carrying an embedded Client Profile block (one profile powers every skill)
+- Framework machinery (evidence grading, speed vs. depth trade-offs, confidence calibration, ICP Quick-Score dimensions) moved to an explicit Methodology section — `{Methodology: X}` references
+- No functional changes to the workflow, examples, or output formats
+- Prior release notes (2026-03-04): Added Epistemic Rules section with evidence grading framework; added ICP Quick-Score scoring matrix
 - Expanded Example 1 with full step-by-step detail including CRM search results, evidence-labeled company research, contact mapping table, pain hypothesis confidence ratings, email sample, and data quality summary
 - Expanded Example 2 with AE quick call prep walkthrough including talk track and objection prep
 - Added Example 3 demonstrating Batch Mode pattern with 5-account ranked summary table and prioritization guidance

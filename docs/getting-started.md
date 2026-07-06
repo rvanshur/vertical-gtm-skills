@@ -27,7 +27,7 @@ When you tell Claude "prep me for a discovery call with Acme Corp," Claude reads
 
 ## Step 1: Fill Out Your Client Profile
 
-Open **[client-profile-template.md](../client-profile-template.md)** and complete every section. This is the single most important step. The quality of every skill's output depends on the quality of your Client Profile.
+Open **[client-profile-template.md](../profiles/client-profile-template.md)** and complete every section, then save your completed copy as **`profiles/client-profile.md`** — the one path every skill reads from. This is the single most important step. The quality of every skill's output depends on the quality of your Client Profile. (A completed example: [legal-ops-example.md](../profiles/examples/legal-ops-example.md).)
 
 ### What to have ready:
 - Your ICP definitions (who you sell to, who you don't)
@@ -104,7 +104,7 @@ You're deploying this across client engagements. Start with the full system:
 1. Fill out a Client Profile for your client (use their language, not yours)
 2. Install all 14 skills with that profile
 3. Run the [30-day deployment sequence](../README.md#skill-chaining) from the README
-4. When you move to a new client, swap the Client Profile. Everything else carries over.
+4. When you move to a new client, swap `profiles/client-profile.md`. Everything else carries over.
 
 ---
 
