@@ -1,6 +1,6 @@
 # Vertical SaaS GTM Skills for Claude Code
 
-**14 production-ready sales methodology skills for vertical SaaS GTM teams, built for [Claude Code](https://claude.ai/code).**
+**A GTM methodology framework for vertical SaaS teams: 14 sales skills, one context layer, and templates for making every piece your own. Runs in [Claude Code](https://claude.ai/code), [OpenAI Codex](https://openai.com/codex/), or as a [custom GPT in ChatGPT](docs/chatgpt-gpt-setup.md).**
 
 Turn Claude into your team's sales methodology engine. These aren't prompt templates. They're codified playbooks that score deals, prep meetings, coach calls, build outbound sequences, and map stakeholders, all grounded in your company's actual ICP, personas, competitors, and proof points.
 
@@ -13,6 +13,18 @@ One client profile file. Fourteen skills that read it. Every GTM motion covered.
 A complete AI-powered sales methodology suite designed for vertical SaaS companies. Each skill encodes proven frameworks (SPIN, MEDDPICC, Challenger) into structured Claude Code instructions that produce operational output: call sheets, deal scorecards, battlecards, outbound sequences, and coaching reports.
 
 **The key insight:** Your company's data lives in **one file** — [`profiles/client-profile.md`](profiles/client-profile-template.md). All 14 skills read from it; none of them contain it. Update the profile once and every skill inherits the change on its next run. When you move to a new vertical or client engagement, you swap that one file. The methodology stays the same — the profile is the fuel.
+
+### The System — three steps, in order
+
+This is a framework with templates, not a pile of prompts. It is built to be walked in order:
+
+| Step | What you do | Where |
+|---|---|---|
+| **1. Build your context layer** | Fill out the client profile once: ICP, personas, pains, competitors, proof points | [`profiles/client-profile-template.md`](profiles/client-profile-template.md) |
+| **2. Run the motion** | The 14 skills read that one file and produce operational artifacts | [`skills/`](skills/) |
+| **3. Make it yours** | Hand-craft skills to your specific go-to-market motion, keeping the anatomy | [`docs/customization.md`](docs/customization.md) + per-skill `CUSTOMIZE.md` |
+
+Skip step 1 and every skill degrades to generic output. Do step 1 well and steps 2 and 3 compound.
 
 ### Anatomy of a Skill
 
@@ -85,11 +97,34 @@ Skills are organized by deal stage, matching the natural flow of a B2B sales cyc
 
 ---
 
+## The Operating Layer
+
+The 14 skills above are the motion. [`operating/`](operating/) is the layer that keeps the
+motion honest — the disciplines that decide whether work is real before it ships. First up:
+
+| # | Skill | What It Does |
+|---|-------|-------------|
+| O1 | **[Verify](operating/O1-verify/SKILL.md)** | Four-tier evidence ladder (exists → substantive → wired → works) that blocks "done" claims until the top tier is demonstrated |
+
+Each operating skill ships with a `CUSTOMIZE.md` — a paste-in interview that adapts it to your
+motion — and a "Why This Skill Exists" section, because each one exists because something broke.
+The rest of the suite is being published alongside the [Operator's Toolkit series](https://substack.com/@verticalgtmguild).
+
+---
+
 ## Quick Start (15 Minutes)
 
-### Prerequisites
-- [Claude Code CLI](https://claude.ai/code) installed and authenticated
-- A Claude Pro, Team, or Enterprise subscription
+### Pick your platform
+
+| You use... | Setup path |
+|---|---|
+| **Claude Code** (CLI) | Steps below. The repo's `CLAUDE.md` auto-loads and walks you through setup conversationally — clone it, open Claude Code, and say "help me get set up" |
+| **OpenAI Codex** (CLI) | Same steps — the mirrored `AGENTS.md` gives Codex identical instructions |
+| **ChatGPT** | No CLI needed: **[Build your GPT](docs/chatgpt-gpt-setup.md)** — skill + profile as knowledge files |
+| **Claude.ai / ChatGPT Projects** | Same two-file pattern as the GPT guide, as a Project |
+
+### Prerequisites (CLI path)
+- [Claude Code](https://claude.ai/code) or [Codex](https://openai.com/codex/) installed and authenticated
 
 ### Step 1: Clone this repo
 ```bash
@@ -188,6 +223,7 @@ Skills compound when used together. A typical 30-day deployment:
 | **[Skill Reference](docs/skill-reference.md)** | Decision tree, input/output specs, chaining patterns |
 | **[Starter Kit](starter-kit/)** | Pre-built templates for identity files, taxonomy, and folder structure |
 | **[Customization Guide](docs/customization.md)** | How to modify skills for your methodology, add new frameworks, extend scoring |
+| **[Build Your GPT](docs/chatgpt-gpt-setup.md)** | Run any skill as a ChatGPT custom GPT — knowledge files, loader instructions, limits stated plainly |
 
 ---
 
