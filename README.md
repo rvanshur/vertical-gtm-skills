@@ -45,6 +45,17 @@ Every skill in this suite has the same five parts. Learn to read one and you can
 - **GTM consultants** deploying repeatable systems across client engagements
 - **Founders** who need enterprise-grade sales process without a 6-person ops team
 
+### Where This Fits: the Free Tier
+
+This repo is the free tier of a larger GTM operating system. It's the execution layer, the bottom of that stack, not a lite version of the top.
+
+| Layer | What it decides | Where it lives |
+|---|---|---|
+| **Strategy** | Who the customer actually is, how you price and position against real alternatives, how a launch runs as a system, and how growth keeps running without a hero | Written up in the [Operator's Toolkit series](https://substack.com/@verticalgtmguild) on the Vertical GTM Guild. Not in this repo. |
+| **Execution** (this repo) | The work a sales team runs every day: qualification, outbound, meeting prep, deal scoring, coaching, handoff | [`skills/`](skills/) and [`operating/`](operating/) |
+
+The 14 skills read your client profile and never write it. They assume the strategy work is already done. If your profile comes out thin because nobody has run discovery or positioning yet, that's the layer to fix first, and every skill here gets sharper once you do.
+
 ---
 
 ## The 14 Skills
