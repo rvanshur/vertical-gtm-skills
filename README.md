@@ -10,11 +10,11 @@ One client profile file. Fourteen skills that read it. Every GTM motion covered.
 
 ## What This Is
 
-A complete AI-powered sales methodology suite designed for vertical SaaS companies. Each skill encodes proven frameworks (SPIN, MEDDPICC, Challenger) into structured Claude Code instructions that produce operational output: call sheets, deal scorecards, battlecards, outbound sequences, and coaching reports.
+A complete AI-powered sales methodology suite designed for vertical SaaS companies. Each skill encodes proven frameworks (SPIN, MEDDPICC, Challenger) into structured Claude Code instructions that produce operational output, like call sheets, deal scorecards, battlecards, outbound sequences, and coaching reports.
 
-**The key insight:** Your company's data lives in **one file** — [`profiles/client-profile.md`](profiles/client-profile-template.md). All 14 skills read from it; none of them contain it. Update the profile once and every skill inherits the change on its next run. When you move to a new vertical or client engagement, you swap that one file. The methodology stays the same — the profile is the fuel.
+**The key insight:** Your company's data lives in **one file**, [`profiles/client-profile.md`](profiles/client-profile-template.md). All 14 skills read from it. None of them contain it. Update the profile once and every skill inherits the change on its next run. When you move to a new vertical or client engagement, you swap that one file. The methodology stays the same. The profile is the fuel.
 
-### The System — three steps, in order
+### The System, three steps, in order
 
 This is a framework with templates, not a pile of prompts. It is built to be walked in order:
 
@@ -32,11 +32,11 @@ Every skill in this suite has the same five parts. Learn to read one and you can
 
 | Part | What it does |
 |---|---|
-| **Role** | Who the AI is for this task — a senior operator, not a generic assistant |
-| **Input Contract** | What it needs before it starts — and it asks rather than guesses |
-| **Output Contract** | The shape of the artifact — same sections, same order, every run |
-| **Methodology** | Your playbook, in code — SPIN, MEDDPICC, Challenger, scoring rubrics |
-| **Context** | The pointer to `profiles/client-profile.md` — the skill reads your data, it doesn't own it |
+| **Role** | Who the AI is for this task. A senior operator, not a generic assistant |
+| **Input Contract** | What it needs before it starts, and it asks rather than guesses |
+| **Output Contract** | The shape of the artifact, same sections, same order, every run |
+| **Methodology** | Your playbook, in code. SPIN, MEDDPICC, Challenger, scoring rubrics |
+| **Context** | The pointer to `profiles/client-profile.md`. The skill reads your data and doesn't own it |
 
 ### Who This Is For
 
@@ -111,14 +111,28 @@ Skills are organized by deal stage, matching the natural flow of a B2B sales cyc
 ## The Operating Layer
 
 The 14 skills above are the motion. [`operating/`](operating/) is the layer that keeps the
-motion honest — the disciplines that decide whether work is real before it ships. First up:
+motion honest, the disciplines that decide whether work is real before it ships. First up:
 
 | # | Skill | What It Does |
 |---|-------|-------------|
-| O1 | **[Verify](operating/O1-verify/SKILL.md)** | Four-tier evidence ladder (exists → substantive → wired → works) that blocks "done" claims until the top tier is demonstrated |
+| O1 | **[Verify](operating/O1-verify/SKILL.md)** | Four-tier evidence ladder (exists > substantive > wired > works) that blocks "done" claims until the top tier is demonstrated |
+| O2 | **[Debug](operating/O2-debug/SKILL.md)** | Hypothesis-first discipline with a three-attempt circuit breaker. After three failed hypotheses, stop and hand off to re-plan |
+| O3 | **[Debate](operating/O3-debate/SKILL.md)** | Convene 3-7 opposing expert personas to pressure-test a decision before committing. Ends with a decision matrix and plain-language read |
+| O4 | **[Context Gap](operating/O4-context-gap/SKILL.md)** | Search before you build. Six-bucket classifier sorts what already exists, and about 40% of requests turn out to be done already |
+| O5 | **[Second Opinion](operating/O5-second-opinion/SKILL.md)** | Send work to a model from a different vendor for review. Trades the builder's blind spots for a different set |
+| O6 | **[Weekly Review](operating/O6-weekly-review/SKILL.md)** | Standing operational review that measures change week-over-week across knowledge base, content, and systems, writes dated records so health becomes a trend |
+| O7 | **[Graph Health](operating/O7-graph-health/SKILL.md)** | Diagnoses knowledge base structure (tag sprawl, link density, provisional item age) and produces a health score, independent of whether items are true |
+| O8 | **[Dream](operating/O8-dream/SKILL.md)** | Consolidation pass that finds stale, contradicted, or duplicated items and prunes with surgical precision (de-links dead references but never deletes surrounding words) |
+| O9 | **[Ingest](operating/O9-ingest/SKILL.md)** | Transforms raw content (transcripts, documents, calls, notes) into structured knowledge items with compiled truth, append-only timeline, and wiki-links for discovery |
+| O10 | **[Wrap-up](operating/O10-wrap-up/SKILL.md)** | Closes working sessions with state-level precision and a next action that passes four tests (imperative, named object, single step, resumable cold) |
+| O11 | **[Context OS Setup](operating/O11-context-os-setup/SKILL.md)** | Build a structured knowledge base where facts are defined once and referenced everywhere. Two-layer architecture (atomic concepts + strategic documents) using semantic linking |
+| O12 | **[GTM Engine](operating/O12-gtm-engine/SKILL.md)** | Post-launch growth systems through retrospectives, two-week sprints with ICE scoring, funnel optimization with PIE scoring, growth loops, strategic narrative, and email automation |
+| O13 | **[GTM Launch](operating/O13-gtm-launch/SKILL.md)** | Launch planning and execution. GTM motion selection, channel strategy, funnel projection, launch assets, social proof collection, budget modeling, war room coordination |
+| O14 | **[GTM Positioning](operating/O14-gtm-positioning/SKILL.md)** | Market positioning and pricing strategy. Competitive pricing analysis, value metric identification, willingness-to-pay research, April Dunford framework, messaging house, validation testing |
+| O15 | **[GTM Discovery](operating/O15-gtm-discovery/SKILL.md)** | Market discovery and customer validation. Beachhead segmentation, problem mapping, competitive intelligence, assumption testing, evidence-based persona creation |
 
-Each operating skill ships with a `CUSTOMIZE.md` — a paste-in interview that adapts it to your
-motion — and a "Why This Skill Exists" section, because each one exists because something broke.
+Each operating skill ships with a `CUSTOMIZE.md`, a paste-in interview that adapts it to your
+motion, and a "Why This Skill Exists" section, because each one exists because something broke.
 The rest of the suite is being published alongside the [Operator's Toolkit series](https://substack.com/@verticalgtmguild).
 
 ---
@@ -129,9 +143,9 @@ The rest of the suite is being published alongside the [Operator's Toolkit serie
 
 | You use... | Setup path |
 |---|---|
-| **Claude Code** (CLI) | Steps below. The repo's `CLAUDE.md` auto-loads and walks you through setup conversationally — clone it, open Claude Code, and say "help me get set up" |
-| **OpenAI Codex** (CLI) | Same steps — the mirrored `AGENTS.md` gives Codex identical instructions |
-| **ChatGPT** | No CLI needed: **[Build your GPT](docs/chatgpt-gpt-setup.md)** — skill + profile as knowledge files |
+| **Claude Code** (CLI) | Steps below. The repo's `CLAUDE.md` auto-loads and walks you through setup conversationally. Clone it, open Claude Code, and say "help me get set up" |
+| **OpenAI Codex** (CLI) | Same steps. The mirrored `AGENTS.md` gives Codex identical instructions |
+| **ChatGPT** | No CLI needed: **[Build your GPT](docs/chatgpt-gpt-setup.md)**, skill + profile as knowledge files |
 | **Claude.ai / ChatGPT Projects** | Same two-file pattern as the GPT guide, as a Project |
 
 ### Prerequisites (CLI path)
@@ -150,7 +164,7 @@ Fill out the **[Client Profile Template](profiles/client-profile-template.md)** 
 cp your-completed-profile.md profiles/client-profile.md
 ```
 
-That's the wiring. Every skill already includes the line that reads from this path — no per-skill configuration.
+That's the wiring. Every skill already includes the line that reads from this path, so there is no per-skill configuration.
 
 ### Step 3: Pick your three
 **Do not start with all 14.** Pick the three that hit your role's biggest friction, run them on real accounts, then expand:
@@ -162,7 +176,7 @@ That's the wiring. Every skill already includes the line that reads from this pa
 | **Sales Manager / VP** | Account Pre-Qualification (01) · Deal Pulse (08) · Call Coaching (13) |
 | **RevOps / Enablement** | Account Pre-Qualification (01) · MEDDPICC Analysis (09) · Sales-to-CS Handoff (14) |
 
-Then point Claude Code at the suite — run it from the cloned repo (this keeps every skill's pointer to `profiles/client-profile.md` intact), or reference skills in your `CLAUDE.md`:
+Then point Claude Code at the suite. Run it from the cloned repo (this keeps every skill's pointer to `profiles/client-profile.md` intact), or reference skills in your `CLAUDE.md`:
 ```markdown
 ## Skills
 When I ask for meeting prep, read and follow the instructions in:
@@ -185,7 +199,7 @@ Claude reads your Meeting Prep skill, pulls from your Client Profile, and genera
 
 ### The Client Profile Pattern
 
-Every skill reads from the same file — `profiles/client-profile.md`. The skills don't contain your data; they point to it. This is what makes the system portable, and what keeps 14 skills from drifting apart:
+Every skill reads from the same file, `profiles/client-profile.md`. The skills don't contain your data. They point to it. This is what makes the system portable, and what keeps 14 skills from drifting apart:
 
 ```
 ┌─────────────────────────────────────────┐
@@ -234,7 +248,7 @@ Skills compound when used together. A typical 30-day deployment:
 | **[Skill Reference](docs/skill-reference.md)** | Decision tree, input/output specs, chaining patterns |
 | **[Starter Kit](starter-kit/)** | Pre-built templates for identity files, taxonomy, and folder structure |
 | **[Customization Guide](docs/customization.md)** | How to modify skills for your methodology, add new frameworks, extend scoring |
-| **[Build Your GPT](docs/chatgpt-gpt-setup.md)** | Run any skill as a ChatGPT custom GPT — knowledge files, loader instructions, limits stated plainly |
+| **[Build Your GPT](docs/chatgpt-gpt-setup.md)** | Run any skill as a ChatGPT custom GPT, with knowledge files, loader instructions and limits stated plainly |
 
 ---
 
@@ -242,7 +256,7 @@ Skills compound when used together. A typical 30-day deployment:
 
 Built by [Ryan Vanshur](https://ryanvanshur.com), Head of GTM Intelligence & AI Solutions. These skills were developed across a decade in vertical SaaS GTM (vocational edtech and construction fintech) and deployed against $100M+ in pipeline.
 
-This repo is the companion to the **[AI-Powered GTM Stack](https://substack.com/@verticalgtmguild)** article series on the Vertical GTM Guild, which walks through the full system: skills, knowledge architecture, operations, measurement, team transformation, and integrations.
+This repo is the companion to the **[AI-Powered GTM Stack](https://substack.com/@verticalgtmguild)** article series on the Vertical GTM Guild, which walks through the full system, including skills, knowledge architecture, operations, measurement, team transformation, and integrations.
 
 ### Vertical GTM Guild
 - [Substack](https://substack.com/@verticalgtmguild)
