@@ -1,11 +1,11 @@
 ---
 name: gtm-verify
-description: "Blocks completion claims that have not been demonstrated, using a four-tier evidence ladder — exists, substantive, wired, functional — and forces an honest tier statement when the top rung was not reached"
-version: 1.0.0
+description: "Blocks completion claims that have not been demonstrated, using a four-tier evidence ladder (exists, substantive, wired, functional) and forces an honest tier statement when the top rung was not reached"
+version: 1.0.1
 category: Operating-Discipline
 author: Ryan Vanshur
 license: MIT
-updated: 2026-08-25
+updated: 2026-09-29
 tags: [verification, quality-gate, completion, evidence, operating-discipline, trust]
 requires:
   skills: []
@@ -32,7 +32,7 @@ of a specific, repeated failure pattern that costs more than any other:
 
 A deliverable was reported as working. It had been written, it looked right, and the person
 reporting it believed it. Nobody had run it. The person who found out it did not work was the
-customer, the reviewer, or the executive in the meeting — always downstream, always in front
+customer, the reviewer, or the executive in the meeting, always downstream, always in front
 of an audience, and always at a moment when the cost was highest.
 
 The failure is not laziness. It is that **tier one and tier four feel identical from the
@@ -59,7 +59,7 @@ You are not satisfied by a description of a test. You are satisfied by the outpu
 
 ## Input Contract
 
-**If a required input is missing, ask — do not guess.**
+**If a required input is missing, ask, do not guess.**
 
 | Input | Required | Notes |
 |-------|----------|-------|
@@ -85,10 +85,10 @@ You are not satisfied by a description of a test. You are satisfied by the outpu
 
 Reads `profiles/client-profile.md` for:
 
-- **Verification commands** — the project's own test, lint and build invocations. The gate that
+- **Verification commands**, the project's own test, lint and build invocations. The gate that
   the system runs, not the one you would choose.
-- **Definition-of-done conventions** — anything the team has already agreed constitutes shipped.
-- **Audience sensitivity** — which claims reach customers, executives or regulators, and
+- **Definition-of-done conventions**, anything the team has already agreed constitutes shipped.
+- **Audience sensitivity**, which claims reach customers, executives or regulators, and
   therefore cannot pass below tier 4.
 
 If the profile does not define verification commands, say so in the output. A missing gate is a
@@ -117,7 +117,7 @@ skill. Any process that reports tier 4 without an execution artifact is reportin
   local test pass is not verification.
 - **A green check on a weak assertion is not evidence.** An assertion that cannot fail on the
   realistic failure mode has verified nothing. Check what the test would catch.
-- **Compare to ground truth where one exists.** A count, a date range, a record set — verify
+- **Compare to ground truth where one exists.** A count, a date range, a record set, verify
   against the real source by eye, not against your own expectation.
 - **Partial verification is reported as partial.** "I confirmed X, I have not confirmed Y" is a
   complete and acceptable output. Dressing it as complete is the failure this skill prevents.
@@ -126,31 +126,31 @@ skill. Any process that reports tier 4 without an execution artifact is reportin
 
 ## Core Workflow
 
-### Step 1 — Restate the claim in the claimant's words
+### Step 1. Restate the claim in the claimant's words
 
 Quote it. If your restatement drifts from what was actually claimed, you will verify the wrong
 thing and produce airtight evidence for a claim nobody made.
 
-### Step 2 — Walk the ladder in order, stopping at the first failure
+### Step 2. Walk the ladder in order, stopping at the first failure
 
-**Tier 1 — Exists.** The artifact is at the stated location and is non-empty.
+**Tier 1. Exists.** The artifact is at the stated location and is non-empty.
 
-**Tier 2 — Substantive.** No TODOs standing in for logic, no placeholder returns, no hardcoded
+**Tier 2. Substantive.** No TODOs standing in for logic, no placeholder returns, no hardcoded
 sample data posing as real output, no stub that satisfies a signature and nothing else.
 
-**Tier 3 — Wired.** Something reaches it. Imports resolve, the route is registered, the handler
+**Tier 3. Wired.** Something reaches it. Imports resolve, the route is registered, the handler
 is bound, the component renders, the job is scheduled. Orphaned work that is never called is
 extremely common and passes tiers 1 and 2 cleanly.
 
-**Tier 4 — Works.** Run it. Through the path the real consumer uses, not a convenient shortcut
+**Tier 4. Works.** Run it. Through the path the real consumer uses, not a convenient shortcut
 layer. Capture the output.
 
-### Step 3 — Test the test
+### Step 3. Test the test
 
 Before accepting a tier-4 pass, ask what result would have made it fail. If nothing realistic
 would, the run proved the code executes, not that it is correct.
 
-### Step 4 — Emit the verdict, or the honest sentence
+### Step 4. Emit the verdict, or the honest sentence
 
 At tier 4, state the verdict with the evidence inline. Below tier 4, write the sentence the
 claimant should send instead:
@@ -168,13 +168,13 @@ That sentence is the deliverable. It costs nothing and it protects the claim.
 real logic, and was never registered in the scheduler. Tiers 1 and 2 passed. Nothing would
 have run it. Caught by asking what calls it.
 
-**Rejected at step 3.** Claim: "the scraper works, tests pass." Tests passed. The assertion was
+**Rejected at step 3.** Claim: "the search integration works, tests pass." Tests passed. The assertion was
 `results.length >= 2` on a search that should have returned over a hundred. The test could not
 fail on the actual bug. Tier 4 was claimed on a run that proved nothing.
 
 **Accepted at tier 4, with a stated limit.** Claim: "the export matches the source." Verified
 by running the export and comparing row counts and three sampled records against the live
-source by eye. Output noted that only three records were sampled — an honest, bounded pass.
+source by eye. Output noted that only three records were sampled, an honest, bounded pass.
 
 ---
 
@@ -201,9 +201,9 @@ source by eye. Output noted that only three records were sampled — an honest, 
 
 ## Integration with Other Skills
 
-- **`O2-context-gap`** runs before building; this runs before claiming. Together they bracket
+- **`O4-context-gap`** runs before building. This runs before claiming. Together they bracket
   the work.
-- **`O4-debug`** takes over when tier 4 fails and the cause is unknown.
+- **`O2-debug`** takes over when tier 4 fails and the cause is unknown.
 - Any GTM skill in `skills/` that produces a client-facing artifact should pass through this
   before the artifact is sent.
 
@@ -211,5 +211,6 @@ source by eye. Output noted that only three records were sampled — an honest, 
 
 ## Changelog
 
+- **1.0.1 (2026-09-29):** Cross-references corrected to the final numbering (O4 context-gap, O2 debug). Em dashes removed. One worked example made generic.
 - **1.0.0 (2026-08-25):** Initial release. Four-tier ladder, test-the-test step, honest-sentence
   output.

@@ -2,7 +2,7 @@
 
 A paste-in prompt that adapts this skill to *your* go-to-market motion.
 
-Works in **Claude Code**, **Claude.ai Projects**, or **OpenAI Codex** — all three read the same
+Works in **Claude Code**, **Claude.ai Projects**, or **OpenAI Codex**, all three read the same
 `SKILL.md` format. Open the assistant, paste the block below, and answer its questions.
 
 > This is a per-skill companion. For customizing the whole suite at once, see
@@ -16,8 +16,8 @@ Works in **Claude Code**, **Claude.ai Projects**, or **OpenAI Codex** — all th
 ```
 You are helping me adapt an operating-discipline skill to my company's go-to-market motion.
 
-Read the attached SKILL.md (gtm-verify). It defines a four-tier evidence ladder — exists,
-substantive, wired, works — that blocks completion claims until the top tier is demonstrated.
+Read the attached SKILL.md (gtm-verify). It defines a four-tier evidence ladder (exists,
+substantive, wired, works) that blocks completion claims until the top tier is demonstrated.
 
 Your job is NOT to rewrite it. It is to make it fire on the things that actually go out the
 door at my company, and to tell me honestly where I cannot answer you.
@@ -26,15 +26,15 @@ Ask me these, ONE AT A TIME, and wait for each answer:
 
 1. What are the three artifacts my team most often calls "done" that reach someone outside
    the team? (a proposal, a dashboard, a data export, a sequence, a QBR deck, a scraped
-   record set — whatever is real for us)
+   record set, whatever is real for us)
 
-2. For each one, what would "tier 4 — I ran it end to end just now" actually look like?
+2. For each one, what would "tier 4, I ran it end to end just now" actually look like?
    What is the concrete act of demonstration?
 
 3. Which of those artifacts reach a customer, an executive, or a regulator? Those cannot
    pass below tier 4.
 
-4. What is our equivalent of a mechanical gate — a check the SYSTEM runs, not one a person
+4. What is our equivalent of a mechanical gate, a check the SYSTEM runs, not one a person
    chooses? (CI, a validation script, an approval step, a QA pass, a peer review) If we have
    none for a given artifact, say so plainly rather than inventing one.
 
@@ -64,7 +64,7 @@ Most operators get through questions 1 to 3 comfortably and stall somewhere in 4
 
 That is not a failure of the exercise. It is the exercise working.
 
-**Question 4 stalls** when there is no mechanical gate — when "done" is decided by whoever is
+**Question 4 stalls** when there is no mechanical gate, when "done" is decided by whoever is
 looking, differently each time. **Question 5 stalls** when the failures are remembered as
 personalities rather than as tiers, so there is no record to reason from.
 
@@ -73,7 +73,7 @@ procedure needs to know what your business ships, to whom, and what has already 
 Without that, you get a generic gate that fires on nothing in particular.
 
 If output section D comes back long, that is worth a conversation rather than a rewrite. Bring
-it to the community discussion — it is the most common place this suite stops being useful, and
+it to the community discussion, it is the most common place this suite stops being useful, and
 the fix is almost never a better prompt.
 
 ---
