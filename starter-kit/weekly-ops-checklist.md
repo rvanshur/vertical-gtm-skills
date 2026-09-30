@@ -8,7 +8,7 @@ A repeatable weekly rhythm for getting the most out of the skills. Adapt the sch
 
 - [ ] **Run Deal Pulse (08)** on all active pipeline deals
 - [ ] Stack-rank deals by health score
-- [ ] Flag any deal below 60 for deeper review
+- [ ] Flag any deal at 45 or below (High Risk) for deeper review
 - [ ] **Run MEDDPICC (09)** on flagged deals
 - [ ] Identify the top 3 gaps across your pipeline
 - [ ] Assign next actions to reps
@@ -20,7 +20,7 @@ A repeatable weekly rhythm for getting the most out of the skills. Adapt the sch
 ## Tuesday: Prospecting Prep
 
 - [ ] **Run Daily Prospecting (07)** for each BDR
-- [ ] Review any new accounts from marketing/inbound
+- [ ] Review any new accounts from marketing or inbound
 - [ ] **Run Account Pre-Qualification (01)** on new accounts
 - [ ] Queue GREENLIGHT accounts for Account Snapshot (02)
 - [ ] Check for trigger events across target accounts
@@ -34,7 +34,7 @@ A repeatable weekly rhythm for getting the most out of the skills. Adapt the sch
 - [ ] Review this week's upcoming meetings
 - [ ] **Run Meeting Prep (06)** for all discovery and demo calls
 - [ ] Distribute call sheets to reps
-- [ ] For competitive deals, **Run Competitive Strategy (11)** first
+- [ ] For competitive deals, **run Competitive Strategy (11)** first
 
 **Time:** 5-10 minutes per meeting
 
@@ -51,13 +51,14 @@ A repeatable weekly rhythm for getting the most out of the skills. Adapt the sch
 
 ---
 
-## Friday: Pipeline Review + Planning
+## Friday: Pipeline Review and Planning
 
 - [ ] Re-run Deal Pulse (08) on any deal that had activity this week
 - [ ] Compare Monday scores to Friday scores (are deals progressing?)
 - [ ] **Run Stakeholder Mapping (10)** on deals approaching close
-- [ ] Identify stalled deals for Closed-Loss Reactivation (05) queue
+- [ ] Identify stalled deals for the Closed-Loss Reactivation (05) queue
 - [ ] Plan next week's priorities
+- [ ] If you keep a knowledge base, **run Weekly Review (O6)** so this week becomes a dated record
 
 **Time:** 30 minutes
 
@@ -65,9 +66,10 @@ A repeatable weekly rhythm for getting the most out of the skills. Adapt the sch
 
 ## Monthly: System Maintenance
 
-- [ ] Review Client Profile — any new competitors, proof points, or persona insights?
+- [ ] Review the Client Profile: any new competitors, proof points or persona insights?
 - [ ] Update proof points with recent wins
 - [ ] Remove churned customers from proof points
-- [ ] Review qualification criteria — are the right accounts getting GREENLIGHT?
-- [ ] Check coaching score trends — are reps improving?
+- [ ] Review qualification criteria: are the right accounts getting GREENLIGHT?
+- [ ] Check coaching score trends: are reps improving?
 - [ ] Add any new trigger events or buying signals discovered
+- [ ] If you keep a knowledge base, **run Dream (O8)** and **Graph Health (O7)** to prune what went stale

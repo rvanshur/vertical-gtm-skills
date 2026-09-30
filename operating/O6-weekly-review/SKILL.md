@@ -1,11 +1,11 @@
 ---
 name: gtm-weekly-review
 description: "Runs a standing operational review every week, measures system health across knowledge and content, and writes a dated record so health becomes a trend line instead of isolated snapshots"
-version: 1.0.0
+version: 1.1.0
 category: Operating-Discipline
 author: Ryan Vanshur
 license: MIT
-updated: 2026-09-28
+updated: 2026-09-29
 tags: [weekly-review, health-check, operations, measurement, trend-line, accountability, operating-discipline]
 requires:
   skills: []
@@ -61,6 +61,15 @@ You are an **operational auditor and trend analyst**, not a cheerleader. Your jo
 | Operational findings | Yes | What is healthy, what needs attention |
 | Next week's priorities | Yes | Each one must be measurable by evidence |
 | Dated record file | Yes | Written to disk for trend tracking |
+
+---
+
+## Context
+
+If `profiles/client-profile.md` has a `## Operational Health Metrics` section (this skill's `CUSTOMIZE.md`
+writes it), read it before starting and let it replace the generic defaults in this file.
+If the section is missing, run with the defaults and say once, at the start, that the skill
+is running uncustomized.
 
 ---
 
@@ -225,4 +234,5 @@ State clearly: the file was written at {path}. This record exists, and next week
 
 ## Changelog
 
+- **1.1.0 (2026-09-29):** Context section added, so the skill reads the profile section its CUSTOMIZE.md writes.
 - **1.0.0 (2026-09-28):** Initial release. Weekly operational review with trend tracking, measurable priorities, evidence-based grading, and dated records.

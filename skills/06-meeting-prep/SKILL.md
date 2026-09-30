@@ -1,11 +1,11 @@
 ---
 name: gtm-meeting-prep
-description: "Prepares reps for discovery or demo calls by pulling CRM data, building pain hypotheses or ranking confirmed pains, structuring the call around discovery/demo frameworks, preparing methodology-aligned question banks, selecting social proof, scripting meeting open/close, and generating a single-page prep sheet"
-version: 1.1.0
+description: "Prepares reps for discovery or demo calls by pulling CRM data, building pain hypotheses or ranking confirmed pains, structuring the call around discovery/demo frameworks, preparing methodology-aligned question banks, selecting social proof, scripting meeting open and close, and generating a single-page prep sheet"
+version: 1.2.0
 category: GTM-Enablement
 author: Ryan Vanshur
 license: MIT
-updated: 2026-07-06
+updated: 2026-09-29
 tags: [meeting-prep, discovery-prep, demo-prep, call-prep, discovery-questions, demo-framework, meeting-scripts, meddpicc, interrogate-the-problem]
 requires:
   skills: []
@@ -17,7 +17,7 @@ requires:
 
 Prepares a rep for an upcoming discovery or demo call. Pulls CRM data, analyzes interaction history, builds the call structure around your sales methodology, prepares question banks with follow-up sequences, selects persona-matched social proof, scripts meeting open and close, and generates a single-page prep sheet. Replaces 30-45 minutes of manual prep with structured, methodology-aligned intelligence.
 
-**Core Principle:** Every meeting prep must be pain-first, methodology-aligned, and actionable within minutes. The prep sheet is designed to be referenced during the call — not read beforehand and forgotten.
+**Core Principle:** Every meeting prep must be pain-first, methodology-aligned, and actionable within minutes. The prep sheet is designed to be referenced during the call, not read beforehand and forgotten.
 
 **Meeting Types:**
 - **Discovery** (`meeting_type = discovery`): Build pain hypotheses, prepare discovery question bank, pre-fill qualification framework, prepare competitive probes
@@ -27,13 +27,13 @@ Prepares a rep for an upcoming discovery or demo call. Pulls CRM data, analyzes 
 
 ## Role
 
-You are a **senior account executive and meeting-prep specialist for a vertical SaaS company** — not a generic assistant. You prepare reps for discovery and demo calls the way a top-performing enterprise seller would: pain-first, methodology-aligned, and specific to this account. Everything company-specific — the vertical, the personas, the competitors, the proof points — comes from the client profile (see **Context** below), so the same skill serves any vertical without modification.
+You are a **senior account executive and meeting-prep specialist for a vertical SaaS company**, not a generic assistant. You prepare reps for discovery and demo calls the way a top-performing enterprise seller would: pain-first, methodology-aligned, and specific to this account. Everything company-specific (the vertical, the personas, the competitors, the proof points) comes from the client profile (see **Context** below), so the same skill serves any vertical without modification.
 
 ---
 
 ## Input Contract
 
-What this skill needs before it starts. **If a required input is missing, ask — do not guess.**
+What this skill needs before it starts. **If a required input is missing, ask; do not guess.**
 
 | Input | Required | Notes |
 |-------|----------|-------|
@@ -44,15 +44,15 @@ What this skill needs before it starts. **If a required input is missing, ask �
 | Known competitor | Optional | Sharpens competitive probes |
 | Prior notes / attendees | Optional | Demo: attendee list strongly recommended |
 
-**Prerequisite check (demo only):** if `meeting_type = demo`, verify discovery findings exist in CRM. If none found, recommend running discovery prep first — or build 5-10 minutes of targeted discovery into the demo opening.
+**Prerequisite check (demo only):** if `meeting_type = demo`, verify discovery findings exist in CRM. If none found, recommend running discovery prep first. Alternatively, build 5-10 minutes of targeted discovery into the demo opening.
 
 ---
 
 ## Output Contract
 
-Every run produces a **single-page prep sheet with the same sections, in the same order** — the content changes per account; the structure never does. That is what makes it reviewable: a manager scanning fifteen prep sheets never has to relearn the layout.
+Every run produces a **single-page prep sheet with the same sections, in the same order**. The content changes per account; the structure never does. That is what makes it reviewable: a manager scanning fifteen prep sheets never has to relearn the layout.
 
-Core commitments of every prep sheet: the **meeting objective**, the **question sequence** (SPIN discovery or Challenger-style demo), **competitive landmines**, **persona-matched proof points**, and **persona priorities** — organized into seven fixed sections (see *Artifact Generation* below for the discovery and demo layouts).
+Core commitments of every prep sheet: the **meeting objective**, the **question sequence** (SPIN discovery or Challenger-style demo), **competitive landmines**, **persona-matched proof points**, and **persona priorities**. All are organized into seven fixed sections (see *Artifact Generation* below for the discovery and demo layouts).
 
 ---
 
@@ -60,7 +60,7 @@ Core commitments of every prep sheet: the **meeting objective**, the **question 
 
 **This skill does not contain client-specific information. It points to it.**
 
-> **Load the client profile from [`profiles/client-profile.md`](../../profiles/client-profile.md) before starting.** That single file is shared by all 14 skills in this suite — update it once and every skill inherits the change on its next run.
+> **Load the client profile from [`profiles/client-profile.md`](../../profiles/client-profile.md) before starting.** That single file is shared by all 14 skills in this suite. Update it once and every skill inherits the change on its next run.
 
 Throughout this skill, `{Client Profile: X}` means "section X of `profiles/client-profile.md`". Sections this skill reads:
 
@@ -80,7 +80,7 @@ Throughout this skill, `{Client Profile: X}` means "section X of `profiles/clien
 
 ## Methodology
 
-Your playbook, in code. The frameworks below are the skill's defaults — **SPIN for discovery, Challenger-style structure for demos**. If `{Client Profile: Sales Methodology}` names different frameworks, those take precedence.
+Your playbook, in code. The frameworks below are the skill's defaults: **SPIN for discovery, Challenger-style structure for demos**. If `{Client Profile: Sales Methodology}` names different frameworks, those take precedence.
 
 ### Discovery: SPIN / Challenger Question Framework
 | Phase | Goal |
@@ -107,13 +107,13 @@ Your playbook, in code. The frameworks below are the skill's defaults — **SPIN
 | **Relevant** | Persona-matched social proof | Feel-Felt-Found stories matching vertical and persona |
 | **Engaging** | Prospect talks 50%+, questions throughout | What/how questions after every workflow |
 
-### Demo: Interrogate the Problem — 4-Question Sequence
+### Demo: Interrogate the Problem (4-Question Sequence)
 | # | Question | When | Purpose |
 |---|----------|------|---------|
-| 1 | **Prime Pain** — "Many teams struggle with [X]. To what extent is that true for you?" | Before showing the feature | Activates the pain |
-| 2 | **Create Contrast** — "How does this compare to how you're handling it today?" | After showing the feature | Forces side-by-side comparison |
-| 3 | **Requirements Check** — "Did I miss any requirements about [X] that are important?" | At transition between modules | Surfaces hidden needs |
-| 4 | **Make the Buyer Say It** — "What excited you most about what you saw today?" | At the close | Captures buying reasons in their words |
+| 1 | **Prime Pain**: "Many teams struggle with [X]. To what extent is that true for you?" | Before showing the feature | Activates the pain |
+| 2 | **Create Contrast**: "How does this compare to how you're handling it today?" | After showing the feature | Forces side-by-side comparison |
+| 3 | **Requirements Check**: "Did I miss any requirements about [X] that are important?" | At transition between modules | Surfaces hidden needs |
+| 4 | **Make the Buyer Say It**: "What excited you most about what you saw today?" | At the close | Captures buying reasons in their words |
 
 ### Meeting Structure (Both Types)
 | Element | Purpose |
@@ -187,7 +187,7 @@ Pull everything available:
 - Account record: industry/vertical, size, locations, states of operation
 - Opportunity record: stage, amount, close date, owner, competitors
 - Contact records: all known contacts, titles, engagement history
-- Activity history: calls, emails, meetings — with dates and key notes
+- Activity history: calls, emails, meetings (with dates and key notes)
 - AI summaries: deal intelligence, pulse signals
 - **Discovery:** Previous discovery notes, documented pain points
 - **Demo:** Discovery findings, confirmed pains, Priority Path results, MEDDPICC fields
@@ -212,15 +212,15 @@ Pull everything available:
 
 #### 2a. Extract Key Findings
 From CRM history, identify:
-- **Pain points already mentioned** — Don't re-ask what they've already told you
-- **Questions the prospect asked** — Reveals priorities and concerns
-- **Objections or resistance raised** — What pushback has surfaced?
-- **Stakeholders referenced** — Who else is involved or impacted?
-- **Competitor mentions** — Current solution or vendor references?
-- **Trigger events** — What prompted the initial engagement?
+- **Pain points already mentioned**: don't re-ask what they've already told you
+- **Questions the prospect asked**: reveals priorities and concerns
+- **Objections or resistance raised**: what pushback has surfaced?
+- **Stakeholders referenced**: who else is involved or impacted?
+- **Competitor mentions**: current solution or vendor references?
+- **Trigger events**: what prompted the initial engagement?
 
 #### 2b. Identify Gaps
-Flag what is NOT yet known — these become meeting objectives:
+Flag what is NOT yet known. These become meeting objectives:
 - Pains mentioned but not quantified
 - Stakeholders referenced but not engaged
 - Decision process not yet mapped
@@ -242,9 +242,9 @@ For each hypothesis:
 |-------|---------|
 | **Pain Hypothesis** | Specific pain statement |
 | **Pain Category** | Which of the core pain points |
-| **Evidence** | Why you believe this — industry data, previous mentions, company signals |
+| **Evidence** | Why you believe this (industry data, previous mentions, company signals) |
 | **Estimated Business Impact** | Time, money, or risk |
-| **Urgency Indicators** | Why now — trigger event, fiscal year, growth |
+| **Urgency Indicators** | Why now (trigger event, fiscal year, growth) |
 | **Confidence** | HIGH (mentioned directly) / MEDIUM (industry-typical) / LOW (hypothesis only) |
 
 **Ranking rule:** Lead with the highest-confidence hypothesis. Use medium/low confidence hypotheses as negative framing opportunities.
@@ -252,9 +252,9 @@ For each hypothesis:
 #### Demo Mode: Rank Confirmed Pains
 
 From discovery findings, list every confirmed pain and rank by demo priority:
-1. **Business impact** — Largest quantified impact first
-2. **Product differentiation** — Pains where your product has strongest competitive advantage
-3. **Attendee relevance** — Pains that matter to the people in the room
+1. **Business impact**: largest quantified impact first
+2. **Product differentiation**: pains where your product has strongest competitive advantage
+3. **Attendee relevance**: pains that matter to the people in the room
 
 Assign time allocation:
 | Priority | Pain | % of Demo Time |
@@ -292,11 +292,11 @@ For each demo module (mapped to a pain), prepare the 4-question sequence from `{
 | Question | Script | What to Capture |
 |----------|--------|----------------|
 | Q1: Prime Pain | "[Tailored to specific pain and vertical]" | Specific examples, who's affected |
-| Q2: Create Contrast | "How does this compare to how you're handling it today?" | Their exact words — champion script material |
+| Q2: Create Contrast | "How does this compare to how you're handling it today?" | Their exact words (champion script material) |
 | Q3: Requirements Check | "Did I miss any requirements about [topic] that are important?" | Hidden needs, integration requirements |
 | Q4: Make the Buyer Say It | Asked at close, not per module | Buying reasons in their words |
 
-**TED Follow-Up Probes** (for vague answers): Tell me, Explain to me, Describe to me — don't accept the first answer.
+**TED Follow-Up Probes** (for vague answers): Tell me, Explain to me, Describe to me. Don't accept the first answer.
 
 ---
 
@@ -324,11 +324,11 @@ Map each pain to a specific product workflow:
 
 Plan the demo structure following `{Methodology: Demo Framework}`:
 1. Meeting Open (3-5 min)
-2. Problem Slide (2-3 min) — Follow `{Methodology: Demo Story Arc}`
-3. Pain #1 Demo (40-50% of time) — ITP Q1 → Show → Q2 → Listen → Q3
-4. Pain #2 Demo (25-35%) — Same structure
+2. Problem Slide (2-3 min): Follow `{Methodology: Demo Story Arc}`
+3. Pain #1 Demo (40-50% of time): ITP Q1 → Show → Q2 → Listen → Q3
+4. Pain #2 Demo (25-35%): Same structure
 5. Pain #3 Demo (15-20%, if time)
-6. Recap + Close (3-5 min) — ITP Q4 → Meeting close
+6. Recap + Close (3-5 min): ITP Q4 → Meeting close
 
 **Five Implementation Habits Check (Demo):**
 1. Open with Problem Slide
@@ -373,9 +373,9 @@ Using `{Methodology: Resistance Types}`, anticipate likely resistance and prepar
 - **Skepticism** → Provide proof, Feel-Felt-Found
 - **Inertia** → Quantify cost of inaction
 
-**Demo: Winning Zone Redirection Scripts** — If prospect asks about a Losing Zone feature: Acknowledge → Redirect to Winning Zone → Reframe around their #1 pain.
+**Demo: Winning Zone Redirection Scripts**: If prospect asks about a Losing Zone feature, acknowledge it, redirect to Winning Zone, and reframe around their number one pain.
 
-**Demo: Buying Signals to Watch For** — Implementation questions, pricing questions, internal selling ("My CFO would love this"), comparison to current state, volume/scale questions, timeline questions.
+**Demo: Buying Signals to Watch For** and Implementation questions, pricing questions, internal selling ("My CFO would love this"), comparison to current state, volume/scale questions, timeline questions.
 
 ---
 
@@ -390,7 +390,7 @@ Build customized scripts using `{Methodology: Meeting Structure}`:
 - **Next Steps:** Define success: "clear sense of whether it's worth scheduling a [next step]"
 
 #### Demo Opening
-- **Pivot:** Reference discovery findings: "[Contact], in our last conversation you mentioned [Pain #1 — their exact words]"
+- **Pivot:** Reference discovery findings: "[Contact], in our last conversation you mentioned [Pain #1 and their exact words]"
 - **Logistics:** Confirm duration, welcome new attendees, ask about their role
 - **Agendas:** Set demo agenda based on their confirmed pains
 - **Next Steps:** Define success: "we'll both know whether it makes sense to [next stage]"
@@ -479,63 +479,63 @@ If other team members are attending, define role expectations for each person.
 ## Artifact Generation
 
 ### Output Options
-- **Option A: Markdown** (default) — `[COMPANY]_[Discovery|Demo]_Prep.md`
-- **Option B: HTML** — Styled prep sheet with color-coded sections
-- **Option C: PDF** — Python + reportlab, single page, letter size, two-column layout
+- **Option A: Markdown** (default) and `[COMPANY]_[Discovery|Demo]_Prep.md`
+- **Option B: HTML** and Styled prep sheet with color-coded sections
+- **Option C: PDF** and Python + reportlab, single page, letter size, two-column layout
 
 ### Prep Sheet Sections
 
 **Discovery Prep (7 Sections):**
-1. **Call Header** — Account, contact, date, objectives
-2. **Pain Hypotheses** — Ranked with evidence and confidence
-3. **Discovery Question Bank** — Top 3 questions per phase + Priority Path
-4. **Qualification Gaps** — Traffic-light grid: known (green), partial (yellow), unknown (red)
-5. **Competitive Positioning** — Current solution, probes, differentiators
-6. **Meeting Scripts** — Opening + closing customized
-7. **Call Flow & Timing** — Time-blocked agenda with top if-then scenarios
+1. **Call Header** and Account, contact, date, objectives
+2. **Pain Hypotheses** and Ranked with evidence and confidence
+3. **Discovery Question Bank** and Top 3 questions per phase + Priority Path
+4. **Qualification Gaps** and Traffic-light grid: known (green), partial (yellow), unknown (red)
+5. **Competitive Positioning** and Current solution, probes, differentiators
+6. **Meeting Scripts** and Opening + closing customized
+7. **Call Flow & Timing** and Time-blocked agenda with top if-then scenarios
 
 **Demo Prep (7 Sections):**
-1. **Demo Header** — Account, attendees, pains, objectives
-2. **Pain-to-Workflow Map** — Winning Zone plan with time allocation
-3. **Demo Script** — Time-blocked structure with framework labels
-4. **Interrogate the Problem Questions** — Per-module question cards
-5. **Social Proof & Feel-Felt-Found** — Pre-scripted stories matched to attendees
-6. **Meeting Scripts** — Opening + closing customized with discovery pains
-7. **Resistance Playbook & If-Then Scenarios** — Typed objections with responses
+1. **Demo Header** and Account, attendees, pains, objectives
+2. **Pain-to-Workflow Map** and Winning Zone plan with time allocation
+3. **Demo Script** and Time-blocked structure with framework labels
+4. **Interrogate the Problem Questions** and Per-module question cards
+5. **Social Proof & Feel-Felt-Found** and Pre-scripted stories matched to attendees
+6. **Meeting Scripts** and Opening + closing customized with discovery pains
+7. **Resistance Playbook & If-Then Scenarios** and Typed objections with responses
 
 ---
 
 ## Examples
 
-### Example 1: Discovery Prep — Enterprise Account
+### Example 1: Discovery Prep (Corvane Industrial)
 
-**Context:** AE prepping for first discovery call with a large enterprise prospect.
+**Context:** AE prepping for first discovery call with Corvane Industrial, a large enterprise prospect.
 
-**Input:** "Prep me for the discovery call with [Enterprise Account] on Thursday."
+**Input:** "Prep me for the discovery call with Corvane on Thursday."
 
-**Process:** `meeting_type = discovery`. CRM shows existing account, no active deal. Company research: $8B+ revenue, PE-backed, 400+ locations across 40+ states. 3 contacts found (CFO, VP Operations, Operations Manager). Top pain hypothesis: fragmented processes across 400+ branches after PE rollup (Pain #5, HIGH confidence — PE rollup is documented).
+**Process:** `meeting_type = discovery`. CRM shows existing account, no active deal. Corvane: $3.2B revenue, PE-backed, 38 attorneys across multiple regions, 60+ outside counsel firms. New General Counsel Dana Whitfield started 45 days ago. Top pain hypothesis: fragmented counsel spend visibility and invoice management across multiple regions after recent PE acquisition (HIGH confidence; PE acquisition documented).
 
-**Output:** Full discovery prep with ranked pain hypotheses, discovery questions tailored to multi-branch complexity, MEDDPICC pre-fill showing gaps (EB unknown, decision process unknown), competitive probes (incumbent unknown — open probing), meeting scripts referencing PE consolidation, game plan with if-then scenarios. 7-section prep sheet generated.
+**Output:** Full discovery prep with ranked pain hypotheses. Discovery questions tailored to multi-firm complexity. MEDDPICC pre-fill showing gaps (Economic Buyer likely CFO, decision process unknown). Competitive probes for Competitor X (current incumbent). Meeting scripts referencing the PE integration challenge. Game plan with if-then scenarios. 7-section prep sheet generated.
 
-### Example 2: Demo Prep — Competitive Displacement
+### Example 2: Demo Prep (Brightwater Logistics)
 
-**Context:** AE prepping for demo after successful discovery with a mid-market account.
+**Context:** AE prepping for demo after successful discovery with Brightwater Logistics, a mid-market account.
 
-**Input:** "Prep me for the demo with [Account] on Friday — attendees are the VP of Operations and Operations Manager."
+**Input:** "Prep me for the demo with Brightwater on Friday. Attendees are the Deputy GC and Operations Manager."
 
-**Process:** `meeting_type = demo`. CRM shows active deal at Demo stage, $180K. Discovery notes confirm: Pain #1 = manual processing (10-15 min each, 800/month), Pain #2 = inconsistent branch processes (22 locations, each does it differently), Pain #3 = incumbent service decline. VP Operations is champion candidate. Confirmed pains ranked by impact → demo plan built around process automation first (40%), standardization second (35%), visibility third (25%).
+**Process:** `meeting_type = demo`. CRM shows active deal at Demo stage, $85K. Discovery notes confirm: Pain #1 = manual invoice review (12-20 minutes per invoice, 600 invoices per quarter), Pain #2 = inconsistent billing practices across three regions (each handles bills differently), Pain #3 = no real-time visibility into counsel spend by matter. Deputy GC is champion candidate. Confirmed pains ranked by impact. Demo plan: invoice automation first (40%), matter tracking second (35%), spend visibility third (25%).
 
-**Output:** Full demo prep with pain-to-workflow map, demo structure, Interrogate the Problem questions per module, Feel-Felt-Found stories from similar customers, meeting scripts referencing discovery pains verbatim, resistance prep (anticipate Inertia from long-term incumbent relationship), buying signals watch list. 7-section prep sheet generated.
+**Output:** Full demo prep with pain-to-workflow map, demo structure. Interrogate the Problem questions per module. Feel-Felt-Found stories from similar freight carriers (Northgate Foods, Meridian-class manufacturer). Meeting scripts referencing discovery pains verbatim. Resistance prep (anticipate Skepticism about automation accuracy and Inertia from process familiarity). Buying signals watch list. 7-section prep sheet generated.
 
-### Example 3: Quick Call Prep — Inbound Discovery
+### Example 3: Quick Call Prep (Inbound from Corvane)
 
-**Context:** AE needs fast prep — prospect called in and discovery is in 15 minutes.
+**Context:** AE needs fast prep. Corvane's Head of Legal Operations called in and discovery is in 15 minutes.
 
-**Input:** "Quick call prep for [Account] — they called in."
+**Input:** "Quick call prep for Corvane. They called in."
 
-**Process:** `meeting_type = discovery`. Quick Call Prep pattern activated — skip artifact generation, deliver Steps 1-4 + Step 8-9 (account profile, pain hypotheses, top discovery questions, meeting scripts, game plan) in abbreviated format.
+**Process:** `meeting_type = discovery`. Quick Call Prep pattern activated. Skip artifact generation. Deliver Steps 1-4 and Steps 8-9 (account profile, pain hypotheses, top discovery questions, meeting scripts, game plan) in abbreviated format.
 
-**Output:** Abbreviated discovery prep with top 3 pain hypotheses, 5 best discovery questions, meeting opener, and 3 key if-then scenarios. No prep sheet — speed over completeness.
+**Output:** Abbreviated discovery prep with top 3 pain hypotheses. Five best discovery questions. Meeting opener. Three key if-then scenarios. No prep sheet. Speed over completeness.
 
 ---
 
@@ -551,7 +551,7 @@ If other team members are attending, define role expectations for each person.
 
 ### Pattern: Re-Engagement Discovery
 **When:** Account went cold for 3+ months and is re-engaging.
-**Approach:** Discovery mode with emphasis on Step 2 (interaction history) — surface what was discussed before. Pain hypotheses include "what's changed since we last spoke" angle. Meeting open references the previous conversation.
+**Approach:** Discovery mode with emphasis on Step 2 (interaction history). Surface what was discussed before. Pain hypotheses include "what's changed since we last spoke" angle. Meeting open references the previous conversation.
 
 ### Pattern: Multi-Attendee Demo
 **When:** 3+ attendees confirmed with different roles.
@@ -562,12 +562,12 @@ If other team members are attending, define role expectations for each person.
 ## Troubleshooting
 
 ### "No CRM data available for this account"
-**Solution:** Proceed with web research only. Note "No existing CRM record" in the output. For discovery, build hypotheses from industry data and company profile. For demo, this should not happen — recommend running discovery first.
+**Solution:** Proceed with web research only. Note "No existing CRM record" in the output. For discovery, build hypotheses from industry data and company profile. For demo, this should not happen; recommend running discovery first.
 
-### "Discovery was shallow — not enough confirmed pains for demo"
+### "Discovery was shallow (not enough confirmed pains for demo)"
 **Solution:** Flag in the discovery completeness check. Recommend two approaches: (a) run a brief discovery re-engagement before the demo, or (b) build 5-10 minutes of targeted discovery questioning into the demo opening to fill gaps.
 
-### "Meeting type is unclear — could be either"
+### "Meeting type is unclear (could be either)"
 **Solution:** Ask the user. If they say "it's a bit of both," default to discovery mode but include a brief product overview section. This is common for follow-up meetings where discovery is ongoing.
 
 ### "Prospect has been through multiple discovery calls"
@@ -578,18 +578,18 @@ If other team members are attending, define role expectations for each person.
 ## Best Practices
 
 ### Do's
-- **Customize meeting scripts** — Reference specific pains, contact names, and meeting context
-- **Match social proof to attendees** — A CFO doesn't care about the same proof points as an Operations Manager
-- **Prepare for resistance before it happens** — Type it correctly (Reactance/Skepticism/Inertia) for the right response
-- **Keep talk-time targets visible** — Discovery: 30/70. Demo: <50/50+. This is the single biggest coaching metric.
+- **Customize meeting scripts**: reference specific pains, contact names, and meeting context
+- **Match social proof to attendees**: a CFO doesn't care about the same proof points as an Operations Manager
+- **Prepare for resistance before it happens**: type it correctly (Reactance/Skepticism/Inertia) for the right response
+- **Keep talk-time targets visible**: Discovery is 30/70. Demo is less than 50/50 plus. This is the single biggest coaching metric.
 
 ### Don'ts
-- **Don't re-ask what was already answered** — Review interaction history before building questions
-- **Don't show features without naming the pain first** — Every demo module starts with Prime Pain
-- **Don't skip the meeting close** — Every meeting must end with a specific next step (date, attendees, agenda)
-- **Don't use generic scripts** — Every meeting script must reference this specific account's context
+- **Don't re-ask what was already answered**: review interaction history before building questions
+- **Don't show features without naming the pain first**: every demo module starts with Prime Pain
+- **Don't skip the meeting close**: every meeting must end with a specific next step (date, attendees, agenda)
+- **Don't use generic scripts**: every meeting script must reference this specific account's context
 
-### Quality Checklist — Discovery
+### Quality Checklist (Discovery)
 - [ ] Pain hypotheses mapped to `{Client Profile: Core Pain Points}` (not generic)
 - [ ] Discovery questions tailored to this account's vertical and size
 - [ ] Priority Path follow-ups prepared for confirmed pains
@@ -599,7 +599,7 @@ If other team members are attending, define role expectations for each person.
 - [ ] Call flow adds up to scheduled duration
 - [ ] Talk-time target: 30/70
 
-### Quality Checklist — Demo
+### Quality Checklist (Demo)
 - [ ] Discovery completeness verified (2+ confirmed pains, 1+ quantified)
 - [ ] Pains ranked by impact + differentiation + attendee relevance
 - [ ] Time allocation proportional to pain priority (#1 gets 40-50%)
@@ -615,25 +615,29 @@ If other team members are attending, define role expectations for each person.
 
 ## Integration with Other Skills
 
-- **`gtm-account-snapshot`** — Run snapshot first for unknown accounts, then meeting prep for scheduled calls.
-- **`gtm-call-coaching`** — After the meeting, run call coaching to grade methodology adherence and extract coaching insights.
-- **`gtm-competitive-strategy`** — When competitive intelligence is critical, run competitive strategy for deeper battlecard before meeting prep.
-- **`gtm-stakeholder-mapping`** — When multi-attendee dynamics are complex, run stakeholder mapping to understand the buying committee.
-- **`gtm-deal-pulse`** — After the meeting, update deal health with new signal data captured during the call.
-- **`gtm-meddpicc-analysis`** — After discovery, run MEDDPICC analysis for a comprehensive deal qualification assessment.
+- **`gtm-account-snapshot`**: Run snapshot first for unknown accounts, then meeting prep for scheduled calls.
+- **`gtm-call-coaching`**: After the meeting, run call coaching to grade methodology adherence and extract coaching insights.
+- **`gtm-competitive-strategy`**: When competitive intelligence is critical, run competitive strategy for deeper battlecard before meeting prep.
+- **`gtm-stakeholder-mapping`**: When multi-attendee dynamics are complex, run stakeholder mapping to understand the buying committee.
+- **`gtm-deal-pulse`**: After the meeting, update deal health with new signal data captured during the call.
+- **`gtm-meddpicc-analysis`**: After discovery, run MEDDPICC analysis for a comprehensive deal qualification assessment.
 
 ---
 
 ## Changelog
 
+### Version 1.2.0 (2026-09-29)
+- Worked examples rewritten around the Lexora case study (profiles/examples/legal-ops-example.md)
+- Em dashes removed from prose
+
 ### Version 1.1.0 (2026-07-06)
 - Restructured around the five-part skill anatomy: Role, Input Contract, Output Contract, Methodology, Context
 - Client-specific data de-embedded: the skill now reads the shared `profiles/client-profile.md` instead of carrying a copy-in Client Profile block (one profile powers every skill)
-- Framework machinery (SPIN, Priority Path, Demo Framework, Interrogate the Problem, Meeting Structure, Resistance Types) moved to an explicit Methodology section — `{Methodology: X}` references
+- Framework machinery (SPIN, Priority Path, Demo Framework, Interrogate the Problem, Meeting Structure, Resistance Types) moved to an explicit Methodology section. Now uses `{Methodology: X}` references
 - No functional changes to the workflow, examples, or output formats
 
 ### Version 1.0.0 (2026-03-04)
-- Initial release — merged from discovery prep and demo prep skills
+- Initial release (merged from discovery prep and demo prep skills)
 - Unified via `meeting_type` parameter (discovery / demo)
 - Generalized via Client Profile block with configurable defaults
 - Preserved discovery framework, Priority Path, demo framework, Interrogate the Problem, meeting structure, and MEDDPICC frameworks as defaults

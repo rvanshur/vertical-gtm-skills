@@ -1,10 +1,8 @@
 # Customize: Stakeholder Mapping
 
-A paste-in prompt that adapts this skill to *your* go-to-market motion.
+A paste-in prompt that adapts this skill to your go-to-market motion.
 
-Works in **Claude Code**, **OpenAI Codex**, **Claude.ai / ChatGPT Projects**, or a **custom GPT**
-(attach `SKILL.md` as knowledge and paste the block below) -- they all read the same `SKILL.md`
-format. Open the assistant, paste the block, and answer its questions.
+Works in Claude Code, OpenAI Codex, Claude.ai or ChatGPT Projects, or a custom GPT (attach `SKILL.md` as knowledge and paste the block below). They all read the same `SKILL.md` format. Open the assistant, paste the block, and answer its questions.
 
 > This is a per-skill companion. For customizing the whole suite at once, see
 > [`docs/customization.md`](../../docs/customization.md) and
@@ -25,7 +23,7 @@ vertical, and to tell me honestly where I cannot answer you.
 Ask me these, ONE AT A TIME, and wait for each answer:
 
 1. Translate the seven buying roles into YOUR vertical's titles. Who is the economic buyer
-   in a 200-person specialty contractor, a regional healthcare group, a franchise operator --
+   in a 15-attorney legal department, a regional healthcare group, a franchise operator, or
    whatever your accounts look like?
 
 2. Ghost nodes: tell me about a deal that died because of someone who never appeared in

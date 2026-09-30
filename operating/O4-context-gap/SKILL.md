@@ -1,11 +1,11 @@
 ---
 name: gtm-context-gap
 description: "Before any build, search for what already exists. The gap classifier sorts findings into six buckets, and about 40% land at the left end (already done)"
-version: 1.0.0
+version: 1.1.0
 category: Operating-Discipline
 author: Ryan Vanshur
 license: MIT
-updated: 2026-09-28
+updated: 2026-09-29
 tags: [search, discovery, waste-prevention, existing-work, pattern-recognition, operating-discipline]
 requires:
   skills: []
@@ -100,6 +100,15 @@ has not been measured. A true gap is the rare case people assume is the normal o
 
 ---
 
+## Context
+
+If `profiles/client-profile.md` has a `## Knowledge Locations` section (this skill's `CUSTOMIZE.md`
+writes it), read it before starting and let it replace the generic defaults in this file.
+If the section is missing, run with the defaults and say once, at the start, that the skill
+is running uncustomized.
+
+---
+
 ## Core Workflow
 
 ### Step 1 - Enumerate what you need (30 seconds)
@@ -175,5 +184,6 @@ places you searched are part of the evidence. If you did not search, say so.
 
 ## Changelog
 
+- **1.1.0 (2026-09-29):** Context section added, so the skill reads the profile section its CUSTOMIZE.md writes.
 - **1.0.0 (2026-09-28):** Initial release. Six-bucket classifier, search discipline, written
   output requirement, 40% already-done rule of thumb.

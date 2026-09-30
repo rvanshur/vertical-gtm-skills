@@ -1,11 +1,11 @@
 ---
 name: gtm-discovery
 description: "Market discovery and customer validation. Beachhead segmentation, problem mapping, competitive intelligence, assumption testing, and evidence-based persona creation. Transforms assumptions into evidence before committing resources."
-version: 1.0.0
+version: 1.1.0
 category: Operating-Discipline
 author: Ryan Vanshur
 license: MIT
-updated: 2026-09-28
+updated: 2026-09-29
 tags: [discovery, market-research, customer-validation, beachhead, competitive-intelligence, ICP, persona, assumption-mapping, SWOT, GTM-strategy, operating-discipline]
 requires:
   skills: []
@@ -68,6 +68,14 @@ You are not satisfied by conviction. You are satisfied by evidence.
 ## Context
 
 You read the user's stated ICP, competitive landscape, and any existing customer conversations. You ask clarifying questions before proceeding. You do not assume the user's market knowledge is complete.
+
+Reads `profiles/client-profile.md` if it exists, as the starting evidence: Company, ICP Definitions, Buyer Personas and Core Pain Points.
+Treat what is already there as claims to test, not facts. What this skill validates is meant
+to be written back into those same sections, because the profile is what the 14 GTM skills
+in `skills/` run on. That write-back is how the strategy layer reaches the daily motion.
+
+If the profile also has the `## About Your Market`, `## About Your Assumptions` and
+`## Available Constraints` sections (this skill's `CUSTOMIZE.md` writes them), read those first.
 
 ---
 
@@ -144,27 +152,27 @@ Do not proceed without at least one of these stories. If the user has not talked
 
 ### Worked Example 1: Beachhead Too Broad (Discovery Failure)
 
-**Stated customer:** "VP of Sales at mid-market software companies"
+**Stated customer:** "Legal teams at mid-sized and large companies" (Lexora, the example company in `profiles/examples/legal-ops-example.md`, before its discovery work)
 
-This is too broad. "Mid-market" ranges from $50M to $500M revenue. Sales cycles vary. The problems vary. Budget authority varies. This is a market segment, not a beachhead.
+This is too broad. A three-lawyer team and a forty-lawyer department have different problems, different budgets and different buyers. This is a market segment, not a beachhead.
 
-**What to do instead:** Ask the user to narrow it. "What size company? What is the ACV? What is your best customer so far?" Keep asking until you have something like: "A VP of Sales at a 15-100 person software company selling to construction companies, with $300K-$2M ACV."
+**What to do instead:** Ask the user to narrow it. "What size company? What is the ACV? What is your best customer so far?" Keep asking until you have something like: "The Head of Legal Operations at a $500M to $5B company with 15+ in-house attorneys, $5M+ of outside-counsel spend and 20+ active firms."
 
 Now you have a beachhead. You could name ten people in that segment. You know who they reference. You know their budget cycles.
 
 ### Worked Example 2: Assumption Testing (Discovery Success)
 
-**Assumption:** "Construction company owners don't care about compliance. They only care about speed."
+**Assumption:** "General Counsels only care about cutting outside-counsel spend. Visibility is a nice-to-have."
 
-**Certainty:** Low (one customer mentioned speed, so the user believes this)
+**Certainty:** Low (one customer mentioned cost, so the team believes this)
 
 **Impact:** High (if true, the positioning changes. If false, the whole go-to-market is wrong)
 
-**Experiment:** Conduct five interviews with construction company owners. Do not lead with speed. Ask an open-ended question about their biggest problem with their current vendor. Listen for whether compliance, risk, or speed comes up first.
+**Experiment:** Conduct five interviews with General Counsels and Heads of Legal Ops. Do not lead with cost. Ask an open-ended question about their biggest problem with outside counsel today. Listen for whether spend, visibility or risk comes up first.
 
-**Result:** Four of five mentioned compliance and audit risk first. Speed came up second. The assumption was wrong.
+**Result (illustrative):** Four of five said some version of "I can't see it until the invoice lands" first. Cost came up second. The assumption was wrong.
 
-**Output:** Mark the assumption as "REFUTED. Update positioning to lead with compliance."
+**Output:** Mark the assumption as "REFUTED. Update positioning to lead with visibility."
 
 ---
 
@@ -182,8 +190,8 @@ Now you have a beachhead. You could name ten people in that segment. You know wh
 ## Best Practices
 
 - **Do discovery in public.** Publish your assumptions and findings as you go. People will correct you. Correction is free education.
-- **Interviewees should not know what you are building.** They should only know you are trying to understand their problem. The Mom Test is the canonical work here.
-- **Competitor research is not about your keywords.** It is about the alternative the customer is actually using. That includes spreadsheets, contractors, consultants, and doing nothing.
+- **Interviewees should not know what you are building.** They should only know you are trying to understand their problem. Rob Fitzpatrick's *The Mom Test* is the canonical work here.
+- **Competitor research is not about your keywords.** It is about the alternative the customer is actually using. That includes spreadsheets, outsourced services, consultants, and doing nothing.
 - **Mark your confidence level on every claim.** Every statement about the customer should have a confidence tag: High / Medium / Low / Untested. When confidence is low, the next module tests it.
 - **A beachhead with revenue beats a beachhead that is theoretically larger.** You are looking for the smallest customer segment you can dominate first, not the largest market you might eventually reach.
 
@@ -200,6 +208,7 @@ Now you have a beachhead. You could name ten people in that segment. You know wh
 
 ## Changelog
 
+- **1.1.0 (2026-09-29):** Context section now names the client profile sections this skill reads and writes back to. Worked examples now use the Lexora case study, and The Mom Test is credited to Rob Fitzpatrick.
 - **1.0.0 (2026-09-28):** Initial release. Eight-module framework, assumption mapping, beachhead segmentation, epistemic grounding. Adapted from Maja Voje's GTM Strategist methodology (Phases 1-3).
 
 ## Credits

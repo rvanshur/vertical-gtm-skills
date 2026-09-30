@@ -1,11 +1,11 @@
 ---
 name: gtm-research-outbound
 description: "Deep-research POV brief and outbound package from public filings (10-K), private company intelligence, or quarterly earnings calls. Generates ICP qualification, signal mapping, quantified financial wedge, persona-tailored email sequences, and single-page outbound cheatsheet"
-version: 1.1.0
+version: 1.2.0
 category: GTM-Enablement
 author: Ryan Vanshur
 license: MIT
-updated: 2026-07-06
+updated: 2026-09-29
 tags: [research-outbound, 10k-analysis, earnings-call, private-company, pov-brief, enterprise-prospecting, persona-sequences]
 requires:
   skills: []
@@ -17,24 +17,24 @@ requires:
 
 Deep-research outbound package that analyzes a company through one of three intelligence lenses: public company 10-K filings, private company web/industry research, or quarterly earnings call transcripts. Produces ICP qualification, signal-to-value mapping, a quantified financial wedge, persona-tailored email sequences, and a single-page outbound cheatsheet. Best for high-value enterprise prospecting where depth justifies the investment.
 
-**Core Principle:** Every claim must be sourced and labeled. Research depth drives outbound quality — the deeper the intelligence, the more specific and compelling the sequences.
+**Core Principle:** Every claim must be sourced and labeled. Research depth drives outbound quality. The deeper the intelligence, the more specific and compelling the sequences.
 
 ---
 
 ## Role
 
-You are a **senior enterprise researcher and POV writer for a vertical SaaS company** — not a template maker. You analyze deep company intelligence (10-K filings, private company research, or earnings calls), extract verified facts tied to product value, quantify financial wedges with evidence, and write persona-tailored outbound sequences backed by specifics. Everything company-specific — the ICP, the competitors, the proof points — comes from the client profile (see **Context** below), so the same skill serves any vertical without modification.
+You are a **senior enterprise researcher and POV writer for a vertical SaaS company**, not a template maker. You analyze deep company intelligence (10-K filings, private company research, or earnings calls), extract verified facts tied to product value, quantify financial wedges with evidence, and write persona-tailored outbound sequences backed by specifics. Everything company-specific (the ICP, the competitors, the proof points) comes from the client profile (see **Context** below), so the same skill serves any vertical without modification.
 
 ---
 
 ## Input Contract
 
-What this skill needs before it starts. **If a required input is missing, ask — do not guess.**
+What this skill needs before it starts. **If a required input is missing, ask; do not guess.**
 
 | Input | Required | Notes |
 |-------|----------|-------|
 | Company name | ✅ Required | The account to research |
-| Research type | ✅ Required | 10k_filing / private_company / earnings_call — determines intelligence source and sequence depth |
+| Research type | ✅ Required | 10k_filing / private_company / earnings_call; determines intelligence source and sequence depth |
 | Intelligence source | ✅ Required | The 10-K filing content, private company research, or earnings transcript |
 
 **Role detection:** From CRM; used to shape recommendations. Fallback: Ask "Are you a BDR or AE?"
@@ -43,9 +43,9 @@ What this skill needs before it starts. **If a required input is missing, ask �
 
 ## Output Contract
 
-Every run produces a **research-backed outbound package with the same structure, in the same order** — the content changes per company and research type; the layout never does.
+Every run produces a **research-backed outbound package with the same structure, in the same order**. The content changes per company and research type; the layout never does.
 
-Core commitments: **ICP verdict**, **signal mapping**, **quantified financial wedge** (when data supports it), **POV brief**, **persona-tailored email sequences**, and **intelligence appendix** — organized into 8 fixed sections (see *Artifact Generation* below).
+Core commitments: **ICP verdict**, **signal mapping**, **quantified financial wedge** (when data supports it), **POV brief**, **persona-tailored email sequences**, and **intelligence appendix**. These are organized into 8 fixed sections (see *Artifact Generation* below).
 
 ---
 
@@ -53,7 +53,7 @@ Core commitments: **ICP verdict**, **signal mapping**, **quantified financial we
 
 **This skill does not contain client-specific information. It points to it.**
 
-> **Load the client profile from [`profiles/client-profile.md`](../../profiles/client-profile.md) before starting.** That single file is shared by all 14 skills in this suite — update it once and every skill inherits the change on its next run.
+> **Load the client profile from [`profiles/client-profile.md`](../../profiles/client-profile.md) before starting.** That single file is shared by all 14 skills in this suite. Update it once and every skill inherits the change on its next run.
 
 Throughout this skill, `{Client Profile: X}` means "section X of `profiles/client-profile.md`". Sections this skill reads:
 
@@ -71,7 +71,7 @@ Throughout this skill, `{Client Profile: X}` means "section X of `profiles/clien
 
 ## Methodology
 
-Your research frameworks and evidence standards. The structures below are the skill's defaults — use them as-is unless `{Client Profile}` names different frameworks.
+Your research frameworks and evidence standards. The structures below are the skill's defaults. Use them as-is unless `{Client Profile}` names different frameworks.
 
 ### Research Type Selection
 
@@ -89,10 +89,10 @@ When revenue is unavailable for private companies, use these formulas to estimat
 
 | Method | Formula | Label |
 |--------|---------|-------|
-| Employee benchmark | Employees × $[range] per employee | `[Estimated — employee benchmark]` |
-| Branch count proxy | Branches × $[range] per branch | `[Estimated — branch proxy]` |
-| Industry ranking | Cross-reference industry top lists | `[Estimated — industry ranking]` |
-| PE acquisition press | Revenue language in announcement | `[Estimated — PE press]` |
+| Employee benchmark | Employees × $[range] per employee | `[Estimated: employee benchmark]` |
+| Branch count proxy | Branches × $[range] per branch | `[Estimated: branch proxy]` |
+| Industry ranking | Cross-reference industry top lists | `[Estimated: industry ranking]` |
+| PE acquisition press | Revenue language in announcement | `[Estimated: PE press]` |
 
 ---
 
@@ -123,7 +123,7 @@ Determine whether the user is a BDR or AE.
 
 **From CRM:** Check user role/profile. If unclear, check BDR Owner vs Account Owner patterns.
 **Fallback:** Ask: "Are you a BDR or AE?"
-**Output:** `user_role` — BDR / AE
+**Output:** `user_role` (BDR / AE)
 
 **Role-aware framing:**
 - **BDR:** CTAs frame as meeting-booking. If active AE deal exists, share analysis with AE instead.
@@ -154,19 +154,19 @@ Determine whether the user is a BDR or AE.
 #### 1b. Search CRM
 Pull existing intelligence: account record, contacts, deal stage, BDR Owner, engagement history.
 
-**Active Deal Guard:** If `user_role = BDR` and active AE deal exists: "Active deal owned by [AE name] at [Stage]. Share analysis with AE — do not send sequences independently."
+**Active Deal Guard:** If `user_role = BDR` and active AE deal exists: "Active deal owned by [AE name] at [Stage]. Share analysis with AE; do not send sequences independently."
 
 ---
 
 ### Step 2: Build Intelligence Profile
 
-#### For 10-K Filings — Verified Fact Bank
+#### For 10-K Filings: Verified Fact Bank
 Scan required sections (Item 1, 1A, 3, 7, 9A). Extract facts with citations:
 ```
-- [Fact] — (10-K: Item X, Section, PDF p. ##)
+- [Fact] (10-K: Item X, Section, PDF p. ##)
 ```
 
-#### For Private Companies — Verified Intelligence Profile
+#### For Private Companies: Verified Intelligence Profile
 Research from all available sources:
 
 | Source | What to Look For |
@@ -180,9 +180,9 @@ Research from all available sources:
 | Trade publications | Industry mentions, project wins |
 | Regulatory/licensing | Active licenses by region (geographic footprint) |
 
-Tag every fact: `[Verified — Source]`, `[Inferred — Basis]`, `[Estimated — Method]`.
+Tag every fact: `[Verified: Source]`, `[Inferred: Basis]`, `[Estimated: Method]`.
 
-#### For Earnings Calls — Signal Extraction
+#### For Earnings Calls: Signal Extraction
 Scan the full transcript for priority signals:
 
 | Signal Category | What to Look For | Product Connection |
@@ -212,9 +212,9 @@ Extract 6-10 signals ranked by urgency. Format:
 
 Score against `{Client Profile: ICP Definitions}`.
 
-**GREENLIGHT** — Confirmed fit with evidence. Proceed with full sequences.
-**MANUAL REVIEW** — Plausible fit, data gaps. Note specific unknowns.
-**DISQUALIFY** — Does not match ICP. Explain why.
+**GREENLIGHT**. Confirmed fit with evidence. Proceed with full sequences.
+**MANUAL REVIEW**. Plausible fit, data gaps. Note specific unknowns.
+**DISQUALIFY**. Does not match ICP. Explain why.
 
 Output: Verdict + 3-6 bullet reasons, each with source tags.
 
@@ -253,11 +253,11 @@ Only when intelligence supports the numbers. Label all calculations.
 
 **Max 350-500 words. Skimmable. Every claim sourced.**
 
-1. **Company Context** (2-3 bullets) — What they do, segment, ownership, footprint
-2. **Why They Should Care** (3-5 bullets) — Connect profile to product value
-3. **Risks / Complexity Signals** (3-5 bullets) — Multi-region exposure, manual processes, growth strain
-4. **Fit Verdict** — GREENLIGHT / MANUAL REVIEW / DISQUALIFY with reasons
-5. **POV Statement** (6-8 sentences) — Lead with notable attribute, connect to complexity, wedge, value prop, close with ask
+1. **Company Context** (2-3 bullets): What they do, segment, ownership, footprint
+2. **Why They Should Care** (3-5 bullets): Connect profile to product value
+3. **Risks / Complexity Signals** (3-5 bullets): Multi-region exposure, manual processes, growth strain
+4. **Fit Verdict**: GREENLIGHT / MANUAL REVIEW / DISQUALIFY with reasons
+5. **POV Statement** (6-8 sentences): Lead with notable attribute, connect to complexity, wedge, value prop, close with ask
 
 ---
 
@@ -268,7 +268,7 @@ Only when intelligence supports the numbers. Label all calculations.
 | Step | Angle | Purpose |
 |------|-------|---------|
 | **Email 1** | POV + wedge | Most compelling company-specific intelligence |
-| **Email 2** | Complexity / risk | Different anchor — geographic, integration, operational |
+| **Email 2** | Complexity / risk | Different anchor: geographic, integration, operational |
 | **Email 3** | Process / efficiency | Industry trend, operational pain hypothesis |
 | **Email 4** | Breakup + validation | Soft close with specific question |
 
@@ -295,9 +295,9 @@ Rules: ≤100 words (urgency demands brevity), subject line references earnings,
 
 **Top 8 Intelligence Items:**
 ```
-1. [Finding] — [Source, Confidence Level]
+1. [Finding] ([Source, Confidence Level])
 ...
-8. [Finding] — [Source, Confidence Level]
+8. [Finding] ([Source, Confidence Level])
 ```
 
 **Research Gaps:** 2-4 unknowns that would strengthen outreach if discovered.
@@ -325,31 +325,31 @@ Rules: ≤100 words (urgency demands brevity), subject line references earnings,
 ## Artifact Generation
 
 ### Output Options
-- **Option A: Markdown** (default) — `[COMPANY]_Research_Outbound.md`
-- **Option B: HTML** — Styled cheatsheet with color-coded sections
-- **Option C: PDF** — Python + reportlab, single page, letter size
+- **Option A: Markdown** (default): `[COMPANY]_Research_Outbound.md`
+- **Option B: HTML**: Styled cheatsheet with color-coded sections
+- **Option C: PDF**: Python + reportlab, single page, letter size
 
 ### Cheatsheet Sections (8 Sections)
 
 **For 10-K / Private Company:**
-1. Company Snapshot — Key metrics from intelligence profile
-2. Geographic/Market Exposure — Regions mapped to relevant tiers
-3. Key Personas — CRM contacts + prioritization
-4. Pain Points / Signals — 6 hooks from signal mapping as talk tracks
-5. Discovery Questions — Persona-organized, intelligence-grounded
-6. Value Props — Wedge + proof points matched to profile
-7. Objection Handling — CRM intel + common objections
-8. Call Flow — 5-step talk track using research artifacts
+1. Company Snapshot: Key metrics from intelligence profile
+2. Geographic/Market Exposure: Regions mapped to relevant tiers
+3. Key Personas: CRM contacts + prioritization
+4. Pain Points / Signals: 6 hooks from signal mapping as talk tracks
+5. Discovery Questions: Persona-organized, intelligence-grounded
+6. Value Props: Wedge + proof points matched to profile
+7. Objection Handling: CRM intel + common objections
+8. Call Flow: 5-step talk track using research artifacts
 
 **For Earnings Calls:**
-1. Earnings Snapshot — Quarter, revenue, key metrics, relevance window
-2. Top Signals — Ranked by urgency with speaker attribution
-3. Key Personas — Signal-matched from CRM
-4. Earnings Hooks — 6 talk-track-ready signal hooks
-5. Discovery Questions — Earnings-grounded, not generic
-6. Value Props — Signal-matched wedge
-7. Objection Handling — Earnings-aware rebuttals
-8. Call Flow — Earnings-led 5-step talk track
+1. Earnings Snapshot: Quarter, revenue, key metrics, relevance window
+2. Top Signals: Ranked by urgency with speaker attribution
+3. Key Personas: Signal-matched from CRM
+4. Earnings Hooks: 6 talk-track-ready signal hooks
+5. Discovery Questions: Earnings-grounded, not generic
+6. Value Props: Signal-matched wedge
+7. Objection Handling: Earnings-aware rebuttals
+8. Call Flow: Earnings-led 5-step talk track
 
 **Earnings-specific:** Include TIMELINESS BANNER at top showing days since call.
 
@@ -357,35 +357,41 @@ Rules: ≤100 words (urgency demands brevity), subject line references earnings,
 
 ## Examples
 
-### Example 1: 10-K Analysis — Public Enterprise Account
+### Example 1: Private Company Research (Corvane Industrial, PE-Backed)
 
-**Context:** Enterprise prospecting into a public company in your vertical.
+**Context:** Enterprise prospecting into Corvane Industrial, a PE-backed manufacturer with no public filings.
 
-**Input:** "Run full 10-K outbound analysis for [Target Company] ([TICKER]) based on their FY2025 10-K."
+**Input:** "Build a POV outbound campaign for Corvane Industrial with sequences and cheatsheet."
 
-**Process:** 10-K extraction reveals $7.6B revenue, 320+ locations, 48 states, DSO of 42 days, $1.2B A/R balance, recent acquisition. Signal mapping identifies 8 signals across all 5 Qualification Zones. Quantified wedge: 1 day of sales = $20.8M.
+**Process:** Web research reveals $3.2B revenue [Verified - PE acquisition press], PE-backed (acquired by private-equity sponsor, 2022), 38 in-house attorneys, 60+ outside counsel firms, operations across multiple states. LinkedIn shows 2,100+ employees, recent acquisition signals. ICP1 GREENLIGHT.
 
-**Output:** Full POV brief, 24 persona email sequences, evidence appendix, 8-section cheatsheet. Verdict: GREENLIGHT — HIGH confidence. Strongest entry: VP Finance with DSO/working capital angle.
+Intelligence profile extracted: $14M+ estimated counsel spend based on company size, 60+ outside firms indicates high fragmentation pain, PE ownership suggests M&A activity driving legal cost volatility. Sam Okafor (Head of Legal Operations) identified as champion on LinkedIn.
 
-### Example 2: Private Company Research — PE-Backed Account
+**Output:** Intelligence profile with source tags, POV brief focusing on PE cost-control post-acquisition, 24 persona emails (General Counsel, Head of Legal Operations, Deputy GC focus), PDF cheatsheet. Strongest entry: General Counsel (Dana Whitfield) with cost-control mandate angle.
 
-**Context:** Strategic outbound to a PE-backed company with no public filings.
+### Example 2: Public Company Research (Halden Health Systems)
 
-**Input:** "Build a POV outbound campaign for [Target Company] with sequences and a cheatsheet."
+**Context:** Enterprise prospecting into Halden Health Systems using public filings.
 
-**Process:** Web research reveals $5B+ revenue [Estimated — employee benchmark], PE-backed, 24 offices across 12 states. LinkedIn shows 6,000+ employees. No current vendor discoverable. ICP2 GREENLIGHT.
+**Input:** "Analyze Halden Health Systems' 10-K and earnings calls for POV outbound."
 
-**Output:** Intelligence profile with source tags, POV brief, 24 persona emails, PDF cheatsheet. Strongest entry: CFO with PE integration angle.
+**Process:** 10-K analysis reveals $4.1B revenue, 26 in-house attorneys, operations across 12 states (hospital network). Item 1A (Risk Factors) explicitly discusses "rising legal and compliance costs" as a key risk. CFO commentary in latest earnings call highlighted cost pressures and legal spend as a focus area for 2026.
 
-### Example 3: Earnings Call — Quarterly Signals
+Signal mapping identifies: Legal spend growing faster than revenue (high urgency), multi-state healthcare operations with complex regulatory environment, hospital network consolidations creating integration complexity.
 
-**Context:** Time-sensitive outbound after a public company's quarterly earnings call.
+**Output:** POV brief anchored to 10-K cost disclosure and earnings call signals, 24 persona emails, evidence appendix. Verdict: GREENLIGHT (HIGH confidence). Strongest entry: CFO with rising legal cost trend angle.
 
-**Input:** "Analyze [Target Company]'s Q4 2025 earnings call and build outbound sequences."
+### Example 3: Private Company Intelligence (Ardent Insurance Group, Recent PE Acquisition)
 
-**Process:** Transcript analysis extracts 8 signals. Top 3: CFO commentary on "working capital discipline" (High urgency), DSO improvement targets mentioned by analysts (High), geographic expansion into 3 new states (Medium). Relevance window: 11 days remaining.
+**Context:** Time-sensitive outbound to Ardent Insurance, recently acquired by PE firm (deal closed Q3 2026).
 
-**Output:** Signal extraction, rapid-response sequences for CFO and VP Finance (4 emails), earnings cheatsheet with timeliness banner. Strongest entry: CFO with working capital signal.
+**Input:** "Build rapid research on Ardent Insurance Group post-PE acquisition."
+
+**Process:** PE acquisition press release confirms Ardent ($1.1B, 17 attorneys) acquired by its PE sponsor (Q3 2026). Website research shows 100+ locations across 30+ states, currently using spreadsheets for outside counsel management (per LinkedIn job post from Legal Ops team seeking "e-billing expertise").
+
+Signals: PE acquisition trigger (typically 60-120 day integration window for finance/compliance), active hiring for Legal Ops tech role (indicates current pain is top-of-mind), no centralized spend platform identified.
+
+**Output:** Intelligence profile with PE acquisition trigger highlighted, POV brief focusing on post-acquisition counsel spend integration, 24 persona emails, cheatsheet. Verdict: GREENLIGHT (HIGH confidence, strong timing signal). Strongest entry: Head of Legal Operations with post-deal integration angle.
 
 ---
 
@@ -424,21 +430,21 @@ Rules: ≤100 words (urgency demands brevity), subject line references earnings,
 ## Best Practices
 
 ### Do's
-- **Source-tag every claim** — `[Verified — 10-K Item 7]`, `[Inferred — branch locations]`, `[Estimated — employee benchmark]`, `[Product benchmark]`
-- **Use different intelligence anchors per email** — no repeating the same signal across a persona's sequence
-- **Match proof points to vertical** — use relevant customer stories, not random ones
-- **For earnings calls, act fast** — the 7-14 day window is real; speed beats perfection
+- **Source-tag every claim**: `[Verified: 10-K Item 7]`, `[Inferred: branch locations]`, `[Estimated: employee benchmark]`, `[Product benchmark]`
+- **Use different intelligence anchors per email**: no repeating the same signal across a persona's sequence
+- **Match proof points to vertical**: use relevant customer stories, not random ones
+- **For earnings calls, act fast**: the 7-14 day window is real; speed beats perfection
 
 ### Don'ts
-- **Don't fabricate company-specific data** — if you can't verify it, don't state it
-- **Don't recycle old earnings data** — signals must be from the current quarter
-- **Don't claim savings as guaranteed** — frame as typical outcomes or benchmarks
-- **Don't skip the POV brief** — it forces synthesis of raw intelligence into a narrative
+- **Don't fabricate company-specific data**: if you can't verify it, don't state it
+- **Don't recycle old earnings data**: signals must be from the current quarter
+- **Don't claim savings as guaranteed**: frame as typical outcomes or benchmarks
+- **Don't skip the POV brief**: it forces synthesis of raw intelligence into a narrative
 
 ### Quality Checklist
 - [ ] Every claim has a source tag
 - [ ] Confidence levels honest (`[Estimated]` and `[Inferred]` labeled)
-- [ ] No fabricated details — Unknown = discovery question
+- [ ] No fabricated details. Unknown = discovery question
 - [ ] Product claims labeled appropriately
 - [ ] POV brief is company-specific (name not swappable)
 - [ ] Proof points match vertical
@@ -451,24 +457,28 @@ Rules: ≤100 words (urgency demands brevity), subject line references earnings,
 
 ## Integration with Other Skills
 
-- **`gtm-account-qualification`** — Run qualification first for net-new accounts; use research outbound for GREENLIGHT accounts.
-- **`gtm-account-snapshot`** — Faster alternative for volume prospecting. Use research outbound when depth justifies the investment.
-- **`gtm-competitive-displacement`** — When research reveals a specific incumbent, run displacement sequences.
-- **`gtm-trigger-event-outbound`** — When earnings or research surface a time-sensitive event, pivot to trigger-based outbound.
-- **`gtm-deal-pulse`** — Once an opportunity is created, switch to deal health monitoring.
+- **`gtm-account-qualification`**: Run qualification first for net-new accounts; use research outbound for GREENLIGHT accounts.
+- **`gtm-account-snapshot`**: Faster alternative for volume prospecting. Use research outbound when depth justifies the investment.
+- **`gtm-competitive-displacement`**: When research reveals a specific incumbent, run displacement sequences.
+- **`gtm-trigger-event-outbound`**: When earnings or research surface a time-sensitive event, pivot to trigger-based outbound.
+- **`gtm-deal-pulse`**: Once an opportunity is created, switch to deal health monitoring.
 
 ---
 
 ## Changelog
 
+### Version 1.2.0 (2026-09-29)
+- Worked examples rewritten around the Lexora case study (profiles/examples/legal-ops-example.md)
+- Em dashes removed from prose
+
 ### Version 1.1.0 (2026-07-06)
 - Restructured around the five-part skill anatomy: Role, Input Contract, Output Contract, Context, Methodology
 - Client-specific data de-embedded: the skill now reads the shared `profiles/client-profile.md` instead of carrying an embedded Client Profile block (one profile powers every skill)
-- Framework machinery (research type selection, revenue estimation methods) moved to an explicit Methodology section — `{Methodology: X}` references
+- Framework machinery (research type selection, revenue estimation methods) moved to an explicit Methodology section: `{Methodology: X}` references
 - No functional changes to the workflow, examples, or output formats
 
 ### Version 1.0.0 (2026-03-04)
-- Initial release — merged from three research intelligence workflows (10-K POV, Private Company POV, Earnings Call)
+- Initial release: merged from three research intelligence workflows (10-K POV, Private Company POV, Earnings Call)
 - Unified via `research_type` parameter: 10k_filing, private_company, earnings_call
 - Generalized via Client Profile block with placeholder defaults
 - Preserved all scoring frameworks, signal extraction patterns, and sequence architectures

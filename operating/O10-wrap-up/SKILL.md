@@ -1,11 +1,11 @@
 ---
 name: gtm-wrap-up
 description: "Closes a working session so nothing learned is lost, guarantees a continuation record is written, and produces a parseable artifact so downstream systems can track where each project was left off"
-version: 1.0.0
+version: 1.1.0
 category: Operating-Discipline
 author: Ryan Vanshur
 license: MIT
-updated: 2026-09-28
+updated: 2026-09-29
 tags: [session-close, continuation, handoff, operating-discipline, workflow]
 requires:
   skills: []
@@ -62,6 +62,15 @@ You are a **handoff engineer**, not a note-taker. Your job is to capture state i
 | State section | Yes | File-level precision: what is verified, what is assumed |
 | Next action | Yes | Must pass four tests (see below) |
 | Blockers | If any | Array of explicit blockers, not vague |
+
+---
+
+## Context
+
+If `profiles/client-profile.md` has a `## Session Handoff` section (this skill's `CUSTOMIZE.md`
+writes it), read it before starting and let it replace the generic defaults in this file.
+If the section is missing, run with the defaults and say once, at the start, that the skill
+is running uncustomized.
 
 ---
 
@@ -211,11 +220,12 @@ State the file path where the artifact was written. Reference it. Verification-b
 
 - **`O6-weekly-review`** closes each week, reading last week's continuation notes.
 - **`O8-dream`** may reference continuation notes to understand session artifacts.
-- **`O9-ingest`** captures content. `/wrap-up` closes the session that ingested it.
+- **`O9-ingest`** captures content. Wrap-up closes the session that ingested it.
 - Together, wrap-up (session) → weekly-review (week) → dream (month) is the cadence.
 
 ---
 
 ## Changelog
 
+- **1.1.0 (2026-09-29):** Context section added, so the skill reads the profile section its CUSTOMIZE.md writes.
 - **1.0.0 (2026-09-28):** Initial release. Three-part session close with four-test next-action gate, machine-readable frontmatter, and state-level precision.

@@ -1,11 +1,11 @@
 ---
 name: gtm-ingest
 description: "Transforms raw content (transcripts, documents, calls, notes) into structured knowledge items with metadata, two-tier truth/timeline structure, and wiki-links for discovery"
-version: 1.0.0
+version: 1.1.0
 category: Operating-Discipline
 author: Ryan Vanshur
 license: MIT
-updated: 2026-09-28
+updated: 2026-09-29
 tags: [ingest, capture, knowledge-base, structure, content-processing, operating-discipline]
 requires:
   skills: []
@@ -62,6 +62,15 @@ You are a **knowledge architect**, not a transcriptionist. Your job is to extrac
 | Key concepts extracted | Yes | What atomic ideas are present in this content |
 | Relationships identified | Yes | How new items connect to existing ones |
 | Warnings | Yes | Any metadata not in taxonomy, any person mentioned without a dedicated page |
+
+---
+
+## Context
+
+If `profiles/client-profile.md` has a `## Knowledge Ingestion` section (this skill's `CUSTOMIZE.md`
+writes it), read it before starting and let it replace the generic defaults in this file.
+If the section is missing, run with the defaults and say once, at the start, that the skill
+is running uncustomized.
 
 ---
 
@@ -230,4 +239,5 @@ Report:
 
 ## Changelog
 
+- **1.1.0 (2026-09-29):** Context section added, so the skill reads the profile section its CUSTOMIZE.md writes.
 - **1.0.0 (2026-09-28):** Initial release. Compiled-truth/timeline structure, person-entity deduplication, metadata validation, and relationship discovery.

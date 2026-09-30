@@ -2,6 +2,13 @@
 
 A paste-in prompt that adapts this skill to your positioning challenge.
 
+Works in **Claude Code**, **Claude.ai Projects**, or **OpenAI Codex**, all three read the same
+`SKILL.md` format. Open the assistant, paste the block below, and answer its questions one at a time.
+
+> This is a per-skill companion. For customizing the whole suite at once, see
+> [`docs/customization.md`](../../docs/customization.md) and
+> [`profiles/client-profile-template.md`](../../profiles/client-profile-template.md).
+
 ---
 
 ## The prompt
@@ -57,7 +64,6 @@ Question 5 stalls when the answer is "we guessed" or "competitors do it so we do
 - **Question 3 stalls:** Your positioning is not coherent. The shift you need the customer to make is unclear. Rewrite until you can say it in one sentence.
 - **Question 4 stalls:** You have not talked to customers since developing this positioning. That is fine. That is the next step. But do not call it validated until you have.
 - **Question 5 stalls:** You priced based on vibes or competitors. Time to research it. Van Westendorp is quick (one survey, four questions). Gabor-Granger is iterative (multiple rounds).
-```
 
 ---
 
@@ -70,6 +76,6 @@ After positioning is validated, you know:
 - What price is defensible and produces healthy unit economics
 - What message resonates with your target customer
 
-When you have that clarity, you are ready for `/gtm-launch`. Launch takes your positioning and turns it into a motion and channel strategy.
+When you have that clarity, you are ready for GTM Launch (`operating/O13-gtm-launch`). Launch takes your positioning and turns it into a motion and channel strategy.
 
 If you skip validation and launch anyway, your message will land on the wrong ears. That always shows.

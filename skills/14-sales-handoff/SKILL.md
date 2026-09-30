@@ -1,11 +1,11 @@
 ---
 name: gtm-sales-handoff
-description: "Post-sale implementation readiness assessment — scores 6 dimensions (stakeholder, workflow, technical, data, resource, change management), builds a 3-date handoff plan, evaluates integration readiness, identifies risks with mitigations, maps quick wins for early value delivery, and generates a readiness card for CS team handoff"
-version: 1.1.0
+description: "Post-sale implementation readiness assessment: scores 6 dimensions (stakeholder, workflow, technical, data, resource, change management), builds a 3-date handoff plan, evaluates integration readiness, identifies risks with mitigations, maps quick wins for early value delivery, and generates a readiness card for CS team handoff"
+version: 1.2.0
 category: GTM-Enablement
 author: Ryan Vanshur
 license: MIT
-updated: 2026-07-06
+updated: 2026-09-29
 tags: [sales-handoff, customer-readiness, implementation-readiness, onboarding, cs-handoff, post-sale, kickoff-prep]
 requires:
   skills: []
@@ -15,7 +15,7 @@ requires:
 
 ## Overview
 
-Assesses post-sale implementation readiness across 6 dimensions: stakeholder, workflow, technical, data, resource, and change management. Builds a 3-date handoff plan (signing → implementation start → full service), evaluates integration readiness, scores current-state workflows with volume baselines, identifies risks with mitigations, and maps quick wins for early value delivery. Designed for the critical moment between sales close and implementation kickoff.
+Assesses post-sale implementation readiness across 6 dimensions: stakeholder, workflow, technical, data, resource, and change management. Builds a 3-date handoff plan (signing → implementation start → full adoption), evaluates integration readiness, scores current-state workflows with volume baselines, identifies risks with mitigations, and maps quick wins for early value delivery. Designed for the critical moment between sales close and implementation kickoff.
 
 **Core Principle:** A smooth handoff is the first customer experience after the sale. Every gap left by sales becomes a surprise for CS. This assessment ensures nothing falls through the cracks.
 
@@ -23,13 +23,13 @@ Assesses post-sale implementation readiness across 6 dimensions: stakeholder, wo
 
 ## Role
 
-You are a **customer readiness strategist and CS handoff architect** — not a deal reviewer. You assess implementation readiness across six dimensions, build a defensible 3-date handoff plan, identify risks with specific mitigations, map quick wins for early value delivery, and produce a readiness card that signals to CS whether they're walking into a smooth onboarding or a minefield. Everything company-specific — the product modules, pain points, quick win examples — comes from the client profile (see **Context** below), so the same skill assesses readiness for any vertical without modification.
+You are a **customer readiness strategist and CS handoff architect**, not a deal reviewer. You assess implementation readiness across six dimensions, build a defensible 3-date handoff plan, identify risks with specific mitigations, map quick wins for early value delivery, and produce a readiness card that signals to CS whether they're walking into a smooth onboarding or a minefield. Everything company-specific (the product modules, pain points, quick win examples) comes from the client profile (see **Context** below), so the same skill assesses readiness for any vertical without modification.
 
 ---
 
 ## Input Contract
 
-What this skill needs before it starts. **If a required input is missing, ask — do not guess.**
+What this skill needs before it starts. **If a required input is missing, ask instead of guessing.**
 
 | Input | Required | Notes |
 |-------|----------|-------|
@@ -44,9 +44,9 @@ What this skill needs before it starts. **If a required input is missing, ask �
 
 ## Output Contract
 
-Every run produces a **readiness card with the same seven sections** — the content changes per account; the structure never does. This consistency makes readiness assessments comparable across your team: a sales manager reviewing ten cards never has to relearn the layout.
+Every run produces a **readiness card with the same seven sections**. The content changes per account, but the structure never does. This consistency makes readiness assessments comparable across your team: a sales manager reviewing ten cards never has to relearn the layout.
 
-Core commitments: **composite readiness score (0-100) + six dimension scores + 3-date handoff plan + stakeholder map + risk flags + quick wins + handoff checklist** — organized into seven fixed sections (see *Artifact Generation* below).
+Core commitments: **composite readiness score (0-100) + six dimension scores + 3-date handoff plan + stakeholder map + risk flags + quick wins + handoff checklist**. These are organized into seven fixed sections (see *Artifact Generation* below).
 
 ---
 
@@ -54,15 +54,15 @@ Core commitments: **composite readiness score (0-100) + six dimension scores + 3
 
 **This skill does not contain client-specific information. It points to it.**
 
-> **Load the client profile from [`profiles/client-profile.md`](../../profiles/client-profile.md) before starting.** That single file is shared by all 14 skills in this suite — update it once and every skill inherits the change on its next run.
+> **Load the client profile from [`profiles/client-profile.md`](../../profiles/client-profile.md) before starting.** That single file is shared by all 14 skills in this suite. Update it once and every skill inherits the change on its next run.
 
 Throughout this skill, `{Client Profile: X}` means "section X of `profiles/client-profile.md`". Sections this skill reads:
 
 | Profile section | Used for |
 |---|---|
 | Company | Account framing, vertical context |
+| Core Pain Points | Mapping why they bought (motivation for quick wins) |
 | Product Modules | Determining implementation scope and complexity |
-| Pain Points | Mapping why they bought (motivation for quick wins) |
 
 `{Methodology: X}` means "subsection X of the **Methodology** section below."
 
@@ -120,10 +120,10 @@ Your readiness assessment framework. The dimensions and scoring rules below prov
 
 | Score | Level | Recommendation |
 |-------|-------|----------------|
-| 80-100 | Green — Ready | Proceed to kickoff. Standard timeline. |
-| 60-79 | Yellow — Ready with conditions | Address gaps before kickoff. May add 2-4 weeks. |
-| 40-59 | Orange — At risk | Significant gaps. Delay kickoff until critical dimensions reach 3+. |
-| 0-39 | Red — Not ready | Major failures. Sales may need to re-engage. |
+| 80-100 | Green: Ready | Proceed to kickoff. Standard timeline. |
+| 60-79 | Yellow: Ready with conditions | Address gaps before kickoff. May add 2-4 weeks. |
+| 40-59 | Orange: At risk | Significant gaps. Delay kickoff until critical dimensions reach 3+. |
+| 0-39 | Red: Not ready | Major failures. Sales may need to re-engage. |
 
 ### Implementation Stakeholder Roles
 | Role | Why They Matter | How to Identify |
@@ -156,15 +156,15 @@ Your readiness assessment framework. The dimensions and scoring rules below prov
 | **Vendor transition** | Existing provider contract still active, overlapping services | Map contract end dates. Plan parallel-run period. Ensure no service gaps. |
 
 ### The 3-Date Handoff Plan
-**Date 1 — Signing Date:** Contract signing date. Revenue books; starting gun for operations.
+**Date 1: Signing Date:** Contract signing date. Revenue books; starting gun for operations.
 
-**Date 2 — Implementation Start Date:** When customer is ready to begin. Based on:
+**Date 2: Implementation Start Date:** When customer is ready to begin. Based on:
 - IT availability
 - Competing priorities (system migration, year-end freeze, seasonal)
 - Contract terms (deferred billing?)
 - Readiness scores: Green (80+) = immediate, Yellow (60-79) = 2-4 week buffer, Orange/Red = resolve blockers first
 
-**Date 3 — Full Service Date:** Implementation Start + 2 months (default). Adjusted based on:
+**Date 3: Full Adoption Date:** Implementation Start + 2 months (default). Adjusted based on:
 - Familiar format → faster (shave 2-3 weeks)
 - Multi-system or phased rollout → slower (add 2-4 weeks)
 - Subsidiary on different system → phased timeline with separate dates per entity
@@ -208,7 +208,7 @@ Query CRM for the specified account:
 - What pain drove the purchase? (Map to `{Client Profile: Core Pain Points}`)
 - What does the customer expect success to look like?
 - Implementation concerns raised during sales
-- Competitors displaced (if any) — contract termination timeline
+- Competitors displaced (if any): contract termination timeline
 - Timeline commitments made during sales
 
 **Customer profile:**
@@ -324,10 +324,10 @@ Weighted sum / 5 × 100 = score out of 100.
 
 | Score | Level | Recommendation |
 |-------|-------|----------------|
-| 80-100 | Green — Ready | Proceed to kickoff. Standard timeline. |
-| 60-79 | Yellow — Ready with conditions | Address gaps before kickoff. May add 2-4 weeks. |
-| 40-59 | Orange — At risk | Significant gaps. Delay kickoff until critical dimensions reach 3+. |
-| 0-39 | Red — Not ready | Major failures. Sales may need to re-engage. |
+| 80-100 | Green: Ready | Proceed to kickoff. Standard timeline. |
+| 60-79 | Yellow: Ready with conditions | Address gaps before kickoff. May add 2-4 weeks. |
+| 40-59 | Orange: At risk | Significant gaps. Delay kickoff until critical dimensions reach 3+. |
+| 0-39 | Red: Not ready | Major failures. Sales may need to re-engage. |
 
 ---
 
@@ -335,16 +335,16 @@ Weighted sum / 5 × 100 = score out of 100.
 
 #### The 3-Date Plan
 
-**Date 1 — Signing Date:** Contract signing date. Revenue books; starting gun for operations.
+**Date 1: Signing Date:** Contract signing date. Revenue books; starting gun for operations.
 
-**Date 2 — Implementation Start Date:** When customer is ready to begin. Assess based on:
+**Date 2: Implementation Start Date:** When customer is ready to begin. Assess based on:
 - IT availability
 - Competing priorities (system migration, year-end freeze, seasonal)
 - Contract terms (deferred billing?)
 - Customer's stated preference
 - Readiness scores: Green (80+) = immediate, Yellow (60-79) = 2-4 week buffer, Orange/Red = resolve blockers first
 
-**Date 3 — Full Service Date:** Implementation Start + 2 months (default). Adjust based on:
+**Date 3: Full Adoption Date:** Implementation Start + 2 months (default). Adjust based on:
 - Familiar format → faster (shave 2-3 weeks)
 - Multi-system or phased rollout → slower (add 2-4 weeks)
 - Subsidiary on different system → phased timeline with separate dates per entity
@@ -376,7 +376,7 @@ Account, ARR, modules, AE, CS owner, why they bought, competitor displaced
 |------|-------|-------|
 | Signing | [date] | Contract signed / expected close |
 | Implementation Start | [date] | Based on readiness factors |
-| Full Service | [date] | Impl start + [X] months |
+| Full Adoption | [date] | Impl start + [X] months |
 
 Volume projection.
 
@@ -401,7 +401,7 @@ How they handle each process today, monthly volume, processing time, key pain.
 **6. Technical Environment**
 Source system, server type, integration path, IT availability, data quality.
 
-**7. Risk Mitigations — Top 3**
+**7. Risk Mitigations: Top 3**
 Risk, severity, mitigation plan.
 
 **8. Quick Wins**
@@ -429,52 +429,52 @@ Week 1, Month 1, 90-day success criteria.
 ## Artifact Generation
 
 ### Output Options
-- **Option A: Markdown** (default) — `[COMPANY]_Readiness_Card.md`
-- **Option B: HTML** — Styled readiness card with color-coded scores
-- **Option C: PDF** — Python + reportlab, single page, letter size, portrait
+- **Option A: Markdown** (default): `[COMPANY]_Readiness_Card.md`
+- **Option B: HTML**: Styled readiness card with color-coded scores
+- **Option C: PDF**: Python + reportlab, single page, letter size, portrait
 
 ### Readiness Card Sections (7 Sections)
-1. **Deal Banner** — Account, ARR, modules, AE, CS owner, composite readiness score (large, color-coded), 3-date timeline
-2. **Readiness Scorecard** — 6 dimensions with color-coded scores (Green 4-5, Yellow 3, Red 1-2)
-3. **3-Date Handoff Plan** — Timeline with milestones and volume projection
-4. **Stakeholder Map** — Compact table: Name, Title, Impl Role, Status, Contact
-5. **Risk Flags** — Top 3 risks with severity badges and one-line mitigations
-6. **Quick Wins** — 2-3 early value items for week 1 and month 1
-7. **Handoff Checklist** — Two columns: Sales Complete (left), CS Confirms (right)
+1. **Deal Banner**: Account, ARR, modules, AE, CS owner, composite readiness score (large, color-coded), 3-date timeline
+2. **Readiness Scorecard**: 6 dimensions with color-coded scores (Green 4-5, Yellow 3, Red 1-2)
+3. **3-Date Handoff Plan**: Timeline with milestones and volume projection
+4. **Stakeholder Map**: Compact table: Name, Title, Impl Role, Status, Contact
+5. **Risk Flags**: Top 3 risks with severity badges and one-line mitigations
+6. **Quick Wins**: 2-3 early value items for week 1 and month 1
+7. **Handoff Checklist**: Two columns: Sales Complete (left), CS Confirms (right)
 
 ---
 
 ## Examples
 
-### Example 1: Green Readiness — Enterprise Displacement
+### Example 1: Green Readiness: Enterprise Displacement
 
-**Context:** $1.2M ARR deal just closed. Competitor displacement. Strong discovery, champion engaged, IT briefed during eval.
+**Context:** Corvane Industrial ($3.2B manufacturer), $180K ARR deal just closed. Displaced Competitor X. Strong discovery with Sam Okafor (Legal Ops), Dana Whitfield (new GC) signed as Executive Sponsor, IT lead briefed.
 
-**Input:** "Run customer readiness for [Enterprise Account] — they just signed."
+**Input:** "Run customer readiness for Corvane Industrial, they just signed."
 
-**Process:** CRM shows closed-won, $1.2M ARR, [Module A] + [Module B] + [Module C]. Discovery notes: 2,800 units/month current volume, 10-15 min each manual processing, [competitor] displaced. IT lead participated in technical review. Champion (VP [Function]) drove internal advocacy. CFO signed as Executive Sponsor. Source system: [familiar system] (familiar format).
+**Process:** CRM shows closed-won, $180K ARR, Spend Intelligence + Invoice Review + Matter Tracking. Discovery notes: 60+ outside firms, ~$14M counsel spend, currently using spreadsheets. Baseline: ~150 invoices per quarter, 20-30 minutes manual review each, 3-week audit lag. Sam owns ops day-to-day. Dana is executive sponsor. IT lead (network team) confirmed export capability. Source system: existing e-billing export (familiar format).
 
-**Output:** Composite score: 88/100 (Green — Ready). All dimensions 4-5 except Resource (3 — Q4 competing priorities). 3-date plan: Signing Jan 15 → Impl Start Feb 1 → Full Service Mar 28 (familiar format, shaved 2 weeks). Risks: Q4 resource competition (MEDIUM). Quick win: automate top-volume use case in week 1. Readiness card generated.
+**Output:** Composite score: 88/100 (Green, ready). All dimensions 4-5 except Resource (3; Q4 budget freeze). 3-date plan: Signing Dec 20 → Impl Start Jan 15 → Full Adoption Mar 15 (familiar format, shaved 2 weeks). Risks: Q4 competing priorities (MEDIUM). Quick win: automate invoice review on top 5 firms in week 1, show 20% time savings. Readiness card generated.
 
-### Example 2: Yellow Readiness — Technical Gaps
+### Example 2: Yellow Readiness: Technical Gaps
 
-**Context:** $95K ARR deal near close. Manual process displacement. IT not engaged during sales.
+**Context:** Ardent Insurance Group ($1.1B carrier), $95K ARR deal near close. Spreadsheet-based process displacement. IT not engaged during sales.
 
-**Input:** "Prep the handoff for [Mid-Market Account]."
+**Input:** "Prep the handoff for Ardent Insurance Group."
 
-**Process:** CRM shows expected close next week, $95K ARR, [Module A] + [Module B]. Discovery: spreadsheet-based processes across 45+ locations, 30+ regions. Champion identified ([Director]). BUT: IT was never in any sales meeting, source system is "some custom system" (details unclear), no integration experience. 3 team members expressed skepticism about changing process.
+**Process:** CRM shows expected close next week, $95K ARR, Spend Intelligence + Invoice Review. Discovery: 17 attorneys managing ~$6M counsel spend across spreadsheets. Acquired by PE firm last quarter. Champion identified (Legal Ops Manager). BUT: IT was never in any sales meeting, source system is "some custom system" (details unclear), no prior integrations. Two team members expressed skepticism about changing spreadsheet process.
 
-**Output:** Composite score: 62/100 (Yellow — Ready with conditions). Technical (2/5 — Red) and Change Management (2/5 — Red) are critical gaps. Stakeholder (3/5) — IT Lead not identified. 3-date plan: Signing Feb 10 → Impl Start Mar 10 (4-week buffer for IT setup) → Full Service May 28 (unfamiliar system, add 3 weeks). Risks: IT availability (HIGH), change resistance (MEDIUM), unknown system format (HIGH). Recommendations: (1) AE should facilitate IT introduction before kickoff, (2) Champion needs change management support. Readiness card generated.
+**Output:** Composite score: 62/100 (Yellow, ready with conditions). Technical (2/5, red) and Change Management (2/5, red) are critical gaps. Stakeholder (3/5): IT Lead not identified. 3-date plan: Signing Feb 10 → Impl Start Mar 10 (4-week buffer for IT setup) → Full Adoption May 28 (unfamiliar system, add 3 weeks). Risks: IT availability (HIGH), change resistance (MEDIUM), unknown system format (HIGH). Recommendations: (1) AE should facilitate IT introduction before kickoff, (2) Champion needs change management support to address skepticism. Readiness card generated.
 
-### Example 3: Red Readiness — Not Ready
+### Example 3: Red Readiness: Not Ready
 
-**Context:** $45K deal closed but discovery was shallow. Champion left the company.
+**Context:** Brightwater Logistics ($780M), $45K deal closed but discovery was shallow. Champion left the company post-signature.
 
-**Input:** "Run readiness assessment for [Account]."
+**Input:** "Run readiness assessment for Brightwater Logistics."
 
-**Process:** CRM shows closed-won, $45K ARR. But: sales champion ([Manager]) left the company 2 weeks after signing. No other contacts engaged. Discovery notes are minimal — pain confirmed but not quantified. Source system unknown. No IT contact. No volume baselines.
+**Process:** CRM shows closed-won, $45K ARR, Invoice Review only. But: Deputy GC (sales champion) left the company 2 weeks after signing. No other contacts engaged during sales. Discovery notes minimal: pain confirmed ("invoices take too long") but not quantified. Source system unknown. No IT contact. No volume baselines, no current-state process mapped.
 
-**Output:** Composite score: 28/100 (Red — Not ready). Stakeholder (1/5), Workflow (2/5), Technical (1/5), Data (1/5), Resource (1/5), Change Mgmt (2/5). Recommendation: **Do not proceed to kickoff.** AE must re-engage: (1) identify new champion, (2) introduce to executive sponsor, (3) identify IT lead, (4) run abbreviated discovery to fill gaps. 3-date plan: Signing Jan 30 → Impl Start TBD (blocked until critical gaps resolved) → Full Service TBD. Readiness card generated with RED banner.
+**Output:** Composite score: 28/100 (Red, not ready). Stakeholder (1/5), Workflow (2/5), Technical (1/5), Data (1/5), Resource (1/5), Change Mgmt (2/5). Recommendation: **Do not proceed to kickoff.** AE must re-engage: (1) identify new champion, (2) introduce to executive sponsor, (3) identify IT lead, (4) run abbreviated discovery to map workflow and volume. 3-date plan: Signing Jan 30 → Impl Start TBD (blocked until critical gaps resolved) → Full Adoption TBD. Readiness card generated with red banner.
 
 ---
 
@@ -490,7 +490,7 @@ Week 1, Month 1, 90-day success criteria.
 
 ### Pattern: Champion-Led Handoff
 **When:** The sales champion IS the implementation champion (most common).
-**Approach:** Assess champion fatigue risk — they've been driving the evaluation and now need to drive implementation. Identify a backup champion. Ensure the executive sponsor is providing air cover so the champion doesn't burn out.
+**Approach:** Assess champion fatigue risk: they've been driving the evaluation and now need to drive implementation. Identify a backup champion. Ensure the executive sponsor is providing air cover so the champion doesn't burn out.
 
 ---
 
@@ -503,7 +503,7 @@ Week 1, Month 1, 90-day success criteria.
 **Solution:** This is a RED flag. Score Stakeholder as 1. Recommendation: AE must identify a new internal champion before implementation begins. Check if the departing champion provided any introductions. Consider whether the deal is still viable without the champion.
 
 ### "Customer wants to start immediately but isn't ready"
-**Solution:** Use the readiness score to have an evidence-based conversation. "Your eagerness is great — but our experience shows that [specific gap] will cause delays mid-implementation. Let's spend [X weeks] addressing [specific items] so we can go live faster with fewer surprises."
+**Solution:** Use the readiness score to have an evidence-based conversation. "Your eagerness is great: but our experience shows that [specific gap] will cause delays mid-implementation. Let's spend [X weeks] addressing [specific items] so we can go live faster with fewer surprises."
 
 ### "AE made timeline promises that don't match readiness"
 **Solution:** Document the promise in the Expectation risk category. Recommend the CS team address this at kickoff: align expectations based on actual readiness, not sales-cycle promises. Reference typical implementation timelines and similar customer experiences.
@@ -513,16 +513,16 @@ Week 1, Month 1, 90-day success criteria.
 ## Best Practices
 
 ### Do's
-- **Run this before the deal closes** (when possible) — identifying gaps early gives sales time to address them
-- **Capture volume baselines** — these become the success metrics post-implementation
-- **Introduce CS during the sales process** — the best handoffs start before the contract is signed
-- **Be honest about readiness** — a Red score that surfaces risks early is more valuable than a Green score that hides them
+- **Run this before the deal closes** (when possible): identifying gaps early gives sales time to address them
+- **Capture volume baselines**: these become the success metrics post-implementation
+- **Introduce CS during the sales process**: the best handoffs start before the contract is signed
+- **Be honest about readiness**: a Red score that surfaces risks early is more valuable than a Green score that hides them
 
 ### Don'ts
-- **Don't skip the technical assessment** — integration is the #1 cause of implementation delays
-- **Don't assume the sales champion will be the implementation champion** — verify this explicitly
-- **Don't hand off without a 3-date plan** — CS needs dates to plan resources
-- **Don't ignore change management** — team resistance derails more implementations than technical issues
+- **Don't skip the technical assessment**: integration is the #1 cause of implementation delays
+- **Don't assume the sales champion will be the implementation champion**: verify this explicitly
+- **Don't hand off without a 3-date plan**: CS needs dates to plan resources
+- **Don't ignore change management**: team resistance derails more implementations than technical issues
 
 ### Quality Checklist
 - [ ] Deal data complete (account, ARR, modules, AE, contract date)
@@ -541,27 +541,33 @@ Week 1, Month 1, 90-day success criteria.
 
 ## Integration with Other Skills
 
-- **`gtm-deal-pulse`** — Deal health signals from pulse inform readiness assessment (especially champion status and stakeholder engagement).
-- **`gtm-meddpicc-analysis`** — MEDDPICC elements (champion, economic buyer, decision criteria) map directly to stakeholder and workflow dimensions.
-- **`gtm-stakeholder-mapping`** — Org map from stakeholder mapping feeds the implementation stakeholder map with pre-existing role classifications.
-- **`gtm-meeting-prep`** — Use meeting prep for the kickoff meeting, incorporating readiness gaps as discussion topics.
-- **`gtm-call-coaching`** — Post-kickoff calls can be coached for implementation-specific methodology adherence.
+- **`gtm-deal-pulse`**: Deal health signals from pulse inform readiness assessment (especially champion status and stakeholder engagement).
+- **`gtm-meddpicc-analysis`**: MEDDPICC elements (champion, economic buyer, decision criteria) map directly to stakeholder and workflow dimensions.
+- **`gtm-stakeholder-mapping`**: Org map from stakeholder mapping feeds the implementation stakeholder map with pre-existing role classifications.
+- **`gtm-meeting-prep`**: Use meeting prep for the kickoff meeting, incorporating readiness gaps as discussion topics.
+- **`gtm-call-coaching`**: Post-kickoff calls can be coached for implementation-specific methodology adherence.
 
 ---
 
 ## Changelog
 
+### Version 1.2.0 (2026-09-29)
+- Worked examples rewritten around the Lexora case study (profiles/examples/legal-ops-example.md)
+- Em dashes removed from prose
+- Profile section names aligned with the template (Core Pain Points, Product Modules)
+- Third handoff date renamed "Full Adoption Date" (was "Full Service Date")
+
 ### Version 1.1.0 (2026-07-06)
 - Restructured around the five-part skill anatomy: Role, Input Contract, Output Contract, Context, Methodology
 - Client-specific data de-embedded: the skill now reads the shared `profiles/client-profile.md` instead of carrying a copy-in Client Profile block (one profile powers every skill)
-- Framework machinery (6 Readiness Dimensions, Stakeholder Roles taxonomy, Technical Assessment, Risk Categories, 3-Date Plan structure) moved to an explicit Methodology section — `{Methodology: X}` references
+- Framework machinery (6 Readiness Dimensions, Stakeholder Roles taxonomy, Technical Assessment, Risk Categories, 3-Date Plan structure) moved to an explicit Methodology section (`{Methodology: X}` references)
 - No functional changes to the workflow, scoring rubrics, or readiness assessment logic
 
 ### Version 1.0.0 (2026-03-04)
-- Initial release — migrated from customer readiness index
+- Initial release: migrated from customer readiness index
 - Generalized via Client Profile block with configurable defaults
 - Preserved 6-dimension readiness scoring with weighted composite (1-5 scale, 0-100 composite)
-- Preserved 3-date handoff plan (signing → impl start → full service, +2 months rule)
+- Preserved 3-date handoff plan (signing → impl start → full adoption, +2 months rule)
 - Preserved technical assessment dimensions (source system, integration, data quality)
 - Preserved implementation stakeholder role taxonomy
 - Preserved quick win types and risk categories with mitigation strategies

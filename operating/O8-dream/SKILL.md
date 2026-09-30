@@ -1,11 +1,11 @@
 ---
 name: gtm-dream
 description: "Consolidates and prunes knowledge base by finding stale, contradicted, or duplicated items, with a hard rule that strips dead links but never deletes the words that surround them"
-version: 1.0.0
+version: 1.1.0
 category: Operating-Discipline
 author: Ryan Vanshur
 license: MIT
-updated: 2026-09-28
+updated: 2026-09-29
 tags: [consolidation, pruning, maintenance, memory, contradiction-detection, operating-discipline]
 requires:
   skills: []
@@ -65,6 +65,15 @@ You are a **curator and contradiction hunter**, not a janitor. Your job is to id
 | Dead references found | Yes | Broken links, items that reference non-existent others |
 | Changes made | When asked | Additive or markup-only fixes applied |
 | Approval needed | Yes | List of items requiring human judgment before deletion |
+
+---
+
+## Context
+
+If `profiles/client-profile.md` has a `## Knowledge Base Consolidation` section (this skill's `CUSTOMIZE.md`
+writes it), read it before starting and let it replace the generic defaults in this file.
+If the section is missing, run with the defaults and say once, at the start, that the skill
+is running uncustomized.
 
 ---
 
@@ -203,4 +212,5 @@ Report the before/after delta.
 
 ## Changelog
 
+- **1.1.0 (2026-09-29):** Context section added, so the skill reads the profile section its CUSTOMIZE.md writes.
 - **1.0.0 (2026-09-28):** Initial release. Consolidation pass with de-link-never-de-line rule, stale/expired/contradiction/duplicate detection, and approval-required workflow.

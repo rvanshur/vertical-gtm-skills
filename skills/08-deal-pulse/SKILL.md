@@ -1,11 +1,11 @@
 ---
 name: gtm-deal-pulse
 description: "Scores active pipeline deals across 16 signals in 4 pillars to produce evidence-graded health assessments with risk levels and next actions"
-version: 1.1.0
+version: 1.2.0
 category: GTM-Enablement
 author: Ryan Vanshur
 license: MIT
-updated: 2026-07-06
+updated: 2026-09-29
 tags: [deal-scoring, pipeline-health, signal-scorecard, opportunity-assessment, sales-methodology]
 requires:
   skills: ["gtm-meddpicc-analysis", "gtm-meeting-prep"]
@@ -15,21 +15,21 @@ requires:
 
 ## Overview
 
-Scores active pipeline opportunities across 16 signals in 4 strategic pillars — Why Anything, Why Us, Why Now, and Execution — to produce an evidence-graded health assessment. Pulls CRM data, call transcripts, emails, and activity history to score each signal as GREEN, YELLOW, or RED with multi-sentence justifications. Computes deal health (0-100), identifies top risks, and recommends next actions mapped to the client's sales methodology.
+Scores active pipeline opportunities across 16 signals in 4 strategic pillars (Why Anything, Why Us, Why Now, and Execution) to produce an evidence-graded health assessment. Pulls CRM data, call transcripts, emails, and activity history to score each signal as GREEN, YELLOW, or RED with multi-sentence justifications. Computes deal health (0-100), identifies top risks, and recommends next actions mapped to the client's sales methodology.
 
-**Core Principle:** Score what is evidenced, not what is hoped. A gap identified early saves deals — a gap hidden kills them.
+**Core Principle:** Score what is evidenced, not what is hoped. A gap identified early saves deals; a gap hidden kills them.
 
 ---
 
 ## Role
 
-You are a **senior sales manager and deal analyst for a vertical SaaS company** — not a generic assistant. You score pipeline opportunities with evidence-grounded rigor, identifying gaps early and recommending methodology-aligned next steps. Everything company-specific — the pain taxonomy, the buyer personas, the competitive landscape — comes from the client profile (see **Context** below), so the same skill serves any vertical without modification.
+You are a **senior sales manager and deal analyst for a vertical SaaS company**, not a generic assistant. You score pipeline opportunities with evidence-grounded rigor, identifying gaps early and recommending methodology-aligned next steps. Everything company-specific (the pain taxonomy, the buyer personas, the competitive landscape) comes from the client profile (see **Context** below), so the same skill serves any vertical without modification.
 
 ---
 
 ## Input Contract
 
-What this skill needs before it starts. **If a required input is missing, ask — do not guess.**
+What this skill needs before it starts. **If a required input is missing, ask:** do not guess.
 
 | Input | Required | Notes |
 |-------|----------|-------|
@@ -44,7 +44,7 @@ What this skill needs before it starts. **If a required input is missing, ask �
 
 ## Output Contract
 
-Every run produces a **Deal Pulse Report with the same structure and sections** — so deal health can be compared across pipeline. The content changes per deal; the structure never does.
+Every run produces a **Deal Pulse Report with the same structure and sections** so deal health can be compared across pipeline. The content changes per deal; the structure never does.
 
 Core commitments: **16-signal scorecard across 4 pillars**, **health score (0-100)**, **risk level with pillar breakdown**, **top risks identified**, and **specific recommended actions for each RED signal**.
 
@@ -54,7 +54,7 @@ Core commitments: **16-signal scorecard across 4 pillars**, **health score (0-10
 
 **This skill does not contain client-specific information. It points to it.**
 
-> **Load the client profile from [`profiles/client-profile.md`](../../profiles/client-profile.md) before starting.** That single file is shared by all 14 skills in this suite — update it once and every skill inherits the change on its next run.
+> **Load the client profile from [`profiles/client-profile.md`](../../profiles/client-profile.md) before starting.** That single file is shared by all 14 skills in this suite; update it once and every skill inherits the change on its next run.
 
 Throughout this skill, `{Client Profile: X}` means "section X of `profiles/client-profile.md`". Sections this skill reads:
 
@@ -90,13 +90,13 @@ Your playbook for scoring deals. The 16-signal framework, signal rubrics, health
 | Score | Criteria |
 |-------|----------|
 | 🟢 GREEN | Pain is specific, quantified ($ or time impact), and acknowledged by the buyer with examples. Buyer has described the problem in their own words with measurable impact. |
-| 🟡 YELLOW | Pain is stated generally but not quantified, or only acknowledged by the champion — not validated by economic buyer or multiple stakeholders. |
+| 🟡 YELLOW | Pain is stated generally but not quantified, or only acknowledged by the champion (not validated by economic buyer or multiple stakeholders). |
 | 🔴 RED | No pain articulated, or pain is vague/aspirational with no business impact stated. We are projecting pain onto the buyer. |
 
 #### Signal 2: Compelling Reason to Change
 | Score | Criteria |
 |-------|----------|
-| 🟢 GREEN | Clear trigger event or deadline forcing action — contract expiration, compliance risk, M&A integration, system failure, leadership mandate, or regulatory change. |
+| 🟢 GREEN | Clear trigger event or deadline forcing action: contract expiration, compliance risk, M&A integration, system failure, leadership mandate, or regulatory change. |
 | 🟡 YELLOW | General dissatisfaction with status quo but no forcing event. Buyer acknowledges problems but has no deadline to solve them. |
 | 🔴 RED | No urgency indicators. "Looking for the future," "exploring options." Status quo is tolerable. |
 
@@ -119,7 +119,7 @@ Your playbook for scoring deals. The 16-signal framework, signal rubrics, health
 #### Signal 5: Solution Fit
 | Score | Criteria |
 |-------|----------|
-| 🟢 GREEN | Capabilities directly address identified pain. Buyer has confirmed fit — "this solves our problem." Feature requirements mapped and validated. |
+| 🟢 GREEN | Capabilities directly address identified pain. Buyer has confirmed fit ("this solves our problem"). Feature requirements mapped and validated. |
 | 🟡 YELLOW | General fit acknowledged but specific use case mapping incomplete. |
 | 🔴 RED | Significant gaps between buyer needs and capabilities, or fit hasn't been validated at all. |
 
@@ -163,7 +163,7 @@ Your playbook for scoring deals. The 16-signal framework, signal rubrics, health
 #### Signal 11: Timeline Alignment
 | Score | Criteria |
 |-------|----------|
-| 🟢 GREEN | Internal deadline confirmed — fiscal year end, contract renewal, project start, compliance deadline. Close date is buyer-validated. |
+| 🟢 GREEN | Internal deadline confirmed: fiscal year end, contract renewal, project start, compliance deadline. Close date is buyer-validated. |
 | 🟡 YELLOW | General timeline discussed but not tied to a specific internal event. Close date is rep-estimated. |
 | 🔴 RED | No timeline pressure. Close date pushed 2+ times or arbitrary. |
 
@@ -181,14 +181,14 @@ Your playbook for scoring deals. The 16-signal framework, signal rubrics, health
 |-------|----------|
 | 🟢 GREEN | Buyer responds within 24-48 hours, proactively shares information, attends all meetings, initiates contact. |
 | 🟡 YELLOW | Responsive but requires follow-up prompts. Occasional delays (3-5 days). |
-| 🔴 RED | Unresponsive — multiple unanswered emails, gone dark 2+ weeks, consistently cancels meetings. |
+| 🔴 RED | Unresponsive: multiple unanswered emails, gone dark 2+ weeks, consistently cancels meetings. |
 
 #### Signal 14: Multi-Threaded Engagement
 | Score | Criteria |
 |-------|----------|
 | 🟢 GREEN | 3+ contacts engaged across different roles or departments. Relationships at multiple org levels. |
 | 🟡 YELLOW | 2 contacts engaged but concentrated in one department or level. |
-| 🔴 RED | Single-threaded — only one contact engaged. |
+| 🔴 RED | Single-threaded: only one contact engaged. |
 
 #### Signal 15: Follow-Through on Commitments
 | Score | Criteria |
@@ -267,7 +267,7 @@ For each RED signal, recommend a specific action mapped to your sales methodolog
 
 ## Epistemic Rules
 
-- **Only score what is evidenced in CRM data.** If a signal has no supporting data, score it low — do not assume the rep has information they haven't logged.
+- **Only score what is evidenced in CRM data.** If a signal has no supporting data, score it low; do not assume the rep has information they haven't logged.
 - **Label evidence sources:** `[CRM]` for Salesforce data, `[Call Transcript]` for recorded calls, `[Email]` for email threads, `[Rep Notes]` for logged notes, `[Inferred]` for reasonable deductions, `[Unknown]` for gaps.
 - **Distinguish confirmed from claimed:** A champion who the rep *says* is selling internally (claimed) differs from one whose internal forwarding activity is visible in engagement data (confirmed).
 
@@ -281,9 +281,9 @@ Query available CRM/data sources for the account's current opportunity data:
 
 - **Opportunity name, stage, amount, close date, owner**
 - **Primary contact and role** (economic buyer, champion, end user)
-- **Account details** — industry, employee count, annual revenue, HQ location
-- **Opportunity history** — stage progression dates, amount changes, close date changes
-- **Days in current stage** — calculate from stage change date to today
+- **Account details:** industry, employee count, annual revenue, HQ location
+- **Opportunity history:** stage progression dates, amount changes, close date changes
+- **Days in current stage:** calculate from stage change date to today
 
 Organize deal context into a structured summary:
 
@@ -303,11 +303,11 @@ If close date has been pushed more than twice, flag this as a pattern for scorin
 
 Query CRM for all available interaction intelligence:
 
-- **Call transcripts** — recorded calls with key quotes and topics
-- **Email threads** — sequences, direct exchanges, reply patterns
-- **Meeting history** — scheduled and completed with attendees
-- **Tasks and notes** — activity log, rep notes, next steps
-- **Contact engagement map** — all contacts touched, roles, recency
+- **Call transcripts:** recorded calls with key quotes and topics
+- **Email threads:** sequences, direct exchanges, reply patterns
+- **Meeting history:** scheduled and completed with attendees
+- **Tasks and notes:** activity log, rep notes, next steps
+- **Contact engagement map:** all contacts touched, roles, recency
 
 Organize chronologically with emphasis on the most recent 90 days. Count:
 
@@ -315,7 +315,7 @@ Organize chronologically with emphasis on the most recent 90 days. Count:
 - Total interactions in last 90 days: [N]
 - Unique contacts engaged: [N]
 - Departments represented: [list]
-- Most recent interaction: [date] — [type] — [summary]
+- Most recent interaction: [date] | [type] | [summary]
 
 ---
 
@@ -376,17 +376,17 @@ Present the complete report:
 
 **Header:**
 ```
-# Deal Pulse Report — [Account Name]
+# Deal Pulse Report: [Account Name]
 
 **Scored:** [today's date] | **Health:** [score]/100 | **Risk:** [level with emoji]
 **Opportunity:** [stage] | **Amount:** $[amount] | **Close:** [date] | **Owner:** [rep]
 **Primary Contact:** [name, title] | **Deal Age:** [N days] | **Days in Stage:** [N]
 ```
 
-**Signal Scorecard** — 4 pillar tables, each showing:
+**Signal Scorecard:** 4 pillar tables, each showing:
 
 ```
-## [Pillar Emoji] [Pillar Name] — Pillar Score: [X]/100
+## [Pillar Emoji] [Pillar Name]: Pillar Score [X]/100
 
 | Signal | Score | Justification |
 |--------|-------|---------------|
@@ -412,18 +412,18 @@ After delivering the inline analysis, generate a formatted report document.
 
 ### Output Options
 
-- **Option A: Markdown** (default) — Write to `[ACCOUNT]_Deal_Pulse.md` via Write tool
-- **Option B: HTML** — Styled single-page report with inline CSS, optimized for print-to-PDF
-- **Option C: PDF** — Python + reportlab for users who want direct PDF output
+- **Option A: Markdown** (default): Write to `[ACCOUNT]_Deal_Pulse.md` via Write tool
+- **Option B: HTML:** Styled single-page report with inline CSS, optimized for print-to-PDF
+- **Option C: PDF:** Python + reportlab for users who want direct PDF output
 
 ### Document Sections
 
-1. **Cover/Header** — Account name, pulse date, health score (large), risk level badge, deal summary
-2. **Signal Scorecard** — 4-column layout (one per pillar), each showing 4 signals with color-coded score dots and abbreviated justifications
-3. **Health Dashboard** — Health score visualization, pillar emoji string, pillar-level scores
-4. **Risk & Action Plan** — Top risks (from RED signals) and recommended next actions
-5. **Evidence Summary** — Intelligence quality rating, interaction volume, most recent activity, source breakdown
-6. **Footer** — "Generated by [Client] Sales Intelligence | [Date]"
+1. **Cover/Header:** Account name, pulse date, health score (large), risk level badge, deal summary
+2. **Signal Scorecard:** 4-column layout (one per pillar), each showing 4 signals with color-coded score dots and abbreviated justifications
+3. **Health Dashboard:** Health score visualization, pillar emoji string, pillar-level scores
+4. **Risk & Action Plan:** Top risks (from RED signals) and recommended next actions
+5. **Evidence Summary:** Intelligence quality rating, interaction volume, most recent activity, source breakdown
+6. **Footer:** "Generated by [Client] Sales Intelligence | [Date]"
 
 ### Styling Guidance
 
@@ -437,43 +437,43 @@ After delivering the inline analysis, generate a formatted report document.
 
 ## Examples
 
-### Example 1: Strong Deal with One Weak Pillar
+### Example 1: Enterprise Legal-Ops Deal with Lexora
 
-**Context:** Enterprise account, $180K ARR opportunity at Proposal stage, 45 days old.
+**Context:** Corvane Industrial, $3.2B manufacturer, $180K ARR opportunity at Proposal stage, 45 days old. Flagship enterprise engagement.
 
-**Input:** "Run the deal pulse for [Account]'s open opportunity."
+**Input:** "Run the deal pulse for Corvane Industrial."
 
 **Process:**
-1. Pull deal data: $180K, Proposal stage, 45 days, owned by senior AE
-2. Pull activity: 14 interactions in 90 days, 4 unique contacts, last contact 3 days ago
-3. Score Why Anything: 🟢🟢🟡🟢 (Pillar: 88) — strong pain, trigger event, good champion, strategic alignment partial
-4. Score Why Us: 🟢🟢🟢🟢 (Pillar: 100) — strong fit across all signals
-5. Score Why Now: 🟡🟡🟢🔴 (Pillar: 50) — budget developing, process partially mapped, strong timeline, procurement unknown
-6. Score Execution: 🟢🟢🟡🟢 (Pillar: 88) — responsive, multi-threaded, some commitments slipping, good progression
-7. Health: 81/100, Medium Risk (pillar weakness bump from Why Now at 50)
-8. Top risk: Procurement Awareness at RED — potential surprise delays
+1. Pull deal data: $180K ARR, Proposal stage, 45 days, owned by Priya Nair (AE). Close target: end of month.
+2. Pull activity: 14 interactions in 90 days (discovery, 3 demos, procurement kickoff). 4 unique contacts: Dana Whitfield (GC), Sam Okafor (Head of Legal Ops, champion), VP Finance, Procurement Manager. Last contact 3 days ago (contract terms discussion).
+3. Score Why Anything: 🟢🟢🟡🟢 (Pillar: 88). counsel spend pain quantified ($14M/year), trigger confirmed (60+ outside firms post-M&A fragmentation), champion strong (Sam actively selling internally), strategic alignment partial (legal cost reduction on GC's board agenda but not company-wide OKR yet).
+4. Score Why Us: 🟢🟢🟢🟢 (Pillar: 100). Lexora solves spend visibility and matter tracking (their two top pains), no Competitor X displacement needed (on legacy e-billing), technical review completed.
+5. Score Why Now: 🟡🟡🟢🔴 (Pillar: 50). budget approved by VP Finance for Q4 implementation, decision process partially mapped, close timeline strong (fiscal year end), procurement requirements unknown.
+6. Score Execution: 🟢🟢🟡🟢 (Pillar: 88). contacts responsive (24-48 hours), multi-threaded across 4 stakeholders, some internal delays (procurement slower than forecast), meeting progression strong (GC joined after discovery).
+7. Health: 81/100, Medium Risk (Why Now pillar weakness bump at 50).
+8. Top risk: Procurement Awareness RED. legal review and vendor onboarding timeline not scoped. Potential surprise 30-60 day slip.
 
-**Output:** Full 16-signal scorecard with justifications, emoji string 🟢🟢🟡🟢, action plan focused on procurement discovery.
+**Output:** Full 16-signal scorecard. Action plan: (1) Procurement discovery call with VP Finance + Legal; (2) contract terms finalized within 3 days; (3) implementation plan drafted for legal review.
 
 ---
 
-### Example 2: At-Risk Deal Needing Intervention
+### Example 2: At-Risk Deal Needing Intervention, Lexora
 
-**Context:** Mid-market account, $65K opportunity stalled at Discovery for 60 days.
+**Context:** Ardent Insurance Group, $1.1B carrier, $65K ARR opportunity stalled at Discovery for 60 days. Managing outside counsel in spreadsheets, $6M annual spend.
 
-**Input:** "Score the opportunity health for [Account]."
+**Input:** "Score the opportunity health for Ardent Insurance Group."
 
 **Process:**
-1. Pull deal data: $65K, Discovery stage, 60 days (stalled), single-threaded
-2. Pull activity: 3 interactions in 90 days, last contact 28 days ago
-3. Score Why Anything: 🟡🔴🔴🔴 (Pillar: 13) — pain acknowledged not quantified, no trigger, no strategic link, no champion
-4. Score Why Us: 🟡🔴🔴🟡 (Pillar: 25) — general fit, no tech engagement, competitor unknown, no demo
-5. Score Why Now: 🔴🔴🔴🔴 (Pillar: 0) — no budget, no process, no timeline, no procurement
-6. Score Execution: 🔴🔴🔴🔴 (Pillar: 0) — dark 28 days, single-threaded, missed commitments, no progression
-7. Health: 10/100, High Risk (zombie deal pattern)
-8. Recommendation: Either re-engage with breakup email or disqualify
+1. Pull deal data: $65K ARR, Discovery stage, 60 days stalled. Single contact: BDR-discovered Compliance Officer. No GC or Head of Legal Ops engagement.
+2. Pull activity: 3 interactions in 90 days, last contact 28 days ago (email unanswered). No follow-up. Account shows recent PE acquisition signal but no internal urgency captured.
+3. Score Why Anything: 🟡🔴🔴🔴 (Pillar: 13). pain acknowledged (spending too much on counsel, hard to track across firms) but not quantified, no trigger event confirmed (PE acquisition happened but legal integration not surfaced), no champion identified (compliance officer alone cannot evangelize), no strategic link documented.
+4. Score Why Us: 🟡🔴🔴🟡 (Pillar: 25). general fit acknowledged (spend pain matches Lexora), no technical stakeholder engaged (IT unknown), competitor LedgerLine Audit not discussed, no demo conducted.
+5. Score Why Now: 🔴🔴🔴🔴 (Pillar: 0). no budget identified, decision process unknown ("I'll float it to legal"), no timeline (PE integration timeline not discussed), procurement process unknown.
+6. Score Execution: 🔴🔴🔴🔴 (Pillar: 0). dark 28 days (Compliance Officer radio silence), single-threaded (only Compliance Officer), no follow-through (agreed to "follow up with GC" three weeks ago, never happened), no progression.
+7. Health: 10/100, High Risk (zombie deal pattern).
+8. Recommendation: Disqualify or re-engage with breakup email targeting Head of Legal Ops directly using PE acquisition as hook.
 
-**Output:** Full scorecard showing catastrophic weakness across 3 pillars, recommended disqualification or re-engagement.
+**Output:** Full scorecard showing catastrophic weakness across all 4 pillars, recommended disqualification if re-engagement fails within 2 weeks.
 
 ---
 
@@ -493,7 +493,7 @@ After delivering the inline analysis, generate a formatted report document.
 
 **Approach:**
 - Score what you can evidence
-- Mark data-sparse signals as RED with justification: "Insufficient data to score — no [type] available"
+- Mark data-sparse signals as RED with justification: "Insufficient data to score (no [type] available)"
 - Add "Data Enrichment Priority" section listing what information would change scores
 - Intelligence quality rating: "Limited" or "Stale"
 
@@ -515,7 +515,7 @@ After delivering the inline analysis, generate a formatted report document.
 
 ### "Close date keeps changing but the deal is still active"
 
-**Cause:** Close date has been pushed multiple times — a key risk indicator.
+**Cause:** Close date has been pushed multiple times. This is a key risk indicator.
 
 **Solution:** Flag the close date slip pattern explicitly. Timeline Alignment is automatically YELLOW at best. Recommend the AE validate the close date with the buyer: "Is [date] still realistic, or should we reset expectations?"
 
@@ -524,27 +524,27 @@ After delivering the inline analysis, generate a formatted report document.
 ## Best Practices
 
 ### Do's
-- **Score on evidence, not intuition** — if it's not in CRM, it didn't happen
-- **Cite specific dates and interactions** — "3/1 call with VP Credit" not "recent conversation"
-- **Use the pillar weakness bump** — catches deals hiding catastrophic gaps behind healthy averages
-- **Compare to stage-appropriate expectations** — a Discovery deal shouldn't be scored on procurement
+- **Score on evidence, not intuition.** If it's not in CRM, it didn't happen.
+- **Cite specific dates and interactions.** Use "3/1 call with VP Credit," not "recent conversation."
+- **Use the pillar weakness bump.** It catches deals hiding catastrophic gaps behind healthy averages.
+- **Compare to stage-appropriate expectations.** A Discovery deal shouldn't be scored on procurement.
 
 ### Don'ts
-- **Don't inflate scores to avoid hard conversations** — honest scoring protects deals
-- **Don't combine signals** — all 16 must be scored independently
-- **Don't score based on company profile alone** — "they're a great fit" isn't evidence of deal health
-- **Don't skip the recommended actions** — every RED signal needs a specific next step
+- **Don't inflate scores to avoid hard conversations.** Honest scoring protects deals.
+- **Don't combine signals.** All 16 must be scored independently.
+- **Don't score based on company profile alone.** "They're a great fit" isn't evidence of deal health.
+- **Don't skip the recommended actions.** Every RED signal needs a specific next step.
 
 ### Quality Checklist
 
 Before delivering the report:
-- [ ] All 16 signals scored — no signals skipped or combined
+- [ ] All 16 signals scored; no signals skipped or combined
 - [ ] Every signal has a 2-3 sentence justification citing specific evidence
 - [ ] Health score math is correct (average of all 16 numeric values)
 - [ ] Pillar scores computed correctly (average of each group of 4)
 - [ ] Risk level assigned with pillar weakness bump applied
 - [ ] Every RED signal has a specific recommended action
-- [ ] Evidence sources tagged on justifications — no unattributed claims
+- [ ] Evidence sources tagged on justifications; no unattributed claims
 - [ ] No generic placeholders remain in output
 
 ---
@@ -553,10 +553,10 @@ Before delivering the report:
 
 ### Works Well With
 
-- **`gtm-meddpicc-analysis`** — Pulse gives the 30,000-foot health view; MEDDPICC provides deep-dive element scoring. Run Pulse first, then MEDDPICC on deals flagged as Medium or High Risk.
-- **`gtm-meeting-prep`** — After Pulse identifies gaps, use Meeting Prep to plan the next call around filling those gaps.
-- **`gtm-call-coaching`** — After a call, run Call Coaching to score execution, then re-Pulse the deal to see if signals improved.
-- **`gtm-competitive-strategy`** — When Competitive Landscape scores RED, run Competitive Strategy to build a displacement plan.
+- **`gtm-meddpicc-analysis`:** Pulse gives the 30,000-foot health view; MEDDPICC provides deep-dive element scoring. Run Pulse first, then MEDDPICC on deals flagged as Medium or High Risk.
+- **`gtm-meeting-prep`:** After Pulse identifies gaps, use Meeting Prep to plan the next call around filling those gaps.
+- **`gtm-call-coaching`:** After a call, run Call Coaching to score execution, then re-Pulse the deal to see if signals improved.
+- **`gtm-competitive-strategy`:** When Competitive Landscape scores RED, run Competitive Strategy to build a displacement plan.
 
 ### Workflow Example
 
@@ -572,10 +572,14 @@ Before delivering the report:
 
 ## Changelog
 
+### Version 1.2.0 (2026-09-29)
+- Worked examples rewritten around the Lexora case study (profiles/examples/legal-ops-example.md)
+- Em dashes removed from prose
+
 ### Version 1.1.0 (2026-07-06)
 - Restructured around the five-part skill anatomy: Role, Input Contract, Output Contract, Methodology, Context
 - Client-specific data de-embedded: the skill now reads the shared `profiles/client-profile.md` instead of carrying a copy-in Client Profile block (one profile powers every skill)
-- Signal scoring methodology (all 16 signals + 4 pillars, GREEN/YELLOW/RED rubrics, health calculation, risk assignment, recommended actions) moved to an explicit Methodology section — `{Methodology: X}` references
+- Signal scoring methodology (all 16 signals, 4 pillars, GREEN/YELLOW/RED rubrics, health calculation, risk assignment, recommended actions) moved to an explicit Methodology section, `{Methodology: X}` references
 - No functional changes to the workflow, scoring logic, examples, or output formats
 
 ### Version 1.0.0 (2026-03-04)

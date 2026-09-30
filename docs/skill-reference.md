@@ -140,29 +140,43 @@ Closed-Loss Reactivation (05) [batch: all losses from 6-12 months ago]
 
 ## Scoring Systems Reference
 
+These figures are taken from the skill files. If you change a skill's scoring, change this section with it.
+
 ### Deal Pulse (Skill 08)
-- **Scale:** 0-100 health score
-- **Pillars:** Why Anything (macro need), Why Us (differentiation), Why Now (urgency), Execution (process mechanics)
-- **Signals per pillar:** 4 (16 total)
-- **Each signal:** GREEN (strong evidence) / YELLOW (partial) / RED (missing/negative)
-- **Interpretation:** 80+ = strong deal, 60-79 = needs attention, 40-59 = at risk, <40 = likely loss
+- **Scale:** 0-100 health score, the average of 16 signal values
+- **Pillars:** Why Anything (macro need), Why Us (differentiation), Why Now (urgency), Execution (process mechanics), 4 signals each
+- **Each signal:** GREEN (100, strong evidence) / YELLOW (50, partial) / RED (0, missing or negative)
+- **Risk bands:** 85-100 Low Risk, 46-84 Medium Risk, 0-45 High Risk. Any pillar averaging below 30 bumps the risk up one level
 
 ### MEDDPICC (Skill 09)
-- **Scale:** 1-5 per element (8 elements)
-- **Evidence grades:** VERIFIED (direct evidence) / INFERRED (indirect signals) / UNVERIFIED (assumption)
-- **Max score:** 40
-- **Interpretation:** 32+ = well-qualified, 24-31 = gaps to address, <24 = qualification risk
+- **Scale:** each of the 8 elements scored 1-5, weighted into a 0-100 health score
+- **Weights:** Economic Buyer 20%, Metrics 15%, Identified Pain 15%, Champion 15%, Decision Criteria 10%, Decision Process 10%, Paper Process 10%, Competition 5%
+- **Bands:** 80-100 Green, 60-79 Yellow, 40-59 Orange, 0-39 Red
+- **Stage minimums:** Discovery 30+, Trial & Evaluation 50+, Negotiation 65+, Closing 75+, each with critical elements that must score 3 or better
 
 ### Call Coaching (Skill 13)
-- **Discovery (SPIN):** 6 categories, /30 total
-- **Demo (Challenger):** 8 categories, /40 total
-- **Per-category:** Specific behavioral criteria with evidence
-- **Interpretation:** 80%+ = strong execution, 60-79% = coaching opportunity, <60% = structural gaps
+- **Discovery (SPIN + Priority Path):** 6 categories, /30. 26-30 Excellent, 20-25 Good, 14-19 Needs Improvement, 8-13 Poor, 6-7 Critical
+- **Demo (Challenger + MEDDPICC + Interrogate the Problem):** 8 categories, /40. 34-40 Excellent, 26-33 Good, 18-25 Needs Improvement, 10-17 Poor, 8-9 Critical
+- **Per category:** specific behavioral criteria, with evidence from the transcript
 
 ### Account Pre-Qualification (Skill 01)
-- **Scale:** 8 weighted criteria, each scored
-- **Verdict:** GREENLIGHT / MANUAL REVIEW / DISQUALIFY
-- **Includes:** Trigger detection, risk flags, fit narrative
+- **Scale:** 8 criteria, each scored STRONG / PARTIAL / WEAK / UNKNOWN, plus Qualification Zones
+- **Verdict:** GREENLIGHT (6+ of 8 STRONG or PARTIAL, 2+ zones HIGH, no critical risk) / MANUAL REVIEW (4-5 of 8, data gaps) / DISQUALIFY
+- **Includes:** trigger detection, risk flags, fit narrative
+
+---
+
+## The Operating Layer
+
+The 15 skills in `operating/` are not stage-specific. They run around the sales work. Which one
+to use, what each reads from the profile, and the order to set them up in are in
+[How It Fits Together](how-it-fits.md). In short:
+
+| Group | Skills | Reach for them when |
+|---|---|---|
+| Verification | O1 Verify, O2 Debug, O3 Debate, O4 Context Gap, O5 Second Opinion | Before building, before deciding, while fixing, and before calling anything done |
+| Memory | O6 Weekly Review, O7 Graph Health, O8 Dream, O9 Ingest, O10 Wrap-up, O11 Context OS Setup | You want the team's knowledge to compound instead of scattering. Run O11 first |
+| Strategy | O12 Engine, O13 Launch, O14 Positioning, O15 Discovery | The profile is thin, or the market has moved. They fill the profile with evidence |
 
 ---
 

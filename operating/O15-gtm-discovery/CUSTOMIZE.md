@@ -4,7 +4,9 @@ A paste-in prompt that adapts this skill to your market and stage.
 
 Works in **Claude Code**, **Claude.ai Projects**, or **OpenAI Codex**, all three read the same `SKILL.md` format. Open the assistant, paste the block below, and answer its questions one at a time.
 
-> This is a per-skill companion. For customizing the whole suite at once, see the README at `verticalgtmguild.com/skills`.
+> This is a per-skill companion. For customizing the whole suite at once, see
+> [`docs/customization.md`](../../docs/customization.md) and
+> [`profiles/client-profile-template.md`](../../profiles/client-profile-template.md).
 
 ---
 
@@ -61,7 +63,7 @@ Before running discovery, answer these once:
 ```markdown
 ## About Your Market
 
-- **Vertical:** [Construction, property management, education, healthcare, etc.]
+- **Vertical:** [Legal operations, property management, education, healthcare, etc.]
 - **Target Customer Role:** [VP Sales, CFO, Operations Manager, etc.]
 - **Estimated Market Size:** [Number of addressable companies]
 - **Your Current Revenue:** [Zero, <$100K ARR, $100K-1M, etc.]
@@ -83,7 +85,7 @@ Before running discovery, answer these once:
 
 ## If you are stuck on any question
 
-- **Question 1 stalls:** You do not yet have a clear product or customer. Start with `/gtm-discovery` module 3 (Problem Space). Let the customer's problems define who they are, rather than your guess about who they are.
+- **Question 1 stalls:** You do not yet have a clear product or customer. Start with module 3 (Problem Space) of this skill. Let the customer's problems define who they are, rather than your guess about who they are.
 - **Question 3 stalls:** You have not talked to customers yet. Stop here. Do not run the other modules. Go talk to 3-5 people in your target market. Come back when you have one surprising conversation.
 - **Question 4 stalls:** You believe everything about your customer equally, or you do not know what you do not know. That is normal. Run module 7 (Assumption Mapping) first. It forces assumptions onto the table.
 - **Question 5 stalls:** Be honest about time. A thorough discovery takes 2-4 weeks if you have customer access, 3-4 weeks if you do not. A quick diagnostic takes 4-6 hours. Underfunding discovery is how founders end up with the wrong customer hypothesis.
@@ -99,7 +101,6 @@ After running discovery, you should know:
 - What segment you are entering first (narrow beachhead)
 - Which of your assumptions are still untested
 
-When you have that, you are ready for `/gtm-positioning`. It takes your discovery findings (customer, problem, competition) and builds a defensible market position from them.
+When you have that, you are ready for GTM Positioning (`operating/O14-gtm-positioning`). It takes your discovery findings (customer, problem, competition) and builds a defensible market position from them.
 
 If you skip to positioning without discovery, your position will be built on guesses instead of evidence. That always shows.
-```

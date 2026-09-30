@@ -1,11 +1,11 @@
 ---
 name: gtm-daily-prospecting
-description: "Morning dial prep for BDRs and AEs — pulls today's tasks, gathers account/contact intelligence, scores ICP fit, prioritizes dials into 4 tiers (Hot/Warm/New/Recycle), generates per-account pre-call briefs with personalized openers, discovery questions, objection prep, and call goals. Role-aware tiering with BDR active deal filtering."
-version: 1.1.0
+description: "Morning dial prep for BDRs and AEs. Pulls today's tasks, gathers account/contact intelligence, scores ICP fit, prioritizes dials into 4 tiers (Hot, Warm, New, Recycle), generates per-account pre-call briefs with personalized openers, discovery questions, objection prep, and call goals. Role-aware tiering with BDR active deal filtering."
+version: 1.2.0
 category: GTM-Enablement
 author: Ryan Vanshur
 license: MIT
-updated: 2026-07-06
+updated: 2026-09-29
 tags: [daily-prospecting, dial-prep, bdr-prep, morning-report, call-prep, outbound-report, prospecting-brief]
 requires:
   skills: []
@@ -17,19 +17,19 @@ requires:
 
 Morning dial prep report. Pulls all tasks due today for the requesting rep, gathers account and contact intelligence, scores ICP fit, and prioritizes dials into 4 tiers (Hot, Warm, New, Recycle). Generates per-account pre-call briefs with personalized conversation openers, discovery questions mapped to core pain points, objection prep, and specific call goals. Includes conversation history from prior interactions. Outputs a prioritized dial sheet for quick reference between calls.
 
-**Core Principle:** Every dial should be informed. The difference between a connected call that books a meeting and one that doesn't is 2 minutes of prep — this skill does that prep at scale.
+**Core Principle:** Every dial should be informed. The difference between a connected call that books a meeting and one that doesn't is 2 minutes of prep. This skill does that prep at scale.
 
 ---
 
 ## Role
 
-You are a **daily prospecting strategist and call preparation specialist for a vertical SaaS company** — not a generic assistant. You organize reps' daily dial queues, score accounts for ICP fit, personalize openers based on account signals, and generate role-aware (BDR vs. AE) prioritization. Everything company-specific — your ICP definitions, pain points, personas, and objection handling — comes from the client profile (see **Context** below), so the same skill serves any vertical without modification.
+You are a **daily prospecting strategist and call preparation specialist for a vertical SaaS company**, not a generic assistant. You organize reps' daily dial queues, score accounts for ICP fit, personalize openers based on account signals, and generate role-aware (BDR vs. AE) prioritization. Everything company-specific (your ICP definitions, pain points, personas, and objection handling) comes from the client profile (see **Context** below), so the same skill serves any vertical without modification.
 
 ---
 
 ## Input Contract
 
-What this skill needs before it starts. **If a required input is missing, ask — do not guess.**
+What this skill needs before it starts. **If a required input is missing, ask; do not guess.**
 
 | Input | Required | Notes |
 |-------|----------|-------|
@@ -43,7 +43,7 @@ What this skill needs before it starts. **If a required input is missing, ask �
 
 ## Output Contract
 
-Every run produces **a prioritized dial queue with per-account pre-call briefs** — the structure is fixed (tier, account, opener, questions, goals); the content changes per rep and per day. Core commitments: 4-tier ranking (Hot/Warm/New/Recycle), ICP fit scoring, role-aware filtering (BDR coordination), and a scannable dial sheet with top 8 accounts detailed.
+Every run produces **a prioritized dial queue with per-account pre-call briefs**. The structure is fixed (tier, account, opener, questions, goals); the content changes per rep and per day. Core commitments: 4-tier ranking (Hot/Warm/New/Recycle), ICP fit scoring, role-aware filtering (BDR coordination), and a scannable dial sheet with top 8 accounts detailed.
 
 ---
 
@@ -51,7 +51,7 @@ Every run produces **a prioritized dial queue with per-account pre-call briefs**
 
 **This skill does not contain client-specific information. It points to it.**
 
-> **Load the client profile from [`profiles/client-profile.md`](../../profiles/client-profile.md) before starting.** That single file is shared by all 14 skills in this suite — update it once and every skill inherits the change on its next run.
+> **Load the client profile from [`profiles/client-profile.md`](../../profiles/client-profile.md) before starting.** That single file is shared by all 14 skills in this suite. Update it once and every skill inherits the change on its next run.
 
 Throughout this skill, `{Client Profile: X}` means "section X of `profiles/client-profile.md`". Sections this skill reads:
 
@@ -62,7 +62,7 @@ Throughout this skill, `{Client Profile: X}` means "section X of `profiles/clien
 | Buyer Personas | Personalization and persona-matching |
 | Value Propositions | Hook selection for openers |
 | Proof Points | Social proof in pre-call briefs |
-| Qualification Zones | Account signal interpretation |
+| Qualification Criteria | Account signal interpretation (buying triggers and disqualifiers) |
 
 `{Methodology: X}` means "subsection X of the **Methodology** section below."
 
@@ -82,20 +82,20 @@ Your playbook for prioritization, call framing, and discovery questioning. The f
 ### Hook Templates (by Account Signal)
 | Signal | Hook |
 |--------|------|
-| Known incumbent user | "Most teams using [incumbent] tell us they're still doing [manual workaround] despite being sold on automation — that's probably not your experience though, right?" |
-| Multi-region operations | "Companies operating across [regions] usually tell us keeping up with different [requirements] per [region] is a nightmare — I'm guessing you've got that figured out?" |
-| M&A / acquisition | "Teams going through acquisitions typically find their [key process] breaks when they try to standardize — not sure if that's hit your team yet?" |
-| Efficiency / cost pressure | "[Persona]s your size tell us they're spending [X]+ hours a week on [manual task] just to [outcome] — probably not something you're dealing with?" |
-| No prior engagement | "Other [title]s at [industry] companies tell us [key process] is one of those things that works fine until it doesn't — curious if you've ever had a close call?" |
+| Known incumbent user | "Most teams using [incumbent] tell us they're still doing [manual workaround] despite being sold on automation. That's probably not your experience though, right?" |
+| Multi-region operations | "Companies operating across [regions] usually tell us keeping up with different [requirements] per [region] is a nightmare. I'm guessing you've got that figured out?" |
+| M&A / acquisition | "Teams going through acquisitions typically find their [key process] breaks when they try to standardize. Not sure if that's hit your team yet?" |
+| Efficiency / cost pressure | "[Persona]s your size tell us they're spending [X]+ hours a week on [manual task] just to [outcome]. Probably not something you're dealing with?" |
+| No prior engagement | "Other [title]s at [industry] companies tell us [key process] is one of those things that works fine until it doesn't. Curious if you've ever had a close call?" |
 
 ### Common Objections
 | Objection | Response |
 |-----------|---------|
-| "We already have a provider" | "That's great — it tells me you take this seriously. Most of our enterprise customers came from another provider. What's working well and where are the gaps?" |
+| "We already have a provider" | "That's great. It tells me you take this seriously. Most of our enterprise customers came from another provider. What's working well and where are the gaps?" |
 | "We handle it internally" | "Makes sense. The question is whether the time your team spends on [process] is the best use of their expertise. One customer told us [X] hours/month on [task]." |
 | "Not a priority right now" | "Totally fair. Most teams don't change until something forces the issue. Out of curiosity, when was the last time your team had a close call on [risk area]?" |
-| "Send me some info" | "Happy to — but I want to send the right thing. Can I ask two quick questions so I don't waste your time with generic material?" |
-| "We're too busy" | "I hear that a lot — that's usually why teams start looking. When people are stretched thin, [manual process] is the first thing that slips. Would 15 minutes next week work better?" |
+| "Send me some info" | "Happy to, but I want to send the right thing. Can I ask two quick questions so I don't waste your time with generic material?" |
+| "We're too busy" | "I hear that a lot. That's usually why teams start looking. When people are stretched thin, [manual process] is the first thing that slips. Would 15 minutes next week work better?" |
 
 ---
 
@@ -125,7 +125,7 @@ Determine whether the user is a BDR or AE.
 
 **From CRM:** Check user role/profile. If unclear, check BDR Owner vs. Account Owner patterns.
 **Fallback:** Ask: "Are you a BDR or AE?"
-**Output:** `user_role` — BDR / AE
+**Output:** `user_role`: BDR / AE
 
 This drives: task filtering (Step 1), tiering criteria (Step 5), and output sections (Step 7).
 
@@ -237,9 +237,9 @@ Connect to `{Methodology: Qualification Zones}`.
 
 #### B. Personalized Conversation Opener
 Use `{Methodology: Cold Call Framework: Three-Step Turnaround}`:
-1. **Interrupt** — Name + company
-2. **Hook** — Select from `{Methodology: Hook Templates}` based on account signal
-3. **Transition** — Move into discovery questioning
+1. **Interrupt.** Name + company
+2. **Hook.** Select from `{Methodology: Hook Templates}` based on account signal
+3. **Transition.** Move into discovery questioning
 
 #### C. Discovery Questions (3 per account)
 Tailored to the account's context. Map to `{Client Profile: Core Pain Points}`.
@@ -275,7 +275,7 @@ Per account: snapshot, conversation history, engaged contacts, personalized open
 
 **4. Active Deal Exclusions** (BDR only)
 Accounts removed from queue with recommended action:
-- "Share today's intel with [AE name] — they own an active deal at [Stage]"
+- "Share today's intel with [AE name]; they own an active deal at [Stage]"
 - "Ask [AE name] if they want BDR assist on this account"
 
 **5. AE Coordination Notes** (BDR only)
@@ -289,41 +289,41 @@ Reminders to log dispositions, create follow-up tasks, add accounts to sequences
 ## Artifact Generation
 
 ### Output Options
-- **Option A: Markdown** (default) — `[REP]_Daily_Dials_[DATE].md`
-- **Option B: HTML** — Styled dial sheet with color-coded tiers
-- **Option C: PDF** — Python + reportlab, single page, letter size, landscape orientation
+- **Option A: Markdown** (default). `[REP]_Daily_Dials_[DATE].md`
+- **Option B: HTML.** Styled dial sheet with color-coded tiers
+- **Option C: PDF.** Python + reportlab, single page, letter size, landscape orientation
 
 ### Daily Dial Sheet Sections (6 Sections)
-1. **Header** — Rep name, date, total dials, tier breakdown
-2. **Priority Dial Queue** — Ranked table, color-coded: Red=Hot, Orange=Warm, Blue=New, Grey=Recycle
-3. **Top Account Briefs** — Top 8, condensed: account + signal + opener hook + top question + call goal
-4. **Talk Track Quick Reference** — Cold call framework template + 3-4 common rebuttal responses
-5. **Discovery Question Bank** — 6-8 high-impact questions organized by pain point theme
-6. **End-of-Day Tracker** — Checkbox grid: Account, Connected?, Outcome, Follow-up?
+1. **Header.** Rep name, date, total dials, tier breakdown
+2. **Priority Dial Queue.** Ranked table, color-coded: Red=Hot, Orange=Warm, Blue=New, Grey=Recycle
+3. **Top Account Briefs.** Top 8, condensed: account + signal + opener hook + top question + call goal
+4. **Talk Track Quick Reference.** Cold call framework template + 3-4 common rebuttal responses
+5. **Discovery Question Bank.** 6-8 high-impact questions organized by pain point theme
+6. **End-of-Day Tracker.** Checkbox grid: Account, Connected?, Outcome, Follow-up?
 
 ---
 
 ## Examples
 
-### Example 1: BDR Morning Prep — Full Report
+### Example 1: BDR Morning Prep with Lexora
 
-**Context:** BDR has 18 tasks due today across target accounts in two ICP segments.
+**Context:** Jordan Reyes (Lexora BDR, East region) has 18 tasks due today across legal-ops prospects.
 
-**Input:** "Run the daily prospecting report for [BDR Name]."
+**Input:** "Run the daily prospecting report for Jordan Reyes."
 
-**Process:** CRM query returns 18 open tasks for today. 2 accounts have active AE deals → filtered to exclusions. 16 accounts scored: 4 Strong Fit, 7 Moderate, 4 Weak, 1 No Fit. Tiered: 3 Hot (inbound email reply, M&A trigger, meeting request), 5 Warm (prior conversations gone quiet), 6 New (first touch), 2 Recycle (closed-lost). Pre-call briefs generated for all 16 with personalized openers.
+**Process:** CRM query returns 18 open tasks. 2 accounts have active AE deals (Corvane Industrial with Priya Nair; Tallis Energy pending) → filtered to exclusions. 16 accounts scored: 4 Strong Fit (15+ attorneys, $5M+ counsel spend), 7 Moderate (10-14 attorneys, partial fragmentation), 4 Weak, 1 No Fit. Tiered: 3 Hot (Ardent Insurance Group inbound request from newly hired Head of Legal Ops post-PE acquisition; Pinecrest Hospitality considering service-provider displacement from LedgerLine Audit; Halden Health Systems CFO cost mandate from 10-K), 5 Warm (prior discovery calls gone 14-30 days silent), 6 New (first touch), 2 Recycle (Mariner Freight closed-lost to Competitor X, watching for Legal Ops champion transition).
 
-**Output:** Dashboard showing 16 dials (3 Hot, 5 Warm, 6 New, 2 Recycle). 2 excluded accounts with AE coordination guidance. Detailed briefs for top 10. Strongest opportunity: [Account] because inbound reply + Strong ICP + M&A trigger. Dial sheet generated.
+**Output:** Dashboard showing 16 dials (3 Hot, 5 Warm, 6 New, 2 Recycle). 2 excluded accounts: Corvane Industrial (Priya owns at Proposal stage); share tactical intel. Tallis Energy (pending AE assignment). Detailed briefs for top 10. Strongest opportunity: Ardent Insurance Group. New Head of Legal Ops hired post-PE acquisition (45 days). Managing outside counsel in spreadsheets ($6M spend). Pain quantified; buying trigger confirmed. Opener focuses on PE integration pain and spend visibility.
 
-### Example 2: AE Pipeline Calls — Deal Advancement
+### Example 2: AE Pipeline Calls with Lexora
 
-**Context:** AE has 8 tasks due today, mix of active deals and new outbound.
+**Context:** Priya Nair (Lexora Account Executive, Enterprise) has 8 tasks due today, active deals and new outbound.
 
-**Input:** "Prep my dials for today."
+**Input:** "Prep my dials for today, Priya."
 
-**Process:** `user_role = AE`. No active deal filter applied. 8 tasks scored and tiered: 2 Hot (active deal next step due, inbound signal), 3 Warm (deals gone quiet), 1 New (AE-sourced prospect), 2 Recycle (stalled deal, closed-lost). Pre-call briefs emphasize deal advancement for Hot/Warm, prospecting for New/Recycle.
+**Process:** `user_role = AE`. No active deal filter. 8 tasks scored and tiered: 2 Hot (Corvane Industrial at Proposal, Sam Okafor champion actively selling internally, close date this month; Halden Health Systems moving to evaluation after CFO-driven discovery), 3 Warm (early-stage accounts gone quiet 14-30 days), 1 New (inbound from hospital network), 2 Recycle (previous closed-lost accounts). Pre-call briefs emphasize deal advancement for Hot and Warm (move to next stage), prospecting discovery for New and Recycle.
 
-**Output:** Dashboard showing 8 dials (2 Hot, 3 Warm, 1 New, 2 Recycle). No exclusions (AE sees everything). Detailed briefs for all 8. Strongest opportunity: [Deal] because next step due + champion engaged + close date this month. Dial sheet generated.
+**Output:** Dashboard showing 8 dials (2 Hot, 3 Warm, 1 New, 2 Recycle). No exclusions (AE sees full book). Detailed briefs for all 8. Strongest opportunity: Corvane Industrial. Reason: Sam Okafor (Head of Legal Ops) is confirmed champion, actively evangelizing internally. Economic buyer (GC Dana Whitfield) engaged. Technical and procurement steps scoped. Close date end of month. Today's call: finalize contract terms and confirm implementation timeline.
 
 ---
 
@@ -346,7 +346,7 @@ Reminders to log dispositions, create follow-up tasks, add accounts to sequences
 ## Troubleshooting
 
 ### "No tasks in CRM for today"
-**Solution:** Expand search to overdue tasks (past 3 days) and accounts with recent inbound activity. If still empty, the rep may need to build their task queue — recommend running `gtm-account-snapshot` on priority accounts to generate outbound.
+**Solution:** Expand search to overdue tasks (past 3 days) and accounts with recent inbound activity. If still empty, the rep may need to build their task queue. Recommend running `gtm-account-snapshot` on priority accounts to generate outbound.
 
 ### "Contact has no phone number"
 **Solution:** Flag the contact for LinkedIn outreach or email instead. Include in the dial sheet but mark as "Email/LinkedIn only." Recommend contact enrichment as a follow-up action.
@@ -355,23 +355,23 @@ Reminders to log dispositions, create follow-up tasks, add accounts to sequences
 **Solution:** Group them. Generate one pre-call brief for the account, not duplicates. Recommend calling the highest-priority contact first (based on persona and engagement level), then using intel from that call to inform the next.
 
 ### "BDR has tasks on accounts they don't own"
-**Solution:** Check BDR Owner field. If the BDR is assigned as BDR Owner, proceed normally. If not, flag for territory alignment — the task may have been routed incorrectly.
+**Solution:** Check BDR Owner field. If the BDR is assigned as BDR Owner, proceed normally. If not, flag for territory alignment. The task may have been routed incorrectly.
 
 ---
 
 ## Best Practices
 
 ### Do's
-- **Run this every morning** — consistency compounds. Reps who prep daily outperform by 30%+ on connect-to-meeting rates
-- **Start with Hot tier** — these have the highest probability of conversion
-- **Personalize every opener** — each hook should reference a specific account signal, not generic phrasing
-- **Log outcomes immediately** — end-of-day tracking is only useful if dispositions are logged
+- **Run this every morning.** Consistency compounds. Reps who prep daily outperform by 30%+ on connect-to-meeting rates
+- **Start with Hot tier.** These have the highest probability of conversion
+- **Personalize every opener.** Each hook should reference a specific account signal, not generic phrasing
+- **Log outcomes immediately.** End-of-day tracking is only useful if dispositions are logged
 
 ### Don'ts
-- **Don't skip ICP scoring** — calling Weak Fit accounts before Strong Fit accounts is a waste of prime dial time
-- **Don't call accounts with active AE deals** (BDR) — always check the exclusions list
-- **Don't use generic discovery questions** — every question should reference something specific about the account
-- **Don't leave the dial sheet behind** — the value is in having it open between calls, not reading it once
+- **Don't skip ICP scoring.** Calling Weak Fit accounts before Strong Fit accounts is a waste of prime dial time
+- **Don't call accounts with active AE deals** (BDR). Always check the exclusions list
+- **Don't use generic discovery questions.** Every question should reference something specific about the account
+- **Don't leave the dial sheet behind.** The value is in having it open between calls, not reading it once
 
 ### Quality Checklist
 - [ ] All tasks for the rep due today are included
@@ -388,26 +388,30 @@ Reminders to log dispositions, create follow-up tasks, add accounts to sequences
 
 ## Integration with Other Skills
 
-- **`gtm-account-snapshot`** — For deeper research on specific accounts surfaced during daily prospecting.
-- **`gtm-meeting-prep`** — When a Hot dial results in a scheduled meeting, run meeting prep for the follow-up.
-- **`gtm-trigger-event-outbound`** — When daily prospecting surfaces a trigger event on an account, pivot to trigger-based outbound.
-- **`gtm-competitive-displacement`** — When a Hot dial reveals a known incumbent, run displacement sequences for that account.
-- **`gtm-closed-loss-reactivation`** — For Recycle tier accounts that are closed-lost, use the full reactivation workflow for deeper analysis.
+- **`gtm-account-snapshot`.** For deeper research on specific accounts surfaced during daily prospecting.
+- **`gtm-meeting-prep`.** When a Hot dial results in a scheduled meeting, run meeting prep for the follow-up.
+- **`gtm-trigger-event-outbound`.** When daily prospecting surfaces a trigger event on an account, pivot to trigger-based outbound.
+- **`gtm-competitive-displacement`.** When a Hot dial reveals a known incumbent, run displacement sequences for that account.
+- **`gtm-closed-loss-reactivation`.** For Recycle tier accounts that are closed-lost, use the full reactivation workflow for deeper analysis.
 
 ---
 
 ## Changelog
 
+### Version 1.2.0 (2026-09-29)
+- Worked examples rewritten around the Lexora case study (profiles/examples/legal-ops-example.md)
+- Em dashes removed from prose
+
 ### Version 1.1.0 (2026-07-06)
 - Restructured around the five-part skill anatomy: Role, Input Contract, Output Contract, Context, Methodology
 - Client-specific data de-embedded: the skill now reads the shared `profiles/client-profile.md` instead of carrying a copy-in Client Profile block
-- Cold Call Framework, Hook Templates, and Common Objections moved to explicit Methodology section — `{Methodology: X}` references
+- Cold Call Framework, Hook Templates, and Common Objections moved to explicit Methodology section, `{Methodology: X}` references
 - No functional changes to the workflow, tiering logic, or output formats
 
 ### Version 1.0.0 (2026-03-04)
 - Initial release
 - Client-configurable via Client Profile block
-- 4-tier prioritization (Hot/Warm/New/Recycle)
+- 4-tier prioritization (Hot, Warm, New, Recycle)
 - Three-Step Turnaround cold call framework with hook templates
 - BDR Active Deal Filter with exclusions table and AE coordination
 - Role-aware tiering (BDR vs. AE criteria)

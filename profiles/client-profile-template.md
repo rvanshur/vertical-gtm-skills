@@ -1,30 +1,32 @@
 # Client Profile Template
 
-> **This is the single document that powers all 14 skills.** Fill it out once for your company,
-> save it as **`profiles/client-profile.md`**, and every skill reads it on its next run. Update it
-> once — every skill inherits the change. When you change companies or clients, swap this one file.
-> The methodology stays the same; the profile is the fuel.
+> **This is the single document that powers every skill in the suite.** Fill it out once for your
+> company, save it as **`profiles/client-profile.md`**, and every skill reads it on its next run.
+> Update it once and every skill inherits the change. When you change companies or clients, swap
+> this one file. The methodology stays the same; the profile is the fuel.
 
 ---
 
 ## How to Use This Template
 
-1. **Copy this template** to `profiles/client-profile.md` (keep the template itself untouched)
-2. **Fill out all nine sections** with your company's actual data — none should run longer than a page
-3. **Write in operator voice, not marketing voice** — a skill can't score an account against "innovative"
-4. **Refine over time** — after running a few skills, you'll spot gaps. Add the missing data. Every skill picks up the change on its next run.
+1. **Copy this template** to `profiles/client-profile.md` (keep the template itself untouched).
+2. **Fill out the sections below** with your company's actual data. None should run longer than a page.
+3. **Write in operator voice, not marketing voice.** A skill can't score an account against "innovative".
+4. **Refine over time.** After running a few skills you'll spot gaps. Add the missing data, and every skill picks up the change on its next run.
 
-A completed example lives at [`profiles/examples/legal-ops-example.md`](examples/legal-ops-example.md).
+A completed example lives at [`profiles/examples/legal-ops-example.md`](examples/legal-ops-example.md): Lexora, the fictional company every worked example in the repo uses.
 
-### Quality matters here.
+**Short on time?** Fill **ICP Definitions** and **Competitive Landscape** first. Between them they feed 13 of the 14 sales skills. The full map of which section feeds which skill is in [`docs/customization.md`](../docs/customization.md#which-profile-sections-feed-which-skills).
 
-The output of every skill is only as good as this file. "Reduces costs" as a value proposition produces generic output. "Reduces payment processing time from 12 days to 48 seconds" produces output your reps can actually use in a conversation. Numbers, not adjectives.
+### Quality Matters Here
+
+The output of every skill is only as good as this file. "Reduces costs" as a value proposition produces generic output. "Cuts outside-counsel spend 20% in year one" produces output your reps can actually use in a conversation. Numbers, not adjectives.
 
 ---
 
 ## Company
 
-Two sentences — what you do and who you sell to. The hallway version.
+Two sentences: what you do and who you sell to. The hallway version.
 
 ```
 - **Name:** _______________
@@ -41,13 +43,13 @@ Two sentences — what you do and who you sell to. The hallway version.
 
 ## ICP Definitions
 
-Define who you sell to — strong, moderate, and weak fit — **in numbers, geographies, and signals**. "Mid-market companies" is not an ICP. "Regional specialty contractors with $10M-$100M revenue, 3+ state operations, and a dedicated credit department" is.
+Define who you sell to (strong, moderate and weak fit) **in numbers, geographies and signals**. "Mid-market companies" is not an ICP. "In-house legal teams at $500M to $5B companies with 15+ attorneys and $5M+ of outside-counsel spend" is.
 
 ### ICP1: [Primary Segment Name]
 
 ```
 - Description: _______________
-- Key indicator: [What makes them a fit — the single strongest signal]
+- Key indicator: [What makes them a fit, the single strongest signal]
 - Revenue threshold: [Minimum viable company size]
 - Industry vertical: _______________
 - Typical titles you sell to: _______________
@@ -136,9 +138,21 @@ Your differentiators, each with a number attached, mapped to the pains they solv
 
 ---
 
+## Product Modules
+
+What a customer actually buys, so the Sales-to-CS Handoff skill can size implementation scope. Skip this if you sell a single product with one implementation path.
+
+| Module | What it does | Implementation weight |
+|---|---|---|
+| ___ | ___ | [Light / Medium / Heavy, and what it depends on] |
+| ___ | ___ | ___ |
+| ___ | ___ | ___ |
+
+---
+
 ## Competitive Landscape
 
-Named competitors and where they break down. This is the section teams flinch at — and the single biggest output-quality lever you have. You're not putting this on your website; you're putting it in your stack. Be specific.
+Named competitors and where they break down. This is the section teams flinch at, and it is the single biggest output-quality lever you have. You're not putting this on your website; you're putting it in your stack. Be specific.
 
 | Competitor | Category | Their Pitch | Your Advantage | Their Weakness |
 |-----------|----------|------------|---------------|----------------|
@@ -148,7 +162,7 @@ Named competitors and where they break down. This is the section teams flinch at
 | Manual / Spreadsheets | Status Quo | "It works fine" | [Cost of inaction] | [What breaks at scale] |
 
 ### Competitive Discovery Questions
-Questions to uncover which competitor (if any) the prospect is evaluating or using:
+Questions that uncover which competitor (if any) the prospect is evaluating or using:
 1. _______________
 2. _______________
 3. _______________
@@ -157,7 +171,7 @@ Questions to uncover which competitor (if any) the prospect is evaluating or usi
 
 ## Qualification Criteria
 
-The triggers and signals that qualify an account — and your disqualifiers.
+The triggers and signals that qualify an account, and your disqualifiers.
 
 ### Buying Triggers
 
@@ -182,11 +196,11 @@ List the types of companies that waste your time:
 
 ## Proof Points
 
-Named customers with specific metrics, matched to the personas and segments they resonate with. These get embedded into outbound sequences, meeting prep, and battlecards.
+Named customers with specific metrics, matched to the personas and segments they resonate with. These get embedded into outbound sequences, meeting prep and battlecards.
 
 | Customer | Key Metric | Segment | Use When |
 |----------|-----------|---------|----------|
-| ___ | [Specific number: "95% reduction in X"] | [SMB/MM/Ent] | [Scenario where this proof point lands best] |
+| ___ | [A specific number, e.g. "20% cut in year one"] | [SMB/MM/Ent] | [Scenario where this proof point lands best] |
 | ___ | ___ | ___ | ___ |
 | ___ | ___ | ___ | ___ |
 | ___ | ___ | ___ | ___ |
@@ -195,13 +209,13 @@ Named customers with specific metrics, matched to the personas and segments they
 
 ## Sales Methodology
 
-The frameworks your team runs, listed by stage. The skills calibrate scoring and coaching to these:
+The frameworks your team runs, listed by stage. Meeting Prep, MEDDPICC Analysis and Call Coaching calibrate their scoring and coaching to what you tick here:
 
 - [ ] **SPIN Selling** (Situation, Problem, Implication, Need-Payoff)
-- [ ] **MEDDPICC** (Metrics, Economic Buyer, Decision Criteria/Process, Paper Process, Implicate Pain, Champion, Competition)
+- [ ] **MEDDPICC** (Metrics, Economic Buyer, Decision Criteria/Process, Paper Process, Identified Pain, Champion, Competition)
 - [ ] **Challenger Sale** (Teach, Tailor, Take Control)
 - [ ] **Sandler** (Pain, Budget, Decision)
-- [ ] **Gap Selling** (Current State → Future State → Gap)
+- [ ] **Gap Selling** (Current State, Future State, Gap)
 - [ ] **Command of the Message** (Value Framework)
 - [ ] **Other:** _______________
 
@@ -211,22 +225,32 @@ Define what "qualified" means at each stage:
 
 | Stage | Exit Criteria | Required Evidence |
 |-------|-------------|-------------------|
-| Discovery → Demo | ___ | ___ |
-| Demo → Proposal | ___ | ___ |
-| Proposal → Negotiate | ___ | ___ |
-| Negotiate → Close | ___ | ___ |
+| Discovery to Demo | ___ | ___ |
+| Demo to Proposal | ___ | ___ |
+| Proposal to Negotiate | ___ | ___ |
+| Negotiate to Close | ___ | ___ |
+
+---
+
+## Optional: Operating-Layer Sections
+
+The 15 operating skills in `operating/` each read one extra section of their own, which that
+skill's `CUSTOMIZE.md` interview writes for you (for example `## Review Process` for Second
+Opinion, or `## Knowledge Base` for Context OS Setup). Nothing to fill in here now. When you run
+an operating skill's interview, paste the section it produces at the bottom of this file. The
+full list is in [`docs/how-it-fits.md`](../docs/how-it-fits.md#what-each-skill-reads-from-the-profile).
 
 ---
 
 ## Quick Validation Checklist
 
-Before you save, run the three tests from the course — then the detail checks:
+Before you save, run these three tests, then the detail checks:
 
-- [ ] **The new-hire test** — Could a day-one BDR pre-qualify an account using only this file?
-- [ ] **The swap test** — Would a competitor's version produce visibly different output? If not, it's too generic.
-- [ ] **The proof-point test** — Can every persona be matched to a quantified case?
-- [ ] **Personas have real language** — Are the pain descriptions from actual call recordings, not your pitch deck?
-- [ ] **Competitive data is current** — Last updated within 90 days?
-- [ ] **No internal jargon** — Would a prospect understand how you describe their pain?
+- [ ] **The new-hire test.** Could a day-one BDR pre-qualify an account using only this file?
+- [ ] **The swap test.** Would a competitor's version produce visibly different output? If not, it's too generic.
+- [ ] **The proof-point test.** Can every persona be matched to a quantified case?
+- [ ] **Personas have real language.** Are the pain descriptions from actual call recordings, not your pitch deck?
+- [ ] **Competitive data is current.** Last updated within 90 days?
+- [ ] **No internal jargon.** Would a prospect understand how you describe their pain?
 
 If you can check all six boxes, your skills will produce high-quality output from day one.

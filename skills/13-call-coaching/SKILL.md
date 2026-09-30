@@ -1,11 +1,11 @@
 ---
 name: gtm-call-coaching
 description: "Scores discovery and demo calls against sales methodology frameworks with category-level rubrics, MEDDIC assessment, pain mapping, and coaching recommendations"
-version: 1.1.0
+version: 1.2.0
 category: GTM-Enablement
 author: Ryan Vanshur
 license: MIT
-updated: 2026-07-06
+updated: 2026-09-29
 tags: [call-coaching, discovery-coaching, demo-coaching, sales-methodology, call-scoring, coaching-scorecard]
 requires:
   skills: ["gtm-deal-pulse", "gtm-meeting-prep"]
@@ -15,7 +15,7 @@ requires:
 
 ## Overview
 
-Scores discovery and demo calls against the client's sales methodology frameworks. Analyzes transcripts or notes across methodology-specific categories (scored 1-5 each), maps pains to the client's buyer pain taxonomy, assesses MEDDIC coverage, identifies key moments, and generates coaching recommendations tied to specific frameworks. This is a merged skill covering both discovery and demo call types — determined by a `call_type` parameter.
+Scores discovery and demo calls against the client's sales methodology frameworks. Analyzes transcripts or notes across methodology-specific categories (scored 1-5 each), maps pains to the client's buyer pain taxonomy, assesses MEDDIC coverage, identifies key moments, and generates coaching recommendations tied to specific frameworks. This is a merged skill covering both discovery and demo call types, determined by a `call_type` parameter.
 
 **Core Principle:** Coach to methodology, not to generic sales advice. Every recommendation should reference a specific framework and provide actionable language the rep can use.
 
@@ -23,13 +23,13 @@ Scores discovery and demo calls against the client's sales methodology framework
 
 ## Role
 
-You are a **call coach and sales methodology expert** — not a performance critic. You analyze calls against specific frameworks (SPIN, Priority Path, Challenger, MEDDPICC, Interrogate the Problem), assess MEDDIC coverage, map pains to the buyer's actual situation, identify key moments worth coaching, and provide framework-tied recommendations the rep can practice. Everything company-specific — the pain points, proof points, competitive landscape — comes from the client profile (see **Context** below), so the same skill coaches calls for any vertical without modification.
+You are a **call coach and sales methodology expert**, not a performance critic. You analyze calls against specific frameworks (SPIN, Priority Path, Challenger, MEDDPICC, Interrogate the Problem), assess MEDDIC coverage, map pains to the buyer's actual situation, identify key moments worth coaching, and provide framework-tied recommendations the rep can practice. Everything company-specific (the pain points, proof points, competitive landscape) comes from the client profile (see **Context** below), so the same skill coaches calls for any vertical without modification.
 
 ---
 
 ## Input Contract
 
-What this skill needs before it starts. **If a required input is missing, ask — do not guess.**
+What this skill needs before it starts. **If a required input is missing, ask instead of guessing.**
 
 | Input | Required | Notes |
 |-------|----------|-------|
@@ -44,9 +44,9 @@ What this skill needs before it starts. **If a required input is missing, ask �
 
 ## Output Contract
 
-Every run produces a **coaching report with the same eight sections** — the content changes per call; the structure never does. This consistency makes reports reviewable and reusable across your team: a manager scanning ten coaching reports never has to relearn the layout.
+Every run produces a **coaching report with the same eight sections**. The content changes per call, but the structure never does. This consistency makes reports reviewable and reusable across your team. A manager scanning ten coaching reports never has to relearn the layout.
 
-Core commitments: **call summary + methodology scorecard + MEDDIC status + pain discovery map + key moments (wins + coaching opportunities) + framework-specific advice + competitive intel summary + next call game plan** — organized into eight fixed sections (see *Artifact Generation* below).
+Core commitments: **call summary + methodology scorecard + MEDDIC status + pain discovery map + key moments (wins + coaching opportunities) + framework-specific advice + competitive intel summary + next call game plan**. These organize into eight fixed sections (see *Artifact Generation* below).
 
 ---
 
@@ -54,7 +54,7 @@ Core commitments: **call summary + methodology scorecard + MEDDIC status + pain 
 
 **This skill does not contain client-specific information. It points to it.**
 
-> **Load the client profile from [`profiles/client-profile.md`](../../profiles/client-profile.md) before starting.** That single file is shared by all 14 skills in this suite — update it once and every skill inherits the change on its next run.
+> **Load the client profile from [`profiles/client-profile.md`](../../profiles/client-profile.md) before starting.** That single file is shared by all 14 skills in this suite. Update it once and every skill inherits the change on its next run.
 
 Throughout this skill, `{Client Profile: X}` means "section X of `profiles/client-profile.md`". Sections this skill reads:
 
@@ -73,77 +73,77 @@ Throughout this skill, `{Client Profile: X}` means "section X of `profiles/clien
 
 ## Methodology
 
-Your coaching playbook, in code. The frameworks below are the skill's defaults — **SPIN + Priority Path for discovery; Challenger + MEDDPICC + Interrogate the Problem for demos**. If `{Client Profile: Sales Methodology}` names different frameworks, those take precedence.
+Your coaching playbook, in code. The frameworks below are the skill's defaults: **SPIN + Priority Path for discovery; Challenger + MEDDPICC + Interrogate the Problem for demos**. If `{Client Profile: Sales Methodology}` names different frameworks, those take precedence.
 
 ### Discovery: SPIN Selling Framework
 | Phase | Purpose | What Great Looks Like |
 |-------|---------|----------------------|
-| **S — Situation** | Understand current state | Asks about current process, systems, team structure, coverage, volume |
-| **P — Problem** | Surface business impact | Probes: "What happens when [X] fails?" "What's the cost?" |
-| **I — Implication** | Expand the pain | Connects individual problems to broader business consequences |
-| **N — Need-Payoff** | Get prospect to articulate the value | "How would it help if...?" "What would that mean for your team?" |
+| **S (Situation)** | Understand current state | Asks about current process, systems, team structure, coverage, volume |
+| **P (Problem)** | Surface business impact | Probes: "What happens when [X] fails?" "What's the cost?" |
+| **I (Implication)** | Expand the pain | Connects individual problems to broader business consequences |
+| **N (Need-Payoff)** | Get prospect to articulate the value | "How would it help if...?" "What would that mean for your team?" |
 
 ### Discovery: Priority Path
-1. **Identify** — "Walk me through what that looks like step by step"
-2. **Prioritize** — "On a scale of 1-10, how urgently does this need to change?"
-3. **Quantify** — time, money, risk, frequency
-4. **Map stakeholders** — "Who else does this impact?"
+Identify: "Walk me through what that looks like step by step"
+Prioritize: "On a scale of 1-10, how urgently does this need to change?"
+Quantify: time, money, risk, frequency
+Map stakeholders: "Who else does this impact?"
 
 **Key rule:** Do not demo until Priority Path is complete.
 
 ### Demo: Challenger Sale Framework
 | Element | Principle | What Great Looks Like |
 |---------|-----------|----------------------|
-| **Teach** | Lead with insight the prospect didn't know | Commercial teaching moment that reframes how they think about the problem |
+| **Teach** | Lead with insight the prospect did not know | Commercial teaching moment that reframes how they think about the problem |
 | **Tailor** | Customize message to individual stakeholders | Different message for different personas, connects to their specific outcomes |
-| **Take Control** | Drive the conversation and create constructive tension | Comfortable pushing back, proposes next steps, doesn't wait for permission |
+| **Take Control** | Drive the conversation and create constructive tension | Comfortable pushing back, proposes next steps, does not wait for permission |
 
 ### Demo: MEDDPICC Meeting Framework
-**Opening:** Anchor on pain → Confirm logistics/attendees → Set mutual agenda → Define end-of-meeting outcome
-**Closing:** Transition to close → Logistics (next meeting) → Agenda (next content) → Next Steps (commitment)
+**Opening:** Anchor on pain. Confirm logistics and attendees. Set mutual agenda. Define end-of-meeting outcome.
+**Closing:** Transition to close. Logistics (next meeting). Agenda (next content). Next Steps (commitment).
 
 ### Demo: Interrogate the Problem
-1. **Prime Pain** — "Many teams struggle with [X]. To what extent is that true for you?" (before each workflow)
-2. **Create Contrast** — "How does this compare to how you're handling it today?" (after showing, PAUSE)
-3. **Requirements Check** — "Did I miss any requirements about [X]?" (at transitions)
-4. **Make the Buyer Say It** — "What excited you most about what you saw today?" (at close)
+Prime Pain: "Many teams struggle with [X]. To what extent is that true for you?" (before each workflow)
+Create Contrast: "How does this compare to how you are handling it today?" (after showing, pause)
+Requirements Check: "Did I miss any requirements about [X]?" (at transitions)
+Make the Buyer Say It: "What excited you most about what you saw today?" (at close)
 
 ### Universal: Three Types of Resistance
 | Type | Definition | Response |
 |------|-----------|---------|
 | Reactance | Emotional pushback, feels pressured | Back off, give autonomy, negative framing |
-| Skepticism | Logical doubt, doesn't believe | Proof: Feel-Felt-Found, case studies, data |
+| Skepticism | Logical doubt, does not believe | Proof: Feel-Felt-Found, case studies, data |
 | Inertia | Resistance to change itself | Quantify cost of inaction |
 
 ### Universal: Three-Step Turnaround (RBO Handling)
-1. **Acknowledge** — "That makes sense."
-2. **Redirect** — "Most teams say that until they see..."
-3. **Advance** — "What would need to be true for this to be worth 15 minutes?"
+Acknowledge: "That makes sense."
+Redirect: "Most teams say that until they see..."
+Advance: "What would need to be true for this to be worth 15 minutes?"
 
 ### Universal: Active Listening
-Encourage → Restate → Silence → Paraphrase → Reflection → Clarifying
+Encourage, Restate, Silence, Paraphrase, Reflection, Clarifying.
 
 ### Universal: Feel-Felt-Found
-Feel (validate emotion) → Felt (normalize with peer) → Found (deliver outcome)
+Feel (validate emotion), Felt (normalize with peer), Found (deliver outcome).
 
 ---
 
 ## Quick Reference
 
 **Use this skill when:**
-- Reviewing a discovery or demo call recording/transcript
+- Reviewing a discovery or demo call recording or transcript
 - Conducting a manager 1:1 with coaching
 - Self-coaching after a call
 - Building a rep development plan
 
-**Don't use when:**
+**Do not use when:**
 - Preparing for an upcoming call (use `gtm-meeting-prep`)
 - Scoring deal health without a specific call (use `gtm-deal-pulse`)
 
 **Call type parameter:**
-- `call_type = discovery` — Scores against SPIN + Priority Path (6 categories, /30)
-- `call_type = demo` — Scores against Challenger + MEDDPICC + Interrogate the Problem (8 categories, /40)
-- If not specified, infer from context or ask.
+- `call_type = discovery` (Scores against SPIN + Priority Path: 6 categories, /30)
+- `call_type = demo` (Scores against Challenger + MEDDPICC + Interrogate the Problem: 8 categories, /40)
+- If not specified, infer from context or ask
 
 **User roles:** AE, Sales Manager, Sales Coach
 
@@ -161,29 +161,29 @@ Feel (validate emotion) → Felt (normalize with peer) → Found (deliver outcom
 - Call date and duration
 - Call type (discovery / demo)
 - Transcript/recording available or user will summarize
-- Attendees (names, titles — critical for demo persona matching)
+- Attendees (names, titles, critical for demo persona matching)
 
 **1b. Pull CRM Context:**
 - Account: stage, amount, close date, owner
 - Contacts: who was on the call, their roles
 - Previous interactions: touchpoints and topics before this call
 - Previous coaching reports (if any)
-- Pulse report: current signal scores for comparison
+- Pulse report: current signal scores for comparison (if available)
 
 ---
 
 ### Step 2: Score Methodology Execution
 
-**If `call_type = discovery`** — Score 6 categories:
+**If `call_type = discovery`** (Score 6 categories):
 
 #### Category 1: Pre-Call Preparation (1-5)
 | Score | Evidence |
 |-------|----------|
-| 5 | Opened with specific industry knowledge, referenced prior interactions, clear agenda, knew prospect's role |
-| 4 | Referenced account research, set basic agenda, knew prospect's title |
+| 5 | Opened with specific industry knowledge, referenced prior interactions, clear agenda, knew prospect role |
+| 4 | Referenced account research, set basic agenda, knew prospect title |
 | 3 | General awareness but no specific preparation evident |
 | 2 | Generic opening, no personalization, read from script |
-| 1 | No preparation — asked basic questions already in CRM |
+| 1 | No preparation. Asked basic questions already in CRM. |
 
 #### Category 2: SPIN Discovery Quality (1-5)
 | Score | Evidence |
@@ -217,7 +217,7 @@ Feel (validate emotion) → Felt (normalize with peer) → Found (deliver outcom
 |-------|----------|
 | 5 | Connected capabilities to stated pains using prospect's language. Feel-Felt-Found with relevant case study. Stayed in Winning Zone. |
 | 4 | Connected some capabilities. Referenced a customer story. Mostly in Winning Zone. |
-| 3 | Generic pitch — correct but not personalized to prospect's pains. |
+| 3 | Generic pitch (correct but not personalized to prospect pains). |
 | 2 | Feature list without pain connection. Talked about irrelevant capabilities. |
 | 1 | No value articulation or pitched features without discovery. |
 
@@ -226,22 +226,22 @@ Feel (validate emotion) → Felt (normalize with peer) → Found (deliver outcom
 |-------|----------|
 | 5 | Leadership-based recommendation. Specific actions with owners and dates. Identified next meeting attendees. |
 | 4 | Clear next step with date. Some ownership established. |
-| 3 | Vague — "I'll send info" or "Let's reconnect" without specifics. |
+| 3 | Vague ("I'll send info" or "Let's reconnect" without specifics). |
 | 2 | Prospect drove next steps. Rep was passive. |
 | 1 | No next step established. Call ended without forward motion. |
 
 **Discovery score interpretation:**
 | Total | Assessment |
 |-------|-----------|
-| 26-30 | Excellent — textbook methodology |
-| 20-25 | Good — strong with minor gaps |
-| 14-19 | Needs Improvement — significant gaps |
-| 8-13 | Poor — fundamental issues |
-| 6-7 | Critical — immediate intervention needed |
+| 26-30 | Excellent (textbook methodology) |
+| 20-25 | Good (strong with minor gaps) |
+| 14-19 | Needs Improvement (significant gaps) |
+| 8-13 | Poor (fundamental issues) |
+| 6-7 | Critical (immediate intervention needed) |
 
 ---
 
-**If `call_type = demo`** — Score 8 categories:
+**If `call_type = demo`** (Score 8 categories): Score 8 categories:
 
 #### Category 1: Meeting Opening (1-5)
 | Score | Evidence |
@@ -249,7 +249,7 @@ Feel (validate emotion) → Felt (normalize with peer) → Found (deliver outcom
 | 5 | Full opening: Anchored on specific pain, confirmed logistics/attendees, set mutual agenda + "anything else?", defined end-of-meeting outcome |
 | 4 | 3/4 elements. Anchored on pain, set some agenda, missed logistics or next step |
 | 3 | General context, didn't anchor on specific pain. Basic agenda. |
-| 2 | Jumped straight to demo — "Let me show you the platform" |
+| 2 | Jumped straight to demo ("Let me show you the platform") |
 | 1 | No structure. Launched screen share immediately. |
 
 #### Category 2: Meeting Closing (1-5)
@@ -257,7 +257,7 @@ Feel (validate emotion) → Felt (normalize with peer) → Found (deliver outcom
 |-------|----------|
 | 5 | Full close: Transitioned cleanly, asked who attends next, proposed specific agenda, leadership recommendation ("Sound fair?") |
 | 4 | Clear next step with date. Some multi-threading. Missing one element. |
-| 3 | Vague — "I'll send info" without specifics. |
+| 3 | Vague ("I'll send info" without specifics). |
 | 2 | Prospect drove close. Rep passive. |
 | 1 | No close. Ended abruptly. No forward motion. |
 
@@ -267,7 +267,7 @@ Feel (validate emotion) → Felt (normalize with peer) → Found (deliver outcom
 | 5 | Effortless flow: one workflow at a time, prospect's language, no jargon. Led with commercial insight. Message tailored to each persona present. Recap mapped each section to pain. |
 | 4 | Mostly clear with minor backtracking. Brief off-topic detour. Most features connected to pains. |
 | 3 | Some structure, jumped between features. Mix of relevant/irrelevant content. Generic recap. |
-| 2 | Confusing — bounced between screens, showed irrelevant features. Significant off-topic time. |
+| 2 | Confusing (bounced between screens, showed irrelevant features). Significant off-topic time. |
 | 1 | Feature tour. No narrative. No connection to prospect. Internal jargon. |
 
 #### Category 4: Pain Alignment + Proof (1-5)
@@ -318,11 +318,11 @@ Feel (validate emotion) → Felt (normalize with peer) → Found (deliver outcom
 **Demo score interpretation:**
 | Total | Assessment |
 |-------|-----------|
-| 34-40 | Excellent — prospect is selling themselves |
-| 26-33 | Good — refinement, not rebuilding |
-| 18-25 | Needs Improvement — specific framework practice needed |
-| 10-17 | Poor — feature touring or monologue |
-| 8-9 | Critical — requires immediate intervention |
+| 34-40 | Excellent (prospect is selling themselves) |
+| 26-33 | Good (refinement, not rebuilding) |
+| 18-25 | Needs Improvement (specific framework practice needed) |
+| 10-17 | Poor (feature touring or monologue) |
+| 8-9 | Critical (requires immediate intervention) |
 
 ---
 
@@ -347,11 +347,11 @@ For each pain discovered, assess depth using the Priority Path levels:
 
 | Level | What Was Achieved | Example |
 |-------|-------------------|---------|
-| 1 — Acknowledged | Confirmed pain exists, no specifics | "Yeah, that's a pain." |
-| 2 — Described | Described in their workflow | "We manually create each one, email it, track in Excel." |
-| 3 — Quantified | Measured: time, money, frequency | "15 minutes each, 200/month — that's 50 hours." |
-| 4 — Prioritized | Rated urgency, rose above other priorities | "Top-3 priority for Q2. CFO asking every board meeting." |
-| 5 — Socialized | Other stakeholders impacted and identified | "Credit, collections, controller — CFO wants a fix by Q3." |
+| 1: Acknowledged | Confirmed pain exists, no specifics | "Yeah, that's a pain." |
+| 2: Described | Described in their workflow | "We manually create each one, email it, track in Excel." |
+| 3: Quantified | Measured: time, money, frequency | "15 minutes each, 200 per month, that's 50 hours." |
+| 4: Prioritized | Rated urgency, rose above other priorities | "Top-3 priority for Q2. CFO asking every board meeting." |
+| 5: Socialized | Other stakeholders impacted and identified | "Credit, collections, controller. CFO wants a fix by Q3." |
 
 **Target:** At least 1 pain at Level 3+ and 1 at Level 4+ for a strong business case foundation.
 
@@ -399,59 +399,59 @@ Reference `{Client Profile: Competitive Landscape}` for competitor-specific prob
 ## Artifact Generation
 
 ### Output Options
-- **Option A: Markdown** (default) — `[ACCOUNT]_[Discovery|Demo]_Coaching.md`
-- **Option B: HTML** — Styled coaching report with color-coded scorecard
-- **Option C: PDF** — Python + reportlab
+- **Option A: Markdown** (default): `[ACCOUNT]_[Discovery|Demo]_Coaching.md`
+- **Option B: HTML**: Styled coaching report with color-coded scorecard)
+- **Option C: PDF**: Python and reportlab
 
 ### Document Sections (Coaching Report)
-1. **Call Summary** — Account, rep, date, type, overall score, assessment, deal impact
-2. **Methodology Scorecard** — Color-coded category scores
-3. **MEDDIC Status** — 6-element coverage grid
-4. **Pain Discovery Map** — Pains with depth levels and category mapping
-5. **Key Moments** — Split: Wins (left) + Coaching Opportunities (right)
-6. **Framework-Specific Coaching** — Technique-linked advice with example language
-7. **Competitive Intel Summary** — Current solution, satisfaction, gaps, positioning
-8. **Next Call Game Plan** — Prep, questions, framework practice, success criteria
+Call Summary: Account, rep, date, type, overall score, assessment, deal impact)
+Methodology Scorecard: Color-coded category scores
+MEDDIC Status: 6-element coverage grid)
+Pain Discovery Map: Pains with depth levels and category mapping)
+Key Moments: Wins (left) and Coaching Opportunities right)
+Framework-Specific Coaching: Technique-linked advice with example language)
+Competitive Intel Summary: Current solution, satisfaction, gaps, positioning)
+Next Call Game Plan: Prep, questions, framework practice, success criteria)
 
 ---
 
 ## Examples
 
-### Example 1: Discovery Call — Good Execution
+### Example 1: Discovery Call (Good Execution)
 
-**Context:** AE ran discovery with a VP of [Function] at an enterprise account.
+**Context:** Priya Nair (AE, Enterprise at Lexora) ran discovery with Sam Okafor (Head of Legal Operations) at Corvane Industrial ($3.2B manufacturer).
 
-**Input:** "Coach the discovery call for [Account]. call_type = discovery"
+**Input:** "Coach the discovery call for Corvane Industrial. call_type = discovery"
 
 **Scoring:** Pre-Call 4, SPIN 4, Priority Path 3, Listening 4, Value 3, Next Steps 5. Total: 23/30 (Good).
 
-**Key findings:** Strong SPIN Situation and Problem, but Priority Path stopped at Level 2 (described, not quantified). Missed quantification opportunity when prospect said "we spend too much time" — should have asked "How many hours per week?"
+**Key findings:** Strong SPIN Situation and Problem, but Priority Path stopped at Level 2 (described, not quantified). Missed quantification opportunity when Sam said "we audit invoices by hand" without capturing the hours. Should have asked "How many invoices does your team review per quarter and how long does each take?"
 
-**Coaching:** Practice Priority Path Stage 3 (quantify). Script: "You mentioned it takes too long — can you walk me through how many [units] your team processes per [period]?"
+**Coaching:** Practice Priority Path Stage 3 (quantify). Script: "You mentioned auditing invoices takes time. Can you walk me through how many invoices your team processes per quarter and how many hours that takes?"
 
-### Example 2: Demo Call — Needs Improvement
+### Example 2: Demo Call (Needs Improvement)
 
-**Context:** AE demoed to a team at a mid-market account.
+**Context:** Priya Nair (AE) demoed to the ops team at Brightwater Logistics (Deputy GC requested demo).
 
-**Input:** "Coach the demo for [Account]. call_type = demo"
+**Input:** "Coach the demo for Brightwater Logistics. call_type = demo"
 
 **Scoring:** Opening 2, Closing 2, Teach+Tailor 3, Pain Alignment 2, ITP 2, Pain Mapping 2, Engagement 3, Resistance 3. Total: 19/40 (Needs Improvement).
 
-**Key findings:** Feature tour pattern — showed every workflow without connecting to discovery pains. No structured opening ("Let me just share my screen"). Close was "Any questions?" Anti-patterns: Feature Tour, Telling Not Asking, Weak Close.
+**Key findings:** Feature tour pattern. Showed Invoice Review and Matter Tracking without connecting to Brightwater's discovery pains (11 attorneys, manual process). No structured opening. Close was "Any questions?" Anti-patterns: Feature Tour, Telling Not Asking, Weak Close.
 
-**Coaching:** Before next demo, build a pain-to-workflow map from discovery notes. Practice structured opening script. Use Interrogate the Problem sequence — Prime Pain before EVERY workflow section.
+**Coaching:** Before next demo, build a pain-to-workflow map from discovery. Priya should open with: "During our discovery, you mentioned that invoice review takes your team three weeks each quarter. Let me show you how Lexora handles that, then we'll walk through Matter Tracking." Use Interrogate the Problem sequence: Prime Pain before every workflow section.
 
 ---
 
 ## Troubleshooting
 
-### "No transcript available — only rep notes"
-**Solution:** Coach from notes but flag reduced confidence. Note: "Coaching based on rep notes only — accuracy depends on note quality. Key behaviors (talk ratio, listening techniques, exact language) cannot be assessed without transcript."
+### "No transcript available (only rep notes)"
+**Solution:** Coach from notes but flag reduced confidence. Note: "Coaching based on rep notes only. Accuracy depends on note quality. Key behaviors (talk ratio, listening techniques, exact language) cannot be assessed without transcript."
 
 ### "Rep scored well but deal isn't progressing"
 **Solution:** Good methodology execution doesn't guarantee deal progression if the fundamentals aren't there. Run `gtm-deal-pulse` to check if the deal has structural issues (no champion, no budget path) that call quality alone can't fix.
 
-### "Call was a hybrid — started as discovery, turned into demo"
+### "Call was a hybrid (started as discovery, turned into demo)"
 **Solution:** Score as discovery (primary type). Note demo elements that occurred. Flag the methodology risk: "Demoing before completing Priority Path reduces future negotiation leverage. Recommend completing discovery framework before next demo."
 
 ---
@@ -459,16 +459,16 @@ Reference `{Client Profile: Competitive Landscape}` for competitor-specific prob
 ## Best Practices
 
 ### Do's
-- **Quote or paraphrase specific moments** — "At 12:30, when the prospect said X, the rep should have..."
-- **Reference exact frameworks** — "Use Priority Path Stage 3" not "ask better questions"
-- **Balance praise and improvement** — 3 strengths + 3 improvements minimum
-- **Make coaching actionable** — include specific language the rep can practice
+- **Quote or paraphrase specific moments**: "At 12:30, when the prospect said X, the rep should have..."
+- **Reference exact frameworks**: "Use Priority Path Stage 3," not "ask better questions"
+- **Balance praise and improvement**: 3 strengths plus 3 improvements minimum
+- **Make coaching actionable**: include specific language the rep can practice
 
-### Don'ts
-- **Don't score without evidence** — "seemed good" isn't a score justification
-- **Don't give generic advice** — every recommendation must tie to a specific framework
-- **Don't coach on everything at once** — pick the #1 focus area for the next call
-- **Don't skip the game plan** — coaching without a practice plan doesn't change behavior
+### Do not's
+- **Do not score without evidence**: "seemed good" is not a score justification
+- **Do not give generic advice**: every recommendation must tie to a specific framework
+- **Do not coach on everything at once**: pick the #1 focus area for the next call
+- **Do not skip the game plan**: coaching without a practice plan does not change behavior
 
 ### Quality Checklist
 - [ ] All categories scored 1-5 with specific evidence
@@ -484,24 +484,28 @@ Reference `{Client Profile: Competitive Landscape}` for competitor-specific prob
 
 ## Integration with Other Skills
 
-- **`gtm-meeting-prep`** — Use Meeting Prep BEFORE the call to plan, then Call Coaching AFTER to score execution.
-- **`gtm-deal-pulse`** — After coaching, re-Pulse the deal to see if newly gathered intelligence improved signal scores.
-- **`gtm-meddpicc-analysis`** — Coaching surfaces MEDDIC gaps; MEDDPICC Analysis provides the structured deep-dive.
-- **`gtm-competitive-strategy`** — When competitive intelligence is weak, build a competitive strategy before the next call.
+- **`gtm-meeting-prep`**: Use Meeting Prep BEFORE the call to plan, then Call Coaching AFTER to score execution.
+- **`gtm-deal-pulse`**: After coaching, re-Pulse the deal to see if newly gathered intelligence improved signal scores.
+- **`gtm-meddpicc-analysis`**: Coaching surfaces MEDDIC gaps. MEDDPICC Analysis provides the structured deep-dive.
+- **`gtm-competitive-strategy`**: When competitive intelligence is weak, build a competitive strategy before the next call.
 
 ---
 
 ## Changelog
 
+### Version 1.2.0 (2026-09-29)
+- Worked examples rewritten around the Lexora case study (profiles/examples/legal-ops-example.md)
+- Em dashes removed from prose
+
 ### Version 1.1.0 (2026-07-06)
 - Restructured around the five-part skill anatomy: Role, Input Contract, Output Contract, Context, Methodology
 - Client-specific data de-embedded: the skill now reads the shared `profiles/client-profile.md` instead of carrying a copy-in Client Profile block (one profile powers every skill)
-- Framework machinery (SPIN, Priority Path, Challenger, MEDDPICC, Interrogate the Problem, Resistance types, etc.) moved to an explicit Methodology section — `{Methodology: X}` references
+- Framework machinery (SPIN, Priority Path, Challenger, MEDDPICC, Interrogate the Problem, Resistance types, etc.) moved to an explicit Methodology section (`{Methodology: X}` references)
 - No functional changes to the workflow, scoring rubrics, or coaching recommendations
 
 ### Version 1.0.0 (2026-03-04)
 
-- Initial release — merged from two coaching skills (Discovery Coach + Demo Coach)
+- Initial release. Merged from two coaching skills (Discovery Coach and Demo Coach).
 - Unified via `call_type` parameter: discovery (6 categories, /30) and demo (8 categories, /40)
 - Generalized via Client Profile with configurable defaults
 - Preserved all scoring rubrics, MEDDIC assessment, pain mapping, and coaching frameworks
