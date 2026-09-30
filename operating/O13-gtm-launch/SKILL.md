@@ -1,11 +1,11 @@
 ---
 name: gtm-launch
 description: "Launch planning and execution. GTM motion selection, channel strategy, funnel projection, launch asset blueprints, social proof collection, budget modeling, launch coordination, and day-of engagement playbooks."
-version: 1.0.0
+version: 1.1.0
 category: Operating-Discipline
 author: Ryan Vanshur
 license: MIT
-updated: 2026-09-28
+updated: 2026-09-29
 tags: [launch, GTM-motions, channel-strategy, funnel-projection, launch-execution, war-room, social-proof, launch-budget, operating-discipline]
 requires:
   skills: ["gtm-discovery", "gtm-positioning"]
@@ -67,6 +67,12 @@ You are not satisfied by "launch day will be exciting." You are satisfied by a p
 ## Context
 
 You read the positioning statement. You understand the customer archetype. You know what problem is being solved. You do not assume launch budgets are unlimited.
+
+Reads `profiles/client-profile.md` if it exists, as the starting evidence: Company, ICP Definitions, Buyer Personas, Value Propositions, Competitive Landscape and Proof Points.
+Treat what is already there as claims to test, not facts. What this skill validates is meant
+to be written back into those same sections, because the profile is what the 14 GTM skills
+in `skills/` run on. That write-back is how the strategy layer reaches the daily motion. If the profile has a
+`## Launch Plan` section (this skill's `CUSTOMIZE.md` writes it), read that first.
 
 ---
 
@@ -195,7 +201,7 @@ The math is what reveals the gap. Not guessing.
 
 **Weak social proof:** "Used by 1,000+ companies"
 
-**Strong social proof:** "Reduced processing time by 95% for FormRight (15-person drywall contractor, $8M annual revenue)"
+**Strong social proof:** "Caught $340K of outside-counsel overbilling in the first 90 days for Northgate Foods, a mid-market legal team" (the Lexora example profile's own proof point)
 
 **Why it works:** The specific metric, the specific company, and the company details make it credible. A reader can see themselves in that case.
 
@@ -231,6 +237,7 @@ The math is what reveals the gap. Not guessing.
 
 ## Changelog
 
+- **1.1.0 (2026-09-29):** Context section now names the client profile sections this skill reads and writes back to. Worked example now uses the Lexora case study.
 - **1.0.0 (2026-09-28):** Initial release. Five GTM motions, funnel math, asset blueprinting, war room coordination, social proof collection. Adapted from Maja Voje's GTM Strategist methodology (Phases 7-9).
 
 ## Credits

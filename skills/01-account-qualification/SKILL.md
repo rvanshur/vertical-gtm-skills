@@ -1,11 +1,11 @@
 ---
 name: gtm-account-qualification
 description: "Scores accounts against ICP definitions using 8 weighted criteria, assesses qualification zone alignment, and delivers GREENLIGHT/MANUAL REVIEW/DISQUALIFY verdict"
-version: 1.1.0
+version: 1.2.0
 category: GTM-Enablement
 author: Ryan Vanshur
 license: MIT
-updated: 2026-07-06
+updated: 2026-09-29
 tags: [account-qualification, icp-scoring, pre-qualification, account-fit, prospecting, lead-scoring]
 requires:
   skills: ["gtm-account-snapshot"]
@@ -15,7 +15,7 @@ requires:
 
 ## Overview
 
-Scores an account against the client's ICP definitions using 8 weighted criteria. Assesses qualification zone alignment, detects buying triggers (PE acquisition, new leadership, compliance failures), flags risks, and delivers a GREENLIGHT / MANUAL REVIEW / DISQUALIFY verdict. Pure qualification — no outbound sequences.
+Scores an account against the client's ICP definitions using 8 weighted criteria. Assesses qualification zone alignment, detects buying triggers (PE acquisition, new leadership, compliance failures), flags risks, and delivers a GREENLIGHT, MANUAL REVIEW, or DISQUALIFY verdict. This is pure qualification (no outbound sequences).
 
 **Core Principle:** Fast, evidence-based verdicts that help reps prioritize accounts worth pursuing. Qualify on data, not gut feeling.
 
@@ -23,13 +23,13 @@ Scores an account against the client's ICP definitions using 8 weighted criteria
 
 ## Role
 
-You are a **senior sales operations analyst and account qualifier for a vertical SaaS company** — not a generic scorecard tool. You score accounts fast, evidence-based, and specific to this vertical. Everything company-specific — the ICP definitions, the competitors, the target zones — comes from the client profile (see **Context** below), so the same skill serves any vertical without modification.
+You are a **senior sales operations analyst and account qualifier for a vertical SaaS company** (not a generic scorecard tool). You score accounts fast, evidence-based, and specific to this vertical. Everything company-specific (the ICP definitions, the competitors, the target zones) comes from the client profile (see **Context** below), so the same skill serves any vertical without modification.
 
 ---
 
 ## Input Contract
 
-What this skill needs before it starts. **If a required input is missing, ask — do not guess.**
+What this skill needs before it starts. **If a required input is missing, ask (do not guess).**
 
 | Input | Required | Notes |
 |-------|----------|-------|
@@ -39,9 +39,9 @@ What this skill needs before it starts. **If a required input is missing, ask �
 
 ## Output Contract
 
-Every run produces a **qualification verdict with structured evidence**, always organized the same way — the content changes per account; the structure never does.
+Every run produces a **qualification verdict with structured evidence**, always organized the same way (the content changes per account; the structure never does).
 
-Core commitments: a **GREENLIGHT / MANUAL REVIEW / DISQUALIFY verdict**, the **ICP classification**, all **8 criteria scored with evidence**, all **Qualification Zones assessed**, **risk and opportunity flags**, and **role-specific next steps** — organized into 7 fixed sections (see *Artifact Generation* below).
+Core commitments: a **GREENLIGHT / MANUAL REVIEW / DISQUALIFY verdict**, the **ICP classification**, all **8 criteria scored with evidence**, all **Qualification Zones assessed**, **risk and opportunity flags**, and **role-specific next steps** (organized into 7 fixed sections, see *Artifact Generation* below).
 
 ---
 
@@ -49,7 +49,7 @@ Core commitments: a **GREENLIGHT / MANUAL REVIEW / DISQUALIFY verdict**, the **I
 
 **This skill does not contain client-specific information. It points to it.**
 
-> **Load the client profile from [`profiles/client-profile.md`](../../profiles/client-profile.md) before starting.** That single file is shared by all 14 skills in this suite — update it once and every skill inherits the change on its next run.
+> **Load the client profile from [`profiles/client-profile.md`](../../profiles/client-profile.md) before starting.** That single file is shared by all 14 skills in this suite. Update it once and every skill inherits the change on its next run.
 
 Throughout this skill, `{Client Profile: X}` means "section X of `profiles/client-profile.md`". Sections this skill reads:
 
@@ -64,9 +64,9 @@ Throughout this skill, `{Client Profile: X}` means "section X of `profiles/clien
 
 ## Methodology
 
-Your qualification frameworks. The criteria and zones below are the skill's defaults — use them as-is unless `{Client Profile}` names different frameworks.
+Your qualification frameworks. The criteria and zones below are the skill's defaults (use them as-is unless `{Client Profile}` names different frameworks).
 
-### Qualification Criteria — ICP1
+### Qualification Criteria (ICP1)
 
 | # | Criterion | What to Assess |
 |---|-----------|----------------|
@@ -79,7 +79,7 @@ Your qualification frameworks. The criteria and zones below are the skill's defa
 | 7 | Technology Readiness | Uses recognized ERP or core systems (SAP, Oracle, NetSuite, Infor, etc.) |
 | 8 | Current Solution Gap | Manual processes, spreadsheets, BPO, or known-deficient competitor |
 
-### Qualification Criteria — ICP2
+### Qualification Criteria (ICP2)
 
 | # | Criterion | What to Assess |
 |---|-----------|----------------|
@@ -98,9 +98,9 @@ When revenue is unavailable, use these formulas to estimate:
 
 | Method | Formula | Label |
 |--------|---------|-------|
-| Employee benchmark | Employees x $[X-Y]K per employee | `[Estimated — employee benchmark]` |
-| Branch count proxy | Branches x $[X-Y]M per branch | `[Estimated — branch proxy]` |
-| Industry ranking | Cross-reference industry top lists | `[Estimated — industry ranking]` |
+| Employee benchmark | Employees x $[X-Y]K per employee | `[Estimated - employee benchmark]` |
+| Branch count proxy | Branches x $[X-Y]M per branch | `[Estimated - branch proxy]` |
+| Industry ranking | Cross-reference industry top lists | `[Estimated - industry ranking]` |
 | CRM data | Notes referencing revenue range | `[CRM]` |
 
 ---
@@ -128,13 +128,13 @@ When revenue is unavailable, use these formulas to estimate:
 
 ### Step 0: Detect User Role
 
-Determine whether the user is a BDR or AE — this affects recommended next steps in the verdict.
+Determine whether the user is a BDR or AE (this affects recommended next steps in the verdict).
 
 **From CRM:** Check user role/profile. If unclear, check whether user appears as BDR Owner (contacts) or Account Owner (pipeline deals).
 
 **Fallback:** Ask: "Are you a BDR or AE?"
 
-**Output:** `user_role` — BDR / AE
+**Output:** `user_role` (BDR or AE)
 
 ---
 
@@ -173,10 +173,10 @@ When revenue is unavailable, use `{Methodology: Revenue Estimation Methods}`.
 ### Step 2: Classify ICP Type and Segment
 
 Determine which ICP category from `{Client Profile: ICP Definitions}` this company fits:
-- **ICP1** — Core market match
-- **ICP2** — Expansion market match
-- **Adjacent** — Near-fit with minimum thresholds
-- **No Fit** — Does not match any ICP definition
+- **ICP1** (Core market match)
+- **ICP2** (Expansion market match)
+- **Adjacent** (Near-fit with minimum thresholds)
+- **No Fit** (Does not match any ICP definition)
 
 Assign market segment based on `{Client Profile: ICP Definitions}`.
 
@@ -184,11 +184,11 @@ Assign market segment based on `{Client Profile: ICP Definitions}`.
 
 ### Step 3: Score Against 8 Qualification Criteria
 
-Use the ICP-appropriate criteria table from `{Methodology: Qualification Criteria — ICP1}` or `{Methodology: Qualification Criteria — ICP2}`. Score each as:
-- **STRONG** — Clear evidence confirming fit
-- **PARTIAL** — Some evidence, gaps remain
-- **WEAK** — Evidence against fit or no evidence
-- **UNKNOWN** — Cannot determine, needs research
+Use the ICP-appropriate criteria table from `{Methodology: Qualification Criteria (ICP1)}` or `{Methodology: Qualification Criteria (ICP2)}`. Score each as:
+- **STRONG** (Clear evidence confirming fit)
+- **PARTIAL** (Some evidence, gaps remain)
+- **WEAK** (Evidence against fit or no evidence)
+- **UNKNOWN** (Cannot determine, needs research)
 
 Include a brief evidence note with source label for each.
 
@@ -196,12 +196,12 @@ Include a brief evidence note with source label for each.
 
 ### Step 4: Assess Qualification Zone Alignment
 
-Assessment zones are defined in `{Client Profile: ICP Definitions}`. Score alignment for each zone as HIGH / MEDIUM / LOW / UNKNOWN:
+Assessment zones are defined in `{Client Profile: ICP Definitions}`. Score alignment for each zone as HIGH, MEDIUM, LOW, or UNKNOWN:
 
 | Rating | Meaning |
 |--------|---------|
 | HIGH | Clear evidence of strong alignment |
-| MEDIUM | Some alignment, not fully confirmed |
+| MEDIUM | Some alignment (not fully confirmed) |
 | LOW | Weak or no alignment |
 | UNKNOWN | Insufficient data to assess |
 
@@ -233,7 +233,7 @@ Assessment zones are defined in `{Client Profile: ICP Definitions}`. Score align
 
 #### Verdict Framework
 
-**GREENLIGHT** — Pursue actively
+**GREENLIGHT** (Pursue actively)
 - ICP match confirmed with evidence
 - 6+ of 8 criteria scored STRONG or PARTIAL
 - At least 2 Qualification Zones scored HIGH
@@ -241,20 +241,20 @@ Assessment zones are defined in `{Client Profile: ICP Definitions}`. Score align
 - *BDR:* Run Account Snapshot Outbound, book discovery for AE. Check for active AE deals first.
 - *AE:* Identify target personas, initiate outbound or add to pipeline.
 
-**MANUAL REVIEW** — Needs more data
+**MANUAL REVIEW** (Needs more data)
 - ICP match plausible but not confirmed
-- 4-5 of 8 criteria scored STRONG or PARTIAL, with 2+ UNKNOWN
+- 4-5 of 8 criteria scored STRONG or PARTIAL (with 2+ UNKNOWN)
 - At least 1 Zone HIGH
 - Has data gaps that could change verdict
 - *BDR:* Research specific gaps. Do NOT initiate outbound until gaps closed.
 - *AE:* Specific research actions before committing pipeline resources.
 
-**DISQUALIFY** — Do not pursue
+**DISQUALIFY** (Do not pursue)
 - Does not match ICP
 - 3+ criteria scored WEAK
 - No Zones scored HIGH
 - Critical risk flag(s) present
-- *Both:* Do not prospect. Explanation of why + conditions that could reverse DQ.
+- *Both:* Do not prospect. Explanation of why plus conditions that could reverse DQ.
 
 #### Summary Report
 
@@ -293,37 +293,37 @@ Assessment zones are defined in `{Client Profile: ICP Definitions}`. Score align
 
 ## Examples
 
-### Example 1: Clear GREENLIGHT
+### Example 1: Clear GREENLIGHT (Corvane Industrial)
 
-**Context:** Large enterprise company, PE-backed, multi-region operations.
+**Context:** Large PE-backed manufacturer, multi-region operations, significant outside-counsel spend.
 
-**Input:** "Qualify Acme Corp for fit."
+**Input:** "Qualify Corvane Industrial for fit."
 
-**Process:** Company type matches ICP2 HIGH priority segment. Revenue: $180M [Estimated -- employee benchmark]. PE-backed (Platinum Equity). 12 regions. No current solution for the problem your product solves.
+**Process:** Company type matches ICP1: corporate legal department at $3.2B manufacturer. PE-backed. 38 in-house attorneys. 60+ outside counsel relationships. ~$14M annual outside-counsel spend [Verified: company website, typical for size]. Multi-region operations (multiple states). Clear evidence of fragmentation and manual invoice review processes.
 
-**Scoring:** 7/8 criteria STRONG or PARTIAL. 3/5 Zones HIGH. No critical flags. 2 opportunity signals (PE trigger + no current solution).
+**Scoring:** 7/8 criteria STRONG or PARTIAL. 3/5 zones HIGH (attorney count, counsel spend, fragmentation pain). Opportunity signals: PE ownership (recent acquisitions drive legal spend volatility), new General Counsel (Dana Whitfield, 45 days tenure) signals mandate for cost control, existing spend is all-spreadsheets no visibility.
 
-**Verdict:** GREENLIGHT -- HIGH confidence. Recommended: Run Account Snapshot, target VP-level and Director-level personas.
+**Verdict:** GREENLIGHT (HIGH confidence). Recommendation: Run Account Snapshot to build targeted sequences for General Counsel (Dana Whitfield) and Head of Legal Operations (Sam Okafor, identified champion). This is the flagship enterprise deal profile.
 
-### Example 2: MANUAL REVIEW -- Data Gaps
+### Example 2: MANUAL REVIEW (Brightwater Logistics)
 
-**Context:** Regional company in target segment, limited CRM data.
+**Context:** Mid-market company, inbound demo request, limited prior CRM data, need to confirm scale and organizational structure.
 
-**Input:** "Qualify Regional Supply Co."
+**Input:** "Qualify Brightwater Logistics from their inbound request."
 
-**Scoring:** 4/8 criteria known (STRONG or PARTIAL), 3 UNKNOWN. 1/5 Zones HIGH. Revenue estimated at $45M (below preferred minimum). No critical flags but significant data gaps.
+**Scoring:** 4/8 criteria confirmed (size band, industry segment, attorney headcount of 11). 3 UNKNOWN (exact counsel spend volume, number of active outside firms, whether they have dedicated Legal Ops role). 2/5 zones HIGH. Revenue ~$780M [Verified: company website]. No critical disqualifiers, but organizational depth unclear.
 
-**Verdict:** MANUAL REVIEW -- MEDIUM confidence. Research: Confirm revenue (location count suggests higher), identify relevant team contacts, determine geographic footprint.
+**Verdict:** MANUAL REVIEW (MEDIUM confidence). Specific research needed: Confirm they have a Head of Legal Operations or equivalent owner role (inbound inquiry suggests awareness, but may be from a single attorney). Determine outside counsel count (typically 8-15 at this size). Validate counsel spend is material. If confirmed, GREENLIGHT-likely.
 
-### Example 3: Clear DISQUALIFY
+### Example 3: Clear DISQUALIFY (Hollis & Crane LLP)
 
-**Context:** Company outside target segment, does not match ICP.
+**Context:** 300-lawyer law firm. Requested product demo via web form.
 
-**Input:** "Qualify Generic Services Inc."
+**Input:** "Qualify Hollis & Crane LLP for fit."
 
-**Scoring:** 2/8 criteria STRONG. 0/5 Zones HIGH. No Fit flag: company operates outside target segment.
+**Scoring:** 0/8 criteria match. 0/5 zones HIGH. Disqualifier: Lexora sells to in-house legal teams managing outside counsel spend, not to law firms themselves.
 
-**Verdict:** DISQUALIFY -- HIGH confidence. Company does not match ICP definitions. Could reverse if they have a division that matches your target segment.
+**Verdict:** DISQUALIFY (HIGH confidence). Company does not match ICP (law firms, not corporate legal departments). No path to reverse unless they have a corporate legal function separate from the law firm (unlikely). Response: Polite decline. No outbound to this account type.
 
 ---
 
@@ -392,10 +392,14 @@ Assessment zones are defined in `{Client Profile: ICP Definitions}`. Score align
 
 ## Changelog
 
+### Version 1.2.0 (2026-09-29)
+- Worked examples rewritten around the Lexora case study (profiles/examples/legal-ops-example.md)
+- Em dashes removed from prose
+
 ### Version 1.1.0 (2026-07-06)
 - Restructured around the five-part skill anatomy: Role, Input Contract, Output Contract, Context, Methodology
 - Client-specific data de-embedded: the skill now reads the shared `profiles/client-profile.md` instead of carrying an embedded Client Profile block (one profile powers every skill)
-- Framework machinery (8-criteria scoring, revenue estimation formulas) moved to an explicit Methodology section — `{Methodology: X}` references
+- Framework machinery (8-criteria scoring, revenue estimation formulas) moved to an explicit Methodology section (`{Methodology: X}` references)
 - No functional changes to the workflow, examples, or verdict logic
 
 ### Version 1.0.0 (2026-03-04)

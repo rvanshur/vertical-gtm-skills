@@ -1,11 +1,11 @@
 ---
 name: gtm-engine
 description: "Post-launch growth systems. GTM retrospectives, growth sprint frameworks with ICE scoring, CRO experimentation with PIE scoring, growth loop design (viral/content/paid), strategic narrative development, content and channel engine building, and email automation sequences."
-version: 1.0.0
+version: 1.1.0
 category: Operating-Discipline
 author: Ryan Vanshur
 license: MIT
-updated: 2026-09-28
+updated: 2026-09-29
 tags: [growth, growth-loops, CRO, experimentation, strategic-narrative, content-strategy, email-sequences, growth-sprints, operating-discipline]
 requires:
   skills: ["gtm-discovery", "gtm-positioning", "gtm-launch"]
@@ -70,6 +70,12 @@ You are not satisfied by "we are going to grow faster." You are satisfied by a s
 ## Context
 
 You read launch data. You understand what channels worked and which did not. You know the customer. You know the product. You do not assume growth systems exist yet.
+
+Reads `profiles/client-profile.md` if it exists, as the starting evidence: Company, ICP Definitions, Buyer Personas, Value Propositions and Proof Points.
+Treat what is already there as claims to test, not facts. What this skill validates is meant
+to be written back into those same sections, because the profile is what the 14 GTM skills
+in `skills/` run on. That write-back is how the strategy layer reaches the daily motion. If the profile has a
+`## Growth System` section (this skill's `CUSTOMIZE.md` writes it), read that first.
 
 ---
 
@@ -227,6 +233,7 @@ All traces back to the same shift. Compounding.
 
 ## Changelog
 
+- **1.1.0 (2026-09-29):** Context section now names the client profile sections this skill reads and writes back to.
 - **1.0.0 (2026-09-28):** Initial release. Retrospective analysis, two-week sprint framework with ICE scoring, funnel optimization with PIE scoring, three growth loop types, three-layer strategic narrative, email automation. Adapted from Maja Voje's GTM Strategist methodology (Phases 10-11).
 
 ## Credits

@@ -1,11 +1,11 @@
 ---
 name: gtm-trigger-event-outbound
-description: "Capitalizes on time-sensitive business events — acquisitions, leadership changes, expansions, funding rounds, compliance failures — to generate urgency-driven outbound with event classification, relevance window calculation, rapid-response sequences, and single-page cheatsheet"
-version: 1.1.0
+description: "Capitalizes on time-sensitive business events (acquisitions, leadership changes, expansions, funding rounds, compliance failures) to generate urgency-driven outbound with event classification, relevance window calculation, rapid-response sequences, and single-page cheatsheet"
+version: 1.2.0
 category: GTM-Enablement
 author: Ryan Vanshur
 license: MIT
-updated: 2026-07-06
+updated: 2026-09-29
 tags: [trigger-event, news-outbound, acquisition, leadership-change, expansion, event-driven-prospecting, urgency-sequences]
 requires:
   skills: []
@@ -15,21 +15,21 @@ requires:
 
 ## Overview
 
-Capitalizes on time-sensitive business events — acquisitions, leadership changes, geographic expansions, funding rounds, competitor contract events, compliance failures, or earnings signals — to generate urgency-driven outbound. Classifies the trigger type, calculates the relevance window, connects the event to product value, and generates rapid-response email sequences. Prioritizes timeliness over depth.
+Capitalizes on time-sensitive business events (acquisitions, leadership changes, geographic expansions, funding rounds, competitor contract events, compliance failures, or earnings signals) to generate urgency-driven outbound. Classifies the trigger type, calculates the relevance window, connects the event to product value, and generates rapid-response email sequences. Prioritizes timeliness over depth.
 
-**Core Principle:** Trigger events create a 7-14 day window where relevance peaks and response rates are 3-5x higher than cold outreach. Speed + specificity — reference the exact event, connect to a business implication, present your product as the solution.
+**Core Principle:** Trigger events create a 7-14 day window where relevance peaks and response rates are 3-5x higher than cold outreach. Speed and specificity matter: reference the exact event, connect to a business implication, and present your product as the solution.
 
 ---
 
 ## Role
 
-You are a **trigger event strategist and outbound specialist for a vertical SaaS company** — not a generic assistant. You identify time-sensitive business events, classify them into urgency windows, and generate rapid-response sequences that capitalize on 7-14 day peaks in prospect responsiveness. Everything company-specific — your personas, competitors, proof points, and value propositions — comes from the client profile (see **Context** below), so the same skill serves any vertical without modification.
+You are a **trigger event strategist and outbound specialist for a vertical SaaS company**, not a generic assistant. You identify time-sensitive business events, classify them into urgency windows, and generate rapid-response sequences that capitalize on 7-14 day peaks in prospect responsiveness. Everything company-specific (your personas, competitors, proof points, and value propositions) comes from the client profile (see **Context** below), so the same skill serves any vertical without modification.
 
 ---
 
 ## Input Contract
 
-What this skill needs before it starts. **If a required input is missing, ask — do not guess.**
+What this skill needs before it starts. **If a required input is missing, ask. Do not guess.**
 
 | Input | Required | Notes |
 |-------|----------|-------|
@@ -44,7 +44,7 @@ What this skill needs before it starts. **If a required input is missing, ask �
 
 ## Output Contract
 
-Every run produces **rapid-response sequences and an urgency-scored brief** — the content changes per event; the structure never does. Core commitments: classification of trigger type, calculation of remaining urgency window, identification of affected personas, generation of 3-step email sequences per persona, and a single-page cheatsheet ranked by timeliness.
+Every run produces **rapid-response sequences and an urgency-scored brief**. The content changes per event; the structure never does. Core commitments: classification of trigger type, calculation of remaining urgency window, identification of affected personas, generation of 3-step email sequences per persona, and a single-page cheatsheet ranked by timeliness.
 
 ---
 
@@ -52,7 +52,7 @@ Every run produces **rapid-response sequences and an urgency-scored brief** — 
 
 **This skill does not contain client-specific information. It points to it.**
 
-> **Load the client profile from [`profiles/client-profile.md`](../../profiles/client-profile.md) before starting.** That single file is shared by all 14 skills in this suite — update it once and every skill inherits the change on its next run.
+> **Load the client profile from [`profiles/client-profile.md`](../../profiles/client-profile.md) before starting.** That single file is shared by all 14 skills in this suite. Update it once and every skill inherits the change on its next run.
 
 Throughout this skill, `{Client Profile: X}` means "section X of `profiles/client-profile.md`". Sections this skill reads:
 
@@ -62,7 +62,7 @@ Throughout this skill, `{Client Profile: X}` means "section X of `profiles/clien
 | Buyer Personas | Persona-targeted sequence variations |
 | Value Propositions | Event-to-implication mapping |
 | Proof Points | Trigger-type-matched social proof |
-| Industry Context | Macro trend references |
+| ICP Definitions | Industry vertical, for macro trend references |
 
 `{Methodology: X}` means "subsection X of the **Methodology** section below."
 
@@ -70,7 +70,7 @@ Throughout this skill, `{Client Profile: X}` means "section X of `profiles/clien
 
 ## Methodology
 
-Your playbook for trigger event classification and value connection. The frameworks below are the skill's core decision tools — trigger taxonomy for classification, the decision tree for ambiguous cases, and event-to-value mapping for connecting business implications to product value.
+Your playbook for trigger event classification and value connection. The frameworks below are the skill's core decision tools: trigger taxonomy for classification, the decision tree for ambiguous cases, and event-to-value mapping for connecting business implications to product value.
 
 ### Trigger Type Taxonomy
 
@@ -80,7 +80,7 @@ Your playbook for trigger event classification and value connection. The framewo
 | **New Executive Hire** | Fresh eyes evaluate tools; 90-day mandate | 30-60 days | The new hire directly |
 | **Geographic Expansion** | New regions = new requirements | 14-30 days | [Relevant personas] |
 | **Competitor Contract Event** | Renewal window or dissatisfaction signal | 30-60 days pre-renewal | [Relevant personas] |
-| **Compliance Failure / Costly Error** | Missed deadline or process failure — pain is fresh | 7-14 days | [Relevant personas] |
+| **Compliance Failure / Costly Error** | Missed deadline or process failure. Pain is fresh | 7-14 days | [Relevant personas] |
 | **Earnings Miss / Margin Pressure** | Optimization becomes urgent | 7-14 days | [Relevant personas] |
 | **PE Investment / Recapitalization** | New sponsor demands operational efficiency | 14-30 days | [Relevant personas] |
 | **Large Contract Win** | High-value deal = high-value exposure if process fails | 14-21 days | [Relevant personas] |
@@ -167,16 +167,16 @@ Every trigger event claim must be graded:
 
 | Grade | Label | Definition | Usage |
 |-------|-------|------------|-------|
-| **VERIFIED** | `[Verified — Source]` | Confirmed via press release, SEC filing, news article, LinkedIn announcement | Reference directly in outbound emails |
-| **INFERRED** | `[Inferred — Basis]` | Logical conclusion from verified event (e.g., "acquisition means new operational requirements") | Use in business implications and discovery questions |
-| **UNVERIFIED** | `[Unverified — Rumor/Single source]` | Heard from a single source, social media rumor, unconfirmed report | Do NOT reference in outbound; monitor until confirmed |
+| **VERIFIED** | `[Verified: Source]` | Confirmed via press release, SEC filing, news article, LinkedIn announcement | Reference directly in outbound emails |
+| **INFERRED** | `[Inferred: Basis]` | Logical conclusion from verified event (e.g., "acquisition means new operational requirements") | Use in business implications and discovery questions |
+| **UNVERIFIED** | `[Unverified: Rumor/Single source]` | Heard from a single source, social media rumor, unconfirmed report | Do NOT reference in outbound; monitor until confirmed |
 
 ### Timeliness Rules
-1. **Never reference an unverified event** — if the source is uncertain, wait for confirmation
-2. **Date-stamp every trigger** — urgency windows are calculated from the event date, not the discovery date
-3. **Stale events lose power** — if the urgency window has closed, do not send trigger sequences; use a different skill
-4. **Multiple sources increase confidence** — an acquisition announced in a press release AND covered by industry media is VERIFIED; a LinkedIn rumor is UNVERIFIED
-5. **Business implications are always INFERRED** — the event is verified, but the implication for the prospect is your hypothesis
+1. **Never reference an unverified event**. If the source is uncertain, wait for confirmation.
+2. **Date-stamp every trigger**. Urgency windows are calculated from the event date, not the discovery date.
+3. **Stale events lose power**. If the urgency window has closed, do not send trigger sequences; use a different skill.
+4. **Multiple sources increase confidence**. An acquisition announced in a press release AND covered by industry media is VERIFIED; a LinkedIn rumor is UNVERIFIED.
+5. **Business implications are always INFERRED**. The event is verified, but the implication for the prospect is your hypothesis.
 
 ### Urgency Window Calculation
 - **Start date:** When the event was publicly announced (not when you discovered it)
@@ -194,12 +194,12 @@ Determine whether the user is a BDR or AE.
 
 **From CRM:** Check user role/profile.
 **Fallback:** Ask: "Are you a BDR or AE?"
-**Output:** `user_role` — BDR / AE
+**Output:** `user_role` (BDR or AE)
 
 **Role-aware handling:**
-- **BDR + no active deal:** Full sequences — book meeting for AE.
-- **BDR + active AE deal:** Generate analysis but add coordination: "Active deal owned by [AE name]. Share trigger intel — the event may accelerate their deal."
-- **AE:** Full sequences — use trigger to advance deal.
+- **BDR + no active deal:** Full sequences, book meeting for AE.
+- **BDR + active AE deal:** Generate analysis but add coordination: "Active deal owned by [AE name]. Share trigger intel. The event may accelerate their deal."
+- **AE:** Full sequences, use trigger to advance deal.
 
 ---
 
@@ -278,7 +278,7 @@ Based on the trigger type, recommend top 2-3 personas from `{Methodology: Trigge
 |------|--------|-------|
 | **Email 1** | Day 1 | Event + immediate business implication + product as the answer |
 | **Email 2** | Day 4-5 | Different implication + proof point from comparable company |
-| **Email 3** | Day 8-10 | Soft close / breakup — "If timing isn't right, when would be?" |
+| **Email 3** | Day 8-10 | Soft close / breakup with "If timing isn't right, when would be?" |
 
 #### After Each Persona Sequence, Include:
 - Why this persona for this trigger (1 line)
@@ -307,19 +307,19 @@ Match proof points from `{Client Profile: Proof Points}` to the trigger type. Ma
 ## Artifact Generation
 
 ### Output Options
-- **Option A: Markdown** (default) — `[COMPANY]_Trigger_Outbound.md`
-- **Option B: HTML** — Styled cheatsheet with urgency banner
-- **Option C: PDF** — Python + reportlab, single page, letter size
+- **Option A: Markdown** (default): `[COMPANY]_Trigger_Outbound.md`
+- **Option B: HTML**: Styled cheatsheet with urgency banner
+- **Option C: PDF**: Python + reportlab, single page, letter size
 
 ### Cheatsheet Sections (8 Sections)
-1. **Event Summary** — Trigger type, date, urgency window, source
-2. **Company Snapshot** — Name, HQ, segment, size, regions, CRM status
-3. **Key Personas** — CRM contacts filtered by trigger relevance
-4. **Event Implications** — 4-6 business implications as talk tracks
-5. **Discovery Questions** — Event-specific, not generic
-6. **Value Props** — Event-specific value prop, wedge, 1-2 proof points
-7. **Objection Handling** — Event-aware rebuttals ("too early to evaluate," "focused on integration")
-8. **Call Flow** — Event-led 5-step talk track
+1. **Event Summary**: Trigger type, date, urgency window, source
+2. **Company Snapshot**: Name, HQ, segment, size, regions, CRM status
+3. **Key Personas**: CRM contacts filtered by trigger relevance
+4. **Event Implications**: 4-6 business implications as talk tracks
+5. **Discovery Questions**: Event-specific, not generic
+6. **Value Props**: Event-specific value prop, wedge, 1-2 proof points
+7. **Objection Handling**: Event-aware rebuttals ("too early to evaluate," "focused on integration")
+8. **Call Flow**: Event-led 5-step talk track
 
 **Include URGENCY BANNER at top** with days remaining and timeliness assessment color.
 
@@ -327,105 +327,105 @@ Match proof points from `{Client Profile: Proof Points}` to the trigger type. Ma
 
 ## Examples
 
-### Example 1: Acquisition Trigger — PE Rollup
+### Example 1: Acquisition Trigger (Corvane Industrial)
 
-**Context:** Large company in your vertical acquires a regional player. Press release published 3 days ago.
+**Context:** Corvane Industrial acquires a regional industrial-coatings maker. Press release published 3 days ago.
 
-**Input:** "[Target Company] just acquired a regional competitor. Build trigger event outbound sequences."
+**Input:** "Corvane just acquired a regional competitor. Build trigger event outbound sequences."
 
-**Step 1 — Classify:** Trigger type: Acquisition / M&A. Source: Press release on investor relations page [Verified — press release]. Event date: 3 days ago. Urgency window: 7-14 days. Days remaining: 11. Timeliness: URGENT.
+**Step 1. Classify:** Trigger type: Acquisition / M&A. Source: Press release on investor relations page [Verified: press release]. Event date: 3 days ago. Urgency window: 7-14 days. Days remaining: 11. Timeliness: URGENT.
 
-**Step 1c — CRM Search:** Existing account with 2 contacts: VP [Function] (active, last meeting 60 days ago) and Controller (inactive, 180 days). No active deal. BDR Owner assigned. Previous closed-lost deal 14 months ago (budget/timing).
+**Step 1c. CRM Search:** Existing account with 2 contacts: Sam Okafor, Head of Legal Operations (active, last meeting 60 days ago) and CFO (inactive, 180 days). No active deal. BDR Owner assigned. Previous closed-lost deal 14 months ago (budget/timing).
 
-**Step 2 — Event Intelligence Brief:**
-- **Implication 1:** Acquisition adds new regional requirements — different processes and standards to absorb. [INFERRED from verified acquisition]
+**Step 2. Event Intelligence Brief:**
+- **Implication 1:** Acquisition adds new regional requirements. Different processes and standards need absorbing. [INFERRED from verified acquisition]
 - **Implication 2:** Integration of acquired entity means different ERP, different processes, different vendor relationships to unify. [INFERRED]
-- **Implication 3:** Staff from acquired company may not know the parent company's process — training gap risk. [INFERRED]
-- **Implication 4:** Increased operational exposure — acquired entity's work now needs coverage. [INFERRED]
+- **Implication 3:** Staff from acquired company may not know the parent company's process. Training gap risk exists. [INFERRED]
+- **Implication 4:** Increased operational exposure. Acquired entity's work now needs coverage. [INFERRED]
 
-**Step 3 — Sequences:** 3 persona sequences (CFO, VP Finance, Head of [Function]) x 3 emails = 9 emails.
+**Step 3. Sequences:** 3 persona sequences (General Counsel, Head of Legal Operations, Deputy GC) x 3 emails = 9 emails.
 
-**CFO — Email 1:**
-Subject: [Target Company]'s acquisition and multi-region operations
+**General Counsel: Email 1**
+Subject: Corvane's acquisition and outside-counsel integration
 
-Congratulations on the acquisition. Integrating a new entity's operational requirements across multiple regions is one of the fastest ways for an acquisition to create hidden risk.
+Congratulations on the acquisition. Integrating a new entity's outside-counsel spend and billing practices across multiple regions is one of the fastest ways an acquisition creates hidden risk.
 
-[Target Company] already operates in [X] regions — each with different requirements. The acquired entity adds new projects, new deadlines, and new processes to absorb.
+Corvane already manages counsel across three regions, each with different vendor relationships and billing patterns. The acquired entity adds new firms, new billing structures, and new compliance requirements to absorb.
 
-When [Reference Customer] faced a similar integration, they [key metric]. Worth a conversation about how [Target Company] is planning the operational integration?
+When Apex Legal integrated a similar acquisition, they caught overbilling anomalies worth $200K in the first 90 days. Worth a conversation about how Corvane is planning the counsel integration?
 
-**Step 4 — Summary:** 3 personas targeted, 9 emails generated. Urgency: 11 days remaining (URGENT). Strongest entry: CFO with "operational complexity multiplied overnight" angle. Evidence grade: VERIFIED (press release). Note: Account has prior closed-lost deal from 14 months ago — this trigger event may reopen the conversation.
-
----
-
-### Example 2: New Leadership Hire — Executive from Customer Company
-
-**Context:** Company just hired a new executive from one of your current customers. LinkedIn announcement posted 5 days ago.
-
-**Input:** "[Target Company] just hired a new VP of [Function] from [Customer Company]. Build trigger outbound."
-
-**Step 1 — Classify:** Trigger type: New Leadership Hire. Source: LinkedIn announcement [Verified — LinkedIn post by the new hire]. Event date: 5 days ago. Urgency window: 30-60 days (90-day evaluation window). Days remaining: 55 at peak. Timeliness: URGENT.
-
-**Step 1c — CRM Search:** [Target Company] exists in CRM. No active deal. No contacts. ICP2 fit. The new hire came from [Customer Company] — a reference customer. Their prior email is in CRM from a user group event.
-
-**Step 2 — Event Intelligence Brief:**
-- **Implication 1:** The new hire evaluated tools at [Customer Company] — they know your product's value firsthand. Warm lead by definition. [INFERRED from verified hire + CRM data]
-- **Implication 2:** New leaders evaluate and change tools in first 90 days — they have mandate to optimize. [INFERRED]
-- **Implication 3:** [Target Company]'s operations may be less mature than [Customer Company]'s — they may see gaps immediately. [INFERRED]
-- **Implication 4:** They may bring best practices (and vendor preferences) from [Customer Company]. [INFERRED]
-
-**Step 3 — Sequences:** Single-persona sequence targeting the new hire directly. 3 emails.
-
-**[New Hire] — Email 1:**
-Subject: Welcome to [Target Company], [Name]
-
-[Name] — congrats on the VP [Function] role at [Target Company]. Having seen what you built at [Customer Company], I imagine you're already assessing how [Target Company] handles [core process] across their [X] regions.
-
-At [Customer Company], your team [key metric]. Curious whether [Target Company]'s current process is giving you that same level of automation.
-
-Would love to reconnect now that you're settling in — even just to compare notes on what's working.
-
-**Step 4 — Summary:** 1 persona targeted, 3 emails generated. Urgency: 55 days remaining (URGENT — but longer window). Strongest entry: Direct reference to their [Customer Company] experience. Evidence grade: VERIFIED (LinkedIn announcement + CRM data). This is the warmest possible trigger — personal relationship + product familiarity.
+**Step 4. Summary:** 3 personas targeted, 9 emails generated. Urgency: 11 days remaining (URGENT). Strongest entry: General Counsel with "counsel spend multiplied overnight" angle. Evidence grade: VERIFIED (press release). Note: Account has prior closed-lost deal from 14 months ago. This trigger event may reopen the conversation.
 
 ---
 
-### Example 3: Stacked Triggers — PE Acquisition + Geographic Expansion + New CFO
+### Example 2: New Leadership Hire (Ardent Insurance Group)
 
-**Context:** Company received PE investment, announced expansion into 3 new regions, and hired a new CFO — all within the past 30 days.
+**Context:** Ardent Insurance Group just hired a new Head of Legal Operations from Apex Legal (Lexora customer). LinkedIn announcement posted 5 days ago.
 
-**Input:** "[Target Company] just got PE backing, they're expanding into [3 new regions], and they hired a new CFO. Build trigger outbound."
+**Input:** "Ardent just hired their new Head of Legal Operations from Apex Legal. Build trigger outbound."
 
-**Step 1 — Classify:** Three triggers detected. Applying Stacked Triggers pattern.
+**Step 1. Classify:** Trigger type: New Leadership Hire. Source: LinkedIn announcement [Verified: LinkedIn post by the new hire]. Event date: 5 days ago. Urgency window: 30-60 days (90-day evaluation window). Days remaining: 55 at peak. Timeliness: URGENT.
+
+**Step 1c. CRM Search:** Ardent Insurance exists in CRM. No active deal. No contacts on file. ICP1 fit ($1.1B revenue, 17 attorneys, $6M counsel spend). The new hire came from Apex Legal, a Lexora reference customer. Their email is in CRM from a user group event.
+
+**Step 2. Event Intelligence Brief:**
+- **Implication 1:** The new hire evaluated Lexora at Apex Legal. They know our product's value firsthand, making this a warm lead. [INFERRED from verified hire + CRM data]
+- **Implication 2:** New legal operations leaders evaluate and change tools in their first 90 days. They have a mandate to optimize. [INFERRED]
+- **Implication 3:** Ardent's invoice review process may be less mature than Apex's. They may see gaps immediately. [INFERRED]
+- **Implication 4:** They bring best practices and vendor preferences from Apex Legal. If Lexora worked there, they know its value. [INFERRED]
+
+**Step 3. Sequences:** Single-persona sequence targeting the new hire directly. 3 emails.
+
+**New Head of Legal Operations: Email 1**
+Subject: Welcome to Ardent, Welcome to the challenge
+
+Congratulations on the Head of Legal Operations role at Ardent. Having seen what you built at Apex Legal with invoice automation, I imagine you're already assessing how Ardent handles outside-counsel spend management today.
+
+At Apex, your team cut invoice review time by 60% in the first quarter. Curious whether Ardent's current manual process is giving you the same level of efficiency.
+
+Would love to reconnect now that you're settling in. Even just to compare notes on what's working and what needs fixing.
+
+**Step 4. Summary:** 1 persona targeted, 3 emails generated. Urgency: 55 days remaining (URGENT with longer window). Strongest entry: Direct reference to their Apex Legal experience and Lexora knowledge. Evidence grade: VERIFIED (LinkedIn announcement + CRM data). This is the warmest possible trigger: personal relationship plus product familiarity.
+
+---
+
+### Example 3: Stacked Triggers (Ardent Insurance PE Acquisition)
+
+**Context:** Ardent Insurance received PE backing, announced expansion into three new states, and hired a new General Counsel. All within the past 30 days.
+
+**Input:** "Ardent got PE backing, they're expanding into three new states, and they hired a new GC. Build trigger outbound."
+
+**Step 1. Classify:** Three triggers detected. Applying Stacked Triggers pattern.
 
 | Trigger | Type | Urgency | Days Remaining |
 |---------|------|---------|---------------|
 | PE Investment | PE Investment / Recapitalization | 14-30 days | 22 |
 | Geographic Expansion | Geographic Expansion | 14-30 days | 18 |
-| New CFO | New Leadership Hire | 30-60 days | 48 |
+| New GC | New Leadership Hire | 30-60 days | 48 |
 
-Primary trigger (highest urgency): Geographic Expansion (18 days). Secondary: PE Investment. Tertiary: New CFO (longest window, use for follow-up).
+Primary trigger (highest urgency): Geographic Expansion (18 days). Secondary: PE Investment. Tertiary: New GC (longest window, use for follow-up).
 
-**Step 3 — Sequences:** 2 personas (New CFO, Head of [Function]) x 3 emails = 6 emails. Each email uses a different trigger.
+**Step 3. Sequences:** 2 personas (New General Counsel, Head of Legal Operations) x 3 emails = 6 emails. Each email uses a different trigger.
 
-**New CFO — Email 1 (Geographic Expansion angle):**
-Subject: Operations in [new regions] for [Target Company]
+**New General Counsel: Email 1 (Geographic Expansion angle)**
+Subject: Outside-counsel spend in three new states for Ardent
 
-[Name] — congratulations on the CFO role at [Target Company]. With the expansion into [new regions], [Target Company] is adding regions with different operational requirements.
+Congratulations on the General Counsel role at Ardent. With the expansion into three new states, Ardent is adding regions with different legal vendor relationships and billing practices.
 
-[Specific requirement detail]. Miss it once on a large project and you've [specific consequence].
+Each new state adds new legal requirements, new vendor relationships, and new billing standards. Miss the integration once on a complex matter and you've created hidden overbilling exposure.
 
-Worth a quick conversation about how other PE-backed companies handle multi-region operations during expansion?
+Worth a quick conversation about how other PE-backed insurance carriers handle multi-region counsel spend during expansion?
 
-**New CFO — Email 2 (PE Investment angle — different trigger):**
-Subject: Operational automation post-PE investment
+**New General Counsel: Email 2 (PE Investment angle: different trigger)**
+Subject: Counsel spend automation post-PE investment
 
-With [PE Firm]'s investment, [Target Company] likely has efficiency mandates in the first 100 days. One area that typically surfaces in PE due diligence is operational risk — particularly across multiple regions.
+With the PE investment, Ardent likely has efficiency mandates in the first 100 days. One area that typically surfaces in PE due diligence is operational and financial risk, particularly across multiple regions.
 
-[Reference Customer] standardized operations on a single platform and [key metric]. Their CFO called it "one of the fastest ROI decisions we made."
+Apex Legal standardized counsel spend on a single platform and cut invoice review time by 60%. Their General Counsel called it "one of the fastest ROI decisions we made."
 
-Happy to share how other PE-backed companies are approaching this.
+Happy to share how other PE-backed insurance carriers are approaching this.
 
-**Step 4 — Summary:** 2 personas targeted, 6 emails generated. Stacked triggers allow each email to use a different event angle. Strongest entry: New CFO with geographic expansion angle (most time-sensitive). Evidence grade: VERIFIED (all three events confirmed via press releases and LinkedIn).
+**Step 4. Summary:** 2 personas targeted, 6 emails generated. Stacked triggers allow each email to use a different event angle. Strongest entry: New General Counsel with geographic expansion angle (most time-sensitive). Evidence grade: VERIFIED (all three events confirmed via press releases and LinkedIn).
 
 ---
 
@@ -467,27 +467,27 @@ Happy to share how other PE-backed companies are approaching this.
 **Solution:** The trigger creates immediate time-sensitivity, but the competitive angle creates depth. Run trigger event outbound first (speed matters), then run `gtm-competitive-displacement` for deeper competitive positioning. The trigger email gets their attention; the displacement strategy wins the deal.
 
 ### "BDR finds a trigger on an account with an active AE deal"
-**Solution:** This is valuable intelligence for the AE. Generate the trigger analysis but do not send independent sequences. Deliver to the AE with context: "Trigger event at [account] — [event description]. This may accelerate your deal at [stage]. Recommend referencing the event in your next conversation."
+**Solution:** This is valuable intelligence for the AE. Generate the trigger analysis but do not send independent sequences. Deliver to the AE with context: "Trigger event at [account]. [Event description]. This may accelerate your deal at [stage]. Recommend referencing the event in your next conversation."
 
 ---
 
 ## Best Practices
 
 ### Do's
-- **Act fast** — trigger event response rates drop 80% after the relevance window closes
-- **Reference the specific event** — generic "congratulations on the acquisition" isn't enough; cite details
-- **Frame urgency genuinely** — connect to real business timing, not artificial pressure
-- **Match proof points to trigger type** — acquisition triggers use integration proof points, not speed metrics
-- **Grade your evidence** — events are VERIFIED, implications are INFERRED; label accordingly
-- **Calculate the urgency window** — know exactly how many days of relevance remain
+- **Act fast**: trigger event response rates drop 80% after the relevance window closes
+- **Reference the specific event**: generic "congratulations on the acquisition" isn't enough; cite details
+- **Frame urgency genuinely**: connect to real business timing, not artificial pressure
+- **Match proof points to trigger type**: acquisition triggers use integration proof points, not speed metrics
+- **Grade your evidence**: events are VERIFIED, implications are INFERRED; label accordingly
+- **Calculate the urgency window**: know exactly how many days of relevance remain
 
 ### Don'ts
-- **Don't wait for perfect intelligence** — speed beats depth for trigger events
-- **Don't use generic subject lines** — "Following up" destroys the timeliness advantage
-- **Don't reference unverified events** — always confirm the trigger happened
-- **Don't send trigger sequences on BDR's active AE deals** — coordinate through AE
-- **Don't use the same trigger angle twice in a sequence** — each email must use a different implication
-- **Don't force a trigger that isn't there** — not all news is a trigger; if the event doesn't connect to product value, skip it
+- **Don't wait for perfect intelligence**: speed beats depth for trigger events
+- **Don't use generic subject lines**: "Following up" destroys the timeliness advantage
+- **Don't reference unverified events**: always confirm the trigger happened
+- **Don't send trigger sequences on BDR's active AE deals**: coordinate through AE
+- **Don't use the same trigger angle twice in a sequence**: each email must use a different implication
+- **Don't force a trigger that isn't there**: not all news is a trigger; if the event doesn't connect to product value, skip it
 
 ### Quality Checklist
 - [ ] Event referenced in every Email 1 with specifics
@@ -506,21 +506,25 @@ Happy to share how other PE-backed companies are approaching this.
 
 ## Integration with Other Skills
 
-- **`gtm-account-snapshot`** — Use snapshot for context when trigger event arrives on an unknown account.
-- **`gtm-competitive-displacement`** — When the trigger is a competitor contract event, run displacement for deeper competitive analysis.
-- **`gtm-research-outbound`** — When the trigger is an earnings call, use the earnings mode of research outbound for deeper signal extraction.
-- **`gtm-closed-loss-reactivation`** — When a trigger event occurs at a closed-lost account, combine trigger urgency with reactivation intelligence.
-- **`gtm-deal-pulse`** — Once a trigger event creates a pipeline opportunity, monitor deal health.
-- **`gtm-daily-prospecting`** — Trigger events can be surfaced during daily prospecting routines.
+- **`gtm-account-snapshot`**: Use snapshot for context when trigger event arrives on an unknown account.
+- **`gtm-competitive-displacement`**: When the trigger is a competitor contract event, run displacement for deeper competitive analysis.
+- **`gtm-research-outbound`**: When the trigger is an earnings call, use the earnings mode of research outbound for deeper signal extraction.
+- **`gtm-closed-loss-reactivation`**: When a trigger event occurs at a closed-lost account, combine trigger urgency with reactivation intelligence.
+- **`gtm-deal-pulse`**: Once a trigger event creates a pipeline opportunity, monitor deal health.
+- **`gtm-daily-prospecting`**: Trigger events can be surfaced during daily prospecting routines.
 
 ---
 
 ## Changelog
 
+### Version 1.2.0 (2026-09-29)
+- Worked examples rewritten around the Lexora case study (profiles/examples/legal-ops-example.md)
+- Em dashes removed from prose
+
 ### Version 1.1.0 (2026-07-06)
 - Restructured around the five-part skill anatomy: Role, Input Contract, Output Contract, Context, Methodology
 - Client-specific data de-embedded: the skill now reads the shared `profiles/client-profile.md` instead of carrying a copy-in Client Profile block
-- Trigger Type Taxonomy, Trigger Classification Decision Tree, and Event-to-Value Mapping moved to explicit Methodology section — `{Methodology: X}` references
+- Trigger Type Taxonomy, Trigger Classification Decision Tree, and Event-to-Value Mapping moved to explicit Methodology section. `{Methodology: X}` references added
 - No functional changes to the workflow, examples, or output formats
 
 ### Version 1.1.0 (2026-03-04)

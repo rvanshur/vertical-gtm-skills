@@ -1,11 +1,11 @@
 ---
 name: gtm-debug
 description: "Enforce evidence-based debugging with a circuit breaker. No fix without a hypothesis first. After three failed hypotheses the session stops, writes a handoff, and re-plans"
-version: 1.0.0
+version: 1.1.0
 category: Operating-Discipline
 author: Ryan Vanshur
 license: MIT
-updated: 2026-09-28
+updated: 2026-09-29
 tags: [debugging, root-cause-analysis, circuit-breaker, hypothesis-testing, evidence, operating-discipline]
 requires:
   skills: []
@@ -76,6 +76,15 @@ evidence, not hope.
 | Evidence gathered | Yes | Source trace, reproduction recipe, logs, test results |
 | Verdict | Yes | Hypothesis confirmed, disproved, or unfinished |
 | Action | Yes | The fix, or the handoff to re-plan |
+
+---
+
+## Context
+
+If `profiles/client-profile.md` has a `## Debugging` section (this skill's `CUSTOMIZE.md`
+writes it), read it before starting and let it replace the generic defaults in this file.
+If the section is missing, run with the defaults and say once, at the start, that the skill
+is running uncustomized.
 
 ---
 
@@ -193,5 +202,6 @@ Do not attempt a fourth hypothesis. Do not guess. Hand off clean and re-plan.
 
 ## Changelog
 
+- **1.1.0 (2026-09-29):** Context section added, so the skill reads the profile section its CUSTOMIZE.md writes.
 - **1.0.0 (2026-09-28):** Initial release. Hypothesis-first discipline, three-attempt circuit
   breaker, handoff format, evidence-gathering order.

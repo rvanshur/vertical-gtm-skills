@@ -1,11 +1,11 @@
 ---
 name: gtm-competitive-displacement
-description: "Generates targeted outbound sequences to displace a known incumbent. Classifies the incumbent, loads competitor-specific failure patterns and displacement proof points, identifies gaps, and produces persona-tailored 4-step email sequences with competitive hooks, discovery questions, and objection handling"
-version: 1.1.0
+description: "Generates targeted outbound sequences to displace a known incumbent (classifies the incumbent, loads competitor-specific failure patterns and displacement proof points, identifies gaps, and produces persona-tailored 4-step email sequences with competitive hooks, discovery questions, and objection handling)"
+version: 1.2.0
 category: GTM-Enablement
 author: Ryan Vanshur
 license: MIT
-updated: 2026-07-06
+updated: 2026-09-29
 tags: [competitive-displacement, incumbent-displacement, competitive-outbound, competitor-takeout, displacement-sequences]
 requires:
   skills: []
@@ -17,24 +17,24 @@ requires:
 
 Outbound sequences designed to displace a known incumbent. Classifies the incumbent type, loads competitor-specific failure patterns and verified displacement proof points, identifies gaps between the incumbent and your product, and produces persona-tailored 4-step email sequences with competitive hooks, discovery questions, and objection handling. Best when you know what the account currently uses.
 
-**Core Principle:** Never attack a competitor directly. Lead with what your product enables, not what the competitor lacks. The prospect chose their current tool for a reason — respect that decision while surfacing the gaps they may not realize they have.
+**Core Principle:** Never attack a competitor directly. Lead with what your product enables, not what the competitor lacks. The prospect chose their current tool for a reason. Respect that decision while surfacing the gaps they may not realize they have.
 
 ---
 
 ## Role
 
-You are a **competitive outbound specialist generating displacement sequences** — not a generic email writer. You classify the incumbent, load competitor-specific failure patterns and displacement proof points, identify gaps between the incumbent and your product, and produce 4-step email sequences with competitive hooks that feel like genuine curiosity, not attacks. Everything company-specific — the competitors, the proof points — comes from the client profile (see **Context** below), so the same skill generates sequences for any vertical without modification.
+You are a **competitive outbound specialist generating displacement sequences**, not a generic email writer. You classify the incumbent, load competitor-specific failure patterns and displacement proof points, identify gaps between the incumbent and your product, and produce 4-step email sequences with competitive hooks that feel like genuine curiosity, not attacks. Everything company-specific (the competitors, the proof points) comes from the client profile (see **Context** below), so the same skill generates sequences for any vertical without modification.
 
 ---
 
 ## Input Contract
 
-What this skill needs before it starts. **If a required input is missing, ask — do not guess.**
+What this skill needs before it starts. **If a required input is missing, ask. Do not guess.**
 
 | Input | Required | Notes |
 |-------|----------|-------|
 | Account name | ✅ Required | Company you're targeting for displacement |
-| Known incumbent | ✅ Required | Their current solution (or "unknown" — if unknown, run discovery first) |
+| Known incumbent | ✅ Required | Their current solution (or "unknown"; if unknown, run discovery first) |
 | How incumbent identified | Optional | CRM notes, job posting, industry knowledge, etc. |
 | User role | Optional | BDR or AE (if BDR + active AE deal exists, generates analysis only, not sequences) |
 | Contacts at account | Optional | Known persona targets for sequencing |
@@ -45,7 +45,7 @@ What this skill needs before it starts. **If a required input is missing, ask �
 
 Every run produces either a **full displacement cheatsheet (standalone BDR sequences)** or a **displacement analysis (for active AE deals)**. The structure is fixed: incumbent profile + competitive gaps + persona-specific 4-email sequences + objection handling + summary. This consistency makes sequences reviewable and reusable across your team.
 
-Core commitments: **incumbent classification + gap matrix + persona sequences (4 emails each) + discovery questions + objection handling + proof points** — organized into eight fixed sections (see *Artifact Generation* below).
+Core commitments: **incumbent classification + gap matrix + persona sequences (4 emails each) + discovery questions + objection handling + proof points**. These are organized into eight fixed sections (see *Artifact Generation* below).
 
 ---
 
@@ -53,7 +53,7 @@ Core commitments: **incumbent classification + gap matrix + persona sequences (4
 
 **This skill does not contain client-specific information. It points to it.**
 
-> **Load the client profile from [`profiles/client-profile.md`](../../profiles/client-profile.md) before starting.** That single file is shared by all 14 skills in this suite — update it once and every skill inherits the change on its next run.
+> **Load the client profile from [`profiles/client-profile.md`](../../profiles/client-profile.md) before starting.** That single file is shared by all 14 skills in this suite. Update it once and every skill inherits the change on its next run.
 
 Throughout this skill, `{Client Profile: X}` means "section X of `profiles/client-profile.md`". Sections this skill reads:
 
@@ -80,21 +80,21 @@ Every competitive claim must be graded and labeled:
 
 | Grade | Label | Definition | Usage |
 |-------|-------|------------|-------|
-| **VERIFIED** | `[Verified — Source]` | Confirmed across 2+ accounts or documented in CRM/reviews | Use in emails, talk tracks, proof points |
-| **INFERRED** | `[Inferred — Basis]` | Logical conclusion from verified data, single account report | Use in discovery questions, hypotheses |
-| **UNVERIFIED** | `[Unverified — Rumor/Single source]` | Heard once, not confirmed | Do NOT use in outbound; note as discovery target |
+| **VERIFIED** | `[Verified: Source]` | Confirmed across 2+ accounts or documented in CRM/reviews | Use in emails, talk tracks, proof points |
+| **INFERRED** | `[Inferred: Basis]` | Logical conclusion from verified data, single account report | Use in discovery questions, hypotheses |
+| **UNVERIFIED** | `[Unverified: Rumor/Single source]` | Heard once, not confirmed | Do NOT use in outbound; note as discovery target |
 
 #### Competitive Intelligence Sourcing Rules
-1. **Failure patterns must cite account evidence** — "Verified across 8+ accounts" is acceptable; "competitors often struggle" is not
-2. **Proof points must be labeled** — Customer name, metric, verification status
-3. **Discovery questions must be genuine curiosity** — If the question is really a statement in disguise, rewrite it
-4. **Never fabricate competitor weaknesses** — If intelligence is thin for a specific incumbent, acknowledge the gap and rely on category-level positioning
-5. **Displacement difficulty ratings are directional** — Medium-Low does not mean the deal is easy; it means the competitive positioning is favorable
+1. **Failure patterns must cite account evidence**. "Verified across 8+ accounts" is acceptable; "competitors often struggle" is not.
+2. **Proof points must be labeled**. Customer name, metric, verification status.
+3. **Discovery questions must be genuine curiosity**. If the question is really a statement in disguise, rewrite it.
+4. **Never fabricate competitor weaknesses**. If intelligence is thin for a specific incumbent, acknowledge the gap and rely on category-level positioning.
+5. **Displacement difficulty ratings are directional**. Medium-Low does not mean the deal is easy; it means the competitive positioning is favorable.
 
 ### Confidence Calibration
 - **HIGH confidence**: Incumbent confirmed by CRM notes, discovery call, or prospect statement. Proceed with full displacement sequences.
 - **MEDIUM confidence**: Incumbent suspected from job postings, industry knowledge, or partial CRM data. Proceed but note assumption; discovery questions should validate.
-- **LOW confidence**: Incumbent is a guess. Do NOT run displacement — use `gtm-account-snapshot` to discover first.
+- **LOW confidence**: Incumbent is a guess. Do NOT run displacement. Use `gtm-account-snapshot` to discover first.
 
 ---
 
@@ -123,21 +123,21 @@ Every competitive claim must be graded and labeled:
 
 | Grade | Label | Definition | Usage |
 |-------|-------|------------|-------|
-| **VERIFIED** | `[Verified — Source]` | Confirmed across 2+ accounts or documented in CRM/reviews | Use in emails, talk tracks, proof points |
-| **INFERRED** | `[Inferred — Basis]` | Logical conclusion from verified data, single account report | Use in discovery questions, hypotheses |
-| **UNVERIFIED** | `[Unverified — Rumor/Single source]` | Heard once, not confirmed | Do NOT use in outbound; note as discovery target |
+| **VERIFIED** | `[Verified: Source]` | Confirmed across 2+ accounts or documented in CRM/reviews | Use in emails, talk tracks, proof points |
+| **INFERRED** | `[Inferred: Basis]` | Logical conclusion from verified data, single account report | Use in discovery questions, hypotheses |
+| **UNVERIFIED** | `[Unverified: Rumor/Single source]` | Heard once, not confirmed | Do NOT use in outbound; note as discovery target |
 
 ### Competitive Intelligence Sourcing Rules
-1. **Failure patterns must cite account evidence** — "Verified across 8+ accounts" is acceptable; "competitors often struggle" is not
-2. **Proof points must be labeled** — Customer name, metric, verification status
-3. **Discovery questions must be genuine curiosity** — If the question is really a statement in disguise, rewrite it
-4. **Never fabricate competitor weaknesses** — If intelligence is thin for a specific incumbent, acknowledge the gap and rely on category-level positioning
-5. **Displacement difficulty ratings are directional** — Medium-Low does not mean the deal is easy; it means the competitive positioning is favorable
+1. **Failure patterns must cite account evidence**. "Verified across 8+ accounts" is acceptable; "competitors often struggle" is not.
+2. **Proof points must be labeled**. Customer name, metric, verification status.
+3. **Discovery questions must be genuine curiosity**. If the question is really a statement in disguise, rewrite it.
+4. **Never fabricate competitor weaknesses**. If intelligence is thin for a specific incumbent, acknowledge the gap and rely on category-level positioning.
+5. **Displacement difficulty ratings are directional**. Medium-Low does not mean the deal is easy; it means the competitive positioning is favorable.
 
 ### Confidence Calibration
 - **HIGH confidence**: Incumbent confirmed by CRM notes, discovery call, or prospect statement. Proceed with full displacement sequences.
 - **MEDIUM confidence**: Incumbent suspected from job postings, industry knowledge, or partial CRM data. Proceed but note assumption; discovery questions should validate.
-- **LOW confidence**: Incumbent is a guess. Do NOT run displacement — use `gtm-account-snapshot` to discover first.
+- **LOW confidence**: Incumbent is a guess. Do NOT run displacement. Use `gtm-account-snapshot` to discover first.
 
 ---
 
@@ -149,12 +149,12 @@ Determine whether the user is a BDR or AE.
 
 **From CRM:** Check user role/profile. If unclear, check BDR Owner vs Account Owner patterns.
 **Fallback:** Ask: "Are you a BDR or AE?"
-**Output:** `user_role` — BDR / AE
+**Output:** `user_role` (BDR / AE)
 
-**CRITICAL GUARD — BDR + Active Deal:**
+**CRITICAL GUARD: BDR + Active Deal**
 If `user_role = BDR` AND this account has an active deal owned by an AE:
 - **STOP.** Do NOT generate displacement sequences for the BDR.
-- Produce the displacement analysis (Steps 1-2) and deliver with guidance: "Active deal owned by [AE name] at [Stage]. Share displacement intelligence with [AE name] — they should decide how to use it in their deal strategy."
+- Produce the displacement analysis (Steps 1-2) and deliver with guidance: "Active deal owned by [AE name] at [Stage]. Share displacement intelligence with [AE name]. They should decide how to use it in their deal strategy."
 - Skip sequence generation. Proceed directly to summary.
 
 ---
@@ -172,11 +172,11 @@ If `user_role = BDR` AND this account has an active deal owned by an AE:
 Pull everything available: account record, deal stage, owner, contacts, BDR Owner, engagement history, previous deal outcomes, notes mentioning vendor/competitor.
 
 **Key extraction targets:**
-- Any direct competitor mentions in notes, emails, or call transcripts
-- Prior deal outcomes — was the account previously won, lost, or stalled?
-- Contact engagement level — who is active, who has gone dark?
-- Contract timing signals — renewal dates, contract length mentions
-- Pain signals — any documented frustration with current tools
+- Any direct competitor mentions in notes, emails, or call transcripts.
+- Prior deal outcomes. Was the account previously won, lost, or stalled?
+- Contact engagement level. Who is active, who has gone dark?
+- Contract timing signals. Renewal dates, contract length mentions.
+- Pain signals. Any documented frustration with current tools.
 
 #### 1c. Classify the Incumbent
 Use `{Client Profile: Competitive Landscape}` to classify the incumbent by category, displacement difficulty, and primary advantage.
@@ -210,7 +210,7 @@ Build a **competitive gap matrix**:
 | [Key capability 2] | [gap] | [strength] | [Account-specific relevance] |
 | ... | ... | ... | ... |
 
-The "Why It Matters" column must connect each gap to the specific account's situation — not generic competitive positioning.
+The "Why It Matters" column must connect each gap to the specific account's situation, not generic competitive positioning.
 
 ---
 
@@ -232,7 +232,7 @@ Produce a **4-step displacement sequence** for each recommended persona (typical
 - Include a **subject line**
 - Body **<= 120 words**
 - **NEVER name the competitor in the subject line**
-- **First line must reference something specific about the prospect** — not generic
+- **First line must reference something specific about the prospect**, not generic.
 - Each step uses a different displacement angle
 - Proof points must match prospect's vertical and size
 - If a known contact exists, address by name
@@ -242,7 +242,7 @@ Produce a **4-step displacement sequence** for each recommended persona (typical
 
 | Step | Angle | Purpose |
 |------|-------|---------|
-| **Email 1** | Industry trend + implicit gap | Reference a macro trend that makes incumbent limitations more costly. Don't attack — create context. |
+| **Email 1** | Industry trend + implicit gap | Reference a macro trend that makes incumbent limitations more costly. Don't attack, create context. |
 | **Email 2** | Capability gap question | Ask a question their incumbent can't answer well. Let them discover the gap. |
 | **Email 3** | Proof point from comparable company | Reference a customer who made the same switch, with specific metrics. |
 | **Email 4** | Breakup + contract timing | Acknowledge existing vendor. Ask when contract renews. Frame as "worth 15 minutes before your next renewal." |
@@ -265,7 +265,7 @@ Produce a **4-step displacement sequence** for each recommended persona (typical
 7. **Sequences Generated**: [Count] personas x 4 emails
 8. **Strongest Opening**: Highest-impact first line
 9. **Key Displacement Lever**: Single most important gap the incumbent can't fill
-10. **Contract Timing**: Known or unknown — if unknown, Email 4 asks
+10. **Contract Timing**: Known or unknown. If unknown, Email 4 asks.
 11. **User Role**: BDR / AE
 12. **Coordination Note**: BDR + active deal guidance if applicable
 13. **Evidence Grade**: Confidence in competitive intelligence used (VERIFIED / INFERRED / UNVERIFIED)
@@ -275,19 +275,19 @@ Produce a **4-step displacement sequence** for each recommended persona (typical
 ## Artifact Generation
 
 ### Output Options
-- **Option A: Markdown** (default) — `[COMPANY]_Displacement.md`
-- **Option B: HTML** — Styled cheatsheet with incumbent badge and gap matrix
-- **Option C: PDF** — Python + reportlab, single page, letter size
+- **Option A: Markdown** (default): `[COMPANY]_Displacement.md`
+- **Option B: HTML**: Styled cheatsheet with incumbent badge and gap matrix
+- **Option C: PDF**: Python + reportlab, single page, letter size
 
 ### Cheatsheet Sections (8 Sections)
-1. **Company + Incumbent Snapshot** — Firmographics, incumbent, category, displacement difficulty, contract status
-2. **Competitive Gap Matrix** — Side-by-side capability comparison
-3. **Key Personas** — CRM contacts filtered to target personas, flagging anyone who mentioned incumbent
-4. **Displacement Hooks** — 6 talk-track-ready angles (complete sentences BDR can read verbatim)
-5. **Discovery Questions** — Gap-exposing questions that feel like genuine curiosity
-6. **Product vs. Incumbent** — Primary advantage, quantified wedge, 2-3 matched proof points
-7. **Objection Handling** — Competitor-specific: "happy with incumbent," "switching is risky," "locked into contract," "cheaper"
-8. **Call Flow** — Displacement-focused 5-step talk track
+1. **Company + Incumbent Snapshot**: Firmographics, incumbent, category, displacement difficulty, contract status
+2. **Competitive Gap Matrix**: Side-by-side capability comparison
+3. **Key Personas**: CRM contacts filtered to target personas, flagging anyone who mentioned incumbent
+4. **Displacement Hooks**: 6 talk-track-ready angles (complete sentences BDR can read verbatim)
+5. **Discovery Questions**: Gap-exposing questions that feel like genuine curiosity
+6. **Product vs. Incumbent**: Primary advantage, quantified wedge, 2-3 matched proof points
+7. **Objection Handling**: Competitor-specific: "happy with incumbent," "switching is risky," "locked into contract," "cheaper"
+8. **Call Flow**: Displacement-focused 5-step talk track
 
 **Include INCUMBENT BADGE at top** (e.g., "Current: [Competitor Name]").
 
@@ -295,91 +295,91 @@ Produce a **4-step displacement sequence** for each recommended persona (typical
 
 ## Examples
 
-### Example 1: Direct Competitor Displacement — Enterprise Account
+### Example 1: Direct Competitor Displacement (Enterprise Account)
 
-**Context:** Large enterprise account using [Primary Competitor], team frustrated with manual processing. CRM shows 3 contacts, no active deal.
+**Context:** Corvane Industrial (enterprise account using Competitor X), team frustrated with manual invoice review. CRM shows 3 contacts, no active deal.
 
-**Input:** "[Account] uses [Primary Competitor]. Build displacement sequences."
+**Input:** "Corvane Industrial uses Competitor X. Build displacement sequences."
 
-**Step 1 — Identify Incumbent:** CRM search finds existing account with 3 contacts: VP [Function] (Sarah Chen, last active 45 days ago), [Manager] (Mike Torres, last active 90 days ago), [Operations Lead] (Lisa Park, no activity). Incumbent: [Primary Competitor]. How we know: AE notes from January say "Currently using [Primary Competitor] — mentioned frustration with manual processing." Confidence: HIGH.
+**Step 1. Identify Incumbent:** CRM search finds existing account with 3 contacts: Sam Okafor, Head of Legal Operations (last active 45 days ago), a Manager (last active 90 days ago), an Operations Lead (no activity). Incumbent: Competitor X. How we know: AE notes from January mention frustration with manual processing. Confidence: HIGH.
 
-**Step 1d — Displacement Readiness:**
-- Known pain: Yes — "frustration with manual processing" [CRM note]
+**Step 1d. Displacement Readiness:**
+- Known pain: Yes. "Frustration with manual processing" [CRM note]
 - Contract status: Unknown
-- Champion: Partial — VP [Function] most engaged
+- Champion: Partial. Sam Okafor most engaged
 - Budget cycle: Unknown
 - Previous evaluation: No
 
-**Step 2 — Load Intelligence:** Incumbent classified as Direct Software, Medium-Low difficulty. Failure patterns loaded: broken automation promises, manual processing bottleneck (10-18 min/unit), service decline post-acquisition, single-model architecture. Competitive gap matrix built with 5 rows. Most relevant proof points: [Customer 1] (enterprise displacement, 4x volume increase), [Customer 2] (48-second processing).
+**Step 2. Load Intelligence:** Incumbent classified as Direct Software (legacy e-billing), Medium-Low difficulty. Failure patterns loaded: broken automation promises, manual invoice processing bottleneck, service decline post-acquisition, single-model architecture. Competitive gap matrix built with 5 rows. Most relevant proof points: Apex Legal (enterprise displacement with 20% invoice review automation year one), Northgate Foods (real-time processing, $340K overbilling caught in 90 days).
 
-**Step 3 — Sequences:** Persona selection: [Functional Lead] (primary), [Manager], [Operations Lead]. Each gets a 4-step sequence (12 emails total).
+**Step 3. Sequences:** Persona selection: Head of Legal Operations (primary), Manager, Operations Lead. Each gets a 4-step sequence (12 emails total).
 
-**[Functional Lead] — Email 1 (Industry Trend):**
-Subject: [Relevant industry trend] after [market event]
+**Head of Legal Operations. Email 1 (Industry Trend):**
+Subject: Legal ops automation after recent rate environment shift
 
-Sarah — [Account]'s footprint across [X] regions means your operational complexity is only growing. With [industry stat], the companies that centralize on a single automated platform are pulling ahead of those still processing one at a time.
+Sam, Corvane's footprint across 60+ outside counsel firms means your counsel spend complexity is only growing. With legal departments facing rate increases and increased scrutiny, companies that centralize invoice review on an automated platform are pulling ahead of those still reviewing manually.
 
-Curious how your team is handling volume across all your locations today?
+Curious how your team is handling invoice review across all your firms today?
 
-[Rep name]
+Jordan
 
-**Step 4 — Summary:** 3 personas targeted, 12 emails generated. Key displacement lever: Processing speed (10-18 min/unit vs. 48 seconds). Strongest entry: [Functional Lead] with "automation promise" angle. Contract timing: Unknown — Email 4 probes renewal window. Evidence grade: HIGH (verified across 8+ accounts).
+**Step 4. Summary:** 3 personas targeted, 12 emails generated. Key displacement lever: Invoice processing automation (2+ weeks to real-time). Strongest entry: Head of Legal Operations with "invoice automation" angle. Contract timing: Unknown. Email 4 probes renewal window. Evidence grade: HIGH (verified across 8+ accounts).
 
 ---
 
-### Example 2: Manual Process Displacement — PE-Backed Mid-Market Account
+### Example 2: Manual Process Displacement (PE-Backed Mid-Market Account)
 
-**Context:** PE-backed mid-market account managing processes via spreadsheets. No CRM history. BDR researching for prospecting block.
+**Context:** Ardent Insurance Group (PE-backed mid-market account, $1.1B carrier, managing outside counsel spend via spreadsheets). No CRM history. BDR researching for prospecting block.
 
-**Input:** "[Account] uses spreadsheets for [domain]. Build displacement outbound."
+**Input:** "Ardent Insurance Group uses spreadsheets for counsel spend management. Build displacement outbound."
 
-**Step 0 — Role Detection:** User is BDR. CRM check: no active AE deal. Clear to proceed with full sequences.
+**Step 0. Role Detection:** User is BDR. CRM check: no active AE deal. Clear to proceed with full sequences.
 
-**Step 1 — Identify Incumbent:** Incumbent: Manual/Spreadsheets (Low difficulty). How we know: Job posting for "[Analyst]" mentions "Excel-based tracking" and "deadline management." Confidence: MEDIUM — inferred from job posting, not confirmed by prospect. Company research reveals: $5B+ revenue, 45+ locations across 30+ regions. No contacts in CRM.
+**Step 1. Identify Incumbent:** Incumbent: Manual/Spreadsheets (Low difficulty). How we know: Job posting for "Analyst" mentions "Excel-based tracking" and "deadline management." Confidence: MEDIUM (inferred from job posting, not confirmed by prospect). Company research reveals: $1.1B revenue, multi-state insurance carrier, 17 in-house attorneys. No contacts in CRM.
 
-**Step 1d — Displacement Readiness:**
-- Known pain: Suspected — job posting language suggests capacity strain [Inferred]
+**Step 1d. Displacement Readiness:**
+- Known pain: Suspected. Job posting language suggests capacity strain [Inferred]
 - Contract status: N/A (no vendor contract)
-- Champion: No — no contacts in CRM
+- Champion: No. No contacts in CRM
 - Budget cycle: Unknown (public company, likely calendar year fiscal)
 - Previous evaluation: No
 
-**Step 2 — Load Intelligence:** Incumbent classified as Manual Process, Low difficulty. Gap matrix built: single-point-of-failure risk (critical at 45+ locations), no audit trail, no automation across 30+ regions, no scalability path. Proof points matched: [Customer 1] (enterprise scale, 320 users trained), [Customer 2] (manual process displacement).
+**Step 2. Load Intelligence:** Incumbent classified as Manual Process, Low difficulty. Gap matrix built: single-point-of-failure risk (critical at multi-state scale), no audit trail, no automation across counsel firms, no scalability path. Proof points matched: Meridian-class manufacturer ($2.1B, multi-state, 17+ attorneys trained), Northgate Foods (manual process displacement, spreadsheet to platform).
 
-**Step 3 — Sequences:** Persona selection: [Manager] (primary — closest to daily pain), [Functional Lead], CFO. No known contacts, so emails use title-based personalization. Each gets a 4-step sequence (12 emails total).
+**Step 3. Sequences:** Persona selection: Manager (primary, closest to daily pain), Head of Legal Ops, CFO. No known contacts. Emails use title-based personalization. Each gets a 4-step sequence (12 emails total).
 
-**[Manager] — Email 1 (Pain Hypothesis):**
-Subject: Tracking requirements across 30+ regions
+**Manager. Email 1 (Pain Hypothesis):**
+Subject: Tracking counsel spend across multi-state operations
 
-Managing [domain] across 45+ locations in 30+ regions — with spreadsheets — is a job that gets harder every time [Account] opens a new location.
+Managing outside counsel spend across 17+ attorneys in multi-state operations is complex when done with spreadsheets. It gets harder every time Ardent opens a new location.
 
-One missed deadline in [high-risk region] could mean significant financial exposure on a six-figure engagement.
+One missed billing deadline in a high-risk state could mean significant financial exposure on a six-figure engagement.
 
-How does your team currently track which actions have been taken and which deadlines are approaching?
+How does your team currently track what's being billed across all your outside counsel without manual audits?
 
 [Rep name]
 
-**Step 4 — Summary:** 3 personas targeted, 12 emails generated. Key displacement lever: Single-point-of-failure risk at enterprise scale. Strongest entry: [Manager] with "what happens when your expert is out" angle. Evidence grade: MEDIUM (incumbent inferred from job posting). Recommendation: Discovery questions in sequence should validate the spreadsheet assumption before investing further.
+**Step 4. Summary:** 3 personas targeted, 12 emails generated. Key displacement lever: Single-point-of-failure risk (one person managing all outside counsel spend). Strongest entry: Manager with "what happens when your expert is out" angle. Evidence grade: MEDIUM (incumbent inferred from job posting). Recommendation: Discovery questions in sequence should validate the spreadsheet assumption before investing further.
 
 ---
 
-### Example 3: BPO Displacement — Regional Account with Active AE Deal
+### Example 3: BPO Displacement (Regional Account with Active AE Deal)
 
-**Context:** BDR finds intelligence that a mid-market account uses [Service Provider]. Account has an active AE deal at Discovery stage.
+**Context:** BDR finds intelligence that Pinecrest Hospitality ($620M, 9 attorneys) uses LedgerLine Audit (outsourced legal bill review service). Account has an active AE deal at Discovery stage.
 
-**Input:** "[Account] uses [Service Provider] for their [domain]. I want to build displacement sequences."
+**Input:** "Pinecrest Hospitality uses LedgerLine Audit for legal bill review. I want to build displacement sequences."
 
-**Step 0 — Role Detection:** User is BDR. CRM check: Active deal owned by [AE Name] at Discovery stage, $65K, created 3 weeks ago.
+**Step 0. Role Detection:** User is BDR. CRM check: Active deal owned by Priya Nair at Discovery stage, $65K, created 3 weeks ago.
 
 **ACTIVE DEAL GUARD TRIGGERED.** BDR cannot send independent displacement sequences on an active AE deal. Generating displacement analysis only (Steps 1-2).
 
-**Step 1-2 — Analysis Delivered:**
-- Incumbent: [Service Provider] (BPO/Service Bureau, Medium difficulty)
-- Gap matrix: No technology platform vs. real-time dashboards, human-dependent vs. automated, file-based integration vs. full API/ERP, relationship-dependent vs. consistent platform
-- Discovery questions for AE: "What visibility do you have into your pipeline right now — real time?" / "How do you audit the accuracy of what [Service Provider] does on your behalf?"
-- Best proof point: [Customer] ([ARR], [key metric improvement])
+**Step 1-2. Analysis Delivered:**
+- Incumbent: LedgerLine Audit (BPO/Service Bureau, Medium difficulty)
+- Gap matrix: No visibility platform vs. real-time dashboards, human-dependent review vs. automated, findings after payment vs. real-time prevention, service bureau dependent vs. in-house control
+- Discovery questions for AE: "What visibility do you have into your invoice pipeline right now? Real time?" / "How do you audit the accuracy of what LedgerLine does on your behalf?"
+- Best proof point: Beacon Health (similar scale, switched from service bureau, real-time visibility on $8M counsel spend, 92% first-pass compliance in 2 quarters)
 
-**Coordination Guidance:** "Active deal owned by [AE Name] at Discovery. Share this displacement intelligence with [AE Name] — they should decide how to incorporate it into their discovery calls. The [Service Provider]-specific discovery questions are particularly valuable for the next conversation."
+**Coordination Guidance:** "Active deal owned by Priya Nair at Discovery. Share this displacement intelligence with Priya and let her decide how to incorporate it into discovery calls. The LedgerLine Audit-specific discovery questions are particularly valuable for the next conversation."
 
 ---
 
@@ -387,7 +387,7 @@ How does your team currently track which actions have been taken and which deadl
 
 ### Pattern: BDR Active Deal Guard
 **When:** `user_role = BDR` and account has active AE deal.
-**Action:** Generate analysis only (Steps 1-2). Skip sequence generation. Deliver intel to AE. "Active deal owned by [AE name] at [Stage]. Share displacement intelligence — do not send sequences independently."
+**Action:** Generate analysis only (Steps 1-2). Skip sequence generation. Deliver intel to AE. "Active deal owned by [AE name] at [Stage]. Share displacement intelligence. Do not send sequences independently."
 
 ### Pattern: Unknown Incumbent
 **When:** User suspects a competitor but isn't certain.
@@ -406,15 +406,15 @@ How does your team currently track which actions have been taken and which deadl
 ## Troubleshooting
 
 ### "We don't have competitive intelligence for this incumbent"
-**Solution:** Classify as "Unknown Incumbent." Use general displacement principles: lead with macro trends, ask capability gap questions, reference proof points from similar switches. Build competitive intelligence from the discovery call. Tag all claims as `[Inferred — category-level]` per Epistemic Rules.
+**Solution:** Classify as "Unknown Incumbent." Use general displacement principles: lead with macro trends, ask capability gap questions, reference proof points from similar switches. Build competitive intelligence from the discovery call. Tag all claims as `[Inferred: category-level]` per Epistemic Rules.
 
 ### "The prospect is in an active contract"
-**Solution:** Email 4 is specifically designed to surface contract timing. If contract timing is known, align the sequence cadence to arrive 60-90 days before renewal. If unknown, the sequence discovers it. Do not frame the outreach as "break your contract" — frame as "evaluate before your next renewal."
+**Solution:** Email 4 is specifically designed to surface contract timing. If contract timing is known, align the sequence cadence to arrive 60-90 days before renewal. If unknown, the sequence discovers it. Do not frame the outreach as "break your contract". Frame it as "evaluate before your next renewal."
 
 ### "BDR wants to send displacement sequences on an AE's active deal"
 **Solution:** This is blocked by the Active Deal Guard in Step 0. The BDR should share displacement intelligence with the AE, not send independent sequences. The AE decides how to use competitive intel in their deal strategy.
 
-### "Incumbent confidence is MEDIUM — should we still run displacement?"
+### "Incumbent confidence is MEDIUM. Should we still run displacement?"
 **Solution:** Yes, but adapt the approach. Frame discovery questions to validate the incumbent assumption before going deep on competitive positioning. Email 1 should use a broader industry angle that works regardless of the specific tool. Email 2 should include a question that surfaces what they actually use: "How does your team handle [domain] today?"
 
 ### "Multiple contacts at the account mentioned different tools"
@@ -425,20 +425,20 @@ How does your team currently track which actions have been taken and which deadl
 ## Best Practices
 
 ### Do's
-- **Lead with enablement, not criticism** — "Here's what's possible" beats "Here's what's broken"
-- **Use displacement proof points** — stories from companies who made the same switch are the most powerful
-- **Ask gap-exposing questions** — genuine curiosity surfaces pain better than accusations
-- **Address contract timing** — every displacement sequence should discover or leverage renewal windows
-- **Grade your evidence** — tag claims as VERIFIED, INFERRED, or UNVERIFIED per Epistemic Rules
-- **Personalize the gap matrix** — connect each gap to this specific account's situation, not generic positioning
+- **Lead with enablement, not criticism**. "Here's what's possible" beats "Here's what's broken."
+- **Use displacement proof points**. Stories from companies who made the same switch are the most powerful.
+- **Ask gap-exposing questions**. Genuine curiosity surfaces pain better than accusations.
+- **Address contract timing**. Every displacement sequence should discover or leverage renewal windows.
+- **Grade your evidence**. Tag claims as VERIFIED, INFERRED, or UNVERIFIED per Epistemic Rules.
+- **Personalize the gap matrix**. Connect each gap to this specific account's situation, not generic positioning.
 
 ### Don'ts
-- **Don't name competitors in subject lines** — unprofessional and triggers spam filters
-- **Don't bash the prospect's decision** — they chose their current tool for reasons; respect that
-- **Don't assume incumbent pain** — let discovery questions surface it naturally
-- **Don't send displacement sequences as BDR on active AE deals** — coordinate through the AE
-- **Don't use UNVERIFIED competitive claims in outbound** — only VERIFIED and INFERRED claims belong in emails
-- **Don't use the same displacement angle twice** — each email must use a different competitive hook
+- **Don't name competitors in subject lines**. Unprofessional and triggers spam filters.
+- **Don't bash the prospect's decision**. They chose their current tool for reasons; respect that.
+- **Don't assume incumbent pain**. Let discovery questions surface it naturally.
+- **Don't send displacement sequences as BDR on active AE deals**. Coordinate through the AE.
+- **Don't use UNVERIFIED competitive claims in outbound**. Only VERIFIED and INFERRED claims belong in emails.
+- **Don't use the same displacement angle twice**. Each email must use a different competitive hook.
 
 ### Quality Checklist
 - [ ] Competitor never named in subject lines
@@ -456,24 +456,28 @@ How does your team currently track which actions have been taken and which deadl
 
 ## Integration with Other Skills
 
-- **`gtm-account-snapshot`** — Run first when incumbent is unknown; snapshot may discover it.
-- **`gtm-competitive-strategy`** — For full battlecard generation across an entire competitive landscape, not just account-level displacement.
-- **`gtm-research-outbound`** — When displacement target is a public company, combine financial intelligence with competitive angles.
-- **`gtm-trigger-event-outbound`** — When a competitor contract event or vendor dissatisfaction signal triggers the displacement opportunity.
-- **`gtm-deal-pulse`** — Once displacement creates a pipeline opportunity, monitor deal health.
+- **`gtm-account-snapshot`**. Run first when incumbent is unknown; snapshot may discover it.
+- **`gtm-competitive-strategy`**. For full battlecard generation across an entire competitive landscape, not just account-level displacement.
+- **`gtm-research-outbound`**. When displacement target is a public company, combine financial intelligence with competitive angles.
+- **`gtm-trigger-event-outbound`**. When a competitor contract event or vendor dissatisfaction signal triggers the displacement opportunity.
+- **`gtm-deal-pulse`**. Once displacement creates a pipeline opportunity, monitor deal health.
 
 ---
 
 ## Changelog
 
+### Version 1.2.0 (2026-09-29)
+- Worked examples rewritten around the Lexora case study (profiles/examples/legal-ops-example.md)
+- Em dashes removed from prose
+
 ### Version 1.1.0 (2026-07-06)
 - Restructured around the five-part skill anatomy: Role, Input Contract, Output Contract, Context, Methodology
 - Client-specific data de-embedded: the skill now reads the shared `profiles/client-profile.md` instead of carrying a copy-in Client Profile block (one profile powers every skill)
-- Framework machinery (Epistemic Rules, Confidence Calibration) moved to an explicit Methodology section — `{Methodology: X}` references
+- Framework machinery (Epistemic Rules, Confidence Calibration) moved to an explicit Methodology section with `{Methodology: X}` references
 - No functional changes to the workflow, examples, or output formats
 
 ### Version 1.0.0 (2026-03-04)
-- Initial release — migrated from competitive displacement skill
+- Initial release (migrated from competitive displacement skill)
 - Generalized via Client Profile block with configurable defaults
 - Preserved all competitor intelligence structure, failure patterns, discovery questions, and proof points
 - Maintained BDR Active Deal Guard pattern

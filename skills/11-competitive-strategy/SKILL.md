@@ -1,11 +1,11 @@
 ---
 name: gtm-competitive-strategy
-description: "Deal-specific competitive strategy for active opportunities — profiles the incumbent, builds a competitive gap matrix, creates a displacement playbook with discovery questions and objection handling, and assembles a win plan with battlecard. For AEs preparing to win against a known competitor, not for prospecting outbound."
-version: 1.1.0
+description: "Deal-specific competitive strategy for active opportunities (profiles the incumbent, builds a competitive gap matrix, creates a displacement playbook with discovery questions and objection handling, and assembles a win plan with battlecard). For AEs preparing to win against a known competitor, not for prospecting outbound."
+version: 1.2.0
 category: GTM-Enablement
 author: Ryan Vanshur
 license: MIT
-updated: 2026-07-06
+updated: 2026-09-29
 tags: [competitive-strategy, battlecard, competitive-analysis, displacement-strategy, win-plan, competitive-positioning, compete]
 requires:
   skills: []
@@ -17,19 +17,19 @@ requires:
 
 Deal-specific competitive strategy for active opportunities against an incumbent. Profiles the incumbent solution, maps positioning across a competitive gap matrix, creates a displacement playbook with gap-exposing discovery questions, generates competitor-specific objection handling, and assembles a step-by-step win plan. Unlike `gtm-competitive-displacement` (prospecting outbound), this is for AEs preparing to win an active deal.
 
-**Core Principle:** Never trash the competition — it implies parity. Respond positively when a competitor is mentioned (budget is already allocated). Lead with what your product enables, not what the competitor lacks. The #1 competitor is always inertia.
+**Core Principle:** Never trash the competition; it implies parity. Respond positively when a competitor is mentioned (budget is already allocated). Lead with what your product enables, not what the competitor lacks. The #1 competitor is always inertia.
 
 ---
 
 ## Role
 
-You are a **competitive strategist and deal architect for an active competitive opportunity** — not a generic assistant. You profile the incumbent, map the competitive gap specific to this deal, and build a win plan that anticipates every objection and positioning landmine. Everything company-specific — the vertical, the competitors, the proof points, the qualification zones — comes from the client profile (see **Context** below), so the same skill serves any vertical without modification.
+You are a **competitive strategist and deal architect for an active competitive opportunity**, not a generic assistant. You profile the incumbent, map the competitive gap specific to this deal, and build a win plan that anticipates every objection and positioning landmine. Everything company-specific (the vertical, the competitors, the proof points, the qualification zones) comes from the client profile (see **Context** below), so the same skill serves any vertical without modification.
 
 ---
 
 ## Input Contract
 
-What this skill needs before it starts. **If a required input is missing, ask — do not guess.**
+What this skill needs before it starts. **If a required input is missing, ask; do not guess.**
 
 | Input | Required | Notes |
 |-------|----------|-------|
@@ -45,9 +45,9 @@ What this skill needs before it starts. **If a required input is missing, ask �
 
 ## Output Contract
 
-Every run produces a **battlecard with the same eight sections** — the content changes per account; the structure never does. This consistency makes battlecards reviewable across your team: a manager scanning ten battlecards never has to relearn the layout.
+Every run produces a **battlecard with the same eight sections**; the content changes per account, but the structure never does. This consistency makes battlecards reviewable across your team: a manager scanning ten battlecards never has to relearn the layout.
 
-Core commitments: **account profile + incumbent classification + competitive gap matrix + discovery questions + objection handling + proof points + positioning landmines + win plan checklist** — organized into eight fixed sections (see *Artifact Generation* below).
+Core commitments: **account profile + incumbent classification + competitive gap matrix + discovery questions + objection handling + proof points + positioning landmines + win plan checklist**, organized into eight fixed sections (see *Artifact Generation* below).
 
 ---
 
@@ -55,7 +55,7 @@ Core commitments: **account profile + incumbent classification + competitive gap
 
 **This skill does not contain client-specific information. It points to it.**
 
-> **Load the client profile from [`profiles/client-profile.md`](../../profiles/client-profile.md) before starting.** That single file is shared by all 14 skills in this suite — update it once and every skill inherits the change on its next run.
+> **Load the client profile from [`profiles/client-profile.md`](../../profiles/client-profile.md) before starting.** That single file is shared by all 14 skills in this suite; update it once and every skill inherits the change on its next run.
 
 Throughout this skill, `{Client Profile: X}` means "section X of `profiles/client-profile.md`". Sections this skill reads:
 
@@ -75,7 +75,7 @@ Throughout this skill, `{Client Profile: X}` means "section X of `profiles/clien
 
 ## Methodology
 
-Your competitive playbook, in code. The frameworks below provide a structured approach to competitive strategy — focused on positioning, objection handling, and evidence grading. These are the defaults; they adapt to your sales methodology if different.
+Your competitive playbook, in code. The frameworks below provide a structured approach to competitive strategy, focused on positioning, objection handling, and evidence grading. These are the defaults; they adapt to your sales methodology if different.
 
 ### Epistemic Rules
 
@@ -84,17 +84,17 @@ Every competitive claim must be graded:
 
 | Grade | Label | Definition | Usage |
 |-------|-------|------------|-------|
-| **VERIFIED** | `[Verified — Source]` | Confirmed across 2+ accounts, documented in CRM, review sites, or customer conversations | Use in discovery questions, talk tracks, objection handling |
-| **INFERRED** | `[Inferred — Basis]` | Logical conclusion from verified data or single account report | Use in positioning hypotheses; validate during discovery |
-| **UNVERIFIED** | `[Unverified — Source]` | Heard once, rumor, or unconfirmed | Do NOT use in competitive positioning; note as a discovery target |
+| **VERIFIED** | `[Verified: Source]` | Confirmed across 2+ accounts, documented in CRM, review sites, or customer conversations | Use in discovery questions, talk tracks, objection handling |
+| **INFERRED** | `[Inferred: Basis]` | Logical conclusion from verified data or single account report | Use in positioning hypotheses; validate during discovery |
+| **UNVERIFIED** | `[Unverified: Source]` | Heard once, rumor, or unconfirmed | Do NOT use in competitive positioning; note as a discovery target |
 
 #### Competitive Claim Standards
-1. **Failure patterns must cite evidence** — "Verified across 8+ accounts" is acceptable; "competitors sometimes have issues" is not
-2. **Proof points must include customer name and metric** — anonymous proof points have 50% less credibility
-3. **Gap matrix items must be verifiable** — "Incumbent lacks X" must be confirmable, not speculative
-4. **Discovery questions must be genuine** — if the AE already knows the answer, it is a setup, not a question; rewrite as a positioning statement
-5. **Objection handling scripts must be field-tested** — mark scripts as `[Field-tested]` or `[New — test and refine]`
-6. **Risk assessments must be honest** — if the competitor has a legitimate advantage, say so
+1. **Failure patterns must cite evidence:** "Verified across 8+ accounts" is acceptable; "competitors sometimes have issues" is not.
+2. **Proof points must include customer name and metric:** anonymous proof points have 50% less credibility.
+3. **Gap matrix items must be verifiable:** "Incumbent lacks X" must be confirmable, not speculative.
+4. **Discovery questions must be genuine:** if the AE already knows the answer, it is a setup, not a question; rewrite as a positioning statement.
+5. **Objection handling scripts must be field-tested:** mark scripts as `[Field-tested]` or `[New: test and refine]`.
+6. **Risk assessments must be honest:** if the competitor has a legitimate advantage, say so.
 
 ### Competitive Threat Assessment Calibration
 - **HIGH**: Prospect is satisfied with incumbent, incumbent is entrenched (2+ years), contract is active, no switching cost concern from prospect, or incumbent has a genuine product advantage in one area
@@ -113,7 +113,7 @@ Every competitive claim must be graded:
 
 **Don't use when:**
 - Need prospecting outbound sequences against an incumbent (use `gtm-competitive-displacement`)
-- Don't know what they're using — discovery hasn't happened (use `gtm-meeting-prep` for discovery)
+- Don't know what they're using; discovery hasn't happened (use `gtm-meeting-prep` for discovery)
 - Need generic competitive intelligence across the market (maintain a competitive knowledge base instead)
 
 **User roles:** AE (primary)
@@ -128,17 +128,17 @@ Every competitive claim must be graded:
 
 | Grade | Label | Definition | Usage |
 |-------|-------|------------|-------|
-| **VERIFIED** | `[Verified — Source]` | Confirmed across 2+ accounts, documented in CRM, review sites, or customer conversations | Use in discovery questions, talk tracks, objection handling |
-| **INFERRED** | `[Inferred — Basis]` | Logical conclusion from verified data or single account report | Use in positioning hypotheses; validate during discovery |
-| **UNVERIFIED** | `[Unverified — Source]` | Heard once, rumor, or unconfirmed | Do NOT use in competitive positioning; note as a discovery target |
+| **VERIFIED** | `[Verified: Source]` | Confirmed across 2+ accounts, documented in CRM, review sites, or customer conversations | Use in discovery questions, talk tracks, objection handling |
+| **INFERRED** | `[Inferred: Basis]` | Logical conclusion from verified data or single account report | Use in positioning hypotheses; validate during discovery |
+| **UNVERIFIED** | `[Unverified: Source]` | Heard once, rumor, or unconfirmed | Do NOT use in competitive positioning; note as a discovery target |
 
 ### Competitive Claim Standards
-1. **Failure patterns must cite evidence** — "Verified across 8+ accounts" is acceptable; "competitors sometimes have issues" is not
-2. **Proof points must include customer name and metric** — anonymous proof points have 50% less credibility
-3. **Gap matrix items must be verifiable** — "Incumbent lacks X" must be confirmable, not speculative
-4. **Discovery questions must be genuine** — if the AE already knows the answer, it is a setup, not a question; rewrite as a positioning statement
-5. **Objection handling scripts must be field-tested** — mark scripts as `[Field-tested]` or `[New — test and refine]`
-6. **Risk assessments must be honest** — if the competitor has a legitimate advantage, say so
+1. **Failure patterns must cite evidence:** "Verified across 8+ accounts" is acceptable; "competitors sometimes have issues" is not.
+2. **Proof points must include customer name and metric:** anonymous proof points have 50% less credibility.
+3. **Gap matrix items must be verifiable:** "Incumbent lacks X" must be confirmable, not speculative.
+4. **Discovery questions must be genuine:** if the AE already knows the answer, it is a setup, not a question; rewrite as a positioning statement.
+5. **Objection handling scripts must be field-tested:** mark scripts as `[Field-tested]` or `[New: test and refine]`.
+6. **Risk assessments must be honest:** if the competitor has a legitimate advantage, say so.
 
 ### Competitive Threat Assessment Calibration
 - **HIGH**: Prospect is satisfied with incumbent, incumbent is entrenched (2+ years), contract is active, no switching cost concern from prospect, or incumbent has a genuine product advantage in one area
@@ -219,7 +219,7 @@ Build a capability comparison specific to this deal (only include the identified
 | [Relevant capability 1] | [Status] | [Status] | [Specific to account] |
 | [Relevant capability 2] | [Status] | [Status] | [Specific to account] |
 
-Include only capabilities relevant to this deal — not a generic feature matrix. The "Why It Matters" column connects each capability to stated pains or business context.
+Include only capabilities relevant to this deal, not a generic feature matrix. The "Why It Matters" column connects each capability to stated pains or business context.
 
 #### 3c. Identify Positioning Landmines
 Areas where the conversation could go badly:
@@ -250,10 +250,10 @@ For each question, include:
 
 | Objection | Response Framework | Script | Status |
 |-----------|-------------------|--------|--------|
-| "We already use [Competitor]" | Positive frame → Discovery | "That's great — it means you already understand the value. What's working well? What would you change?" | [Field-tested] |
+| "We already use [Competitor]" | Positive frame → Discovery | "That's great; it means you already understand the value. What's working well? What would you change?" | [Field-tested] |
 | "Switching cost is too high" | Quantify ROI vs. switch cost | "What's the annual cost of staying? When we look at [metric] x 12 months, the math usually surprises people." | [Field-tested] |
 | "We're building in-house" | Core vs. context | "That makes sense for core differentiators. Is [your domain] where you want to invest IT resources? We have [X]+ engineers focused just on this." | [Field-tested] |
-| "Send me info" | Bridge to meeting | "Happy to — what would be most useful? ROI benchmarks or the [relevant overview] for [their situation]?" | [Field-tested] |
+| "Send me info" | Bridge to meeting | "Happy to; what would be most useful? ROI benchmarks or the [relevant overview] for [their situation]?" | [Field-tested] |
 | "Timing isn't right" | Cost of delay | "What's the cost between now and when timing is right? At your volume, each month of [pain] is roughly $[amount]." | [Field-tested] |
 
 **Competitor-Specific Objections:** Load from `{Client Profile: Competitive Landscape}` for the identified incumbent.
@@ -266,7 +266,7 @@ For each question, include:
 | [Direct Competitor] | "We've invested too much to switch" | "[Reference customer] had been on [competitor] for years. The switch took [X weeks] and they're now saving $[amount] annually. The question is: what's the cost of NOT switching?" |
 | BPO / Service Provider | "We trust our service bureau" | "Trust is important. How do you verify what they process is accurate? What's your backup plan if they have a staffing issue?" |
 | BPO / Service Provider | "They handle everything for us" | "Convenience is valuable. The question is whether you're comfortable without real-time visibility into what's being done on your behalf." |
-| Manual / Spreadsheets | "It works fine for us" | "It often does — until it doesn't. What happens if your [key person] is out for two weeks? Or you expand into a new [region/segment]?" |
+| Manual / Spreadsheets | "It works fine for us" | "It often does; until it doesn't. What happens if your [key person] is out for two weeks? Or you expand into a new [region/segment]?" |
 | No Program | "We don't need it" | "That's a bet worth quantifying. You have $[X]M in [exposure] across [Y] [dimensions]. What's the cost if even 5% of that goes wrong?" |
 
 #### 4c. Displacement Talk Tracks
@@ -343,19 +343,19 @@ A step-by-step action plan specific to this competitive scenario:
 ## Artifact Generation
 
 ### Output Options
-- **Option A: Markdown** (default) — `[COMPANY]_Competitive_Strategy.md`
-- **Option B: HTML** — Styled battlecard with incumbent badge and gap matrix
-- **Option C: PDF** — Python + reportlab, single page, letter size
+- **Option A: Markdown** (default): `[COMPANY]_Competitive_Strategy.md`
+- **Option B: HTML:** Styled battlecard with incumbent badge and gap matrix
+- **Option C: PDF:** Python + reportlab, single page, letter size
 
 ### Battlecard Sections (8 Sections)
-1. **Account & Incumbent Summary** — Firmographics, deal stage, incumbent, category, contract status, satisfaction, competitive threat level. Include INCUMBENT BADGE at top.
-2. **Competitive Gap Matrix** — Side-by-side capability comparison with "Why It Matters" column. Visual scoring (checkmarks/warnings/X marks).
-3. **Winning Zone Strategy** — Primary positioning for this deal, supporting points, where to steer vs. avoid conversations. Include positioning landmines.
-4. **Discovery Questions** — 5-6 competitor-specific, talk-track-ready questions with pivot guidance.
-5. **Displacement Talk Tracks** — 3-4 verbatim positioning statements.
-6. **Objection Handling Playbook** — 4-5 likely objections with scripted responses (universal + competitor-specific). Field-tested labels.
-7. **Proof Points & Reference Stories** — 2-3 matched displacement stories with customer, scenario match, key metric, source label.
-8. **Win Plan Checklist** — Pre-meeting → During Discovery → Demo → Post-Meeting actions specific to this competitive scenario.
+1. **Account & Incumbent Summary:** Firmographics, deal stage, incumbent, category, contract status, satisfaction, competitive threat level. Include INCUMBENT BADGE at top.
+2. **Competitive Gap Matrix:** Side-by-side capability comparison with "Why It Matters" column. Visual scoring (checkmarks/warnings/X marks).
+3. **Winning Zone Strategy:** Primary positioning for this deal, supporting points, where to steer vs. avoid conversations. Include positioning landmines.
+4. **Discovery Questions:** 5-6 competitor-specific, talk-track-ready questions with pivot guidance.
+5. **Displacement Talk Tracks:** 3-4 verbatim positioning statements.
+6. **Objection Handling Playbook:** 4-5 likely objections with scripted responses (universal + competitor-specific). Field-tested labels.
+7. **Proof Points & Reference Stories:** 2-3 matched displacement stories with customer, scenario match, key metric, source label.
+8. **Win Plan Checklist:** Pre-meeting → During Discovery → Demo → Post-Meeting actions specific to this competitive scenario.
 
 **Color-code by competitive threat level:**
 - HIGH threat = red accent
@@ -366,28 +366,28 @@ A step-by-step action plan specific to this competitive scenario:
 
 ## Examples
 
-### Example 1: Direct Competitor Displacement — Enterprise Account
+### Example 1: Direct Competitor Displacement (Enterprise Account)
 
-**Context:** AE has active deal at Demo stage against [Primary Competitor]. Deal value $180K. Discovery notes confirm frustration with manual processing.
+**Context:** AE has active deal at Demo stage against Competitor X. Deal value $180K. Discovery notes confirm frustration with manual invoice review.
 
-**Input:** "Build a competitive strategy for [Enterprise Account] — they're currently using [Primary Competitor]."
+**Input:** "Build a competitive strategy for Corvane Industrial. They're currently using Competitor X."
 
-**Step 1 — CRM Intelligence:**
-- Account: [Enterprise Account], HQ [City, State], [industry-specific description]
+**Step 1: CRM Intelligence:**
+- Account: Corvane Industrial (PE-backed $3.2B manufacturer, HQ [Location], 38 in-house attorneys, 60+ outside firms)
 - Deal: Demo stage, $180K, owned by [AE Name], close date in 45 days
-- Contacts: VP [Function] (primary champion, 3 meetings), [Manager] (attended demo), CFO (briefed but not engaged)
-- Discovery notes: "Manual processing taking 12+ min each. Service quality has declined. Architecture doesn't fit our model. Want to automate across all locations."
-- Incumbent confirmed: [Primary Competitor] [Verified — prospect stated in discovery call]
+- Contacts: Sam Okafor, Head of Legal Operations (primary champion, 3 meetings), [Manager] (attended demo), CFO (briefed but not engaged)
+- Discovery notes: "Manual invoice review taking 2+ weeks per quarter. Service quality declining. Architecture doesn't support multi-firm tracking. Want to automate across all outside counsel."
+- Incumbent confirmed: Competitor X [Verified: prospect stated in discovery call]
 
-**Step 2 — Incumbent Profile:**
+**Step 2: Incumbent Profile:**
 - Classification: Direct Software, Medium-Low displacement difficulty
-- Satisfaction: Frustrated [Verified — discovery call notes]
-- Contract status: Annual, renewal in 4 months [Verified — prospect mentioned]
-- Switching barriers: Moderate — data migration, 2 years of historical data
-- Internal champion for incumbent: None identified [Inferred — no one defended incumbent in discovery]
+- Satisfaction: Frustrated [Verified: discovery call notes]
+- Contract status: Annual, renewal in 4 months [Verified: prospect mentioned]
+- Switching barriers: Moderate; data migration of 2 years of historical data
+- Internal champion for incumbent: None identified [Inferred: no one defended incumbent in discovery]
 - Failure patterns matched: broken automation, manual bottleneck (12+ min confirmed), service decline, architecture mismatch
 
-**Step 2c — Threat Assessment:**
+**Step 2c: Threat Assessment:**
 
 | Factor | Assessment | Threat |
 |--------|-----------|--------|
@@ -399,63 +399,63 @@ A step-by-step action plan specific to this competitive scenario:
 
 **Overall: LOW-MEDIUM threat.** Favorable competitive position. Primary risk: ecosystem lock-in.
 
-**Step 3b — Gap Matrix:**
+**Step 3b: Gap Matrix:**
 
-| Capability | [Primary Competitor] | [Your Product] | Why It Matters for [Account] |
+| Capability | Competitor X | [Your Product] | Why It Matters for [Account] |
 |-----------|---------|--------|----------------------|
-| Process automation | Manual (12+ min/unit) | Automated (48 sec) | Account processes 1,500+ units/month — this is 375+ hours saved |
-| Multi-entity support | Single-model focused | Built for complex orgs | Account has 600+ locations; need multi-entity architecture |
-| Support responsiveness | Declining post-acquisition | Dedicated customer success | VP cited support as key frustration |
-| Accuracy | 1-2% error rate | Built-in verification | At account volume, 1% errors = 15+ wrong actions per month |
-| System integration | Basic | Deep ERP integration | Account needs data flowing without manual touchpoints |
+| Process automation | Manual (2+ weeks/quarter) | Automated line-item review | Corvane's quarterly close takes 3 attorney-weeks; automation would free 80+ hours per quarter |
+| Multi-firm support | Single-model focused | Built for multi-firm complexity | Corvane manages 60+ outside counsel; needs unified visibility across all firms |
+| Support responsiveness | Declining post-acquisition | Dedicated customer success | Sam (Legal Ops head) cited slow support response as key frustration |
+| Billing guideline enforcement | Post-review (after payment) | At submission (before payment) | At $14M counsel spend, 5% guideline violations = $700K/year leaked away |
+| Matter status tracking | Siloed per firm | Unified dashboard | Corvane's litigation teams need real-time cross-firm status; currently email-based |
 
-**Step 3c — Positioning Landmines:**
+**Step 3c: Positioning Landmines:**
 
 | Landmine | Risk | Mitigation |
 |----------|------|-----------|
-| Ecosystem integration | Account may use [ecosystem] for other functions | "[Your product] and [ecosystem] are complementary — many customers use both. We're not asking you to leave [ecosystem], just to upgrade your [domain] tool." |
-| Data migration | 2 years of historical data | "[Reference customer] migrated [large dataset] successfully. Our implementation team has done this dozens of times. We can walk through the migration plan." |
+| Ecosystem integration | Corvane uses [ecosystem] for other legal functions | "[Your product] and [ecosystem] are complementary. Many customers use both. We're not asking you to leave [ecosystem], just to upgrade your outside-counsel management tool." |
+| Data migration | 2+ years of billing history in Competitor X | "Apex Legal had similar spend and contract history. Migration took 6 weeks and they recovered the setup cost in month 2 through recovered billing efficiency. Our implementation team has done this 40+ times." |
 
-**Step 4a — Discovery Questions (for remaining gaps):**
-1. "Walk me through your process start to finish — how much is truly automated vs. manual?" → Exposes: manual bottleneck. If confirmed: pivot to automation speed proof point. If denied: "How does that look at the location level vs. centralized?"
-2. "How does [competitor] handle your multi-entity structure across 600+ locations?" → Exposes: architecture gap. If confirmed: pivot to multi-entity design. If denied: probe on location-level configuration.
-3. "When something goes wrong, how quickly does [competitor] support resolve it?" → Exposes: service decline. If confirmed: pivot to dedicated customer success model.
+**Step 4a: Discovery Questions (for remaining gaps):**
+1. "Walk me through your quarterly close process for outside counsel invoices. How many attorney-hours does the line-item review take?" → Exposes: manual bottleneck. If confirmed: pivot to automation timeline. If denied: "Do different regions have different processes?"
+2. "With 60+ outside firms, how do you track active matters end-to-end? Email? Spreadsheets?" → Exposes: fragmentation gap. If confirmed: pivot to unified dashboard value. If denied: probe on how status gets escalated.
+3. "When something goes wrong with Competitor X (a billing violation, or a support issue), how responsive is their team, especially on custom issues?" → Exposes: service degradation. If confirmed: pivot to Lexora's dedicated customer success model.
 
-**Step 5 — Win Plan highlights:**
-- Renewal in 4 months → position evaluation timeline to align with renewal decision
-- Demo should lead with automation speed — this is the biggest visual differentiator
-- Risk: ecosystem argument. Mitigation prepared.
-- CFO not engaged — recommend champion propose a business case to CFO using ROI data
+**Step 5: Win Plan highlights:**
+- Renewal in 4 months; align evaluation timeline to renewal decision (60-90 day evaluation window)
+- Demo should lead with automation: show a real invoice and how the system catches 3-5 violations automatically
+- Risk: ecosystem argument (they may use [system] for other legal functions). Mitigation: complementary-tool positioning, ready to deploy
+- CFO not engaged yet; ask Sam to build a business case using $14M spend × 5% violation rate = $700K annual leak
 
-**Output:** Full 8-section battlecard. Threat level: LOW-MEDIUM (green-yellow accent). Strongest competitive lever: Processing speed at account's volume.
+**Output:** Full 8-section battlecard. Threat level: LOW-MEDIUM (green-yellow accent). Strongest competitive lever: Automation of Corvane's quarterly close and real-time visibility across 60 firms at $14M spend.
 
 ---
 
-### Example 2: Manual Process — PE-Backed Mid-Market Account
+### Example 2: Manual Process (PE-Backed Mid-Market Account)
 
-**Context:** AE at Discovery stage, prospect uses spreadsheets. $95K deal.
+**Context:** AE at Discovery stage managing Ardent Insurance Group (PE-backed $1.1B carrier) that manages counsel operations with spreadsheets. $95K deal.
 
-**Input:** "Build a competitive strategy for [Mid-Market Account] — they manage processes with spreadsheets."
+**Input:** "Build a competitive strategy for Ardent Insurance Group. They manage all outside-counsel processes with spreadsheets."
 
-**Step 1 — CRM Intelligence:**
-- Deal: Discovery stage, $95K, 60-day close timeline
-- Contacts: Controller (primary, 2 calls), [Manager] (1 call), CFO (not yet engaged)
-- Discovery notes: "One person manages everything for the entire company using Excel. Process works but they know it's risky. Controller wants to modernize before the next PE operating review."
-- Incumbent: Manual/Spreadsheets [Verified — prospect described process in discovery]
+**Step 1: CRM Intelligence:**
+- Deal: Discovery stage, $95K deal, 60-day close timeline
+- Contacts: Controller (primary, 2 calls), Operations Manager (1 call), CFO (not yet engaged)
+- Discovery notes: "One person owns all outside-counsel management for the company using Excel. Process is functional but risky. Controller is motivated to modernize before the PE sponsor's next operating review (4 months away)."
+- Incumbent: Manual/Spreadsheets [Verified: prospect described process in discovery call]
 
-**Step 2c — Threat Assessment:**
+**Step 2c: Threat Assessment:**
 
 | Factor | Assessment | Threat |
 |--------|-----------|--------|
-| Satisfaction | Neutral — "works but risky" | MEDIUM |
+| Satisfaction | Neutral; "it works but we're exposed" | MEDIUM |
 | Contract | N/A (no vendor) | LOW |
-| Switching barriers | Minimal — no data to migrate | LOW |
-| Incumbent champion | The key person (defensive?) | MEDIUM |
-| Incumbent advantage | "It works" / familiarity / free | MEDIUM |
+| Switching barriers | Minimal; no existing data to migrate | LOW |
+| Incumbent champion | The key person (Excel owner, defensive?) | MEDIUM |
+| Incumbent advantage | "It works" + familiarity + free (sunk cost) | MEDIUM |
 
-**Overall: MEDIUM threat.** Inertia is the primary competitor. The key person may resist change (threatens their role). PE operating review creates urgency.
+**Overall: MEDIUM threat.** Inertia is the #1 competitor. The key person may resist change (job security concern). PE operating review (4 months) creates urgency and top-cover.
 
-**Step 3b — Gap Matrix:**
+**Step 3b: Gap Matrix:**
 
 | Capability | Spreadsheets | [Your Product] | Why It Matters for [Account] |
 |-----------|-------------|--------|-----------------------------------|
@@ -465,72 +465,72 @@ A step-by-step action plan specific to this competitive scenario:
 | Multi-region automation | Manual per region | Automated across all regions | 30+ regions with different requirements |
 | Error prevention | Human error risk | Built-in verification | One mistake at this scale = material risk |
 
-**Step 3c — Positioning Landmines:**
+**Step 3c: Positioning Landmines:**
 
 | Landmine | Risk | Mitigation |
 |----------|------|-----------|
-| "We can't afford it" | No existing budget line | "The question isn't whether you can afford it — it's whether you can afford not to. One major error on a $500K engagement costs more than a year of the platform." |
-| Key person feels threatened | May resist adoption | "The platform doesn't replace your expert — it makes them 10x more effective. Their knowledge of your business becomes amplified by automation, not replaced." |
-| Internal build proposal | IT may want to build custom | "Core vs. context: is [your domain] where [Account] wants to invest engineering resources? We have [X]+ engineers focused on this alone." |
+| "We can't afford it" | No existing budget line for this tool type | "The question isn't cost; it's risk. One undetected overbilling event on a $500K engagement costs more than a year of our platform. What's one mistake costing you annually?" |
+| Key person feels threatened | Excel owner may fear automation replaces their role | "This tool doesn't replace your expertise. It amplifies it. Your counsel relationships become strategic assets instead of spreadsheet data. We need your business logic to configure it." |
+| Internal build proposal | IT suggests building a custom solution | "Counsel management isn't your core IT focus. Our team has 40+ customers, 18 months of battle-tested logic. Building this internally means 6+ months and ongoing maintenance. What's the ROI of IT diverting resources to this vs. your priorities?" |
 
-**Step 4 — Playbook:** Educational selling approach. Discovery questions help the prospect quantify their own risk rather than telling them they have a problem. PE operating review creates natural urgency — "before your next operating review" framing. Talk tracks emphasize single-point-of-failure at enterprise scale.
+**Step 4: Playbook:** Educational selling. Discovery questions help Ardent quantify their own risk exposure rather than positioning a problem. PE operating review (4 months out) creates natural urgency. Lead with: "Before your next operating review, here's what most companies at your scale catch." Talk tracks emphasize key-person dependency risk at the CFO/sponsor level.
 
 **Output:** Full battlecard, MEDIUM threat (yellow accent). Win strategy: Quantify risk first, then show automation. Lead with PE accountability angle for Controller/CFO. Protect the key person's role in positioning.
 
 ---
 
-### Example 3: No Program — Mid-Market Account (Educational Selling)
+### Example 3: No Program (Mid-Market Account, Educational Selling)
 
-**Context:** AE discovers prospect has no program at all. Discovery stage, $45K deal.
+**Context:** AE discovers Brightwater Logistics (mid-market, $780M, 11 attorneys) has no program for managing outside-counsel risk. Discovery stage, $45K deal.
 
-**Input:** "Build a competitive strategy for [Account] — they have no program."
+**Input:** "Build a competitive strategy for Brightwater Logistics. They have no program in place for managing counsel risk exposure."
 
-**Step 1 — CRM Intelligence:**
-- Deal: Discovery stage, $45K
-- Contacts: CFO (1 call), Head of [Function] (2 calls — primary champion)
-- Discovery notes: "Didn't realize they needed [your solution]. Head of [Function] started researching after a $200K loss on a project where they hadn't taken protective action."
-- Incumbent: No Program [Verified — prospect confirmed no process]
+**Step 1: CRM Intelligence:**
+- Deal: Discovery stage, $45K deal, 75-day close target
+- Contacts: CFO (1 call), Deputy GC (2 calls, primary champion, recently hired)
+- Discovery notes: "Deputy GC identified a $200K overbilling loss on a recent litigation matter as the trigger to consider a solution. No existing process to detect or prevent billing violations."
+- Incumbent: No Program [Verified: prospect confirmed no formal counsel management process]
 
-**Step 2c — Threat Assessment:**
+**Step 2c: Threat Assessment:**
 
 | Factor | Assessment | Threat |
 |--------|-----------|--------|
 | Satisfaction | Pain is fresh ($200K loss) | LOW |
 | Contract | N/A | LOW |
-| Switching barriers | None — nothing to switch from | LOW |
+| Switching barriers | None, since there is nothing to switch from | LOW |
 | Incumbent champion | None (no incumbent) | LOW |
 | Incumbent advantage | "Free" / "we've never needed it" | MEDIUM |
 
 **Overall: LOW threat.** Pain is fresh and quantifiable. Main risk: budget (no existing line item) and organizational inertia ("we've survived this long").
 
-**Step 3 — Positioning:**
-Gap matrix replaced with **Risk Exposure Assessment**:
+**Step 3: Positioning:**
+Gap matrix replaced with **Risk Exposure Assessment**, customized for Brightwater's outside-counsel spend:
 
-| Dimension | Requirement | Deadline | Account Exposure | Current Protection |
+| Practice Area | Annual Counsel Spend | Exposure Risk | Brightwater's Gap | Current Protection |
 |-----------|-------------|----------|-----------------|-------------------|
-| [Region A] | Yes | [Timeframe] | $4.2M annual exposure [Estimated] | None |
-| [Region B] | Yes | [Timeframe] | $3.1M [Estimated] | None |
-| [Region C] | Yes | [Timeframe] | $2.8M [Estimated] | None |
-| [Region D] | Yes | [Timeframe] | $1.5M [Estimated] | None |
-| **Total estimated exposure** | — | — | **$11.6M+ unprotected** | **None** |
+| Litigation (ongoing) | $2.8M | Billing guidelines violations, staffing rules | No audit process | None |
+| M&A / Corporate | $1.9M | Rate creep, block billing, matter billing | Spreadsheet tracking only | None |
+| Employment / Benefits | $1.5M | Duplicate counsel usage, bill-ahead practices | Email-based vendor mgt | None |
+| Regulatory / Compliance | $0.8M | Time entry fraud risk, double-billing | No verification | None |
+| **Total unprotected exposure** | **$7.0M annual** | **Estimated 3-5% overbilling = $210-350K/year leakage** | **None** | **None** |
 
-This becomes the primary selling tool: "You have $11.6M in unprotected exposure across 4 dimensions. The $200K loss was the first one you caught — how many others are you absorbing without knowing it?"
+This becomes the primary selling message: "You have $7M in outside-counsel spend with zero process protecting it. The $200K you caught was probably 50% of what's leaking. What's the annual cost of that exposure?"
 
-**Step 4a — Discovery Questions:**
-1. "When was the last time you had difficulty with a situation where you hadn't taken protective action?" → They already answered this ($200K loss). Use to probe deeper: "Was that the only one, or just the biggest one you noticed?"
-2. "What percentage of your exposure is in areas that require protective action?" → Quantifies exposure. Most companies underestimate.
-3. "How do you decide which engagements are worth protecting?" → Surfaces the decision framework (or lack thereof). The answer is usually "we don't — we just hope things work out."
+**Step 4a: Discovery Questions:**
+1. "Walk me through that $200K overbilling incident. How did you find it, and what was the cause?" → They found it after paying. Use to probe: "How many other engagements paid before review? Was this the only overrun, or just the biggest one you caught?"
+2. "Of your $7M+ annual counsel spend, roughly what percentage goes through an audit or review before payment?" → Quantifies unprotected exposure. Most companies admit <30%.
+3. "How do you decide which matters get scrutinized vs. which pay at invoice?" → Surfaces the decision framework (or complete absence of one). The answer is usually "we don't have a framework; it depends on bandwidth."
 
-**Step 5 — Win Plan:**
-1. Quantify total exposure using their own data (ask for dimension-by-dimension breakdown)
-2. Share industry data on relevant trends and risks
-3. Show specific requirements for their key dimensions
-4. Demonstrate platform with their specific profile
-5. Position budget conversation: "This is risk insurance, not a new expense. Compare to the $200K you already lost."
+**Step 5: Win Plan:**
+1. Quantify total unprotected exposure using their own spend data (ask for dimension-by-dimension breakdown by practice area)
+2. Reference industry benchmarks on overbilling rates (3-5% is typical where no audit process exists)
+3. Show Brightwater's specific risk scenario: litigation + M&A = highest exposure
+4. Demonstrate the platform configured for their specific counsel mix and spend patterns
+5. Budget conversation positioning: "This is risk insurance, not a discretionary expense. You're already paying for this through overbilling. We eliminate the leak instead."
 
-**Risk Assessment:** Budget. There is no existing line item for this type of software. The CFO must create a new budget category. The $200K loss is the strongest argument for justification — frame the platform cost as a fraction of one loss event.
+**Risk Assessment:** Budget. No existing line item for counsel management tools. CFO must create new category. The $200K loss is the strongest argument; frame platform cost as insurance (e.g., "one overbilling catch per year pays for the tool").
 
-**Output:** Full battlecard, LOW threat (green accent). Win strategy: Educational selling — help them discover the size of the risk they've been absorbing. The $200K loss is the opening; the $11.6M exposure assessment is the closer.
+**Output:** Full battlecard, LOW threat (green accent). Win strategy: Educational selling. Guide the Deputy GC through quantifying Brightwater's total unprotected spend. The $200K loss is the opening; the $7M exposure assessment is the closer.
 
 ---
 
@@ -550,47 +550,47 @@ This becomes the primary selling tool: "You have $11.6M in unprotected exposure 
 
 ### Pattern: Incumbent Champion (Blocker)
 **When:** Someone in the prospect org is an advocate for the current tool and may resist change.
-**Action:** Identify the blocker's concerns (job security, familiarity, political capital invested in choosing the current tool). Build positioning that neutralizes without confronting: "The platform doesn't replace your team's expertise — it amplifies it." Consider multi-threading around the blocker to the economic buyer.
+**Action:** Identify the blocker's concerns (job security, familiarity, political capital invested in choosing the current tool). Build positioning that neutralizes without confronting: "The platform doesn't replace your team's expertise; it amplifies it." Consider multi-threading around the blocker to the economic buyer.
 
 ---
 
 ## Troubleshooting
 
 ### "We don't have competitive intelligence for this specific competitor"
-**Solution:** Classify the competitor into the closest category from `{Client Profile: Competitive Landscape}`. Use category-level gaps and positioning. Build competitor-specific intelligence from the discovery call by using the general discovery questions. Document what you learn for future deals. Tag all claims as `[Inferred — category-level]`.
+**Solution:** Classify the competitor into the closest category from `{Client Profile: Competitive Landscape}`. Use category-level gaps and positioning. Build competitor-specific intelligence from the discovery call by using the general discovery questions. Document what you learn for future deals. Tag all claims as `[Inferred: category-level]`.
 
-### "Prospect is satisfied with incumbent — no dissatisfaction signal"
-**Solution:** This is a HIGH threat assessment. Don't try to create dissatisfaction — instead, lead with what's possible that they may not know they're missing. Use the "Many teams tell us..." approach to surface latent pain. Focus on macro trends from `{Client Profile: Competitive Landscape}` that make their current approach increasingly risky over time.
+### "Prospect is satisfied with incumbent (no dissatisfaction signal)"
+**Solution:** This is a HIGH threat assessment. Don't try to create dissatisfaction; instead, lead with what's possible that they may not know they're missing. Use the "Many teams tell us..." approach to surface latent pain. Focus on macro trends from `{Client Profile: Competitive Landscape}` that make their current approach increasingly risky over time.
 
 ### "Incumbent is a department within the prospect company (internal build)"
-**Solution:** Classify as Manual/Spreadsheets but add the "build vs. buy" objection handling: "Core vs. context — is [your domain] where you want to invest IT resources?" Reference proof points about engineering focus ([X]+ engineers on [domain] alone). Acknowledge their internal expertise while positioning the scale and coverage challenge.
+**Solution:** Classify as Manual/Spreadsheets but add the "build vs. buy" objection handling: "Core vs. context; is [your domain] where you want to invest IT resources?" Reference proof points about engineering focus ([X]+ engineers on [domain] alone). Acknowledge their internal expertise while positioning the scale and coverage challenge.
 
 ### "Multiple competitors in play (bake-off scenario)"
 **Solution:** Build strategy against the strongest competitor first. Add a section addressing the secondary competitor. In the win plan, identify which competitor poses the greater threat and allocate positioning energy accordingly. The gap matrix can include multiple columns if helpful.
 
 ### "Prospect likes the incumbent but is evaluating out of obligation (procurement requirement)"
-**Solution:** This is effectively a HIGH threat — the incumbent is the default winner. Strategy must create genuine preference, not just check-the-box participation. Focus on demonstrating capabilities the prospect didn't know they needed. Use discovery questions to uncover pain they haven't articulated to their current vendor. Win plan should target multi-threading to a stakeholder who isn't invested in the incumbent.
+**Solution:** This is effectively a HIGH threat; the incumbent is the default winner. Strategy must create genuine preference, not just check-the-box participation. Focus on demonstrating capabilities the prospect didn't know they needed. Use discovery questions to uncover pain they haven't articulated to their current vendor. Win plan should target multi-threading to a stakeholder who isn't invested in the incumbent.
 
 ---
 
 ## Best Practices
 
 ### Do's
-- **Respond positively to competitor mentions** — budget is allocated, no new capital outlay needed
-- **Lead with enablement, not criticism** — "Here's what's possible" beats "Here's what's broken"
-- **Use competitor-specific discovery questions** — genuine curiosity exposes gaps better than accusations
-- **Include an honest risk assessment** — where could the competitor win? Addressing this shows credibility.
-- **Match proof points to the competitive scenario** — displacement stories for displacement deals, not generic
-- **Prepare for positioning landmines** — knowing where the conversation could go badly is more valuable than perfect positioning
-- **Grade your evidence** — tag competitive claims per Epistemic Rules to calibrate confidence
+- **Respond positively to competitor mentions:** budget is allocated, no new capital outlay needed.
+- **Lead with enablement, not criticism:** "Here's what's possible" beats "Here's what's broken".
+- **Use competitor-specific discovery questions:** genuine curiosity exposes gaps better than accusations.
+- **Include an honest risk assessment:** where could the competitor win? Addressing this shows credibility.
+- **Match proof points to the competitive scenario:** displacement stories for displacement deals, not generic.
+- **Prepare for positioning landmines:** knowing where the conversation could go badly is more valuable than perfect positioning.
+- **Grade your evidence:** tag competitive claims per Epistemic Rules to calibrate confidence.
 
 ### Don'ts
-- **Don't trash the competition** — it implies parity ("we are peerless in this space")
-- **Don't tell the prospect what pain they have** — let them articulate it through discovery questions
-- **Don't use generic feature matrices** — every capability row must connect to this specific account's situation
-- **Don't ignore inertia** — even when competing against a named vendor, the real battle is against the comfort of the status quo
-- **Don't assume the prospect's dissatisfaction** — let discovery questions surface it naturally
-- **Don't skip the win plan** — a battlecard without action steps is a document, not a strategy
+- **Don't trash the competition:** it implies parity ("we are peerless in this space").
+- **Don't tell the prospect what pain they have:** let them articulate it through discovery questions.
+- **Don't use generic feature matrices:** every capability row must connect to this specific account's situation.
+- **Don't ignore inertia:** even when competing against a named vendor, the real battle is against the comfort of the status quo.
+- **Don't assume the prospect's dissatisfaction:** let discovery questions surface it naturally.
+- **Don't skip the win plan:** a battlecard without action steps is a document, not a strategy.
 
 ### Quality Checklist
 - [ ] Incumbent identified or flagged as unknown with discovery plan
@@ -611,25 +611,29 @@ This becomes the primary selling tool: "You have $11.6M in unprotected exposure 
 
 ## Integration with Other Skills
 
-- **`gtm-competitive-displacement`** — For prospecting outbound sequences against a known incumbent. Complementary: competitive strategy is for active deals (AE), displacement is for pipeline generation (BDR/AE).
-- **`gtm-meeting-prep`** — Run competitive strategy first, then meeting prep to incorporate competitive positioning into discovery or demo structure.
-- **`gtm-stakeholder-mapping`** — Org map reveals who might be an incumbent champion (Blocker role). Feed this into the competitive strategy.
-- **`gtm-deal-pulse`** — Competitive strategy informs the "Why Us" pillar of deal health scoring.
-- **`gtm-call-coaching`** — After competitive conversations, run call coaching to assess how well the rep executed the competitive strategy.
-- **`gtm-research-outbound`** — For public companies, financial intelligence can reveal competitive pressure points (e.g., earnings miss making cost optimization urgent).
+- **`gtm-competitive-displacement`:** For prospecting outbound sequences against a known incumbent. Complementary: competitive strategy is for active deals (AE), displacement is for pipeline generation (BDR/AE).
+- **`gtm-meeting-prep`:** Run competitive strategy first, then meeting prep to incorporate competitive positioning into discovery or demo structure.
+- **`gtm-stakeholder-mapping`:** Org map reveals who might be an incumbent champion (Blocker role). Feed this into the competitive strategy.
+- **`gtm-deal-pulse`:** Competitive strategy informs the "Why Us" pillar of deal health scoring.
+- **`gtm-call-coaching`:** After competitive conversations, run call coaching to assess how well the rep executed the competitive strategy.
+- **`gtm-research-outbound`:** For public companies, financial intelligence can reveal competitive pressure points (e.g., earnings miss making cost optimization urgent).
 
 ---
 
 ## Changelog
 
+### Version 1.2.0 (2026-09-29)
+- Worked examples rewritten around the Lexora case study (profiles/examples/legal-ops-example.md)
+- Em dashes removed from prose
+
 ### Version 1.1.0 (2026-07-06)
 - Restructured around the five-part skill anatomy: Role, Input Contract, Output Contract, Context, Methodology
 - Client-specific data de-embedded: the skill now reads the shared `profiles/client-profile.md` instead of carrying a copy-in Client Profile block (one profile powers every skill)
-- Framework machinery (Epistemic Rules, Competitive Threat Assessment Calibration) moved to an explicit Methodology section — `{Methodology: X}` references
+- Framework machinery (Epistemic Rules, Competitive Threat Assessment Calibration) moved to an explicit Methodology section; `{Methodology: X}` references
 - No functional changes to the workflow, examples, or output formats
 
 ### Version 1.0.0 (2026-03-04)
-- Initial release — migrated from competitive strategy builder
+- Initial release; migrated from competitive strategy builder
 - Generalized via Client Profile block with configurable defaults
 - Preserved all competitor intelligence structure: 7 categories, failure patterns, gaps, educational positioning
 - Preserved competitive philosophy ("never trash," "#1 competitor is inertia")

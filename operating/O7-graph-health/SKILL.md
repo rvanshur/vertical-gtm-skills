@@ -1,11 +1,11 @@
 ---
 name: gtm-graph-health
 description: "Diagnoses knowledge base structure health by measuring tag sprawl, link density, and item age, not whether items are true, but whether the system is usable"
-version: 1.0.0
+version: 1.1.0
 category: Operating-Discipline
 author: Ryan Vanshur
 license: MIT
-updated: 2026-09-28
+updated: 2026-09-29
 tags: [graph-health, knowledge-base, structure, taxonomy, orphans, operating-discipline]
 requires:
   skills: []
@@ -63,6 +63,15 @@ You are a **structural auditor**, not a content reviewer. Your job is not to jud
 | Link analysis | Yes | Orphan items, hub items, broken links |
 | Lifecycle analysis | Yes | Aging provisional items, decision points |
 | Recommendations | Yes | Top 3 actions to improve health |
+
+---
+
+## Context
+
+If `profiles/client-profile.md` has a `## Knowledge Base Structure` section (this skill's `CUSTOMIZE.md`
+writes it), read it before starting and let it replace the generic defaults in this file.
+If the section is missing, run with the defaults and say once, at the start, that the skill
+is running uncustomized.
 
 ---
 
@@ -250,4 +259,5 @@ Critical Age (>60 days): {count}
 
 ## Changelog
 
+- **1.1.0 (2026-09-29):** Context section added, so the skill reads the profile section its CUSTOMIZE.md writes.
 - **1.0.0 (2026-09-28):** Initial release. Structure health measurement across tag sprawl, link density, and provisional item age.

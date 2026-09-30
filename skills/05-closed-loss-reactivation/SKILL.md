@@ -1,11 +1,11 @@
 ---
 name: gtm-closed-loss-reactivation
 description: "Re-engages closed-lost accounts using CRM intelligence. Classifies loss reason (7 categories), assesses what's changed since deal died, re-qualifies ICP fit, selects loss-reason-specific reactivation strategy, and generates 4-step sequences with history-aware openers and call prep"
-version: 1.1.0
+version: 1.2.0
 category: GTM-Enablement
 author: Ryan Vanshur
 license: MIT
-updated: 2026-07-06
+updated: 2026-09-29
 tags: [closed-loss, reactivation, win-back, lost-deal, re-engagement, deal-recovery]
 requires:
   skills: []
@@ -15,21 +15,21 @@ requires:
 
 ## Overview
 
-Re-engages closed-lost accounts using existing CRM intelligence. Classifies the loss reason into 7 categories, assesses what's changed since the deal died (account changes, product updates, market shifts), re-qualifies ICP fit, selects a loss-reason-specific reactivation strategy, and generates 4-step sequences with history-aware openers and reactivation call prep. Distinct from cold outbound — leverages existing relationships and deal context.
+Re-engages closed-lost accounts using existing CRM intelligence. Classifies the loss reason into 7 categories, assesses what's changed since the deal died (account changes, product updates, market shifts), re-qualifies ICP fit, selects a loss-reason-specific reactivation strategy, and generates 4-step sequences with history-aware openers and reactivation call prep. Unlike cold outbound, this skill leverages existing relationships and deal context.
 
-**Core Principle:** This is NOT cold outreach. BDRs approaching a closed-loss account have an advantage — existing intelligence and often existing relationships. This skill weaponizes that history rather than ignoring it. Never pretend the prior deal didn't exist.
+**Core Principle:** This is NOT cold outreach. BDRs approaching a closed-loss account have two key advantages: existing intelligence and often existing relationships. This skill weaponizes that history rather than ignoring it. Never pretend the prior deal didn't exist.
 
 ---
 
 ## Role
 
-You are a **deal recovery strategist and reactivation specialist for a vertical SaaS company** — not a generic assistant. You analyze why past deals closed, identify what's changed at the account or in the market that creates a new opening, and execute history-aware reactivation strategies that respect the prior relationship. Everything company-specific — your ICP, competitors, proof points, and competitive landscape — comes from the client profile (see **Context** below), so the same skill serves any vertical without modification.
+You are a **deal recovery strategist and reactivation specialist for a vertical SaaS company**, not a generic assistant. You analyze why past deals closed, identify what's changed at the account or in the market that creates a new opening, and execute history-aware reactivation strategies that respect the prior relationship. Everything company-specific (your ICP, competitors, proof points, competitive landscape) comes from the client profile (see **Context** below), so the same skill serves any vertical without modification.
 
 ---
 
 ## Input Contract
 
-What this skill needs before it starts. **If a required input is missing, ask — do not guess.**
+What this skill needs before it starts. **If a required input is missing, ask. Do not guess.**
 
 | Input | Required | Notes |
 |-------|----------|-------|
@@ -44,7 +44,7 @@ What this skill needs before it starts. **If a required input is missing, ask �
 
 ## Output Contract
 
-Every run produces **a reactivation analysis, strategy, and 4-step sequences** — the content changes per loss scenario; the structure never does. Core commitments: classification of loss reason, assessment of what's changed, re-qualification verdict (REACTIVATE / MONITOR / RETIRE), loss-reason-specific reactivation strategy, and a single-page cheatsheet with history-aware openers and call prep.
+Every run produces **a reactivation analysis, strategy, and 4-step sequences**. The content changes per loss scenario; the structure never does. Core commitments: classification of loss reason, assessment of what's changed, re-qualification verdict (REACTIVATE / MONITOR / RETIRE), loss-reason-specific reactivation strategy, and a single-page cheatsheet with history-aware openers and call prep.
 
 ---
 
@@ -52,7 +52,7 @@ Every run produces **a reactivation analysis, strategy, and 4-step sequences** �
 
 **This skill does not contain client-specific information. It points to it.**
 
-> **Load the client profile from [`profiles/client-profile.md`](../../profiles/client-profile.md) before starting.** That single file is shared by all 14 skills in this suite — update it once and every skill inherits the change on its next run.
+> **Load the client profile from [`profiles/client-profile.md`](../../profiles/client-profile.md) before starting.** That single file is shared by all 14 skills in this suite. Update it once and every skill inherits the change on its next run.
 
 Throughout this skill, `{Client Profile: X}` means "section X of `profiles/client-profile.md`". Sections this skill reads:
 
@@ -87,12 +87,12 @@ Your playbook for loss classification, what's-changed assessment, and loss-reaso
 **1. Lost to Competitor → Buyer's Remorse Play**
 - **Timing:** 6-12 months (let them experience limitations)
 - **Angle:** Don't bash competitor. Ask how it's going. Surface pain naturally.
-- **Opener:** "When we last spoke, you went with [competitor]. Curious how that's been working out — specifically around [area of strength]."
+- **Opener:** "When we last spoke, you went with [competitor]. Curious how that's been working out, specifically around [area of strength]."
 
 **2. No Decision / Went Dark → Re-Engage with New Value**
 - **Timing:** 3-6 months (respect silence, then bring something new)
 - **Angle:** Don't reference the ghosting. Lead with new information.
-- **Opener:** "I know we connected a while back. Not reaching out to rehash that — wanted to share something relevant about [new development]."
+- **Opener:** "I know we connected a while back. I'm not reaching out to rehash that. Wanted to share something relevant about [new development]."
 
 **3. Budget / Timing → Circle Back at the Right Moment**
 - **Timing:** Align with fiscal year or specific timeline they mentioned
@@ -106,20 +106,20 @@ Your playbook for loss classification, what's-changed assessment, and loss-reaso
 
 **5. Champion Left → Follow the Champion or Find the Replacement**
 - **Timing:** Immediately on discovery
-- **Track A — Follow champion:** Warm lead at their new company
-- **Track B — Find replacement:** New person inherits same pain
+- **Track A: Follow champion.** Warm lead at their new company
+- **Track B: Find replacement.** New person inherits same pain
 - **Opener A:** "Congrats on the new role. Imagine you're dealing with similar challenges there."
 - **Opener B:** "[Champion name] and I were working on [pain area]. Not sure where that landed."
 
 **6. Internal Solution → Wait for the Cracks**
 - **Timing:** 12-18 months (internal solutions take time to fail)
 - **Angle:** Ask questions that surface limitations, don't declare failure.
-- **Opener:** "Your team was building an internal process. Curious how that's scaled — most teams find it works until [complexity trigger]."
+- **Opener:** "Your team was building an internal process. Curious how that's scaled. Most teams find it works until [complexity trigger]."
 
 **7. Price / Negotiation → Return with New Proof**
 - **Timing:** 3-6 months (enough time for ROI evidence to emerge)
 - **Angle:** Lead with new ROI data, not "we lowered our price."
-- **Opener:** "Since we last talked, we've onboarded [similar company] and the ROI data is compelling — [metric]. Wanted to share."
+- **Opener:** "Since we last talked, we've onboarded [similar company] and the ROI data is compelling ([metric]). Wanted to share."
 
 ### Product Changes Reference
 | Change | Reactivation Angle |
@@ -158,9 +158,9 @@ Determine whether the user is a BDR or AE.
 
 **From CRM:** Check user role/profile.
 **Fallback:** Ask: "Are you a BDR or AE?"
-**Output:** `user_role` — BDR / AE
+**Output:** `user_role` (BDR or AE)
 
-**BDR Coordination Rule:** Always surface the original AE who owned the closed-lost deal. BDRs must coordinate with the original AE before re-engaging — the AE may have context about why re-engagement is or isn't appropriate.
+**BDR Coordination Rule:** Always surface the original AE who owned the closed-lost deal. BDRs must coordinate with the original AE before re-engaging; the AE may have context about why re-engagement is or isn't appropriate.
 
 ---
 
@@ -207,7 +207,7 @@ Categorize using `{Methodology: Loss Reason Taxonomy}`. Use CRM loss reason if l
 - If died at Negotiation → likely Price, Budget, or Lost to Competitor
 - If last 3+ touchpoints unanswered → likely No Decision / Went Dark
 
-**Output:** `loss_classification` — Category, confidence level (High/Medium/Low), supporting evidence
+**Output:** `loss_classification` with category, confidence level (High/Medium/Low), and supporting evidence
 
 ---
 
@@ -225,12 +225,12 @@ Search for changes since the deal closed that create a new opening.
 - New contacts in relevant roles
 
 #### Changes at Your Company
-Use `{Methodology: Product Changes Reference}` — new customer wins in their vertical, new features, new integrations, displacement proof points.
+Use `{Methodology: Product Changes Reference}` (new customer wins in their vertical, new features, new integrations, displacement proof points).
 
 #### Changes in the Market
-Use `{Client Profile: Qualification Criteria}` (buying triggers) and current industry news — flag trends that have intensified since the deal closed.
+Use `{Client Profile: Qualification Criteria}` (buying triggers) and current industry news to flag trends that have intensified since the deal closed.
 
-**Output:** `change_assessment` — Categorized changes with reactivation relevance
+**Output:** `change_assessment` with categorized changes and reactivation relevance
 
 ---
 
@@ -239,9 +239,9 @@ Use `{Client Profile: Qualification Criteria}` (buying triggers) and current ind
 Re-score against `{Client Profile: ICP Definitions}`. The company may have changed since original evaluation.
 
 **Re-qualification verdict:**
-- **REACTIVATE** — ICP fit is strong AND meaningful changes have occurred
-- **MONITOR** — ICP fit is decent but no compelling change event yet. Set reminder for 60-90 days.
-- **RETIRE** — ICP fit was weak then and hasn't improved. Don't waste cycles.
+- **REACTIVATE** if ICP fit is strong AND meaningful changes have occurred
+- **MONITOR** if ICP fit is decent but no compelling change event yet (set reminder for 60-90 days)
+- **RETIRE** if ICP fit was weak then and hasn't improved (don't waste cycles)
 
 ---
 
@@ -249,16 +249,16 @@ Re-score against `{Client Profile: ICP Definitions}`. The company may have chang
 
 Based on loss classification and change assessment, select the approach from `{Methodology: Reactivation Strategies by Loss Reason}`. Each strategy specifies timing assessment, angle, opener, and key intelligence needs.
 
-**Output:** `reactivation_strategy` — Approach, timing assessment (too soon / right time / overdue), entry angle
+**Output:** `reactivation_strategy` with approach, timing assessment (too soon / right time / overdue), and entry angle
 
 ---
 
 ### Step 6: Generate Reactivation Sequences
 
 Produce a **4-step email sequence** for top 2-3 personas. Reactivation differs from cold outbound:
-1. **Acknowledge the history** — never pretend prior deal didn't happen
-2. **Lead with what's changed** — new information justifies re-approach
-3. **Lower the ask** — aim for conversation, not demo
+1. **Acknowledge the history.** Never pretend prior deal didn't happen
+2. **Lead with what's changed.** New information justifies re-approach
+3. **Lower the ask.** Aim for conversation, not demo
 
 #### Rules for Reactivation Emails
 - Include a **subject line** (never "Following up" or "Checking in")
@@ -295,8 +295,8 @@ Use `{Client Profile: Competitive Landscape}` to match proof points to the speci
 **Structure: Acknowledge → Reference → Bridge** (NOT the standard cold call opener)
 
 1. **Acknowledge:** "Hey [Name], it's [Rep] from [Company]. We connected back in [month/year]."
-2. **Reference:** One specific thing from prior deal — pain shared, meeting attended, topic discussed.
-3. **Bridge:** What's changed. "Reaching out because [specific development] — thought it might be worth a quick conversation."
+2. **Reference:** One specific thing from prior deal (pain shared, meeting attended, topic discussed).
+3. **Bridge:** What's changed. "Reaching out because [specific development]. Thought it might be worth a quick conversation."
 
 #### Talk Track
 | Step | Script Element |
@@ -304,10 +304,10 @@ Use `{Client Profile: Competitive Landscape}` to match proof points to the speci
 | Validate current state | "Last I knew, you were [using competitor / handling internally / holding off]. How's that been going?" |
 | Surface new pain | "Companies in your position find that [loss-reason-specific pain] tends to show up after [timeframe]." |
 | Introduce new evidence | "Since we last talked, we've brought on [similar company] and results have been [metric]." |
-| Low-pressure ask | "Worth 15 minutes to compare notes? Not a full evaluation — just a conversation about what's changed." |
+| Low-pressure ask | "Worth 15 minutes to compare notes? Not a full evaluation, just a conversation about what's changed." |
 
 #### Loss-Reason-Specific Pain Questions
-Map to `{Methodology: Loss Reason Taxonomy}` — each loss type has specific pain surfacing questions.
+Map to `{Methodology: Loss Reason Taxonomy}`. Each loss type has specific pain surfacing questions.
 
 #### Voicemail Script (<30 seconds)
 - Name + company + "we spoke back in [month]"
@@ -317,7 +317,7 @@ Map to `{Methodology: Loss Reason Taxonomy}` — each loss type has specific pai
 #### Objection Handling (Reactivation-Specific)
 | Objection | Rebuttal |
 |-----------|----------|
-| "We already went through this" | "Not looking to restart a full evaluation. A few things have changed on our side worth sharing — can I send a 2-minute read?" |
+| "We already went through this" | "Not looking to restart a full evaluation. A few things have changed on our side worth sharing. Can I send a 2-minute read?" |
 | "We're happy with [competitor]" | "Great. Out of curiosity, how's [area of strength] working? That's where most companies like [proof point] found the biggest gap." |
 | "Nothing has changed" | "On our end, we've brought on [similar company] and results have been [metric]. If ever relevant, I'd love to reconnect." |
 | "We built our own solution" | "Smart move. Teams who've done that usually hit a ceiling around [complexity point]. If you get there, I'd love to compare notes." |
@@ -330,35 +330,35 @@ Map to `{Methodology: Loss Reason Taxonomy}` — each loss type has specific pai
 
 Present complete reactivation analysis:
 
-1. **Deal History Summary** — Account, original value, stage lost, days since close, AE, champion status
-2. **Loss Classification** — Category, confidence, evidence
-3. **What's Changed** — Account, product, and market changes
-4. **Re-Qualification Verdict** — REACTIVATE / MONITOR / RETIRE with reasoning
-5. **Reactivation Strategy** — Approach, timing assessment, entry angle
-6. **Reactivation Sequences** — Full email sequences per persona
-7. **Call Prep** — Opener, talk track, voicemail, objection handling
-8. **User Role**: BDR / AE
-9. **Coordination Guidance** (BDR): "Coordinate with [original AE] before sending reactivation outreach"
-10. **Recommended First Action** — Specific next step with persona and angle
+1. **Deal History Summary** (account, original value, stage lost, days since close, AE, champion status)
+2. **Loss Classification** (category, confidence, evidence)
+3. **What's Changed** (account, product, and market changes)
+4. **Re-Qualification Verdict** (REACTIVATE / MONITOR / RETIRE with reasoning)
+5. **Reactivation Strategy** (approach, timing assessment, entry angle)
+6. **Reactivation Sequences** (full email sequences per persona)
+7. **Call Prep** (opener, talk track, voicemail, objection handling)
+8. **User Role** (BDR or AE)
+9. **Coordination Guidance** (BDR only): "Coordinate with [original AE] before sending reactivation outreach"
+10. **Recommended First Action** (specific next step with persona and angle)
 
 ---
 
 ## Artifact Generation
 
 ### Output Options
-- **Option A: Markdown** (default) — `[COMPANY]_Reactivation.md`
-- **Option B: HTML** — Styled cheatsheet with loss reason badge and deal history banner
-- **Option C: PDF** — Python + reportlab, single page, letter size
+- **Option A: Markdown** (default) → `[COMPANY]_Reactivation.md`
+- **Option B: HTML** → Styled cheatsheet with loss reason badge and deal history banner
+- **Option C: PDF** → Python + reportlab, single page, letter size
 
 ### Cheatsheet Sections (8 Sections)
-1. **Deal History Banner** — Account, original ARR, stage lost, days since close, loss reason badge, verdict
-2. **What's Changed** — Two-column: account changes (left), product changes (right)
-3. **Reactivation Strategy** — Approach, entry angle, timing assessment
-4. **Key Personas** — Original contacts + new contacts, with engagement history and priority
-5. **Reactivation Hooks** — 3-4 loss-reason-specific talk-track-ready hooks
-6. **Discovery Questions** — 4-5 history-aware questions (open → probe → confirm)
-7. **Objection Handling** — Top 4 objections matched to loss scenario
-8. **Call Flow** — Reactivation-specific: Acknowledge → Reference → Bridge → Validate → Ask
+1. **Deal History Banner**: Account, original ARR, stage lost, days since close, loss reason badge, verdict
+2. **What's Changed**: Two-column layout (account changes on left, product changes on right)
+3. **Reactivation Strategy**: Approach, entry angle, timing assessment
+4. **Key Personas**: Original contacts + new contacts with engagement history and priority
+5. **Reactivation Hooks**: 3-4 loss-reason-specific talk-track-ready hooks
+6. **Discovery Questions**: 4-5 history-aware questions (open → probe → confirm)
+7. **Objection Handling**: Top 4 objections matched to loss scenario
+8. **Call Flow**: Reactivation-specific structure (Acknowledge → Reference → Bridge → Validate → Ask)
 
 Color-code by reactivation urgency. Include **LOSS REASON BADGE** in header.
 
@@ -366,35 +366,35 @@ Color-code by reactivation urgency. Include **LOSS REASON BADGE** in header.
 
 ## Examples
 
-### Example 1: Buyer's Remorse — Lost to Competitor
+### Example 1: Buyer's Remorse (Mariner Freight and Competitor X)
 
-**Context:** Account chose [Competitor] 8 months ago. Competitor quality has continued declining.
+**Context:** Mariner Freight chose Competitor X nine months ago. Competitor X quality has continued declining.
 
-**Input:** "Should we try to win back [Target Company]? They chose [Competitor]."
+**Input:** "Should we try to win back Mariner Freight? They chose Competitor X."
 
-**Process:** CRM pull: closed-lost $45K, chose [Competitor] at Negotiation stage, AE was [Name]. Champion: VP [Function], still at company. Loss classification: Lost to Competitor (High confidence). What's changed: [Competitor] support continues declining, you've displaced 3 more [Competitor] accounts since this deal closed. Verdict: REACTIVATE.
+**Process:** CRM pull: closed-lost $85K deal, chose Competitor X at Negotiation stage, AE was Marcus Webb. Champion: Head of Legal Operations, still at company. Loss classification: Lost to Competitor (High confidence). What's changed: Competitor X support continues declining. Lexora has displaced three Competitor X accounts in the freight vertical since this deal closed (including a similar-sized carrier). Verdict: REACTIVATE.
 
-**Output:** Buyer's Remorse strategy, 2 persona sequences (VP [Function] + [Operations Manager], 8 emails), reactivation call prep, cheatsheet. Entry angle: "How has [Competitor] been handling [key capability] at scale?"
+**Output:** Buyer's Remorse strategy. Two persona sequences (Head of Legal Operations and General Counsel, 8 emails total). Reactivation call prep and cheatsheet. Entry angle: "How has Competitor X been handling invoice automation at the scale Mariner operates?"
 
-### Example 2: Budget Hold — Timing Play
+### Example 2: Budget Hold (Ardent Insurance Group)
 
-**Context:** Account liked the product but couldn't fund it. Mentioned revisiting in Q3.
+**Context:** Ardent liked Lexora but could not fund it. Mentioned revisiting in Q3.
 
-**Input:** "Build reactivation for [Target Company] — closed-lost due to budget in January."
+**Input:** "Build reactivation for Ardent Insurance. Closed-lost due to budget in January."
 
-**Process:** Loss classification: Budget/Timing (High confidence — AE notes say "revisit Q3"). What's changed: New PE investment announced in February (potential budget unlock). Days since close: 60. Timing assessment: slightly early but PE investment creates opening. Verdict: REACTIVATE.
+**Process:** Loss classification: Budget and Timing (High confidence. AE notes say "revisit Q3"). What's changed: New PE investment announced in February (potential budget unlock). Days since close: 60. Timing assessment: slightly early but PE investment creates opening. Verdict: REACTIVATE.
 
-**Output:** Circle Back strategy leveraging PE investment as budget unlock signal. Entry: "When we spoke in January, budget was the blocker. Noticed the [PE Firm] announcement — does that change the picture?"
+**Output:** Circle Back strategy leveraging PE investment as budget unlock signal. Entry: "When we spoke in January, budget was the blocker. Noticed the PE investment announcement. Does that change the picture?"
 
-### Example 3: Champion Left — Follow the Champion
+### Example 3: Champion Moved (Mariner to Tallis Energy)
 
-**Context:** Champion left the company and joined another company in ICP.
+**Context:** Mariner Freight's Head of Legal Operations moved to Tallis Energy, also in ICP.
 
-**Input:** "Our champion at [Company A] left. They went to [Company B]. What do we do?"
+**Input:** "Our champion at Mariner left. They went to Tallis Energy. What do we do?"
 
-**Process:** Two-track approach. Track A: Champion at [Company B] (ICP2 GREENLIGHT). Track B: Replacement at [Company A] (unknown — need to identify). Verdict: REACTIVATE both tracks.
+**Process:** Two-track approach. Track A: Champion at Tallis Energy (ICP1, $2.6B revenue, 31 attorneys, perfect fit). Track B: Replacement at Mariner (unknown and need to identify). Verdict: REACTIVATE both tracks.
 
-**Output:** Track A sequence targeting champion at [Company B] (warm lead), Track B sequence for [Company A] replacement. Two cheatsheets. Champion follow has highest priority.
+**Output:** Track A sequence targeting champion at Tallis Energy (warm lead). Track B sequence for Mariner replacement. Two cheatsheets. Champion follow has highest priority.
 
 ---
 
@@ -410,7 +410,7 @@ Color-code by reactivation urgency. Include **LOSS REASON BADGE** in header.
 
 ### Pattern: Champion Follow
 **When:** The loss reason was "Champion Left" and the champion moved to another company in ICP.
-**Action:** Run two parallel tracks: Track A (follow champion to new company), Track B (find replacement at original account). Prioritize Track A — the champion already knows your product's value.
+**Action:** Run two parallel tracks: Track A (follow champion to new company), Track B (find replacement at original account). Prioritize Track A; the champion already knows your product's value.
 
 ---
 
@@ -433,18 +433,18 @@ Color-code by reactivation urgency. Include **LOSS REASON BADGE** in header.
 ## Best Practices
 
 ### Do's
-- **Acknowledge the history** — Email 1 must reference the prior relationship with specific context
-- **Lead with what's changed** — new information justifies the re-approach; without it, you're just pestering
-- **Lower the ask** — "conversation about what's changed" not "let's restart the evaluation"
-- **Match proof points to loss scenario** — competitor loss → competitor displacement proof point
-- **Coordinate BDRs with original AEs** — the AE has context the BDR doesn't
+- **Acknowledge the history.** Email 1 must reference the prior relationship with specific context
+- **Lead with what's changed.** New information justifies the re-approach; without it, you're just pestering
+- **Lower the ask.** Aim for a conversation about what's changed, not "let's restart the evaluation"
+- **Match proof points to loss scenario.** For example: competitor loss → competitor displacement proof point
+- **Coordinate BDRs with original AEs.** The AE has context the BDR doesn't
 
 ### Don'ts
-- **Don't pretend the deal never happened** — "We haven't spoken in a while" is not a reason to call
-- **Don't bash their decision** — they chose what they chose; respect it
-- **Don't reactivate accounts that were genuinely a poor fit** — unless something has materially changed
-- **Don't use "Following up" as a subject line** — ever
-- **Don't use the cold call opener** — use the reactivation Acknowledge → Reference → Bridge opener
+- **Don't pretend the deal never happened.** "We haven't spoken in a while" is not a reason to call
+- **Don't bash their decision.** They chose what they chose; respect it
+- **Don't reactivate accounts that were genuinely a poor fit** unless something has materially changed
+- **Don't use "Following up" as a subject line.** Ever
+- **Don't use the cold call opener.** Use the reactivation structure instead: Acknowledge → Reference → Bridge
 
 ### Quality Checklist
 - [ ] Deal history fully pulled from CRM
@@ -463,20 +463,24 @@ Color-code by reactivation urgency. Include **LOSS REASON BADGE** in header.
 
 ## Integration with Other Skills
 
-- **`gtm-competitive-displacement`** — When loss reason is "Lost to Competitor" and reactivation verdict is REACTIVATE, combine with displacement intelligence.
-- **`gtm-trigger-event-outbound`** — When a trigger event occurs at a closed-lost account, use trigger event skill for timeliness, reference loss history as context.
-- **`gtm-account-qualification`** — For Step 4 re-qualification, can use the full qualification framework for deeper ICP scoring.
-- **`gtm-deal-pulse`** — Once reactivation creates a new pipeline opportunity, switch to deal health monitoring.
-- **`gtm-meddpicc-analysis`** — Use the prior deal's MEDDPICC gaps to inform the reactivation strategy.
+- **`gtm-competitive-displacement`**: When loss reason is "Lost to Competitor" and reactivation verdict is REACTIVATE, combine with displacement intelligence.
+- **`gtm-trigger-event-outbound`**: When a trigger event occurs at a closed-lost account, use trigger event skill for timeliness and reference loss history as context.
+- **`gtm-account-qualification`**: For Step 4 re-qualification, use the full qualification framework for deeper ICP scoring.
+- **`gtm-deal-pulse`**: Once reactivation creates a new pipeline opportunity, switch to deal health monitoring.
+- **`gtm-meddpicc-analysis`**: Use the prior deal's MEDDPICC gaps to inform the reactivation strategy.
 
 ---
 
 ## Changelog
 
+### Version 1.2.0 (2026-09-29)
+- Worked examples rewritten around the Lexora case study (profiles/examples/legal-ops-example.md)
+- Em dashes removed from prose
+
 ### Version 1.1.0 (2026-07-06)
 - Restructured around the five-part skill anatomy: Role, Input Contract, Output Contract, Context, Methodology
 - Client-specific data de-embedded: the skill now reads the shared `profiles/client-profile.md` instead of carrying a copy-in Client Profile block
-- Loss Reason Taxonomy, Reactivation Strategies, and Product Changes moved to explicit Methodology section — `{Methodology: X}` references
+- Loss Reason Taxonomy, Reactivation Strategies, and Product Changes moved to explicit Methodology section and `{Methodology: X}` references
 - No functional changes to the workflow, examples, or output formats
 
 ### Version 1.0.0 (2026-03-04)

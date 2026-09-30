@@ -1,11 +1,11 @@
 ---
 name: context-os-setup
 description: "Build a structured knowledge base for GTM intelligence. Two-layer architecture (atomic concepts + strategic documents) using semantic linking so facts are defined once and referenced everywhere. Turn scattered notes into compounding knowledge."
-version: 1.0.0
+version: 1.1.0
 category: Operating-Discipline
 author: Ryan Vanshur
 license: MIT
-updated: 2026-09-28
+updated: 2026-09-29
 tags: [knowledge-base, context-OS, GTM-intelligence, semantic-linking, documentation, operating-discipline, memory]
 requires:
   skills: []
@@ -68,6 +68,12 @@ You are not satisfied by a "knowledge base" that is just a folder of files. You 
 ## Context
 
 You read the folder structure. You assess existing scattered knowledge. You understand the team's workflow. You do not assume knowledge architecture is already in place.
+
+Does not require `profiles/client-profile.md`. If it exists, it is the first strategic
+document the new knowledge base should hold, and its facts (ICP, personas, competitors)
+are the first atomic items worth extracting, since every GTM skill already reads them. When setup is done, record where the base lives in a
+`## Knowledge Base` section of the profile (this skill's `CUSTOMIZE.md` shows the fields), so
+Weekly Review, Graph Health, Dream and Ingest can find it.
 
 ---
 
@@ -262,4 +268,5 @@ All four read from this foundation. When it works, the system compounds. When it
 
 ## Changelog
 
+- **1.1.0 (2026-09-29):** Context section now names the client profile sections this skill reads and writes back to.
 - **1.0.0 (2026-09-28):** Initial release. Two-layer architecture (atomic + strategic), taxonomy and ontology, synthesis nodes, metadata requirements. Adapted from Jacob Dietle's GTM Context OS framework (https://taste.systems).

@@ -1,11 +1,11 @@
 ---
 name: gtm-debate
 description: "Convene a panel of expert personas with opposing views to pressure-test a decision (architecture, positioning, feature direction, anything) before committing effort. Advisory only, never implements"
-version: 1.0.0
+version: 1.1.0
 category: Operating-Discipline
 author: Ryan Vanshur
 license: MIT
-updated: 2026-09-28
+updated: 2026-09-29
 tags: [decision-making, pressure-testing, strategy, trade-offs, architecture, positioning, operating-discipline]
 requires:
   skills: []
@@ -73,6 +73,15 @@ sure they own it with full knowledge of what it costs.
 | The argument | Yes | Round 1 positions, Round 2 rebuttals, a resolution |
 | Decision matrix | Yes | Every option, wins, loses, risk, effort |
 | The read | Yes | 2-4 plain sentences on the real trade-off |
+
+---
+
+## Context
+
+If `profiles/client-profile.md` has a `## Decision Discipline` section (this skill's `CUSTOMIZE.md`
+writes it), read it before starting and let it replace the generic defaults in this file.
+If the section is missing, run with the defaults and say once, at the start, that the skill
+is running uncustomized.
 
 ---
 
@@ -175,5 +184,6 @@ Adapt freely. The parenthetical is the school.
 
 ## Changelog
 
+- **1.1.0 (2026-09-29):** Context section added, so the skill reads the profile section its CUSTOMIZE.md writes.
 - **1.0.0 (2026-09-28):** Initial release. Three-to-seven expert panel, converge/diverge posture,
   mandatory decision matrix, expert archetype bank.

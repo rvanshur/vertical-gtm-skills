@@ -89,4 +89,4 @@ Add these to `profiles/client-profile.md` once:
 
 The readiness score exists for the customer's onboarding, not as a gate reps learn to game.
 If a deal must close mid-quarter at a 60, the skill's job is to make the risks explicit and
-mitigated -- not to block the close, and not to pretend the 60 is an 85.
+mitigated. Not to block the close, and not to pretend the 60 is an 85.

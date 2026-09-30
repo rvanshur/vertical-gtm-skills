@@ -33,8 +33,9 @@ Ask me these, ONE AT A TIME, and wait for each answer:
 3. How often do we miss something the reviewer catches? (ballpark: almost never, maybe once
    a month, weekly, more than once a week)
 
-4. What would "different vendor" mean in your setup? (another model provider, a completely
-   different person, a different methodology, something else)
+4. Which vendor builds most of our work, and which OTHER vendor can we actually reach today?
+   (a chat app like ChatGPT or Gemini we can paste into, another vendor's CLI installed on
+   this machine, or an API key we could script against)
 
 5. Have we ever shipped something that a second set of eyes would have caught? What was it?
 
@@ -46,8 +47,8 @@ A. A revised "Core Workflow" where each step is written in terms of MY artifact 
 B. A revised "Best Practices" using MY failure from question 5, written so it is recognizable
    to my team but names no individual.
 
-C. A list of the vendors / models / reviewers in your current motion, so you know what
-   "different" means.
+C. A filled-in review packet (the block in Step 2 of SKILL.md) for our most common artifact,
+   plus which of the three routes we will use (paste, CLI or API) and why.
 
 D. THE HONEST PART: a short list of the questions above I could not answer concretely, and
    what would need to happen to answer them. Do not paper over these. If we do not have a
@@ -78,8 +79,8 @@ Add these to `profiles/client-profile.md` once, and every skill in the suite inh
 ```markdown
 ## Review Process
 
-- **First reviewer:** [who or what reads the work initially]
-- **Second vendor / reviewer:** [the diversity check, different person, model, or methodology]
+- **Builder vendor:** [the model provider that builds most of our work]
+- **Second vendor and route:** [a different provider, and how we reach it: paste into its chat, its CLI, or an API call]
 - **What we have missed:** [one incident where a second opinion would have caught something]
 - **Review triggers:** [which artifacts get reviewed, and when]
 ```

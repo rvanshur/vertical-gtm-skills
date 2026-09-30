@@ -2,9 +2,7 @@
 
 A paste-in prompt that adapts this skill to *your* go-to-market motion.
 
-Works in **Claude Code**, **OpenAI Codex**, **Claude.ai / ChatGPT Projects**, or a **custom GPT**
-(attach `SKILL.md` as knowledge and paste the block below) -- they all read the same `SKILL.md`
-format. Open the assistant, paste the block, and answer its questions.
+Works in **Claude Code**, **OpenAI Codex**, **Claude.ai / ChatGPT Projects**, or a **custom GPT**. Attach `SKILL.md` as knowledge and paste the block below; all platforms read the same `SKILL.md` format. Open the assistant, paste the block, and answer its questions.
 
 > This is a per-skill companion. For customizing the whole suite at once, see
 > [`docs/customization.md`](../../docs/customization.md) and

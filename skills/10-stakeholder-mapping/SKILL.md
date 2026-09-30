@@ -1,11 +1,11 @@
 ---
 name: gtm-stakeholder-mapping
-description: "Builds complete stakeholder intelligence maps — contact inventory with buying role classification, organizational hierarchy with ghost nodes, 7-dimension weighted multi-threading score, political landscape mapping, and prioritized engagement strategy"
-version: 1.1.0
+description: "Builds complete stakeholder intelligence maps (contact inventory with buying role classification, organizational hierarchy with ghost nodes, 7-dimension weighted multi-threading score, political landscape mapping, and prioritized engagement strategy)"
+version: 1.2.0
 category: GTM-Enablement
 author: Ryan Vanshur
 license: MIT
-updated: 2026-07-06
+updated: 2026-09-29
 tags: [stakeholder-mapping, org-map, org-chart, multi-threading, buying-committee, influence-map, contact-mapping, deal-strategy]
 requires:
   skills: []
@@ -15,7 +15,7 @@ requires:
 
 ## Overview
 
-Builds a complete stakeholder intelligence map for a target account. Queries CRM for contacts, classifies each by buying role (Economic Buyer, Champion, Technical Evaluator, Influencer, End User, Blocker, Coach), maps organizational hierarchy with ghost nodes for expected-but-missing positions, scores multi-threading coverage across 7 weighted dimensions, maps political dynamics, and generates a prioritized engagement strategy. Requires only an account name — assembles intelligence entirely from CRM and public sources.
+Builds a complete stakeholder intelligence map for a target account. Queries CRM for contacts, classifies each by buying role (Economic Buyer, Champion, Technical Evaluator, Influencer, End User, Blocker, Coach), maps organizational hierarchy with ghost nodes for expected-but-missing positions, scores multi-threading coverage across 7 weighted dimensions, maps political dynamics, and generates a prioritized engagement strategy. Requires only an account name. Assembles intelligence entirely from CRM and public sources.
 
 **Core Principle:** Deals are won through multi-threaded consensus, not single-threaded relationships. This map shows who you know, who you're missing, and where to focus next.
 
@@ -23,13 +23,13 @@ Builds a complete stakeholder intelligence map for a target account. Queries CRM
 
 ## Role
 
-You are a **senior account executive and org chart strategist for a vertical SaaS company** — not a generic assistant. You build complete stakeholder maps from CRM data, identifying buying roles, multi-threading gaps, and political dynamics. Everything company-specific — the buyer personas, the ghost node expectations, the value propositions — comes from the client profile (see **Context** below), so the same skill serves any vertical without modification.
+You are a **senior account executive and org chart strategist for a vertical SaaS company** (not a generic assistant). You build complete stakeholder maps from CRM data, identifying buying roles, multi-threading gaps, and political dynamics. Everything company-specific (the buyer personas, the ghost node expectations, the value propositions) comes from the client profile (see **Context** below), so the same skill serves any vertical without modification.
 
 ---
 
 ## Input Contract
 
-What this skill needs before it starts. **If a required input is missing, ask — do not guess.**
+What this skill needs before it starts. **If a required input is missing, ask (do not guess).**
 
 | Input | Required | Notes |
 |-------|----------|-------|
@@ -43,7 +43,7 @@ What this skill needs before it starts. **If a required input is missing, ask �
 
 ## Output Contract
 
-Every run produces a **complete stakeholder map with the same 8 sections** — so buying committee strategy can be compared across accounts. The content changes per account; the structure never does.
+Every run produces a **complete stakeholder map with the same 8 sections** (so buying committee strategy can be compared across accounts). The content changes per account; the structure never does.
 
 Core commitments: **contact inventory with buying roles classified**, **organizational hierarchy with ghost nodes**, **7-dimension multi-threading score**, **political landscape**, **coverage gaps and risks**, and **prioritized engagement strategy**.
 
@@ -53,7 +53,7 @@ Core commitments: **contact inventory with buying roles classified**, **organiza
 
 **This skill does not contain client-specific information. It points to it.**
 
-> **Load the client profile from [`profiles/client-profile.md`](../../profiles/client-profile.md) before starting.** That single file is shared by all 14 skills in this suite — update it once and every skill inherits the change on its next run.
+> **Load the client profile from [`profiles/client-profile.md`](../../profiles/client-profile.md) before starting.** That single file is shared by all 14 skills in this suite. Update it once and every skill inherits the change on its next run.
 
 Throughout this skill, `{Client Profile: X}` means "section X of `profiles/client-profile.md`". Sections this skill reads:
 
@@ -136,10 +136,10 @@ Your playbook for stakeholder mapping. The 7 buying roles, multi-threading dimen
 Classify influential contacts on two axes: **Influence (Y-axis: high to low)** × **Support (X-axis: opponent to strong supporter)**
 
 **Quadrants:**
-- **Top-Right (High Influence + Support):** Leverage — your champion, enabler
-- **Top-Left (High Influence + Opposition):** Neutralize — the blocker with power
-- **Bottom-Right (Low Influence + Support):** Keep Informed — friendly contact
-- **Bottom-Left (Low Influence + Opposition):** Monitor — low threat, watch
+- **Top-Right (High Influence + Support):** Leverage. Your champion, enabler.
+- **Top-Left (High Influence + Opposition):** Neutralize. The blocker with power.
+- **Bottom-Right (Low Influence + Support):** Keep Informed. Friendly contact.
+- **Bottom-Left (Low Influence + Opposition):** Monitor. Low threat, watch.
 
 ### Ghost Node Identification
 
@@ -181,10 +181,10 @@ Determine whether the user is a BDR or AE.
 
 **From CRM:** Check user role/profile. If unclear, check BDR Owner vs. Account Owner patterns.
 **Fallback:** Ask: "Are you a BDR or AE?"
-**Output:** `user_role` — BDR / AE
+**Output:** `user_role` (BDR / AE)
 
 **Role-aware framing:**
-- **BDR:** Org map focuses on identifying the best entry point and understanding who to target. Engagement strategy emphasizes prospecting tactics and meeting-booking. If an active AE deal exists, share the org map with the AE — do not prospect independently.
+- **BDR:** Org map focuses on identifying the best entry point and understanding who to target. Engagement strategy emphasizes prospecting tactics and meeting-booking. If an active AE deal exists, share the org map with the AE (do not prospect independently).
 - **AE:** Org map focuses on multi-threading strategy, navigating the buying committee, and advancing the deal. Engagement strategy emphasizes deal progression and consensus-building.
 
 ---
@@ -207,7 +207,7 @@ Query CRM for the account record:
 | Total contacts on file | Count of Contact records |
 | Last interaction | Most recent Activity |
 
-**Active Deal Guard:** If `user_role = BDR` and an active AE deal exists, add coordination guidance: "Active deal owned by [AE name] at [Stage]. Share this org map with the AE — do not prospect independently."
+**Active Deal Guard:** If `user_role = BDR` and an active AE deal exists, add coordination guidance: "Active deal owned by [AE name] at [Stage]. Share this org map with the AE (do not prospect independently)."
 
 ---
 
@@ -306,7 +306,7 @@ Build a hierarchical tree from classified contacts:
 5. **Identify ghost nodes:** Positions that SHOULD exist based on company size and industry but have no contact on file. Use `{Methodology: Ghost Node Identification}` as reference for expected roles by revenue threshold.
 
 Present as a department-grouped table showing:
-- Name (or "UNKNOWN — [Expected Title]" for ghost nodes)
+- Name (or "UNKNOWN - [Expected Title]" for ghost nodes)
 - Title
 - Buying role badge
 - Engagement status
@@ -334,9 +334,9 @@ Calculate the multi-threading score (1-10 scale) based on 7 weighted dimensions:
 |-------|--------|---------|
 | 9-10 | Excellent | Broad coverage, strong champion, EB engaged |
 | 7-8 | Good | Solid coverage with 1-2 gaps |
-| 5-6 | Developing | Material gaps — missing champion or EB engagement |
-| 3-4 | Weak | Narrow — single-threaded or thin contacts |
-| 1-2 | Critical | Almost no contacts — deal at risk of ghosting |
+| 5-6 | Developing | Material gaps (missing champion or EB engagement) |
+| 3-4 | Weak | Narrow (single-threaded or thin contacts) |
+| 1-2 | Critical | Almost no contacts (deal at risk of ghosting) |
 
 **Gap identification:**
 - Which buying roles are missing?
@@ -359,11 +359,11 @@ For each contact with MEDIUM or HIGH influence, classify:
 | **Opponent** | Actively resists or prefers incumbent |
 
 **Key dynamics to identify:**
-1. **Alliances** — Contacts who work closely together with shared positive sentiment
-2. **Tensions** — Known conflicts or competing priorities (e.g., IT security vs. business urgency)
-3. **Bridges** — Contacts who can influence multiple departments or levels
-4. **Power centers** — Informal influence beyond title
-5. **Incumbent loyalty** — Anyone championing the current vendor
+1. **Alliances:** Contacts who work closely together with shared positive sentiment.
+2. **Tensions:** Known conflicts or competing priorities (e.g., IT security vs. business urgency).
+3. **Bridges:** Contacts who can influence multiple departments or levels.
+4. **Power centers:** Informal influence beyond title.
+5. **Incumbent loyalty:** Anyone championing the current vendor.
 
 Source from CRM notes, activity logs, call transcripts, email patterns, meeting attendance.
 
@@ -400,14 +400,14 @@ For each recommended action:
 | Account | [Name] |
 | Industry | [Industry] |
 | Revenue / Employees | [Revenue] / [Employees] |
-| Active Deal | [Yes/No — Stage, Amount, Owner] |
+| Active Deal | [Yes/No (Stage, Amount, Owner)] |
 | Total Contacts on File | [Count] |
 | Contacts Classified | [Count with buying roles assigned] |
-| Ghost Nodes Identified | [Count — expected positions with no contact] |
-| Multi-Threading Score | [X/10 — Rating] |
-| Champion Status | [Confirmed / Potential / None — Name] |
-| Economic Buyer Status | [Engaged / Identified / Unknown — Name] |
-| Blocker Status | [None / Identified — Name + mitigation] |
+| Ghost Nodes Identified | [Count - expected positions with no contact] |
+| Multi-Threading Score | [X/10 (Rating)] |
+| Champion Status | [Confirmed / Potential / None (Name)] |
+| Economic Buyer Status | [Engaged / Identified / Unknown (Name)] |
+| Blocker Status | [None / Identified (Name + mitigation)] |
 | Top 3 Gaps | [Specific gaps] |
 | Recommended Next Action | [#1 priority from engagement strategy] |
 | User Role | [BDR / AE] |
@@ -418,19 +418,19 @@ For each recommended action:
 ## Artifact Generation
 
 ### Output Options
-- **Option A: Markdown** (default) — `[COMPANY]_Stakeholder_Map.md`
-- **Option B: HTML** — Styled map with color-coded buying roles and hierarchy visualization
-- **Option C: PDF** — Python + reportlab, single page, letter size, landscape orientation
+- **Option A: Markdown** (default). `[COMPANY]_Stakeholder_Map.md`
+- **Option B: HTML.** Styled map with color-coded buying roles and hierarchy visualization.
+- **Option C: PDF.** Python + reportlab, single page, letter size, landscape orientation.
 
 ### Stakeholder Map Sections (8 Sections)
-1. **Account Snapshot** — Firmographics, deal stage, threading score
-2. **Stakeholder Hierarchy** — Department-grouped table with buying role badges, engagement icons, relationship strength. Ghost nodes in italics.
-3. **Buying Committee Matrix** — Name, Title, Role, Influence, Engagement, Last Touch, Risk
-4. **Multi-Threading Scorecard** — Overall score bar + coverage by dimension + gap callouts
-5. **Engagement Status Heat Map** — Grid by department × engagement status
-6. **Political Landscape** — Quadrant layout: Influence (Y) × Support (X). Top-right = leverage, Top-left = neutralize, Bottom-right = keep informed, Bottom-left = monitor
-7. **Coverage Gaps & Risks** — Missing buying roles, uncontacted departments, ghost nodes, blocker alerts, single-threading risk
-8. **Priority Actions** — Top 5 actions with Who, What, Why
+1. **Account Snapshot.** Firmographics, deal stage, threading score.
+2. **Stakeholder Hierarchy.** Department-grouped table with buying role badges, engagement icons, relationship strength. Ghost nodes in italics.
+3. **Buying Committee Matrix.** Name, Title, Role, Influence, Engagement, Last Touch, Risk.
+4. **Multi-Threading Scorecard.** Overall score bar + coverage by dimension + gap callouts.
+5. **Engagement Status Heat Map.** Grid by department × engagement status.
+6. **Political Landscape.** Quadrant layout: Influence (Y) × Support (X). Top-right = leverage, Top-left = neutralize, Bottom-right = keep informed, Bottom-left = monitor.
+7. **Coverage Gaps & Risks.** Missing buying roles, uncontacted departments, ghost nodes, blocker alerts, single-threading risk.
+8. **Priority Actions.** Top 5 actions with Who, What, Why.
 
 **Color-code buying roles:**
 - Economic Buyer → red
@@ -444,25 +444,25 @@ For each recommended action:
 
 ## Examples
 
-### Example 1: AE Deal Strategy — Enterprise Account
+### Example 1: AE Deal Strategy (Enterprise Account)
 
-**Context:** AE needs multi-threading assessment before a critical deal review.
+**Context:** AE managing Corvane Industrial (PE-backed $3.2B manufacturer) at Negotiation stage needs multi-threading assessment before executive review.
 
-**Input:** "Build an org map for [Account] — we're at Negotiation stage and need to multi-thread before the executive review."
+**Input:** "Build an org map for Corvane Industrial. We're at Negotiation stage ($1.8M deal) and need to multi-thread before the executive review."
 
-**Process:** CRM shows active deal at Negotiation, $1.79M. 8 contacts on file across Finance, Operations, and IT departments. Buying roles classified: CFO (Economic Buyer, partially engaged), VP Operations (Champion, actively engaged), 2 Managers (End Users, engaged), IT Director (Technical Evaluator, neutral), 3 others. Ghost nodes: COO, General Counsel (expected at this company size). Multi-threading score: 7/10 (Good) — strong champion and IT engaged, but EB only partially engaged and no Legal coverage.
+**Process:** CRM shows active deal at Negotiation, $1.8M. 8 contacts on file across Finance, Operations, and Legal departments. Buying roles classified: CFO (Economic Buyer, partially engaged), Sam Okafor, Head of Legal Operations (Champion, actively engaged), 2 Managers (End Users, engaged), IT Director (Technical Evaluator, neutral), 3 others. Ghost nodes: COO, VP Finance, General Counsel Dana Whitfield (expected at PE-backed manufacturer this size). Multi-threading score: 7/10 (Good). Strong champion with Sam Okafor actively coaching from Legal Ops, IT engaged, but CFO only partially engaged and no General Counsel contact yet.
 
-**Output:** Full org analysis with hierarchy, 7/10 threading score, political landscape showing VP Operations as bridge between Finance and Operations teams. Engagement strategy: URGENT — get CFO from partial to active engagement via executive briefing. HIGH — identify General Counsel for compliance angle. 8-section stakeholder map generated.
+**Output:** Full org analysis with hierarchy, 7/10 threading score, political landscape showing Sam Okafor as bridge between Legal Operations and Finance. Engagement strategy: URGENT (get CFO from partial to active engagement via executive briefing led by Sam), HIGH (identify GC Dana Whitfield for governance and risk angle). 8-section stakeholder map generated.
 
-### Example 2: BDR Prospecting — Unknown Account
+### Example 2: BDR Prospecting (Unknown Account)
 
-**Context:** BDR researching a new account to identify the best entry point.
+**Context:** BDR at Lexora researching Halden Health Systems ($4.1B public hospital network) to identify best entry point for initial outreach.
 
-**Input:** "Map the org structure for [Account] so I know who to target first."
+**Input:** "Map the org structure for Halden Health Systems so I know who to target first."
 
-**Process:** `user_role = BDR`. CRM shows new account, no active deal. 2 contacts on file (Controller, Analyst). Company research: $5B+ revenue, 45+ locations, multi-region. Ghost nodes: CFO, VP Operations, Director, IT Director, COO, General Counsel (all expected at $5B). Multi-threading score: 2/10 (Critical) — minimal contacts, no champion, no EB.
+**Process:** `user_role = BDR`. CRM shows new account, no active deal. 2 contacts on file (Controller, one in-house counsel). Company research: $4.1B revenue, 26 in-house attorneys, heavy litigation load, cited rising legal costs in 10-K. Ghost nodes: General Counsel (primary), VP Finance, Head of Legal Operations, CFO, COO (all expected at public healthcare system this size). Multi-threading score: 2/10 (Critical). Minimal contacts, no champion identified, no Economic Buyer engaged.
 
-**Output:** Org analysis showing massive gaps. Engagement strategy focuses on entry point: recommend targeting Director or VP level (likely champion persona) with operational pain angle. BDR-focused recommendations: LinkedIn research for missing contacts, suggested outreach angles per persona. 8-section stakeholder map generated.
+**Output:** Org analysis showing critical gaps in legal and finance leadership. Engagement strategy focuses on entry point: recommend targeting Head of Legal Operations or General Counsel with outside-counsel cost visibility and spend control angle. BDR-focused recommendations: LinkedIn research for missing legal and finance contacts, suggested outreach angles based on cost program signal from 10-K. 8-section stakeholder map generated.
 
 ---
 
@@ -470,7 +470,7 @@ For each recommended action:
 
 ### Pattern: Active Deal Guard (BDR)
 **When:** `user_role = BDR` and account has active AE deal.
-**Action:** Generate the full org map but deliver with coordination guidance: "Active deal owned by [AE name] at [Stage]. Share this org map with the AE — do not prospect independently."
+**Action:** Generate the full org map but deliver with coordination guidance: "Active deal owned by [AE name] at [Stage]. Share this org map with the AE (do not prospect independently)."
 
 ### Pattern: Pre-Meeting Org Review
 **When:** Used in conjunction with `gtm-meeting-prep` before a critical meeting.
@@ -485,13 +485,13 @@ For each recommended action:
 ## Troubleshooting
 
 ### "Only 1-2 contacts on file"
-**Solution:** This is common for new accounts. Generate the map with heavy ghost node identification. The value is showing what's MISSING — the engagement strategy becomes a contact discovery plan. Recommend LinkedIn research and `gtm-account-snapshot` for broader intelligence.
+**Solution:** This is common for new accounts. Generate the map with heavy ghost node identification. The value is showing what's MISSING. The engagement strategy becomes a contact discovery plan. Recommend LinkedIn research and `gtm-account-snapshot` for broader intelligence.
 
 ### "Can't determine buying roles from titles"
 **Solution:** When titles are ambiguous (e.g., "Manager" without department), use department inference rules from Step 2. If department is also unclear, classify as UNKNOWN and flag for discovery. During the next interaction, ask: "Can you tell me about your team's structure?"
 
-### "Political dynamics unclear — no notes in CRM"
-**Solution:** Flag political landscape as "Insufficient data — requires direct engagement to assess." Provide a framework for the rep to assess during their next interaction: ask about decision process, who else is involved, and where concerns might come from.
+### "Political dynamics unclear (no notes in CRM)"
+**Solution:** Flag political landscape as "Insufficient data (requires direct engagement to assess)." Provide a framework for the rep to assess during their next interaction: ask about decision process, who else is involved, and where concerns might come from.
 
 ### "Contact is both Champion and Economic Buyer"
 **Solution:** Assign the primary role that most affects deal strategy. If someone has budget authority AND actively advocates, classify as Economic Buyer (higher-priority role) and note champion behaviors in the analysis. The engagement strategy should reflect both dimensions.
@@ -501,16 +501,16 @@ For each recommended action:
 ## Best Practices
 
 ### Do's
-- **Pull ALL contacts** — don't filter to "relevant" ones. The full picture reveals patterns.
-- **Identify ghost nodes aggressively** — missing positions are as important as known contacts
-- **Source political dynamics from evidence** — CRM notes, interaction patterns, meeting attendance. Don't guess.
-- **Tailor engagement strategy to user role** — BDR needs entry points; AE needs multi-threading tactics
+- **Pull ALL contacts:** don't filter to "relevant" ones. The full picture reveals patterns.
+- **Identify ghost nodes aggressively:** missing positions are as important as known contacts.
+- **Source political dynamics from evidence:** CRM notes, interaction patterns, meeting attendance. Don't guess.
+- **Tailor engagement strategy to user role:** BDR needs entry points; AE needs multi-threading tactics.
 
 ### Don'ts
-- **Don't assume buying roles from titles alone** — a VP who hasn't engaged isn't automatically a Champion
-- **Don't skip the threading score** — it provides the objective assessment that coaching conversations need
-- **Don't ignore low-influence contacts** — End Users can become internal champions or surface hidden objections
-- **Don't treat ghost nodes as optional** — every missing position is a gap in your deal strategy
+- **Don't assume buying roles from titles alone:** a VP who hasn't engaged isn't automatically a Champion.
+- **Don't skip the threading score:** it provides the objective assessment that coaching conversations need.
+- **Don't ignore low-influence contacts:** End Users can become internal champions or surface hidden objections.
+- **Don't treat ghost nodes as optional:** every missing position is a gap in your deal strategy.
 
 ### Quality Checklist
 - [ ] All CRM contacts pulled (not a subset)
@@ -527,21 +527,25 @@ For each recommended action:
 
 ## Integration with Other Skills
 
-- **`gtm-meeting-prep`** — Run stakeholder mapping before meeting prep when multi-attendee dynamics are complex.
-- **`gtm-account-snapshot`** — For new accounts with minimal contacts, run snapshot first for broader intelligence, then stakeholder mapping for what you find.
-- **`gtm-competitive-strategy`** — Stakeholder map reveals who might be an incumbent champion (Blocker role) — feed this into competitive strategy.
-- **`gtm-deal-pulse`** — Threading score and champion status are key inputs to deal health scoring.
-- **`gtm-meddpicc-analysis`** — Champion and Economic Buyer identification from the org map directly fills MEDDPICC elements.
-- **`gtm-call-coaching`** — After calls, update the org map with new stakeholder intelligence captured during the conversation.
+- **`gtm-meeting-prep`:** Run stakeholder mapping before meeting prep when multi-attendee dynamics are complex.
+- **`gtm-account-snapshot`:** For new accounts with minimal contacts, run snapshot first for broader intelligence, then stakeholder mapping for what you find.
+- **`gtm-competitive-strategy`:** Stakeholder map reveals who might be an incumbent champion (Blocker role). Feed this into competitive strategy.
+- **`gtm-deal-pulse`:** Threading score and champion status are key inputs to deal health scoring.
+- **`gtm-meddpicc-analysis`:** Champion and Economic Buyer identification from the org map directly fills MEDDPICC elements.
+- **`gtm-call-coaching`:** After calls, update the org map with new stakeholder intelligence captured during the conversation.
 
 ---
 
 ## Changelog
 
+### Version 1.2.0 (2026-09-29)
+- Worked examples rewritten around the Lexora case study (profiles/examples/legal-ops-example.md)
+- Em dashes removed from prose
+
 ### Version 1.1.0 (2026-07-06)
 - Restructured around the five-part skill anatomy: Role, Input Contract, Output Contract, Methodology, Context
 - Client-specific data de-embedded: the skill now reads the shared `profiles/client-profile.md` instead of carrying a copy-in Client Profile block (one profile powers every skill)
-- Buying role definitions (7 roles), influence levels, engagement status, relationship strength framework, multi-threading dimensions (7-weighted), and ghost node expectations moved to an explicit Methodology section — `{Methodology: X}` references
+- Buying role definitions (7 roles), influence levels, engagement status, relationship strength framework, multi-threading dimensions (7-weighted), and ghost node expectations moved to an explicit Methodology section with `{Methodology: X}` references
 - No functional changes to the workflow, contact classification logic, threading algorithm, political landscape assessment, or output formats
 
 ### Version 1.0.0 (2026-03-04)

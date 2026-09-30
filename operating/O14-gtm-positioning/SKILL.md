@@ -1,11 +1,11 @@
 ---
 name: gtm-positioning
 description: "Pricing strategy and market positioning. Competitive pricing analysis, value metric identification, willingness-to-pay research, unit economics modeling, April Dunford positioning framework, messaging house creation, and positioning validation."
-version: 1.0.0
+version: 1.1.0
 category: Operating-Discipline
 author: Ryan Vanshur
 license: MIT
-updated: 2026-09-28
+updated: 2026-09-29
 tags: [positioning, pricing-strategy, messaging, value-proposition, UVP, April-Dunford, unit-economics, competitive-pricing, messaging-house, operating-discipline]
 requires:
   skills: ["gtm-discovery"]
@@ -67,6 +67,11 @@ You are not satisfied by a positioning statement that sounds good. You are satis
 ## Context
 
 You read the customer archetype from discovery. You read the competitive landscape. You understand the beachhead segment. You do not assume pricing has been researched.
+
+Reads `profiles/client-profile.md` if it exists, as the starting evidence: Company, ICP Definitions, Value Propositions and Competitive Landscape.
+Treat what is already there as claims to test, not facts. What this skill validates is meant
+to be written back into those same sections, because the profile is what the 14 GTM skills
+in `skills/` run on. That write-back is how the strategy layer reaches the daily motion.
 
 ---
 
@@ -168,15 +173,15 @@ Now the claim is verifiable. A customer can test it themselves. Credibility is e
 
 ### Worked Example 3: Positioning That Survives Validation (Positioning Success)
 
-**Hypothesis:** Construction company owners care most about audit trail compliance, not speed.
+**Hypothesis (Lexora, the example company):** General Counsels care most about seeing outside-counsel spend before the invoice lands, not about the size of the discount.
 
-**Test method:** Run 10 customer interviews. Do not lead with speed. Ask an open question about their biggest problem.
+**Test method:** Run 10 interviews with General Counsels and Heads of Legal Ops. Do not lead with savings. Ask an open question about their biggest problem with outside counsel.
 
-**Result:** Eight of ten mention compliance or audit risk first. Speed comes up second.
+**Result (illustrative):** Eight of ten say some version of "I can't see it until the invoice lands" first. Savings come up second.
 
-**Positioning:** Rewrite to lead with compliance and audit risk, not speed. Price reflects this (compliance tools command premium pricing).
+**Positioning:** Rewrite to lead with spend visibility, not the discount. Price reflects this (a control and visibility tool is priced against the risk it removes, not as a cost-cutting line item).
 
-**Outcome:** Messaging resonates. Customers self-identify immediately. Sales conversations are shorter.
+**Outcome:** Messaging resonates. Buyers self-identify immediately. Sales conversations are shorter.
 
 ---
 
@@ -195,7 +200,7 @@ Now the claim is verifiable. A customer can test it themselves. Credibility is e
 
 - **Price based on value, not costs.** What something costs you to build is irrelevant to what someone will pay. Value is what matters.
 - **Test positioning with non-friends.** Friends will validate everything. Strangers will tell you the truth.
-- **The category you claim determines how you are compared.** If you say "project management for construction," you will be compared to Asana and Monday. If you say "safety and compliance for construction teams," you compete on different criteria. Choose carefully.
+- **The category you claim determines how you are compared.** If Lexora says "spend management for legal," it gets compared to procurement and accounts-payable tools. If it says "outside-counsel control for in-house legal teams," it competes on different criteria. Choose carefully.
 - **Mark your confidence level on every positioning claim.** Every statement in your positioning should have evidence. If it does not, mark it as hypothesis.
 - **Pricing changes, but positioning rarely does.** Once your positioning is validated, it stays consistent across price changes. Reposition only if the market fundamentally changes.
 
@@ -211,6 +216,7 @@ Now the claim is verifiable. A customer can test it themselves. Credibility is e
 
 ## Changelog
 
+- **1.1.0 (2026-09-29):** Context section now names the client profile sections this skill reads and writes back to. Category example now uses the Lexora case study.
 - **1.0.0 (2026-09-28):** Initial release. Six-step April Dunford framework, Van Westendorp and Gabor-Granger pricing research, unit economics modeling, messaging house architecture. Adapted from Maja Voje's GTM Strategist methodology (Phases 5-6).
 
 ## Credits
