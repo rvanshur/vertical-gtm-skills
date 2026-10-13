@@ -1,11 +1,11 @@
 ---
 name: gtm-research-outbound
 description: "Deep-research POV brief and outbound package from public filings (10-K), private company intelligence, or quarterly earnings calls. Generates ICP qualification, signal mapping, quantified financial wedge, persona-tailored email sequences, and single-page outbound cheatsheet"
-version: 1.2.0
+version: 1.3.0
 category: GTM-Enablement
 author: Ryan Vanshur
 license: MIT
-updated: 2026-09-29
+updated: 2026-10-13
 tags: [research-outbound, 10k-analysis, earnings-call, private-company, pov-brief, enterprise-prospecting, persona-sequences]
 requires:
   skills: []
@@ -29,21 +29,21 @@ You are a **senior enterprise researcher and POV writer for a vertical SaaS comp
 
 ## Input Contract
 
-What this skill needs before it starts. **If a required input is missing, ask; do not guess.**
+What this skill needs before it starts. **If a required input is missing, ask. Do not guess.**
 
 | Input | Required | Notes |
 |-------|----------|-------|
 | Company name | ✅ Required | The account to research |
-| Research type | ✅ Required | 10k_filing / private_company / earnings_call; determines intelligence source and sequence depth |
+| Research type | ✅ Required | 10k_filing / private_company / earnings_call. Determines intelligence source and sequence depth |
 | Intelligence source | ✅ Required | The 10-K filing content, private company research, or earnings transcript |
 
-**Role detection:** From CRM; used to shape recommendations. Fallback: Ask "Are you a BDR or AE?"
+**Role detection:** From CRM. Used to shape recommendations. Fallback: Ask "Are you a BDR or AE?"
 
 ---
 
 ## Output Contract
 
-Every run produces a **research-backed outbound package with the same structure, in the same order**. The content changes per company and research type; the layout never does.
+Every run produces a **research-backed outbound package with the same structure, in the same order**. The content changes per company and research type. The layout never does.
 
 Core commitments: **ICP verdict**, **signal mapping**, **quantified financial wedge** (when data supports it), **POV brief**, **persona-tailored email sequences**, and **intelligence appendix**. These are organized into 8 fixed sections (see *Artifact Generation* below).
 
@@ -60,7 +60,8 @@ Throughout this skill, `{Client Profile: X}` means "section X of `profiles/clien
 | Profile section | Used for |
 |---|---|
 | ICP Definitions | Qualification gate (GREENLIGHT / MANUAL REVIEW / DISQUALIFY) and market/geographic tiers |
-| Buyer Personas | Persona-tailored sequences (6 personas x up to 4 emails per research type) |
+| Qualification Zones | The zone column of the signal map (Step 4) and the zone verdict rule (Step 3) |
+| Buyer Personas | Persona-tailored sequences (5 personas x up to 4 emails per research type) |
 | Value Propositions | Connecting extracted signals to product capability |
 | Proof Points | Selecting reference customers matched to prospect vertical and persona |
 | Competitive Landscape | Objection handling and competitive positioning |
@@ -79,9 +80,9 @@ This skill operates in three modes based on the intelligence source. Select the 
 
 | Research Type | Best For | Sequence Depth | Word Limit | Relevance Window |
 |--------------|---------|----------------|------------|-----------------|
-| **10-K Filing** | Public companies; annual deep-dive | 6 personas × 4 emails (24) | ≤120 words | Months |
-| **Private Company** | Private companies; multi-source research | 6 personas × 4 emails (24) | ≤120 words | Months |
-| **Earnings Call** | Public companies; quarterly signals | 2-3 personas × 2 emails (4-6) | ≤100 words | 7-14 days |
+| **10-K Filing** | Public companies. Annual deep-dive | 5 personas × 4 emails (20) | ≤120 words | Months |
+| **Private Company** | Private companies. Multi-source research | 5 personas × 4 emails (20) | ≤120 words | Months |
+| **Earnings Call** | Public companies. Quarterly signals | 2-3 personas × 2 emails (4-6) | ≤100 words | 7-14 days |
 
 ### Revenue Estimation Methods
 
@@ -154,7 +155,7 @@ Determine whether the user is a BDR or AE.
 #### 1b. Search CRM
 Pull existing intelligence: account record, contacts, deal stage, BDR Owner, engagement history.
 
-**Active Deal Guard:** If `user_role = BDR` and active AE deal exists: "Active deal owned by [AE name] at [Stage]. Share analysis with AE; do not send sequences independently."
+**Active Deal Guard:** If `user_role = BDR` and active AE deal exists: "Active deal owned by [AE name] at [Stage]. Share analysis with AE. Do not send sequences independently."
 
 ---
 
@@ -222,7 +223,7 @@ Output: Verdict + 3-6 bullet reasons, each with source tags.
 
 ### Step 4: Map Intelligence to Company Profile
 
-Map extracted signals/facts to company characteristics from `{Client Profile: ICP Definitions}` (which include market and geographic tiers).
+Map extracted signals/facts to company characteristics from `{Client Profile: ICP Definitions}` (market and geographic tiers) and `{Client Profile: Qualification Zones}` (the zone column below).
 
 Create a signal mapping table:
 
@@ -263,7 +264,7 @@ Only when intelligence supports the numbers. Label all calculations.
 
 ### Step 7: Generate Persona Email Sequences
 
-#### 10-K and Private Company: All 6 personas × 4 steps (24 emails)
+#### 10-K and Private Company: All 5 personas × 4 steps (20 emails)
 
 | Step | Angle | Purpose |
 |------|-------|---------|
@@ -357,41 +358,53 @@ Rules: ≤100 words (urgency demands brevity), subject line references earnings,
 
 ## Examples
 
-### Example 1: Private Company Research (Corvane Industrial, PE-Backed)
+### Example 1: Private Company Research (Saltmarsh Heritage Group, MANUAL REVIEW)
 
-**Context:** Enterprise prospecting into Corvane Industrial, a PE-backed manufacturer with no public filings.
+**Context:** Research-driven outbound to Saltmarsh Heritage Group, a family-owned group with 5 sites (2 cemeteries, 3 funeral homes) and no public filings. Its annual owner letter, posted on the company site, says all five sites move to one system in 2027. The CFO, Hector Ruiz, approves budget. This is the one account in the cast whose research starts from an owner letter.
 
-**Input:** "Build a POV outbound campaign for Corvane Industrial with sequences and cheatsheet."
+**Input:** "Build a research outbound package for Saltmarsh Heritage Group from its owner letter, with sequences and a cheatsheet."
 
-**Process:** Web research reveals $3.2B revenue [Verified - PE acquisition press], PE-backed (acquired by private-equity sponsor, 2022), 38 in-house attorneys, 60+ outside counsel firms, operations across multiple states. LinkedIn shows 2,100+ employees, recent acquisition signals. ICP1 GREENLIGHT.
+**Process:** Intelligence profile: owner letter says all five sites move to one system in 2027 `[Verified: owner letter on company site]`. Five sites, with 2 cemeteries and 3 funeral homes `[CRM]`. Three funeral homes run pre-need counselors `[CRM]`. Ownership is family `[CRM]`. The CFO approves budget `[CRM]`.
 
-Intelligence profile extracted: $14M+ estimated counsel spend based on company size, 60+ outside firms indicates high fragmentation pain, PE ownership suggests M&A activity driving legal cost volatility. Sam Okafor (Head of Legal Operations) identified as champion on LinkedIn.
+Gate: The group sits at the top of ICP3 (four to ten sites). The decision runs through a CFO, which rates Zone 3 LOW in `{Client Profile: Qualification Zones}`. Zone 5 HIGH is plausible from the owner update (illustrative rating). The verdict rule does not reach GREENLIGHT with a must-have zone at LOW, and it does not reach DISQUALIFY, so the verdict is **MANUAL REVIEW** (the profile's REVIEW). The CFO gate and the 6 to 9 month cycle are the open items.
 
-**Output:** Intelligence profile with source tags, POV brief focusing on PE cost-control post-acquisition, 24 persona emails (General Counsel, Head of Legal Operations, Deputy GC focus), PDF cheatsheet. Strongest entry: General Counsel (Dana Whitfield) with cost-control mandate angle.
+**Output:** Intelligence profile with source tags. POV brief built on the single-system plan. 20 persona emails (5 personas x 4), with Email 1 to the CFO shown below. Research gap: which system, and when the records move.
 
-### Example 2: Public Company Research (Halden Health Systems)
+> **Subject:** One system across five sites in 2027
+>
+> Hector,
+>
+> Your owner letter says all five Saltmarsh sites move to one system in 2027. Two cemeteries and three funeral homes on one system is a records question before it is a software question. Which plot records and pre-need leads move first?
+>
+> Your pre-need counselors at three funeral homes already generate leads. Where do those leads land today?
+>
+> Worth 20 minutes to map it before the move?
 
-**Context:** Enterprise prospecting into Halden Health Systems using public filings.
+### Example 2: Active Deal Guard (Brackhaven Memorial Gardens)
 
-**Input:** "Analyze Halden Health Systems' 10-K and earnings calls for POV outbound."
+**Context:** A BDR asks for a research outbound package on Brackhaven Memorial Gardens. The account is ACTIVE at Stage 5 Negotiate, and an AE owns the deal. The profile lists Brackhaven as the flagship deal.
 
-**Process:** 10-K analysis reveals $4.1B revenue, 26 in-house attorneys, operations across 12 states (hospital network). Item 1A (Risk Factors) explicitly discusses "rising legal and compliance costs" as a key risk. CFO commentary in latest earnings call highlighted cost pressures and legal spend as a focus area for 2026.
+**Input:** "Build a research outbound package for Brackhaven Memorial Gardens."
 
-Signal mapping identifies: Legal spend growing faster than revenue (high urgency), multi-state healthcare operations with complex regulatory environment, hospital network consolidations creating integration complexity.
+**Step 0: Role Detection** User is BDR. CRM check: active AE deal at Stage 5 Negotiate.
 
-**Output:** POV brief anchored to 10-K cost disclosure and earnings call signals, 24 persona emails, evidence appendix. Verdict: GREENLIGHT (HIGH confidence). Strongest entry: CFO with rising legal cost trend angle.
+**Step 1b: Active Deal Guard** "Active deal owned by the account AE at Stage 5 Negotiate. Share analysis with AE. Do not send sequences independently."
 
-### Example 3: Private Company Intelligence (Ardent Insurance Group, Recent PE Acquisition)
+**Intelligence (for the AE, not for outbound):** Two sites, 11,000 plots, paper plat maps `[CRM]`. One double sale in 24 months (illustrative) `[CRM]`. Legacy on-premise system from Oldgate, renewal March 2027 `[CRM]`. Stonemark mapping was also evaluated `[CRM]`. The owner retires within 3 years (illustrative) `[CRM]`. The GM is the champion and the operations director is skeptical of tablets `[CRM]`.
 
-**Context:** Time-sensitive outbound to Ardent Insurance, recently acquired by PE firm (deal closed Q3 2026).
+**Output:** Analysis and verdict for the AE only. No sequences. Verdict: GREENLIGHT (the cast verdict). Coordination note: "The March 2027 Oldgate renewal is the timing hook. The AE should lead it, because BDR outreach to a deal in Negotiate would cross the AE's conversation."
 
-**Input:** "Build rapid research on Ardent Insurance Group post-PE acquisition."
+### Example 3: Insufficient Intelligence Fallback (Tamsin Vale Cemetery)
 
-**Process:** PE acquisition press release confirms Ardent ($1.1B, 17 attorneys) acquired by its PE sponsor (Q3 2026). Website research shows 100+ locations across 30+ states, currently using spreadsheets for outside counsel management (per LinkedIn job post from Legal Ops team seeking "e-billing expertise").
+**Context:** Research outbound on Tamsin Vale Cemetery. It is a private, one-site cemetery with little public information: no owner letter, no filing, and no news found.
 
-Signals: PE acquisition trigger (typically 60-120 day integration window for finance/compliance), active hiring for Legal Ops tech role (indicates current pain is top-of-mind), no centralized spend platform identified.
+**Input:** "Build a research-driven outbound package for Tamsin Vale Cemetery."
 
-**Output:** Intelligence profile with PE acquisition trigger highlighted, POV brief focusing on post-acquisition counsel spend integration, 24 persona emails, cheatsheet. Verdict: GREENLIGHT (HIGH confidence, strong timing signal). Strongest entry: Head of Legal Operations with post-deal integration angle.
+**Process:** Intelligence available: 4,200 plots, paper plat maps, and one binder per section `[CRM]`. Two double sales in 2 years (illustrative) `[CRM]`. Web and news search found nothing `[Unknown]`. The Zone 1 signal is HIGH. The other zones are not scored, because the sources do not say who signs or whether pre-need sales happen.
+
+**Gate:** Insufficient Intelligence Fallback. Classify as **MANUAL REVIEW** (the profile's REVIEW verdict). One HIGH zone is not enough for a full package. Do not write a POV brief from one strong fact.
+
+**Output:** What is available, plus the research actions: find the decision-maker (Zone 3), confirm pre-need sales (Zone 2), and check what staff already use day to day (Zone 4). Recommend `gtm-account-snapshot` as the faster route. No sequences are generated at this stage, so the output has 0 emails.
 
 ---
 
@@ -433,7 +446,7 @@ Signals: PE acquisition trigger (typically 60-120 day integration window for fin
 - **Source-tag every claim**: `[Verified: 10-K Item 7]`, `[Inferred: branch locations]`, `[Estimated: employee benchmark]`, `[Product benchmark]`
 - **Use different intelligence anchors per email**: no repeating the same signal across a persona's sequence
 - **Match proof points to vertical**: use relevant customer stories, not random ones
-- **For earnings calls, act fast**: the 7-14 day window is real; speed beats perfection
+- **For earnings calls, act fast**: the 7-14 day window is real. Speed beats perfection
 
 ### Don'ts
 - **Don't fabricate company-specific data**: if you can't verify it, don't state it
@@ -457,7 +470,7 @@ Signals: PE acquisition trigger (typically 60-120 day integration window for fin
 
 ## Integration with Other Skills
 
-- **`gtm-account-qualification`**: Run qualification first for net-new accounts; use research outbound for GREENLIGHT accounts.
+- **`gtm-account-qualification`**: Run qualification first for net-new accounts. Use research outbound for GREENLIGHT accounts.
 - **`gtm-account-snapshot`**: Faster alternative for volume prospecting. Use research outbound when depth justifies the investment.
 - **`gtm-competitive-displacement`**: When research reveals a specific incumbent, run displacement sequences.
 - **`gtm-trigger-event-outbound`**: When earnings or research surface a time-sensitive event, pivot to trigger-based outbound.
@@ -466,6 +479,10 @@ Signals: PE acquisition trigger (typically 60-120 day integration window for fin
 ---
 
 ## Changelog
+
+### Version 1.3.0 (2026-10-13)
+- Examples re-cast on PlotIQ, the library's one example company. Example errors fixed and a non-success example added.
+- Persona count corrected to 5 (20 emails per 10-K or private package)
 
 ### Version 1.2.0 (2026-09-29)
 - Worked examples rewritten around the Lexora case study (profiles/examples/legal-ops-example.md)

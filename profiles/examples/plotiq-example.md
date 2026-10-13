@@ -171,7 +171,7 @@ Grounding: Zone 1 comes from the paper-operations research. Zone 2 from the pre-
 ### Verdict Rule
 
 - **GREENLIGHT:** At least two zones HIGH, and no must-have zone (1 or 3) at LOW
-- **REVIEW:** Neither GREENLIGHT nor DISQUALIFY. Usually one HIGH zone, or a must-have at LOW
+- **MANUAL REVIEW:** Neither GREENLIGHT nor DISQUALIFY. Usually one HIGH zone, or a must-have at LOW
 - **DISQUALIFY:** Any disqualifier above, or both must-have zones at LOW
 
 Skills apply this rule as written. MEDIUM never counts as HIGH.
@@ -242,12 +242,12 @@ Every worked example in this library, its skill pages and its Guild articles use
 | Account | Profile | Situation and Status | Verdict | Used for |
 |---|---|---|---|---|
 | **Brackhaven Memorial Gardens** | Combination, 2 sites, 11,000 plots, paper plot maps, one double sale in 24 months (illustrative). GM Ruth Ellery is champion. Operations Director Walt Okonkwo is skeptical of tablets. Pre-need manager Priscilla Dunmore. Family board chair is the economic buyer | ACTIVE, Stage 5 Negotiate. Legacy on-premise system from Oldgate, renewal March 2027. Also evaluated Stonemark mapping. Owner retires within 3 years (illustrative). Handoff to Eli Marsh on signature | GREENLIGHT | Flagship deal: qualification, snapshot, triggers, meeting prep, deal pulse, MEDDPICC, stakeholder map, competitive strategy and handoff |
-| **Saltmarsh Heritage Group** | Family-owned group, 5 sites (2 cemeteries, 3 funeral homes). CFO Hector Ruiz approves budget | TARGET. Its annual owner letter, posted on the company site, says all five sites move to one system in 2027. Three funeral homes run pre-need counselors | REVIEW (Zone 3 LOW, CFO gate) | Multi-location operator, research-driven outbound from the owner letter |
+| **Saltmarsh Heritage Group** | Family-owned group, 5 sites (2 cemeteries, 3 funeral homes). CFO Hector Ruiz approves budget | TARGET. Its annual owner letter, posted on the company site, says all five sites move to one system in 2027. Three funeral homes run pre-need counselors | MANUAL REVIEW (Zone 3 LOW, CFO gate) | Multi-location operator, research-driven outbound from the owner letter |
 | **Corrow Ridge Cemetery** | 1 site, 14,000 plots, paper plat maps. A deed recorded twice in 2025 (illustrative). Acquired 4 months ago by Harborline Funeral Partners, a 14-site regional consolidator | TARGET. GM keeps site budget until the integration review in Q1 2027 | GREENLIGHT | Ownership-change trigger outbound |
-| **Tamsin Vale Cemetery** | 1 site, 4,200 plots, paper plat maps and one binder per section. Two double sales in 2 years (illustrative) | TARGET | REVIEW (Zone 1 HIGH only) | Paper-maps manual process: snapshot, found plots |
-| **Sable Fork Cemetery** | 1 site, 2,900 plots, plot list in a spreadsheet. GM Arlen Biggs signs under $25K | INBOUND. Requested a demo through the website form after a search | REVIEW (Zone 3 HIGH only) | Inbound request: quick prep and a REVIEW verdict |
+| **Tamsin Vale Cemetery** | 1 site, 4,200 plots, paper plat maps and one binder per section. Two double sales in 2 years (illustrative) | TARGET | MANUAL REVIEW (Zone 1 HIGH only) | Paper-maps manual process: snapshot, found plots |
+| **Sable Fork Cemetery** | 1 site, 2,900 plots, plot list in a spreadsheet. GM Arlen Biggs signs under $25K | INBOUND. Requested a demo through the website form after a search | MANUAL REVIEW (Zone 3 HIGH only) | Inbound request: quick prep and a MANUAL REVIEW verdict |
 | **Greyfield Memorial Park** | 1 site, 9,000 plots. Digital map from Stonemark. Pre-need team of 3 with an intake form on the site | TARGET. Stonemark contract renews January 2027. Wants pre-need and records together | GREENLIGHT (Zones 2 and 3 HIGH) | Competitive displacement against Stonemark |
-| **Lowmoor Memorial Gardens** | 1 site, 7,500 plots. GM Ines Carmody was champion | LOST. Closed-lost to Oldgate nine months ago on "timing" | REVIEW (re-scored) | Closed-loss reactivation |
+| **Lowmoor Memorial Gardens** | 1 site, 7,500 plots. GM Ines Carmody was champion | LOST. Closed-lost to Oldgate nine months ago on "timing" | MANUAL REVIEW (re-scored) | Closed-loss reactivation |
 | **Quill Hollow Memorial Park** | 1 site, 8,800 plots, paper plat maps and a records finding in its last state review (illustrative). GM Ines Carmody moved here from Lowmoor 6 months ago with an owner growth mandate | TARGET. Champion now runs this site. Owner signs under $25K | GREENLIGHT | Follow-the-champion play |
 | **Northvale Memorial Holdings** | Public consolidator, about 240 funeral homes and 90 cemeteries, runs its own in-house system | OUT. Not a fit | DISQUALIFY | DISQUALIFY example: a hard disqualifier |
 

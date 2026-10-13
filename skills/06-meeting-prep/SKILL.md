@@ -1,7 +1,7 @@
 ---
 name: gtm-meeting-prep
 description: "Prepares reps for discovery or demo calls by pulling CRM data, building pain hypotheses or ranking confirmed pains, structuring the call around discovery/demo frameworks, preparing methodology-aligned question banks, selecting social proof, scripting meeting open and close, and generating a single-page prep sheet"
-version: 1.2.1
+version: 1.3.0
 category: GTM-Enablement
 author: Ryan Vanshur
 license: MIT
@@ -33,7 +33,7 @@ You are a **senior account executive and meeting-prep specialist for a vertical 
 
 ## Input Contract
 
-What this skill needs before it starts. **If a required input is missing, ask; do not guess.**
+What this skill needs before it starts. **If a required input is missing, ask. Do not guess.**
 
 | Input | Required | Notes |
 |-------|----------|-------|
@@ -50,7 +50,7 @@ What this skill needs before it starts. **If a required input is missing, ask; d
 
 ## Output Contract
 
-Every run produces a **single-page prep sheet with the same sections, in the same order**. The content changes per account; the structure never does. That is what makes it reviewable: a manager scanning fifteen prep sheets never has to relearn the layout.
+Every run produces a **single-page prep sheet with the same sections, in the same order**. The content changes per account. The structure never does. That is what makes it reviewable: a manager scanning fifteen prep sheets never has to relearn the layout.
 
 Core commitments of every prep sheet: the **meeting objective**, the **question sequence** (SPIN discovery or Challenger-style demo), **competitive landmines**, **persona-matched proof points**, and **persona priorities**. All are organized into seven fixed sections (see *Artifact Generation* below for the discovery and demo layouts).
 
@@ -315,7 +315,7 @@ For each element of `{Methodology: Qualification Framework}`, document what is a
 - **Metrics:** Known quantifications + benchmarks to reference
 - **Economic Buyer:** Identified? Budget range? Approval process?
 - **Decision Criteria:** Must-haves, deal killers, evaluation criteria
-- **Decision Process:** Buying committee, timeline, IT/legal involvement
+- **Decision Process:** Buying committee, timeline, IT and compliance review
 - **Identified Pain:** Confirmed pains + depth target (at least 1 at Level 3)
 - **Champion:** Who shows champion behaviors? Development questions
 
@@ -413,7 +413,7 @@ Build customized scripts using `{Methodology: Meeting Structure}`:
 
 **Discovery Primary Objectives:**
 1. Validate or disprove top 2-3 pain hypotheses
-2. Run Priority Ladder on at least 1 confirmed pain (through Stage 3)
+2. Run Priority Ladder through at least Stages 1-2 on every confirmed pain before moving on (see Step 4)
 3. Identify the economic buyer and decision process
 4. Secure a next step with specific date, attendees, and agenda
 
@@ -433,7 +433,7 @@ Build customized scripts using `{Methodology: Meeting Structure}`:
 |-------|----------|----------|-----------|
 | Opening | 3-5 min | Meeting open | Meeting Structure |
 | Current State | 8-10 min | Situation questions | Discovery (S) |
-| Pain Discovery | 10-12 min | Problem + Need-Payoff; Priority Ladder | Discovery (P, N) + Priority Ladder |
+| Pain Discovery | 10-12 min | Problem and Need-Payoff, plus Priority Ladder | Discovery (P, N) + Priority Ladder |
 | Alternatives | 3-5 min | What they've tried, vendor experience | Discovery (I) |
 | Value Connection | 3-5 min | Feel-Felt-Found story | Social Proof |
 | Close | 3-5 min | Meeting close | Meeting Structure |
@@ -511,35 +511,69 @@ If other team members are attending, define role expectations for each person.
 
 ## Examples
 
-### Example 1: Discovery Prep (Corvane Industrial)
+### Example 1: Discovery Prep for an Inbound Request (Sable Fork Cemetery, REVIEW)
 
-**Context:** AE prepping for first discovery call with Corvane Industrial, a large enterprise prospect.
+**Context:** Sable Fork Cemetery, one site with 2,900 plots and its plot list in a spreadsheet, asked for a demo through the website form after a search. The general manager, Arlen Biggs, signs under $25K. The account is INBOUND, with no active deal.
 
-**Input:** "Prep me for the discovery call with Corvane on Thursday."
+**Input:** "Prep me for the demo with Sable Fork on Thursday."
 
-**Process:** `meeting_type = discovery`. CRM shows existing account, no active deal. Corvane: $3.2B revenue, PE-backed, 38 attorneys across multiple regions, 60+ outside counsel firms. New General Counsel Dana Whitfield started 45 days ago. Top pain hypothesis: fragmented counsel spend visibility and invoice management across multiple regions after recent PE acquisition (HIGH confidence; PE acquisition documented).
+**Step 0: Detect Meeting Type.** The rep asked for a demo, but the CRM has no discovery findings for this account. The Step 0 prerequisite check applies, so the sheet is built as a **discovery** prep (`meeting_type = discovery`). A demo before discovery would show features without a confirmed pain.
 
-**Output:** Full discovery prep with ranked pain hypotheses. Discovery questions tailored to multi-firm complexity. MEDDPICC pre-fill showing gaps (Economic Buyer likely CFO, decision process unknown). Competitive probes for Competitor X (current incumbent). Meeting scripts referencing the PE integration challenge. Game plan with if-then scenarios. 7-section prep sheet generated.
+**Step 1: Account profile.** Primary contact: Arlen Biggs, General Manager `[CRM]`. Requester's name: `[Unknown]`, so confirm on the call. Size: one site, 2,900 plots `[CRM]`. Stage: INBOUND.
 
-### Example 2: Demo Prep (Brightwater Logistics)
+**Step 3: Pain hypotheses** (ranked by confidence):
+1. **Plot lookups in a spreadsheet.** MEDIUM confidence. The plot list is one signal, and the profile's Core Pain #3 (lookups take minutes to hours) is the matching pain. Not yet measured.
+2. **Unsold plots nobody can see.** MEDIUM confidence. This matches the profile's Core Pain #1 (plot records on paper, binders or pencil maps, and the spreadsheet is the digital version of the same gap). Business impact: `(illustrative)` the GM may not know how many plots are open.
+3. **Pre-need leads with no follow-up.** LOW confidence (hypothesis only). Negative framing: "Do you sell pre-need?"
 
-**Context:** AE prepping for demo after successful discovery with Brightwater Logistics, a mid-market account.
+**Step 5: Qualification pre-fill (traffic lights).**
+- Economic Buyer: Arlen Biggs signs under $25K. Green (known).
+- Identified Pain: none confirmed. Red.
+- Metrics: no figures yet. Red.
+- Decision Process: unknown beyond the GM's signature. Yellow.
+- Champion: none identified. Red.
 
-**Input:** "Prep me for the demo with Brightwater on Friday. Attendees are the Deputy GC and Operations Manager."
+**Step 6: Competitive probes** (from the profile's Competitive Discovery Questions): "Where does the plot map live today, and when was it last updated?" and "When does your software contract renew, and what did the last quote include for support?"
 
-**Process:** `meeting_type = demo`. CRM shows active deal at Demo stage, $85K. Discovery notes confirm: Pain #1 = manual invoice review (12-20 minutes per invoice, 600 invoices per quarter), Pain #2 = inconsistent billing practices across three regions (each handles bills differently), Pain #3 = no real-time visibility into counsel spend by matter. Deputy GC is champion candidate. Confirmed pains ranked by impact. Demo plan: invoice automation first (40%), matter tracking second (35%), spend visibility third (25%).
+**Output:** Discovery prep sheet (7 sections). Discovery questions in SPIN order. Game plan with a 30/70 talk-time target and one if-then: "If the GM says the spreadsheet works fine, ask when it was last checked against the plots actually sold." The sheet does not include a demo plan. The demo is booked only after the pain is confirmed.
 
-**Output:** Full demo prep with pain-to-workflow map, demo structure. Question the Problem questions per module. Feel-Felt-Found stories from similar freight carriers (Northgate Foods, Meridian-class manufacturer). Meeting scripts referencing discovery pains verbatim. Resistance prep (anticipate Skepticism about automation accuracy and Inertia from process familiarity). Buying signals watch list. 7-section prep sheet generated.
+### Example 2: Demo Prep Stopped by the Prerequisite (Greyfield Memorial Park)
 
-### Example 3: Quick Call Prep (Inbound from Corvane)
+**Context:** Greyfield Memorial Park is a one-site cemetery with 9,000 plots, a digital map from Stonemark, and a pre-need team of three with an intake form on its site. Its Stonemark contract renews in January 2027, and it wants pre-need and records together. An AE has a demo on the calendar with the general manager and the pre-need manager (illustrative: the meeting is assumed for this example).
 
-**Context:** AE needs fast prep. Corvane's Head of Legal Operations called in and discovery is in 15 minutes.
+**Input:** "Prep me for the demo with Greyfield on Friday. Attendees are the GM and the pre-need manager."
 
-**Input:** "Quick call prep for Corvane. They called in."
+**Step 0: Detect Meeting Type.** `meeting_type = demo`. The prerequisite check runs next.
 
-**Process:** `meeting_type = discovery`. Quick Call Prep pattern activated. Skip artifact generation. Deliver Steps 1-4 and Steps 8-9 (account profile, pain hypotheses, top discovery questions, meeting scripts, game plan) in abbreviated format.
+**Prerequisite check: FAILED.** The CRM has no discovery findings for Greyfield. No confirmed pains, no quantified impact, and no Priority Ladder results exist. Per the skill, the sheet recommends discovery prep first, or 5-10 minutes of targeted discovery in the demo opening.
 
-**Output:** Abbreviated discovery prep with top 3 pain hypotheses. Five best discovery questions. Meeting opener. Three key if-then scenarios. No prep sheet. Speed over completeness.
+**Output:** A discovery-first recommendation, not a demo plan. Two options for the AE to choose from:
+- (a) Run discovery prep for Friday's meeting. The sheet asks about the pre-need intake and the records process, and it names Stonemark's January 2027 renewal as the timing fact.
+- (b) Keep the demo and open with 5-10 minutes of questions: "How do pre-need leads move from the intake form to a counselor today?" and "How do you check, today, which plots are sold?"
+
+The AE chooses. Do not pick (b) by default, because a demo built on unconfirmed pains is a feature tour.
+
+### Example 3: Quick Call Prep for a Champion (Quill Hollow Memorial Park)
+
+**Context:** Ines Carmody, general manager of Quill Hollow Memorial Park, moved here six months ago from Lowmoor Memorial Gardens and is the champion. Quill Hollow is a TARGET account with a GREENLIGHT verdict. Discovery is in 15 minutes.
+
+**Input:** "Quick call prep for Quill Hollow. Ines is on the call."
+
+**Process:** `meeting_type = discovery`. Quick Call Prep pattern activated. Skip artifact generation. Deliver the account profile, pain hypotheses, top discovery questions, opener and game plan in abbreviated form.
+
+**Pain hypotheses** (ranked):
+1. **Records finding in the last state review.** HIGH confidence. CRM fact: "a records finding in its last state review" `[CRM]`.
+2. **Unsold plots on paper plat maps.** MEDIUM confidence. The site has 8,800 plots on paper plat maps `[CRM]`. The gap is inferred, not measured.
+3. **Pre-need leads.** LOW confidence. No pre-need activity is recorded `[Unknown]`.
+
+**Output:** Opener: "Ines, thanks for making the time. Before we go further, how are the plot records kept at Quill Hollow today?" Do not reference the Lowmoor history unless she raises it.
+
+Top three discovery questions:
+1. "What did the state review ask for, and what is still open?"
+2. "When a family asks about a plot, how long does it take you to answer?"
+3. "Who in the office would have to sign off on a tool under $25K?"
+
+Game plan: confirm the review issue first, then the plot lookup. Three if-then scenarios. If she confirms the finding is still open, ask for the deadline. If she says the records are fine, ask for the last audit. If the owner joins, ask about the growth mandate. No prep sheet, because this is a quick prep. Speed over completeness.
 
 ---
 
@@ -566,7 +600,7 @@ If other team members are attending, define role expectations for each person.
 ## Troubleshooting
 
 ### "No CRM data available for this account"
-**Solution:** Proceed with web research only. Note "No existing CRM record" in the output. For discovery, build hypotheses from industry data and company profile. For demo, this should not happen; recommend running discovery first.
+**Solution:** Proceed with web research only. Note "No existing CRM record" in the output. For discovery, build hypotheses from industry data and company profile. For demo, this should not happen. Recommend running discovery first.
 
 ### "Discovery was shallow (not enough confirmed pains for demo)"
 **Solution:** Flag in the discovery completeness check. Recommend two approaches: (a) run a brief discovery re-engagement before the demo, or (b) build 5-10 minutes of targeted discovery questioning into the demo opening to fill gaps.
@@ -629,6 +663,10 @@ If other team members are attending, define role expectations for each person.
 ---
 
 ## Changelog
+
+### Version 1.3.0 (2026-10-13)
+- Examples re-cast on PlotIQ, the library's one example company. Example errors fixed and a non-success example added.
+- Priority Ladder rule made consistent: run through at least Stages 1-2 before moving on
 
 ### Version 1.2.1 (2026-10-13)
 - Two framework names replaced with plain descriptions: "Question the Problem" and "Priority Ladder". The methods are unchanged.
