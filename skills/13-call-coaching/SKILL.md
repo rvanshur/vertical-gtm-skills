@@ -98,9 +98,9 @@ Map stakeholders: "Who else does this impact?"
 | **Tailor** | Customize message to individual stakeholders | Different message for different personas, connects to their specific outcomes |
 | **Take Control** | Drive the conversation and create constructive tension | Comfortable pushing back, proposes next steps, does not wait for permission |
 
-### Demo: MEDDPICC Meeting Framework
-**Opening:** Anchor on pain. Confirm logistics and attendees. Set mutual agenda. Define end-of-meeting outcome.
-**Closing:** Transition to close. Logistics (next meeting). Agenda (next content). Next Steps (commitment).
+### Demo: Meeting Open and Close
+**Opening:** Connect to the pain from discovery. Confirm the time and who is in the room. Agree the agenda together. Agree what a good outcome would be.
+**Closing:** Recap what mattered most to them. Ask who else should join next time. Propose the next agenda. Agree the next step, with an owner and a date.
 
 ### Demo: Question the Problem
 Prime Pain: "Many teams struggle with [X]. To what extent is that true for you?" (before each workflow)
@@ -495,6 +495,7 @@ Next Call Game Plan: Prep, questions, framework practice, success criteria)
 
 ### Version 1.2.1 (2026-10-13)
 - Two framework names replaced with plain descriptions: "Question the Problem" and "Priority Ladder". The methods are unchanged.
+- The demo meeting open and close rewritten as a generic structure, replacing an internal framework.
 
 ### Version 1.2.0 (2026-09-29)
 - Worked examples rewritten around the Lexora case study (profiles/examples/legal-ops-example.md)
