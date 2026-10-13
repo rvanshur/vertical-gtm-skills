@@ -1,11 +1,11 @@
 ---
 name: gtm-positioning
 description: "Pricing strategy and market positioning. Competitive pricing analysis, value metric identification, willingness-to-pay research, unit economics modeling, April Dunford positioning framework, messaging house creation, and positioning validation."
-version: 1.1.0
+version: 1.1.1
 category: Operating-Discipline
 author: Ryan Vanshur
 license: MIT
-updated: 2026-09-29
+updated: 2026-10-13
 tags: [positioning, pricing-strategy, messaging, value-proposition, UVP, April-Dunford, unit-economics, competitive-pricing, messaging-house, operating-discipline]
 requires:
   skills: ["gtm-discovery"]
@@ -216,6 +216,7 @@ Now the claim is verifiable. A customer can test it themselves. Credibility is e
 
 ## Changelog
 
+- **1.1.1 (2026-10-13):** Example lines re-cast on PlotIQ, the library's one example company. Numbers labelled illustrative.
 - **1.1.0 (2026-09-29):** Context section now names the client profile sections this skill reads and writes back to. Category example now uses the Lexora case study.
 - **1.0.0 (2026-09-28):** Initial release. Six-step April Dunford framework, Van Westendorp and Gabor-Granger pricing research, unit economics modeling, messaging house architecture. Adapted from Maja Voje's GTM Strategist methodology (Phases 5-6).
 
