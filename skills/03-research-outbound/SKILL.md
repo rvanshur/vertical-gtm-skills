@@ -366,7 +366,7 @@ Rules: ≤100 words (urgency demands brevity), subject line references earnings,
 
 **Process:** Intelligence profile: owner letter says all five sites move to one system in 2027 `[Verified: owner letter on company site]`. Five sites, with 2 cemeteries and 3 funeral homes `[CRM]`. Three funeral homes run pre-need counselors `[CRM]`. Ownership is family `[CRM]`. The CFO approves budget `[CRM]`.
 
-Gate: The group sits at the top of ICP3 (four to ten sites). The decision runs through a CFO, which rates Zone 3 LOW in `{Client Profile: Qualification Zones}`. Zone 5 HIGH is plausible from the owner update (illustrative rating). The verdict rule does not reach GREENLIGHT with a must-have zone at LOW, and it does not reach DISQUALIFY, so the verdict is **MANUAL REVIEW** (the profile's REVIEW). The CFO gate and the 6 to 9 month cycle are the open items.
+Gate: The group sits at the top of ICP3 (four to ten sites). The decision runs through a CFO, which rates Zone 3 LOW in `{Client Profile: Qualification Zones}`. Zone 5 HIGH is plausible from the owner update (illustrative rating). The verdict rule does not reach GREENLIGHT with a must-have zone at LOW, and it does not reach DISQUALIFY, so the verdict is **MANUAL REVIEW**. The CFO gate and the 6 to 9 month cycle are the open items.
 
 **Output:** Intelligence profile with source tags. POV brief built on the single-system plan. 20 persona emails (5 personas x 4), with Email 1 to the CFO shown below. Research gap: which system, and when the records move.
 
@@ -402,7 +402,7 @@ Gate: The group sits at the top of ICP3 (four to ten sites). The decision runs t
 
 **Process:** Intelligence available: 4,200 plots, paper plat maps, and one binder per section `[CRM]`. Two double sales in 2 years (illustrative) `[CRM]`. Web and news search found nothing `[Unknown]`. The Zone 1 signal is HIGH. The other zones are not scored, because the sources do not say who signs or whether pre-need sales happen.
 
-**Gate:** Insufficient Intelligence Fallback. Classify as **MANUAL REVIEW** (the profile's REVIEW verdict). One HIGH zone is not enough for a full package. Do not write a POV brief from one strong fact.
+**Gate:** Insufficient Intelligence Fallback. Classify as **MANUAL REVIEW**. One HIGH zone is not enough for a full package. Do not write a POV brief from one strong fact.
 
 **Output:** What is available, plus the research actions: find the decision-maker (Zone 3), confirm pre-need sales (Zone 2), and check what staff already use day to day (Zone 4). Recommend `gtm-account-snapshot` as the faster route. No sequences are generated at this stage, so the output has 0 emails.
 

@@ -341,7 +341,7 @@ Use `{Client Profile: Competitive Landscape}` for competitive objections. Includ
 
 ## Examples
 
-Account facts in these examples come from the PlotIQ example cast, and they are tagged `[CRM]` as if the CRM held them. Any number the profile does not supply is tagged `(illustrative)`. Three examples follow: a BDR research pass that leads to outbound, an AE quick prep that ends in a REVIEW verdict, and a batch that includes a disqualified account and a closed-lost one.
+Account facts in these examples come from the PlotIQ example cast, and they are tagged `[CRM]` as if the CRM held them. Any number the profile does not supply is tagged `(illustrative)`. Three examples follow: a BDR research pass that leads to outbound, an AE quick prep that ends in a MANUAL REVIEW verdict, and a batch that includes a disqualified account and a closed-lost one.
 
 ### Example 1: BDR Account Snapshot (Quill Hollow Memorial Park)
 
@@ -416,7 +416,7 @@ ICP Quick-Score: **MANUAL REVIEW**
 - Scale: Single site, mid-size `[CRM]`
 - Team complexity: Unknown. No records team is named `[Unknown]`
 
-Why not GREENLIGHT: two of five signals are unknown. Zone ratings (illustrative) from `{Client Profile: Qualification Zones}`: Zone 3 HIGH (GM signs under $25K). Zone 1 MEDIUM (spreadsheet plot list). Zones 2, 4 and 5 UNKNOWN. One HIGH zone is the profile's REVIEW verdict.
+Why not GREENLIGHT: two of five signals are unknown. Zone ratings (illustrative) from `{Client Profile: Qualification Zones}`: Zone 3 HIGH (GM signs under $25K). Zone 1 MEDIUM (spreadsheet plot list). Zones 2, 4 and 5 UNKNOWN. One HIGH zone is a MANUAL REVIEW.
 
 **Step 4: Pain Hypotheses**
 1. **Plot lookups in a spreadsheet** (A 2,900-plot list in a spreadsheet makes unsold plots hard to see. MEDIUM confidence. `[Inferred: spreadsheet plot list]`)
@@ -436,7 +436,7 @@ Talk Track:
 
 Objection prep: "We're happy with the spreadsheet" → "That makes sense. When did you last check the spreadsheet against the plots you have actually sold?"
 
-**Step 7: Summary.** AE. Sable Fork Cemetery, MANUAL REVIEW (the profile's REVIEW verdict). Inbound request, no active deal. Quick call prep delivered. Recommended approach: Confirm pre-need (Zone 2) and plot lookup time (Zone 1) on the call, then re-score. A MANUAL REVIEW does not authorize outbound. Data quality: 3 CRM, 2 INFERRED, 3 UNKNOWN (illustrative counts for this example).
+**Step 7: Summary.** AE. Sable Fork Cemetery, MANUAL REVIEW. Inbound request, no active deal. Quick call prep delivered. Recommended approach: Confirm pre-need (Zone 2) and plot lookup time (Zone 1) on the call, then re-score. A MANUAL REVIEW does not authorize outbound. Data quality: 3 CRM, 2 INFERRED, 3 UNKNOWN (illustrative counts for this example).
 
 ---
 

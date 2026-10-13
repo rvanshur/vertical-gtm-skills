@@ -23,8 +23,8 @@ vertical, and to tell me honestly where I cannot answer you.
 Ask me these, ONE AT A TIME, and wait for each answer:
 
 1. Translate the seven buying roles into YOUR vertical's titles. Who is the economic buyer
-   in a 15-attorney legal department, a regional healthcare group, a franchise operator, or
-   whatever your accounts look like?
+   in a single-site independent cemetery, a cemetery and funeral home combination, a
+   family-owned multi-site group, or whatever your accounts look like?
 
 2. Ghost nodes: tell me about a deal that died because of someone who never appeared in
    the CRM. Who were they, and what would have surfaced them earlier?

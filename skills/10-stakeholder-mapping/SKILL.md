@@ -1,11 +1,11 @@
 ---
 name: gtm-stakeholder-mapping
 description: "Builds complete stakeholder intelligence maps (contact inventory with buying role classification, organizational hierarchy with ghost nodes, 7-dimension weighted multi-threading score, political landscape mapping, and prioritized engagement strategy)"
-version: 1.2.0
+version: 1.3.0
 category: GTM-Enablement
 author: Ryan Vanshur
 license: MIT
-updated: 2026-09-29
+updated: 2026-10-13
 tags: [stakeholder-mapping, org-map, org-chart, multi-threading, buying-committee, influence-map, contact-mapping, deal-strategy]
 requires:
   skills: []
@@ -43,7 +43,7 @@ What this skill needs before it starts. **If a required input is missing, ask (d
 
 ## Output Contract
 
-Every run produces a **complete stakeholder map with the same 8 sections** (so buying committee strategy can be compared across accounts). The content changes per account; the structure never does.
+Every run produces a **complete stakeholder map with the same 8 sections** (so buying committee strategy can be compared across accounts). The content changes per account. The structure never does.
 
 Core commitments: **contact inventory with buying roles classified**, **organizational hierarchy with ghost nodes**, **7-dimension multi-threading score**, **political landscape**, **coverage gaps and risks**, and **prioritized engagement strategy**.
 
@@ -77,10 +77,10 @@ Your playbook for stakeholder mapping. The 7 buying roles, multi-threading dimen
 |------|-----------|------------------|-----------|
 | **Economic Buyer** | Can approve budget and sign contracts | HIGH | Budget authority, P&L responsibility, signature authority |
 | **Champion** | Actively advocates internally, sells when you're not in room | HIGH | Shares insider info, coaches on politics, enables other introductions |
-| **Technical Evaluator** | Assesses integration, security, technical fit; can veto | HIGH | Tests architecture, asks integration questions, flags blockers |
-| **Influencer** | Shapes decision through opinion/expertise; cannot approve alone | MEDIUM | Submits analysis, participates in meetings, frames requirements |
-| **End User** | Will use product daily; cares about workflow and ease | MEDIUM | Daily pain points, process feedback, adoption risk signals |
-| **Blocker** | Opposes or delays deal; may prefer incumbent | MEDIUM | Raises objections, advocates for status quo, flags concerns |
+| **Technical Evaluator** | Assesses integration, security and technical fit. Can veto | HIGH | Tests architecture, asks integration questions, flags blockers |
+| **Influencer** | Shapes decision through opinion and expertise. Cannot approve alone | MEDIUM | Submits analysis, participates in meetings, frames requirements |
+| **End User** | Will use product daily. Cares about workflow and ease | MEDIUM | Daily pain points, process feedback, adoption risk signals |
+| **Blocker** | Opposes or delays deal. May prefer incumbent | MEDIUM | Raises objections, advocates for status quo, flags concerns |
 | **Coach** | Internal ally who provides intel about buying process and politics | LOW-MEDIUM | Shares confidential process details, warns of threats, accelerates timelines |
 
 ### Influence Levels
@@ -124,7 +124,7 @@ Your playbook for stakeholder mapping. The 7 buying roles, multi-threading dimen
 | **End User Validation** | 1x | No end users known | End users identified | End users engaged |
 | **Blocker Mitigation** | 1x | Known blocker, no strategy | Blocker identified, strategy exists | No blockers, or all neutralized |
 
-**Calculation:** Sum all weighted dimension scores (max 20). Normalize to 10-point scale. Interpretation:
+**Calculation:** Sum all weighted dimension scores (max 20). Normalize to a 10-point scale with this formula: **normalized score = raw total ÷ 2**. For example, a raw total of 14 gives 7.0. Keep one decimal place. Interpretation:
 - 9-10 = Excellent coverage
 - 7-8 = Good coverage with 1-2 gaps
 - 5-6 = Developing, material gaps
@@ -256,10 +256,10 @@ For each contact, assign:
 |------|-----------|---------------|
 | **Economic Buyer** | Can approve budget and sign contracts | CFO, CEO, VP Finance, SVP |
 | **Champion** | Actively advocates internally, sells when you're not in the room | Director or VP who "gets it" and feels the pain daily |
-| **Technical Evaluator** | Assesses integration, security, and technical fit; can veto | CIO, IT Director, ERP Admin, Security Manager |
-| **Influencer** | Shapes the decision through opinion/expertise; cannot approve alone | Controller, Department Managers, Regional Managers |
-| **End User** | Will use the product daily; cares about workflow and ease of use | Analysts, Specialists, Staff |
-| **Blocker** | Opposes or delays the deal; may prefer incumbent | Anyone with stated objections |
+| **Technical Evaluator** | Assesses integration, security, and technical fit. Can veto | CIO, IT Director, ERP Admin, Security Manager |
+| **Influencer** | Shapes the decision through opinion and expertise. Cannot approve alone | Controller, Department Managers, Regional Managers |
+| **End User** | Will use the product daily. Cares about workflow and ease of use | Analysts, Specialists, Staff |
+| **Blocker** | Opposes or delays the deal. May prefer incumbent | Anyone with stated objections |
 | **Coach** | Internal ally who provides intel about buying process and politics | Any contact who shares "insider" information |
 
 #### Influence Level
@@ -328,7 +328,7 @@ Calculate the multi-threading score (1-10 scale) based on 7 weighted dimensions:
 | **End User Validation** | 1x | No end users known | End users identified | End users engaged |
 | **Blocker Mitigation** | 1x | Known blocker, no strategy | Blocker identified, strategy exists | No blockers, or all neutralized |
 
-**Calculation:** Sum weighted scores. Max = 20. Normalize to 10-point scale.
+**Calculation:** Sum weighted scores. Max = 20. Normalize with **normalized score = raw total ÷ 2** (for example, 14 ÷ 2 = 7.0).
 
 | Score | Rating | Meaning |
 |-------|--------|---------|
@@ -444,25 +444,82 @@ For each recommended action:
 
 ## Examples
 
-### Example 1: AE Deal Strategy (Enterprise Account)
+### Example 1: AE Deal Strategy, Brackhaven Memorial Gardens
 
-**Context:** AE managing Corvane Industrial (PE-backed $3.2B manufacturer) at Negotiation stage needs multi-threading assessment before executive review.
+**Context:** Owen Pruitt, Account Executive, owns Brackhaven Memorial Gardens. The deal is ACTIVE at Stage 5 Negotiate, a two-site combination with 11,000 plots, and the family board meets soon. Owen needs a multi-threading check before that meeting. Owner assignment, dates and interaction counts are illustrative.
 
-**Input:** "Build an org map for Corvane Industrial. We're at Negotiation stage ($1.8M deal) and need to multi-thread before the executive review."
+**Input:** "Build an org map for Brackhaven Memorial Gardens. We're at Negotiate and need to multi-thread before the board meeting."
 
-**Process:** CRM shows active deal at Negotiation, $1.8M. 8 contacts on file across Finance, Operations, and Legal departments. Buying roles classified: CFO (Economic Buyer, partially engaged), Sam Okafor, Head of Legal Operations (Champion, actively engaged), 2 Managers (End Users, engaged), IT Director (Technical Evaluator, neutral), 3 others. Ghost nodes: COO, VP Finance, General Counsel Dana Whitfield (expected at PE-backed manufacturer this size). Multi-threading score: 7/10 (Good). Strong champion with Sam Okafor actively coaching from Legal Ops, IT engaged, but CFO only partially engaged and no General Counsel contact yet.
+**Process:** CRM shows an active deal at Stage 5 Negotiate, $21,576 a year at list (two sites at the $10,788 list price). Four contacts are on file across three departments:
+- GM Ruth Ellery (Executive). Champion, actively engaged.
+- Family board chair (Executive). Economic Buyer, partially engaged: one call, budget not confirmed.
+- Operations Director Walt Okonkwo (Operations). Influencer with a skeptic position. Medium influence, but he controls daily use of the system.
+- Pre-need manager Priscilla Dunmore (Sales). End User, engaged in the demo.
 
-**Output:** Full org analysis with hierarchy, 7/10 threading score, political landscape showing Sam Okafor as bridge between Legal Operations and Finance. Engagement strategy: URGENT (get CFO from partial to active engagement via executive briefing led by Sam), HIGH (identify GC Dana Whitfield for governance and risk angle). 8-section stakeholder map generated.
+Ghost nodes: the revenue thresholds in Methodology start at $50M, which is far above this account. So the expected roles come from the profile's Buyer Personas instead. Two ghost nodes: "UNKNOWN, Funeral Home Owner" (combination side, Persona 4), and "UNKNOWN, Systems Administrator for the Oldgate platform" (Technical Evaluator, inferred from the legacy system, illustrative).
 
-### Example 2: BDR Prospecting (Unknown Account)
+**Multi-threading score:**
 
-**Context:** BDR at Lexora researching Halden Health Systems ($4.1B public hospital network) to identify best entry point for initial outreach.
+| Dimension | Weight | Score (0 to 2) | Weighted | Why |
+|---|---|---|---|---|
+| C-Level Access | 2x | 2 | 4 | Board chair engaged on one call |
+| Champion Identified | 2x | 2 | 4 | Ruth is a confirmed, active champion |
+| Department Breadth | 1x | 1 | 1 | Executive, Operations and Sales: 3 departments (the 2 to 3 band) |
+| Technical Evaluator | 1x | 0 | 0 | No IT contact on file |
+| Economic Buyer Engaged | 2x | 1 | 2 | Identified, one call, not yet actively engaged |
+| End User Validation | 1x | 2 | 2 | Priscilla engaged and tested the pre-need intake in the demo |
+| Blocker Mitigation | 1x | 1 | 1 | Walt identified, and a strategy exists (demo on his own work orders) |
+| **Total** | | | **14 of 20** | |
 
-**Input:** "Map the org structure for Halden Health Systems so I know who to target first."
+Normalized score: 14 ÷ 2 = **7.0**, Good coverage with 1 to 2 gaps.
 
-**Process:** `user_role = BDR`. CRM shows new account, no active deal. 2 contacts on file (Controller, one in-house counsel). Company research: $4.1B revenue, 26 in-house attorneys, heavy litigation load, cited rising legal costs in 10-K. Ghost nodes: General Counsel (primary), VP Finance, Head of Legal Operations, CFO, COO (all expected at public healthcare system this size). Multi-threading score: 2/10 (Critical). Minimal contacts, no champion identified, no Economic Buyer engaged.
+**Political landscape:** Ruth is top-right (leverage). The board chair is top-right but neutral, interested in cost and not yet a supporter. Walt is top-left (neutralize): a skeptic whose daily use decides whether the system survives. Priscilla is bottom-right (keep informed).
 
-**Output:** Org analysis showing critical gaps in legal and finance leadership. Engagement strategy focuses on entry point: recommend targeting Head of Legal Operations or General Counsel with outside-counsel cost visibility and spend control angle. BDR-focused recommendations: LinkedIn research for missing legal and finance contacts, suggested outreach angles based on cost program signal from 10-K. 8-section stakeholder map generated.
+**Output:** Engagement strategy:
+- URGENT: a second call with the board chair, brokered by Ruth. The economic buyer is only partly engaged, and the budget is not confirmed.
+- HIGH: a technical discovery with the Oldgate systems administrator. This closes the Technical Evaluator gap before the March 2027 renewal.
+- HIGH: a find-the-plot demo on Walt's own work orders. Message: "Find the plot in seconds." Proof point: Fennick Gardens, 212 unsold plots found in 90 days (illustrative).
+- MEDIUM: ask Ruth who the funeral home owner is, since the combination's pre-need leads run through that side.
+
+Summary: Champion, confirmed (Ruth Ellery). Economic Buyer, identified and partly engaged (family board chair). Blocker, identified with a mitigation plan (Walt Okonkwo). Top gaps: no IT contact, one call with the economic buyer, no funeral-home owner contact.
+
+### Example 2: BDR Prospecting, Single-Threaded Account (Non-Success)
+
+**Context:** A BDR is researching Saltmarsh Heritage Group, a family-owned group with five sites (two cemeteries and three funeral homes). The account is TARGET, not yet contacted. Its annual owner letter, posted on the company site, says all five sites move to one system in 2027. CFO Hector Ruiz approves the budget. This is the non-success case: the map is thin, and the BDR must not treat one contact as a buying committee.
+
+**Input:** "Map the org structure for Saltmarsh Heritage Group so I know who to target first."
+
+**Process:** `user_role = BDR`. No active deal. CRM holds one contact: Hector Ruiz, CFO (Finance), identified through research and not yet contacted (illustrative). Absence of other contacts is recorded as UNKNOWN, not as "no such person."
+
+Ghost nodes, from the profile's Buyer Personas (the revenue table does not apply to this size, and revenue is not in the profile):
+- UNKNOWN, Owner (writer of the owner letter).
+- UNKNOWN, Cemetery General Manager, for the two cemeteries (Persona 1).
+- UNKNOWN, Pre-Need Sales Manager, for the three funeral homes that run pre-need counselors (Persona 2).
+- UNKNOWN, Funeral Home Owner (Persona 4).
+- UNKNOWN, Operations Director (Persona 3).
+
+**Multi-threading score:**
+
+| Dimension | Weight | Score (0 to 2) | Weighted | Why |
+|---|---|---|---|---|
+| C-Level Access | 2x | 1 | 2 | CFO on file, no engagement |
+| Champion Identified | 2x | 0 | 0 | No champion |
+| Department Breadth | 1x | 0 | 0 | Finance only (1 department) |
+| Technical Evaluator | 1x | 0 | 0 | No IT contact |
+| Economic Buyer Engaged | 2x | 1 | 2 | CFO identified as budget approver, not engaged |
+| End User Validation | 1x | 0 | 0 | No end users known |
+| Blocker Mitigation | 1x | 2 | 2 | No blocker identified. Provisional: with one contact known, absence of a blocker is not yet evidence |
+| **Total** | | | **6 of 20** | |
+
+Normalized score: 6 ÷ 2 = **3.0**, Weak coverage (narrow, single-threaded).
+
+**Output:** Coverage is weak and single-threaded. The only known decision-maker is the CFO, and nobody else has been identified. A cold message to the CFO with the 2027 claim would be a single-threaded bet. Engagement plan, all of it research and no outreach yet:
+- Find the Pre-Need Sales Manager or pre-need counselor at one of the three funeral homes through LinkedIn research. This is the person who feels the lead-follow-up pain daily.
+- Find the cemetery General Manager for the two cemeteries (Persona 1).
+- Keep the CFO as the economic buyer to reach once a second contact confirms the timeline. Use the owner letter as the shared hook, not as an assertion about what the family has decided.
+- Re-score after the first two contacts. If the score does not move, the plan is wrong and needs rework.
+
+Summary: Champion, none. Economic Buyer, identified and not engaged (CFO). Blocker, none identified (provisional). Top gaps: single-threaded, no operations or pre-need contact, cemetery side unknown.
 
 ---
 
@@ -504,7 +561,7 @@ For each recommended action:
 - **Pull ALL contacts:** don't filter to "relevant" ones. The full picture reveals patterns.
 - **Identify ghost nodes aggressively:** missing positions are as important as known contacts.
 - **Source political dynamics from evidence:** CRM notes, interaction patterns, meeting attendance. Don't guess.
-- **Tailor engagement strategy to user role:** BDR needs entry points; AE needs multi-threading tactics.
+- **Tailor engagement strategy to user role:** BDR needs entry points. AE needs multi-threading tactics.
 
 ### Don'ts
 - **Don't assume buying roles from titles alone:** a VP who hasn't engaged isn't automatically a Champion.
@@ -537,6 +594,9 @@ For each recommended action:
 ---
 
 ## Changelog
+
+### Version 1.3.0 (2026-10-13)
+- Examples re-cast on PlotIQ, the library's one example company. Example arithmetic and listed errors fixed, and a non-success example added.
 
 ### Version 1.2.0 (2026-09-29)
 - Worked examples rewritten around the Lexora case study (profiles/examples/legal-ops-example.md)

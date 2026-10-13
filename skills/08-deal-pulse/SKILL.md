@@ -1,11 +1,11 @@
 ---
 name: gtm-deal-pulse
 description: "Scores active pipeline deals across 16 signals in 4 pillars to produce evidence-graded health assessments with risk levels and next actions"
-version: 1.2.0
+version: 1.3.0
 category: GTM-Enablement
 author: Ryan Vanshur
 license: MIT
-updated: 2026-09-29
+updated: 2026-10-13
 tags: [deal-scoring, pipeline-health, signal-scorecard, opportunity-assessment, sales-methodology]
 requires:
   skills: ["gtm-meddpicc-analysis", "gtm-meeting-prep"]
@@ -17,7 +17,7 @@ requires:
 
 Scores active pipeline opportunities across 16 signals in 4 strategic pillars (Why Anything, Why Us, Why Now, and Execution) to produce an evidence-graded health assessment. Pulls CRM data, call transcripts, emails, and activity history to score each signal as GREEN, YELLOW, or RED with multi-sentence justifications. Computes deal health (0-100), identifies top risks, and recommends next actions mapped to the client's sales methodology.
 
-**Core Principle:** Score what is evidenced, not what is hoped. A gap identified early saves deals; a gap hidden kills them.
+**Core Principle:** Score what is evidenced, not what is hoped. A gap identified early saves deals. A gap hidden kills them.
 
 ---
 
@@ -44,7 +44,7 @@ What this skill needs before it starts. **If a required input is missing, ask:**
 
 ## Output Contract
 
-Every run produces a **Deal Pulse Report with the same structure and sections** so deal health can be compared across pipeline. The content changes per deal; the structure never does.
+Every run produces a **Deal Pulse Report with the same structure and sections** so deal health can be compared across pipeline. The content changes per deal. The structure never does.
 
 Core commitments: **16-signal scorecard across 4 pillars**, **health score (0-100)**, **risk level with pillar breakdown**, **top risks identified**, and **specific recommended actions for each RED signal**.
 
@@ -54,7 +54,7 @@ Core commitments: **16-signal scorecard across 4 pillars**, **health score (0-10
 
 **This skill does not contain client-specific information. It points to it.**
 
-> **Load the client profile from [`profiles/client-profile.md`](../../profiles/client-profile.md) before starting.** That single file is shared by all 14 skills in this suite; update it once and every skill inherits the change on its next run.
+> **Load the client profile from [`profiles/client-profile.md`](../../profiles/client-profile.md) before starting.** That single file is shared by all 14 skills in this suite. Update it once and every skill inherits the change on its next run.
 
 Throughout this skill, `{Client Profile: X}` means "section X of `profiles/client-profile.md`". Sections this skill reads:
 
@@ -267,8 +267,8 @@ For each RED signal, recommend a specific action mapped to your sales methodolog
 
 ## Epistemic Rules
 
-- **Only score what is evidenced in CRM data.** If a signal has no supporting data, score it low; do not assume the rep has information they haven't logged.
-- **Label evidence sources:** `[CRM]` for Salesforce data, `[Call Transcript]` for recorded calls, `[Email]` for email threads, `[Rep Notes]` for logged notes, `[Inferred]` for reasonable deductions, `[Unknown]` for gaps.
+- **Only score what is evidenced in CRM data.** If a signal has no supporting data, score it low. Do not assume the rep has information they haven't logged.
+- **Label evidence sources:** `[CRM]` for CRM data, `[Call Transcript]` for recorded calls, `[Email]` for email threads, `[Rep Notes]` for logged notes, `[Inferred]` for reasonable deductions, `[Unknown]` for gaps.
 - **Distinguish confirmed from claimed:** A champion who the rep *says* is selling internally (claimed) differs from one whose internal forwarding activity is visible in engagement data (confirmed).
 
 ---
@@ -400,7 +400,7 @@ Present the complete report:
 
 **Overall Assessment:** 2-3 sentence summary, top 3 risks, top 3 positive indicators.
 
-**Recommended Actions:** RED signals get specific methodology actions; YELLOW signals get evidence requirements.
+**Recommended Actions:** RED signals get specific methodology actions. YELLOW signals get evidence requirements.
 
 **Evidence Confidence:** Tag justifications with source. Note intelligence quality: "Strong" (>10 recent interactions), "Moderate" (5-10), "Limited" (<5), "Stale" (most recent >30 days).
 
@@ -437,43 +437,43 @@ After delivering the inline analysis, generate a formatted report document.
 
 ## Examples
 
-### Example 1: Enterprise Legal-Ops Deal with Lexora
+### Example 1: Flagship Deal in Negotiate, Brackhaven Memorial Gardens
 
-**Context:** Corvane Industrial, $3.2B manufacturer, $180K ARR opportunity at Proposal stage, 45 days old. Flagship enterprise engagement.
+**Context:** Brackhaven Memorial Gardens is a combination of two sites with 11,000 plots, both from the profile. The deal is ACTIVE at Stage 5 Negotiate. Owner: Owen Pruitt, Account Executive (illustrative assignment). Amount: $21,576 a year at list, which is two sites at the $10,788 list price. Days in deal and in stage, interaction counts and dates are illustrative. Champion: GM Ruth Ellery. Skeptic: Operations Director Walt Okonkwo. Economic buyer: the family board chair, not yet on a call.
 
-**Input:** "Run the deal pulse for Corvane Industrial."
+**Input:** "Run the deal pulse for Brackhaven Memorial Gardens."
 
 **Process:**
-1. Pull deal data: $180K ARR, Proposal stage, 45 days, owned by Priya Nair (AE). Close target: end of month.
-2. Pull activity: 14 interactions in 90 days (discovery, 3 demos, procurement kickoff). 4 unique contacts: Dana Whitfield (GC), Sam Okafor (Head of Legal Ops, champion), VP Finance, Procurement Manager. Last contact 3 days ago (contract terms discussion).
-3. Score Why Anything: 🟢🟢🟡🟢 (Pillar: 88). counsel spend pain quantified ($14M/year), trigger confirmed (60+ outside firms post-M&A fragmentation), champion strong (Sam actively selling internally), strategic alignment partial (legal cost reduction on GC's board agenda but not company-wide OKR yet).
-4. Score Why Us: 🟢🟢🟢🟢 (Pillar: 100). Lexora solves spend visibility and matter tracking (their two top pains), no Competitor X displacement needed (on legacy e-billing), technical review completed.
-5. Score Why Now: 🟡🟡🟢🔴 (Pillar: 50). budget approved by VP Finance for Q4 implementation, decision process partially mapped, close timeline strong (fiscal year end), procurement requirements unknown.
-6. Score Execution: 🟢🟢🟡🟢 (Pillar: 88). contacts responsive (24-48 hours), multi-threaded across 4 stakeholders, some internal delays (procurement slower than forecast), meeting progression strong (GC joined after discovery).
-7. Health: 81/100, Medium Risk (Why Now pillar weakness bump at 50).
-8. Top risk: Procurement Awareness RED. legal review and vendor onboarding timeline not scoped. Potential surprise 30-60 day slip.
+1. Pull deal data: Stage 5 Negotiate, $21,576 a year at list, 19 days in stage (illustrative). Close date matches the family board's meeting date (illustrative). Primary contact: Ruth Ellery, General Manager.
+2. Pull activity: 11 interactions in the last 90 days (illustrative): discovery, a demo on Brackhaven's own plot records, and two contract calls. Three contacts engaged: Ruth Ellery, Walt Okonkwo and Priscilla Dunmore, pre-need manager. Most recent interaction: a contract terms call with Ruth, 2 days ago (illustrative).
+3. Score Why Anything: 🟢 Pain, 🟢 Reason, 🟡 Strategic, 🟢 Champion. Pillar = (100 + 100 + 50 + 100) ÷ 4 = 87.5. Pain is quantified by the one double sale in 24 months (profile). Reason is the Oldgate legacy renewal in March 2027, a dated deadline. Strategic is yellow because the owner's retirement within three years is not yet a confirmed company priority. Champion is green because Ruth is selling internally and offered to brief the board chair (illustrative).
+4. Score Why Us: 🟢 Fit, 🔴 Technical, 🟡 Competitive, 🟢 Product. Pillar = (100 + 0 + 50 + 100) ÷ 4 = 62.5. Ruth confirmed the records fix her double-sale problem. Technical is red because IT has not been engaged and the Oldgate data export is an unscoped blocker. Competitive is yellow because Stonemark was also evaluated and no preference has been stated. Product is green because the demo ran on Brackhaven's own records.
+5. Score Why Now: 🟡 Budget, 🟡 Decision, 🟢 Timeline, 🟡 Procurement. Pillar = (50 + 50 + 100 + 50) ÷ 4 = 62.5. The family board chair is the named economic buyer, and pricing was delivered in Stage 4. The board has not allocated the budget, so Budget is yellow. The board date is proposed but not yet confirmed. The March 2027 renewal is the internal deadline, and the close date matches it. Procurement is yellow: legal review and vendor onboarding are known in outline, but their details are not scoped.
+6. Score Execution: 🟢 Responsiveness, 🟡 Multi-Threading, 🟢 Follow-Through, 🟡 Progression. Pillar = (100 + 50 + 100 + 50) ÷ 4 = 75. Ruth replies within a day (illustrative). Multi-threading is yellow because the board chair has joined only one call and no second meeting is booked, even though three contacts are engaged. Ruth sent the trust fund ledger sample she promised. Progression is yellow because the last two calls covered the same contract terms with the same attendees.
+7. Health: 8 green (8 × 100 = 800) + 7 yellow (7 × 50 = 350) + 1 red (1 × 0 = 0) = 1,150. Overall = 1,150 ÷ 16 = 71.9, shown as 72. Risk: 72 falls in the 46 to 84 band, so **Medium Risk**. Pillar bump: the lowest pillar average is 62.5, which is not below 30, so there is no bump.
+8. Top risk: Technical Readiness is RED. IT has not been engaged and the Oldgate data export is unscoped, so the March 2027 renewal work could slip. The methodology action is to request a technical discovery with IT and identify the key integration variables.
 
-**Output:** Full 16-signal scorecard. Action plan: (1) Procurement discovery call with VP Finance + Legal; (2) contract terms finalized within 3 days; (3) implementation plan drafted for legal review.
+**Output:** Medium Risk at a health of 72, with one RED signal (Technical Readiness) and seven YELLOW signals that each need evidence. Action plan: (1) ask Ruth for a technical discovery session with whoever runs IT at Brackhaven, starting with the Oldgate data export; (2) ask Ruth for a second call with the board chair, so the economic buyer is on the record; (3) ask Walt what would make the tablet question a non-issue, since his skepticism is about use, not about the product.
 
 ---
 
-### Example 2: At-Risk Deal Needing Intervention, Lexora
+### Example 2: Same Deal Three Weeks Later, a High-Risk Pulse
 
-**Context:** Ardent Insurance Group, $1.1B carrier, $65K ARR opportunity stalled at Discovery for 60 days. Managing outside counsel in spreadsheets, $6M annual spend.
+**Context:** Brackhaven again, three weeks after Example 1 (all dates and counts illustrative). The board meeting has moved twice and the close date has been pushed three times. Ruth has gone quiet. Walt has asked for a Stonemark mapping pilot before he will sign off. This is the non-success case: a deal that looked close and is now stalling in Stage 5.
 
-**Input:** "Score the opportunity health for Ardent Insurance Group."
+**Input:** "Run the deal pulse for Brackhaven again and compare it to last time."
 
 **Process:**
-1. Pull deal data: $65K ARR, Discovery stage, 60 days stalled. Single contact: BDR-discovered Compliance Officer. No GC or Head of Legal Ops engagement.
-2. Pull activity: 3 interactions in 90 days, last contact 28 days ago (email unanswered). No follow-up. Account shows recent PE acquisition signal but no internal urgency captured.
-3. Score Why Anything: 🟡🔴🔴🔴 (Pillar: 13). pain acknowledged (spending too much on counsel, hard to track across firms) but not quantified, no trigger event confirmed (PE acquisition happened but legal integration not surfaced), no champion identified (compliance officer alone cannot evangelize), no strategic link documented.
-4. Score Why Us: 🟡🔴🔴🟡 (Pillar: 25). general fit acknowledged (spend pain matches Lexora), no technical stakeholder engaged (IT unknown), competitor LedgerLine Audit not discussed, no demo conducted.
-5. Score Why Now: 🔴🔴🔴🔴 (Pillar: 0). no budget identified, decision process unknown ("I'll float it to legal"), no timeline (PE integration timeline not discussed), procurement process unknown.
-6. Score Execution: 🔴🔴🔴🔴 (Pillar: 0). dark 28 days (Compliance Officer radio silence), single-threaded (only Compliance Officer), no follow-through (agreed to "follow up with GC" three weeks ago, never happened), no progression.
-7. Health: 10/100, High Risk (zombie deal pattern).
-8. Recommendation: Disqualify or re-engage with breakup email targeting Head of Legal Ops directly using PE acquisition as hook.
+1. Pull deal data: still Stage 5 Negotiate, $21,576 a year at list. Close date pushed three times. 40 days in stage (illustrative).
+2. Pull activity: 4 interactions in the last 30 days (illustrative), with two contacts active. Ruth's last reply was 16 days ago (illustrative), so the last buyer-initiated contact is past 14 days.
+3. Score Why Anything: 🟡 Pain, 🟢 Reason, 🟡 Strategic, 🟡 Champion. Pillar = (50 + 100 + 50 + 50) ÷ 4 = 62.5. Ruth still names the problem, but the economic buyer has not validated it. The March 2027 renewal is still a dated trigger. Champion is yellow because Ruth has shown no internal advocacy since the board meeting moved.
+4. Score Why Us: 🟡 Fit, 🔴 Technical, 🔴 Competitive, 🟡 Product. Pillar = (50 + 0 + 0 + 50) ÷ 4 = 25. Technical is red because IT has not engaged and no one owns the Oldgate data question, which is a known blocker. Competitive is red because Walt has asked for a Stonemark pilot, so the buyer has expressed a preference for a rival.
+5. Score Why Now: 🟡 Budget, 🟡 Decision, 🔴 Timeline, 🟡 Procurement. Pillar = (50 + 50 + 0 + 50) ÷ 4 = 37.5. The board has not allocated the budget. The board date is still unconfirmed. Timeline is red because the close date has been pushed three times. Procurement is yellow because the steps are known but their details are unclear.
+6. Score Execution: 🔴 Responsiveness, 🟡 Multi-Threading, 🔴 Follow-Through, 🔴 Progression. Pillar = (0 + 50 + 0 + 0) ÷ 4 = 12.5. Ruth has been silent for more than two weeks, which is the red rule. Only two contacts are active. Ruth agreed to send the trust ledger sample by a date and it did not arrive. The last meeting was 33 days ago (illustrative) and no next meeting was booked.
+7. Health: 1 green (1 × 100 = 100) + 9 yellow (9 × 50 = 450) + 6 red (6 × 0 = 0) = 550. Overall = 550 ÷ 16 = 34.4, shown as 34. Risk: 34 falls in the 0 to 45 band, so **High Risk**. Pillar bump: Why Us is at 25 and Execution is at 12.5, both below 30. The bump would move the risk up one level, but the deal is already at High, so the rating does not change.
+8. Top risks: Ruth's silence, the Stonemark pilot request, and the three close date pushes. Methodology actions: for Buyer Responsiveness (RED), use the momentum framework and send a breakup email only after 14 days dark, framed around the March 2027 renewal. For Technical Readiness (RED), request a technical discovery with IT. For Competitive Landscape (RED), run the competitive displacement playbook and lead with a proof point labeled as illustrative in the profile.
 
-**Output:** Full scorecard showing catastrophic weakness across all 4 pillars, recommended disqualification if re-engagement fails within 2 weeks.
+**Output:** High Risk at a health of 34. The deal's stage gate is the reason it matters: moving from Stage 5 to Stage 6 requires a board approval date, and that date does not exist yet. Recommendation: Lena Vasquez, Sales Manager, joins the next call. The team sets a decision date by which Brackhaven either gets a confirmed board date or moves back to Stage 4 Proposal.
 
 ---
 
@@ -538,13 +538,13 @@ After delivering the inline analysis, generate a formatted report document.
 ### Quality Checklist
 
 Before delivering the report:
-- [ ] All 16 signals scored; no signals skipped or combined
+- [ ] All 16 signals scored. No signals skipped or combined
 - [ ] Every signal has a 2-3 sentence justification citing specific evidence
 - [ ] Health score math is correct (average of all 16 numeric values)
 - [ ] Pillar scores computed correctly (average of each group of 4)
 - [ ] Risk level assigned with pillar weakness bump applied
 - [ ] Every RED signal has a specific recommended action
-- [ ] Evidence sources tagged on justifications; no unattributed claims
+- [ ] Evidence sources tagged on justifications. No unattributed claims
 - [ ] No generic placeholders remain in output
 
 ---
@@ -553,7 +553,7 @@ Before delivering the report:
 
 ### Works Well With
 
-- **`gtm-meddpicc-analysis`:** Pulse gives the 30,000-foot health view; MEDDPICC provides deep-dive element scoring. Run Pulse first, then MEDDPICC on deals flagged as Medium or High Risk.
+- **`gtm-meddpicc-analysis`:** Pulse gives the 30,000-foot health view. MEDDPICC provides deep-dive element scoring. Run Pulse first, then MEDDPICC on deals flagged as Medium or High Risk.
 - **`gtm-meeting-prep`:** After Pulse identifies gaps, use Meeting Prep to plan the next call around filling those gaps.
 - **`gtm-call-coaching`:** After a call, run Call Coaching to score execution, then re-Pulse the deal to see if signals improved.
 - **`gtm-competitive-strategy`:** When Competitive Landscape scores RED, run Competitive Strategy to build a displacement plan.
@@ -571,6 +571,9 @@ Before delivering the report:
 ---
 
 ## Changelog
+
+### Version 1.3.0 (2026-10-13)
+- Examples re-cast on PlotIQ, the library's one example company. Example arithmetic and listed errors fixed, and a non-success example added.
 
 ### Version 1.2.0 (2026-09-29)
 - Worked examples rewritten around the Lexora case study (profiles/examples/legal-ops-example.md)
