@@ -2,7 +2,7 @@
 
 How to adapt the skills to your company, your methodology, your scoring preferences and your workflow. Work top to bottom. Most teams only ever need the first two sections.
 
-Every example on this page uses Lexora, the fictional legal-ops company in [`profiles/examples/legal-ops-example.md`](../profiles/examples/legal-ops-example.md), so you can see each change against a complete profile.
+Every example on this page uses PlotIQ, the made-up deathcare software company in [`profiles/examples/plotiq-example.md`](../profiles/examples/plotiq-example.md), so you can see each change against a complete profile.
 
 ---
 
@@ -33,6 +33,7 @@ Counted from the Context sections of the 14 sales skills. Fill the top rows firs
 | Buyer Personas | 5 of 14 | Sequences and call sheets stop matching the person in the room |
 | Qualification Criteria | 4 of 14 | Trigger timing and disqualifiers stop working |
 | Proof Points | 4 of 14 | Emails and demos cite nothing, or cite the wrong customer |
+| Qualification Zones | 4 of 14 (01, 03, 06, 07) | Verdicts lose the zone check, so a missing must-have can pass unnoticed |
 | Value Propositions | 3 of 14 | Positioning and demo stories flatten |
 | Sales Methodology | 3 of 14 | Meeting Prep, MEDDPICC and Call Coaching fall back to their defaults |
 | Company | all | Framing only, rarely the bottleneck |
@@ -75,10 +76,10 @@ Meeting Prep (06) and Call Coaching (13) use SPIN for discovery calls. To swap:
 ```markdown
 ### Discovery Framework: Sandler Pain Funnel
 
-1. **Surface Pain:** "Tell me more about how invoice review works today."
-2. **Business Impact:** "What does that cost the department each quarter?"
-3. **Personal Impact:** "What does it mean for you when the CFO asks about counsel spend?"
-4. **Budget Commitment:** "What would you invest to get that visibility?"
+1. **Surface Pain:** "Tell me more about how plot records work today."
+2. **Business Impact:** "What does that cost the cemetery each year, in unsold plots or in staff time on lookups?"
+3. **Personal Impact:** "What does it mean for you when the auditor asks for a trust record that is in a binder?"
+4. **Budget Commitment:** "What would you invest to know exactly which plots are unsold?"
 5. **Decision Process:** "If you found the right solution, what happens next?"
 ```
 
@@ -87,10 +88,10 @@ Meeting Prep (06) and Call Coaching (13) use SPIN for discovery calls. To swap:
 ```markdown
 ### Discovery Framework: Gap Selling
 
-1. **Current State:** How outside-counsel spend is tracked today, by whom, in what tools
-2. **Future State:** What the GC wants to be able to answer, and by when
+1. **Current State:** How plot records are kept today, by whom, in what tools
+2. **Future State:** What the general manager wants to be able to answer, and by when
 3. **The Gap:** What prevents the move from current to future state
-4. **Impact of the Gap:** What the gap costs in overbilling, attorney hours and risk
+4. **Impact of the Gap:** What the gap costs in unsold plots, double sales, audit exposure and staff hours
 5. **Root Cause:** Why the gap exists, and what has already been tried
 ```
 
@@ -121,13 +122,13 @@ Deal Pulse scores 16 signals across 4 pillars (Why Anything, Why Us, Why Now, Ex
 3. Add, remove or rewrite signals in the pillar where they belong.
 4. Update `### Health Score Calculation` if the count changes, and add a row for the new signal to `### Recommended Actions Framework`.
 
-**Example: a "Security Review" signal for enterprise legal deals**
+**Example: a "Board Date" signal for cemetery deals**
 
-Lexora's enterprise deals add procurement and information security. Add under the Execution pillar:
+PlotIQ deals over the $25K line need a board vote, so the approval date is an execution step. Add under the Execution pillar:
 ```markdown
-| 🟢 GREEN | Security questionnaire returned and InfoSec approval scheduled. |
-| 🟡 YELLOW | Questionnaire received, not yet started. |
-| 🔴 RED | Security review not yet raised with the buyer. |
+| 🟢 GREEN | Board approval date set and the board packet is with the decision makers. |
+| 🟡 YELLOW | Board meets within 60 days, date not yet on the calendar. |
+| 🔴 RED | No board date, and the approval path is unknown. |
 ```
 
 ### MEDDPICC: Adjusting Element Weights
@@ -147,7 +148,7 @@ MEDDPICC Analysis scores each of the 8 elements 1-5 and weights them into a 0-10
 3. Add a category with behavioral indicators for each score, and update the total and the score bands.
 
 ```markdown
-| 7 | Multi-threading | Asked about other stakeholders (Legal Ops, Finance, Procurement) and offered to include them | /5 |
+| 7 | Multi-threading | Asked about other stakeholders (Operations Director, Pre-Need Sales, Finance) and offered to include them | /5 |
 ```
 
 ---
@@ -156,10 +157,10 @@ MEDDPICC Analysis scores each of the 8 elements 1-5 and weights them into a 0-10
 
 Account Pre-Qualification (01) scores 8 criteria, defined in `### Qualification Criteria (ICP1)` and `### Qualification Criteria (ICP2)` under `## Methodology`. They are written to fit any vertical. Add criteria that are specific to yours.
 
-**Example: Lexora (legal operations)**
+**Example: PlotIQ (cemeteries and funeral homes)**
 ```markdown
-| 9 | Outside-Firm Fragmentation | 20+ active outside firms | Fragmentation is where visibility pain lives |
-| 10 | Current e-Billing System | Competitor X, spreadsheets, or an outsourced review service | Decides which displacement play applies |
+| 9 | Plot Records Format | Paper maps, binders or pencil maps | Paper records hide unsold plots, which is where the pain lives |
+| 10 | Current Records System | Stonemark Enterprise, Oldgate Ledger Pro, a spreadsheet, or the groundskeeper's memory | Decides which displacement play applies |
 ```
 
 If you add criteria, update the GREENLIGHT and MANUAL REVIEW thresholds in `### Step 6: Deliver Qualification Verdict` (currently 6+ and 4-5 of 8), so the verdicts still mean what they say.
@@ -204,14 +205,14 @@ Skills work best with context. Paste relevant CRM data when you run one:
 ```
 Score this deal with Deal Pulse. Here's the CRM data:
 
-Account: Corvane Industrial
-Stage: Demo Completed
-Close Date: March 30
-Amount: $180K ARR
-Last Activity: Meeting with the Head of Legal Ops (3 days ago)
-Next Step: Security review with InfoSec
+Account: Brackhaven Memorial Gardens
+Stage: 5 Negotiate
+Close Date: November 30 (illustrative)
+Amount: $10,788 a year plus $5,000 setup (list price)
+Last Activity: Walk-through with the Operations Director (3 days ago)
+Next Step: Board date confirmation with the family board chair
 Notes from last call: [paste notes]
-Contacts: Head of Legal Ops (Champion), GC (Economic Buyer), CFO (not yet engaged)
+Contacts: General Manager Ruth Ellery (Champion), family board chair (Economic Buyer), Operations Director Walt Okonkwo (skeptical of tablets)
 ```
 
 ### Call Transcripts

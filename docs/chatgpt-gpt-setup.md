@@ -21,7 +21,7 @@ Step 3: Make it yours                 adapt the skill to your motion (see "Adapt
 ## Before You Build: Complete Your Client Profile
 
 Everything depends on this. Fill out [`profiles/client-profile-template.md`](../profiles/client-profile-template.md)
-and save your completed copy as `client-profile.md`. The [Lexora example](../profiles/examples/legal-ops-example.md)
+and save your completed copy as `client-profile.md`. The [PlotIQ example](../profiles/examples/plotiq-example.md)
 shows the density to aim for, and you can upload it as-is to try a GPT before writing your own.
 A GPT with a thin profile produces generic output, because the skill cannot invent your ICP,
 personas or proof points.
@@ -47,7 +47,7 @@ do-everything GPT that has to guess which playbook you meant.
 5. **Capabilities:** enable web browsing if the skill does research (03, 04, 12). The rest
    work without it. Code interpreter and image generation stay off.
 6. **Conversation starters:** copy the skill's example inputs. Every `SKILL.md` has an Examples
-   section, and all of them use the Lexora case study.
+   section, and all of them use the PlotIQ example company.
 7. **Sharing: keep it "Only me" or invite-link.** Your client profile contains your ICP,
    competitive positioning and named proof points. **Never publish a GPT to the store with your
    profile attached.**

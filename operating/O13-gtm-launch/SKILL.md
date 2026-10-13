@@ -201,7 +201,7 @@ The math is what reveals the gap. Not guessing.
 
 **Weak social proof:** "Used by 1,000+ companies"
 
-**Strong social proof:** "Caught $340K of outside-counsel overbilling in the first 90 days for Northgate Foods, a mid-market legal team" (the Lexora example profile's own proof point)
+**Strong social proof:** "Found 212 unsold plots in 90 days for Fennick Gardens Cemetery, an independent cemetery in beta" (the PlotIQ example profile's own proof point, illustrative)
 
 **Why it works:** The specific metric, the specific company, and the company details make it credible. A reader can see themselves in that case.
 

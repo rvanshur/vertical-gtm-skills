@@ -79,7 +79,7 @@ Sections 8 and 11 are skipped when they do not apply. Every other section is req
 ## 4. Examples
 
 - One invented company carried through the whole example, labelled as illustrative. The
-  shared example company is Lexora (`profiles/client-profile.md`).
+  shared example company is PlotIQ (`profiles/examples/plotiq-example.md`).
 - Every number in an example is either labelled illustrative or comes from a published source
   that is named.
 - Show a failure or a contradiction, not only a clean run. A skill that only shows success

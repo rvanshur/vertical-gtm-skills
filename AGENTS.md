@@ -25,9 +25,9 @@ At the start of a session, check whether `profiles/client-profile.md` exists.
   Interview them section by section using `profiles/client-profile-template.md` (Company, ICP,
   Personas, Pain Points, Value Props, Product Modules, Competitive Landscape, Qualification
   Criteria, Proof Points, Methodology). Ask, don't lecture, a few questions at a time. Show them
-  `profiles/examples/legal-ops-example.md` when they ask how specific to be. Write the completed
+  `profiles/examples/plotiq-example.md` when they ask how specific to be. Write the completed
   file to `profiles/client-profile.md` (gitignored by design, because it holds their competitive
-  data). If they want to see output first, they can copy the Lexora example into that path.
+  data). If they want to see output first, they can copy the PlotIQ example into that path.
 - **Present but thin** (sections empty or placeholder): say which sections are empty and what
   output quality that costs, then proceed if they want. If the ICP, Personas or Competitive
   Landscape can't be filled from evidence, suggest `operating/O15-gtm-discovery` and
@@ -98,8 +98,9 @@ adapted to their specific motion:
 
 ## Examples
 
-Every worked example in the skills uses the same fictional company, Lexora, and the cast of
-accounts at the bottom of `profiles/examples/legal-ops-example.md`. When you show the user an
+Every worked example in the skills uses the same fictional company, PlotIQ, a made-up software
+company for cemeteries and funeral homes, and the cast of accounts at the bottom of
+`profiles/examples/plotiq-example.md`. When you show the user an
 example, draw on that cast rather than inventing a new company.
 
 ## Platform Notes
