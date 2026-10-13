@@ -99,13 +99,15 @@ Your playbook, in code. The frameworks below are the skill's defaults: **SPIN fo
 | **4. Map Stakeholders** | "Who else does this impact? Whose responsibility is it to solve this?" |
 
 ### Demo: Demo Framework
-| Element | Purpose | What Great Looks Like |
-|---------|---------|----------------------|
-| **Simple** | Easy to follow, one concept at a time | Prospect's language, no jargon, logical flow |
-| **Highlight** | Stay in Winning Zone, open with #1 pain | 80%+ time on differentiating features |
-| **Acute** | Demo ordered by pain severity | Most time on most important pain |
-| **Relevant** | Persona-matched social proof | Feel-Felt-Found stories matching vertical and persona |
-| **Engaging** | Prospect talks 50%+, questions throughout | What/how questions after every workflow |
+A demo is a checklist of five habits, not a tour of the product.
+
+| Habit | What Great Looks Like |
+|-------|----------------------|
+| **Open on their top pain** | The first workflow shown answers the pain they ranked highest. Most of the time goes to what sets you apart |
+| **Spend time in order of importance** | The most important pain gets the most minutes. Minor pains get a quick look or a follow-up |
+| **Use their words** | One idea at a time, in the buyer's own language, no jargon |
+| **Show proof that looks like them** | A customer story from the same vertical and the same role (Feel-Felt-Found) |
+| **Let them talk** | A what or how question after every workflow. The buyer talks about half the time |
 
 ### Demo: Question the Problem (4-Question Sequence)
 | # | Question | When | Purpose |
@@ -116,12 +118,14 @@ Your playbook, in code. The frameworks below are the skill's defaults: **SPIN fo
 | 4 | **Make the Buyer Say It**: "What excited you most about what you saw today?" | At the close | Captures buying reasons in their words |
 
 ### Meeting Structure (Both Types)
-| Element | Purpose |
-|---------|---------|
-| **Pivot** | Transition into the meeting with context |
-| **Logistics** | Confirm time, attendees, roles |
-| **Agendas** | Set expectations, invite additions |
-| **Next Steps** | Define what success looks like for this meeting |
+Every meeting opens and closes on purpose.
+
+| Part | What It Does |
+|------|-------------|
+| **Why we're here** | Connect this meeting to the last conversation or the reason it was booked |
+| **Who and how long** | Confirm the time and who is in the room, and ask any new attendee about their role |
+| **The plan** | Say what the meeting will cover and invite additions |
+| **A good outcome** | Agree what would make this meeting worth the time |
 
 ### Qualification Framework (Discovery)
 Default: MEDDPICC (Metrics, Economic Buyer, Decision Criteria, Decision Process, Paper Process, Identified Pain, Champion, Competition). Replace with your qualification framework if different.
@@ -384,22 +388,22 @@ Using `{Methodology: Resistance Types}`, anticipate likely resistance and prepar
 Build customized scripts using `{Methodology: Meeting Structure}`:
 
 #### Discovery Opening
-- **Pivot:** Reference why they're meeting (if first: "learn more about your process"; if follow-up: reference specific pain from prior interaction)
-- **Logistics:** Confirm duration, attendees
-- **Agendas:** Set expectations: learn about current process, understand pain points, determine fit
-- **Next Steps:** Define success: "clear sense of whether it's worth scheduling a [next step]"
+- **Why we're here:** For a first meeting, "to learn more about how your team handles [process]." For a follow-up, name the pain they raised last time
+- **Who and how long:** Confirm the time and the attendees
+- **The plan:** Learn how the process works today, understand the pains, decide together whether there is a fit
+- **A good outcome:** "A clear sense of whether it's worth scheduling a [next step]"
 
 #### Demo Opening
-- **Pivot:** Reference discovery findings: "[Contact], in our last conversation you mentioned [Pain #1 and their exact words]"
-- **Logistics:** Confirm duration, welcome new attendees, ask about their role
-- **Agendas:** Set demo agenda based on their confirmed pains
-- **Next Steps:** Define success: "we'll both know whether it makes sense to [next stage]"
+- **Why we're here:** Quote discovery back: "[Contact], last time you mentioned [Pain #1, in their exact words]"
+- **Who and how long:** Confirm the time, welcome new attendees, ask about their role
+- **The plan:** Set the demo agenda from their confirmed pains
+- **A good outcome:** "We'll both know whether it makes sense to [next stage]"
 
 #### Closing Script (Both Types)
-- **Pivot:** Transition to next steps
-- **Logistics:** Who else should be in the room? Calendar availability?
-- **Agendas:** Recommend next meeting agenda based on what was discussed
-- **Next Steps:** Define next milestone
+- **Recap:** Say back what you heard matters most to them
+- **Who else:** Ask who else should be in the next conversation, and check calendars
+- **Next agenda:** Propose the next meeting's agenda from what was discussed
+- **Commitment:** Agree the next milestone, with an owner and a date
 
 ---
 
@@ -454,7 +458,7 @@ Prepare 5-8 if-then scenarios specific to the meeting type:
 
 **Discovery scenarios:** Prospect confirms hypothesis → run Priority Ladder. Prospect denies all → deploy negative framing. Prospect asks for pricing → defer. Prospect says "send me info" → redirect. Prospect mentions competitor → probe satisfaction. EB not on call → ask for intro. Prospect seems guarded → diagnose resistance type.
 
-**Demo scenarios:** Prospect asks about Losing Zone feature → acknowledge + redirect. New attendee arrives → Meeting Structure Logistics intro. Prospect goes quiet → pause + ask what they're thinking. Prospect challenges a claim → Feel-Felt-Found or data. Demo glitches → stay calm, backup ready. Prospect clearly ready to buy → stop demoing, move to close. New pains surface → pause, run quick discovery, capture, pivot.
+**Demo scenarios:** Prospect asks about Losing Zone feature → acknowledge + redirect. New attendee arrives → welcome them and ask about their role. Prospect goes quiet → pause + ask what they're thinking. Prospect challenges a claim → Feel-Felt-Found or data. Demo glitches → stay calm, backup ready. Prospect clearly ready to buy → stop demoing, move to close. New pains surface → pause, run quick discovery, capture, pivot.
 
 #### 9d. Team Roles (If Applicable)
 If other team members are attending, define role expectations for each person.
@@ -628,6 +632,7 @@ If other team members are attending, define role expectations for each person.
 
 ### Version 1.2.1 (2026-10-13)
 - Two framework names replaced with plain descriptions: "Question the Problem" and "Priority Ladder". The methods are unchanged.
+- The demo checklist and the meeting open and close rewritten as generic habits, replacing two internal frameworks.
 
 ### Version 1.2.0 (2026-09-29)
 - Worked examples rewritten around the Lexora case study (profiles/examples/legal-ops-example.md)
