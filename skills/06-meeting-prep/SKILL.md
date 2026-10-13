@@ -1,12 +1,12 @@
 ---
 name: gtm-meeting-prep
 description: "Prepares reps for discovery or demo calls by pulling CRM data, building pain hypotheses or ranking confirmed pains, structuring the call around discovery/demo frameworks, preparing methodology-aligned question banks, selecting social proof, scripting meeting open and close, and generating a single-page prep sheet"
-version: 1.2.0
+version: 1.2.1
 category: GTM-Enablement
 author: Ryan Vanshur
 license: MIT
-updated: 2026-09-29
-tags: [meeting-prep, discovery-prep, demo-prep, call-prep, discovery-questions, demo-framework, meeting-scripts, meddpicc, interrogate-the-problem]
+updated: 2026-10-13
+tags: [meeting-prep, discovery-prep, demo-prep, call-prep, discovery-questions, demo-framework, meeting-scripts, meddpicc, question-the-problem]
 requires:
   skills: []
 ---
@@ -90,7 +90,7 @@ Your playbook, in code. The frameworks below are the skill's defaults: **SPIN fo
 | **Implication** | Understand cascading consequences and what they've tried |
 | **Need-Payoff** | Use value framing to invite the buyer to articulate the benefit of solving |
 
-### Discovery: Priority Path Follow-Ups
+### Discovery: Priority Ladder Follow-Ups
 | Stage | Follow-Up |
 |-------|-----------|
 | **1. Identify** | "Can you walk me through what that actually looks like step by step?" |
@@ -107,7 +107,7 @@ Your playbook, in code. The frameworks below are the skill's defaults: **SPIN fo
 | **Relevant** | Persona-matched social proof | Feel-Felt-Found stories matching vertical and persona |
 | **Engaging** | Prospect talks 50%+, questions throughout | What/how questions after every workflow |
 
-### Demo: Interrogate the Problem (4-Question Sequence)
+### Demo: Question the Problem (4-Question Sequence)
 | # | Question | When | Purpose |
 |---|----------|------|---------|
 | 1 | **Prime Pain**: "Many teams struggle with [X]. To what extent is that true for you?" | Before showing the feature | Activates the pain |
@@ -190,7 +190,7 @@ Pull everything available:
 - Activity history: calls, emails, meetings (with dates and key notes)
 - AI summaries: deal intelligence, pulse signals
 - **Discovery:** Previous discovery notes, documented pain points
-- **Demo:** Discovery findings, confirmed pains, Priority Path results, MEDDPICC fields
+- **Demo:** Discovery findings, confirmed pains, Priority Ladder results, MEDDPICC fields
 
 #### 1c. Build Account Profile
 
@@ -283,11 +283,11 @@ Build tailored questions for each discovery phase connected to pain hypotheses:
 
 **Need-Payoff (2-3 questions):** Value framing for medium/low confidence hypotheses. Example: "Most [teams] at companies your size tell us they spend 15+ minutes per [task]. That's probably not your experience though, right?"
 
-**Priority Path Follow-Ups:** Prepare the 4-stage follow-up sequence from `{Methodology: Priority Path}` for when a prospect confirms a pain. Rule: Do not move past a confirmed pain without running Priority Path through at least Stages 1-2.
+**Priority Ladder Follow-Ups:** Prepare the 4-stage follow-up sequence from `{Methodology: Priority Ladder}` for when a prospect confirms a pain. Rule: Do not move past a confirmed pain without running Priority Ladder through at least Stages 1-2.
 
-#### Demo Mode: Interrogate the Problem Questions
+#### Demo Mode: Question the Problem Questions
 
-For each demo module (mapped to a pain), prepare the 4-question sequence from `{Methodology: Interrogate the Problem}`:
+For each demo module (mapped to a pain), prepare the 4-question sequence from `{Methodology: Question the Problem}`:
 
 | Question | Script | What to Capture |
 |----------|--------|----------------|
@@ -325,10 +325,10 @@ Map each pain to a specific product workflow:
 Plan the demo structure following `{Methodology: Demo Framework}`:
 1. Meeting Open (3-5 min)
 2. Problem Slide (2-3 min): Follow `{Methodology: Demo Story Arc}`
-3. Pain #1 Demo (40-50% of time): ITP Q1 → Show → Q2 → Listen → Q3
+3. Pain #1 Demo (40-50% of time): Problem question 1 → Show → Q2 → Listen → Q3
 4. Pain #2 Demo (25-35%): Same structure
 5. Pain #3 Demo (15-20%, if time)
-6. Recap + Close (3-5 min): ITP Q4 → Meeting close
+6. Recap + Close (3-5 min): Problem question 4 → Meeting close
 
 **Five Implementation Habits Check (Demo):**
 1. Open with Problem Slide
@@ -409,13 +409,13 @@ Build customized scripts using `{Methodology: Meeting Structure}`:
 
 **Discovery Primary Objectives:**
 1. Validate or disprove top 2-3 pain hypotheses
-2. Run Priority Path on at least 1 confirmed pain (through Stage 3)
+2. Run Priority Ladder on at least 1 confirmed pain (through Stage 3)
 3. Identify the economic buyer and decision process
 4. Secure a next step with specific date, attendees, and agenda
 
 **Demo Primary Objectives:**
 1. Show product solving #1 and #2 pains with clear contrast to current state
-2. Capture at least 2 buying reasons in prospect's own words (ITP Q4)
+2. Capture at least 2 buying reasons in prospect's own words (problem question 4)
 3. Secure a next step with specific date, attendees, and decision point
 
 **Minimum Acceptable Outcome:**
@@ -429,7 +429,7 @@ Build customized scripts using `{Methodology: Meeting Structure}`:
 |-------|----------|----------|-----------|
 | Opening | 3-5 min | Meeting open | Meeting Structure |
 | Current State | 8-10 min | Situation questions | Discovery (S) |
-| Pain Discovery | 10-12 min | Problem + Need-Payoff; Priority Path | Discovery (P, N) + Priority Path |
+| Pain Discovery | 10-12 min | Problem + Need-Payoff; Priority Ladder | Discovery (P, N) + Priority Ladder |
 | Alternatives | 3-5 min | What they've tried, vendor experience | Discovery (I) |
 | Value Connection | 3-5 min | Feel-Felt-Found story | Social Proof |
 | Close | 3-5 min | Meeting close | Meeting Structure |
@@ -440,11 +440,11 @@ Build customized scripts using `{Methodology: Meeting Structure}`:
 | Block | Duration | Activity | Framework |
 |-------|----------|----------|-----------|
 | Opening | 3-5 min | Meeting open | Meeting Structure |
-| Problem Slide | 2-3 min | Story Arc | ITP |
-| Pain #1 Demo | 12-15 min | Prime Pain → Show → Contrast → Listen → Requirements | Demo Framework + ITP |
-| Pain #2 Demo | 7-10 min | Same structure | Demo Framework + ITP |
+| Problem Slide | 2-3 min | Story Arc | Question the Problem |
+| Pain #1 Demo | 12-15 min | Prime Pain → Show → Contrast → Listen → Requirements | Demo Framework + Question the Problem |
+| Pain #2 Demo | 7-10 min | Same structure | Demo Framework + Question the Problem |
 | Pain #3 Demo | 4-6 min | Prime Pain → Show → Contrast | Demo Framework |
-| Close | 3-5 min | "What excited you most?" → Meeting close | ITP Q4 + Meeting Structure |
+| Close | 3-5 min | "What excited you most?" → Meeting close | Problem question 4 + Meeting Structure |
 
 **Talk-Time Target (Demo):** Rep <50% / Prospect 50%+
 
@@ -452,7 +452,7 @@ Build customized scripts using `{Methodology: Meeting Structure}`:
 
 Prepare 5-8 if-then scenarios specific to the meeting type:
 
-**Discovery scenarios:** Prospect confirms hypothesis → run Priority Path. Prospect denies all → deploy negative framing. Prospect asks for pricing → defer. Prospect says "send me info" → redirect. Prospect mentions competitor → probe satisfaction. EB not on call → ask for intro. Prospect seems guarded → diagnose resistance type.
+**Discovery scenarios:** Prospect confirms hypothesis → run Priority Ladder. Prospect denies all → deploy negative framing. Prospect asks for pricing → defer. Prospect says "send me info" → redirect. Prospect mentions competitor → probe satisfaction. EB not on call → ask for intro. Prospect seems guarded → diagnose resistance type.
 
 **Demo scenarios:** Prospect asks about Losing Zone feature → acknowledge + redirect. New attendee arrives → Meeting Structure Logistics intro. Prospect goes quiet → pause + ask what they're thinking. Prospect challenges a claim → Feel-Felt-Found or data. Demo glitches → stay calm, backup ready. Prospect clearly ready to buy → stop demoing, move to close. New pains surface → pause, run quick discovery, capture, pivot.
 
@@ -488,7 +488,7 @@ If other team members are attending, define role expectations for each person.
 **Discovery Prep (7 Sections):**
 1. **Call Header** and Account, contact, date, objectives
 2. **Pain Hypotheses** and Ranked with evidence and confidence
-3. **Discovery Question Bank** and Top 3 questions per phase + Priority Path
+3. **Discovery Question Bank** and Top 3 questions per phase + Priority Ladder
 4. **Qualification Gaps** and Traffic-light grid: known (green), partial (yellow), unknown (red)
 5. **Competitive Positioning** and Current solution, probes, differentiators
 6. **Meeting Scripts** and Opening + closing customized
@@ -498,7 +498,7 @@ If other team members are attending, define role expectations for each person.
 1. **Demo Header** and Account, attendees, pains, objectives
 2. **Pain-to-Workflow Map** and Winning Zone plan with time allocation
 3. **Demo Script** and Time-blocked structure with framework labels
-4. **Interrogate the Problem Questions** and Per-module question cards
+4. **Question the Problem Questions** and Per-module question cards
 5. **Social Proof & Feel-Felt-Found** and Pre-scripted stories matched to attendees
 6. **Meeting Scripts** and Opening + closing customized with discovery pains
 7. **Resistance Playbook & If-Then Scenarios** and Typed objections with responses
@@ -525,7 +525,7 @@ If other team members are attending, define role expectations for each person.
 
 **Process:** `meeting_type = demo`. CRM shows active deal at Demo stage, $85K. Discovery notes confirm: Pain #1 = manual invoice review (12-20 minutes per invoice, 600 invoices per quarter), Pain #2 = inconsistent billing practices across three regions (each handles bills differently), Pain #3 = no real-time visibility into counsel spend by matter. Deputy GC is champion candidate. Confirmed pains ranked by impact. Demo plan: invoice automation first (40%), matter tracking second (35%), spend visibility third (25%).
 
-**Output:** Full demo prep with pain-to-workflow map, demo structure. Interrogate the Problem questions per module. Feel-Felt-Found stories from similar freight carriers (Northgate Foods, Meridian-class manufacturer). Meeting scripts referencing discovery pains verbatim. Resistance prep (anticipate Skepticism about automation accuracy and Inertia from process familiarity). Buying signals watch list. 7-section prep sheet generated.
+**Output:** Full demo prep with pain-to-workflow map, demo structure. Question the Problem questions per module. Feel-Felt-Found stories from similar freight carriers (Northgate Foods, Meridian-class manufacturer). Meeting scripts referencing discovery pains verbatim. Resistance prep (anticipate Skepticism about automation accuracy and Inertia from process familiarity). Buying signals watch list. 7-section prep sheet generated.
 
 ### Example 3: Quick Call Prep (Inbound from Corvane)
 
@@ -592,7 +592,7 @@ If other team members are attending, define role expectations for each person.
 ### Quality Checklist (Discovery)
 - [ ] Pain hypotheses mapped to `{Client Profile: Core Pain Points}` (not generic)
 - [ ] Discovery questions tailored to this account's vertical and size
-- [ ] Priority Path follow-ups prepared for confirmed pains
+- [ ] Priority Ladder follow-ups prepared for confirmed pains
 - [ ] Negative framing questions ready for medium/low confidence hypotheses
 - [ ] Qualification gaps identified with specific questions to fill them
 - [ ] Meeting scripts customized (not template copy-paste)
@@ -603,7 +603,7 @@ If other team members are attending, define role expectations for each person.
 - [ ] Discovery completeness verified (2+ confirmed pains, 1+ quantified)
 - [ ] Pains ranked by impact + differentiation + attendee relevance
 - [ ] Time allocation proportional to pain priority (#1 gets 40-50%)
-- [ ] Interrogate the Problem questions scripted per module (not generic)
+- [ ] Question the Problem questions scripted per module (not generic)
 - [ ] Social proof matches attendee personas, vertical, and scale
 - [ ] Feel-Felt-Found stories pre-scripted and ready to deploy
 - [ ] Resistance anticipated and typed correctly
@@ -626,6 +626,9 @@ If other team members are attending, define role expectations for each person.
 
 ## Changelog
 
+### Version 1.2.1 (2026-10-13)
+- Two framework names replaced with plain descriptions: "Question the Problem" and "Priority Ladder". The methods are unchanged.
+
 ### Version 1.2.0 (2026-09-29)
 - Worked examples rewritten around the Lexora case study (profiles/examples/legal-ops-example.md)
 - Em dashes removed from prose
@@ -633,14 +636,14 @@ If other team members are attending, define role expectations for each person.
 ### Version 1.1.0 (2026-07-06)
 - Restructured around the five-part skill anatomy: Role, Input Contract, Output Contract, Methodology, Context
 - Client-specific data de-embedded: the skill now reads the shared `profiles/client-profile.md` instead of carrying a copy-in Client Profile block (one profile powers every skill)
-- Framework machinery (SPIN, Priority Path, Demo Framework, Interrogate the Problem, Meeting Structure, Resistance Types) moved to an explicit Methodology section. Now uses `{Methodology: X}` references
+- Framework machinery (SPIN, Priority Ladder, Demo Framework, Question the Problem, Meeting Structure, Resistance Types) moved to an explicit Methodology section. Now uses `{Methodology: X}` references
 - No functional changes to the workflow, examples, or output formats
 
 ### Version 1.0.0 (2026-03-04)
 - Initial release (merged from discovery prep and demo prep skills)
 - Unified via `meeting_type` parameter (discovery / demo)
 - Generalized via Client Profile block with configurable defaults
-- Preserved discovery framework, Priority Path, demo framework, Interrogate the Problem, meeting structure, and MEDDPICC frameworks as defaults
+- Preserved discovery framework, Priority Ladder, demo framework, Question the Problem, meeting structure, and MEDDPICC frameworks as defaults
 - Preserved Feel-Felt-Found social proof pattern
 - Preserved resistance typing (Reactance/Skepticism/Inertia)
 - Preserved Five Implementation Habits check (demo)

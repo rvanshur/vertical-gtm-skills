@@ -155,8 +155,8 @@ These figures are taken from the skill files. If you change a skill's scoring, c
 - **Stage minimums:** Discovery 30+, Trial & Evaluation 50+, Negotiation 65+, Closing 75+, each with critical elements that must score 3 or better
 
 ### Call Coaching (Skill 13)
-- **Discovery (SPIN + Priority Path):** 6 categories, /30. 26-30 Excellent, 20-25 Good, 14-19 Needs Improvement, 8-13 Poor, 6-7 Critical
-- **Demo (Challenger + MEDDPICC + Interrogate the Problem):** 8 categories, /40. 34-40 Excellent, 26-33 Good, 18-25 Needs Improvement, 10-17 Poor, 8-9 Critical
+- **Discovery (SPIN + Priority Ladder):** 6 categories, /30. 26-30 Excellent, 20-25 Good, 14-19 Needs Improvement, 8-13 Poor, 6-7 Critical
+- **Demo (Challenger + MEDDPICC + Question the Problem):** 8 categories, /40. 34-40 Excellent, 26-33 Good, 18-25 Needs Improvement, 10-17 Poor, 8-9 Critical
 - **Per category:** specific behavioral criteria, with evidence from the transcript
 
 ### Account Pre-Qualification (Skill 01)

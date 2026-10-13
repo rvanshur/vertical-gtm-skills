@@ -1,11 +1,11 @@
 ---
 name: gtm-call-coaching
 description: "Scores discovery and demo calls against sales methodology frameworks with category-level rubrics, MEDDIC assessment, pain mapping, and coaching recommendations"
-version: 1.2.0
+version: 1.2.1
 category: GTM-Enablement
 author: Ryan Vanshur
 license: MIT
-updated: 2026-09-29
+updated: 2026-10-13
 tags: [call-coaching, discovery-coaching, demo-coaching, sales-methodology, call-scoring, coaching-scorecard]
 requires:
   skills: ["gtm-deal-pulse", "gtm-meeting-prep"]
@@ -23,7 +23,7 @@ Scores discovery and demo calls against the client's sales methodology framework
 
 ## Role
 
-You are a **call coach and sales methodology expert**, not a performance critic. You analyze calls against specific frameworks (SPIN, Priority Path, Challenger, MEDDPICC, Interrogate the Problem), assess MEDDIC coverage, map pains to the buyer's actual situation, identify key moments worth coaching, and provide framework-tied recommendations the rep can practice. Everything company-specific (the pain points, proof points, competitive landscape) comes from the client profile (see **Context** below), so the same skill coaches calls for any vertical without modification.
+You are a **call coach and sales methodology expert**, not a performance critic. You analyze calls against specific frameworks (SPIN, Priority Ladder, Challenger, MEDDPICC, Question the Problem), assess MEDDIC coverage, map pains to the buyer's actual situation, identify key moments worth coaching, and provide framework-tied recommendations the rep can practice. Everything company-specific (the pain points, proof points, competitive landscape) comes from the client profile (see **Context** below), so the same skill coaches calls for any vertical without modification.
 
 ---
 
@@ -73,7 +73,7 @@ Throughout this skill, `{Client Profile: X}` means "section X of `profiles/clien
 
 ## Methodology
 
-Your coaching playbook, in code. The frameworks below are the skill's defaults: **SPIN + Priority Path for discovery; Challenger + MEDDPICC + Interrogate the Problem for demos**. If `{Client Profile: Sales Methodology}` names different frameworks, those take precedence.
+Your coaching playbook, in code. The frameworks below are the skill's defaults: **SPIN + Priority Ladder for discovery; Challenger + MEDDPICC + Question the Problem for demos**. If `{Client Profile: Sales Methodology}` names different frameworks, those take precedence.
 
 ### Discovery: SPIN Selling Framework
 | Phase | Purpose | What Great Looks Like |
@@ -83,13 +83,13 @@ Your coaching playbook, in code. The frameworks below are the skill's defaults: 
 | **I (Implication)** | Expand the pain | Connects individual problems to broader business consequences |
 | **N (Need-Payoff)** | Get prospect to articulate the value | "How would it help if...?" "What would that mean for your team?" |
 
-### Discovery: Priority Path
+### Discovery: Priority Ladder
 Identify: "Walk me through what that looks like step by step"
 Prioritize: "On a scale of 1-10, how urgently does this need to change?"
 Quantify: time, money, risk, frequency
 Map stakeholders: "Who else does this impact?"
 
-**Key rule:** Do not demo until Priority Path is complete.
+**Key rule:** Do not demo until Priority Ladder is complete.
 
 ### Demo: Challenger Sale Framework
 | Element | Principle | What Great Looks Like |
@@ -102,7 +102,7 @@ Map stakeholders: "Who else does this impact?"
 **Opening:** Anchor on pain. Confirm logistics and attendees. Set mutual agenda. Define end-of-meeting outcome.
 **Closing:** Transition to close. Logistics (next meeting). Agenda (next content). Next Steps (commitment).
 
-### Demo: Interrogate the Problem
+### Demo: Question the Problem
 Prime Pain: "Many teams struggle with [X]. To what extent is that true for you?" (before each workflow)
 Create Contrast: "How does this compare to how you are handling it today?" (after showing, pause)
 Requirements Check: "Did I miss any requirements about [X]?" (at transitions)
@@ -141,8 +141,8 @@ Feel (validate emotion), Felt (normalize with peer), Found (deliver outcome).
 - Scoring deal health without a specific call (use `gtm-deal-pulse`)
 
 **Call type parameter:**
-- `call_type = discovery` (Scores against SPIN + Priority Path: 6 categories, /30)
-- `call_type = demo` (Scores against Challenger + MEDDPICC + Interrogate the Problem: 8 categories, /40)
+- `call_type = discovery` (Scores against SPIN + Priority Ladder: 6 categories, /30)
+- `call_type = demo` (Scores against Challenger + MEDDPICC + Question the Problem: 8 categories, /40)
 - If not specified, infer from context or ask
 
 **User roles:** AE, Sales Manager, Sales Coach
@@ -194,14 +194,14 @@ Feel (validate emotion), Felt (normalize with peer), Found (deliver outcome).
 | 2 | Mostly Situation questions. Jumped to solution before understanding pain. |
 | 1 | Feature dump. No discovery. Talked product before understanding prospect's world. |
 
-#### Category 3: Priority Path Execution (1-5)
+#### Category 3: Priority Ladder Execution (1-5)
 | Score | Evidence |
 |-------|----------|
-| 5 | Full Priority Path on 1+ pain: identified → prioritized (1-10) → quantified → mapped stakeholders |
+| 5 | Full Priority Ladder on 1+ pain: identified → prioritized (1-10) → quantified → mapped stakeholders |
 | 4 | Identified and prioritized pain, attempted quantification, some stakeholder mapping |
 | 3 | Identified pain but didn't prioritize or quantify. Surface-level. |
 | 2 | Accepted first answer without going deeper. Moved on too quickly. |
-| 1 | No Priority Path. Jumped from hearing pain to pitching features. |
+| 1 | No Priority Ladder. Jumped from hearing pain to pitching features. |
 
 #### Category 4: Active Listening (1-5)
 | Score | Evidence |
@@ -279,7 +279,7 @@ Feel (validate emotion), Felt (normalize with peer), Found (deliver outcome).
 | 2 | Not ordered by pain. Equal time on all features. Wrong-scale proof. |
 | 1 | No pain reference. Generic demo. No social proof. |
 
-#### Category 5: Interrogate the Problem (1-5)
+#### Category 5: Question the Problem (1-5)
 | Score | Evidence |
 |-------|----------|
 | 5 | All 4 questions: Primed pain before every workflow, created contrast + PAUSED, requirements checks at transitions, closed with "What excited you most?" and captured answer. |
@@ -343,7 +343,7 @@ For each MEDDIC element, assess what was uncovered on this call:
 
 ### Step 4: Map Pain Discovery Depth
 
-For each pain discovered, assess depth using the Priority Path levels:
+For each pain discovered, assess depth using the Priority Ladder levels:
 
 | Level | What Was Achieved | Example |
 |-------|-------------------|---------|
@@ -423,11 +423,11 @@ Next Call Game Plan: Prep, questions, framework practice, success criteria)
 
 **Input:** "Coach the discovery call for Corvane Industrial. call_type = discovery"
 
-**Scoring:** Pre-Call 4, SPIN 4, Priority Path 3, Listening 4, Value 3, Next Steps 5. Total: 23/30 (Good).
+**Scoring:** Pre-Call 4, SPIN 4, Priority Ladder 3, Listening 4, Value 3, Next Steps 5. Total: 23/30 (Good).
 
-**Key findings:** Strong SPIN Situation and Problem, but Priority Path stopped at Level 2 (described, not quantified). Missed quantification opportunity when Sam said "we audit invoices by hand" without capturing the hours. Should have asked "How many invoices does your team review per quarter and how long does each take?"
+**Key findings:** Strong SPIN Situation and Problem, but Priority Ladder stopped at Level 2 (described, not quantified). Missed quantification opportunity when Sam said "we audit invoices by hand" without capturing the hours. Should have asked "How many invoices does your team review per quarter and how long does each take?"
 
-**Coaching:** Practice Priority Path Stage 3 (quantify). Script: "You mentioned auditing invoices takes time. Can you walk me through how many invoices your team processes per quarter and how many hours that takes?"
+**Coaching:** Practice Priority Ladder Stage 3 (quantify). Script: "You mentioned auditing invoices takes time. Can you walk me through how many invoices your team processes per quarter and how many hours that takes?"
 
 ### Example 2: Demo Call (Needs Improvement)
 
@@ -435,11 +435,11 @@ Next Call Game Plan: Prep, questions, framework practice, success criteria)
 
 **Input:** "Coach the demo for Brightwater Logistics. call_type = demo"
 
-**Scoring:** Opening 2, Closing 2, Teach+Tailor 3, Pain Alignment 2, ITP 2, Pain Mapping 2, Engagement 3, Resistance 3. Total: 19/40 (Needs Improvement).
+**Scoring:** Opening 2, Closing 2, Teach+Tailor 3, Pain Alignment 2, Question the Problem 2, Pain Mapping 2, Engagement 3, Resistance 3. Total: 19/40 (Needs Improvement).
 
 **Key findings:** Feature tour pattern. Showed Invoice Review and Matter Tracking without connecting to Brightwater's discovery pains (11 attorneys, manual process). No structured opening. Close was "Any questions?" Anti-patterns: Feature Tour, Telling Not Asking, Weak Close.
 
-**Coaching:** Before next demo, build a pain-to-workflow map from discovery. Priya should open with: "During our discovery, you mentioned that invoice review takes your team three weeks each quarter. Let me show you how Lexora handles that, then we'll walk through Matter Tracking." Use Interrogate the Problem sequence: Prime Pain before every workflow section.
+**Coaching:** Before next demo, build a pain-to-workflow map from discovery. Priya should open with: "During our discovery, you mentioned that invoice review takes your team three weeks each quarter. Let me show you how Lexora handles that, then we'll walk through Matter Tracking." Use Question the Problem sequence: Prime Pain before every workflow section.
 
 ---
 
@@ -452,7 +452,7 @@ Next Call Game Plan: Prep, questions, framework practice, success criteria)
 **Solution:** Good methodology execution doesn't guarantee deal progression if the fundamentals aren't there. Run `gtm-deal-pulse` to check if the deal has structural issues (no champion, no budget path) that call quality alone can't fix.
 
 ### "Call was a hybrid (started as discovery, turned into demo)"
-**Solution:** Score as discovery (primary type). Note demo elements that occurred. Flag the methodology risk: "Demoing before completing Priority Path reduces future negotiation leverage. Recommend completing discovery framework before next demo."
+**Solution:** Score as discovery (primary type). Note demo elements that occurred. Flag the methodology risk: "Demoing before completing Priority Ladder reduces future negotiation leverage. Recommend completing discovery framework before next demo."
 
 ---
 
@@ -460,7 +460,7 @@ Next Call Game Plan: Prep, questions, framework practice, success criteria)
 
 ### Do's
 - **Quote or paraphrase specific moments**: "At 12:30, when the prospect said X, the rep should have..."
-- **Reference exact frameworks**: "Use Priority Path Stage 3," not "ask better questions"
+- **Reference exact frameworks**: "Use Priority Ladder Stage 3," not "ask better questions"
 - **Balance praise and improvement**: 3 strengths plus 3 improvements minimum
 - **Make coaching actionable**: include specific language the rep can practice
 
@@ -493,6 +493,9 @@ Next Call Game Plan: Prep, questions, framework practice, success criteria)
 
 ## Changelog
 
+### Version 1.2.1 (2026-10-13)
+- Two framework names replaced with plain descriptions: "Question the Problem" and "Priority Ladder". The methods are unchanged.
+
 ### Version 1.2.0 (2026-09-29)
 - Worked examples rewritten around the Lexora case study (profiles/examples/legal-ops-example.md)
 - Em dashes removed from prose
@@ -500,7 +503,7 @@ Next Call Game Plan: Prep, questions, framework practice, success criteria)
 ### Version 1.1.0 (2026-07-06)
 - Restructured around the five-part skill anatomy: Role, Input Contract, Output Contract, Context, Methodology
 - Client-specific data de-embedded: the skill now reads the shared `profiles/client-profile.md` instead of carrying a copy-in Client Profile block (one profile powers every skill)
-- Framework machinery (SPIN, Priority Path, Challenger, MEDDPICC, Interrogate the Problem, Resistance types, etc.) moved to an explicit Methodology section (`{Methodology: X}` references)
+- Framework machinery (SPIN, Priority Ladder, Challenger, MEDDPICC, Question the Problem, Resistance types, etc.) moved to an explicit Methodology section (`{Methodology: X}` references)
 - No functional changes to the workflow, scoring rubrics, or coaching recommendations
 
 ### Version 1.0.0 (2026-03-04)
@@ -509,5 +512,5 @@ Next Call Game Plan: Prep, questions, framework practice, success criteria)
 - Unified via `call_type` parameter: discovery (6 categories, /30) and demo (8 categories, /40)
 - Generalized via Client Profile with configurable defaults
 - Preserved all scoring rubrics, MEDDIC assessment, pain mapping, and coaching frameworks
-- Added demo-specific: Challenger, MEDDPICC meeting framework, Interrogate the Problem, Five Implementation Habits
+- Added demo-specific: Challenger, MEDDPICC meeting framework, Question the Problem, Five Implementation Habits
 - Added anti-pattern detection for demo calls
