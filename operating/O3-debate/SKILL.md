@@ -1,11 +1,11 @@
 ---
 name: gtm-debate
 description: "Convene a panel of expert personas with opposing views to pressure-test a decision (architecture, positioning, feature direction, anything) before committing effort. Advisory only, never implements"
-version: 1.1.0
+version: 1.1.1
 category: Operating-Discipline
 author: Ryan Vanshur
 license: MIT
-updated: 2026-09-29
+updated: 2026-10-13
 tags: [decision-making, pressure-testing, strategy, trade-offs, architecture, positioning, operating-discipline]
 requires:
   skills: []
@@ -184,6 +184,13 @@ Adapt freely. The parenthetical is the school.
 
 ## Changelog
 
+- **1.1.1 (2026-10-13):** Credits section added for the MIT-licensed work this skill adapts.
 - **1.1.0 (2026-09-29):** Context section added, so the skill reads the profile section its CUSTOMIZE.md writes.
 - **1.0.0 (2026-09-28):** Initial release. Three-to-seven expert panel, converge/diverge posture,
   mandatory decision matrix, expert archetype bank.
+
+---
+
+## Credits
+
+Portions adapted from lovable-skill-debate by Lucio Amorim and from the adhd skill by uditakhourii, both used under the MIT License. The original copyright and license notices apply to those portions.
