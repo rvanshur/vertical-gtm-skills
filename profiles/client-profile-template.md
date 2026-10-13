@@ -14,13 +14,13 @@
 3. **Write in operator voice, not marketing voice.** A skill can't score an account against "innovative".
 4. **Refine over time.** After running a few skills you'll spot gaps. Add the missing data, and every skill picks up the change on its next run.
 
-A completed example lives at [`profiles/examples/legal-ops-example.md`](examples/legal-ops-example.md): Lexora, the fictional company every worked example in the repo uses.
+A completed example lives at [`profiles/examples/plotiq-example.md`](examples/plotiq-example.md): PlotIQ, the made-up software company for cemeteries and funeral homes that every worked example in the library uses.
 
 **Short on time?** Fill **ICP Definitions** and **Competitive Landscape** first. Between them they feed 13 of the 14 sales skills. The full map of which section feeds which skill is in [`docs/customization.md`](../docs/customization.md#which-profile-sections-feed-which-skills).
 
 ### Quality Matters Here
 
-The output of every skill is only as good as this file. "Reduces costs" as a value proposition produces generic output. "Cuts outside-counsel spend 20% in year one" produces output your reps can actually use in a conversation. Numbers, not adjectives.
+The output of every skill is only as good as this file. "Improves efficiency" as a value proposition produces generic output. "Found 212 unsold plots in 90 days" produces output your reps can actually use in a conversation. Numbers, not adjectives.
 
 ---
 
@@ -43,7 +43,7 @@ Two sentences: what you do and who you sell to. The hallway version.
 
 ## ICP Definitions
 
-Define who you sell to (strong, moderate and weak fit) **in numbers, geographies and signals**. "Mid-market companies" is not an ICP. "In-house legal teams at $500M to $5B companies with 15+ attorneys and $5M+ of outside-counsel spend" is.
+Define who you sell to (strong, moderate and weak fit) **in numbers, geographies and signals**. "Small businesses" is not an ICP. "Independent cemeteries with 2,000+ plots, plot records on paper and an annual state trust filing" is.
 
 ### ICP1: [Primary Segment Name]
 
@@ -194,13 +194,41 @@ List the types of companies that waste your time:
 
 ---
 
+## Qualification Zones
+
+Zones are groups of account traits your team agrees predict a win. Account Qualification, Research
+Outbound, Meeting Prep and Daily Prospecting score every account against them, so a verdict means
+the same thing in every skill. Four or five zones is plenty. Mark the ones you will not sell without
+as must-haves.
+
+| Zone | Must-Have? | HIGH | MEDIUM | LOW |
+|------|-----------|------|--------|-----|
+| 1. ___ | Yes / No | [What you can observe when this zone is strong] | ___ | [What rules it out] |
+| 2. ___ | ___ | ___ | ___ | ___ |
+| 3. ___ | ___ | ___ | ___ | ___ |
+| 4. ___ | ___ | ___ | ___ | ___ |
+
+Write every cell as something a rep can observe (a job posting, a system in use, a recent event),
+never a feeling. PlotIQ's five zones are a worked example.
+
+### Verdict Rule
+
+- **GREENLIGHT:** at least two zones HIGH, and no must-have zone at LOW
+- **REVIEW:** neither GREENLIGHT nor DISQUALIFY
+- **DISQUALIFY:** any disqualifier above, or every must-have zone at LOW
+
+MEDIUM never counts as HIGH. Change the rule if your team qualifies differently, and the skills
+follow what is written here.
+
+---
+
 ## Proof Points
 
 Named customers with specific metrics, matched to the personas and segments they resonate with. These get embedded into outbound sequences, meeting prep and battlecards.
 
 | Customer | Key Metric | Segment | Use When |
 |----------|-----------|---------|----------|
-| ___ | [A specific number, e.g. "20% cut in year one"] | [SMB/MM/Ent] | [Scenario where this proof point lands best] |
+| ___ | [A specific number, e.g. "212 unsold plots found in 90 days"] | [SMB/MM/Ent] | [Scenario where this proof point lands best] |
 | ___ | ___ | ___ | ___ |
 | ___ | ___ | ___ | ___ |
 | ___ | ___ | ___ | ___ |

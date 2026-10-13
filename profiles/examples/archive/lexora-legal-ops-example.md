@@ -1,3 +1,5 @@
+> **Retired 2026-10-13.** Lexora was the library's example company until October 2026. Every example now uses PlotIQ (`profiles/examples/plotiq-example.md`). Kept for reference only.
+
 # Client Profile: Lexora (Completed Example)
 
 > A completed client profile for **Lexora**, a fictional legal-operations platform. This is the
