@@ -1,11 +1,11 @@
 ---
 name: gtm-account-qualification
 description: "Scores accounts against ICP definitions using 8 weighted criteria, assesses qualification zone alignment, and delivers GREENLIGHT/MANUAL REVIEW/DISQUALIFY verdict"
-version: 1.2.0
+version: 1.3.0
 category: GTM-Enablement
 author: Ryan Vanshur
 license: MIT
-updated: 2026-09-29
+updated: 2026-10-13
 tags: [account-qualification, icp-scoring, pre-qualification, account-fit, prospecting, lead-scoring]
 requires:
   skills: ["gtm-account-snapshot"]
@@ -39,7 +39,7 @@ What this skill needs before it starts. **If a required input is missing, ask (d
 
 ## Output Contract
 
-Every run produces a **qualification verdict with structured evidence**, always organized the same way (the content changes per account; the structure never does).
+Every run produces a **qualification verdict with structured evidence**. It is always organized the same way, though the content changes per account.
 
 Core commitments: a **GREENLIGHT / MANUAL REVIEW / DISQUALIFY verdict**, the **ICP classification**, all **8 criteria scored with evidence**, all **Qualification Zones assessed**, **risk and opportunity flags**, and **role-specific next steps** (organized into 7 fixed sections, see *Artifact Generation* below).
 
@@ -55,7 +55,8 @@ Throughout this skill, `{Client Profile: X}` means "section X of `profiles/clien
 
 | Profile section | Used for |
 |---|---|
-| ICP Definitions | Classifying account type (ICP1 vs ICP2 vs No Fit) and zone alignment |
+| ICP Definitions | Classifying account type (ICP1 vs ICP2 vs No Fit) |
+| Qualification Zones | The zones to score (Step 4) and the zone verdict rule (Step 6) |
 | Competitive Landscape | Risk flags and competitive lock-in assessment |
 
 `{Methodology: X}` means "subsection X of the **Methodology** section below."
@@ -163,7 +164,7 @@ Pull everything available: account record, existing contacts, deal history, enga
 Check against `{Client Profile: ICP Definitions}` target codes. Score: CONFIRMED Match / Adjacent / No Match.
 
 #### 1d. Transaction Evidence Research
-Search for evidence of relevant transactions in public records, company website, or CRM data. Look for activity evidence confirming the company operates within the client's target market.
+Search for evidence of the activities your product serves, in public records, the company website, or CRM data. Look for records the company keeps, filings it must make, or sales activity it runs, and cite the source for each one. Activity evidence confirms the company operates within the client's target market.
 
 #### 1e. Revenue Estimation
 When revenue is unavailable, use `{Methodology: Revenue Estimation Methods}`.
@@ -196,7 +197,7 @@ Include a brief evidence note with source label for each.
 
 ### Step 4: Assess Qualification Zone Alignment
 
-Assessment zones are defined in `{Client Profile: ICP Definitions}`. Score alignment for each zone as HIGH, MEDIUM, LOW, or UNKNOWN:
+Score each zone listed in `{Client Profile: Qualification Zones}` as HIGH, MEDIUM, LOW, or UNKNOWN. Match the account's observable facts against that zone's HIGH, MEDIUM and LOW columns. MEDIUM never counts as HIGH:
 
 | Rating | Meaning |
 |--------|---------|
@@ -233,10 +234,13 @@ Assessment zones are defined in `{Client Profile: ICP Definitions}`. Score align
 
 #### Verdict Framework
 
+The zone conditions below follow the Verdict Rule in `{Client Profile: Qualification Zones}`. Zones 1 and 3 are must-haves.
+
 **GREENLIGHT** (Pursue actively)
 - ICP match confirmed with evidence
 - 6+ of 8 criteria scored STRONG or PARTIAL
 - At least 2 Qualification Zones scored HIGH
+- No must-have zone (Zone 1 or Zone 3) scored LOW
 - No critical risk flags
 - *BDR:* Run Account Snapshot Outbound, book discovery for AE. Check for active AE deals first.
 - *AE:* Identify target personas, initiate outbound or add to pipeline.
@@ -252,8 +256,8 @@ Assessment zones are defined in `{Client Profile: ICP Definitions}`. Score align
 **DISQUALIFY** (Do not pursue)
 - Does not match ICP
 - 3+ criteria scored WEAK
-- No Zones scored HIGH
 - Critical risk flag(s) present
+- Both must-have zones (Zone 1 and Zone 3) scored LOW
 - *Both:* Do not prospect. Explanation of why plus conditions that could reverse DQ.
 
 #### Summary Report
@@ -293,37 +297,39 @@ Assessment zones are defined in `{Client Profile: ICP Definitions}`. Score align
 
 ## Examples
 
-### Example 1: Clear GREENLIGHT (Corvane Industrial)
+### Example 1: Clear GREENLIGHT (Corrow Ridge Cemetery)
 
-**Context:** Large PE-backed manufacturer, multi-region operations, significant outside-counsel spend.
+**Context:** One-site independent cemetery with paper plat maps. A deed was recorded twice in 2025 (illustrative). Harborline Funeral Partners, a 14-site regional consolidator, acquired it four months ago. The general manager keeps the site budget until the integration review in Q1 2027.
 
-**Input:** "Qualify Corvane Industrial for fit."
+**Input:** "Qualify Corrow Ridge Cemetery for fit."
 
-**Process:** Company type matches ICP1: corporate legal department at $3.2B manufacturer. PE-backed. 38 in-house attorneys. 60+ outside counsel relationships. ~$14M annual outside-counsel spend [Verified: company website, typical for size]. Multi-region operations (multiple states). Clear evidence of fragmentation and manual invoice review processes.
+**Process:** Company type matches ICP1: one site, 14,000 plots, plot records on paper plat maps. The acquisition is a buying trigger for Trigger Event Outbound, not a risk on its own. Zone ratings come from `{Client Profile: Qualification Zones}`. The cast gives only the verdict, so the zone ratings are illustrative: Zone 1 HIGH (paper plat maps and the double-recorded deed inside 24 months). Zone 5 HIGH (new owner in the last 24 months). Zone 3 MEDIUM (the general manager holds the budget, and the Q1 2027 review sets the next decision). Zone 2 UNKNOWN (pre-need sales not yet confirmed). Two HIGH zones with no must-have zone at LOW meet the Verdict Rule.
 
-**Scoring:** 7/8 criteria STRONG or PARTIAL. 3/5 zones HIGH (attorney count, counsel spend, fragmentation pain). Opportunity signals: PE ownership (recent acquisitions drive legal spend volatility), new General Counsel (Dana Whitfield, 45 days tenure) signals mandate for cost control, existing spend is all-spreadsheets no visibility.
+**Scoring:** 6 of 8 criteria STRONG or PARTIAL (illustrative). Risk flag: Harborline's own system is unconfirmed. Check it before outbound. It is not a disqualifier unless Harborline runs its own system, which the profile's disqualifier covers.
 
-**Verdict:** GREENLIGHT (HIGH confidence). Recommendation: Run Account Snapshot to build targeted sequences for General Counsel (Dana Whitfield) and Head of Legal Operations (Sam Okafor, identified champion). This is the flagship enterprise deal profile.
+**Verdict:** GREENLIGHT (MEDIUM confidence, because Harborline's system is unchecked). Recommendation: Run Account Snapshot, then Trigger Event Outbound aimed at the general manager, timed before the Q1 2027 integration review. Check Harborline's system first.
 
-### Example 2: MANUAL REVIEW (Brightwater Logistics)
+### Example 2: MANUAL REVIEW (Sable Fork Cemetery, Inbound)
 
-**Context:** Mid-market company, inbound demo request, limited prior CRM data, need to confirm scale and organizational structure.
+**Context:** One-site cemetery with 2,900 plots, and its plot list lives in a spreadsheet. The general manager, Arlen Biggs, signs contracts under $25K. The cemetery asked for a demo through the website form after a search.
 
-**Input:** "Qualify Brightwater Logistics from their inbound request."
+**Input:** "Qualify Sable Fork Cemetery from their inbound request."
 
-**Scoring:** 4/8 criteria confirmed (size band, industry segment, attorney headcount of 11). 3 UNKNOWN (exact counsel spend volume, number of active outside firms, whether they have dedicated Legal Ops role). 2/5 zones HIGH. Revenue ~$780M [Verified: company website]. No critical disqualifiers, but organizational depth unclear.
+**Process:** Company type matches ICP1: one site, and 2,900 plots is above the 2,000-plot threshold. Zone ratings come from `{Client Profile: Qualification Zones}` (illustrative, because the cast gives the verdict only). Zone 3 HIGH (the general manager signs under $25K). Zone 1 MEDIUM (plot list in a spreadsheet, with lookup time not yet measured). Zone 2 UNKNOWN (pre-need sales not yet asked about). Zones 4 and 5 UNKNOWN (not yet asked). The inbound request shows awareness. It does not raise any zone score.
 
-**Verdict:** MANUAL REVIEW (MEDIUM confidence). Specific research needed: Confirm they have a Head of Legal Operations or equivalent owner role (inbound inquiry suggests awareness, but may be from a single attorney). Determine outside counsel count (typically 8-15 at this size). Validate counsel spend is material. If confirmed, GREENLIGHT-likely.
+**Scoring:** 5 of 8 criteria STRONG or PARTIAL, with 2 UNKNOWN (illustrative).
 
-### Example 3: Clear DISQUALIFY (Hollis & Crane LLP)
+**Verdict:** MANUAL REVIEW (MEDIUM confidence). One HIGH zone and no must-have zone at LOW does not reach GREENLIGHT. Before anyone commits time, confirm whether pre-need sales happen (Zone 2) and measure a real plot lookup (Zone 1). If both come back HIGH or MEDIUM, re-run the verdict.
 
-**Context:** 300-lawyer law firm. Requested product demo via web form.
+### Example 3: Clear DISQUALIFY (Northvale Memorial Holdings)
 
-**Input:** "Qualify Hollis & Crane LLP for fit."
+**Context:** Public consolidator with about 240 funeral homes and 90 cemeteries. It runs its own in-house system.
 
-**Scoring:** 0/8 criteria match. 0/5 zones HIGH. Disqualifier: Lexora sells to in-house legal teams managing outside counsel spend, not to law firms themselves.
+**Input:** "Qualify Northvale Memorial Holdings for fit."
 
-**Verdict:** DISQUALIFY (HIGH confidence). Company does not match ICP (law firms, not corporate legal departments). No path to reverse unless they have a corporate legal function separate from the law firm (unlikely). Response: Polite decline. No outbound to this account type.
+**Scoring:** Not scored past the disqualifier check. The profile lists public or PE-backed consolidators that run their own system as a disqualifier, and Northvale matches it. The cast status is OUT.
+
+**Verdict:** DISQUALIFY (HIGH confidence). Company does not match ICP (consolidator with its own system). Reverse only if the company stopped running its own system, which is not expected. Response: No outbound. Log the reason so no rep re-qualifies it from scratch.
 
 ---
 
@@ -391,6 +397,11 @@ Assessment zones are defined in `{Client Profile: ICP Definitions}`. Score align
 ---
 
 ## Changelog
+
+### Version 1.3.0 (2026-10-13)
+- Examples re-cast on PlotIQ, the library's one example company. Example errors fixed and a non-success example added.
+- Zone reference now points to `{Client Profile: Qualification Zones}`, and the verdict conditions follow its Verdict Rule
+- Vertical-specific wording in Step 1d made neutral
 
 ### Version 1.2.0 (2026-09-29)
 - Worked examples rewritten around the Lexora case study (profiles/examples/legal-ops-example.md)

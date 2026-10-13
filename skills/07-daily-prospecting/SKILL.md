@@ -1,11 +1,11 @@
 ---
 name: gtm-daily-prospecting
 description: "Morning dial prep for BDRs and AEs. Pulls today's tasks, gathers account/contact intelligence, scores ICP fit, prioritizes dials into 4 tiers (Hot, Warm, New, Recycle), generates per-account pre-call briefs with personalized openers, discovery questions, objection prep, and call goals. Role-aware tiering with BDR active deal filtering."
-version: 1.2.0
+version: 1.3.0
 category: GTM-Enablement
 author: Ryan Vanshur
 license: MIT
-updated: 2026-09-29
+updated: 2026-10-13
 tags: [daily-prospecting, dial-prep, bdr-prep, morning-report, call-prep, outbound-report, prospecting-brief]
 requires:
   skills: []
@@ -29,21 +29,21 @@ You are a **daily prospecting strategist and call preparation specialist for a v
 
 ## Input Contract
 
-What this skill needs before it starts. **If a required input is missing, ask; do not guess.**
+What this skill needs before it starts. **If a required input is missing, ask. Do not guess.**
 
 | Input | Required | Notes |
 |-------|----------|-------|
 | Rep name | ✅ Required | Whose tasks to pull for today |
-| Rep role (BDR / AE) | ✅ Required | Determines tiering logic and filtering (BDRs exclude active AE deals) |
-| Date | Optional | Defaults to today; allows prep for future dates |
+| Rep role (BDR / AE) | ✅ Required | Determines tiering logic and filtering. BDRs exclude active AE deals |
+| Date | Optional | Defaults to today. Allows prep for future dates |
 
-**Prerequisite check:** CRM query for all open tasks due today. If no tasks found, expand to overdue tasks (past 3 days).
+**Prerequisite check:** CRM query for all open tasks due today. If no tasks are found, expand to overdue tasks (past 3 days).
 
 ---
 
 ## Output Contract
 
-Every run produces **a prioritized dial queue with per-account pre-call briefs**. The structure is fixed (tier, account, opener, questions, goals); the content changes per rep and per day. Core commitments: 4-tier ranking (Hot/Warm/New/Recycle), ICP fit scoring, role-aware filtering (BDR coordination), and a scannable dial sheet with top 8 accounts detailed.
+Every run produces **a prioritized dial queue with per-account pre-call briefs**. The structure is fixed (tier, account, opener, questions, goals). The content changes per rep and per day. Core commitments: 4-tier ranking (Hot/Warm/New/Recycle), ICP fit scoring, role-aware filtering (BDR coordination), and a scannable dial sheet with the top 8 accounts detailed.
 
 ---
 
@@ -59,6 +59,7 @@ Throughout this skill, `{Client Profile: X}` means "section X of `profiles/clien
 |---|---|
 | ICP Definitions | Fit scoring at Step 4 |
 | Core Pain Points | Discovery question templates |
+| Qualification Zones | Why-this-account framing and zone scores in the pre-call briefs (Step 6A) |
 | Buyer Personas | Personalization and persona-matching |
 | Value Propositions | Hook selection for openers |
 | Proof Points | Social proof in pre-call briefs |
@@ -211,18 +212,18 @@ Rank all dials into 4 priority tiers. Criteria differ by role.
 #### BDR Tiering
 | Tier | Criteria |
 |------|---------|
-| **Hot** | Inbound signals on BDR-owned accounts; buying triggers with no active AE deal; meeting requested; strong ICP + active trigger |
-| **Warm** | Prior conversations gone quiet (14-30 days); email opens/clicks without reply; moderate ICP with engagement; AE-requested BDR assist |
-| **New** | First-touch accounts with no prior engagement; strong ICP, no relationship yet |
-| **Recycle** | Previously closed-lost with no AE re-engagement; opted-out contacts after cooling period; weak ICP or multiple failed attempts |
+| **Hot** | Inbound signals on BDR-owned accounts. Buying triggers with no active AE deal. Meeting requested. Strong ICP + active trigger |
+| **Warm** | Prior conversations gone quiet (14-30 days). Email opens/clicks without reply. Moderate ICP with engagement. AE-requested BDR assist |
+| **New** | First-touch accounts with no prior engagement. Strong ICP, no relationship yet |
+| **Recycle** | Previously closed-lost with no AE re-engagement. Opted-out contacts after cooling period. Weak ICP or multiple failed attempts |
 
 #### AE Tiering
 | Tier | Criteria |
 |------|---------|
-| **Hot** | Active deals with upcoming close dates or next steps due; recent activity (7 days); inbound signals; meeting requested |
-| **Warm** | Active deals gone quiet (14-30 days); email opens/clicks without reply; early pipeline needing advancement |
-| **New** | AE-sourced prospects with no prior engagement; strong ICP, no relationship |
-| **Recycle** | Previously closed-lost; stalled deals with no clear path; weak ICP or multiple failures |
+| **Hot** | Active deals with upcoming close dates or next steps due. Recent activity (7 days). Inbound signals. Meeting requested |
+| **Warm** | Active deals gone quiet (14-30 days). Email opens/clicks without reply. Early pipeline needing advancement |
+| **New** | AE-sourced prospects with no prior engagement. Strong ICP, no relationship |
+| **Recycle** | Previously closed-lost. Stalled deals with no clear path. Weak ICP or multiple failures |
 
 Within each tier, sub-rank by ICP fit (Strong > Moderate > Weak).
 
@@ -233,7 +234,7 @@ Within each tier, sub-rank by ICP fit (Strong > Moderate > Weak).
 For each account in the prioritized list:
 
 #### A. Why This Account (1-2 sentences)
-Connect to `{Methodology: Qualification Zones}`.
+Connect to `{Client Profile: Qualification Zones}`.
 
 #### B. Personalized Conversation Opener
 Use `{Methodology: Cold Call Framework: Three-Step Turnaround}`:
@@ -270,12 +271,12 @@ Based on account stage and history. Use `{Methodology: Common Objections}`.
 | # | Tier | Account | Contact | Title | ICP Fit | Last Touch | Call Goal |
 |---|------|---------|---------|-------|---------|-----------|-----------|
 
-**3. Detailed Pre-Call Briefs** (top 10 accounts)
+**3. Detailed Pre-Call Briefs** (top 8 accounts)
 Per account: snapshot, conversation history, engaged contacts, personalized opener, discovery questions, objection prep, call goal.
 
 **4. Active Deal Exclusions** (BDR only)
 Accounts removed from queue with recommended action:
-- "Share today's intel with [AE name]; they own an active deal at [Stage]"
+- "Share today's intel with [AE name]. They own an active deal at [Stage]"
 - "Ask [AE name] if they want BDR assist on this account"
 
 **5. AE Coordination Notes** (BDR only)
@@ -305,25 +306,68 @@ Reminders to log dispositions, create follow-up tasks, add accounts to sequences
 
 ## Examples
 
-### Example 1: BDR Morning Prep with Lexora
+### Example 1: BDR Morning Prep (Nadia Brandt)
 
-**Context:** Jordan Reyes (Lexora BDR, East region) has 18 tasks due today across legal-ops prospects.
+**Context:** Nadia Brandt, BDR at PlotIQ, has 8 tasks due today (illustrative count). One of them, Brackhaven Memorial Gardens, is ACTIVE at Stage 5 Negotiate with an AE.
 
-**Input:** "Run the daily prospecting report for Jordan Reyes."
+**Input:** "Run the daily prospecting report for Nadia Brandt."
 
-**Process:** CRM query returns 18 open tasks. 2 accounts have active AE deals (Corvane Industrial with Priya Nair; Tallis Energy pending) → filtered to exclusions. 16 accounts scored: 4 Strong Fit (15+ attorneys, $5M+ counsel spend), 7 Moderate (10-14 attorneys, partial fragmentation), 4 Weak, 1 No Fit. Tiered: 3 Hot (Ardent Insurance Group inbound request from newly hired Head of Legal Ops post-PE acquisition; Pinecrest Hospitality considering service-provider displacement from LedgerLine Audit; Halden Health Systems CFO cost mandate from 10-K), 5 Warm (prior discovery calls gone 14-30 days silent), 6 New (first touch), 2 Recycle (Mariner Freight closed-lost to Competitor X, watching for Legal Ops champion transition).
+**Process:** CRM query returns 8 open tasks (illustrative). BDR active deal filter: Brackhaven Memorial Gardens has an active AE deal at Stage 5 Negotiate, so it moves to exclusions. The other 7 accounts are scored against `{Client Profile: ICP Definitions}` and `{Client Profile: Qualification Zones}`:
+- **Quill Hollow Memorial Park:** Strong fit (8,800 plots, paper plat maps, GREENLIGHT). Hot: strong ICP plus a records finding from the last state review `[CRM]`. The finding has no date, so the opener must not call it recent.
+- **Sable Fork Cemetery:** Moderate fit (REVIEW). Hot: inbound demo request from the website form.
+- **Corrow Ridge Cemetery:** Strong fit (GREENLIGHT). New. The ownership change was four months ago, which is EXPIRED under the 7-14 day taxonomy, so it is not cited as a fresh trigger.
+- **Greyfield Memorial Park:** Strong fit (GREENLIGHT). New. The Stonemark renewal in January 2027 belongs to Competitive Displacement, so it is not used in this opener.
+- **Saltmarsh Heritage Group:** Moderate fit (REVIEW, Zone 3 LOW). New. The owner letter's single-system plan is the opener.
+- **Tamsin Vale Cemetery:** Moderate fit (REVIEW). New.
+- **Lowmoor Memorial Gardens:** Closed-lost to Oldgate. Recycle.
 
-**Output:** Dashboard showing 16 dials (3 Hot, 5 Warm, 6 New, 2 Recycle). 2 excluded accounts: Corvane Industrial (Priya owns at Proposal stage); share tactical intel. Tallis Energy (pending AE assignment). Detailed briefs for top 10. Strongest opportunity: Ardent Insurance Group. New Head of Legal Ops hired post-PE acquisition (45 days). Managing outside counsel in spreadsheets ($6M spend). Pain quantified; buying trigger confirmed. Opener focuses on PE integration pain and spend visibility.
+No account went quiet in the 14-30 day range, so the Warm tier is empty. That is a finding, not a gap in the report.
 
-### Example 2: AE Pipeline Calls with Lexora
+**Output:** Dashboard: 7 dials (2 Hot, 0 Warm, 4 New, 1 Recycle). 1 exclusion: Brackhaven Memorial Gardens. Share today's intel with the AE. They own an active deal at Stage 5 Negotiate.
 
-**Context:** Priya Nair (Lexora Account Executive, Enterprise) has 8 tasks due today, active deals and new outbound.
+| # | Tier | Account | Contact | ICP Fit | Call Goal |
+|---|------|---------|---------|---------|-----------|
+| 1 | Hot | Quill Hollow Memorial Park | Ines Carmody, General Manager | Strong | Confirm whether the review finding is still open. Book a 15-minute discovery call |
+| 2 | Hot | Sable Fork Cemetery | Arlen Biggs, General Manager (requester not confirmed) | Moderate | Confirm who requested the demo. Book discovery before any demo |
+| 3 | New | Corrow Ridge Cemetery | Unknown (no contact found) | Strong | Find the general manager and ask who holds the site budget |
+| 4 | New | Greyfield Memorial Park | Unknown (no contact found) | Strong | Find the decision-maker and ask about the pre-need intake |
+| 5 | New | Saltmarsh Heritage Group | Hector Ruiz, CFO | Moderate | Ask which system the five sites move to, and when |
+| 6 | New | Tamsin Vale Cemetery | Unknown (no contact found) | Moderate | Find who signs, and ask how plot records are kept |
+| 7 | Recycle | Lowmoor Memorial Gardens | Unknown (champion moved to Quill Hollow) | Moderate | Do not dial. Route to Closed-Loss Reactivation first |
 
-**Input:** "Prep my dials for today, Priya."
+**Brief for #1 (Quill Hollow Memorial Park):**
+- **Why this account:** Zone 1 and Zone 5 HIGH (illustrative ratings). The records finding is `[CRM]`, with no date recorded.
+- **Opener:** "Hi Ines, it's Nadia Brandt with PlotIQ. I'm guessing the records finding from the state review is still on your list. Is that right?"
+- **Discovery questions:** (1) "What did the state review ask for, and what is still open?" (2) "When a family asks for a plot, how long does it take you to find it?" (3) "Who else would need to see a tool before it is bought?"
+- **Objection prep:** "We already have a system." Response: "That's good to hear. What's working, and where do the paper maps still get in the way?"
+- **Call goal:** Confirm the review issue, then book a 15-minute discovery call.
 
-**Process:** `user_role = AE`. No active deal filter. 8 tasks scored and tiered: 2 Hot (Corvane Industrial at Proposal, Sam Okafor champion actively selling internally, close date this month; Halden Health Systems moving to evaluation after CFO-driven discovery), 3 Warm (early-stage accounts gone quiet 14-30 days), 1 New (inbound from hospital network), 2 Recycle (previous closed-lost accounts). Pre-call briefs emphasize deal advancement for Hot and Warm (move to next stage), prospecting discovery for New and Recycle.
+### Example 2: AE Pipeline Calls (Owen Pruitt)
 
-**Output:** Dashboard showing 8 dials (2 Hot, 3 Warm, 1 New, 2 Recycle). No exclusions (AE sees full book). Detailed briefs for all 8. Strongest opportunity: Corvane Industrial. Reason: Sam Okafor (Head of Legal Ops) is confirmed champion, actively evangelizing internally. Economic buyer (GC Dana Whitfield) engaged. Technical and procurement steps scoped. Close date end of month. Today's call: finalize contract terms and confirm implementation timeline.
+**Context:** Owen Pruitt, Account Executive for outside sales in Texas and Oklahoma, has 6 tasks due today (illustrative count). The cast does not name Brackhaven's AE, so this example assumes Brackhaven is Owen's deal (illustrative).
+
+**Input:** "Prep my dials for today, Owen."
+
+**Process:** `user_role = AE`. No active deal filter, because the AE sees the full book. Six tasks scored and tiered:
+- **Hot:** Brackhaven Memorial Gardens (ACTIVE at Stage 5 Negotiate, next steps due). Sable Fork Cemetery (inbound demo request, Moderate fit, REVIEW).
+- **Warm:** none. No open deal has gone quiet for 14-30 days in the CRM.
+- **New:** Corrow Ridge Cemetery (Strong), Quill Hollow Memorial Park (Strong), Tamsin Vale Cemetery (Moderate).
+- **Recycle:** Lowmoor Memorial Gardens (closed-lost to Oldgate nine months ago, verdict REVIEW, re-scored).
+
+**Output:** Dashboard: 6 dials (2 Hot, 0 Warm, 3 New, 1 Recycle). No exclusions.
+
+| # | Tier | Account | Contact | ICP Fit | Call Goal |
+|---|------|---------|---------|---------|-----------|
+| 1 | Hot | Brackhaven Memorial Gardens | Ruth Ellery, General Manager (champion) | Strong | Confirm the signature date and the handoff to Eli Marsh, Implementation Lead |
+| 2 | Hot | Sable Fork Cemetery | Arlen Biggs, General Manager | Moderate | Confirm who requested the demo, then book discovery. No demo yet |
+| 3 | New | Corrow Ridge Cemetery | Unknown (no contact found) | Strong | Find the general manager before the integration review in Q1 2027 |
+| 4 | New | Quill Hollow Memorial Park | Ines Carmody, General Manager | Strong | Confirm the review finding and book discovery |
+| 5 | New | Tamsin Vale Cemetery | Unknown (no contact found) | Moderate | Find who signs, and confirm the paper-map process |
+| 6 | Recycle | Lowmoor Memorial Gardens | Unknown (champion moved) | REVIEW | Do not dial yet. Finish the loss review first |
+
+**Strongest opportunity:** Brackhaven. It is at Stage 5, and the Oldgate renewal in March 2027 gives the next call a reason to move. The call should close the signature date, not restart discovery.
+
+**Sable Fork:** the requester asked for a demo, but the CRM has no discovery findings. The brief leads with discovery, which matches the prerequisite in the meeting-prep skill.
 
 ---
 
@@ -362,7 +406,7 @@ Reminders to log dispositions, create follow-up tasks, add accounts to sequences
 ## Best Practices
 
 ### Do's
-- **Run this every morning.** Consistency compounds. Reps who prep daily outperform by 30%+ on connect-to-meeting rates
+- **Run this every morning.** Consistency compounds. The sheet is only useful if it is current when the block starts
 - **Start with Hot tier.** These have the highest probability of conversion
 - **Personalize every opener.** Each hook should reference a specific account signal, not generic phrasing
 - **Log outcomes immediately.** End-of-day tracking is only useful if dispositions are logged
@@ -379,7 +423,7 @@ Reminders to log dispositions, create follow-up tasks, add accounts to sequences
 - [ ] Tier assignments based on engagement signals + ICP, not alphabetical
 - [ ] Each opener references a specific account signal (not generic)
 - [ ] Discovery questions tailored to account's known gaps
-- [ ] Role detected; BDR active deals filtered; AE sees full book
+- [ ] Role detected. BDR active deals filtered. AE sees full book
 - [ ] No placeholder brackets in final output
 - [ ] Proof points use source labels
 - [ ] Dial sheet is scannable at a glance
@@ -397,6 +441,10 @@ Reminders to log dispositions, create follow-up tasks, add accounts to sequences
 ---
 
 ## Changelog
+
+### Version 1.3.0 (2026-10-13)
+- Examples re-cast on PlotIQ, the library's one example company. Example errors fixed and a non-success example added.
+- Dial sheet and brief count aligned to top 8. Qualification Zones reference corrected. Unsourced statistic removed
 
 ### Version 1.2.0 (2026-09-29)
 - Worked examples rewritten around the Lexora case study (profiles/examples/legal-ops-example.md)

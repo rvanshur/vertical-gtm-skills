@@ -1,11 +1,11 @@
 ---
 name: gtm-closed-loss-reactivation
 description: "Re-engages closed-lost accounts using CRM intelligence. Classifies loss reason (7 categories), assesses what's changed since deal died, re-qualifies ICP fit, selects loss-reason-specific reactivation strategy, and generates 4-step sequences with history-aware openers and call prep"
-version: 1.2.0
+version: 1.3.0
 category: GTM-Enablement
 author: Ryan Vanshur
 license: MIT
-updated: 2026-09-29
+updated: 2026-10-13
 tags: [closed-loss, reactivation, win-back, lost-deal, re-engagement, deal-recovery]
 requires:
   skills: []
@@ -44,7 +44,7 @@ What this skill needs before it starts. **If a required input is missing, ask. D
 
 ## Output Contract
 
-Every run produces **a reactivation analysis, strategy, and 4-step sequences**. The content changes per loss scenario; the structure never does. Core commitments: classification of loss reason, assessment of what's changed, re-qualification verdict (REACTIVATE / MONITOR / RETIRE), loss-reason-specific reactivation strategy, and a single-page cheatsheet with history-aware openers and call prep.
+Every run produces **a reactivation analysis, strategy, and 4-step sequences**. The content changes per loss scenario. The structure never does. Core commitments: classification of loss reason, assessment of what's changed, re-qualification verdict (REACTIVATE / MONITOR / RETIRE), loss-reason-specific reactivation strategy, and a single-page cheatsheet with history-aware openers and call prep.
 
 ---
 
@@ -59,6 +59,7 @@ Throughout this skill, `{Client Profile: X}` means "section X of `profiles/clien
 | Profile section | Used for |
 |---|---|
 | ICP Definitions | Re-qualifying fit post-loss |
+| Qualification Criteria | Buying triggers to check for market changes since the loss (Step 3) |
 | Buyer Personas | Persona-matched sequence variations |
 | Competitive Landscape | Buyer's remorse scenarios (competitor pain) |
 
@@ -160,7 +161,7 @@ Determine whether the user is a BDR or AE.
 **Fallback:** Ask: "Are you a BDR or AE?"
 **Output:** `user_role` (BDR or AE)
 
-**BDR Coordination Rule:** Always surface the original AE who owned the closed-lost deal. BDRs must coordinate with the original AE before re-engaging; the AE may have context about why re-engagement is or isn't appropriate.
+**BDR Coordination Rule:** Always surface the original AE who owned the closed-lost deal. BDRs must coordinate with the original AE before re-engaging. The AE may have context about why re-engagement is or isn't appropriate.
 
 ---
 
@@ -199,7 +200,7 @@ Query CRM for the specified account's closed-lost opportunity. Extract:
 
 ### Step 2: Classify Loss Reason
 
-Categorize using `{Methodology: Loss Reason Taxonomy}`. Use CRM loss reason if logged; otherwise infer from deal history and engagement patterns.
+Categorize using `{Methodology: Loss Reason Taxonomy}`. Use CRM loss reason if logged. Otherwise infer from deal history and engagement patterns.
 
 **Inference signals:**
 - Last stage + last activity type + time between activities
@@ -307,7 +308,7 @@ Use `{Client Profile: Competitive Landscape}` to match proof points to the speci
 | Low-pressure ask | "Worth 15 minutes to compare notes? Not a full evaluation, just a conversation about what's changed." |
 
 #### Loss-Reason-Specific Pain Questions
-Map to `{Methodology: Loss Reason Taxonomy}`. Each loss type has specific pain surfacing questions.
+Use the loss reason from `{Methodology: Loss Reason Taxonomy}`. The taxonomy names the reason, not the question. Write one pain-surfacing question for that reason, using the Talk Track pattern above, and check the question against the AE's loss notes before the call.
 
 #### Voicemail Script (<30 seconds)
 - Name + company + "we spoke back in [month]"
@@ -366,35 +367,68 @@ Color-code by reactivation urgency. Include **LOSS REASON BADGE** in header.
 
 ## Examples
 
-### Example 1: Buyer's Remorse (Mariner Freight and Competitor X)
+The PlotIQ cast has one closed-lost account, Lowmoor Memorial Gardens. The other two examples use accounts the cast marks OUT or moved, and each one says so where it applies.
 
-**Context:** Mariner Freight chose Competitor X nine months ago. Competitor X quality has continued declining.
+### Example 1: Closed-Loss Review, Lost to a Competitor on "Timing" (Lowmoor Memorial Gardens)
 
-**Input:** "Should we try to win back Mariner Freight? They chose Competitor X."
+**Context:** Lowmoor Memorial Gardens, one site with 7,500 plots, closed-lost to Oldgate Ledger Pro nine months ago. The CRM reason is "timing." The general manager, Ines Carmody, was the champion. She has since moved to Quill Hollow Memorial Park, six months ago.
 
-**Process:** CRM pull: closed-lost $85K deal, chose Competitor X at Negotiation stage, AE was Marcus Webb. Champion: Head of Legal Operations, still at company. Loss classification: Lost to Competitor (High confidence). What's changed: Competitor X support continues declining. Lexora has displaced three Competitor X accounts in the freight vertical since this deal closed (including a similar-sized carrier). Verdict: REACTIVATE.
+**Input:** "Should we reactivate Lowmoor Memorial Gardens? We lost to Oldgate on timing."
 
-**Output:** Buyer's Remorse strategy. Two persona sequences (Head of Legal Operations and General Counsel, 8 emails total). Reactivation call prep and cheatsheet. Entry angle: "How has Competitor X been handling invoice automation at the scale Mariner operates?"
+**Step 0: Role Detection** User is BDR. The original AE is not named in the cast. Coordinate with that AE before any outreach.
 
-### Example 2: Budget Hold (Ardent Insurance Group)
+**Step 1: Deal History.** Deal value is a required input, and the cast does not supply it, so the verdict is held until it is entered. Days since close: about 270 (nine months). Champion: Ines Carmody, now at Quill Hollow. Loss notes: not in the cast.
 
-**Context:** Ardent liked Lexora but could not fund it. Mentioned revisiting in Q3.
+**Step 2: Loss Classification.** Two categories fit, and the CRM reason does not settle it:
+- Budget / Timing (MEDIUM). The CRM says "timing."
+- Lost to Competitor (MEDIUM). Oldgate is named as the winner.
 
-**Input:** "Build reactivation for Ardent Insurance. Closed-lost due to budget in January."
+Champion left does not apply. She moved six months ago, after the loss, so her move did not cause it. The AE's notes decide between the two categories.
 
-**Process:** Loss classification: Budget and Timing (High confidence. AE notes say "revisit Q3"). What's changed: New PE investment announced in February (potential budget unlock). Days since close: 60. Timing assessment: slightly early but PE investment creates opening. Verdict: REACTIVATE.
+**Step 3: What's Changed.**
+- Account: the champion moved to Quill Hollow. That is a new account for the team, not a reason to reactivate Lowmoor.
+- Competitor: the profile records Oldgate's weaknesses (upfront cost, poor mobile, no AI). These are research estimates from the profile, not new facts.
+- Company: PlotIQ is in beta, so it has no new customer wins to cite. Use only the beta proof points, and label them illustrative.
 
-**Output:** Circle Back strategy leveraging PE investment as budget unlock signal. Entry: "When we spoke in January, budget was the blocker. Noticed the PE investment announcement. Does that change the picture?"
+**Step 4: Re-Qualification.** Zone re-score is open. The cast records the account as REVIEW (re-scored), and it does not say which zone moved. Verdict: **REVIEW**, not REACTIVATE.
 
-### Example 3: Champion Moved (Mariner to Tallis Energy)
+**Step 5: Strategy.** Buyer's Remorse play. Nine months after a competitor win sits inside the 6-12 month window, so the timing is right. The opener follows the strategy: "When we last spoke, you went with Oldgate. Curious how that's been working out, specifically around [area the AE recorded]."
 
-**Context:** Mariner Freight's Head of Legal Operations moved to Tallis Energy, also in ICP.
+**Step 6: Sequences held.** The contact at Lowmoor is unknown after the champion moved. Email 1 cannot name anyone yet, so no sequence is generated (0 emails).
 
-**Input:** "Our champion at Mariner left. They went to Tallis Energy. What do we do?"
+**Summary:** BDR. Lowmoor Memorial Gardens, REVIEW (re-scored). Recommended first actions: (1) get the deal value and the AE's loss notes. (2) Find the current Lowmoor contact (Track B). (3) Work Quill Hollow as its own account, not as part of this reactivation.
 
-**Process:** Two-track approach. Track A: Champion at Tallis Energy (ICP1, $2.6B revenue, 31 attorneys, perfect fit). Track B: Replacement at Mariner (unknown and need to identify). Verdict: REACTIVATE both tracks.
+### Example 2: Re-Qualification Retires the Account (Northvale Memorial Holdings)
 
-**Output:** Track A sequence targeting champion at Tallis Energy (warm lead). Track B sequence for Mariner replacement. Two cheatsheets. Champion follow has highest priority.
+**Context:** Northvale Memorial Holdings is a public consolidator with about 240 funeral homes and 90 cemeteries, and it runs its own in-house system. The cast marks it OUT. This example assumes a closed-lost record exists, so that the retire path can be shown. The cast does not confirm one.
+
+**Input:** "Northvale closed-lost last year. Should we try again?"
+
+**Step 1: Deal History.** Deal value: not in the cast, so `[Unknown]`. Loss date: `(illustrative: about 14 months ago)`.
+
+**Step 2: Loss Classification.** Not a Fit. The company's own in-house system is the requirement that the product did not meet. Confidence HIGH, because the profile names this as a disqualifier.
+
+**Step 3: What's Changed.** Nothing in the cast says Northvale has changed its system or its ownership structure.
+
+**Step 4: Re-Qualification.** The profile's disqualifier applies: a public consolidator that runs its own system. Fit was weak then and has not improved. Verdict: **RETIRE**. Do not spend cycles on it.
+
+**Step 5-6: No strategy, no sequences (0 emails).** Reopen only if the company stops running its own system, and expect that to be rare.
+
+**Summary:** RETIRE. Log the reason in the CRM so no rep re-qualifies it from scratch.
+
+### Example 3: Champion Moved to an ICP Account (Ines Carmody, Lowmoor to Quill Hollow)
+
+**Context:** Ines Carmody, Lowmoor's champion, now runs Quill Hollow Memorial Park. Quill Hollow is a TARGET account in the cast, with a GREENLIGHT verdict and an owner who signs under $25K.
+
+**Input:** "Our champion from Lowmoor is now at Quill Hollow. What do we do?"
+
+**Step 2: Loss Classification.** Unchanged from Example 1. The champion's move came after the loss, so the loss reason is not "Champion Left."
+
+**Step 5: Strategy.** The Champion Follow pattern still applies, because the champion now runs a GREENLIGHT account. Two tracks:
+- Track A: follow Ines Carmody to Quill Hollow. This is a new-account play, so route it to Account Snapshot (`gtm-account-snapshot`). Use the Quill Hollow follow-the-champion play from the cast. Reference Lowmoor only if she raises it.
+- Track B: find the current Lowmoor contact. This stays in this skill and remains REVIEW until Example 1's open items close.
+
+**Output:** Track A goes to Account Snapshot as a new account. Track B stays on hold in this skill. Priority: Track A, because the champion already knows the product and runs an account that fits the ICP.
 
 ---
 
@@ -410,7 +444,7 @@ Color-code by reactivation urgency. Include **LOSS REASON BADGE** in header.
 
 ### Pattern: Champion Follow
 **When:** The loss reason was "Champion Left" and the champion moved to another company in ICP.
-**Action:** Run two parallel tracks: Track A (follow champion to new company), Track B (find replacement at original account). Prioritize Track A; the champion already knows your product's value.
+**Action:** Run two parallel tracks: Track A (follow champion to new company), Track B (find replacement at original account). Prioritize Track A. The champion already knows your product's value.
 
 ---
 
@@ -434,14 +468,14 @@ Color-code by reactivation urgency. Include **LOSS REASON BADGE** in header.
 
 ### Do's
 - **Acknowledge the history.** Email 1 must reference the prior relationship with specific context
-- **Lead with what's changed.** New information justifies the re-approach; without it, you're just pestering
+- **Lead with what's changed.** New information justifies the re-approach. Without it, you're just pestering
 - **Lower the ask.** Aim for a conversation about what's changed, not "let's restart the evaluation"
 - **Match proof points to loss scenario.** For example: competitor loss → competitor displacement proof point
 - **Coordinate BDRs with original AEs.** The AE has context the BDR doesn't
 
 ### Don'ts
 - **Don't pretend the deal never happened.** "We haven't spoken in a while" is not a reason to call
-- **Don't bash their decision.** They chose what they chose; respect it
+- **Don't bash their decision.** They chose what they chose. Respect it
 - **Don't reactivate accounts that were genuinely a poor fit** unless something has materially changed
 - **Don't use "Following up" as a subject line.** Ever
 - **Don't use the cold call opener.** Use the reactivation structure instead: Acknowledge → Reference → Bridge
@@ -472,6 +506,10 @@ Color-code by reactivation urgency. Include **LOSS REASON BADGE** in header.
 ---
 
 ## Changelog
+
+### Version 1.3.0 (2026-10-13)
+- Examples re-cast on PlotIQ, the library's one example company. Example errors fixed and a non-success example added.
+- Broken references fixed: Qualification Criteria added to the Context table, and the loss-reason question step rewritten
 
 ### Version 1.2.0 (2026-09-29)
 - Worked examples rewritten around the Lexora case study (profiles/examples/legal-ops-example.md)

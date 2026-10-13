@@ -1,11 +1,11 @@
 ---
 name: gtm-account-snapshot
 description: "BDR daily driver (rapid account research, ICP quick-score, persona-mapped contact prioritization, pain hypothesis generation, 3-step email sequences, cold call prep sheet, and single-page outbound cheatsheet)"
-version: 1.2.0
+version: 1.3.0
 category: GTM-Enablement
 author: Ryan Vanshur
 license: MIT
-updated: 2026-09-29
+updated: 2026-10-13
 tags: [account-snapshot, bdr-daily-driver, outbound, prospecting, cold-call-prep, email-sequences, cheatsheet]
 requires:
   skills: []
@@ -34,7 +34,7 @@ What this skill needs before it starts. Ask for any required input instead of gu
 | Input | Required | Notes |
 |-------|----------|-------|
 | Account name | ✅ Required | The company to research |
-| User role (BDR / AE) | Optional | Detected from context; used to shape recommendations |
+| User role (BDR / AE) | Optional | Detected from context. Used to shape recommendations |
 
 ---
 
@@ -42,7 +42,7 @@ What this skill needs before it starts. Ask for any required input instead of gu
 
 Every run produces an **8-section outbound cheatsheet with the same structure, in the same order.** The content changes per account, but the layout never does. This consistency makes it usable during a prospecting block (a rep running through 10 accounts never has to relearn the layout).
 
-Core commitments: ICP verdict, contact mapping, pain hypotheses, email sequences, cold call prep, and objection handling (organized into 8 fixed sections; see *Artifact Generation* below).
+Core commitments: ICP verdict, contact mapping, pain hypotheses, email sequences, cold call prep, and objection handling (organized into 8 fixed sections. See *Artifact Generation* below).
 
 ---
 
@@ -79,11 +79,11 @@ Even in a speed-optimized workflow, every data point must be labeled:
 |-------|-------|------------|-------|
 | **VERIFIED** | `[CRM]` or `[Verified: Source]` | Confirmed from CRM data, company website, SEC filings, or authoritative source | Use directly in emails and call prep |
 | **INFERRED** | `[Inferred: Basis]` | Logical conclusion from verified data (e.g., "multi-state operations" inferred from branch locations) | Use in pain hypotheses and discovery questions |
-| **ESTIMATED** | `[Estimated: Method]` | Revenue or volume estimate from employee count, branch proxy, or industry ranking | Label clearly; never present as fact |
-| **UNKNOWN** | `[Unknown]` | Data not available | Mark as a gap; include a discovery question to fill it |
+| **ESTIMATED** | `[Estimated: Method]` | Revenue or volume estimate from employee count, branch proxy, or industry ranking | Label clearly. Never present as fact |
+| **UNKNOWN** | `[Unknown]` | Data not available | Mark as a gap. Include a discovery question to fill it |
 
 ### Speed vs. Depth Trade-offs
-1. **CRM data first.** Always check CRM before web research; it is faster and more personalized.
+1. **CRM data first.** Always check CRM before web research. It is faster and more personalized.
 2. **5-minute research ceiling.** If research is taking longer than 5 minutes, stop and work with what you have.
 3. **Unknown is acceptable.** An `[Unknown]` label with a discovery question is better than a fabricated fact.
 4. **Pain hypotheses are always INFERRED.** They are educated guesses based on company profile, not confirmed pain.
@@ -91,8 +91,8 @@ Even in a speed-optimized workflow, every data point must be labeled:
 
 ### Confidence in Pain Hypotheses
 - **HIGH confidence**: Pain hypothesis matches company profile on 3+ signals (size, vertical, geographic exposure, CRM history)
-- **MEDIUM confidence**: Pain hypothesis matches on 1-2 signals; plausible but needs validation
-- **LOW confidence**: Pain hypothesis is generic; could apply to any company in the industry. Rewrite to be more specific or flag as weak.
+- **MEDIUM confidence**: Pain hypothesis matches on 1-2 signals. It is plausible but needs validation
+- **LOW confidence**: Pain hypothesis is generic. It could apply to any company in the industry. Rewrite to be more specific or flag as weak.
 
 ### ICP Quick-Score Dimensions
 
@@ -102,7 +102,7 @@ Score each company against the scoring framework from `{Methodology: ICP Quick-S
 |--------|---------|
 | [Primary fit signal] | Yes / Partial / No |
 | [Geographic/scale signal] | Yes (X regions) / Single region |
-| [Regulatory or complexity signal] | Tier 1 / Tier 2 / Minimal |
+| [Regulatory or complexity signal] | High / Medium / Minimal |
 | Scale (revenue/volume) | Enterprise / Mid-Market / SMB |
 | [Team complexity signal] | Dedicated team / Small team / Unknown |
 
@@ -197,8 +197,8 @@ Identify regions from company research and map to market tiers defined in `{Clie
 
 | Region | Tier | Estimated Monthly Volume | Source |
 |--------|------|-------------------------|--------|
-| [Region 1] | Tier 1 | [volume] | [source] |
-| [Region 2] | Tier 2 | [volume] | [source] |
+| [Region 1] | [Tier from profile] | [volume] | [source] |
+| [Region 2] | [Tier from profile] | [volume] | [source] |
 | ... | ... | ... | ... |
 
 ---
@@ -250,14 +250,14 @@ Produce a **3-step email sequence** for the top 2-3 prioritized personas. Accoun
 - **First line must reference something specific about the company** (not generic)
 - Personalize with contact name when known
 - Each step uses a different pain hypothesis or angle
-- Only VERIFIED and INFERRED data may appear in emails; ESTIMATED data must be framed as questions
+- Only VERIFIED and INFERRED data may appear in emails. ESTIMATED data must be framed as questions
 
 #### Sequence Structure (Per Persona)
 | Step | Angle | Purpose |
 |------|-------|---------|
-| **Email 1** | Company-specific pain hypothesis + product connection | Prove homework; earn the open |
-| **Email 2** | Different pain angle + proof point from similar company | Build credibility; show results |
-| **Email 3** | Breakup + single question | Low-pressure close; one question |
+| **Email 1** | Company-specific pain hypothesis + product connection | Prove homework. Earn the open |
+| **Email 2** | Different pain angle + proof point from similar company | Build credibility. Show results |
+| **Email 3** | Breakup + single question | Low-pressure close. One question |
 
 Match proof points from `{Client Profile: Proof Points}` to the prospect's vertical and size. Max 1 per email, labeled with source.
 
@@ -341,120 +341,124 @@ Use `{Client Profile: Competitive Landscape}` for competitive objections. Includ
 
 ## Examples
 
-### Example 1: BDR Account Snapshot (Corvane Industrial)
+Account facts in these examples come from the PlotIQ example cast, and they are tagged `[CRM]` as if the CRM held them. Any number the profile does not supply is tagged `(illustrative)`. Three examples follow: a BDR research pass that leads to outbound, an AE quick prep that ends in a REVIEW verdict, and a batch that includes a disqualified account and a closed-lost one.
 
-**Context:** BDR prepping for a prospecting call to Corvane Industrial (flagship enterprise account) during a morning outbound block.
+### Example 1: BDR Account Snapshot (Quill Hollow Memorial Park)
 
-**Input:** "Give me an account snapshot on Corvane Industrial with outbound sequences and a cheatsheet."
+**Context:** A BDR prepares a first outbound touch to Quill Hollow Memorial Park during a morning block. The general manager, Ines Carmody, moved here six months ago from Lowmoor Memorial Gardens, where she was a champion.
 
-**Step 0: Role Detection** User is BDR. CRM check: account exists in CRM, no active deal yet (new GC). Clear to proceed.
+**Input:** "Give me an account snapshot on Quill Hollow Memorial Park with outbound sequences and a cheatsheet."
+
+**Step 0: Role Detection** User is BDR. CRM check: account exists, status TARGET, no active deal. Clear to proceed.
 
 **Step 1: Intelligence Gathering**
-CRM search: Account exists. No active deal. 2 contacts found: Dana Whitfield, General Counsel (email opened 8 days ago). Sam Okafor, Head of Legal Operations (contact info in CRM, last outreach 45 days ago).
+CRM search: Account exists. No active deal. One contact found: Ines Carmody, General Manager (champion, `[CRM]`). The owner's name is not in the CRM. Site budget: the owner signs under $25K `[CRM]`. The last state review included a records finding `[CRM]`.
 
-Company research: Corvane Industrial, HQ Michigan. PE-backed (acquired 2022) [Verified: company website]. 38 in-house attorneys. 60+ outside counsel relationships [Verified: Legal Ops team mentions this on LinkedIn]. Revenue $3.2B [Verified: Bridgepoint press release]. Heavy manufacturing vertical with multi-state operations.
+Company research: One site, 8,800 plots, paper plat maps `[CRM]`. The owner brought a growth mandate when Ines Carmody joined `[CRM]`. Region: `[Unknown]`, so the market tier is left blank until the profile's tiers are checked.
 
 **Step 2: Account Snapshot**
-Company brief: Corvane Industrial | Michigan | Manufacturing | PE-backed | $3.2B revenue | 38 attorneys | 60+ outside firms | Enterprise.
+Company brief: Quill Hollow Memorial Park | State not in CRM | Independent cemetery | Ownership not recorded | 8,800 plots | Paper plat maps | Mid-size (one site).
 
 ICP Quick-Score: **GREENLIGHT**
-- Primary fit signal: Yes (38 attorneys, $14M+ counsel spend estimated) [Verified - company profile]
-- Multi-region: Yes, operations across multiple states [Verified - website]
-- Tier 1 enterprise exposure [Verified - company size]
-- Scale: Enterprise ($3.2B) [Verified - PE filing]
-- Team complexity: Dedicated Legal Ops function (Sam Okafor role) [Verified - LinkedIn]
+- Primary fit signal: Yes (8,800 plots, paper plat maps, above the 2,000-plot threshold) `[CRM]`
+- Multi-region: Single site, so no multi-region signal `[CRM]`
+- Regulatory or complexity signal: High (a records finding in the last state review) `[CRM]`
+- Scale: Mid-size (one site, 8,800 plots) `[CRM]`
+- Team complexity: Dedicated owner and GM. Owner signs under $25K `[CRM]`
 
 **Step 3: Contact Mapping**
 | Persona | Name | Engagement | Last Activity | Priority |
 |---------|------|-----------|---------------|----------|
-| General Counsel | Dana Whitfield | Warm (email opened) | 8 days ago | 1 |
-| Head of Legal Ops | Sam Okafor | Known contact | 45 days ago | 1 |
-| Deputy GC | Unknown | n/a | n/a | 2 |
+| General Manager (champion) | Ines Carmody | Warm (champion from a prior site) | 2 weeks ago (illustrative) | 1 |
+| Owner (signs under $25K) | Unknown (no contact found) | n/a | n/a | 2 |
+| Pre-Need Sales Manager | Unknown (no contact found) | n/a | n/a | 3 |
 
-Top personas: Dana Whitfield (GC, warmest, mandate signals cost control). Sam Okafor (Legal Ops, identified champion from LinkedIn, process-owner).
+Top personas: Ines Carmody first, because she has engagement history and runs the site now. The owner is second, because the owner signs. Her history at Lowmoor is closed-lost and belongs to Closed-Loss Reactivation (05), not this outbound.
 
 **Step 4: Pain Hypotheses**
-1. **Counsel spend visibility**(60+ firms across one manufacturing company almost certainly use different invoicing, billing guidelines, rate structures. HIGH confidence. [Verified: 60+ outside firms + typical PE portfolio behavior]
-2. **Fragmented invoice review**(At this scale, manual invoice line-item review by Legal Ops consumes weeks per quarter. MEDIUM-HIGH confidence. [Inferred: no known spend platform in CRM]
-3. **Rate negotiation data gaps**(60 firms means no centralized rate benchmarking. HIGH confidence. [Verified: scale + typical legal spend profile]
+1. **Plot visibility** (The plot map is on paper, so nobody can list the unsold plots without walking the grounds. HIGH confidence. `[CRM: paper plat maps]` and `[Inferred: 8,800 plots on paper]`)
+2. **Records after a state finding** (The last state review found a records problem, so the next review is a pressure point. MEDIUM-HIGH confidence. `[CRM: records finding]`)
+3. **Pre-need follow-up** (No pre-need team is recorded, so this is a question, not a finding. LOW confidence. `[Unknown: pre-need activity not in CRM]`. Use it only as a discovery question.)
 
-**Step 5: Sequences** (Dana Whitfield, GC) Email 1
-Subject: Managing outside counsel across 60+ firms, Corvane Industrial
+**Step 5: Sequences** (Ines Carmody, General Manager) Email 1
+Subject: Plot records after the state review at Quill Hollow
 
-Dana(when you took over as General Counsel 45 days ago, odds are high you inherited a spend visibility gap. Most manufacturers with 60+ law firms don't see what they're spending until invoices land.
+Ines,
 
-Corvane's outside counsel probably runs $12-16M annually. The challenge: no central visibility, no billing standard enforcement, and rate data scattered.
+Quill Hollow's last state review turned up a records finding, and the plot maps are still on paper. How do you check, today, which plots are sold and which are open?
 
-Apex Legal (similar-sized PE manufacturer) recovered 20% counsel spend in year one once they saw what was actually invoiced. That's a $2.4-3.2M data problem.
+Fennick Gardens, a beta cemetery, found 212 unsold plots in 90 days with PlotIQ's plot inventory (beta result, illustrative). Worth 15 minutes to see whether your maps show the same gap?
 
-Curious if that resonates?
+Emails 2 and 3 for this persona are omitted for length. They follow the same structure, with a different pain hypothesis in each.
 
-**Step 7: Summary** BDR. Corvane Industrial, GREENLIGHT. 2 contacts found, both warm. Targeting Dana Whitfield (GC, cost-control mandate) and Sam Okafor (Legal Ops, process owner). 2 personas x 3 emails = 6 sequences. Call prep included. Recommended first action: Email Dana Whitfield with PE roll-up cost visibility angle. Data quality: 5 VERIFIED, 2 INFERRED, 0 ESTIMATED.
+**Step 7: Summary** BDR. Quill Hollow Memorial Park, GREENLIGHT. One contact found (champion). Targeting Ines Carmody (General Manager). Owner and pre-need contacts are unknown, so they are next. 1 persona x 3 emails = 3 sequence emails (2 more omitted). Call prep omitted for length. Recommended first action: Send Email 1 to Ines Carmody. Data quality: 5 CRM, 2 INFERRED, 1 UNKNOWN (illustrative counts for this example).
 
 ---
 
-### Example 2: AE Quick Prep (Brightwater Logistics, Inbound)
+### Example 2: AE Quick Prep (Sable Fork Cemetery, Inbound, REVIEW)
 
-**Context:** AE needs quick prep before an inbound discovery call from Brightwater Logistics scheduled in 20 minutes.
+**Context:** An AE has 20 minutes before an inbound discovery call. Sable Fork Cemetery asked for a demo through the website form after a search. The general manager, Arlen Biggs, signs contracts under $25K.
 
-**Input:** "Quick call prep for Brightwater Logistics (they called in)."
+**Input:** "Quick call prep for Sable Fork Cemetery (they requested a demo from the website)."
 
 **Step 0: Role Detection** User is AE. Quick Call Prep pattern detected. Skip sequence generation, deliver Steps 1-4 + Step 6 only.
 
 **Step 1: Intelligence Gathering**
-CRM search: New account (inbound lead), no prior history. Inbound call from [first name withheld], Legal Operations.
+CRM search: New account (inbound form), status INBOUND, no active deal, no prior history. Requester's name and title: `[Unknown]`, so confirm on the call.
 
-Company research: Brightwater Logistics, HQ Texas. Private [Verified - website]. $780M revenue [Estimated - employee benchmark, 200+ staff]. 11 in-house attorneys [Inferred - company website team page]. Operations in 5 states [Verified - company locations]. Dedicated Legal Operations role (caller mentioned invoice management).
+Company research: Sable Fork Cemetery, one site, 2,900 plots `[CRM]`. Plot list kept in a spreadsheet `[CRM]`. General Manager Arlen Biggs signs under $25K `[CRM]`. The search that led to the form is not recorded `[Unknown]`.
 
 **Step 2: Account Snapshot**
-ICP Quick-Score: **GREENLIGHT**
-- Primary fit signal: Yes (11 attorneys, ~$3-4M counsel spend estimated) [Verified - company profile]
-- Multi-region: Yes, 5 states [Verified - website]
-- Tier 1/Tier 2 market exposure [Verified - locations]
-- Scale: Mid-Market ($780M) [Estimated - employee benchmark]
-- Team complexity: Dedicated Legal Ops role evident from inbound call [Verified - caller context]
+ICP Quick-Score: **MANUAL REVIEW**
+- Primary fit signal: Yes (2,900 plots, above the 2,000-plot threshold) `[CRM]`
+- Multi-region: Single site, so no multi-region signal `[CRM]`
+- Regulatory or complexity signal: Minimal (no state finding recorded) `[Unknown: not asked]`
+- Scale: Single site, mid-size `[CRM]`
+- Team complexity: Unknown. No records team is named `[Unknown]`
+
+Why not GREENLIGHT: two of five signals are unknown. Zone ratings (illustrative) from `{Client Profile: Qualification Zones}`: Zone 3 HIGH (GM signs under $25K). Zone 1 MEDIUM (spreadsheet plot list). Zones 2, 4 and 5 UNKNOWN. One HIGH zone is the profile's REVIEW verdict.
 
 **Step 4: Pain Hypotheses**
-1. **Invoice review time drain**(At 11-attorney scale with multiple outside firms, manual invoice review consumes significant team capacity. HIGH confidence. [Verified - inbound mention of "invoice management challenge"]
-2. **Billing guideline enforcement**(Typical for mid-market to lack standardized billing guidelines across vendors. MEDIUM confidence. [Inferred - company size + no known spend platform in CRM]
-3. **Counsel spend visibility**(Mid-market typically lacks consolidated spend view. MEDIUM confidence. [Inferred - inbound inquiry suggests pain exists]
+1. **Plot lookups in a spreadsheet** (A 2,900-plot list in a spreadsheet makes unsold plots hard to see. MEDIUM confidence. `[Inferred: spreadsheet plot list]`)
+2. **Pre-need follow-up** (No pre-need activity is recorded, so this is a question to ask, not a hypothesis to lead with. LOW confidence. `[Unknown]`)
+3. **Single-person records risk** (The plot list may depend on one person. LOW confidence. `[Unknown: no records owner named]`. Ask who maintains the list.)
 
 **Step 6: Call Prep**
-Call goal: "Qualify the specific pain and understand who owns the decision."
+Call goal: "Confirm whether pre-need sales happen, measure a real plot lookup, and find out who signs under $25K."
 
-30-Second Opener: "Thanks for calling in. I understand invoice management and counsel spend are on your plate. Before I dive in, tell me what prompted reaching out today."
+30-Second Opener: "Thanks for asking for a demo. Before I show you anything, tell me what prompted you to look for plot records software this week."
 
 Talk Track:
-- "When you say 'invoice management challenge,' what specifically is eating up your team's time?"
-- "How many outside firms are you working with, and how are their invoices currently tracked?"
-- "What would it mean if your team could cut the invoice review time in half?"
-- "We work with companies like Pinecrest Hospitality (620M, similar-sized organization) who recovered 2-3 weeks per quarter. Worth exploring what that looks like for Brightwater?"
+- "When someone asks for a plot, how long does it take to find it today?"
+- "How many plots do you think are unsold right now, and how would you check?"
+- "Do you sell pre-need, and where do those leads go when they come in?"
+- "Who signs off on a purchase under $25K, and does anyone else need to see it?"
 
-Objection prep: "We're still evaluating options" → "That makes sense. What's your timeline for a decision, and who else needs to be involved in the evaluation?"
+Objection prep: "We're happy with the spreadsheet" → "That makes sense. When did you last check the spreadsheet against the plots you have actually sold?"
 
-**Step 7: Summary.** AE. Brightwater Logistics, GREENLIGHT. Inbound lead (Legal Ops team member). Quick call prep delivered. Recommended approach: Lead with their stated pain (invoice management), then expand to spend visibility and rate negotiation. Data quality: 4 VERIFIED, 3 INFERRED, 1 ESTIMATED.
+**Step 7: Summary.** AE. Sable Fork Cemetery, MANUAL REVIEW (the profile's REVIEW verdict). Inbound request, no active deal. Quick call prep delivered. Recommended approach: Confirm pre-need (Zone 2) and plot lookup time (Zone 1) on the call, then re-score. A MANUAL REVIEW does not authorize outbound. Data quality: 3 CRM, 2 INFERRED, 3 UNKNOWN (illustrative counts for this example).
 
 ---
 
 ### Example 3: BDR Batch Mode (Rapid-Fire Prospecting Block)
 
-**Context:** BDR has a 2-hour prospecting block and needs snapshots for 5 accounts to identify the best 2-3 to pursue deeply.
+**Context:** A BDR has a 2-hour prospecting block and needs snapshots for 5 accounts to identify the best 2-3 to pursue deeply. The list mixes accounts at different stages on purpose, so the table shows what the batch does with each one.
 
-**Input:** "Quick snapshots on these 5 accounts for my outbound block: Corvane Industrial, Halden Health Systems, Ardent Insurance Group, Brightwater Logistics, Pinecrest Hospitality."
+**Input:** "Quick snapshots on these 5 accounts for my outbound block: Corrow Ridge Cemetery, Greyfield Memorial Park, Tamsin Vale Cemetery, Northvale Memorial Holdings, Lowmoor Memorial Gardens."
 
-**Rapid-Fire Batch Mode activated.** Running abbreviated snapshots (Steps 1-4 only) for each, producing a ranked summary table.
+**Rapid-Fire Batch Mode activated.** Running abbreviated snapshots (Steps 1-4 only) for each, producing a ranked summary table. Plot counts are from the cast. Zone ratings are illustrative.
 
-| Account | ICP Verdict | Vertical | Attorneys | Counsel Spend | Top Pain | Priority |
-|---------|------------|----------|-----------|---------------|----------|----------|
-| Corvane Industrial | GREENLIGHT | Manufacturing | 38 | ~$14M [Estimated] | Spend visibility (60+ firms) | 1 |
-| Halden Health Systems | GREENLIGHT | Healthcare | 26 | ~$8M+ [Estimated] | Rising legal costs (10-K signal) | 2 |
-| Ardent Insurance Group | GREENLIGHT | Insurance | 17 | ~$6M [Verified] | Manual spreadsheet processes | 3 |
-| Brightwater Logistics | MANUAL REVIEW | Logistics | 11 | ~$3-4M [Estimated] | Invoice review time drain (inbound) | 4 |
-| Pinecrest Hospitality | GREENLIGHT | Hospitality | 9 | ~$2.5M [Estimated] | LedgerLine Audit dissatisfaction | 5 |
+| Account | ICP Verdict | Plots | Top Pain | Next Step | Priority |
+|---------|------------|-------|----------|-----------|----------|
+| Corrow Ridge Cemetery | GREENLIGHT | 14,000 | Paper plat maps and a double-recorded deed (illustrative) | Trigger Event Outbound: new owner four months ago | 1 |
+| Greyfield Memorial Park | GREENLIGHT | 9,000 | Pre-need and records wanted together | Competitive Displacement: Stonemark contract renews January 2027 | 2 |
+| Tamsin Vale Cemetery | MANUAL REVIEW (REVIEW in the profile) | 4,200 | Paper maps and one binder per section | Hold. Confirm who signs (Zone 3 is not HIGH) | 3 |
+| Lowmoor Memorial Gardens | LOST, re-scored REVIEW | 7,500 | Closed-lost to Oldgate on "timing" | Route to Closed-Loss Reactivation (05). Do not sequence from this table | 4 |
+| Northvale Memorial Holdings | DISQUALIFY (OUT) | Not applicable (240 funeral homes, 90 cemeteries) | None. Own in-house system | Do not prospect | 5 |
 
-**Recommendation:** Generate full sequences for Corvane Industrial (#1) and Halden Health Systems (#2) immediately (both flagged by PE triggers and financial signals). Ardent Insurance (#3) is strong (PE acquisition trigger). Skip Brightwater today (they have inbound call pending). Pinecrest (#5) also strong (service-provider displacement angle); queue for tomorrow.
+**Recommendation:** Generate full sequences for Corrow Ridge (#1) and Greyfield (#2) first. Greyfield's Stonemark renewal is the time pressure. Hold Tamsin Vale (#3) until its decision maker is known. Send Lowmoor to the reactivation skill, because it is a closed-lost account and not a cold prospect. Drop Northvale from the queue.
 
-Full sequences generated for the top 2 accounts. Brightwater held pending their AE call. Ardent and Pinecrest queued.
+Full sequences generated for the top 2 accounts. Tamsin Vale held pending a decision-maker check. Lowmoor routed to 05. Northvale removed.
 
 ---
 
@@ -549,6 +553,10 @@ Full sequences generated for the top 2 accounts. Brightwater held pending their 
 
 ## Changelog
 
+### Version 1.3.0 (2026-10-13)
+- Examples re-cast on PlotIQ, the library's one example company. Example errors fixed and a non-success example added.
+- Lien-state tier wording replaced with vertical-neutral labels
+
 ### Version 1.2.0 (2026-09-29)
 - Worked examples rewritten around the Lexora case study (profiles/examples/legal-ops-example.md)
 - Em dashes removed from prose
@@ -558,7 +566,7 @@ Full sequences generated for the top 2 accounts. Brightwater held pending their 
 - Client-specific data de-embedded: the skill now reads the shared `profiles/client-profile.md` instead of carrying an embedded Client Profile block (one profile powers every skill)
 - Framework machinery (evidence grading, speed vs. depth trade-offs, confidence calibration, ICP Quick-Score dimensions) moved to an explicit Methodology section with `{Methodology: X}` references
 - No functional changes to the workflow, examples, or output formats
-- Prior release notes (2026-03-04): Added Epistemic Rules section with evidence grading framework; added ICP Quick-Score scoring matrix
+- Prior release notes (2026-03-04): Added Epistemic Rules section with evidence grading framework. Added ICP Quick-Score scoring matrix
 - Expanded Example 1 with full step-by-step detail including CRM search results, evidence-labeled company research, contact mapping table, pain hypothesis confidence ratings, email sample, and data quality summary
 - Expanded Example 2 with AE quick call prep walkthrough including talk track and objection prep
 - Added Example 3 demonstrating Batch Mode pattern with 5-account ranked summary table and prioritization guidance

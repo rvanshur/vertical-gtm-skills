@@ -214,7 +214,7 @@ never a feeling. PlotIQ's five zones are a worked example.
 ### Verdict Rule
 
 - **GREENLIGHT:** at least two zones HIGH, and no must-have zone at LOW
-- **REVIEW:** neither GREENLIGHT nor DISQUALIFY
+- **MANUAL REVIEW:** neither GREENLIGHT nor DISQUALIFY
 - **DISQUALIFY:** any disqualifier above, or every must-have zone at LOW
 
 MEDIUM never counts as HIGH. Change the rule if your team qualifies differently, and the skills
