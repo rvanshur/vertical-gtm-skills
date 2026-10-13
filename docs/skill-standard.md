@@ -108,8 +108,9 @@ A free skill can teach any method, rule, threshold, template or report format. I
 6. Keys, endpoints or internal repository names.
 
 When a private skill has a feature that depends on private automation, the free skill ships the
-*method* and leaves the wiring to the reader. Example: a skill can teach "give an item more time
-before it expires each time someone uses it". It does not ship the hook that counts the uses.
+*method* and leaves the wiring to the reader. Example: a skill can teach "an item that keeps
+getting used is protected from being pruned for age". It does not ship the hook that counts the
+uses.
 
 ## 7. Tests Before Release
 
