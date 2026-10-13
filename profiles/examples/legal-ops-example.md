@@ -169,7 +169,7 @@ What a customer actually buys, so the Sales-to-CS Handoff skill can size impleme
 | Stage | Exit Criteria | Required Evidence |
 |-------|-------------|-------------------|
 | Discovery to Demo | 1+ pain quantified; attorney count + counsel spend confirmed | Discovery notes with numbers |
-| Demo to Proposal | GC or Legal Ops confirmed as EB/Champion; top pain demoed | ITP Q4 buying reasons captured |
+| Demo to Proposal | GC or Legal Ops confirmed as EB/Champion; top pain demoed | Buying reasons captured (problem question 4) |
 | Proposal to Negotiate | MEDDPICC ≥ 70; paper process mapped | MEDDPICC analysis run |
 | Negotiate to Close | Legal + procurement engaged; 3-date plan drafted | Sales-handoff readiness ≥ amber |
 
