@@ -150,9 +150,9 @@ The 14 sales skills are the motion. [`operating/`](operating/) is the layer that
 | O12 | **[GTM Engine](operating/O12-gtm-engine/SKILL.md)** | Post-launch growth systems: retrospectives, two-week sprints with ICE scoring, funnel optimization with PIE scoring, growth loops, strategic narrative |
 | O13 | **[GTM Launch](operating/O13-gtm-launch/SKILL.md)** | Launch planning and execution: motion selection, channel strategy, funnel projection, launch assets, budget, war room |
 | O14 | **[GTM Positioning](operating/O14-gtm-positioning/SKILL.md)** | Positioning and pricing: competitive pricing, value metric, willingness-to-pay research, April Dunford's framework, messaging house |
-| O15 | **[GTM Discovery](operating/O15-gtm-discovery/SKILL.md)** | Market discovery and customer validation: beachhead segmentation, problem mapping, assumption testing, evidence-based personas |
+| O15 | **[GTM Discovery](operating/O15-gtm-discovery/SKILL.md)** | Archetype diagnosis and customer evidence: every belief graded assumed, heard, seen or confirmed, the real alternatives, a starting segment, and open bets the next skill won't build on |
 
-O12 to O15 are adapted from Maja Voje's [GTM Strategist skills](https://github.com/GTM-Strategist/gtm-strategist-skills) under the MIT License. Credit is in each skill.
+O12 to O14 are adapted from Maja Voje's [GTM Strategist skills](https://github.com/GTM-Strategist/gtm-strategist-skills) under the MIT License. Credit is in each skill. O15 GTM Discovery is an original rewrite (2.0.0) built around the Guild archetypes and the evidence ladder.
 
 Every one of the 29 skills ships with a `CUSTOMIZE.md`, a paste-in interview that adapts it to your motion. Each operating skill's interview writes one small section into your profile, and the skill reads it on its next run. The full map is in [docs/how-it-fits.md](docs/how-it-fits.md).
 

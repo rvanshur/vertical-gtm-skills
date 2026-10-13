@@ -1,45 +1,63 @@
-# Customize: GTM Discovery
+# Customize: Discovery
 
-A paste-in prompt that adapts this skill to your market and stage.
+A paste-in prompt that adapts this skill to your team's go-to-market motion.
 
-Works in **Claude Code**, **Claude.ai Projects**, or **OpenAI Codex**, all three read the same `SKILL.md` format. Open the assistant, paste the block below, and answer its questions one at a time.
+Works in **Claude Code**, **Claude.ai Projects**, or **OpenAI Codex**. All three read the same `SKILL.md` format. Open the assistant, paste the block below, and answer its questions one at a time.
 
-> This is a per-skill companion. For customizing the whole suite at once, see
-> [`docs/customization.md`](../../docs/customization.md) and
-> [`profiles/client-profile-template.md`](../../profiles/client-profile-template.md).
+> This is a per-skill companion. For customizing the whole suite at once, see the profile template at `profiles/client-profile-template.md`.
 
 ---
 
 ## The prompt
 
 ```
-You are helping me adapt GTM Discovery to my specific market and stage.
+You are helping me adapt a discovery skill to my company's go-to-market motion.
 
-Read the attached SKILL.md (gtm-discovery). It guides structured market discovery through eight independent modules: diagnostics, SWOT, problem mapping, beachhead segmentation, interview planning, competitive analysis, assumption mapping, and persona creation.
+Read the attached SKILL.md (gtm-discovery, version 2.0.0). It diagnoses which archetype
+my business is, grades every belief about our customer by evidence (assumed, heard, seen,
+confirmed), plans the cheapest evidence for the bets that matter most, and writes the
+result to our knowledge base for Positioning, Launch and Engine to read.
 
-Your job is NOT to rewrite it. It is to make it fire on the customer and market I am actually selling into, and to help me identify which modules matter most for my stage.
+Your job is NOT to rewrite the skill. It is to make the diagnosis fit my market, point
+the first evidence pass at the records we actually have, and tell me honestly where you
+cannot answer for us.
 
 Ask me these, ONE AT A TIME, and wait for each answer:
 
-1. What are you building, and who do you think the customer is? (Product name, vertical, target customer role)
+1. Describe a typical customer in one sentence: who signs, who else is in the room,
+   and what they were doing before they bought us.
 
-2. What stage are you at? (Idea, pre-launch, initial customers, growth mode, pivoting)
+2. What does our median closed deal look like? Give me the sales cycle (in weeks or months)
+   and the contract value we actually collect today, for your last 10 to 20 closed deals if
+   you have them. If you do not have them, say so, and I will mark those answers as assumed.
 
-3. If you have already talked to customers, what is the one conversation that surprised you most? (What did you believe before, what did you learn?)
+3. Do our customers move money or transactions through our product? If yes, roughly how
+   much per month per customer?
 
-4. What do you believe about your customer that you have NOT yet tested? (List 3-5 assumptions that keep you up at night)
+4. Do two distinct user types have to transact with each other on our platform, such as
+   buyers and sellers, or contractors and subcontractors? Or are the users all on one side?
 
-5. How much time do you have? (Can you run a full discovery engagement, or do you need the quick diagnostic?)
+5. Which records do we already keep? (CRM stages and fields, contract signers, referral
+   source, usage or activation data, loss reasons, call recordings or notes.)
+
+6. Which claim about our customer do we use most often in pitches, and which one would hurt
+   us most if it were wrong?
 
 Then produce:
 
-A. A prioritized module sequence, which discovery modules to run first, in order, with estimated time per module
+A. Our starting archetype guess, based only on my answers so far, with the question that
+   would most likely change it. Name which archetype leads if we are a hybrid.
 
-B. A list of the three highest-risk assumptions (impact + lowest certainty) and the specific discovery method to test each one
+B. The first evidence pass: for each record in question 5, the exact count I should pull
+   and the n I should expect to report beside each rate. If a count is not in those
+   records, say so and leave it out. Do not estimate it.
 
-C. A customer interview recruitment plan: where to find them, how many to talk to, and what the success metric is
+C. Our three load-bearing assumptions, ranked, and the cheapest evidence that would move
+   each one. Write each as a question about past behavior, never an opinion.
 
-D. THE HONEST PART: what you do not yet know about your market, and what would need to change for you to be confident in your beachhead
+D. THE HONEST PART: a short list of the questions above I could not answer concretely, and
+   which of our claims therefore stay assumed. If the answers to question 2 are missing,
+   the diagnosis is a guess, and that is the finding. Say so.
 
 Start with question 1.
 ```
@@ -48,59 +66,39 @@ Start with question 1.
 
 ## What you should expect to happen
 
-Most founders get through questions 1-3 smoothly. Question 4 stalls frequently.
+Questions 1, 3 and 4 usually land quickly. Question 2 is where teams stall, because the median of recent deals is rarely written down. If it is missing, the skill marks every cycle and value claim as `assumed`, and that is the correct result.
 
-That stall is the signal. The assumptions you cannot articulate are the ones that are wrong. They are also the ones that will cost you time and capital when the market finally teaches them to you.
+Question 6 is the most useful one. The claim a team uses most often is usually the one it has graded least.
 
-Question 5 is the realism check. If you say "one week" but discovery is a two-month process, something has to give. Better to know that now than to run a shallow discovery and act on half-baked findings.
+If section D is long, the gap is in the records, not in the skill. A diagnosis needs at least the closed-deal history and a signer or stakeholder field. Without those, the output will be a candidate with low confidence, and the first task becomes building the record, not running more interviews.
 
 ---
 
 ## Minimum profile fields this skill reads
 
-Before running discovery, answer these once:
+Add these to `profiles/client-profile.md` once. The skill reads the existing Company, ICP Definitions, Buyer Personas, Core Pain Points and Competitive Landscape sections, and writes back to them. It also reads this section:
 
 ```markdown
-## About Your Market
+## Discovery
 
-- **Vertical:** [Legal operations, property management, education, healthcare, etc.]
-- **Target Customer Role:** [VP Sales, CFO, Operations Manager, etc.]
-- **Estimated Market Size:** [Number of addressable companies]
-- **Your Current Revenue:** [Zero, <$100K ARR, $100K-1M, etc.]
-- **Urgency Level:** [How fast does the market move? Will customers still care in 6 months?]
-
-## About Your Assumptions
-
-- **Assumption 1 (Highest Risk):** [The belief that could kill your GTM if wrong]
-- **How You'll Test It:** [Specific discovery method]
-- **Success Metric:** [How you'll know if the assumption was right]
-
-## Available Constraints
-
-- **Time Budget:** [Hours per week you can spend on discovery]
-- **Customer Access:** [Can you get warm introductions? Cold outreach? Do you have existing customers?]
+- **Knowledge base path:** [folder where Discovery nodes are written, or "none yet"]
+- **Starting archetype guess:** [the archetype you believe you are, and why; leave blank if unsure]
+- **Deal history source:** [where closed deals live: CRM report name, export file, or other]
+- **Stakeholder field:** [the CRM field or contract field that records who was in the room]
+- **Re-grade windows:** [default 90 days for confirmed, 30 days for heard and seen; change only with a reason]
+- **Interview channel:** [who may contact customers for past-behavior conversations, and through what route]
 ```
 
 ---
 
-## If you are stuck on any question
+## Troubleshooting
 
-- **Question 1 stalls:** You do not yet have a clear product or customer. Start with module 3 (Problem Space) of this skill. Let the customer's problems define who they are, rather than your guess about who they are.
-- **Question 3 stalls:** You have not talked to customers yet. Stop here. Do not run the other modules. Go talk to 3-5 people in your target market. Come back when you have one surprising conversation.
-- **Question 4 stalls:** You believe everything about your customer equally, or you do not know what you do not know. That is normal. Run module 7 (Assumption Mapping) first. It forces assumptions onto the table.
-- **Question 5 stalls:** Be honest about time. A thorough discovery takes 2-4 weeks if you have customer access, 3-4 weeks if you do not. A quick diagnostic takes 4-6 hours. Underfunding discovery is how founders end up with the wrong customer hypothesis.
-
----
-
-## Common patterns that indicate you are ready for the next skill
-
-After running discovery, you should know:
-- Who your specific customer is (role, company size, vertical, problem)
-- What problem you are solving and how urgent it is
-- What alternatives the customer is using now
-- What segment you are entering first (narrow beachhead)
-- Which of your assumptions are still untested
-
-When you have that, you are ready for GTM Positioning (`operating/O14-gtm-positioning`). It takes your discovery findings (customer, problem, competition) and builds a defensible market position from them.
-
-If you skip to positioning without discovery, your position will be built on guesses instead of evidence. That always shows.
+| Problem | Cause | Response |
+|---------|-------|----------|
+| The skill says every claim is `assumed` | No closed-deal history was provided, or the records were not readable | Provide 10 to 20 closed deals, or name the CRM report to pull. Without them, the output is honest but thin. |
+| The archetype comes back as a hybrid with low confidence | The cycle and value answers point to different bands | This is a real contradiction, not an error. Run the ten-deal test per segment, as the skill suggests, before choosing a leading archetype. |
+| The ten-deal test fails on the segment you are trying to win | The test was run across the whole company, mixing segments | Run the test separately for each segment with at least 10 closed deals. A test on mixed segments can fail for a reason that has nothing to do with the segment you are targeting. |
+| A rate appears without an n | The rate came from a manual summary, not a count | Ask for the count. Rates without n are returned to the team, per the skill's first working rule. |
+| The starting segment does not change even though one segment looks better | The gap is under the stated threshold | This is the intended behavior. The skill reports "no difference found" at the threshold it names. Change the threshold only if you can say why. |
+| Positioning refuses to run on the output | Positioning found `assumed` claims in the open bets | Grade the claims it needs, or accept that the statement will be scoped to what is confirmed. Do not delete the open bets to make the hand-off pass. |
+| The output is too long to read | The brief was written beyond two pages | Ask for the two-page brief only. The nodes hold the detail, and the brief links to them. |
