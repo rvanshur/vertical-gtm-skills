@@ -74,7 +74,7 @@ profile honest and the output checked.
 | Clean up what the base has collected | **O8 Dream** | Stale, contradicted and duplicate items found and pruned without deleting surrounding text |
 | Check the base's structure | **O7 Graph Health** | A structure score (tag sprawl, link density, provisional item age) |
 | Run the weekly cadence | **O6 Weekly Review** | A dated record of what changed, so health becomes a trend |
-| Find out who the customer really is | **O15 GTM Discovery** | Beachhead, tested assumptions, evidence-based personas |
+| Find out who the customer really is | **O15 GTM Discovery** | Archetype diagnosis, graded claims, real alternatives, a starting segment, open bets |
 | Decide how to position and price | **O14 GTM Positioning** | A positioning statement, pricing research, a messaging house |
 | Plan a launch | **O13 GTM Launch** | Motion choice, funnel math, channel plan, war room |
 | Make growth repeatable after launch | **O12 GTM Engine** | A sprint cadence, a scored experiment backlog, a narrative |
@@ -121,7 +121,7 @@ skill runs with its defaults and says so.
 | `## Knowledge Base` | O11 Context OS Setup | Where the base lives, so O6 to O9 can find it |
 | `## Growth System` | O12 GTM Engine | North-star metric, bottleneck, sprint cadence |
 | `## Launch Plan` | O13 GTM Launch | What is launching, motion, goal, war room owner |
-| `## About Your Market` (plus assumptions and constraints) | O15 GTM Discovery | Vertical, target role, stage, riskiest assumptions |
+| `## Discovery` | O15 GTM Discovery | Knowledge base path, starting archetype guess, deal history source, stakeholder field, re-grade windows, interview channel |
 
 O14 GTM Positioning writes its results straight into the standard Value Propositions and
 Competitive Landscape sections, which is where the motion skills pick them up.
