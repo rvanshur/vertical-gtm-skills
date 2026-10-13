@@ -453,7 +453,7 @@ After delivering the inline analysis, generate a formatted report document.
 7. Health: 8 green (8 × 100 = 800) + 7 yellow (7 × 50 = 350) + 1 red (1 × 0 = 0) = 1,150. Overall = 1,150 ÷ 16 = 71.9, shown as 72. Risk: 72 falls in the 46 to 84 band, so **Medium Risk**. Pillar bump: the lowest pillar average is 62.5, which is not below 30, so there is no bump.
 8. Top risk: Technical Readiness is RED. IT has not been engaged and the Oldgate data export is unscoped, so the March 2027 renewal work could slip. The methodology action is to request a technical discovery with IT and identify the key integration variables.
 
-**Output:** Medium Risk at a health of 72, with one RED signal (Technical Readiness) and seven YELLOW signals that each need evidence. Action plan: (1) ask Ruth for a technical discovery session with whoever runs IT at Brackhaven, starting with the Oldgate data export; (2) ask Ruth for a second call with the board chair, so the economic buyer is on the record; (3) ask Walt what would make the tablet question a non-issue, since his skepticism is about use, not about the product.
+**Output:** Medium Risk at a health of 72, with one RED signal (Technical Readiness) and seven YELLOW signals that each need evidence. Action plan: (1) ask Ruth for a technical discovery session with whoever runs IT at Brackhaven, starting with the Oldgate data export. (2) Ask Ruth for a second call with the board chair, so the economic buyer is on the record. (3) Ask Walt what would make the tablet question a non-issue, since his skepticism is about use, not about the product.
 
 ---
 

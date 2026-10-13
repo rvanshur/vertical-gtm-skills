@@ -321,7 +321,7 @@ How do the intake form requests get a first call back today?
 
 ### Example 2: Manual-Process Displacement, Tamsin Vale Cemetery (Non-Success)
 
-**Context:** Tamsin Vale Cemetery is a one-site cemetery with 4,200 plots, paper plat maps and one binder per section. It has had two double sales in two years (illustrative). The account is TARGET, not yet contacted, and its verdict is REVIEW (Zone 1 HIGH only). This is the non-success case: the displacement is easy to describe and hard to justify yet.
+**Context:** Tamsin Vale Cemetery is a one-site cemetery with 4,200 plots, paper plat maps and one binder per section. It has had two double sales in two years (illustrative). The account is TARGET, not yet contacted, and its verdict is MANUAL REVIEW (Zone 1 HIGH only). This is the non-success case: the displacement is easy to describe and hard to justify yet.
 
 **Input:** "Tamsin Vale Cemetery runs paper plat maps. Build displacement sequences."
 
@@ -347,7 +347,7 @@ Subject: Plot lookups across one binder per section
 
 [Your name]
 
-**Step 4. Summary and recommendation (the non-success):** 1 persona, 4 emails drafted, 0 sent. Recommendation: hold the sequence. The verdict is REVIEW, not GREENLIGHT, so Email 1 would put a double-sales claim in front of a buyer before anyone has confirmed it. Next step: a discovery call that asks for the two double sales in writing (plot numbers and dates) and names the person who decides. Release Email 1 only after both are in hand, because Zone 3 (decision speed) is still unknown. Evidence grade: INFERRED. If the double sales do not hold up, the displacement case is a guess, and it does not go out.
+**Step 4. Summary and recommendation (the non-success):** 1 persona, 4 emails drafted, 0 sent. Recommendation: hold the sequence. The verdict is MANUAL REVIEW, not GREENLIGHT, so Email 1 would put a double-sales claim in front of a buyer before anyone has confirmed it. Next step: a discovery call that asks for the two double sales in writing (plot numbers and dates) and names the person who decides. Release Email 1 only after both are in hand, because Zone 3 (decision speed) is still unknown. Evidence grade: INFERRED. If the double sales do not hold up, the displacement case is a guess, and it does not go out.
 
 ---
 
@@ -436,7 +436,7 @@ Subject: Plot lookups across one binder per section
 - [ ] Discovery questions expose real gaps
 - [ ] Contract timing addressed (Email 4 asks if unknown)
 - [ ] All emails <= 120 words
-- [ ] Role detected; BDR + active deal guarded
+- [ ] Role detected. BDR + active deal guarded
 - [ ] Evidence graded per Epistemic Rules (VERIFIED / INFERRED / UNVERIFIED)
 - [ ] Gap matrix includes "Why It Matters" column specific to account
 

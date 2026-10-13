@@ -1,7 +1,7 @@
 ---
 name: gtm-call-coaching
 description: "Scores discovery and demo calls against sales methodology frameworks with category-level rubrics, MEDDIC assessment, pain mapping, and coaching recommendations"
-version: 1.2.1
+version: 1.3.0
 category: GTM-Enablement
 author: Ryan Vanshur
 license: MIT
@@ -35,8 +35,8 @@ What this skill needs before it starts. **If a required input is missing, ask in
 |-------|----------|-------|
 | Account name | ✅ Required | The account on the call |
 | Sales rep name | ✅ Required | Who ran the call |
-| Call type (`discovery` / `demo`) | ✅ Required | **The method forks on this.** Discovery scores 6 categories; demo scores 8 |
-| Transcript or notes | ✅ Required | Verbatim transcript preferred; detailed notes acceptable with confidence caveat |
+| Call type (`discovery` / `demo`) | ✅ Required | **The method forks on this.** Discovery scores 6 categories. Demo scores 8 |
+| Transcript or notes | ✅ Required | Verbatim transcript preferred. Detailed notes are acceptable with a confidence caveat |
 | Call date and duration | Optional | Used for context |
 | Attendees (names, titles) | Optional | Demo: critical for persona-matching coaching |
 
@@ -73,7 +73,7 @@ Throughout this skill, `{Client Profile: X}` means "section X of `profiles/clien
 
 ## Methodology
 
-Your coaching playbook, in code. The frameworks below are the skill's defaults: **SPIN + Priority Ladder for discovery; Challenger + MEDDPICC + Question the Problem for demos**. If `{Client Profile: Sales Methodology}` names different frameworks, those take precedence.
+Your coaching playbook, in code. The frameworks below are the skill's defaults. **SPIN and Priority Ladder are used for discovery. Challenger, MEDDPICC and Question the Problem are used for demos.** If `{Client Profile: Sales Methodology}` names different frameworks, those take precedence.
 
 ### Discovery: SPIN Selling Framework
 | Phase | Purpose | What Great Looks Like |
@@ -378,7 +378,15 @@ Reference `{Client Profile: Competitive Landscape}` for competitor-specific prob
 
 **Concerning Moments:** What happened, risk level (HIGH/MEDIUM/LOW), recovery plan.
 
-**Demo-specific:** Buying Signals (captured vs. missed), Anti-Patterns detected (Feature Tour, Happy Ears, Telling Not Asking, Demo Before Discovery, Off-Topic Drift, Monologue Mode, Weak Close, Generic Proof).
+**Demo-specific:** Buying Signals (captured vs. missed), and Anti-Patterns detected. Each anti-pattern means:
+- **Feature Tour:** Walking through screens in order without tying any feature to a stated pain.
+- **Happy Ears:** Treating polite interest as a buying signal when the call has no evidence for it.
+- **Telling Not Asking:** Stating a benefit or conclusion the rep has not confirmed with the prospect.
+- **Demo Before Discovery:** Starting the demo before the discovery pains and the Priority Ladder are complete.
+- **Off-Topic Drift:** Spending time on material the prospect did not raise and that does not map to a pain.
+- **Monologue Mode:** The rep talks for long stretches without a question or a pause for the prospect.
+- **Weak Close:** Ending without a named next step, an owner and a date.
+- **Generic Proof:** Using a case study or number that does not match the prospect's persona, size or vertical.
 
 ---
 
@@ -400,46 +408,46 @@ Reference `{Client Profile: Competitive Landscape}` for competitor-specific prob
 
 ### Output Options
 - **Option A: Markdown** (default): `[ACCOUNT]_[Discovery|Demo]_Coaching.md`
-- **Option B: HTML**: Styled coaching report with color-coded scorecard)
+- **Option B: HTML**: Styled coaching report with color-coded scorecard
 - **Option C: PDF**: Python and reportlab
 
 ### Document Sections (Coaching Report)
-Call Summary: Account, rep, date, type, overall score, assessment, deal impact)
-Methodology Scorecard: Color-coded category scores
-MEDDIC Status: 6-element coverage grid)
-Pain Discovery Map: Pains with depth levels and category mapping)
-Key Moments: Wins (left) and Coaching Opportunities right)
-Framework-Specific Coaching: Technique-linked advice with example language)
-Competitive Intel Summary: Current solution, satisfaction, gaps, positioning)
-Next Call Game Plan: Prep, questions, framework practice, success criteria)
+1. **Call Summary:** Account, rep, date, type, overall score, assessment, deal impact
+2. **Methodology Scorecard:** Color-coded category scores
+3. **MEDDIC Status:** 6-element coverage grid
+4. **Pain Discovery Map:** Pains with depth levels and category mapping
+5. **Key Moments:** Wins on the left and coaching opportunities on the right
+6. **Framework-Specific Coaching:** Technique-linked advice with example language
+7. **Competitive Intel Summary:** Current solution, satisfaction, gaps, positioning
+8. **Next Call Game Plan:** Prep, questions, framework practice, success criteria
 
 ---
 
 ## Examples
 
-### Example 1: Discovery Call (Good Execution)
+### Example 1: Discovery Call (Good Execution), Sable Fork Cemetery
 
-**Context:** Priya Nair (AE, Enterprise at Lexora) ran discovery with Sam Okafor (Head of Legal Operations) at Corvane Industrial ($3.2B manufacturer).
+**Context:** Sable Fork Cemetery is a one-site cemetery with 2,900 plots. Its plot list lives in a spreadsheet, and its GM, Arlen Biggs, signs under $25K (profile). The account is INBOUND: it requested a demo through the website form after a search. Owen Pruitt (Account Executive, illustrative assignment) ran the discovery call with Arlen.
 
-**Input:** "Coach the discovery call for Corvane Industrial. call_type = discovery"
+**Input:** "Coach the discovery call for Sable Fork Cemetery. call_type = discovery"
 
-**Scoring:** Pre-Call 4, SPIN 4, Priority Ladder 3, Listening 4, Value 3, Next Steps 5. Total: 23/30 (Good).
+**Scoring:** Pre-Call 4, SPIN 4, Priority Ladder 3, Active Listening 4, Value 3, Next Steps 5. Total: 4 + 4 + 3 + 4 + 3 + 5 = 23/30 (Good, in the 20 to 25 band).
 
-**Key findings:** Strong SPIN Situation and Problem, but Priority Ladder stopped at Level 2 (described, not quantified). Missed quantification opportunity when Sam said "we audit invoices by hand" without capturing the hours. Should have asked "How many invoices does your team review per quarter and how long does each take?"
+**Key findings (illustrative call notes):** Strong SPIN Situation and Problem. Owen asked where the plot list lives and who updates it, then asked what a lookup costs Arlen in time. The Priority Ladder stopped at Level 2 (described, not quantified). When Arlen said "I do most of the lookups myself," Owen did not capture how many lookups happen or how long each takes. The next step was strong: a demo the following Tuesday, with Arlen, on a named date. Owen also confirmed that Arlen is the decision-maker under $25K.
 
-**Coaching:** Practice Priority Ladder Stage 3 (quantify). Script: "You mentioned auditing invoices takes time. Can you walk me through how many invoices your team processes per quarter and how many hours that takes?"
+**Coaching:** Practice Priority Ladder quantification at Level 3. Script: "You mentioned you do most of the lookups yourself. How many lookups does a typical week include, and how long does each one take?"
 
-### Example 2: Demo Call (Needs Improvement)
+### Example 2: Demo Call (Needs Improvement, Non-Success), Brackhaven Memorial Gardens
 
-**Context:** Priya Nair (AE) demoed to the ops team at Brightwater Logistics (Deputy GC requested demo).
+**Context:** Owen Pruitt (Account Executive, illustrative assignment) demoed to Walt Okonkwo, Operations Director, and two operations staff at Brackhaven Memorial Gardens. GM Ruth Ellery, the champion, was not in the room. The deal is ACTIVE at Stage 5 Negotiate. In discovery, Walt had said he is skeptical of tablets. This is the non-success case: the call did not answer the one objection that mattered to the room.
 
-**Input:** "Coach the demo for Brightwater Logistics. call_type = demo"
+**Input:** "Coach the demo for Brackhaven Memorial Gardens. call_type = demo"
 
-**Scoring:** Opening 2, Closing 2, Teach+Tailor 3, Pain Alignment 2, Question the Problem 2, Pain Mapping 2, Engagement 3, Resistance 3. Total: 19/40 (Needs Improvement).
+**Scoring:** Opening 2, Closing 2, Teach+Tailor 3, Pain Alignment 2, Question the Problem 2, Pain Mapping 2, Engagement 3, Resistance 3. Total: 2 + 2 + 3 + 2 + 2 + 2 + 3 + 3 = 19/40 (Needs Improvement, in the 18 to 25 band).
 
-**Key findings:** Feature tour pattern. Showed Invoice Review and Matter Tracking without connecting to Brightwater's discovery pains (11 attorneys, manual process). No structured opening. Close was "Any questions?" Anti-patterns: Feature Tour, Telling Not Asking, Weak Close.
+**Key findings (illustrative call notes):** Feature tour pattern. Owen showed the trust report module and the mobile app in menu order, not in the order of Walt's pain. Walt's "zero wrong-plot burials" and "find the plot in seconds" pains (profile, Operations Director) never came up. Walt raised the tablet question, and Owen answered with a second feature instead of a question. There was no structured opening, and the close was "Any questions?" Anti-patterns: Feature Tour, Telling Not Asking ("You'll love the tablets"), Weak Close.
 
-**Coaching:** Before next demo, build a pain-to-workflow map from discovery. Priya should open with: "During our discovery, you mentioned that invoice review takes your team three weeks each quarter. Let me show you how Lexora handles that, then we'll walk through Matter Tracking." Use Question the Problem sequence: Prime Pain before every workflow section.
+**Coaching:** Before the next demo, build a pain-to-workflow map from the discovery notes. Owen should open with: "In our last call you said finding a plot on paper takes too long at the counter. I'll show you that first, then the trust report." Use Question the Problem before every workflow section: "How does that compare to how you handle it today?" Close with a named step: "Who should see the trust report next, and when?"
 
 ---
 
@@ -492,6 +500,9 @@ Next Call Game Plan: Prep, questions, framework practice, success criteria)
 ---
 
 ## Changelog
+
+### Version 1.3.0 (2026-10-13)
+- Examples re-cast on PlotIQ, the library's one example company. Example arithmetic and listed errors fixed, and a non-success example added.
 
 ### Version 1.2.1 (2026-10-13)
 - Two framework names replaced with plain descriptions: "Question the Problem" and "Priority Ladder". The methods are unchanged.
