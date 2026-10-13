@@ -1,11 +1,11 @@
 ---
 name: gtm-meddpicc-analysis
 description: "Scores active deals across all 8 MEDDPICC elements using evidence-graded rubrics, computes weighted health, flags risk patterns, and generates coaching"
-version: 1.2.0
+version: 1.3.0
 category: GTM-Enablement
 author: Ryan Vanshur
 license: MIT
-updated: 2026-09-29
+updated: 2026-10-13
 tags: [meddpicc, deal-analysis, deal-scoring, pipeline-review, sales-methodology, deal-qualification]
 requires:
   skills: ["gtm-deal-pulse"]
@@ -15,9 +15,9 @@ requires:
 
 ## Overview
 
-Scores an active deal across all 8 MEDDPICC elements using evidence-graded rubrics from CRM data, not rep self-assessment. Maps pain to the client's buyer pain taxonomy, competition to verified competitive intel, and champion strength to the client's methodology. Computes a weighted health score (0-100), flags risk patterns (happy ears, single-threaded, zombie deals), and generates coaching tied to sales frameworks.
+Scores an active deal across all 8 MEDDPICC elements using evidence-graded rubrics from CRM data, not rep self-assessment. Maps pain to the client's buyer pain taxonomy, competition to evidenced competitive intel, and champion strength to the client's methodology. Computes a weighted health score (0-100), flags risk patterns (happy ears, single-threaded, zombie deals), and generates coaching tied to sales frameworks.
 
-**Core Principle:** Evidence over optimism. Score what CRM data proves, not what reps believe. Under-scoring protects deals; over-scoring kills them.
+**Core Principle:** Evidence over optimism. Score what CRM data proves, not what reps believe. Under-scoring protects deals. Over-scoring kills them.
 
 ---
 
@@ -43,7 +43,7 @@ What this skill needs before it starts. **If a required input is missing, ask, d
 
 ## Output Contract
 
-Every run produces a **MEDDPICC health assessment with the same structure** so that deal quality can be compared across pipeline. The content changes per deal; the structure never does.
+Every run produces a **MEDDPICC health assessment with the same structure** so that deal quality can be compared across pipeline. The content changes per deal. The structure never does.
 
 Core commitments: **8-element scorecard with weighted scores**, **overall health score (0-100)**, **stage-appropriate verdict**, **stakeholder map**, **top 3 risks**, and **5 prioritized next actions**.
 
@@ -53,7 +53,7 @@ Core commitments: **8-element scorecard with weighted scores**, **overall health
 
 **This skill does not contain client-specific information. It points to it.**
 
-> **Load the client profile from [`profiles/client-profile.md`](../../profiles/client-profile.md) before starting.** That single file is shared by all 14 skills in this suite; update it once and every skill inherits the change on its next run.
+> **Load the client profile from [`profiles/client-profile.md`](../../profiles/client-profile.md) before starting.** That single file is shared by all 14 skills in this suite. Update it once and every skill inherits the change on its next run.
 
 Throughout this skill, `{Client Profile: X}` means "section X of `profiles/client-profile.md`". Sections this skill reads:
 
@@ -162,7 +162,7 @@ Your playbook for MEDDPICC scoring. The 8 elements, weighting system, 1-5 scorin
 
 ### Health Score Calculation & Interpretation
 
-**Formula:** For each element, multiply its score (1-5) by its weight (%). Sum all weighted scores, then divide by 5 and multiply by 100.
+**Formula:** For each element, multiply its score (1-5) by its weight written as a decimal (15% is 0.15). Sum all weighted scores. Divide the sum by 5 and multiply by 100. A deal scored 5 on every element gives a sum of 5.00, and 5.00 ÷ 5 × 100 = 100.
 
 | Health Score | Health | Meaning |
 |-------|--------|---------|
@@ -173,12 +173,14 @@ Your playbook for MEDDPICC scoring. The 8 elements, weighting system, 1-5 scorin
 
 ### Stage-Appropriate Minimums
 
-| Stage | Min Health | Critical Elements ≥3 |
+| Profile Stage | Min Health | Critical Elements ≥3 |
 |-------|-----------|----------------------|
-| Discovery | 30+ | Identified Pain |
-| Trial & Evaluation | 50+ | Identified Pain, Champion, Decision Criteria |
-| Negotiation | 65+ | All except Competition ≥3, EB ≥4 |
-| Closing | 75+ | All ≥3, EB ≥4, Paper ≥4 |
+| 2 Discovery | 30+ | Identified Pain |
+| 3 Demo and 4 Proposal | 50+ | Identified Pain, Champion, Decision Criteria |
+| 5 Negotiate | 65+ | All except Competition ≥3, EB ≥4 |
+| 6 Closed-Won and Handoff | 75+ | All ≥3, EB ≥4, Paper ≥4 |
+
+Stage names come from the client profile's Qualification Stage Gates. Stage 1 Target has no minimum because no element is scored before a deal is active.
 
 ### Risk Patterns to Flag
 
@@ -189,7 +191,7 @@ Your playbook for MEDDPICC scoring. The 8 elements, weighting system, 1-5 scorin
 | Zombie deal | Same stage >45 days, no recent activity | Re-engage or downgrade |
 | Close date fantasy | 2+ slips, or close <30 days with Paper ≤2 | Reset close date (+30 days minimum) |
 | Feature-led deal | No documented pain, demo notes focus on features shown | Go back to discovery |
-| Competitor blind | No competitive intel past Discovery | Ask directly about alternatives |
+| Competitor blind | No competitive intel past Stage 2 Discovery | Ask directly about alternatives |
 
 ---
 
@@ -369,23 +371,23 @@ Score each element 1-5 based on evidence criteria. Be honest.
 | 0-39 | 🔴 Red | Critical. Lacks fundamentals. Downgrade or disqualify. |
 
 **Stage-appropriate minimums:**
-| Stage | Min Health | Critical Elements ≥3 |
+| Profile Stage | Min Health | Critical Elements ≥3 |
 |-------|-----------|----------------------|
-| Discovery | 30+ | Identified Pain |
-| Trial & Evaluation | 50+ | Identified Pain, Champion, Decision Criteria |
-| Negotiation | 65+ | All except Competition ≥3, EB ≥4 |
-| Closing | 75+ | All ≥3, EB ≥4, Paper ≥4 |
+| 2 Discovery | 30+ | Identified Pain |
+| 3 Demo and 4 Proposal | 50+ | Identified Pain, Champion, Decision Criteria |
+| 5 Negotiate | 65+ | All except Competition ≥3, EB ≥4 |
+| 6 Closed-Won and Handoff | 75+ | All ≥3, EB ≥4, Paper ≥4 |
 
 ---
 
 ### Step 4: Identify Critical Gaps and Risks
 
 **Gap severity ranking:**
-1. Any element scoring 1 past Discovery: **critical blocker**
+1. Any element scoring 1 past Stage 2 Discovery: **critical blocker**
 2. EB or Pain ≤2 at any stage: **deal killer if not addressed**
-3. Champion ≤2 past Discovery: **no internal advocate, running on hope**
+3. Champion ≤2 past Stage 2 Discovery: **no internal advocate, running on hope**
 4. Paper Process ≤2 with close <60 days: **close date is wrong**
-5. Decision Process ≤2 past Trial & Eval: **being evaluated without knowing rules**
+5. Decision Process ≤2 from Stage 3 Demo on: **being evaluated without knowing rules**
 
 **Risk patterns to flag:**
 
@@ -396,7 +398,7 @@ Score each element 1-5 based on evidence criteria. Be honest.
 | Zombie deal | Same stage >45 days, no recent activity | Re-engage or downgrade |
 | Close date fantasy | 2+ slips, or close <30 days with Paper ≤2 | Reset close date (+30 days minimum) |
 | Feature-led deal | No documented pain, demo notes focus on features shown | Go back to discovery |
-| Competitor blind | No competitive intel past Discovery | Ask directly about alternatives |
+| Competitor blind | No competitive intel past Stage 2 Discovery | Ask directly about alternatives |
 
 ---
 
@@ -443,54 +445,80 @@ Generate 5 prioritized next actions, each targeting a specific MEDDPICC gap:
 
 ## Examples
 
-### Example 1: Enterprise Legal-Ops Deal at Negotiation with Lexora
+### Example 1: Flagship Deal at Negotiate, Brackhaven Memorial Gardens
 
-**Context:** Corvane Industrial, $3.2B manufacturer, $180K ARR, 90 days in pipeline, at Negotiation stage. Flagship enterprise deal.
+**Context:** Brackhaven Memorial Gardens, a combination of two sites with 11,000 plots (profile). ACTIVE at Stage 5 Negotiate, owned by Owen Pruitt (illustrative assignment). Amount: $21,576 a year at list, which is two sites at the $10,788 list price. 19 days in stage, and a close date set to the family board's meeting date (illustrative). Champion: GM Ruth Ellery. Economic buyer: the family board chair, who joined one call in Stage 4 (illustrative).
 
-**Input:** "Run MEDDPICC deal analysis for Corvane Industrial."
-
-**Scoring summary:**
-- Metrics: 4/5. 20% counsel spend reduction modeled against current $14M spend, baseline identified, ROI not yet formally agreed in contract
-- Economic Buyer: 5/5. VP Finance in meetings, budget confirmed ($180K ACV approved), expressed personal investment (cost mandate from CFO)
-- Decision Criteria: 4/5. Requirements documented, Lexora maps to all critical criteria (spend visibility, matter tracking, guideline enforcement), one secondary criterion (rate benchmarking) noted as future
-- Decision Process: 4/5. Committee mapped (GC, VP Finance, Procurement, IT), timeline confirmed (Q4 close), signature authority confirmed (CFO)
-- Paper Process: 3/5. Legal review expected, MSA structure discussed, vendor onboarding timeline not scoped
-- Identified Pain: 5/5. Multiple pains quantified (60+ outside firms, $14M spend opaque, manual invoice review consuming 3 attorney-weeks per quarter, guideline violations undetected)
-- Champion: 5/5. Sam Okafor (Head of Legal Ops) actively selling internally, shared internal emails forwarding Lexora capabilities, coached on GC objection about implementation burden
-- Competition: 4/5. Competitor X incumbent identified, displacement strategy clear (Lexora's analytics beat Competitor X's legacy platform), prospect perception not yet tested in writing
-
-**Health:** 86/100 (Green). Stage minimum for Negotiation: 65+ ✅. All critical elements strong.
-
-**Stage Recommendation:** ADVANCE. Ready for Closing stage once Paper Process timeline is scoped and contract finalized.
-
-### Example 2: At-Risk Deal Needing Intervention, Lexora
-
-**Context:** Brightwater Logistics, $780M, $45K ARR opportunity stalled at Discovery for 55 days. Inbound demo request from Deputy GC.
-
-**Input:** "MEDDPICC score the Brightwater Logistics deal."
+**Input:** "Run MEDDPICC deal analysis for Brackhaven Memorial Gardens."
 
 **Scoring summary:**
-- Metrics: 1/5. No metrics discussion (Deputy GC mentioned "we spend too much on outside counsel" but no numbers shared)
-- Economic Buyer: 1/5. GC unknown, budget path unknown, Deputy GC alone cannot approve (does not control legal budget)
-- Decision Criteria: 2/5. Vague sense of needs ("invoice review automation, maybe") but no formal requirements
-- Decision Process: 1/5. Unknown (Deputy GC said "I'll float this to legal" but no process details captured)
-- Paper Process: 1/5. Unknown (typical for 11-attorney mid-market but never asked)
-- Identified Pain: 2/5. Pain assumed from profile ($780M company, 11 attorneys, likely has counsel spend), not confirmed by prospect
-- Champion: 2/5. Deputy GC engaging but shows no advocacy signs (has not introduced GC, has not forwarded content internally, evaluating only)
-- Competition: 1/5. No competitive intelligence (no discussion of alternatives, LedgerLine Audit, or Competitor X)
+- Metrics: 4/5. Ruth shared the plot count (11,000, profile) and the current hours spent on the trust fund report (illustrative). ROI framework shared, not yet agreed.
+- Economic Buyer: 4/5. Family board chair identified, direct access established on one call, budget discussed but not confirmed.
+- Decision Criteria: 4/5. Must-haves known from discovery, and we map to them strongly. The pre-need module is a nice-to-have.
+- Decision Process: 4/5. Committee mapped (board, GM, Operations Director). Board date proposed. Approval sequence partly confirmed.
+- Paper Process: 3/5. Aware that legal and vendor review exists. Steps and timing are not scoped.
+- Identified Pain: 5/5. One double sale in 24 months (profile), trust fund reporting by hand, and Ruth put a cost on each in her own words (illustrative).
+- Champion: 5/5. Ruth is selling internally, shared the board's questions with us, and coached us on Walt Okonkwo's objection to tablets.
+- Competition: 4/5. Stonemark identified and a strategy exists (records and pre-need in one system). Not yet tested with the buyer.
 
-**Health:** 24/100 (Red). Stage minimum for Discovery: 30+ ❌.
+**Weighted score:**
+| Element | Weight | Score | Weighted (score × weight) |
+|---|---|---|---|
+| Metrics | 15% (0.15) | 4 | 0.60 |
+| Economic Buyer | 20% (0.20) | 4 | 0.80 |
+| Decision Criteria | 10% (0.10) | 4 | 0.40 |
+| Decision Process | 10% (0.10) | 4 | 0.40 |
+| Paper Process | 10% (0.10) | 3 | 0.30 |
+| Identified Pain | 15% (0.15) | 5 | 0.75 |
+| Champion | 15% (0.15) | 5 | 0.75 |
+| Competition | 5% (0.05) | 4 | 0.20 |
+| **Total** | **100%** | | **4.20** |
 
-**Risk patterns:** Zombie deal (55 days stalled), Feature-led (Deputy GC focused on "invoice automation"), Single-threaded (only Deputy GC), Happy Ears (BDR excited about inbound, CRM shows minimal evidence).
+**Health:** 4.20 ÷ 5 × 100 = **84/100 (Green)**. Stage minimum for 5 Negotiate is 65+, met. Critical elements: all except Competition are at 3 or higher, met. Economic Buyer is at 4 or higher, met.
 
-**Stage Recommendation:** DISQUALIFY unless Deputy GC can deliver a GC conversation within 5 business days. If disqualifying, create a re-engagement trigger for when the GC changes roles (track via LinkedIn).
+**Stage Recommendation:** HOLD at 5 Negotiate. The deal passes the Stage 5 minimum but not the Stage 6 minimum. Stage 6 requires Paper Process at 4 or higher, and this deal is at 3. Next: scope the legal and vendor steps with Ruth so Paper Process can reach 4, and get the board approval date on the calendar, which the Stage 5 to 6 gate requires.
+
+### Example 2: Same Deal Three Weeks Later, Below the Stage Minimum
+
+**Context:** Brackhaven again, three weeks after Example 1 (timing illustrative). The board meeting has moved twice, and the board chair has not joined a call since. Ruth said "I'll take it to the board" with no date. Walt has asked for a Stonemark pilot. The CRM still shows Stage 5 Negotiate. This is the non-success case.
+
+**Input:** "MEDDPICC score Brackhaven again. It's still in Negotiate."
+
+**Scoring summary:**
+- Metrics: 3/5. General pain is quantified, but the ROI numbers have not been updated since the board moved.
+- Economic Buyer: 3/5. Board chair identified by name, but no direct access. We communicate through Ruth only.
+- Decision Criteria: 3/5. Some criteria known. Walt's pilot request is a new criterion that is not mapped yet.
+- Decision Process: 2/5. Ruth said "I'll take it to the board" with no dates and no approval sequence.
+- Paper Process: 3/5. Aware that legal and vendor steps exist, details unclear.
+- Identified Pain: 4/5. Primary pain is clear and partly quantified. Urgency is not yet tied to a deadline.
+- Champion: 2/5. Ruth attends meetings but has shown no championing since the board moved.
+- Competition: 3/5. Stonemark is known, but there is no strategy for the pilot request.
+
+**Weighted score:**
+| Element | Weight | Score | Weighted (score × weight) |
+|---|---|---|---|
+| Metrics | 15% (0.15) | 3 | 0.45 |
+| Economic Buyer | 20% (0.20) | 3 | 0.60 |
+| Decision Criteria | 10% (0.10) | 3 | 0.30 |
+| Decision Process | 10% (0.10) | 2 | 0.20 |
+| Paper Process | 10% (0.10) | 3 | 0.30 |
+| Identified Pain | 15% (0.15) | 4 | 0.60 |
+| Champion | 15% (0.15) | 2 | 0.30 |
+| Competition | 5% (0.05) | 3 | 0.15 |
+| **Total** | **100%** | | **2.90** |
+
+**Health:** 2.90 ÷ 5 × 100 = **58/100 (Orange)**. Stage minimum for 5 Negotiate is 65+, not met. Critical elements failed: Economic Buyer (3, needs 4), Decision Process (2, needs 3) and Champion (2, needs 3).
+
+**Risk patterns:** Close date fantasy (three slips). Happy ears ("I'll take it to the board" with no date behind it). Effectively single-threaded: Ruth is the only contact replying, and Walt is engaged only to ask for a rival pilot.
+
+**Stage Recommendation:** DOWNGRADE to 2 Discovery. The deal is below the Stage 5 minimum and fails three critical elements. Stage 2 is the only stage this deal meets: its minimum is 30 and its critical element, Identified Pain, is at 4. Re-qualify by asking Ruth for a call with the board chair, and reset the close date by at least 30 days. The deal returns to Stage 5 only when health reaches 65 and the board chair has been met directly.
 
 ---
 
 ## Troubleshooting
 
 ### "The weighted score seems wrong"
-**Cause:** Math error in weighting. **Solution:** Verify weights sum to 100% and formula is `(sum of score × weight) / 5 × 100`. Each element contributes its score (1-5) × its weight percentage.
+**Cause:** Math error in weighting. **Solution:** Verify weights sum to 100% and formula is `(sum of score × weight) / 5 × 100`. Each element contributes its score (1-5) × its weight as a decimal (15% is 0.15).
 
 ### "Rep disagrees with low scores"
 **Cause:** Gap between rep knowledge and CRM evidence. **Solution:** Score based on evidence. Suggest the rep log their intelligence to CRM so next pulse reflects it. Frame it as: "The CRM tells one story. Let's make sure it tells the right one."
@@ -506,7 +534,7 @@ Generate 5 prioritized next actions, each targeting a specific MEDDPICC gap:
 - **Use the weighting system.** Economic Buyer at 20% is weighted highest for a reason
 - **Flag risk patterns.** "Happy ears" and "zombie deal" are the most common pipeline killers
 - **Connect coaching to specific frameworks.** Not generic advice
-- **Compare health to stage minimums.** A deal at Closing with health below 75 needs attention
+- **Compare health to stage minimums.** A deal at 6 Closed-Won and Handoff with health below 75 needs attention
 
 ### Don'ts
 - **Don't let reps self-score.** The whole point is evidence-based objectivity
@@ -527,7 +555,7 @@ Generate 5 prioritized next actions, each targeting a specific MEDDPICC gap:
 
 ## Integration with Other Skills
 
-- **`gtm-deal-pulse`.** Pulse provides the quick 16-signal health check; MEDDPICC is the deep dive. Use Pulse for portfolio triage, MEDDPICC for deals needing intervention.
+- **`gtm-deal-pulse`.** Pulse provides the quick 16-signal health check. MEDDPICC is the deep dive. Use Pulse for portfolio triage. Use MEDDPICC for deals needing intervention.
 - **`gtm-call-coaching`.** After coaching a call, re-run MEDDPICC to see if newly gathered intel changes element scores.
 - **`gtm-meeting-prep`.** Use MEDDPICC gaps to inform meeting prep: "This meeting should target EB access and Decision Process mapping."
 - **`gtm-competitive-strategy`.** When Competition scores ≤2, build a full competitive strategy.
@@ -535,6 +563,9 @@ Generate 5 prioritized next actions, each targeting a specific MEDDPICC gap:
 ---
 
 ## Changelog
+
+### Version 1.3.0 (2026-10-13)
+- Examples re-cast on PlotIQ, the library's one example company. Example arithmetic and listed errors fixed, and a non-success example added.
 
 ### Version 1.2.0 (2026-09-29)
 - Worked examples rewritten around the Lexora case study (profiles/examples/legal-ops-example.md)
