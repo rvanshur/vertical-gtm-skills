@@ -1,11 +1,11 @@
 ---
 name: gtm-sales-handoff
 description: "Post-sale implementation readiness assessment: scores 6 dimensions (stakeholder, workflow, technical, data, resource, change management), builds a 3-date handoff plan, evaluates integration readiness, identifies risks with mitigations, maps quick wins for early value delivery, and generates a readiness card for CS team handoff"
-version: 1.2.0
+version: 1.3.0
 category: GTM-Enablement
 author: Ryan Vanshur
 license: MIT
-updated: 2026-09-29
+updated: 2026-10-13
 tags: [sales-handoff, customer-readiness, implementation-readiness, onboarding, cs-handoff, post-sale, kickoff-prep]
 requires:
   skills: []
@@ -34,9 +34,9 @@ What this skill needs before it starts. **If a required input is missing, ask in
 | Input | Required | Notes |
 |-------|----------|-------|
 | Account name + deal value | ✅ Required | Basic deal data |
-| Modules/products purchased | ✅ Required | What's contracted; determines implementation scope |
+| Modules/products purchased | ✅ Required | What's contracted. Determines implementation scope |
 | Discovery notes (summarized) | ✅ Required | Why they bought, success criteria, technical context |
-| Current stakeholder contacts | ✅ Required | Who's involved; maps to implementation roles |
+| Current stakeholder contacts | ✅ Required | Who's involved. Maps to implementation roles |
 | Source system (if known) | Optional | Known or discovered during sales? |
 | Timeline commitments made | Optional | What was promised to the customer |
 
@@ -44,9 +44,9 @@ What this skill needs before it starts. **If a required input is missing, ask in
 
 ## Output Contract
 
-Every run produces a **readiness card with the same seven sections**. The content changes per account, but the structure never does. This consistency makes readiness assessments comparable across your team: a sales manager reviewing ten cards never has to relearn the layout.
+Every run produces a **readiness report with the same nine sections** (Step 7). The content changes per account, but the structure never does. The readiness card in *Artifact Generation* shows seven of those nine sections. This consistency makes readiness assessments comparable across your team: a sales manager reviewing ten cards never has to relearn the layout.
 
-Core commitments: **composite readiness score (0-100) + six dimension scores + 3-date handoff plan + stakeholder map + risk flags + quick wins + handoff checklist**. These are organized into seven fixed sections (see *Artifact Generation* below).
+Core commitments: **composite readiness score (0-100) + six dimension scores + 3-date handoff plan + stakeholder map + risk flags + quick wins + handoff checklist**. These are organized into nine fixed sections (see Step 7 below).
 
 ---
 
@@ -156,7 +156,7 @@ Your readiness assessment framework. The dimensions and scoring rules below prov
 | **Vendor transition** | Existing provider contract still active, overlapping services | Map contract end dates. Plan parallel-run period. Ensure no service gaps. |
 
 ### The 3-Date Handoff Plan
-**Date 1: Signing Date:** Contract signing date. Revenue books; starting gun for operations.
+**Date 1: Signing Date:** Contract signing date. Revenue books. This is the starting gun for operations.
 
 **Date 2: Implementation Start Date:** When customer is ready to begin. Based on:
 - IT availability
@@ -168,6 +168,16 @@ Your readiness assessment framework. The dimensions and scoring rules below prov
 - Familiar format → faster (shave 2-3 weeks)
 - Multi-system or phased rollout → slower (add 2-4 weeks)
 - Subsidiary on different system → phased timeline with separate dates per entity
+
+### Quick Win Types
+Pick 2 or 3 quick wins from these four types. Each one must be something the customer can see working in week one or month one.
+
+| Type | What it is | Generic example |
+|------|-----------|-----------------|
+| **Automate the highest-volume segment** | Move the most frequent repeat task for one segment into the product | Route the most common request type through the system for the top five accounts in week one |
+| **Enable self-service for top customers** | Give the most active customers direct access to the status they check most often | Let the most active customers see their own item status without a call to the team |
+| **Run a risk audit of open items** | Review open items for the errors or deadlines that carry the most risk | Check all open items against the deadline list and flag any item due in the next 30 days |
+| **Remove one manual step** | Find the single manual step that costs the most team hours and remove or automate it | Replace a manual copy from a spreadsheet with a direct import from the source system |
 
 ---
 
@@ -198,7 +208,7 @@ Query CRM for the specified account:
 **Deal basics:**
 - Account name, industry, sub-industry
 - Contract value (ARR) and deal type
-- Contracted modules (from the closed-won opportunity record; product/module names per `{Client Profile: Company}`)
+- Contracted modules (from the closed-won opportunity record). Product and module names come from `{Client Profile: Product Modules}`
 - Contract signing date (or expected close)
 - AE / opportunity owner
 - CS owner (if already assigned)
@@ -335,7 +345,7 @@ Weighted sum / 5 × 100 = score out of 100.
 
 #### The 3-Date Plan
 
-**Date 1: Signing Date:** Contract signing date. Revenue books; starting gun for operations.
+**Date 1: Signing Date:** Contract signing date. Revenue books. This is the starting gun for operations.
 
 **Date 2: Implementation Start Date:** When customer is ready to begin. Assess based on:
 - IT availability
@@ -446,35 +456,111 @@ Week 1, Month 1, 90-day success criteria.
 
 ## Examples
 
-### Example 1: Green Readiness: Enterprise Displacement
+### Example 1: Green Readiness, Brackhaven Memorial Gardens After Signing
 
-**Context:** Corvane Industrial ($3.2B manufacturer), $180K ARR deal just closed. Displaced Competitor X. Strong discovery with Sam Okafor (Legal Ops), Dana Whitfield (new GC) signed as Executive Sponsor, IT lead briefed.
+**Context:** Brackhaven Memorial Gardens, two sites and 11,000 plots (profile), has signed (illustrative date). Contract: $21,576 a year at list (two sites at $10,788). Contracted modules: Plot Inventory Digitization and Records and Trust Compliance (illustrative). Pre-need and proposal modules are not in this contract (illustrative). Eli Marsh, Implementation Lead (profile), takes the handoff. Since the last check, the Oldgate systems administrator has joined and confirmed the trust fund ledger export.
 
-**Input:** "Run customer readiness for Corvane Industrial, they just signed."
+**Input:** "Run customer readiness for Brackhaven Memorial Gardens. They just signed."
 
-**Process:** CRM shows closed-won, $180K ARR, Spend Intelligence + Invoice Review + Matter Tracking. Discovery notes: 60+ outside firms, ~$14M counsel spend, currently using spreadsheets. Baseline: ~150 invoices per quarter, 20-30 minutes manual review each, 3-week audit lag. Sam owns ops day-to-day. Dana is executive sponsor. IT lead (network team) confirmed export capability. Source system: existing e-billing export (familiar format).
+**Process:** CRM shows closed-won with the two contracted modules. Discovery notes: Ruth Ellery wants unsold plots found and trust fund reports a state auditor will accept (profile). Baseline (illustrative): one double sale in 24 months (profile), trust reports built by hand each year, and plot lookups not yet timed. The family board chair is the executive sponsor. Ruth is the implementation champion. Walt Okonkwo, Operations Director, owns the work orders. Source system: Oldgate Ledger Pro, with a standard export confirmed by IT. Data: plot records on paper, with deed scans scheduled for weeks 2 to 3 (profile).
 
-**Output:** Composite score: 88/100 (Green, ready). All dimensions 4-5 except Resource (3; Q4 budget freeze). 3-date plan: Signing Dec 20 → Impl Start Jan 15 → Full Adoption Mar 15 (familiar format, shaved 2 weeks). Risks: Q4 competing priorities (MEDIUM). Quick win: automate invoice review on top 5 firms in week 1, show 20% time savings. Readiness card generated.
+**Scoring:**
 
-### Example 2: Yellow Readiness: Technical Gaps
+| Dimension | Weight | Score (1 to 5) | Weighted | Evidence |
+|---|---|---|---|---|
+| Stakeholder | 20% | 4 | 0.80 | Sponsor, champion and IT lead named. Power users not yet named |
+| Workflow | 20% | 4 | 0.80 | Lookup and trust report steps mapped. Lookup times not yet timed |
+| Technical | 20% | 4 | 0.80 | Oldgate export confirmed. IT engaged but not yet briefed |
+| Data | 15% | 4 | 0.60 | Deed scans scheduled. Ledger export clean on a sample |
+| Resource | 15% | 4 | 0.60 | Eli Marsh assigned. The March 2027 Oldgate renewal competes for attention |
+| Change Management | 10% | 4 | 0.40 | Ruth champions it. Walt agreed to a work-order pilot (illustrative) |
+| **Total** | **100%** | | **4.00** | |
 
-**Context:** Ardent Insurance Group ($1.1B carrier), $95K ARR deal near close. Spreadsheet-based process displacement. IT not engaged during sales.
+**Composite:** 4.00 ÷ 5 × 100 = **80/100 (Green, ready)**. The score sits exactly on the Green threshold of 80.
 
-**Input:** "Prep the handoff for Ardent Insurance Group."
+**3-date plan:**
+- Signing: 2026-11-16 (illustrative).
+- Implementation start: 2026-11-16. Green means immediate.
+- Full adoption: implementation start + 2 months = 2027-01-16. No adjustment. The Oldgate export is a standard export, and there is one source system.
+- Volume projection: expect to take on about 11,000 plot records across two sites (profile).
 
-**Process:** CRM shows expected close next week, $95K ARR, Spend Intelligence + Invoice Review. Discovery: 17 attorneys managing ~$6M counsel spend across spreadsheets. Acquired by PE firm last quarter. Champion identified (Legal Ops Manager). BUT: IT was never in any sales meeting, source system is "some custom system" (details unclear), no prior integrations. Two team members expressed skepticism about changing spreadsheet process.
+**Risks (top 3):** Vendor transition (MEDIUM): the Oldgate contract renews in March 2027, so the parallel run must finish before then. Adoption (MEDIUM): Walt's skepticism, so the work-order pilot goes first. Data (MEDIUM): paper records, so the deed-scan sprint runs in weeks 2 to 3.
 
-**Output:** Composite score: 62/100 (Yellow, ready with conditions). Technical (2/5, red) and Change Management (2/5, red) are critical gaps. Stakeholder (3/5): IT Lead not identified. 3-date plan: Signing Feb 10 → Impl Start Mar 10 (4-week buffer for IT setup) → Full Adoption May 28 (unfamiliar system, add 3 weeks). Risks: IT availability (HIGH), change resistance (MEDIUM), unknown system format (HIGH). Recommendations: (1) AE should facilitate IT introduction before kickoff, (2) Champion needs change management support to address skepticism. Readiness card generated.
+**Quick wins:** Week 1, Remove one manual step: replace the binder lookup for the top section with a search, and time it. Month 1, Run a risk audit of open items: check the open plots at both sites for double-sale risk. 90 days: lookup times at or below the baseline Ruth provides, and the trust report built from the system without hand steps.
 
-### Example 3: Red Readiness: Not Ready
+**Output:** Composite 80 (Green, ready). Kickoff on 2026-11-23 (illustrative) with Eli Marsh and Ruth. Readiness card generated.
 
-**Context:** Brightwater Logistics ($780M), $45K deal closed but discovery was shallow. Champion left the company post-signature.
+### Example 2: Yellow Readiness, Brackhaven Memorial Gardens at Signing (Non-Success)
 
-**Input:** "Run readiness assessment for Brightwater Logistics."
+**Context:** Brackhaven Memorial Gardens is at signing (expected, illustrative date). The IT side was never in a sales meeting. The Oldgate export is known but not yet confirmed by anyone who runs IT. The family board chair is the economic buyer, has been on one call, and has not confirmed the sponsor role. Walt Okonkwo, Operations Director, is skeptical of tablets (profile). This is the non-success case: the deal can be signed, but the handoff is not clean.
 
-**Process:** CRM shows closed-won, $45K ARR, Invoice Review only. But: Deputy GC (sales champion) left the company 2 weeks after signing. No other contacts engaged during sales. Discovery notes minimal: pain confirmed ("invoices take too long") but not quantified. Source system unknown. No IT contact. No volume baselines, no current-state process mapped.
+**Input:** "Prep the handoff for Brackhaven Memorial Gardens. Signing is expected this month."
 
-**Output:** Composite score: 28/100 (Red, not ready). Stakeholder (1/5), Workflow (2/5), Technical (1/5), Data (1/5), Resource (1/5), Change Mgmt (2/5). Recommendation: **Do not proceed to kickoff.** AE must re-engage: (1) identify new champion, (2) introduce to executive sponsor, (3) identify IT lead, (4) run abbreviated discovery to map workflow and volume. 3-date plan: Signing Jan 30 → Impl Start TBD (blocked until critical gaps resolved) → Full Adoption TBD. Readiness card generated with red banner.
+**Process:** CRM shows the expected close this month, $21,576 a year at list. Ruth Ellery is the champion. No IT contact is on file. The source is Oldgate Ledger Pro, with an export that has never been tested by IT. Plot records are on paper, and no lookup has been timed. Walt is the operations owner, and he has not agreed to the work-order pilot.
+
+**Scoring:**
+
+| Dimension | Weight | Score (1 to 5) | Weighted | Evidence |
+|---|---|---|---|---|
+| Stakeholder | 20% | 3 | 0.60 | Champion identified. Sponsor unclear: the board chair has not confirmed the role |
+| Workflow | 20% | 3 | 0.60 | Steps understood. Volumes and lookup times not documented |
+| Technical | 20% | 3 | 0.60 | Oldgate is known. IT is shared, with a 2 to 4 week lead time |
+| Data | 15% | 3 | 0.45 | Core data exists on paper. Quality is uneven, and the ledger export is unconfirmed |
+| Resource | 15% | 3 | 0.45 | Shared implementation resource, with the March 2027 renewal to work around |
+| Change Management | 10% | 3 | 0.30 | Ruth is open. Walt is a skeptic who needs managing |
+| **Total** | **100%** | | **3.00** | |
+
+**Composite:** 3.00 ÷ 5 × 100 = **60/100 (Yellow, ready with conditions)**. The score sits at the bottom of the 60 to 79 band.
+
+**3-date plan:**
+- Signing: 2026-11-16 (expected, illustrative).
+- Implementation start: Yellow means a 2 to 4 week buffer. Three weeks gives 2026-12-07.
+- Full adoption: implementation start + 2 months = 2027-02-07. No adjustment, because the paper records are a data-entry step and not a second system. The date leaves about four weeks before the March 2027 renewal.
+
+**Risks (top 3):** Technical (HIGH): no IT lead identified, and the export is untested. Stakeholder (HIGH): the sponsor is not confirmed in writing. Adoption (MEDIUM): Walt's skepticism about tablets.
+
+**Conditions before kickoff:**
+1. The AE introduces the Oldgate systems administrator to Eli Marsh before kickoff.
+2. The family board chair confirms the executive sponsor role in writing.
+3. Ruth brings a week of plot lookup times, so the baseline exists.
+4. Walt joins the work-order demo, so his pilot is agreed before kickoff.
+
+**Output:** Composite 60 (Yellow, ready with conditions). The two HIGH risks are the reason it is not Green. Readiness card generated.
+
+### Example 3: Red Readiness, Brackhaven Memorial Gardens Not Ready
+
+**Context:** The family board has moved its meeting twice (illustrative), so no board approval date is set. The Stage 5 to 6 gate requires that date and an agreed handoff plan (profile), so this deal does not clear the gate. Ruth Ellery has been silent for 16 days (illustrative). Walt Okonkwo says he will not sign without a Stonemark pilot. Nobody has looked at the Oldgate export.
+
+**Input:** "Run readiness for Brackhaven Memorial Gardens. Ruth says they're ready to sign."
+
+**Process:** CRM shows Stage 5 Negotiate, $21,576 a year at list, and a close date pushed three times (illustrative). Ruth is the only contact who has responded, and she has gone quiet. No IT contact is on file. No volume baseline exists, and no lookup has been timed. Ruth's "ready to sign" is a claim with no board date behind it, so the skill scores the evidence, not the claim.
+
+**Scoring:**
+
+| Dimension | Weight | Score (1 to 5) | Weighted | Evidence |
+|---|---|---|---|---|
+| Stakeholder | 20% | 2 | 0.40 | Only the sales champion is engaged. No sponsor or IT lead is introduced |
+| Workflow | 20% | 2 | 0.40 | Limited notes. The process is not mapped, and no lookup is timed |
+| Technical | 20% | 1 | 0.20 | Source system unverified. No IT engagement, and no integration history |
+| Data | 15% | 2 | 0.30 | Paper records and an unexamined ledger export |
+| Resource | 15% | 2 | 0.30 | Significant constraint: the board date keeps moving, and the champion is silent |
+| Change Management | 10% | 2 | 0.20 | Walt is a skeptic, and the team has not been briefed |
+| **Total** | **100%** | | **1.80** | |
+
+**Composite:** 1.80 ÷ 5 × 100 = **36/100 (Red, not ready)**. The score is in the 0 to 39 band.
+
+**Recommendation:** Do not proceed to kickoff. Sales must re-engage first:
+1. Get the board approval date, which the Stage 5 to 6 gate requires.
+2. Have IT confirm the Oldgate export, using a test file.
+3. Find a second champion, since Ruth is the only responsive contact.
+4. Run an abbreviated discovery to time plot lookups and set the volume baseline.
+
+**3-date plan:**
+- Signing: TBD (not signed, and no board date is set).
+- Implementation start: TBD. Blocked until the critical gaps are resolved.
+- Full adoption: TBD.
+
+**Output:** Composite 36 (Red, not ready). Sales may need to re-engage before the handoff can happen. Readiness card generated with a red banner.
 
 ---
 
@@ -534,7 +620,7 @@ Week 1, Month 1, 90-day success criteria.
 - [ ] Every risk has a specific mitigation plan (not generic)
 - [ ] Quick wins reference the customer's actual situation
 - [ ] No placeholder brackets in final output
-- [ ] Implementation timeline uses product benchmarks with adjustments documented
+- [ ] Implementation timeline uses the 3-date plan rules, with each adjustment documented
 - [ ] Handoff checklist populated for both sales and CS teams
 
 ---
@@ -550,6 +636,9 @@ Week 1, Month 1, 90-day success criteria.
 ---
 
 ## Changelog
+
+### Version 1.3.0 (2026-10-13)
+- Examples re-cast on PlotIQ, the library's one example company. Example arithmetic and listed errors fixed, and a non-success example added.
 
 ### Version 1.2.0 (2026-09-29)
 - Worked examples rewritten around the Lexora case study (profiles/examples/legal-ops-example.md)
