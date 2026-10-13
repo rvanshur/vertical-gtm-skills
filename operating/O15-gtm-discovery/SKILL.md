@@ -1,16 +1,19 @@
 ---
 name: gtm-discovery
-version: 2.0.0
+version: 2.0.1
 description: "Diagnoses which Guild archetype a business is, grades every belief about its customer by evidence (assumed, heard, seen, confirmed), plans the cheapest evidence for the bets that matter most, names the real alternatives and a starting segment, and writes the result to the knowledge base for Positioning, Launch and Engine to read."
 category: Operating-Discipline
 author: Ryan Vanshur
 license: MIT
-updated: 2026-10-12
+updated: 2026-10-13
 tags: [discovery, customer-archetype, evidence-ladder, load-bearing-assumption, starting-segment, competitive-alternatives, open-bets, operating-discipline]
 requires:
   skills: [context-os-setup]
 mutating: true
 change_log:
+  - version: 2.0.1
+    date: 2026-10-13
+    summary: "Example 1 re-cast on PlotIQ, the library's one example company, matching article 51."
   - version: 2.0.0
     date: 2026-10-12
     summary: "Ground-up rewrite around the archetype diagnosis and the evidence ladder. Adds the open-bets node and the seven-stage workflow with a re-grade loop."
@@ -148,7 +151,7 @@ Branch on the archetype for where to look first:
 | Embedded Fintech | Payment volume per customer; adoption of the payment product |
 | Marketplace | Activity on both sides; what happens when one side thins |
 
-Record every grade with its count, for example "signer was the General Counsel on 9 of 11 won deals (82%, n=11)." Report the number of claims graded this way as a share of all claims.
+Record every grade with its count, for example "the signer was the general manager on 9 of 11 won deals (82%, n=11)." Report the number of claims graded this way as a share of all claims.
 
 **Produces:** an updated ledger, and an evidence-gap list: the claims still `assumed` that matter most.
 
@@ -233,102 +236,104 @@ Every output names the thresholds it used: the minimum cell size, the win-rate g
 
 ## Examples
 
-Both examples follow the seven stages. The Lexora numbers are illustrative and labelled as such. The upmarket example uses only the facts the published archetype article states.
+Both examples follow the seven stages. The PlotIQ numbers are illustrative and labelled as such. The upmarket example uses only the facts the published archetype article states.
 
-### Example 1. Lexora, Full Run (Illustrative Numbers)
+### Example 1. PlotIQ, Full Run (Illustrative Numbers)
 
-**Scope note.** Lexora is the fictional legal-operations company used across the Guild's example profile. Its ACV bands, cycle bands, personas and competitors come from its profile. Every count, median and rate below is illustrative, made up for this walk-through, and labelled that way. None is a real Lexora result.
+**Scope note.** PlotIQ is the made-up software company for cemeteries and funeral homes that the library uses as its one example company. Its price, cycle bands, personas and competitors come from its profile. Every count, median and rate below is illustrative, made up for this walk-through, and labelled that way. PlotIQ is in beta with two beta cemeteries and no paid revenue, so none of these numbers is a real PlotIQ result. The beliefs, the archetype call and the open bet match Guild article 51.
 
 **Stage 1. Beliefs (all `assumed`).**
 
 | Claim | What Would Change Our Mind |
 |-------|----------------------------|
-| A1. The General Counsel signs the contract | Signer field on won contracts |
-| A2. Mid-market buyers decide without the CFO | CFO appearing in won mid-market deals |
-| A3. The mid-market sales cycle is 3 to 4 months | Create-to-close dates on won mid-market deals |
-| A4. Spreadsheets and email are the alternative we lose to most | Alternative field on closed deals, with source |
-| A5. Load-bearing: a firm count of 20 or more is the trigger that gets the meeting | Outside-firm count on won deals, and buyer statements about the trigger |
-| A6. They buy because they can't see outside-counsel spend until invoices land ("We find out at quarter close") | Buyers describing, in their own words, what set off the purchase |
+| A1. Cemetery general managers sign the contract | Signer named in the deal notes, and what buyers say about who signs |
+| A2. Paper plot maps are the pain | Buyers describing, in their own words, how a family's plot question gets answered |
+| A3. Start with independent cemeteries | Independent talks and deal notes compared with combinations and groups |
+| A4. Load-bearing: the pre-need sales manager is the buyer | Who made the decision on each deal where pre-need came up |
+| A5. Load-bearing: a GM can carry a deal over $25K past the board | A board date and approval record on each deal over the line, plus buyer statements about the board |
+| A6. Staff resistance, not price, is what stalls deals | Stall and loss reasons in the deal notes, in the buyer's words |
 
 **Stage 2. Archetype Diagnosis.**
 
 | Question | Answer | Evidence | Band It Points To |
 |----------|--------|----------|-----------|
-| 1. Cycle | Median 4 months | Last 20 closed deals (illustrative, n=20) | Hybrid or Enterprise lite |
-| 2. Contract value | Median $82K | Won deals (illustrative, n=13) | Hybrid or Enterprise lite |
-| 3. Buyer comfort | Legal leaders, not tech-savvy | `assumed`. No buyer records yet | Enterprise or SMB Community |
-| 4. Money through product | No | Product scope: counsel spend is invoice data, not a payment flow | Embedded Fintech off |
-| 5. Two sides | No | Profile disqualifies law firms: "we sell to in-house teams, not firms" | Marketplace off |
+| 1. Cycle | 90 to 150 days for a single site. No closed PlotIQ deals yet | The research range, not PlotIQ data (illustrative until ten deals close) | 8 to 16 weeks: SMB Community with complexity, at the slow edge |
+| 2. Contract value | $10,788 a year plus $5,000 setup, at list | The modeled price in the profile, not a closed median | $5K to $50K: SMB Community |
+| 3. Buyer comfort | Low to medium. "Pen and paper is free" | `assumed`. Forum posts only, no buyer records yet | SMB Community, not self-serve |
+| 4. Money through product | No. PlotIQ monitors trust records and holds no funds | Product scope | Embedded Fintech off |
+| 5. Two sides | No. One buyer, the operator | Product scope | Marketplace off |
 
-**Candidate:** Enterprise leads, with mid-market deals running on a shorter, SMB-Community-like cycle. Confidence: medium on Enterprise as the leading archetype, low on the mid-market split.
+**Candidate:** SMB Community leads. Confidence: medium on the archetype, low on the cycle until PlotIQ has closed deals of its own.
 
-**The contradiction, stated plainly.** The cycle and value answers sit in the Hybrid band. The Enterprise ten-deal test, however, asks for 12-month cycles in 8 of 10 deals. Lexora's mid-market deals will fail that line by design. This is not a flaw in Lexora. It is the finding: the archetype test has to run per segment, not once for the whole company. The plan is to run the test on the next 10 mid-market closes and the next 10 enterprise closes, separately. Each segment is a group of 10, so each passes or fails on its own count.
+**The contradiction, stated plainly.** The cycle answer sits at the slow edge of the SMB Community band, but the SMB Community ten-deal test asks for 8 or more of 10 deals to close in under 12 weeks. Twelve weeks is 84 days, and the research's shortest cycle is 90, so every deal in the research range fails that line. This is not a flaw in PlotIQ. It is the finding: the cycle band and the test disagree, so the archetype is not settled until the first ten closes say which one is right. The plan is to run the test on those ten closes and report the cycle median from them, not from the research.
 
-**Stage 3. Grading What Already Exists.** Illustrative data: 20 closed deals in 12 months, 13 won and 7 lost. Mid-market: 10 closed, 7 won. Enterprise: 10 closed, 6 won.
+**Stage 3. Grading What Already Exists.** Illustrative data: notes from seven cemetery conversations (n=7), four with independent cemeteries and three with combinations. Two of the seven are the beta cemeteries. No paid deals exist yet, so the notes carry the grading.
 
-- **A3 moves to `confirmed`.** Mid-market won deals (n=7) show a median create-to-close of 3.4 months, range 2.8 to 4.5. The seven cases are recent and none contradicts the 3 to 4 month band. Enterprise won deals (n=6) show a median of 6.1 months, inside the profile's 5 to 7 month band.
-- **A2 is contradicted, and it is the load-bearing bet that proves wrong.** The CFO is recorded as a stakeholder on 4 of 7 mid-market wins (57%, n=7). The team had been drafting mid-market messaging that left the CFO out. Positioning would have built on it. A2 moves to contradicted. The replacement claim is "the CFO is present on about half of mid-market wins (4 of 7, 57%, n=7)," graded `seen`. A2 is archived under the `/dream` rule, not left next to its replacement.
-- **A1 stays at `seen`, not `confirmed`.** The signer was recorded on 11 of 13 won deals. The General Counsel signed 9 of 11 (82%, n=11). The two other signatures were the CFO. Because two cases contradict the wording "the General Counsel signs," the claim is reworded to "the General Counsel signs most contracts," and graded `seen`.
-- **A4 moves to `seen`.** Of 20 closed deals, the rep-entered alternative field reads: spreadsheets and email 11 (55%, n=20), Competitor X 5 (25%, n=20), LedgerLine Audit 1 (5%, n=20), none recorded 3 (15%, n=20). The source is rep entry, so the node records it as CRM data and not as buyer statements.
+- **A1 moves to `heard`.** Two buyers said the general manager signs the contract, so the claim is graded HEARD (2 buyers). It does not reach `seen`, because no signed PlotIQ contract exists yet to show it in behavior.
+- **A4 is contradicted, and it is the load-bearing belief that proves wrong.** Two of the seven notes name a pre-need sales manager in the room, and in both the general manager made the call. A claim cannot stand as written while a contrary case is unexplained, and two cases are not enough to call a pattern either way, so A4 is reworded rather than kept. A4 is archived, not left next to its replacement. The replacement, "The general manager decides, and the pre-need sales manager champions the tool," is a new claim and stays `assumed` until a buyer confirms it.
 
-**Claims graded without a new conversation:** 4 of 6 (67%, n=6). A1 through A4 are graded. A5 and A6 remain `assumed` and become open bets, because no deal record holds either one. Both need buyer conversations.
+**Claims graded without a new conversation:** 2 of 6 (33%, n=6). A1 is graded HEARD and A4 is graded contradicted. A2, A3, A5 and A6 remain `assumed`. A2 and A5 go into the evidence plan, because the deal notes do not settle either one.
 
-**Stage 4. Evidence Plan for A5 (the open load-bearing claim).**
+**Stage 4. Evidence Plan for A2 and A5 (the open claims that matter most).**
 
-- **Deal-data pull:** the outside-firm count from the intake form on all 13 won deals (n=13). Record the count and leave blanks as blanks, not zeros.
-- **Five past-behavior conversations** with recent mid-market buyers, asking: "Tell me about the last time you looked at outside-counsel spend. What set it off?" Record each answer with the buyer's own words and the firm count they gave. No answers are recorded here. This is the plan, not a result.
+- **Deal-data pull:** the board date and approval record from every proposal over $25K, from the proposal log. Record each one and leave blanks as blanks, not zeros. With so few proposals, any result stays an observation until ten exist.
+- **Five past-behavior conversations** with cemetery general managers who have signed a contract over $25K, asking: "Tell me about the last purchase that went past your board. Who approved it, and what did the board ask?" Record each answer in the buyer's own words. No answers are recorded here. This is the plan, not a result.
+- **Five past-behavior conversations** with independent cemetery staff, asking: "Walk me through the last time a family asked where a plot was." Record who answered, what they looked up, and how long it took. This is the plan for A2, not a result. The four independent talks already held feed Stage 6.
 
-**Stage 5. Competitive Alternatives Node.** Source for every count: the rep-entered alternative field on 20 closed deals, which is CRM data, not buyer statements.
+**Stage 5. Competitive Alternatives Node.** Source for every count: buyer statements from the four independent cemetery talks, recorded in the interview notes. These are what buyers said they used, not CRM fields. Every rate is an observation, because n is under five.
 
 | Alternative | Count | Rate (n) |
 |-------------|-------|----------|
-| Spreadsheets and email | 11 | 55% (n=20) |
-| Competitor X, the legacy e-billing platform | 5 | 25% (n=20) |
-| LedgerLine Audit, the outsourced review service | 1 | 5% (n=20) |
-| Do nothing | Not recorded | The CRM field has no "do nothing" option, so this count cannot be read. Logged as an evidence gap, to be asked in the A6 conversations |
+| Paper maps | 4 | 100% (n=4) |
+| A spreadsheet | 2 | 67% (n=3) |
+| The groundskeeper's memory | 2 | 50% (n=4) |
+| Stonemark Enterprise, the enterprise cemetery mapping product | 1 | 25% (n=4) |
+| Oldgate Ledger Pro, the legacy on-premise system | 0 | 0% (n=4) |
+| Doing nothing | Not recorded | The talks did not ask about it consistently, so this count cannot be read. Logged as an evidence gap, to be asked in the A5 conversations |
 
-Three deals have no alternative recorded. They are left out of the counts, not treated as "do nothing", because silence is not a no.
+One talk says nothing about spreadsheets. It is left out of that row's count and shown as n=3, not treated as "no", because silence is not a no.
 
-**Stage 6. Starting Segment.** Threshold used in this run: a win-rate gap under 20 points is reported as "no difference found."
+**Stage 6. Starting Segment.** Thresholds used in this run: a gap under 20 points is reported as "no difference found at this threshold," and any cell under five is reported as an observation.
 
-| Segment | Closed (n) | Won | Win Rate (n) | Median Cycle (n) | Key Claims Confirmed |
-|---------|-----------|-----|--------------|------------------|----------------------|
-| Mid-Market | 10 | 7 | 70% (7 of 10) | 3.4 months (n=7) | 1 of 2 (A3 confirmed; A2 contradicted) |
-| Enterprise | 10 | 6 | 60% (6 of 10) | 6.1 months (n=6) | 0 of 2 |
+| Segment | Talks (n) | Named Plot Lookup | Named Pre-Need Follow-Up |
+|---------|-----------|-------------------|--------------------------|
+| Independent cemetery | 4 | 100% (4 of 4) | 75% (3 of 4) |
+| Combination | 3 | 67% (2 of 3) | 67% (2 of 3) |
 
-The 10-point win-rate gap is under the 20-point threshold, so the report says **no difference found on win rate**. The choice rests on the shorter cycle and the better-graded claims. **Recommendation:** start with Mid-Market. **Switch trigger:** if the Mid-Market win rate falls below 50% over the next 10 closed mid-market deals, reopen this stage and consider Enterprise.
+The pre-need gap is 8 points, under the 20-point threshold, so the report says **no difference found on pre-need follow-up**. The plot lookup gap is 33 points, the widest in the table, but both cells are under five, so it is reported as an observation and not as a finding. The choice rests on the ICP ranking, which puts independents first, and on A3, which stays `assumed` and is supported only by observation. **Recommendation:** start with independent cemeteries. **Switch trigger:** if fewer than three of the next ten independent-cemetery talks name plot lookup as their top problem, reopen this stage and consider combinations.
 
 **Stage 7. Write-Back.**
 
-- **Archetype node:** Enterprise leads (mid-market on a shorter cycle), medium confidence, with the contradiction and the per-segment test plan attached.
+- **Archetype node:** SMB Community leads, medium confidence, with the cycle contradiction and the ten-deal test attached.
 - **Persona node, with every trait traced:**
 
 | Persona | Trait | Source Claim | Grade |
 |---------|-------|--------------|-------|
-| General Counsel | Signs most contracts | A1 (reworded) | `seen`, 9 of 11 (82%) |
-| General Counsel | Shares mid-market approvals with the CFO (CFO recorded as a stakeholder on 4 of 7 mid-market wins) | Replaces A2 | `seen`, 4 of 7 (57%) |
-| Head of Legal Operations | Owns outside-counsel management day to day | Profile, not yet graded | `assumed` |
+| Cemetery General Manager | Signs the contract | A1 | `heard`, 2 buyers |
+| Cemetery General Manager | Keeps the trust fund records and the state filing | Profile pain #2, not yet graded | `assumed` |
+| Cemetery General Manager | Decides, with the pre-need sales manager championing the tool | Replaces A4 | `assumed` |
 
-The Deputy GC persona has no trait with a source in this run, so it is not written to the node. That is the rule working: a persona with no traced trait does not get a persona entry.
+The CFO or Controller persona (groups only) has no trait with a source in this run, so it is not written to the node. That is the rule working: a persona with no traced trait does not get a persona entry.
 
 - **Open bets node:**
-  1. A5, firm count of 20 or more as the trigger. Load-bearing for the outbound opener. `assumed`. Do not build the opener on it.
-  2. A6, why they buy (spend visibility before invoices land). `assumed`. Positioning's value statement may not rest on it until buyers say it.
-  3. The do-nothing count, which the CRM cannot hold.
-  4. The Enterprise ten-deal test, per segment. Incomplete until 10 closes per segment are recorded.
+  1. A5, a GM can carry a deal over $25K past the board. Load-bearing for the close plan. `assumed`. Do not build the close plan on it.
+  2. A6, staff resistance is what stalls deals. `assumed`. Positioning may not rest its objection handling on it until buyers say it.
+  3. The do-nothing count, which the deal notes do not hold.
+  4. The SMB Community ten-deal test, incomplete until ten closes are recorded.
   5. Buyer comfort with software (Stage 2, question 3). `assumed`.
-- **Profile write-back:** ICP Definitions gets Mid-Market as the starting segment, with its win rate and n. The profile's checked box "20+ active outside firms" is rewritten as a claim, A5, with the grade `assumed`, so the profile stops stating it as fact. Buyer Personas carries the graded traits above. Competitive Landscape carries the alternatives table with its source.
-- **Re-grade dates:** A1 and A4 (`seen`) in 30 days. A3 (`confirmed`) in 90 days. Open bets carry no date and are listed for review once they have been open for a month.
+  6. A3, start with independents. Observation only, n=4.
+- **Profile write-back:** ICP Definitions ranks independent cemeteries first, with the observation counts and n. The profile's Zone 3 line, "GM or owner signs under $25K," is marked `assumed` beside A5, so the profile stops stating the general manager's authority as fact. Buyer Personas carries the traced traits above. Competitive Landscape carries the alternatives table with its source.
+- **Re-grade dates:** A1 (`heard`) in 30 days. A4 is archived. Open bets carry no date and are listed for review once they have been open for a month.
 
-**Hand-off to Positioning (the five fields, in one place; every number illustrative):**
+**Hand-off to Positioning (the five fields in one place, every number illustrative):**
 
-- **Customer archetype:** Enterprise leads (medium confidence). Mid-market deals run a shorter cycle and have not yet been tested against the Enterprise ten-deal test.
-- **Competitive alternatives:** spreadsheets and email 55%, Competitor X 25%, LedgerLine Audit 5% (all n=20, rep-entered CRM field). Do nothing: not recorded, open. 3 of 20 deals had no alternative recorded and are excluded.
-- **Beachhead segment:** Mid-Market, meaning companies with $500M to $1.5B revenue (the profile's segment definition). 10 closed, 7 won (70%, n=10); median cycle 3.4 months (n=7). No difference found on win rate against Enterprise (threshold 20 points). Switch if mid-market win rate falls below 50% over the next 10 closes.
-- **Buyer persona:** General Counsel (two traced traits), Head of Legal Operations (one `assumed` trait).
-- **Open bets:** A5, A6, the do-nothing count, the per-segment test, buyer comfort with software.
+- **Customer archetype:** SMB Community leads (medium confidence). The cycle sits at the slow edge of the band and has not yet passed the ten-deal test.
+- **Competitive alternatives:** paper maps 100% (n=4), a spreadsheet 67% (n=3), the groundskeeper's memory 50% (n=4), Stonemark Enterprise 25% (n=4), Oldgate Ledger Pro 0% (n=4). Doing nothing: not recorded, open. All observations, under five talks.
+- **Beachhead segment:** Independent cemeteries, 1 to 2 sites (the profile's ICP1). Plot lookup named by 4 of 4 talks (n=4, observation). No difference found on pre-need follow-up against combinations (8-point gap, threshold 20). Switch if fewer than three of the next ten talks name plot lookup.
+- **Buyer persona:** Cemetery General Manager (three traced traits: one `heard`, two `assumed`).
+- **Open bets:** A5, A6, the do-nothing count, the SMB Community ten-deal test, buyer comfort with software.
 
-**Do not build on:** A5 (the 20-firm trigger), A6 (why they buy), buyer comfort with software. Each is `assumed`. A positioning statement that needs one of them is a hypothesis and must say so.
+**Do not build on:** A5 (the $25K board trigger), A6 (what stalls deals), buyer comfort with software. Each is `assumed`. A positioning statement that needs one of them is a hypothesis and must say so.
 
 ### Example 2. The Upmarket Move (Published Facts Only)
 
@@ -388,4 +393,5 @@ The Deputy GC persona has no trait with a source in this run, so it is not writt
 
 ## Changelog
 
+- **2.0.1 (2026-10-13):** Example 1 re-cast on PlotIQ, the library's one example company, matching article 51.
 - **2.0.0 (2026-10-12):** Ground-up rewrite around the archetype diagnosis and the evidence ladder. Adds the open-bets output, the seven-stage workflow with a re-grade loop, and the per-segment ten-deal test.
