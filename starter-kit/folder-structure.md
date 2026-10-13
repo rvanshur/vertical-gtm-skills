@@ -18,7 +18,7 @@ vertical-gtm-skills/
 ├── profiles/
 │   ├── client-profile.md        # YOUR profile (gitignored, never committed)
 │   ├── client-profile-template.md
-│   └── examples/legal-ops-example.md
+│   └── examples/plotiq-example.md
 ├── skills/                      # The 14 sales skills
 ├── operating/                   # The 15 operating skills
 └── output/                      # Generated call sheets, scorecards, sequences (gitignored)

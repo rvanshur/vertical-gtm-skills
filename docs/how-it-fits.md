@@ -45,7 +45,7 @@ profile honest and the output checked.
 
 1. **Fill the profile.** Copy `profiles/client-profile-template.md` to
    `profiles/client-profile.md` and complete it. The
-   [Lexora example](../profiles/examples/legal-ops-example.md) shows the density to aim for.
+   [PlotIQ example](../profiles/examples/plotiq-example.md) shows the density to aim for.
    If you cannot fill the ICP, Personas or Competitive Landscape sections from evidence, run
    **O15 Discovery** and **O14 Positioning** first. That is what they are for.
 2. **Run three motion skills** on real accounts. Pick them by role from the README.
@@ -97,6 +97,7 @@ because the first two feed nearly everything:
 | Buyer Personas | 5 |
 | Qualification Criteria | 4 |
 | Proof Points | 4 |
+| Qualification Zones | 4 (01, 03, 06 and 07) |
 | Value Propositions | 3 |
 | Sales Methodology | 3 (Meeting Prep, MEDDPICC, Call Coaching calibrate to it) |
 | Company | every skill, for framing |
@@ -138,9 +139,9 @@ competitive data. Neither ever leaves your machine unless you move it.
 
 ## The Example Everyone Uses
 
-Every worked example in every skill uses the same fictional company, **Lexora**, a legal-ops
-platform selling to in-house legal teams, and the same cast of prospect accounts (Corvane
-Industrial is the flagship deal). Both are defined once, in
-[`profiles/examples/legal-ops-example.md`](../profiles/examples/legal-ops-example.md). That
+Every worked example in every skill uses the same fictional company, **PlotIQ**, a made-up
+software company for cemeteries and funeral homes, and the same cast of prospect accounts
+(Brackhaven Memorial Gardens is the flagship deal). Both are defined once, in
+[`profiles/examples/plotiq-example.md`](../profiles/examples/plotiq-example.md). That
 means you can follow one account from qualification to handoff across the skills, and compare
 any skill's example output with what your own profile produces.

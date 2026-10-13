@@ -173,13 +173,13 @@ Now the claim is verifiable. A customer can test it themselves. Credibility is e
 
 ### Worked Example 3: Positioning That Survives Validation (Positioning Success)
 
-**Hypothesis (Lexora, the example company):** General Counsels care most about seeing outside-counsel spend before the invoice lands, not about the size of the discount.
+**Hypothesis (PlotIQ, the example company):** General managers care most about knowing which plots are unsold and whether their trust records would pass an audit, not about the price of the software.
 
-**Test method:** Run 10 interviews with General Counsels and Heads of Legal Ops. Do not lead with savings. Ask an open question about their biggest problem with outside counsel.
+**Test method:** Run 10 interviews with cemetery general managers and pre-need sales managers. Do not lead with price. Ask an open question about their biggest problem with plot records.
 
-**Result (illustrative):** Eight of ten say some version of "I can't see it until the invoice lands" first. Savings come up second.
+**Result (illustrative):** Eight of ten say some version of "Nobody fully trusts the records" first. Price comes up second.
 
-**Positioning:** Rewrite to lead with spend visibility, not the discount. Price reflects this (a control and visibility tool is priced against the risk it removes, not as a cost-cutting line item).
+**Positioning:** Rewrite to lead with plot visibility and trust records, not the price. Price reflects this (a records and trust tool is priced against the unsold plots and audit risk it removes, not as a cost-cutting line item).
 
 **Outcome:** Messaging resonates. Buyers self-identify immediately. Sales conversations are shorter.
 
@@ -200,7 +200,7 @@ Now the claim is verifiable. A customer can test it themselves. Credibility is e
 
 - **Price based on value, not costs.** What something costs you to build is irrelevant to what someone will pay. Value is what matters.
 - **Test positioning with non-friends.** Friends will validate everything. Strangers will tell you the truth.
-- **The category you claim determines how you are compared.** If Lexora says "spend management for legal," it gets compared to procurement and accounts-payable tools. If it says "outside-counsel control for in-house legal teams," it competes on different criteria. Choose carefully.
+- **The category you claim determines how you are compared.** If PlotIQ says "deathcare software," it gets compared to general funeral-home software. If it says "plot records and trust compliance for cemeteries," it competes on the criteria a cemetery manager uses. Choose carefully.
 - **Mark your confidence level on every positioning claim.** Every statement in your positioning should have evidence. If it does not, mark it as hypothesis.
 - **Pricing changes, but positioning rarely does.** Once your positioning is validated, it stays consistent across price changes. Reposition only if the market fundamentally changes.
 

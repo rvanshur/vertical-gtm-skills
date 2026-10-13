@@ -24,13 +24,13 @@ Each sales skill has five parts:
 - **Methodology:** the frameworks and scoring logic (SPIN, MEDDPICC, Challenger and so on)
 - **Context:** the pointer to your Client Profile, where your company data lives
 
-When you tell Claude "prep me for a discovery call with Corvane Industrial," Claude reads the Meeting Prep skill, pulls your Client Profile, and produces the same structured call sheet every time.
+When you tell Claude "prep me for a discovery call with Quill Hollow Memorial Park," Claude reads the Meeting Prep skill, pulls your Client Profile, and produces the same structured call sheet every time.
 
 ---
 
 ## Step 1: Fill Out Your Client Profile
 
-Open **[client-profile-template.md](../profiles/client-profile-template.md)** and complete every section, then save your copy as **`profiles/client-profile.md`**, the one path every skill reads from. This is the most important step. The quality of every skill's output depends on the quality of this file. The completed [Lexora example](../profiles/examples/legal-ops-example.md) shows the density to aim for.
+Open **[client-profile-template.md](../profiles/client-profile-template.md)** and complete every section, then save your copy as **`profiles/client-profile.md`**, the one path every skill reads from. This is the most important step. The quality of every skill's output depends on the quality of this file. The completed [PlotIQ example](../profiles/examples/plotiq-example.md) shows the density to aim for.
 
 ### What to Have Ready
 - Your ICP definitions (who you sell to, who you don't)
@@ -43,14 +43,14 @@ Open **[client-profile-template.md](../profiles/client-profile-template.md)** an
 If you only have time for two sections, do **ICP Definitions** and **Competitive Landscape** first. Between them they feed 13 of the 14 sales skills. The full map is in the [Customization Guide](customization.md#which-profile-sections-feed-which-skills).
 
 ### Tips
-- **Be specific.** "General Counsel" is a persona. "General Counsel at a $3B manufacturer who can't defend outside-counsel spend to the CFO" is a useful persona.
+- **Be specific.** "General Manager" is a persona. "General Manager at a 9,000-plot cemetery who can't tell the board how many plots are unsold" is a useful persona.
 - **Use real language.** Write pain points the way your prospects describe them, not how your marketing deck frames them.
-- **Include metrics.** "Reduces legal spend" is weak. "Cuts outside-counsel spend 20% in year one" gives Claude something to work with.
+- **Include metrics.** "Saves staff time" is weak. "Cuts a plot lookup from 20 minutes to 20 seconds" gives Claude something to work with.
 - **Start with what you have.** You don't need perfect data. Fill in what you know, run a few skills, and refine based on the output.
 
 **Want to see output first?** Copy the example into place and run any skill against it:
 ```bash
-cp profiles/examples/legal-ops-example.md profiles/client-profile.md
+cp profiles/examples/plotiq-example.md profiles/client-profile.md
 ```
 Swap in your own profile when you're ready.
 
@@ -160,7 +160,7 @@ and the client profile at /path/to/vertical-gtm-skills/profiles/client-profile.m
 then execute the skill for: $ARGUMENTS
 ```
 
-Then in Claude Code, type: `/meeting-prep Discovery call with Corvane Industrial, meeting their General Counsel tomorrow`
+Then in Claude Code, type: `/meeting-prep Discovery call with Quill Hollow Memorial Park, meeting their General Manager tomorrow`
 
 ---
 
@@ -168,21 +168,21 @@ Then in Claude Code, type: `/meeting-prep Discovery call with Corvane Industrial
 
 ### Example: Meeting Prep
 
-With the Lexora example profile in place, open Claude Code and type:
+With the PlotIQ example profile in place, open Claude Code and type:
 
 ```
-I have a discovery call tomorrow at 2pm with Dana Whitfield, the new General Counsel
-at Corvane Industrial. $3.2B manufacturer, 38 in-house attorneys, on Competitor X
-since 2019. This is our first meeting. Prep me.
+I have a discovery call tomorrow at 2pm with Ines Carmody, the General Manager at
+Quill Hollow Memorial Park. She moved here six months ago from Lowmoor Memorial Gardens
+with an owner mandate to grow. 8,800 plots on paper plat maps. This is our first meeting. Prep me.
 ```
 
 Claude will:
 1. Read the Meeting Prep skill
-2. Pull the Client Profile (ICP match, the GC persona, pain hypotheses)
+2. Pull the Client Profile (ICP match, the General Manager persona, pain hypotheses)
 3. Produce a single-page prep sheet with:
    - A SPIN question bank (Situation, Problem, Implication, Need-Payoff)
    - Persona-matched proof points
-   - Competitive positioning notes against Competitor X
+   - Competitive positioning notes against paper plat maps, the status quo this site runs on
    - Meeting open and close scripts
    - Risk flags and things to listen for
 
@@ -191,12 +191,12 @@ Compare it with the worked example inside `skills/06-meeting-prep/SKILL.md`. The
 ### Example: Deal Pulse
 
 ```
-Score the Corvane Industrial deal. Here's what I know:
-- Met with the GC and the Head of Legal Ops (2 of about 5 stakeholders)
-- They confirmed invoice review eats about 3 attorney-weeks a quarter
-- No budget discussion yet
-- They are on Competitor X and the renewal is in 7 months
-- Next step: demo with the legal ops team next week
+Score the Brackhaven Memorial Gardens deal. Here's what I know:
+- Met with GM Ruth Ellery and Operations Director Walt Okonkwo (2 of about 5 stakeholders)
+- They estimated a plot lookup takes 20 minutes or more (illustrative)
+- No board date yet
+- They run Oldgate's legacy on-premise system and the renewal is in March 2027
+- Next step: board date confirmation with the family board chair
 ```
 
 Claude scores all 16 signals across 4 pillars (Why Anything, Why Us, Why Now, Execution), computes a health score (0-100), names the top risks and recommends next actions.
@@ -215,7 +215,7 @@ No. Start with 3-4 based on your role (see Step 2), and add more as you get comf
 They are the disciplines around the sales work: checking work before calling it done (O1 to O5), keeping a team knowledge base honest (O6 to O11), and the strategy work that fills your profile with evidence (O12 to O15). You don't need them to run the sales skills. Start with O1 Verify once other people rely on what you produce, and read [How It Fits Together](how-it-fits.md) for the rest.
 
 ### "How do I know the output is good?"
-Every skill has built-in quality gates. Deal Pulse scores on evidence, not assumptions. Call Coaching grades against methodology criteria. MEDDPICC grades the evidence behind every element. The skills are designed to surface what's missing, not just confirm what you already believe. The Lexora examples show what good output looks like, so compare against them.
+Every skill has built-in quality gates. Deal Pulse scores on evidence, not assumptions. Call Coaching grades against methodology criteria. MEDDPICC grades the evidence behind every element. The skills are designed to surface what's missing, not just confirm what you already believe. The PlotIQ examples show what good output looks like, so compare against them.
 
 ### "Can I modify the skills?"
 Yes. They're MIT licensed. Every skill ships a `CUSTOMIZE.md` interview that adapts it to your motion. Common modifications:

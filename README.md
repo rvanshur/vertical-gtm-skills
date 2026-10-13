@@ -44,7 +44,7 @@ The operating skills follow the same pattern and add one section, **Why This Ski
 
 ### The Example Everyone Uses
 
-Every worked example in this repo uses one fictional company: **Lexora**, a legal-ops platform that sells to in-house legal teams, and its flagship prospect, **Corvane Industrial**. The complete profile and the cast of accounts are in [`profiles/examples/legal-ops-example.md`](profiles/examples/legal-ops-example.md). Follow Corvane from qualification (01) through handoff (14), then run the same skills on your own profile and compare.
+Every worked example in this repo uses one fictional company: **PlotIQ**, a made-up software company for cemeteries and funeral homes, and its flagship prospect, **Brackhaven Memorial Gardens**, a two-site combination in late-stage negotiation. The complete profile and the cast of accounts are in [`profiles/examples/plotiq-example.md`](profiles/examples/plotiq-example.md). Follow Brackhaven from qualification (01) through handoff (14), then run the same skills on your own profile and compare.
 
 ### Who This Is For
 
@@ -179,16 +179,16 @@ cd vertical-gtm-skills
 ```
 
 ### Step 2: Wire in Your Client Profile
-Fill out the **[Client Profile Template](profiles/client-profile-template.md)** for your company (the completed [Lexora example](profiles/examples/legal-ops-example.md) shows the target density), then save it at the path every skill reads from:
+Fill out the **[Client Profile Template](profiles/client-profile-template.md)** for your company (the completed [PlotIQ example](profiles/examples/plotiq-example.md) shows the target density), then save it at the path every skill reads from:
 
 ```bash
 cp your-completed-profile.md profiles/client-profile.md
 ```
 
-That's the wiring. Every skill already includes the line that reads from this path, so there is no per-skill configuration. Want to see output before writing your own? Copy the Lexora example into place and run a skill against it:
+That's the wiring. Every skill already includes the line that reads from this path, so there is no per-skill configuration. Want to see output before writing your own? Copy the PlotIQ example into place and run a skill against it:
 
 ```bash
-cp profiles/examples/legal-ops-example.md profiles/client-profile.md
+cp profiles/examples/plotiq-example.md profiles/client-profile.md
 ```
 
 ### Step 3: Pick Your Three
@@ -208,7 +208,7 @@ Prep me for a discovery call with [Company Name] tomorrow at 2pm.
 They're a [industry] company, [size], and we're meeting with their [title].
 ```
 
-Claude reads the Meeting Prep skill, pulls from your Client Profile, and generates a structured call sheet with SPIN questions, persona-matched proof points and a meeting agenda. With the Lexora example in place, try it on Corvane Industrial and compare with the skill's own worked example.
+Claude reads the Meeting Prep skill, pulls from your Client Profile, and generates a structured call sheet with SPIN questions, persona-matched proof points and a meeting agenda. With the PlotIQ example in place, try it on Brackhaven Memorial Gardens and compare with the skill's own worked example.
 
 More ways to run the skills (from your own project, as slash commands) are in [docs/getting-started.md](docs/getting-started.md#step-3-run-the-skills-from-where-you-work).
 
@@ -264,7 +264,7 @@ Skills compound when used together. A typical first 30 days, following one accou
 | **[How It Fits Together](docs/how-it-fits.md)** | The three layers, what to set up first, which operating skill to use when, and what each skill reads from the profile |
 | **[Getting Started](docs/getting-started.md)** | Role-based setup (BDR, AE, Manager, consultant), first-week playbook, ways to run the skills |
 | **[Client Profile Template](profiles/client-profile-template.md)** | Blank template with instructions for every section |
-| **[Lexora Example Profile](profiles/examples/legal-ops-example.md)** | A completed profile, plus the cast of accounts every worked example uses |
+| **[PlotIQ Example Profile](profiles/examples/plotiq-example.md)** | A completed profile, plus the cast of accounts every worked example uses |
 | **[Customization Guide](docs/customization.md)** | Which profile sections to fill first, how to swap methodologies, adjust scoring and add criteria |
 | **[Skill Reference](docs/skill-reference.md)** | Decision tree, input/output specs, chaining patterns, scoring systems |
 | **[Starter Kit](starter-kit/)** | Folder layouts, a project `CLAUDE.md` template and a weekly operating checklist |

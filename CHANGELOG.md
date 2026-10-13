@@ -5,6 +5,19 @@ bottom of its `SKILL.md`, with the detail.
 
 ---
 
+## 2026-10-13: The Example Company Is PlotIQ
+
+**One example company, now PlotIQ.** Every worked example in the docs and the skills uses PlotIQ, a made-up software company for cemeteries and funeral homes. Its completed profile, with the full cast of accounts, people, competitors, proof points and verdicts, is [`profiles/examples/plotiq-example.md`](profiles/examples/plotiq-example.md). The Lexora profile is retired and moved to [`profiles/examples/archive/lexora-legal-ops-example.md`](profiles/examples/archive/lexora-legal-ops-example.md).
+
+**Template**
+- The profile template gains a **Qualification Zones** section. Five groups of account traits are each scored HIGH, MEDIUM or LOW. Zones 1 and 3 are must-haves, and the section states the verdict rule. Skills 01, 03, 06 and 07 read it.
+
+**Renames and credits**
+- Two framework names were renamed: Question the Problem and Priority Ladder.
+- The Debate and Context OS Setup credits were updated.
+
+---
+
 ## 2026-09-29: Final Pass Before Wider Release
 
 **One case study, everywhere.** Every worked example in all 29 skills and the docs now uses the

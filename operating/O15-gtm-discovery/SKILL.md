@@ -113,8 +113,8 @@ Before any data is read, the team lists every belief about the customer: who buy
 
 Answer the five diagnostic questions. Each answer cites its evidence, or is marked `assumed`.
 
-1. **Sales cycle.** Use the median of the last 20 closed deals, not the best or worst one. Bands from the archetype series: 2 to 8 weeks points to SMB Community or PLG; 8 to 16 weeks to SMB Community with complexity; 4 to 12 months to Hybrid or Enterprise lite; 12 months or more to Enterprise. Read the median, not the band edge.
-2. **Contract value.** Use what customers actually pay today. Bands: $500 to $5K points to PLG; $5K to $50K to SMB Community; $50K to $500K to Hybrid or Enterprise lite; $500K and up to Enterprise.
+1. **Sales cycle.** Use the median of the last 20 closed deals, not the best or worst one. Bands from the archetype series: 2 to 8 weeks points to SMB Community or PLG. 8 to 16 weeks to SMB Community with complexity. 4 to 12 months to Hybrid or Enterprise lite. 12 months or more to Enterprise. Read the median, not the band edge.
+2. **Contract value.** Use what customers actually pay today. Bands: $500 to $5K points to PLG. $5K to $50K to SMB Community. $50K to $500K to Hybrid or Enterprise lite. $500K and up to Enterprise.
 3. **Buyer comfort with software.** Tech-savvy buyers can self-serve (PLG). Everyone else needs people (Enterprise or SMB Community). Be honest. "Our buyers are very tech-savvy" is a claim to grade, not a fact.
 4. **Money through the product.** Do customers move payments or transactions through the product? If yes, check monthly volume. Around $50K or more per month makes Embedded Fintech a layer worth considering. If no, Embedded Fintech is off the table.
 5. **Two distinct sides.** Do two distinct user types have to transact with each other on the platform? If yes, Marketplace is a layer to consider. Users and admins, or departments in one company, do not count.
@@ -125,11 +125,11 @@ Then state the **ten-deal validation test** for the candidate. Run it on the nex
 
 | Archetype | The Ten-Deal Test |
 |-----------|-------------------|
-| Enterprise | 8 or more of 10 take 12 months or longer; 8 or more involve 5 or more stakeholders; 8 or more need a custom proof of concept |
-| SMB Community | 6 or more of 10 come from referrals or the community; 8 or more close in under 12 weeks; 8 or more customers know other customers |
-| PLG | 8 or more of 10 sign up without talking to sales; 6 or more activate within 24 hours; 8 or more understand the product in under 10 minutes |
-| Embedded Fintech | 6 or more of 10 process $50K or more a month; 6 or more adopt the payment product; payment revenue is at least twice software revenue |
-| Marketplace | Both sides engage with each other on the platform; adding users makes the platform more valuable; losing 30% of supply would clearly hurt demand |
+| Enterprise | 8 or more of 10 take 12 months or longer. 8 or more involve 5 or more stakeholders. 8 or more need a custom proof of concept |
+| SMB Community | 6 or more of 10 come from referrals or the community. 8 or more close in under 12 weeks. 8 or more customers know other customers |
+| PLG | 8 or more of 10 sign up without talking to sales. 6 or more activate within 24 hours. 8 or more understand the product in under 10 minutes |
+| Embedded Fintech | 6 or more of 10 process $50K or more a month. 6 or more adopt the payment product. Payment revenue is at least twice software revenue |
+| Marketplace | Both sides engage with each other on the platform. Adding users makes the platform more valuable. Losing 30% of supply would clearly hurt demand |
 
 A candidate is confirmed only when 80% or more of the test's checks pass. Below that, the diagnosis is wrong or incomplete.
 
@@ -145,11 +145,11 @@ Branch on the archetype for where to look first:
 
 | Archetype | Look First At |
 |-----------|---------------|
-| Enterprise | Lost deals and who blocked them; stakeholder count per deal |
-| SMB Community | Referral sources; which customers know each other |
-| PLG | Signup-to-activation data; where self-serve users stall |
-| Embedded Fintech | Payment volume per customer; adoption of the payment product |
-| Marketplace | Activity on both sides; what happens when one side thins |
+| Enterprise | Lost deals and who blocked them. Stakeholder count per deal |
+| SMB Community | Referral sources. Which customers know each other |
+| PLG | Signup-to-activation data. Where self-serve users stall |
+| Embedded Fintech | Payment volume per customer. Adoption of the payment product |
+| Marketplace | Activity on both sides. What happens when one side thins |
 
 Record every grade with its count, for example "the signer was the general manager on 9 of 11 won deals (82%, n=11)." Report the number of claims graded this way as a share of all claims.
 
