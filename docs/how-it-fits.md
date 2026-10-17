@@ -75,7 +75,7 @@ profile honest and the output checked.
 | Check the base's structure | **O7 Graph Health** | A structure score (tag sprawl, link density, provisional item age) |
 | Run the weekly cadence | **O6 Weekly Review** | A dated record of what changed, so health becomes a trend |
 | Find out who the customer really is | **O15 GTM Discovery** | Archetype diagnosis, graded claims, real alternatives, a starting segment, open bets |
-| Decide how to position and price | **O14 GTM Positioning** | A positioning statement, pricing research, a messaging house |
+| Decide how to position and price | **O14 GTM Positioning** | A tested positioning statement, graded proof, a price set after the position, a message set |
 | Plan a launch | **O13 GTM Launch** | Motion choice, funnel math, channel plan, war room |
 | Make growth repeatable after launch | **O12 GTM Engine** | A sprint cadence, a scored experiment backlog, a narrative |
 
@@ -122,6 +122,7 @@ skill runs with its defaults and says so.
 | `## Knowledge Base` | O11 Context OS Setup | Where the base lives, so O6 to O9 can find it |
 | `## Growth System` | O12 GTM Engine | North-star metric, bottleneck, sprint cadence |
 | `## Launch Plan` | O13 GTM Launch | What is launching, motion, goal, war room owner |
+| `## Positioning` | O14 GTM Positioning | Knowledge base path, decision owner, value metric default, price list and setup rule, approval line, economics thresholds, re-grade windows, price test channel |
 | `## Discovery` | O15 GTM Discovery | Knowledge base path, starting archetype guess, deal history source, stakeholder field, re-grade windows, interview channel |
 
 O14 GTM Positioning writes its results straight into the standard Value Propositions and
