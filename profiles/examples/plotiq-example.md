@@ -216,6 +216,16 @@ Stages: 1 Target, 2 Discovery, 3 Demo, 4 Proposal, 5 Negotiate, 6 Closed-Won and
 - [ ] **Competitive data is current.** Not yet: the research is dated 2026-03-27, over 90 days old. Refresh before publishing
 - [x] **No internal jargon**
 
+## Growth System
+
+What Engine reads before its first run. Every value here is illustrative, like the rest of this example.
+
+- **Growth goal and window:** four one-site contracts signed within 150 days of launch day (illustrative, the goal in the Launch worked example).
+- **Team time for growth work:** [RECORD] hours per week. No figure is recorded for PlotIQ, and none is invented.
+- **Growth measure:** [RECORD] after the first Engine run.
+- **Current bottleneck:** [RECORD] after the first Engine run.
+- **Sprint cadence:** [RECORD] after the first Engine run.
+
 ## Sources
 
 - **Market and regulatory facts:** Deathcare research project, industry landscape, regulatory landscape and cremation trends notes (2026-03-27 to 2026-04-01). Includes the $20.8B funeral service market (2025), 29,015 U.S. funeral homes (2026), $139.2M cemetery management software market (2025), 61.9% cremation rate (2024), federal Funeral Rule penalties up to $53,088 per violation, California's annual trust filing (due May 1) and New York's annual CPA audit (due December 31).
