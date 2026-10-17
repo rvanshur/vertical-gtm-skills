@@ -1,6 +1,6 @@
 ---
 name: gtm-positioning
-version: 2.0.0
+version: 2.0.1
 description: "Turns Discovery's graded evidence into one positioning statement and value proposition that survive a four-point test, attaches proof and its grade to every value claim, sets a price only after the position passes, and checks that price against the economics. Writes the result to the knowledge base for Launch to build on."
 category: Operating-Discipline
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: [gtm-discovery]
 mutating: true
 change_log:
+  - version: 2.0.1
+    date: 2026-10-16
+    summary: "Output Contract row renamed to Message set, the name the Stage 8 hand-off and Launch use."
   - version: 2.0.0
     date: 2026-10-13
     summary: "Ground-up rewrite. Position before price: six questions in order, a four-point test, price last, and an economics gate that sends a failed position back instead of adjusting inputs. Price research uses past-behavior questions. The 1.x version stays in history."
@@ -74,7 +77,7 @@ Launch reads these fields by name. Keep the names exactly as written.
 | Positioning statement | Position node, and the Company section of the profile | The draft that survived the four-point test |
 | Value proposition | Position node, and the Value Propositions section of the profile | With the four test results shown |
 | Proof ledger | Value-claim nodes, and the Proof Points section of the profile | Each claim with its grade and its status. Pilot-only proof is flagged |
-| Messaging pillars | Pillar nodes | At most three, each tied to one value claim and its proof |
+| Message set | Pillar nodes and the message set node | Pillars (at most three, each tied to one value claim and its proof), why-not-keep-doing-that answers, one-sentence and thirty-second versions |
 | Price and value metric | Price node | With the reasons from Stage 5 |
 | Economics | Price node | The three thresholds, each with its inputs, marked pass, fail or not run |
 | Open bets | Open-bets node | Discovery's open bets plus any new ones from this run |
@@ -418,7 +421,7 @@ Results:
   - C5. Pre-need leads worked within an hour. `assumed`. No proof. A bet.
   - C6. Live in six weeks. `assumed`. A plan, not a result. A bet.
   - C7. Year one under the approval line, one site. `assumed`. Arithmetic on the modeled price, $15,788. Holds for one site only.
-- **Messaging pillars (one):** "Plot and trust reports in the state's own format, from the customer's own ledger." Tied to C2, graded `seen`, n=2, illustrative scenario. It is the only claim with `heard` or `seen` proof.
+- **Pillars in the message set (one):** "Plot and trust reports in the state's own format, from the customer's own ledger." Tied to C2, graded `seen`, n=2, illustrative scenario. It is the only claim with `heard` or `seen` proof.
 - **Message set: pillars, why-not-keep-doing-that answers, one-sentence and thirty-second versions.** Contents: the one pillar above, the six why-not answers in Stage 7, and the one-sentence version. The one-sentence version is "PlotIQ keeps plot records and trust fund reports in the state's own report format, the form a state auditor asks for, for the general manager of an independent cemetery, at $899 a month per site." The thirty-second version is "When a state asks for a trust fund report, a cemetery that keeps its records on paper can be looking at a search through a binder. PlotIQ produces that trust fund report in the state's own format, from the cemetery's own ledger, and it keeps the plot records in the same system. Two beta general managers have watched it do that. It costs $899 a month per site, plus a one-time setup fee."
 - **Price and value metric:** "$899 per site per month, plus a $5,000 one-time setup per account. Value metric: per cemetery site. Modeled, not yet tested with buyers (past-behavior test, 0 of 5 held). Year one: one site $15,788, under the $25,000 line. Two sites $26,576, over the line. The start is one-site buyers."
 - **Economics (per site, each threshold with its inputs):**
@@ -504,4 +507,5 @@ The illustrative numbers are not a finding about ICP3. They show that the gate c
 
 ## Changelog
 
+- **2.0.1 (2026-10-16):** Output Contract row renamed to Message set, the name the Stage 8 hand-off and Launch use.
 - **2.0.0 (2026-10-13):** Ground-up rewrite. Position before price: six questions in order, a four-point test, price last, and an economics gate that sends a failed position back rather than adjusting inputs. Price research uses past-behavior questions. Adds the proof ledger, the economics table and the hand-off block for Launch. The 1.x version stays in history.
