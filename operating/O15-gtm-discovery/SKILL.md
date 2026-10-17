@@ -1,6 +1,6 @@
 ---
 name: gtm-discovery
-version: 2.0.1
+version: 2.1.0
 description: "Diagnoses which Guild archetype a business is, grades every belief about its customer by evidence (assumed, heard, seen, confirmed), plans the cheapest evidence for the bets that matter most, names the real alternatives and a starting segment, and writes the result to the knowledge base for Positioning, Launch and Engine to read."
 category: Operating-Discipline
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: [context-os-setup]
 mutating: true
 change_log:
+  - version: 2.1.0
+    date: 2026-10-13
+    summary: "Hand-off block now names the load-bearing claim, the do-not-build-on list, the open bets with their text, and the source of each alternative count."
   - version: 2.0.1
     date: 2026-10-13
     summary: "Example 1 re-cast on PlotIQ, the library's one example company, matching article 51."
@@ -75,10 +78,10 @@ Positioning reads these fields. Keep the names exactly as written, because the P
 | Field | Where It Lives | Notes |
 |-------|----------------|-------|
 | Customer archetype | Archetype node, and the Company section of the profile | One of the five Guild archetypes, with confidence and the name of the archetype that leads if it is a hybrid |
-| Competitive alternatives | Alternatives node, and the Competitive Landscape section of the profile | Includes "do nothing" and in-house options, each with its count (n) and source |
+| Competitive alternatives | Alternatives node, and the Competitive Landscape section of the profile | Includes "do nothing" and in-house options. Each alternative shows its count, its n and its source. Buyer-statement counts and CRM-field counts are labelled apart |
 | Beachhead segment | Starting-segment node, and the ICP Definitions section of the profile | Same meaning Positioning uses. Scored with n and the scoring threshold stated |
-| Buyer persona | Persona node, and the Buyer Personas section of the profile | Every trait carries the claim it came from. A trait with no source is removed |
-| Open bets | Open-bets node | New in 2.0. Lists every load-bearing claim still `assumed`. Positioning reads it to know what not to build on |
+| Buyer persona | Persona node, and the Buyer Personas section of the profile | Every trait carries the claim it came from and that claim's grade. A trait with no source is removed |
+| Open bets | Open-bets node | New in 2.0. Lists every claim still `assumed`, in three labelled parts. `Load-bearing:` each claim a downstream decision depends on, with what it carries (for example, "carries the close plan"). `Do not build on:` each claim a downstream skill must not depend on. `Other open bets:` every remaining claim still `assumed`. Each item reads `ID: claim text (grade, n if any)`. A claim that is both load-bearing and do-not-build-on is listed once, under `Load-bearing:`, with "do not build on until tested" in its text. Every claim still `assumed` appears in exactly one of the three parts. Positioning reads this node to know what not to build on |
 
 The Discovery brief (Stage 7) links to these nodes. It does not copy them.
 
@@ -221,7 +224,7 @@ A claim cannot move to `confirmed` while a contrary case is unexplained. If a co
 2. **Five before a pattern.** Fewer than five cases is an observation, and it is labelled as one.
 3. **Silence is not a no.** A record that does not mention something is excluded from that count. It is not counted against it.
 4. **"No difference" is a finding.** Report it. Do not keep slicing until a cut looks significant.
-5. **Downstream refuses `assumed`.** Positioning may not build its statement on a claim still `assumed`. The skill lists every such claim in the open bets.
+5. **Downstream refuses `assumed`.** The open bets list every claim still `assumed`, in one of the three parts defined in the Output Contract. Positioning may not build its statement on a claim still `assumed`.
 6. **Load-bearing bets first.** Rank open claims by how much breaks if each one is wrong, and test the top ones first. Use the term "load-bearing assumption" for this idea.
 
 ### The Quality Bar
@@ -315,25 +318,39 @@ The pre-need gap is 8 points, under the 20-point threshold, so the report says *
 
 The CFO or Controller persona (groups only) has no trait with a source in this run, so it is not written to the node. That is the rule working: a persona with no traced trait does not get a persona entry.
 
-- **Open bets node:**
-  1. A5, a GM can carry a deal over $25K past the board. Load-bearing for the close plan. `assumed`. Do not build the close plan on it.
-  2. A6, staff resistance is what stalls deals. `assumed`. Positioning may not rest its objection handling on it until buyers say it.
-  3. The do-nothing count, which the deal notes do not hold.
-  4. The SMB Community ten-deal test, incomplete until ten closes are recorded.
-  5. Buyer comfort with software (Stage 2, question 3). `assumed`.
-  6. A3, start with independents. Observation only, n=4.
+- **Open bets node:** the three-part list in the hand-off below, with the same IDs and text.
 - **Profile write-back:** ICP Definitions ranks independent cemeteries first, with the observation counts and n. The profile's Zone 3 line, "GM or owner signs under $25K," is marked `assumed` beside A5, so the profile stops stating the general manager's authority as fact. Buyer Personas carries the traced traits above. Competitive Landscape carries the alternatives table with its source.
 - **Re-grade dates:** A1 (`heard`) in 30 days. A4 is archived. Open bets carry no date and are listed for review once they have been open for a month.
 
 **Hand-off to Positioning (the five fields in one place, every number illustrative):**
 
 - **Customer archetype:** SMB Community leads (medium confidence). The cycle sits at the slow edge of the band and has not yet passed the ten-deal test.
-- **Competitive alternatives:** paper maps 100% (n=4), a spreadsheet 67% (n=3), the groundskeeper's memory 50% (n=4), Stonemark Enterprise 25% (n=4), Oldgate Ledger Pro 0% (n=4). Doing nothing: not recorded, open. All observations, under five talks.
-- **Beachhead segment:** Independent cemeteries, 1 to 2 sites (the profile's ICP1). Plot lookup named by 4 of 4 talks (n=4, observation). No difference found on pre-need follow-up against combinations (8-point gap, threshold 20). Switch if fewer than three of the next ten talks name plot lookup.
-- **Buyer persona:** Cemetery General Manager (three traced traits: one `heard`, two `assumed`).
-- **Open bets:** A5, A6, the do-nothing count, the SMB Community ten-deal test, buyer comfort with software.
-
-**Do not build on:** A5 (the $25K board trigger), A6 (what stalls deals), buyer comfort with software. Each is `assumed`. A positioning statement that needs one of them is a hypothesis and must say so.
+- **Competitive alternatives:** Every count is a buyer statement from the four independent cemetery talks. No CRM-field counts are used, because PlotIQ has no closed deals yet. Each line gives count, n and source.
+  - Paper maps: 4 of 4, 100% (n=4), buyer statements.
+  - A spreadsheet: 2 of 3, 67% (n=3), buyer statements. One talk said nothing about spreadsheets, so it is left out of n, not counted as no.
+  - The groundskeeper's memory: 2 of 4, 50% (n=4), buyer statements.
+  - Stonemark Enterprise: 1 of 4, 25% (n=4), buyer statements.
+  - Oldgate Ledger Pro: 0 of 4, 0% (n=4), buyer statements.
+  - Doing nothing: not recorded, so no count and no source. Open bet N1.
+  - All rates are observations, because every n is under five.
+- **Beachhead segment:** Independent cemeteries, 1 to 2 sites (the profile's ICP1). Plot lookup named by 4 of 4 talks (n=4, observation). No difference found on pre-need follow-up against combinations (8-point gap, threshold 20). Rests on A3, which is `assumed`. Switch if fewer than three of the next ten talks name plot lookup.
+- **Buyer persona:** Cemetery General Manager, three traced traits:
+  - Signs the contract: `heard` (A1, 2 buyers).
+  - Keeps the trust fund records and the state filing: `assumed` (P1, profile pain #2, not yet graded).
+  - Decides, with the pre-need sales manager championing the tool: `assumed` (A4R, replaces A4, which was archived).
+- **Open bets:** IDs P1, B1, N1 and T1 are labels for this example only, because the example does not number those four items.
+  - **Load-bearing:**
+    - A2: Paper plot maps are the pain (`assumed`). Carries the pain Positioning would name first. Evidence plan: five past-behavior conversations with independent cemetery staff.
+    - A3: Start with independent cemeteries (`assumed`, n=4, observation only). Carries the beachhead choice.
+    - A5: A GM can carry a deal over $25K past the board (`assumed`). Carries the close plan. Do not build on until tested, so the close plan must not rest on it yet.
+  - **Do not build on:**
+    - A6: Staff resistance, not price, is what stalls deals (`assumed`). Positioning may not rest its objection handling on it until buyers say so.
+    - B1: Buyer comfort with software (`assumed`, Stage 2, question 3).
+  - **Other open bets:**
+    - P1: Keeps the trust fund records and the state filing (`assumed`, not yet graded).
+    - A4R: The GM decides, with the pre-need sales manager championing the tool (`assumed`, replaces A4, which two of seven notes contradicted, n=7).
+    - N1: The do-nothing count (`assumed`, not recorded, because the talks did not ask it consistently).
+    - T1: The SMB Community ten-deal test (`assumed`, 0 of 10 closes recorded).
 
 ### Example 2. The Upmarket Move (Published Facts Only)
 
@@ -393,5 +410,6 @@ The CFO or Controller persona (groups only) has no trait with a source in this r
 
 ## Changelog
 
+- **2.1.0 (2026-10-13):** Hand-off block now names the load-bearing claim, the do-not-build-on list, the open bets with their text, and the source of each alternative count.
 - **2.0.1 (2026-10-13):** Example 1 re-cast on PlotIQ, the library's one example company, matching article 51.
 - **2.0.0 (2026-10-12):** Ground-up rewrite around the archetype diagnosis and the evidence ladder. Adds the open-bets output, the seven-stage workflow with a re-grade loop, and the per-segment ten-deal test.

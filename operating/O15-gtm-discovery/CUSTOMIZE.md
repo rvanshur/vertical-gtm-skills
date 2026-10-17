@@ -13,7 +13,7 @@ Works in **Claude Code**, **Claude.ai Projects**, or **OpenAI Codex**. All three
 ```
 You are helping me adapt a discovery skill to my company's go-to-market motion.
 
-Read the attached SKILL.md (gtm-discovery, version 2.0.0). It diagnoses which archetype
+Read the attached SKILL.md (gtm-discovery, version 2.1.0). It diagnoses which archetype
 my business is, grades every belief about our customer by evidence (assumed, heard, seen,
 confirmed), plans the cheapest evidence for the bets that matter most, and writes the
 result to our knowledge base for Positioning, Launch and Engine to read.
