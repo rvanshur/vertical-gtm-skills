@@ -147,12 +147,12 @@ The 14 sales skills are the motion. [`operating/`](operating/) is the layer that
 
 | # | Skill | What It Does |
 |---|-------|-------------|
-| O12 | **[GTM Engine](operating/O12-gtm-engine/SKILL.md)** | Post-launch growth systems: retrospectives, two-week sprints with ICE scoring, funnel optimization with PIE scoring, growth loops, strategic narrative |
+| O12 | **[GTM Engine](operating/O12-gtm-engine/SKILL.md)** | Turns a launch and its results into a growth system: the step that loses the most people, a backlog ranked by one Guild score, two-week sprints, one growth loop, a narrative and four sequences, and a test of whether it all runs without its main operator |
 | O13 | **[GTM Launch](operating/O13-gtm-launch/SKILL.md)** | Turns a position that passed its test into a dated launch plan: a scored motion decision, every channel capped with a kill date, a ranked proof stack, a staffed war room, and the results Engine reads at day 30 |
 | O14 | **[GTM Positioning](operating/O14-gtm-positioning/SKILL.md)** | Turns Discovery's graded evidence into one positioning statement that survives a four-point test, proof graded on every claim, a price set only after the position passes, and a message set for Launch |
 | O15 | **[GTM Discovery](operating/O15-gtm-discovery/SKILL.md)** | Archetype diagnosis and customer evidence: every belief graded assumed, heard, seen or confirmed, the real alternatives, a starting segment, and open bets the next skill won't build on |
 
-O12 is adapted from Maja Voje's [GTM Strategist skills](https://github.com/GTM-Strategist/gtm-strategist-skills) under the MIT License. Credit is in the skill. O15 GTM Discovery, O14 GTM Positioning and O13 GTM Launch are original rewrites (2.x) built around the Guild archetypes and the evidence ladder.
+O15 GTM Discovery, O14 GTM Positioning, O13 GTM Launch and O12 GTM Engine are original rewrites (2.x) built around the Guild archetypes and the evidence ladder.
 
 Every one of the 29 skills ships with a `CUSTOMIZE.md`, a paste-in interview that adapts it to your motion. Each operating skill's interview writes one small section into your profile, and the skill reads it on its next run. The full map is in [docs/how-it-fits.md](docs/how-it-fits.md).
 

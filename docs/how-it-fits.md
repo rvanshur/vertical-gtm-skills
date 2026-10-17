@@ -77,7 +77,7 @@ profile honest and the output checked.
 | Find out who the customer really is | **O15 GTM Discovery** | Archetype diagnosis, graded claims, real alternatives, a starting segment, open bets |
 | Decide how to position and price | **O14 GTM Positioning** | A tested positioning statement, graded proof, a price set after the position, a message set |
 | Plan a launch | **O13 GTM Launch** | A scored motion choice, capped channels with kill dates, a ranked proof stack, a war room, day-30 results |
-| Make growth repeatable after launch | **O12 GTM Engine** | A sprint cadence, a scored experiment backlog, a narrative |
+| Make growth repeatable after launch | **O12 GTM Engine** | The bottleneck, a scored backlog with kill rules, two-week sprints, one growth loop, a narrative and sequences, a vacation test |
 
 For the 14 motion skills, the decision tree in [skill-reference.md](skill-reference.md) does
 the same job.
@@ -120,7 +120,7 @@ skill runs with its defaults and says so.
 | `## Knowledge Ingestion` | O9 Ingest | Your source types and where items land |
 | `## Session Handoff` | O10 Wrap-up | Where continuation notes go |
 | `## Knowledge Base` | O11 Context OS Setup | Where the base lives, so O6 to O9 can find it |
-| `## Growth System` | O12 GTM Engine | North-star metric, bottleneck, sprint cadence |
+| `## Growth System` | O12 GTM Engine | Growth goal and window, team time for growth work, growth measure, current bottleneck, sprint cadence, narrative |
 | `## Launch Plan` | O13 GTM Launch | Knowledge base path, decision owner, what is launching, motion, revenue goal and window, launch day owner and date, budget in dollars, day-30 review date, channel cap, kill and volume rules, reserve, war room, permission and cost records |
 | `## Positioning` | O14 GTM Positioning | Knowledge base path, decision owner, value metric default, price list and setup rule, approval line, economics thresholds, re-grade windows, price test channel |
 | `## Discovery` | O15 GTM Discovery | Knowledge base path, starting archetype guess, deal history source, stakeholder field, re-grade windows, interview channel |

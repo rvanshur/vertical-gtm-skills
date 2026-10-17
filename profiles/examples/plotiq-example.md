@@ -225,6 +225,7 @@ What Engine reads before its first run. Every value here is illustrative, like t
 - **Growth measure:** [RECORD] after the first Engine run.
 - **Current bottleneck:** [RECORD] after the first Engine run.
 - **Sprint cadence:** [RECORD] after the first Engine run.
+- **Narrative:** [RECORD] after the first Engine run.
 
 ## Sources
 
