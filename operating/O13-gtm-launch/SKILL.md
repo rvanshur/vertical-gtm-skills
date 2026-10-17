@@ -1,7 +1,7 @@
 ---
 name: gtm-launch
 description: "Launch planning and execution. GTM motion selection, channel strategy, funnel projection, launch asset blueprints, social proof collection, budget modeling, launch coordination, and day-of engagement playbooks."
-version: 1.1.1
+version: 1.1.2
 category: Operating-Discipline
 author: Ryan Vanshur
 license: MIT
@@ -45,7 +45,7 @@ You are not satisfied by "launch day will be exciting." You are satisfied by a p
 
 | Input | Required | Notes |
 |-------|----------|-------|
-| Positioning statement and messaging house | Required | From `O14-gtm-positioning` |
+| Positioning statement and message set | Required | From `O14-gtm-positioning`. Positioning 1.x calls the message set the messaging house |
 | GTM motions under consideration | Required | Inbound, outbound, product-led, community-led, partner-led |
 | Revenue goal for the launch period | Required | What does success look like? |
 | Available resources (budget, team, time) | Required | This determines what is possible |
@@ -237,6 +237,7 @@ The math is what reveals the gap. Not guessing.
 
 ## Changelog
 
+- **1.1.2 (2026-10-16):** Reads the positioning "message set", the name Positioning 2.0 hands over. Positioning 1.x called it the messaging house.
 - **1.1.1 (2026-10-13):** Example lines re-cast on PlotIQ, the library's one example company. Numbers labelled illustrative.
 - **1.1.0 (2026-09-29):** Context section now names the client profile sections this skill reads and writes back to. Worked example now uses the Lexora case study.
 - **1.0.0 (2026-09-28):** Initial release. Five GTM motions, funnel math, asset blueprinting, war room coordination, social proof collection. Adapted from Maja Voje's GTM Strategist methodology (Phases 7-9).
