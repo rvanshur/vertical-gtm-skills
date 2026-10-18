@@ -1,119 +1,98 @@
 # Customize: Ingest
 
-A paste-in prompt that adapts this skill to *your* knowledge system.
+A paste-in prompt that sets how this skill saves to your knowledge base. It asks about your folders, your tags and who approves a save, then writes the answers into your client profile.
 
-Works in **Claude Code**, **Claude.ai Projects**, or **OpenAI Codex**, all three read the same
-`SKILL.md` format. Open the assistant, paste the block below, and answer its questions.
+Works in **Claude Code**, in **Codex**, and in **ChatGPT as a custom GPT**. Open the assistant, paste the block below, and answer its questions one at a time.
 
-> This is a per-skill companion. For customizing the whole suite at once, see
-> [`docs/customization.md`](../../docs/customization.md) and
-> [`profiles/client-profile-template.md`](../../profiles/client-profile-template.md).
+> This is a per-skill companion. It writes the `## Ingest` section of `profiles/client-profile.md`. For customizing the whole suite at once, see the profile template at `profiles/client-profile-template.md`.
 
 ---
 
-## The prompt
+## The Prompt
 
 ```
-You are helping me adapt an ingest skill to my knowledge system.
+You are helping me set up how the Ingest skill saves to my knowledge base.
 
-Read the attached SKILL.md (gtm-ingest). It extracts concepts from raw content
-and structures them into knowledge items with compiled truth + timeline, metadata,
-and connections to related items.
+Read the attached SKILL.md (gtm-ingest, version 2.0.0). It reads what I give it,
+searches my base for existing records, appends to them, asks me before it creates a
+person record, and writes only after I approve the save plan.
 
-Your job is NOT to rewrite the structure. It is to make the skill ingest in a way
-that fits MY content and MY system, and to tell me honestly where my system differs
-from the assumptions.
+Your job is NOT to rewrite the skill. It is to fit its save rules to my base and my
+habits, and to tell me where my base does not match what the skill assumes.
 
 Ask me these, ONE AT A TIME, and wait for each answer:
 
-1. What sources do you ingest most often? (Examples: call transcripts, meeting notes,
-   documents, research summaries, Slack threads, emails. Be specific.)
+1. Where does my knowledge base live? Give the folder, or say "none yet". If it is
+   "none yet", stop and tell me to run Context OS Setup first. Ingest does not create
+   a base.
 
-2. What format are your sources in? (Examples: plain text, markdown, PDFs, Notion pages,
-   recorded calls to transcribe. Are they already structured, or do you start with noise?)
+2. Which folders does my base use for each domain? The defaults are technical,
+   business, gtm, methodology, people, accounts (one folder per customer organization)
+   and uncertain. Accept the defaults, or name my own for each one.
 
-3. When you read a source, how do you decide what to keep and what to skip? (Examples:
-   decisions get captured, speculation gets skipped. Pain points get captured, pleasantries 
-   don't. What is your extraction heuristic?)
+3. Where is my tag list, if I have one? If I have none, Ingest uses free tags and flags
+   each one as not on a list. Do I accept that?
 
-4. What do you call your knowledge items, and where do you store them? (Examples: notes, 
-   documents, records, artifacts. A file system, a database, a wiki, a Notion workspace?)
+4. Who approves a save? Name the person whose yes is needed before any write. Usually
+   that is me.
 
-5. Do your items currently have any structure (sections, metadata, timestamps)? If yes,
-   describe it. If no, and you are starting from scratch, that is valid. Say so.
+5. When a source is time-bound and gives no date, what should Ingest do?
+   (a) Leave the expiry blank and ask me.
+   (b) Suggest a review date that I confirm.
+   Give your choice and the reason for it.
 
-6. How do your items currently link to each other? (Examples: [[wiki-links]], markdown
-   links, a database, manually maintained indexes. Or do they not link at all yet?)
-
-7. The skill has a special rule: one person gets one record, with a timeline of every
-   interaction. Do you use person entities, or something else? (Examples: contact records,
-   customer profiles, team member pages. Or no person tracking at all?)
-
-8. What has it cost you when knowledge was NOT captured and structured? Specific example:
-   a time you needed an answer and it was gone because nobody captured it before.
+6. Person records: the default is that Ingest asks before it creates one. Keep the
+   default, or name a different rule.
 
 Then produce:
 
-A. The exact frontmatter and section structure for YOUR items. (Not generic, but the
-   exact format I should use going forward.)
+A. The "## Ingest" section, filled in from my answers. Mark any field I did not answer
+   as [ASK LATER], never as a guess.
 
-B. The extraction heuristic for YOUR most common content type. (When you ingest a call
-   transcript / meeting notes / document, what specifically do you keep?)
+B. A short list of the folders my base uses, so I can check it against my real folders.
 
-C. The mapping: which types of source content → which types of knowledge items.
-
-D. THE HONEST PART: what parts of the skill do NOT apply to you, and why. (Examples:
-   "we don't have person tracking," "our items are atomic single sentences," "we use 
-   full-text search, not links." Say what is different.)
+C. What does not match: anything in my base that differs from the skill's assumptions,
+   such as a missing tag list, folder names that differ from the defaults, or records
+   that already hold the same person under two names.
 
 Start with question 1.
 ```
 
 ---
 
-## What you should expect to happen
+## What You Should Expect
 
-Question 3 and question 8 are where the real work happens. Most operators know what
-sources they have (Q1-2) and can describe their system (Q4-7), but stall on stating
-their extraction heuristic explicitly.
+Question 1 is where most setups stop, because the base is not built yet. Context OS Setup builds it, and this interview cannot run before that. Question 2 often comes back "use the defaults", which is fine, because the defaults match the folders the skill expects.
 
-That stall is important. **The heuristic is what makes ingest work.** Without one,
-every decision becomes a judgment call, and consistency evaporates. If you find
-yourself hesitating on "what counts as important enough to capture," that hesitation
-is the heuristic trying to be born. Write it down.
+Question 4 matters most. It decides whether any write can happen without you seeing it first, and the answer should name one person. Question 5 is a judgement call. Option (a) is safer, because it never sets an expiry date you did not check. Option (b) is faster, because it fills in the date for you to confirm.
+
+Question 6 usually stays on the default. A rule of "create by default" is the setting that fills a base with half-records, so change it only with a reason.
 
 ---
 
-## Minimum profile fields this skill reads
+## Minimum Profile Fields This Skill Reads
 
-Add these to your operation's context file once, and every skill that uses this one
-inherits them:
+Add this section to `profiles/client-profile.md` once. The skill reads it before every run. It also reads the `## Knowledge Base` section that Context OS Setup writes, so the base location is kept in one place. The interview writes this section after your answers, and you can edit it by hand at any time.
 
 ```markdown
-## Knowledge Ingestion
+## Ingest
 
-- **Item storage location:** [path or database where items live]
-- **Item format:** [markdown / YAML / JSON / other, the exact structure]
-- **Metadata fields:** [exact names: created, updated, status, tags, source, etc.]
-- **Taxonomy:** [domain values, type values, status values, what is blessed]
-- **Link format:** [how items reference each other]
-- **Common sources:** [call transcripts, meeting notes, documents, what arrives most]
-- **Extraction heuristic:** [what counts as important enough to capture]
+- **Knowledge base path:** [folder where items are saved, from Context OS Setup, or "none yet"]
+- **Folder routing in use:** [the folder for each domain, or "defaults"]
+- **Tag list location:** [file or folder holding the blessed tags, or "none, free tags flagged"]
+- **Who approves saves:** [the person whose yes is needed before any write]
+- **Default for time-bound content:** [leave blank and ask, or suggest a review date to confirm]
+- **Person records:** [ask before creating, the default, or the rule you named]
 ```
 
 ---
 
-## The compiled-truth/timeline split: when to adapt it
+## Troubleshooting
 
-The structure assumes items are larger than a single sentence and worth updating
-over time. If your system works differently (atomic single-line items, or items
-that are never revised), adapt the structure.
-
-Ask yourself: **will this item be rewritten as my understanding evolves?** If yes,
-the compiled-truth/timeline split matters. If no, simplify the structure.
-
-The timeline (append-only dated entries) is most valuable for items about people,
-decisions, evolving opinions, and patterns. It is less valuable for static facts
-(a company's founding date does not need a timeline).
-
-Adapt to your mix of static vs. evolving knowledge.
+| Problem | Cause | Response |
+|---|---|---|
+| Ingest says the base is not set up | The profile has no knowledge base path | Run Context OS Setup first, then run this interview again |
+| Ingest proposes folders that do not exist | The routing answer is the default, not your real folder names | Correct the folder routing line in the `## Ingest` section |
+| Every tag is flagged as not on a list | No tag list location was given | Point the profile at your tag list, or accept free tags and flags |
+| Ingest keeps asking about the same person | The person record rule is set to ask, and no decision was written down | Decide once, then write that decision into the `Person records` line |
+| Ingest starts without asking who approves | The `Who approves saves` line is blank | Name the approver. Without a name, the skill stops before any write |

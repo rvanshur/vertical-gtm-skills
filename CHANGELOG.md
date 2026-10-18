@@ -5,6 +5,23 @@ bottom of its `SKILL.md`, with the detail.
 
 ---
 
+## 2026-10-18: Memory 2.0, Five Skills Rebuilt as One System
+
+**The five memory skills (Wrap-Up, Ingest, Dream, Graph Health, Weekly Review) are 2.0.0.** Each was written clean-room from one spec, and they now share one contract, pasted word for word into all five: one record format (compiled truth on top, dated timeline below), one set of item field names, one definition of stale, one expiry model (`valid_until`, expiring within three days, extension before archive, no expiry on standing records), and two scores on the same four bands (Graph Health's structure score, Dream's content count).
+
+**What each one gained**
+- **Wrap-Up**: the owner confirms the one next action before anything is written, a new note marks the older note for the same project `superseded`, same-day reruns update instead of duplicating, a debrief before closing, the checks each changed file earns, `status: draft | approved | superseded`.
+- **Ingest**: two zones in every item, asks before creating a person record, three or more links on every item, suggests an expiry only for time-bound facts, a routing table, keeps durable facts after research, accepts a file, a folder, pasted text or a summary of the conversation.
+- **Dream**: three modes (gentle, standard as the default, deep), confirm before flag, dry-run before write, de-link never de-line as a hard rule, a content count with capped deductions and an expiry bonus, a dated log, a two-week cadence plus a run whenever the structure score falls into Fair.
+- **Graph Health**: a structure-only score with caps (content age and expiry moved to Dream), orphans as a share, a link defined as a distinct target counted once, every crossed threshold returned as a decision, `uncertain` counted as its own group.
+- **Weekly Review**: null is not zero as a hard rule, the local date, a same-day rerun replaces the file, records never edited, both scores and Dream's archived count recorded, at most one priority per area.
+
+**Fixed across the set**: Ingest no longer produces orphans by Graph Health's rule (two links versus three), `archived` is a status every skill knows, `emergent_past_30` and `emergent_past_60` are non-overlapping bands everywhere, the tag-sprawl labels match (Healthy, Warning, Unhealthy), and Dream no longer borrows Graph Health's score.
+
+The worked examples use the PlotIQ cast and one story that runs through all five. The 1.1.0 versions stay in history.
+
+---
+
 ## 2026-10-13: The Example Company Is PlotIQ
 
 **One example company, now PlotIQ.** Every worked example in the docs and the 15 operating skills uses PlotIQ, a made-up software company for cemeteries and funeral homes. The 14 sales skills under `skills/` still use the earlier Lexora cast, and they switch to PlotIQ when they are rebuilt (the last phase of the 2.0 program), so until then the two groups do not share an example. Its completed profile, with the full cast of accounts, people, competitors, proof points and verdicts, is [`profiles/examples/plotiq-example.md`](profiles/examples/plotiq-example.md). The Lexora profile is retired and moved to [`profiles/examples/archive/lexora-legal-ops-example.md`](profiles/examples/archive/lexora-legal-ops-example.md).

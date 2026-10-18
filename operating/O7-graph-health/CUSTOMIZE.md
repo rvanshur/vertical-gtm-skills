@@ -1,115 +1,95 @@
 # Customize: Graph Health
 
-A paste-in prompt that adapts this skill to *your* knowledge system.
+A paste-in prompt that writes the `## Graph Health` section of your client profile. It tells the skill where your base lives, where your tag list is, how your links are written, how often you run the check, and where the reports go.
 
-Works in **Claude Code**, **Claude.ai Projects**, or **OpenAI Codex**, all three read the same
-`SKILL.md` format. Open the assistant, paste the block below, and answer its questions.
+Works in **Claude Code**, in **Codex**, and in **ChatGPT** as a custom GPT. Open the assistant, paste the block below, and answer its questions one at a time.
 
-> This is a per-skill companion. For customizing the whole suite at once, see
-> [`docs/customization.md`](../../docs/customization.md) and
-> [`profiles/client-profile-template.md`](../../profiles/client-profile-template.md).
+> This is a per-skill companion. For customizing the whole suite at once, see the profile template at `profiles/client-profile-template.md`.
 
 ---
 
-## The prompt
+## The Prompt
 
-```
-You are helping me adapt an operating-discipline skill to my knowledge system.
+```text
+You are helping me set up a structure check for my knowledge base.
 
-Read the attached SKILL.md (gtm-graph-health). It measures the structure health of a
-knowledge base (tag sprawl, link density, provisional item age) and produces a score
-that you can track over time.
+Read the attached SKILL.md (gtm-graph-health, version 2.0.0). It measures the shape of the
+base: tag sprawl, link density, provisional age and broken links. It returns a structure
+score and a list of decisions for me. It never edits an item and never judges whether one
+is true.
 
-Your job is NOT to rewrite it. It is to make it measure what actually matters to MY
-system, and to tell me honestly where my system differs from the default assumptions.
+Your job is NOT to change the skill. It is to learn where my base lives and how my links
+are written, then write my section of the client profile.
 
 Ask me these, ONE AT A TIME, and wait for each answer:
 
-1. What do you call the files where you store knowledge? (Examples: notes, nodes, 
-   documents, records, cards, whatever term your system uses)
+1. Where is the knowledge base? Give the folder that holds the items, as I open it on my
+   own computer or in the tool I use. If the items live in more than one folder, list them.
 
-2. What metadata does each item carry? (Examples: status, type, domain, tags, created_date,
-   updated_date, links. Does it have a frontmatter block, a header comment, inline metadata?)
+2. Is there a tag list? If yes, where is it? A tag list lets the skill flag any tag nobody
+   chose. If there is none, the off-list deduction will read null, and the score will be
+   marked partial.
 
-3. Does your system have a blessed list of tags (a taxonomy or tag guide)? If yes, where
-   is it? If no, say so plainly.
+3. Which link syntax does the base use? The default is wiki-links in the form [[name]].
+   If mine is different, say so exactly. The skill reads only the syntax I name.
 
-4. How do items link to each other? (Examples: [[wiki-links]], markdown links, 
-   YAML arrays, database foreign keys. Be specific about the format.)
+4. How often will I run it? The default is before every Dream run and before every
+   Weekly Review.
 
-5. What makes an item "provisional" or "incomplete" in your system? (Examples: a status
-   field marked "emergent", a TODO in the content, a missing-data marker. What signals
-   that an item is still forming?)
+5. Where should the reports go? A folder in the base, or the chat only.
 
-6. The skill checks for broken links and orphan items. In your system, what does each
-   one mean? (An orphan is an item with few or no connections. Is that a problem in
-   your system, or do you use a different discovery pattern? A broken link is a 
-   reference to an item that doesn't exist. Would you even notice that?)
-
-7. What has it cost you when your knowledge base structure broke? Specific example:
-   a time you looked for something and could not find it, or a rule that fragments
-   the search surface and nobody noticed until it was too late.
+6. Who owns the decisions the report returns? Name the role, not a person, if the report
+   will be shared.
 
 Then produce:
 
-A. The exact paths and commands I should run every time I measure structure health.
+A. The ## Graph Health section, filled from my answers, in the format shown below.
 
-B. A revised "Quick Reference" table where thresholds are tuned to MY system.
-   (The defaults might be right, or you might need different ones.)
+B. A check of three items. Open three items I name, and for each one tell me which of these
+   fields it has: name, domain, node_type, status, created, updated, tags and related.
+   Any field missing on an item is reported as missing, and the skill will write it as null.
 
-C. A revised metadata parsing section that reads MY item format, not generic ones.
-
-D. THE HONEST PART: a short list of the questions above MY system does NOT fit.
-   If I don't use tags, that threshold is meaningless. If I use full-text search
-   instead of links, orphans are not a problem. Say it plainly.
+C. The honest part. List which parts of the score I cannot compute from what I gave you,
+   and what stays null because of it.
 
 Start with question 1.
 ```
 
 ---
 
-## What you should expect to happen
+## What You Should Expect
 
-Most systems get through questions 1-2. Question 7, the specific cost of breakage,
-stalls more than it should, which is the whole point. **The question exists because 
-most operators have not measured the cost of structure decay, only the inconvenience.**
+Questions 1, 4 and 5 usually land quickly. Question 2 often comes back "none", which is a valid answer. The score is then marked partial, and the off-list deduction reads null with its reason.
 
-If you cannot remember a specific incident, say so. That means either your system is
-new enough to not have accumulated decay yet, or you have not had to search for old
-knowledge when structure has fragmented. Both are valid. The skill is insurance.
+Question 3 is the one that most often goes wrong. If the links are written in a different syntax from the one named, every item reads as an orphan. Check the three items in part B before running the full base, and fix the syntax first.
+
+Question 6 matters because the decisions the report returns need a named owner. A report with no owner gets read and then left alone.
 
 ---
 
-## Minimum profile fields this skill reads
+## The Profile Section
 
-Add these to your operation's context file once, and every skill that uses this one
-inherits them:
+The assistant writes this section into `profiles/client-profile.md`. The skill reads it at the start of every run.
 
 ```markdown
-## Knowledge Base Structure
+## Graph Health
 
-- **KB location:** [path to the directory where items are stored]
-- **Taxonomy file:** [path to the blessed tag list, or "none" if not used]
-- **Item metadata format:** [description of how items are marked up]
-- **Link format:** [how items reference each other]
-- **Status values:** [the values used to mark an item as emergent/provisional]
-- **Discovery pattern:** [links, full-text search, other]
+- **Knowledge base location:** [folder path, or "not set" until it is recorded]
+- **Tag list location:** [path, or "none supplied", which makes the off-list deduction read null]
+- **Link syntax:** [wiki-links in the form [[name]], or the syntax named in question 3]
+- **Run cadence:** [before every Dream run and before every Weekly Review, or the cadence named]
+- **Report location:** [folder for reports, or "chat only"]
+- **Decision owner:** [the role that receives the decisions]
+- **Fields the skill reads:** name, domain, node_type, status, created, updated, tags, related
 ```
 
 ---
 
-## Thresholds: when to customize them
+## Troubleshooting
 
-The default thresholds in the skill are based on single-operator knowledge bases and team
-wikis. If your system is different, adapt them:
-
-- **Tag sprawl:** Single-person system vs. team system may have different optimal sprawl.
-  A team with multiple entry points expects higher sprawl. Adjust 20%/40% if it makes sense.
-- **Orphan threshold:** If you use full-text search, orphans are not a problem. If you rely
-  on link-following, lower the threshold (maybe 1 link is enough for your use case).
-- **Hub threshold:** If your system expects hub items (tables of contents, index pages),
-  raise or remove the threshold.
-- **Age thresholds:** If your "provisional" status is meant to be permanent for certain
-  items (e.g., "in progress" work), adjust or remove the aging rule.
-
-Thresholds are recommendations, not laws. Change them.
+| Problem | Cause | Response |
+|---------|-------|----------|
+| Every item reads as an orphan | The link syntax recorded does not match the syntax in the items | Correct the syntax in this section, then run the check again. Do not change the items to suit the skill |
+| The score is marked partial | No tag list, or a required field missing on many items | Keep the partial mark. Add the tag list or fill the fields, then run the check again |
+| The skill asks for the knowledge base location again | The section was not saved to the profile | Save the section, then run the prompt again |
+| The report will not write | The report location is not set, or cannot be reached | Return the report in chat, and record the location once it exists |

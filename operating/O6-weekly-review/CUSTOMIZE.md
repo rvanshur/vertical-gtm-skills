@@ -1,105 +1,117 @@
 # Customize: Weekly Review
 
-A paste-in prompt that adapts this skill to *your* operation.
+A paste-in prompt that adapts this skill to where your records live, which areas your team uses, and which measures you can actually check.
 
-Works in **Claude Code**, **Claude.ai Projects**, or **OpenAI Codex**, all three read the same
-`SKILL.md` format. Open the assistant, paste the block below, and answer its questions.
+Works in Claude Code, in Codex, and in ChatGPT as a custom GPT. Open the assistant, paste the block below, and answer its questions one at a time.
 
-> This is a per-skill companion. For customizing the whole suite at once, see
-> [`docs/customization.md`](../../docs/customization.md) and
-> [`profiles/client-profile-template.md`](../../profiles/client-profile-template.md).
+> This is a per-skill companion. For customizing the whole suite at once, see the profile template at `profiles/client-profile-template.md`.
 
 ---
 
-## The prompt
+## The Prompt
 
 ```
-You are helping me adapt an operating-discipline skill to my company's operation.
+You are helping me adapt a weekly review skill to my records, my areas and the measures I can actually check.
 
-Read the attached SKILL.md (gtm-weekly-review). It is a standing review that runs
-every week, measures how your system is changing, and writes a dated record so you can
-see the trend.
+Read the attached SKILL.md (gtm-weekly-review, version 2.0.0). It grades last week's
+priorities from evidence, measures what it can check, writes null for anything it did
+not check, and writes one dated record that is never edited.
 
-Your job is NOT to rewrite it. It is to make it fire on the metrics that actually
-matter to my operation, and to tell me honestly where I cannot answer you.
+Your job is NOT to rewrite the skill. It is to fit its rules to my setup, name the
+places my records actually live, and tell me honestly which measures I cannot check.
 
 Ask me these, ONE AT A TIME, and wait for each answer:
 
-1. What are the three areas of my operation I care most about tracking week-over-week?
-   (Examples: knowledge base / content pipeline, sales pipeline, customer data, 
-    system configuration, team capacity, infrastructure health, whatever is real for you)
+1. Where do dated weekly records live? Give a folder name relative to the project,
+   never a full machine path. "None yet" is a valid answer. If the folder does not
+   exist, the first run creates it, after I approve.
 
-2. For each area, what are 2-3 concrete metrics I can actually measure every week?
-   (Not guesses or feelings, things I can check in git logs, file dates, dashboards,
-    or command output)
+2. Which day is the review, and what is my local calendar day? The skill never uses
+   the UTC date, so tell me the time zone if it is not obvious.
 
-3. What was the last time something drifted in my operation without me noticing until
-   it was expensive to fix? What metric, measured weekly, would have caught it?
+3. Which areas does the team use? The four areas are knowledge, content, operations
+   and client work. Name the ones in use. An area we do not use is left out of Next
+   Week, and it is not filled with a placeholder.
 
-4. Of the metrics I measure every week, which ones should I compare to last week's
-   numbers? (Some are absolute, like "we shipped 3 articles". Others are relative,
-   like "we shipped 2 more than last week".)
+4. Which measures can we check? Go through each one and answer yes, with where it
+   lives, or no:
+   - Graph Health report (where it is kept)
+   - Dream log (where it is kept)
+   - Ingest count of items written in the week
+   - Items with an expiry date due within three days
+   - The team's list of work in progress and work blocked (which list)
+   - Repositories with uncommitted work
+   - Dashboards not refreshed in over 30 days
+   - Skills whose frontmatter misses a required field
+   - Published counts rechecked against their source
 
-5. What would "carried over" mean in my operation? (Things I set out to do last week
-   and did not finish. Not all unfinished work counts. Some tasks get overtaken by
-   more urgent ones. How do I tell the difference?)
+5. Which frontmatter fields does our skill standard require? If we do not have a
+   standard, use the fields in the SKILL.md frontmatter and say so.
+
+6. Who reads the record? Name each reader by role. Use names only for me.
+
+7. Do you accept the defaults? They are: carried over of 0 or 1 is Fine, 2 is Watch,
+   3 or more is Problem. Tag sprawl is Healthy under 20%, Warning from 20 to 40, and
+   Unhealthy over 40. Next Week holds at most one priority per area. If you do not
+   accept one, name yours and say why.
 
 Then produce:
 
-A. A revised frontmatter template where each field matches a metric I actually track.
+A. A record plan: the folder, the review day, the areas in use and the file name
+   pattern (YYYY-MM-DD.md).
 
-B. A revised "Quick Reference" table where each row is a metric from MY operation,
-   not generic ones.
+B. A measure table: each measure marked available with its source, or null from now
+   on with the reason.
 
-C. A list of the repo directories or system commands I should check every week,
-   with the exact paths or commands.
+C. The measures we cannot check, ranked by how much each one would change next week's
+   decisions.
 
-D. THE HONEST PART: a short list of the questions above I could not answer
-   concretely, and what I would need to measure to answer them. If I could not
-   define a metric, that gap is the finding, not a reason to skip the question.
+D. THE HONEST PART: the questions you could not answer concretely, and which parts of
+   the record will stay null until we set them up.
 
 Start with question 1.
 ```
 
 ---
 
-## What you should expect to happen
+## What You Should Expect
 
-Most operators get through questions 1-2 comfortably and stall on question 3.
+Question 4 is where most teams learn what they cannot check. A null row is the correct result, not a gap to fill with a guessed number. A team with no Dream log, for example, will see the content count stay null until someone runs Dream and keeps the log somewhere the review can read.
 
-That stall is not failure. It is the skill working. **Question 3 is asking you to
-remember a specific time you learned too late about something wrong.** That is an
-uncomfortable question, and the question exists because that is the exact situation
-a weekly review prevents.
+Question 3 usually lands quickly, because most teams know which areas they are working on. An area with no priority this week is also a valid result. It is written in words, and it is not left blank.
 
-If you cannot remember a specific incident, that is valid. Say so. It means either
-you have not hit that failure yet, or you have been lucky. A weekly review is
-insurance.
+Question 7 is where the defaults get questioned. Change one only when you have a reason. A team with very few items may find that a tag band misleads, and a changed band must say what it replaces and why.
 
 ---
 
-## Minimum profile fields this skill reads
+## Weekly Review Section for the Profile
 
-Add these to your operation's context file once, and every skill that uses this one
-inherits them:
+Add this section to `profiles/client-profile.md` once. The skill reads it at the start of every run. It writes nothing back to this section, because the record itself is the output.
 
 ```markdown
-## Operational Health Metrics
+## Weekly Review
 
-- **Knowledge base location:** [path to where you store notes/KB]
-- **Content pipeline:** [where articles/content status lives]
-- **Key repositories:** [the 2-3 repos that matter most]
-- **System checks:** [the commands that tell you if things are broken]
-- **Definition of done:** [what counts as a priority actually being complete]
+- **Record folder:** [folder name, relative to the project, or "none yet"]
+- **Review day:** [day of the week, and the local time zone]
+- **Areas in use:** [knowledge, content, operations, client work: list the ones in use]
+- **Graph Health report:** [where it is kept, or "not run"]
+- **Dream log:** [where it is kept, or "not run"]
+- **Measures we can check:** [each measure, with its source]
+- **Measures we cannot check:** [each measure, which stays null, with the reason]
+- **Required frontmatter fields:** [the fields the operations check looks for]
+- **Readers of the record:** [readers, by role]
+- **Accepted defaults:** [yes, or each change with its reason]
 ```
 
 ---
 
-## If you change the structure
+## Troubleshooting
 
-The weekly record format is a contract with the trend-tracking system that uses it.
-Only change field names if you update the code that reads these files. The `date`
-and `window` fields are non-negotiable because they key the time series.
-
-Everything else (which metrics you track, how you name them, what you measure) is
-fair game. The structure is the rails. The metrics are the cargo.
+| Problem | Cause | Response |
+|---------|-------|----------|
+| Every operations measure reads null | No operations checks were set up | Keep them null, with the reason. Set up one check at a time, starting with the one the team would miss most |
+| The record folder does not exist | This is the first run | Create the folder after the owner approves. Do not create it silently |
+| The review keeps listing the same orphan notes | The fix was never assigned | Add a named next step for the notes, by role, so the item has an owner and a check |
+| Next Week fills an area the team does not use | The areas list is out of date | Update the Areas in use line in the profile, then re-run the plan |
+| The readers list has a name where a role belongs | The record may be shared | Replace the name with the role. Keep the name only in a record that stays private to the owner |
+| A measure is marked available but the source cannot be opened | The source moved | Change the line to null, with the reason, until the source is back in place |
