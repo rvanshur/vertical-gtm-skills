@@ -1,7 +1,7 @@
 ---
 name: context-os-setup
 description: "Build a structured knowledge base for GTM intelligence. Two-layer architecture (atomic concepts + strategic documents) using semantic linking so facts are defined once and referenced everywhere. Turn scattered notes into compounding knowledge."
-version: 1.1.1
+version: 1.1.2
 category: Operating-Discipline
 author: Ryan Vanshur
 license: MIT
@@ -131,6 +131,7 @@ Build two layers:
 **Layer 1: Atomic Knowledge** (knowledge_base/)
 - Each concept has one home
 - Metadata on every node: date created, last updated, confidence, source
+- The field names the memory skills read are defined once, in Ingest's item frontmatter: `name`, `description`, `domain`, `node_type`, `status` (emergent, validated, canonical, archived), `created`, `updated`, `valid_until` (optional), `tags`, `related` (three or more) and `source`. Use those names here, so Graph Health, Dream and Weekly Review find every field
 - Wiki-links to other nodes
 - No duplication
 
@@ -268,6 +269,7 @@ All four read from this foundation. When it works, the system compounds. When it
 
 ## Changelog
 
+- **1.1.2 (2026-10-18):** Names the item field list the memory skills share (Memory 2.0), so a base built here is read by Ingest, Graph Health, Dream and Weekly Review without renaming.
 - **1.1.1 (2026-10-13):** The credit line no longer names the outside author, in line with the library's content rule, and now sits in a Credits section. Measured wording overlap with that source is 0.2%.
 - **1.1.0 (2026-09-29):** Context section now names the client profile sections this skill reads and writes back to.
 - **1.0.0 (2026-09-28):** Initial release. Two-layer architecture (atomic + strategic), taxonomy and ontology, synthesis nodes, metadata requirements.
