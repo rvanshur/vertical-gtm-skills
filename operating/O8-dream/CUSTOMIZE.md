@@ -1,120 +1,105 @@
 # Customize: Dream
 
-A paste-in prompt that adapts this consolidation skill to *your* knowledge system.
+A paste-in prompt that sets up the `## Dream` section of your client profile. It asks about your knowledge base, who approves removals, and where the dream log lives, so the skill knows what it may touch before it touches anything.
 
-Works in **Claude Code**, **Claude.ai Projects**, or **OpenAI Codex**, all three read the same
-`SKILL.md` format. Open the assistant, paste the block below, and answer its questions.
+Works in **Claude Code**, **Claude.ai Projects**, or **OpenAI Codex**. Open the assistant, paste the block below, and answer its questions one at a time.
 
-> This is a per-skill companion. For customizing the whole suite at once, see
-> [`docs/customization.md`](../../docs/customization.md) and
-> [`profiles/client-profile-template.md`](../../profiles/client-profile-template.md).
+> This is a per-skill companion. For customizing the whole suite at once, see the profile template at `profiles/client-profile-template.md`.
 
 ---
 
-## The prompt
+## The Prompt
 
 ```
-You are helping me adapt an operating-discipline skill to my knowledge system.
+You are helping me set up the Dream section of my client profile.
 
-Read the attached SKILL.md (gtm-dream). It is a consolidation pass that prunes
-stale, contradicted, or duplicated items from a knowledge base. It has one hard
-rule: de-link (strip the markup around dead links) but never de-line (delete
-the entire entry).
+Read the attached SKILL.md (gtm-dream, version 2.0.0). Dream prunes one knowledge base.
+It confirms every stale, expired, dead, duplicate or contradicted item, fixes only what
+can be fixed without losing words, and asks before any removal. It never deletes a file.
 
-Your job is NOT to rewrite the rule. It is to make the consolidation process
-match MY system and MY tolerance for automation, and to tell me honestly where
-my system needs human judgment that this skill cannot provide.
+Your job is NOT to rewrite the skill. It is to record my choices, name the places I
+have, and tell me honestly what the skill cannot check in my setup.
 
 Ask me these, ONE AT A TIME, and wait for each answer:
 
-1. What does stale mean in your system? (Examples: no updates in 30 days, 
-   marked as "draft" after 60 days, no date field so staleness is unmeasurable.
-   Be specific about what signal tells you something is old.)
+1. Where do the knowledge base items live? Give a folder or a link.
 
-2. Do your items carry an expiry date or a "valid until" field? If yes, what 
-   is the exact field name? If no, say so.
+2. Which mode should be the default?
+   - gentle: report only, nothing is written
+   - standard: fixes that cannot lose words run, and every removal waits for my yes
+   - deep: standard, plus restructuring proposals in the report
+   Recommended: standard.
 
-3. How would you want to handle stale items? (Examples: archive them, move to 
-   a separate "historical" folder, mark with a warning, ask for confirmation
-   before using them. What is the right action for your workflow?)
+3. How often should Dream run? The default is every 14 days, and also whenever the
+   Graph Health structure score is Fair or Poor. Accept it or name a different cadence.
 
-4. What would it cost you to merge two items that turned out to be about 
-   different topics? (Examples: confusing, data loss, merge back? Or not much?)
+4. Who approves removals, archives and merges? Give one named person. If no one is
+   named, the skill can report but cannot remove anything, and it will say so.
 
-5. The skill has a hard rule: de-link (strip dead links) but never de-line 
-   (delete the entry). Does that rule work for you, or do you have a different
-   comfort level? (Example: you might want to delete entire entries if they 
-   are only one sentence and the link is dead.)
+5. Where does the dream log live? Give a file or page, or answer "text only" if you
+   do not want a saved log. Without a saved log, the trend line cannot start.
 
-6. Have you ever discovered that two items in your KB were saying different 
-   things about the same topic? What tipped you off? What would be a concrete
-   way to catch that automatically?
+6. Does the system record when each item was last used? Answer yes (and name the
+   record), no, or unsure. If yes, an item used often is never archived for age alone.
+   If no, that rule is skipped and the report says so.
 
-7. When you run consolidation, how much can you automate without asking first?
-   (Examples: "nothing, ask me before every change," "fix markup-only stuff 
-   automatically," "delete anything marked as obsolete." What is your tolerance?)
+7. Is there an instructions file that holds rules the items might restate? If yes,
+   give its location. If no, answer "none", and the restated-rule check is reported
+   as null.
 
 Then produce:
 
-A. The exact age thresholds for "stale" and "critical" in your system.
+A. The Dream section, filled in, ready to paste into profiles/client-profile.md.
 
-B. A revised workflow for handling stale items (archive / move / mark / ask).
+B. A field check. Each field is either set, or marked "not set" with the effect of
+   that on a run.
 
-C. The list of metadata fields (date fields, status fields, link formats) 
-   the skill needs to read your items correctly.
-
-D. A description of what "stale" looks like across MY KB. (Not generic stale,
-   but: files older than X with Y metadata, or modified before Z. The exact
-   pattern that catches stale in my system.)
-
-E. THE HONEST PART: what you would NOT automate. (Examples: "never auto-delete
-   items without asking," "we don't track dates so staleness is unmeasurable,"
-   "we don't have duplicates because we merge immediately." Say what the skill
-   cannot do in your system, and why.)
+C. THE HONEST PART. A short list of what this setup cannot check. For example: no
+   Graph Health report yet (so the structure score is null), no use record (so the
+   use rule is skipped), or no saved log (so the trend starts nowhere).
 
 Start with question 1.
 ```
 
 ---
 
-## What you should expect to happen
+## What You Should Expect
 
-Question 3 and question 7 are the key ones. Most operators can describe their
-data but stall on defining their own comfort level with automation.
+Questions 1 and 4 usually land first, because most teams know where their notes live and who can say yes to a removal. Question 4 matters most. With no approver named, the skill reports and proposes, and it removes nothing.
 
-That stall is important. **The skill's job is to flag problems. Your job is to
-decide what to do.** If you find yourself hesitant about automation on something
-that feels like it should be automatic, that hesitation is data. It often means
-the category is more subtle than it looks.
+Question 5 is where teams stall, because a saved log means a place to keep it. "Text only" is a valid answer. The skill then prints the log entry in each report, and it does not reset the cadence until a log is saved.
+
+Question 6 often comes back "unsure". Answer it honestly. The skill will not guess use from file dates, and an unrecorded use rule is simply skipped.
 
 ---
 
-## Minimum profile fields this skill reads
+## The Dream Section
 
-Add these to your operation's context file once, and every skill that uses this one
-inherits them:
+Add this section to `profiles/client-profile.md` once. The skill reads only this section for its settings. It writes back the last run date and the next run date after each saved log.
 
 ```markdown
-## Knowledge Base Consolidation
+## Dream
 
-- **Stale threshold:** [days of inactivity before an item is flagged]
-- **Critical age:** [days at which an item absolutely must be decided on]
-- **Expiry field name:** [field name if used, or "not used"]
-- **Stale handling:** [archive / move / mark / ask]
-- **Automation tolerance:** [nothing / markup-only / conservative / aggressive]
-- **Metadata:** [exact field names: created, updated, status, links, etc.]
+- **Knowledge base location:** [folder or link to the items, or "not set"]
+- **Default mode:** [gentle, standard or deep. Default: standard]
+- **Cadence:** [every 14 days, and whenever the Graph Health structure score is Fair or Poor. Change only with a reason]
+- **Approver for removals:** [one named person. "Not set" means no removal is applied]
+- **Dream log location:** [file or page, or "text only, no saved log"]
+- **Use recorded:** [yes, with the record named / no / unsure]
+- **Instructions file:** [location, or "none"]
+- **Last run date:** [date of the last saved log, or "none yet"]
+- **Next run date:** [last run date plus 14 days, or "due now"]
 ```
 
 ---
 
-## The de-link rule: when to adapt it
+## Troubleshooting
 
-The core rule, de-link but never de-line, is built for systems where knowledge
-items are larger than a single sentence. If your system uses atomic single-line
-items, you may want to skip the de-link rule or adapt it.
-
-Ask yourself: **what is the smallest valuable thing you store?** If it is a single
-sentence, de-linking leaves you with nothing. If it is a paragraph or longer,
-de-linking preserves the context.
-
-Adapt the rule to your system's granularity.
+| Problem | Cause | Response |
+|---------|-------|----------|
+| The skill says it cannot remove anything | No approver is named in the profile | Name one person in the Approver field. Until then, the skill reports and proposes only |
+| The structure score reads null | No Graph Health report exists yet | Run Graph Health on the base first, then run Dream |
+| The skill says the run is not due | The next run date is in the future, and the score is above Fair | Accept that, or run `gentle` mode to look without writing |
+| The trend line has no history | No dream log was saved before | Choose a log location in question 5, and save this run's log there |
+| The use rule is skipped | Use is not recorded, or the answer was "unsure" | Name the record in question 6 if one exists. Otherwise the rule stays off, and the report says so |
+| The field check shows "not set" for the location | Question 1 was not answered | Give the folder or link. The skill will not scan a place it was not told about |
