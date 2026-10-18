@@ -14,3 +14,6 @@ output/
 
 # Your completed client profile contains your competitive data — keep it out of forks/PRs
 profiles/client-profile.md
+
+# Clean-room build staging (specs, sources, final-check reports); not part of the library
+_build/

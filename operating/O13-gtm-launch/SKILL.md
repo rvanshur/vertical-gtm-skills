@@ -1,16 +1,19 @@
 ---
 name: gtm-launch
-version: 2.0.0
+version: 2.0.1
 description: "Turns a position that survived its test into a dated launch plan: one scored motion decision, every channel capped with a kill date, a ranked proof stack, a staffed war room and the funnel targets that Engine measures against. Reads Positioning's hand-off and Discovery's archetype, and writes the plan to the knowledge base."
 category: Operating-Discipline
 author: Ryan Vanshur
 license: MIT
-updated: 2026-10-16
+updated: 2026-10-18
 tags: [launch, launch-plan, motion-decision, channel-caps, kill-rules, proof-stack, war-room, funnel-targets, content-plan, experiments, operating-discipline]
 requires:
   skills: [gtm-positioning, gtm-discovery]
 mutating: true
 change_log:
+  - version: 2.0.1
+    date: 2026-10-18
+    summary: "Results mode reads Engine's hand-off by name: Retrospective, Re-grade requests and Open bets returned. Launch applies only the re-grade requests addressed to gtm-launch, records returned bets in its Open-bet test results, and forwards the rest to their owners unchanged. No other stage changes."
   - version: 2.0.0
     date: 2026-10-16
     summary: "Ground-up rewrite. Starts from Positioning's hand-off and stops on a failed position or a failed threshold. Motion chosen from a five-motion score, one or two lead. Every unproven channel capped at 30% with a 30-day kill rule and a reserve. Four-tier proof ladder, with permission recorded before any customer is named. Economics status carried into the plan, and a 'not run on real data' status sets a capped-experiment limit. Grades are carried from the upstream hand-off unchanged. The hand-off is split into Part A, the launch plan written before launch, and Part B, the launch results written at the day-30 review. The 1.x version stays in history."
@@ -66,6 +69,7 @@ If a required input is missing, ask. Do not guess.
 | Names for the five war room roles | Required for the quality bar | A blank role is reported as unnamed, and the plan does not pass |
 | Permission records for named customers | Required for proof tier 1 | Without a recorded permission, a customer is not counted as named |
 | Cost inputs: gross margin, acquisition cost per won customer, retention | Needed to move economics off "not run on real data" | Missing inputs are named in the plan, never filled with a guess |
+| Engine hand-off: Retrospective, Re-grade requests, Open bets returned | Required for a Results run that follows an Engine run, absent otherwise | Read by these exact names from Engine's hand-off block. Launch applies only the re-grade requests whose source skill is `gtm-launch`, to the field each one names. A request addressed to another skill is forwarded to that skill unchanged. A returned bet is recorded in Open-bet test results with the rule and the result Engine quoted |
 
 ---
 
@@ -116,6 +120,7 @@ The skill reads these, in this order:
 1. **The client profile**, `profiles/client-profile.md`. It reads these sections: `## Launch Plan` (this skill's section, written by `CUSTOMIZE.md`), `## Positioning` (the knowledge base path, the owner of the launch decision, the approval line, the economics thresholds and the price test channel), `## Company`, `## Buyer Personas`, `## Competitive Landscape` and `## Proof Points`.
 2. **Positioning's hand-off**, read by its names: Message set, Positioning statement, Value proposition, Proof ledger, Price and value metric, Economics and Open bets. Read it from the knowledge base if the nodes exist. Otherwise use the hand-off text that the team pastes in.
 3. **Discovery's archetype node**, read by the name Customer archetype.
+4. **Engine's hand-off**, when one exists, read by the names Retrospective, Re-grade requests and Open bets returned. It is read only in Results mode, after Engine has run against this plan.
 
 If the profile has no `## Launch Plan` section, say so once at the start of the run, use the defaults in `CUSTOMIZE.md`, and list every write-back before anything is written. If the profile is uncustomized in other ways, say that once as well.
 
@@ -262,7 +267,7 @@ Numeric response targets: social mentions are answered inside 15 minutes. The ot
 
 - **Plan (default).** Runs Stages 1 to 7 and reports the plan in the brief. It writes nothing.
 - **Write-back.** Runs the Stage 8 writes. Before anything is written, the owner named in the profile's `## Positioning` section approves the motion decision and the channel caps in the brief. Nothing is written until that approval is recorded in the brief.
-- **Results.** Runs at the day-30 review and writes Part B only. It needs the approval recorded in the brief, the same as write-back.
+- **Results.** Runs at the day-30 review and writes Part B only. It needs the approval recorded in the brief, the same as write-back. When Engine has already run against this plan, Results also reads Engine's hand-off by name. For each re-grade request whose source skill is `gtm-launch`, it changes the grade word on the named field, quotes the result and its n, and records the rule Engine applied. Requests addressed to Positioning or Discovery are forwarded to that skill unchanged. Each returned open bet is written into Open-bet test results with the kill rule and the result Engine quoted. Launch does not re-score the retrospective. It reads the decision per channel and carries it into Launch data.
 
 Re-run the plan when Positioning changes the message set, the price or an economics status, and when a permission is recorded or withdrawn, because the proof stack depends on it.
 
@@ -275,7 +280,7 @@ Re-run the plan when Positioning changes the message set, the price or an econom
 - **Silence is not a no.** A contact with no recorded answer leaves the rate's denominator. It is not counted as a no.
 - **"No difference" is a finding.** Report it as one, so no one writes a playbook the evidence does not support.
 - **The grade ladder:** assumed means someone believes it. Heard means a buyer said it. Seen means it shows up in the company's own deals or data. Confirmed means it held across at least five cases with nothing contradicting it.
-- **Grades come from the upstream hand-off.** Launch quotes them and does not regrade. An illustrative result is not a customer result, and its note stays beside it.
+- **Grades come from the upstream hand-off.** Launch quotes them and does not regrade. An illustrative result is not a customer result, and its note stays beside it. The one exception is a re-grade request from Engine that names `gtm-launch` as the source skill: Launch owns that field, so Launch applies the change and records the result and n that justified it.
 - **Scores are judgements** until a recorded result exists.
 - **Targets are numbers.** "A quick response" is not a target.
 
@@ -650,6 +655,10 @@ Launch continues on ICP1 with the two lead motions from Example 1. The group seg
 ---
 
 ## Changelog
+
+### 2.0.1 (2026-10-18)
+
+- Results mode reads Engine's hand-off by name: Retrospective, Re-grade requests and Open bets returned. Launch applies only the re-grade requests addressed to `gtm-launch`, records each returned bet in Open-bet test results, and forwards the rest to their owners unchanged. One Input Contract row, one Context item and one epistemic sentence added. No other stage changes.
 
 ### 2.0.0 (2026-10-16)
 

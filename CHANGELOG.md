@@ -7,7 +7,7 @@ bottom of its `SKILL.md`, with the detail.
 
 ## 2026-10-13: The Example Company Is PlotIQ
 
-**One example company, now PlotIQ.** Every worked example in the docs and the skills uses PlotIQ, a made-up software company for cemeteries and funeral homes. Its completed profile, with the full cast of accounts, people, competitors, proof points and verdicts, is [`profiles/examples/plotiq-example.md`](profiles/examples/plotiq-example.md). The Lexora profile is retired and moved to [`profiles/examples/archive/lexora-legal-ops-example.md`](profiles/examples/archive/lexora-legal-ops-example.md).
+**One example company, now PlotIQ.** Every worked example in the docs and the 15 operating skills uses PlotIQ, a made-up software company for cemeteries and funeral homes. The 14 sales skills under `skills/` still use the earlier Lexora cast, and they switch to PlotIQ when they are rebuilt (the last phase of the 2.0 program), so until then the two groups do not share an example. Its completed profile, with the full cast of accounts, people, competitors, proof points and verdicts, is [`profiles/examples/plotiq-example.md`](profiles/examples/plotiq-example.md). The Lexora profile is retired and moved to [`profiles/examples/archive/lexora-legal-ops-example.md`](profiles/examples/archive/lexora-legal-ops-example.md).
 
 **Template**
 - The profile template gains a **Qualification Zones** section. Five groups of account traits are each scored HIGH, MEDIUM or LOW. Zones 1 and 3 are must-haves, and the section states the verdict rule. Skills 01, 03, 06 and 07 read it.
