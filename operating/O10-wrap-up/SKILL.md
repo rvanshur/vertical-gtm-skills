@@ -1,6 +1,6 @@
 ---
 name: gtm-wrap-up
-version: 2.0.0
+version: 2.0.1
 description: "Closes a working session in writing: a debrief, a project key taken from the files that changed, the checks the work earned, three lines, one next action the owner confirms, and a continuation note that supersedes the older one. Writes the note that Weekly Review reads."
 category: Operating-Discipline
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: [context-os-setup]
 mutating: true
 change_log:
+  - version: 2.0.1
+    date: 2026-10-18
+    summary: "The note gives the five verification skills a named place: the gap state and any saved review path under What Happened, the tier each verified claim reached under Where We Stopped, a debate's matrix, posture, resolution and record path under Decisions Made, and a debug handoff file by path under Open Threads. No stage changes."
   - version: 2.0.0
     date: 2026-10-18
     summary: "Ground-up rewrite to the Memory 2.0 shared contract. Adds a debrief stage, a project key taken from the files that changed, a check list that runs only the checks the work earned, and a confirmation of the next action that now comes before the write. The note keeps the 1.1.0 field names, adds a superseded chain that marks older live notes, and adds a degradation table for checks that cannot run. Weekly Review reads the note's project, date, status and next_action fields by name."
@@ -89,6 +92,8 @@ supersedes: older-note-file-name.md
 The `status` field takes one of three words. `draft` means the owner could not confirm the next action. `approved` means the owner confirmed it. `superseded` means a newer note for the same project key replaced this one.
 
 The body has four sections: **What Happened**, **Where We Stopped**, **Decisions Made** (left out when there are none, with any decision that deserves a formal record flagged), and **Open Threads**. Weekly Review reads `project`, `date`, `status` and `next_action` by these names.
+
+The verification skills write into those four sections by name. What Happened carries the gap state of any build that started (NO GAP, CONFIG, COMPLETION, EXTENSION, PATTERN or TRUE GAP) and the path of any saved review file. Where We Stopped carries the tier each verified claim reached (1 to 4, as Verify states it, or the honest sentence "Built, and not yet verified, because [reason]."). Decisions Made carries a debate's matrix, its posture (converge or diverge), its resolution and its record path when one was saved. Open Threads carries a debug handoff file by its path when a session stopped at the circuit breaker.
 
 ---
 
@@ -370,6 +375,8 @@ The failure is visible in the note, the state line does not claim the item is li
 
 ## Integration With Other Skills
 
+**Reads from the verification skills, by name.** Verify's tier statement per claim (Where We Stopped). Context Gap's gap state per build (What Happened). Debate's matrix, posture, resolution and record path (Decisions Made). Debug's handoff file path (Open Threads). Second Opinion's review file path (What Happened). A session that used none of them writes nothing for them, and never invents a tier.
+
 - **Reads from Context OS Setup:** the knowledge base location, from the `## Knowledge Base` section of the client profile, and the folder layout it created.
 - **Reads from no other memory skill.** Wrap-Up reads its own earlier continuation notes and the knowledge base, and nothing else.
 - **Hands to gtm-weekly-review:** every continuation note, by these field names: `project`, `date`, `status`, `next_action`. gtm-weekly-review reads the open notes, lists those older than one week with their next action, so these four fields must be present and accurate.
@@ -378,6 +385,10 @@ The failure is visible in the note, the state line does not claim the item is li
 ---
 
 ## Changelog
+
+### 2.0.1 (2026-10-18)
+
+- The note gives the five verification skills a named place: the gap state and any saved review path under What Happened, the tier each verified claim reached under Where We Stopped, a debate's matrix, posture, resolution and record path under Decisions Made, and a debug handoff file by path under Open Threads. No stage changes.
 
 ### 2.0.0 (2026-10-18)
 
