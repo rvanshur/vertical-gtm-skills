@@ -126,11 +126,11 @@ The 14 sales skills are the motion. [`operating/`](operating/) is the layer that
 
 | # | Skill | What It Does |
 |---|-------|-------------|
-| O1 | **[Verify](operating/O1-verify/SKILL.md)** | Four-tier evidence ladder (exists > substantive > wired > functional) that blocks "done" claims until the top tier is demonstrated |
-| O2 | **[Debug](operating/O2-debug/SKILL.md)** | Hypothesis-first discipline with a three-attempt circuit breaker. After three failed hypotheses, stop and hand off to re-plan |
-| O3 | **[Debate](operating/O3-debate/SKILL.md)** | Convenes 3-7 opposing expert personas to pressure-test a decision before committing. Ends with a decision matrix and a plain-language read |
+| O1 | **[Verify](operating/O1-verify/SKILL.md)** | Grades every claim of done by the tier it reached (Exists, Substantive, Wired, Functional) and writes a claim slip with the evidence pasted, never described |
+| O2 | **[Debug](operating/O2-debug/SKILL.md)** | A written hypothesis and a failing test before anything changes, one change per hypothesis, and a three-attempt circuit breaker that ends in a handoff file |
+| O3 | **[Debate](operating/O3-debate/SKILL.md)** | Assigns the opposition before a costly decision. A panel of three to seven seats, one of which attacks the premise, ends in a matrix where every option names what it wins and where it breaks |
 | O4 | **[Context Gap](operating/O4-context-gap/SKILL.md)** | Search before you build. A six-bucket classifier sorts what already exists, and about 40% of requests turn out to be done already (the author's working estimate) |
-| O5 | **[Second Opinion](operating/O5-second-opinion/SKILL.md)** | Packages work for a model from a different vendor, then triages what comes back. Trades the builder's blind spots for a different set |
+| O5 | **[Second Opinion](operating/O5-second-opinion/SKILL.md)** | Shows exactly what leaves the machine, sends finished work to a reviewer from another vendor with a five-lens brief, and triages every finding into a dated review file |
 
 **Memory and knowledge**
 

@@ -5,6 +5,23 @@ bottom of its `SKILL.md`, with the detail.
 
 ---
 
+## 2026-10-18: Verification 2.0, Five Skills Rebuilt as One System
+
+**The five verification skills (Verify, Debug, Debate, Context Gap, Second Opinion) are 2.0.0.** Each was written clean-room from one spec, and they share one contract, pasted word for word into all five: the claim slip (claim, tier, check, evidence), four tiers with Functional as tier 4 everywhere, the honest sentence when tier 4 was not reached, one spelling of the six gap states, the six-column matrix, the severity, verdict and triage words, three attempts as the circuit breaker, and the list of what the session close reads by name.
+
+**What each one gained**
+- **Verify**: grades every claim by the tier it reached and writes a claim slip with the evidence pasted, never described. Reading never reaches tier 4. Never round up: the count and the list of failures, not "mostly passing". The Common Failures table and the triggers list.
+- **Debug**: five bug classes as modes, a failing test first for code, one change per hypothesis, the circuit breaker at three, a four-line handoff file, and an outcome block that carries the red run and the green run so Verify can grade it.
+- **Debate**: rewritten from scratch (the earlier version adapted two MIT-licensed skills, and the credits section goes with it). The opposition is assigned, one seat always attacks the premise with three tests, the matrix has Option, Wins, Breaks, Risk, Effort and Best when, with a converge or diverge posture and an archetype bank at the end.
+- **Context Gap**: thirty seconds to write the need, four places searched, one of six states with its evidence, extend over create, and a result that Debate reads before it seats a panel.
+- **Second Opinion**: paste as the default route, a dry-run manifest of what leaves the machine with the hold-back list, the five-lens brief, exact severity, verdict and triage words, and the line that an APPROVED verdict alone is tier 1 evidence until Verify runs the work.
+
+**Fixed across the set**: Verify, Debug and Second Opinion agree on what a verdict proves, Context Gap hands Debate a state in the same words Debate expects, and Wrap-Up 2.0.1 (shipped alongside) names a place for each skill's output.
+
+The worked examples use the PlotIQ cast and one story (the trust-report export) that runs through all five. The 1.x versions stay in history.
+
+---
+
 ## 2026-10-18: Memory 2.0, Five Skills Rebuilt as One System
 
 **The five memory skills (Wrap-Up, Ingest, Dream, Graph Health, Weekly Review) are 2.0.0.** Each was written clean-room from one spec, and they now share one contract, pasted word for word into all five: one record format (compiled truth on top, dated timeline below), one set of item field names, one definition of stale, one expiry model (`valid_until`, expiring within three days, extension before archive, no expiry on standing records), and two scores on the same four bands (Graph Health's structure score, Dream's content count).

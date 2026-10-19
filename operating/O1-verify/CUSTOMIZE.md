@@ -1,103 +1,98 @@
 # Customize: Verify
 
-A paste-in prompt that adapts this skill to *your* go-to-market motion.
+A paste-in prompt that writes the `## Verification` section of your client profile. It asks which commands prove your project works, what a finished piece of work must pass, and which kinds of claim need which checks, so the skill grades each claim against your real checks and not against a generic one.
 
-Works in **Claude Code**, **Claude.ai Projects**, or **OpenAI Codex**, all three read the same
-`SKILL.md` format. Open the assistant, paste the block below, and answer its questions.
-
-> This is a per-skill companion. For customizing the whole suite at once, see
-> [`docs/customization.md`](../../docs/customization.md) and
-> [`profiles/client-profile-template.md`](../../profiles/client-profile-template.md).
+Works in Claude Code, in Codex, and in ChatGPT as a custom GPT. Open the assistant, paste the block below, and answer its questions one at a time.
 
 ---
 
-## The prompt
+## The Prompt
 
 ```
-You are helping me adapt an operating-discipline skill to my company's go-to-market motion.
+You are helping me set up the Verification section of my client profile.
 
-Read the attached SKILL.md (gtm-verify). It defines a four-tier evidence ladder (exists,
-substantive, wired, works) that blocks completion claims until the top tier is demonstrated.
+Read the attached SKILL.md (gtm-verify, version 2.0.0). Verify grades every claim of done
+by the tier it reached: 1 Exists, 2 Substantive, 3 Wired, 4 Functional. Tier 4 needs a run
+in this session. Reading alone can reach tier 3 at most.
 
-Your job is NOT to rewrite it. It is to make it fire on the things that actually go out the
-door at my company, and to tell me honestly where I cannot answer you.
+Your job is NOT to rewrite the skill. It is to record my project's checks and rules, and to
+tell me honestly where a claim could be graded above its evidence in my setup.
 
 Ask me these, ONE AT A TIME, and wait for each answer:
 
-1. What are the three artifacts my team most often calls "done" that reach someone outside
-   the team? (a proposal, a dashboard, a data export, a sequence, a QBR deck, a scraped
-   record set, whatever is real for us)
+1. What is the project, and where is its code or output? Give a folder or a link.
 
-2. For each one, what would "tier 4, I ran it end to end just now" actually look like?
-   What is the concrete act of demonstration?
+2. What commands prove the project works? Give the exact command for each of these: the full
+   test run, the build, the lint, and any run of the real thing from start to finish. If one
+   does not exist, answer "none" for that one.
 
-3. Which of those artifacts reach a customer, an executive, or a regulator? Those cannot
-   pass below tier 4.
+3. What is the definition of done? List the checks a finished piece of work must pass, in
+   the order they should run.
 
-4. What is our equivalent of a mechanical gate, a check the SYSTEM runs, not one a person
-   chooses? (CI, a validation script, an approval step, a QA pass, a peer review) If we have
-   none for a given artifact, say so plainly rather than inventing one.
+4. Which kinds of claim need which check? Examples: a code change needs the test run. A data
+   export needs a row count from the output file. A page needs a screenshot at full size.
+   List your own kinds of claim, and the check each one needs.
 
-5. What has actually gone out wrong in the last year, and which tier was it really at when
-   someone called it done?
+5. Who reads the claims, and how sensitive is that? Name the audience by role, such as a
+   board, a client or the team. Say what must never appear in a shared claim, such as the
+   names of people or of internal systems.
+
+6. Which checks can you not run from this session? For each one, say why. Examples: no
+   access, or the run takes too long to wait for.
 
 Then produce:
 
-A. A revised "Quick Reference" table where each tier is written in terms of MY artifacts,
-   not generic ones.
-B. A revised "Examples" section using MY failure from question 5, written so it is
-   recognizable to my team but names no individual.
-C. A list of the fields this skill now needs from profiles/client-profile.md, with the exact
-   values I gave you.
-D. THE HONEST PART: a short list of the questions above I could not answer concretely, and
-   what intelligence I would need to gather to answer them. Do not paper over these. If I
-   could not tell you what tier 4 looks like for an artifact, that gap is the finding.
+A. The Verification section, filled in, ready to paste into profiles/client-profile.md.
+
+B. A field check. Each field is either set, or marked "not set" with the effect that has on
+   a run.
+
+C. THE HONEST PART. A short list of which claims in my setup can reach tier 4, which can
+   reach only tier 3, and which need a check I cannot run. Name the specific gap for each.
 
 Start with question 1.
 ```
 
 ---
 
-## What you should expect to happen
+## What You Should Expect
 
-Most operators get through questions 1 to 3 comfortably and stall somewhere in 4 or 5.
+Questions 1 and 5 usually come first, because most teams know where their work lives and who reads the claims. Question 2 takes the longest. If a project has no single command that runs the real thing from start to finish, say so. The skill will then grade that project's claims at tier 3 at most, and it will say why on every claim. That is the correct result, because a reader should not get a tier 4 the project cannot produce.
 
-That is not a failure of the exercise. It is the exercise working.
+Question 4 is where the setup pays off. A kind of claim with no check in the table can never reach tier 4, so a missing row is a visible gap and not a silent one.
 
-**Question 4 stalls** when there is no mechanical gate, when "done" is decided by whoever is
-looking, differently each time. **Question 5 stalls** when the failures are remembered as
-personalities rather than as tiers, so there is no record to reason from.
-
-Both stalls point at the same missing thing: a **context layer**. The skill is a procedure. A
-procedure needs to know what your business ships, to whom, and what has already gone wrong.
-Without that, you get a generic gate that fires on nothing in particular.
-
-If output section D comes back long, that is worth a conversation rather than a rewrite. Bring
-it to the community discussion, it is the most common place this suite stops being useful, and
-the fix is almost never a better prompt.
+Question 5 keeps names out of shared claims. Name people by role in anything a board or a client will read, and leave them out of the claim itself.
 
 ---
 
-## Minimum profile fields this skill reads
+## The Verification Section
 
-Add these to `profiles/client-profile.md` once, and every skill in the suite inherits them:
+Add this section to `profiles/client-profile.md` once. The skill reads only this section for its checks. Keep the commands exact, because the skill runs the command you write.
 
 ```markdown
 ## Verification
 
-- **Mechanical gates:** [the commands or steps the system runs, per artifact type]
-- **Customer-facing artifacts:** [the list that cannot pass below tier 4]
-- **Definition of done:** [what the team has already agreed shipped means]
-- **Known failure modes:** [what has gone out wrong, described by tier not by person]
+- **Project location:** [folder or link, or "not set"]
+- **Full test command:** [exact command, or "none"]
+- **Build command:** [exact command, or "none"]
+- **Lint command:** [exact command, or "none"]
+- **Run the real thing:** [exact command or steps that exercise the work from start to finish, or "none"]
+- **Definition of done:** [the ordered checks a finished piece of work must pass]
+- **Claim kinds and their checks:**
+  - [claim kind]: [the check that must run, and the highest tier it can reach]
+- **Audience:** [who reads the claims, by role]
+- **Never in a shared claim:** [names of people, internal systems, or "not set"]
+- **Checks this session cannot run:** [each one, with the reason, or "none known"]
 ```
 
 ---
 
-## If you change the ladder itself
+## Troubleshooting
 
-Don't, at first. The four tiers are ordered so each one is cheap to check and the expensive
-check comes last. Reordering them means running the costly demonstration on work that fails a
-free check.
-
-The tier *names* are worth localizing. If your team already says "smoke-tested" or "in prod
-and confirmed," use your words. Adoption follows vocabulary.
+| Problem | Cause | Response |
+|---------|-------|----------|
+| Verify grades every claim at tier 3 | No run command is set in the section | Answer question 2 with the exact command. Until then, tier 3 is the highest tier the skill can reach for this project |
+| Verify says the section is missing | The profile was never customized | Paste the section above into the profile, or run this interview again |
+| The command in the section does not match the one you run | The section holds an old command | Update the command in the section, and note the date it changed |
+| Verify names a check that is not in your section | It read the check from the work itself | Accept it, or add it to the section. Until then, the skill says once that the check was not customized |
+| A claim cannot be matched to any check | The kind of claim is missing from the table | Add a row for that kind, with its check and the highest tier it can reach |
