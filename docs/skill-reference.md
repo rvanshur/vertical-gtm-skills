@@ -10,7 +10,7 @@ Quick-reference guide for choosing the right skill, understanding inputs and out
 START: What are you trying to do?
 │
 ├─ "I have a new account/lead"
-│   ├─ Need to know if it's worth pursuing? → 01 Account Pre-Qualification
+│   ├─ Need to know if it's worth pursuing? → 01 Account Qualification
 │   ├─ Need outbound sequences fast? → 02 Account Snapshot
 │   ├─ Enterprise target, need deep research? → 03 Research-Driven Outbound
 │   └─ Spotted a trigger event (M&A, new exec)? → 04 Trigger Event Outbound
@@ -49,18 +49,18 @@ START: What are you trying to do?
 
 | Skill | Required Input | Optional Input | Output |
 |-------|---------------|---------------|--------|
-| **01 Pre-Qualification** | Company name | Website, employee count, revenue, industry | ICP scorecard (8 criteria), verdict (GREENLIGHT/REVIEW/DISQUALIFY), fit narrative |
-| **02 Account Snapshot** | Company name | CRM data, website, LinkedIn | Company brief, ICP score, 3 email sequences (6 emails each), cold call sheet |
-| **03 Research Outbound** | Company name + research source (10-K, earnings, news) | Specific personas to target | POV brief, 24 persona-tailored emails, strategic narrative |
-| **04 Trigger Event** | Company name + trigger event description | Timeline, affected stakeholders | Urgency analysis, 3 time-sensitive sequences, 7-14 day campaign |
-| **05 Closed-Loss** | Company name + loss reason from CRM | Previous interactions, time since loss | Change analysis, reactivation strategy, history-aware sequences |
+| **01 Account Qualification** | Account name, your role | CRM access, website, headcount, revenue | `verdict` (GREENLIGHT, MANUAL REVIEW or DISQUALIFY), `zone_scores`, `icp_match`, `fit_narrative`, the 8-criteria scorecard |
+| **02 Account Snapshot** | Account name, your role | CRM access, prior interactions, a persona to focus on | `account_status`, `verdict`, `zone_scores`, `contact_priority`, `pain_hypotheses`, `sequence` (three emails per persona), the eight-section cheatsheet |
+| **03 Research Outbound** | Account name, the research source and where it is | Personas to target | `verdict` with zones, `signal_map`, `wedge` (arithmetic shown), `pov_brief`, `persona_emails` (personas times steps) |
+| **04 Trigger Event Outbound** | Account name, the event, its date and its source | Affected stakeholders | `trigger_type`, `urgency_window`, `days_remaining`, `event_tag`, `sequence` (three emails per persona), or a refusal when the window has closed or the date is unknown |
+| **05 Closed-Loss Reactivation** | Account name, the CRM loss reason, the close date | AE notes, prior sequence history | `loss_classification`, `change_assessment` (tagged), `reactivation_strategy` (REACTIVATE, MONITOR or RETIRE), `history_opener`, sequences and call prep |
 
 ### Discover Stage
 
 | Skill | Required Input | Optional Input | Output |
 |-------|---------------|---------------|--------|
-| **06 Meeting Prep** | Company name, meeting type (discovery/demo), attendee(s) | CRM data, previous call notes | Single-page call sheet: SPIN questions or demo structure, persona proof, agenda scripts |
-| **07 Daily Prospecting** | Your pipeline/account list | Priority overrides, activity history | 4-tier dial sheet with openers, pain questions, call framework |
+| **06 Meeting Prep** | Account name, meeting type (discovery or demo), attendees with titles | CRM notes, prior call notes, the upstream hand-off fields | `prep_sheet`, `top_pain`, `question_bank`, `attendees` (with buying role), `proof_point` (with its Status), call flow, follow-up draft |
+| **07 Daily Prospecting** | Today's task or account list, your role | Activity history, priority overrides | `dial_sheet` (Hot, Warm, New, Recycle), `pre_call_briefs` (top eight), `exclusions` (each with its reason) |
 
 ### Execute Stage
 
@@ -87,13 +87,16 @@ Skills are most powerful when combined. Here are proven sequences:
 
 ### Pattern 1: New Account (BDR Workflow)
 ```
-Account Pre-Qualification (01)
-  → GREENLIGHT?
+Account Qualification (01)
+  hands verdict, zone_scores, icp_match, fit_narrative
+  → verdict GREENLIGHT?
     → Account Snapshot (02)
+      hands account_status, verdict, contact_priority, pain_hypotheses, sequence
       → Meeting booked?
         → Meeting Prep (06)
+          hands prep_sheet, top_pain, question_bank, attendees, proof_point
 ```
-**Time:** ~15 minutes for the full sequence (vs. 2-3 hours manually)
+Each skill asks for the upstream fields by those names in its Integration section, so a fresh session can pick the chain up from any step.
 
 ### Pattern 2: Enterprise Target (AE + BDR)
 ```
@@ -130,10 +133,14 @@ MEDDPICC Analysis (09) [final qualification check]
 
 ### Pattern 6: Win-Back Campaign
 ```
-Closed-Loss Reactivation (05) [batch: all losses from 6-12 months ago]
-  → Filter for "circumstances changed" candidates
-    → Account Snapshot (02) [refresh intel]
-      → Trigger Event Outbound (04) [if new trigger found]
+Closed-Loss Reactivation (05) [batch: all losses from 6 to 12 months ago]
+  hands loss_classification, change_assessment, reactivation_strategy, history_opener
+  → reactivation_strategy REACTIVATE?
+    → Trigger Event Outbound (04) [when the change is a dated event]
+      hands trigger_type, urgency_window, days_remaining, event_tag, sequence
+    → Meeting Prep (06) [when a call is booked]
+  → MONITOR: the reopening event that moves it is named in the output
+  → A champion who moved to a new account is a new play there: Account Snapshot (02)
 ```
 
 ---

@@ -77,19 +77,19 @@ Skills are organized by deal stage, matching the natural flow of a B2B sales cyc
 
 | # | Skill | What It Does | When to Use |
 |---|-------|-------------|-------------|
-| 1 | **[Account Pre-Qualification](skills/01-account-qualification/SKILL.md)** | Scores accounts against 8 weighted ICP criteria → GREENLIGHT / MANUAL REVIEW / DISQUALIFY | New account lands on your desk |
-| 2 | **[Account Snapshot](skills/02-account-snapshot/SKILL.md)** | Company brief + persona-matched email sequences + cold call sheet | BDR daily outbound building |
-| 3 | **[Research-Driven Outbound](skills/03-research-outbound/SKILL.md)** | Deep research (10-K, earnings, private company intel) → 24 persona-tailored emails | Enterprise targets, high-value accounts |
-| 4 | **[Trigger Event Outbound](skills/04-trigger-event-outbound/SKILL.md)** | Time-sensitive signal detection → urgency sequences (7-14 day window) | M&A, new exec, compliance failure, earnings miss |
-| 5 | **[Closed-Loss Reactivation](skills/05-closed-loss-reactivation/SKILL.md)** | Loss-reason analysis → history-aware re-engagement sequences | Revisiting dead deals with new context |
+| 1 | **[Account Qualification](skills/01-account-qualification/SKILL.md)** | Scores an account against the ICP, 8 weighted criteria and the profile's five zones. Verdict GREENLIGHT, MANUAL REVIEW or DISQUALIFY with every zone shown | New account lands on your desk |
+| 2 | **[Account Snapshot](skills/02-account-snapshot/SKILL.md)** | One-page brief: zone verdict, ranked contacts, tagged pain hypotheses, a three-step email draft and call prep | BDR daily outbound building |
+| 3 | **[Research Outbound](skills/03-research-outbound/SKILL.md)** | A sourced point of view from a filing, an owner letter or an earnings call: signal map, sourced wedge, one sequence per persona | Enterprise targets, high-value accounts |
+| 4 | **[Trigger Event Outbound](skills/04-trigger-event-outbound/SKILL.md)** | One dated event checked against its window from the profile: a three-email sequence, or a refusal when the window has closed or the date is unknown | Ownership change, new leader, audit finding, earnings miss |
+| 5 | **[Closed-Loss Reactivation](skills/05-closed-loss-reactivation/SKILL.md)** | The recorded loss reason checked against the evidence: REACTIVATE, MONITOR or RETIRE, with a history-aware opener | Revisiting dead deals with new context |
 
 ### Discover (Skills 6-7)
 *Prepare for and execute high-quality conversations.*
 
 | # | Skill | What It Does | When to Use |
 |---|-------|-------------|-------------|
-| 6 | **[Meeting Prep](skills/06-meeting-prep/SKILL.md)** | SPIN (discovery) or Challenger (demo) call sheet in about 90 seconds | Before any customer-facing call |
-| 7 | **[Daily Prospecting](skills/07-daily-prospecting/SKILL.md)** | 4-tier prioritized dial sheet with personalized openers | Every morning before you pick up the phone |
+| 6 | **[Meeting Prep](skills/06-meeting-prep/SKILL.md)** | One prep sheet for a discovery or demo call: top pain, a question bank per phase, one proof point per attendee, objection scripts, a call flow and a follow-up draft | Before any customer-facing call |
+| 7 | **[Daily Prospecting](skills/07-daily-prospecting/SKILL.md)** | Four-tier dial sheet (Hot, Warm, New, Recycle) with the BDR guard applied and a pre-call brief for the top eight | Every morning before you pick up the phone |
 
 ### Execute (Skills 8-12)
 *Score deals, qualify rigorously and outmaneuver competitors.*

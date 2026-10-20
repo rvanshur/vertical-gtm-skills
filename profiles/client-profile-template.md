@@ -3,7 +3,7 @@
 > **This is the single document that powers every skill in the suite.** Fill it out once for your
 > company, save it as **`profiles/client-profile.md`**, and every skill reads it on its next run.
 > Update it once and every skill inherits the change. When you change companies or clients, swap
-> this one file. The methodology stays the same; the profile is the fuel.
+> this one file. The methodology stays the same. The profile is the fuel.
 
 ---
 
@@ -114,13 +114,15 @@ The three to five roles you actually sell to. For each, include what they care a
 
 Your top three to five pain points in order of severity, **in your buyer's words, not yours**.
 
-| # | Pain Point | What to Listen For | Business Impact | Frequency |
-|---|-----------|-------------------|----------------|-----------|
-| 1 | ___ | [Exact words/phrases from prospects] | [Quantified if possible] | [How often this comes up] |
-| 2 | ___ | ___ | ___ | ___ |
-| 3 | ___ | ___ | ___ | ___ |
-| 4 | ___ | ___ | ___ | ___ |
-| 5 | ___ | ___ | ___ | ___ |
+| # | Pain Point | What to Listen For | Business Impact | Frequency | Discovery question |
+|---|-----------|-------------------|----------------|-----------|--------------------|
+| 1 | ___ | [Exact words/phrases from prospects] | [Quantified if possible] | [How often this comes up] | [The open question that surfaces this pain on a call] |
+| 2 | ___ | ___ | ___ | ___ | ___ |
+| 3 | ___ | ___ | ___ | ___ | ___ |
+| 4 | ___ | ___ | ___ | ___ | ___ |
+| 5 | ___ | ___ | ___ | ___ | ___ |
+
+The Discovery question column is read by Meeting Prep (06), Daily Prospecting (07) and Call Coaching (13), so a rep asks a real question, not a template.
 
 ---
 
@@ -152,14 +154,26 @@ What a customer actually buys, so the Sales-to-CS Handoff skill can size impleme
 
 ## Competitive Landscape
 
-Named competitors and where they break down. This is the section teams flinch at, and it is the single biggest output-quality lever you have. You're not putting this on your website; you're putting it in your stack. Be specific.
+Named competitors and where they break down. This is the section teams flinch at, and it is the single biggest output-quality lever you have. You're not putting this on your website. You're putting it in your stack. Be specific.
 
-| Competitor | Category | Their Pitch | Your Advantage | Their Weakness |
-|-----------|----------|------------|---------------|----------------|
-| ___ | [Direct / Adjacent / Status Quo] | ___ | ___ | ___ |
-| ___ | ___ | ___ | ___ | ___ |
-| ___ | ___ | ___ | ___ | ___ |
-| Manual / Spreadsheets | Status Quo | "It works fine" | [Cost of inaction] | [What breaks at scale] |
+Every competitor or incumbent is filed under one of seven types, which Competitive Strategy (11) and Competitive Displacement (12) use as their starting list. Rename the types for your market if you need to, but keep seven, one per row:
+
+1. **Direct software** (a product that does what yours does)
+2. **A single-function tool** (does one part of the job well)
+3. **A service bureau** (an outside firm does the work for a fee)
+4. **A manual process** (spreadsheets, paper, memory)
+5. **No program at all** (nobody owns the job today)
+6. **Outside professionals** (an accountant, a lawyer, a consultant)
+7. **An adjacent tool** (software bought for a neighbouring job, stretched to cover this one)
+
+| Competitor | Type | Their Pitch | Your Advantage | Their Weakness | Pain reported after 6 to 12 months (with source) | Proof that answers it |
+|-----------|------|------------|---------------|----------------|-------------------------------------------------|----------------------|
+| ___ | [One of the seven] | ___ | ___ | ___ | [What their customers say a year in, and where you heard it] | [A row from Proof Points] |
+| ___ | ___ | ___ | ___ | ___ | ___ | ___ |
+| ___ | ___ | ___ | ___ | ___ | ___ | ___ |
+| Manual / Spreadsheets | A manual process | "It works fine" | [Cost of inaction] | [What breaks at scale] | [The moment it broke, with the source] | ___ |
+
+The two right-hand columns are read by Closed-Loss Reactivation (05): a buyer who chose a rival 6 to 12 months ago is the one most likely to be feeling that pain now. Every cell in those columns names its source (a call, a review site, a lost-deal note). An unsourced pain is left blank, never guessed.
 
 ### Competitive Discovery Questions
 Questions that uncover which competitor (if any) the prospect is evaluating or using:
@@ -177,13 +191,15 @@ The triggers and signals that qualify an account, and your disqualifiers.
 
 Events that create urgency or openness to buying:
 
-| Trigger | Signal Source | Urgency Window | Which Skill to Use |
-|---------|-------------|---------------|-------------------|
-| New executive (CXO) | LinkedIn, news | 30-90 days | Trigger Event Outbound (04) |
-| M&A / PE acquisition | News, SEC filings | 60-120 days | Trigger Event Outbound (04) |
-| Competitor failure | Support forums, reviews | 7-14 days | Competitive Displacement (12) |
-| Compliance/regulatory change | Industry news | Varies | Research-Driven Outbound (03) |
-| ___ | ___ | ___ | ___ |
+| Trigger | Signal Source | Urgency Window | Persona who acts | Which Skill to Use |
+|---------|-------------|---------------|------------------|-------------------|
+| New executive (CXO) | LinkedIn, news | 30-90 days | [The persona who owns the response, from Buyer Personas] | Trigger Event Outbound (04) |
+| M&A / PE acquisition | News, SEC filings | 60-120 days | ___ | Trigger Event Outbound (04) |
+| Competitor failure | Support forums, reviews | 7-14 days | ___ | Competitive Displacement (12) |
+| Compliance/regulatory change | Industry news | Varies | ___ | Research-Driven Outbound (03) |
+| ___ | ___ | ___ | ___ | ___ |
+
+"Persona who acts" is read by Research Outbound (03) and Trigger Event Outbound (04), so a trigger sequence goes to the person who has to respond to the event, not to every persona.
 
 ### Disqualifiers (No Fit)
 
@@ -226,12 +242,18 @@ follow what is written here.
 
 Named customers with specific metrics, matched to the personas and segments they resonate with. These get embedded into outbound sequences, meeting prep and battlecards.
 
-| Customer | Key Metric | Segment | Use When |
-|----------|-----------|---------|----------|
-| ___ | [A specific number, e.g. "212 unsold plots found in 90 days"] | [SMB/MM/Ent] | [Scenario where this proof point lands best] |
-| ___ | ___ | ___ | ___ |
-| ___ | ___ | ___ | ___ |
-| ___ | ___ | ___ | ___ |
+| Customer | Key Metric | Segment | Use When | Status |
+|----------|-----------|---------|----------|--------|
+| ___ | [A specific number, e.g. "212 unsold plots found in 90 days"] | [SMB/MM/Ent] | [Scenario where this proof point lands best] | [Verified / Benchmark / Illustrative] |
+| ___ | ___ | ___ | ___ | ___ |
+| ___ | ___ | ___ | ___ | ___ |
+| ___ | ___ | ___ | ___ | ___ |
+
+Status takes one of three values, and the sales skills treat them differently:
+
+- **Verified:** the customer confirmed the number and agreed to be named. Only Verified rows go into a talk track, a battlecard or an email a prospect will read.
+- **Benchmark:** a published figure with its source and date named. Used for context, never as "our customer got this".
+- **Illustrative:** invented for a worked example. Never cited to a prospect.
 
 ---
 
@@ -247,9 +269,15 @@ The frameworks your team runs, listed by stage. Meeting Prep, MEDDPICC Analysis 
 - [ ] **Command of the Message** (Value Framework)
 - [ ] **Other:** _______________
 
+**Talk-time targets (optional):** the sales skills start from rep talk time of 30% to 40% on discovery, 50% to 60% on demos, 40% to 50% in negotiation, 35% to 45% on follow-ups and 30% to 40% with executives. Write your own bands here, from your won calls, and Meeting Prep (06) and Call Coaching (13) use yours instead.
+
 ### Qualification Stage Gates
 
-Define what "qualified" means at each stage:
+Number and name your stages, because every sales skill reads stage names from here and carries none of its own:
+
+**Stages:** 1 ___, 2 ___, 3 ___, 4 ___, 5 ___, 6 ___
+
+Then define what "qualified" means at each gate:
 
 | Stage | Exit Criteria | Required Evidence |
 |-------|-------------|-------------------|
@@ -257,6 +285,77 @@ Define what "qualified" means at each stage:
 | Demo to Proposal | ___ | ___ |
 | Proposal to Negotiate | ___ | ___ |
 | Negotiate to Close | ___ | ___ |
+
+---
+
+## Optional: Sales-Layer Sections
+
+Each of the 14 sales skills in `skills/` reads one extra section of its own, which that skill's `CUSTOMIZE.md` interview writes for you. The skill names the section in its Context table, and the interview writes exactly that section, so the two never disagree.
+
+| Section | Written by the interview of | Read by |
+|---|---|---|
+| Fit Grid | 01 Account Qualification | 01, 07 Daily Prospecting |
+| Outbound Voice | 02 Account Snapshot | 02 |
+| Industry Context | 03 Research Outbound | 03, 04 Trigger Event Outbound, 05 Closed-Loss Reactivation |
+| Trigger Catalog | 04 Trigger Event Outbound | 04 |
+| Closed-Loss Intelligence | 05 Closed-Loss Reactivation | 05 |
+| Meeting Prep | 06 Meeting Prep | 06 |
+| Daily Prospecting | 07 Daily Prospecting | 07 |
+| Deal Health | 08 Deal Pulse | 08 |
+| MEDDPICC | 09 MEDDPICC Analysis | 09 |
+| Buying Committee | 10 Stakeholder Mapping | 10 |
+| Competitive Patterns and Trends | 11 Competitive Strategy | 11 |
+| Displacement | 12 Competitive Displacement | 12 |
+| Call Coaching | 13 Call Coaching | 13 |
+| Implementation Profile | 14 Sales Handoff | 14 |
+
+Nothing to fill in here now. Run a skill's interview and paste the section it produces at the bottom of this file, as a `##` heading with the name above. The completed PlotIQ example shows each one filled.
+
+The seven that feed the prospecting and discovery skills have a fixed shape, so you can also fill them by hand:
+
+```markdown
+## Industry Context
+- **Sourced facts:** [fact, source, year] one per line. An unsourced fact is dropped, not kept
+- **The number we move:** [metric, defensible range, the proof behind it]
+- **Vertical financial signals:** [signal, where it appears, what it predicts]
+- **Private-company sources:** [source, what it reliably tells you, lag]
+
+## Fit Grid
+| ICP | Strong | Moderate | Weak |
+|---|---|---|---|
+| ICP1 | [observable facts] | [observable facts] | [observable facts] |
+- **Revenue estimation values:** [per employee, per site or branch, per unit, as your own history gives them]
+
+## Outbound Voice
+- **Reference email:** [paste the best performer]
+- **Vertical research sources:** [source, what it reliably tells you]
+- **Call-today triggers:** [the facts that jump the queue]
+- **Region map:** [region or state, the cost of a missed rule there, the source]
+
+## Trigger Catalog
+| Trigger | Rule or deadline it creates (citation) | Proof point that fits | Credible first line |
+|---|---|---|---|
+- **Monitoring sources:** [source, event types it surfaces, lag]
+- **Taboo events:** [what we never trigger outreach on]
+
+## Closed-Loss Intelligence
+- **Loss taxonomy mapping:** [CRM reason, what it usually means for us]
+- **Re-entry windows:** [loss category, credible timing]
+- **Reopening events:** [what changes that we can detect, and how]
+- **Incumbent renewal cycles:** [competitor, typical contract length, source]
+
+## Meeting Prep
+- **Discovery framework and team vocabulary:** [the public framework, and your own words for its stages]
+- **Persona-proof map:** [persona, the proof point that lands, the one that does not]
+- **The demo reframe:** [what they believe, what we teach, the evidence]
+
+## Daily Prospecting
+- **Hot definition:** [checkable facts, not feelings]
+- **Daily capacity:** [dials a day, tier size budget]
+- **Exclusion rules:** [who never appears on the sheet]
+- **Opener, verbatim:** [what the best rep actually says]
+- **Trustworthy CRM fields:** [field, trust level, who maintains it]
+```
 
 ---
 

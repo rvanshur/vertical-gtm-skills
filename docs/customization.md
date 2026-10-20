@@ -33,13 +33,15 @@ Counted from the Context sections of the 14 sales skills. Fill the top rows firs
 | Buyer Personas | 5 of 14 | Sequences and call sheets stop matching the person in the room |
 | Qualification Criteria | 4 of 14 | Trigger timing and disqualifiers stop working |
 | Proof Points | 4 of 14 | Emails and demos cite nothing, or cite the wrong customer |
-| Qualification Zones | 4 of 14 (01, 03, 06, 07) | Verdicts lose the zone check, so a missing must-have can pass unnoticed |
+| Qualification Zones | 4 of 14 (01, 02, 03, 07) | Verdicts lose the zone check, so a missing must-have can pass unnoticed |
 | Value Propositions | 3 of 14 | Positioning and demo stories flatten |
 | Sales Methodology | 3 of 14 | Meeting Prep, MEDDPICC and Call Coaching fall back to their defaults |
 | Company | all | Framing only, rarely the bottleneck |
 | Product Modules | Sales-to-CS Handoff | Implementation scope cannot be sized |
 
-The operating skills each add one small optional section of their own. That map is in [How It Fits Together](how-it-fits.md#what-each-skill-reads-from-the-profile).
+Four columns matter more than their size suggests: "Persona who acts" on Buying Triggers (03 and 04 send the sequence to that person), "Discovery question" on Core Pain Points (06, 07 and 13 ask it), the two post-purchase pain columns on Competitive Landscape (05 uses them on a buyer who chose a rival 6 to 12 months ago), and Status on Proof Points (only a Verified row reaches a prospect).
+
+Each sales skill also reads one section of its own, written by that skill's `CUSTOMIZE.md` interview (Fit Grid, Outbound Voice, Industry Context, Trigger Catalog, Closed-Loss Intelligence, Meeting Prep, Daily Prospecting, and the seven for skills 08 to 14). The operating skills do the same. Both maps are in [How It Fits Together](how-it-fits.md#what-each-skill-reads-from-the-profile).
 
 ### How to Know the Profile Is Good Enough
 
