@@ -97,11 +97,26 @@ because the first two feed nearly everything:
 | Buyer Personas | 5 |
 | Qualification Criteria | 4 |
 | Proof Points | 4 |
-| Qualification Zones | 4 (01, 03, 06 and 07) |
+| Qualification Zones | 4 (01, 02, 03 and 07) |
 | Value Propositions | 3 |
 | Sales Methodology | 3 (Meeting Prep, MEDDPICC, Call Coaching calibrate to it) |
 | Company | every skill, for framing |
 | Product Modules | Sales-to-CS Handoff (implementation scope) |
+
+**Sales skills** each also read one section of their own, which the skill's `CUSTOMIZE.md`
+interview writes. The template's "Sales-Layer Sections" block lists them, and the PlotIQ example
+shows each one filled.
+
+| Section | Written by the CUSTOMIZE.md of | Read by |
+|---|---|---|
+| `## Fit Grid` | 01 Account Qualification | 01, 07 |
+| `## Outbound Voice` | 02 Account Snapshot | 02 |
+| `## Industry Context` | 03 Research Outbound | 03, 04, 05 |
+| `## Trigger Catalog` | 04 Trigger Event Outbound | 04 |
+| `## Closed-Loss Intelligence` | 05 Closed-Loss Reactivation | 05 |
+| `## Meeting Prep` | 06 Meeting Prep | 06 |
+| `## Daily Prospecting` | 07 Daily Prospecting | 07 |
+| `## Deal Health`, `## MEDDPICC`, `## Buying Committee`, `## Competitive Patterns and Trends`, `## Displacement`, `## Call Coaching`, `## Implementation Profile` | 08 to 14, each its own | 08 to 14 |
 
 **Operating skills** each add one optional section of their own. The skill's `CUSTOMIZE.md`
 interview writes it, and the skill's Context section reads it. If the section is missing, the

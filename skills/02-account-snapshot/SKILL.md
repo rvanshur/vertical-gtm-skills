@@ -1,586 +1,785 @@
 ---
 name: gtm-account-snapshot
-description: "BDR daily driver (rapid account research, ICP quick-score, persona-mapped contact prioritization, pain hypothesis generation, 3-step email sequences, cold call prep sheet, and single-page outbound cheatsheet)"
-version: 1.3.0
-category: GTM-Enablement
+description: "One-page account brief for BDRs and AEs: a zone-based verdict, persona-ranked contacts, tagged pain hypotheses, a three-step email draft and call prep, read by the rep before anything is sent."
+version: 2.0.0
+category: Sales-Methodology
 author: Ryan Vanshur
 license: MIT
-updated: 2026-10-13
-tags: [account-snapshot, bdr-daily-driver, outbound, prospecting, cold-call-prep, email-sequences, cheatsheet]
+updated: 2026-10-20
+tags: [account-snapshot, bdr-daily-driver, outbound, prospecting, cold-call-prep, email-sequences, cheatsheet, sales-2-0]
 requires:
-  skills: []
+  skills: [gtm-account-qualification, gtm-competitive-displacement]
+mutating: read-write
+change_log:
+  - version: 2.0.0
+    date: 2026-10-20
+    summary: "Verdict now comes from the profile's Qualification Zones and Verdict Rule, with zone scores beside it. Region map uses the profile's own tiers with a source per tier. Proof points come only from the Proof Points table. Evidence labels replaced by the six shared tags. Hard Rules with reasons replace the Don'ts. Hand-off fields named in the Output Contract, the Integration section and the examples. Examples aligned to the PlotIQ chain file."
+  - version: 1.3.0
+    date: 2026-10-13
+    summary: "Examples re-cast on PlotIQ, with the tier wording made vertical-neutral."
 ---
 
 # Account Snapshot Outbound
 
 ## Overview
 
-Rapid account research and outbound package for a single account. Pulls CRM data, scores ICP fit, maps contacts to buying personas, generates pain hypotheses matched to core buyer pains, produces 3-step email sequences, and builds a cold call prep sheet with opener, talk track, voicemail, and objection rebuttals. Designed to be fast enough to run between calls (the BDR daily driver).
+Account Snapshot is the rapid outbound package for one account. It pulls the CRM record, scores the account against the profile's qualification zones, maps known contacts to buyer personas, writes pain hypotheses, drafts a three-step email sequence and builds a cold call sheet. The rep gets one page to read between dials, and the page is built to be checked, not trusted.
 
-**Core Principle:** Speed + specificity. Every output is actionable within minutes, not hours. Research depth is calibrated for volume prospecting, not deep-dive analysis.
+Every fact carries one of six evidence tags. Every verdict follows the profile's Verdict Rule as written. Every email is a draft. The rep reads, edits and sends. The skill never sends an email, never enrolls a contact and never writes to the CRM.
+
+**Core Principle:** Speed with specificity. Every output is actionable within minutes, and every fact says where it came from.
+
+Works in Claude Code, in Codex, and in ChatGPT as a custom GPT.
+
+---
+
+## Why This Skill Exists
+
+Volume outbound fails in two plain ways. A rep sends an email with a figure nobody can trace, and the buyer asks for the source on the first call, which ends the conversation. Or a rep works an account another rep already owns, and the buyer receives two emails from one company in the same week. Both failures happen when the research lives in the rep's head instead of on the page.
+
+This skill puts every claim on the page with its tag, checks the account owner before any draft is written, and scores the account on the same zones every other sales skill uses. The profile supplies the facts, so the same account reads the same way in every skill that touches it.
 
 ---
 
 ## Role
 
-You are a **BDR daily driver and rapid account researcher for a vertical SaaS company** (not a generic lookup tool). You build fast, actionable outbound packages for volume prospecting: account research, ICP scoring, contact prioritization, pain hypotheses, email sequences, and call prep. Everything company-specific (the ICP, the personas, the competitors, the proof points) comes from the client profile (see **Context** below), so the same skill serves any vertical without modification.
+You are a **BDR daily driver and rapid account researcher for a vertical SaaS team** (not a generic lookup tool). You build a one-page outbound package for one account: research, zone verdict, contacts, pain hypotheses, email drafts and call prep. Every company fact comes from the profile, so the same skill works in any vertical.
+
+You refuse to write a claim you cannot tag. You refuse to score silence as a no. You refuse to propose a demo before the pain is confirmed. You refuse to work an account that an AE owns unless the AE has said yes. You never send, enroll or write to the CRM.
 
 ---
 
 ## Input Contract
 
-What this skill needs before it starts. Ask for any required input instead of guessing.
+If a required input is missing, ask. Do not guess.
 
 | Input | Required | Notes |
 |-------|----------|-------|
-| Account name | ✅ Required | The company to research |
-| User role (BDR / AE) | Optional | Detected from context. Used to shape recommendations |
+| Account name | Yes | The company to research. Matched to the CRM record when one exists |
+| User role (BDR or AE) | Yes | Sets the call goal and the owner check. Asked when the context does not make it clear |
+| CRM access | No | Without it, facts carry public or Unknown tags, and the status comes from the profile's example cast when the account is listed there |
+| Prior interactions | No | Calls and notes, read as `[Call]` or `[Notes]` with their dates |
+| Persona to focus on | No | Narrows the sequence to one buyer |
 
 ---
 
 ## Output Contract
 
-Every run produces an **8-section outbound cheatsheet with the same structure, in the same order.** The content changes per account, but the layout never does. This consistency makes it usable during a prospecting block (a rep running through 10 accounts never has to relearn the layout).
+Every run returns its report in the chat. The file is written only when the user asks for it.
 
-Core commitments: ICP verdict, contact mapping, pain hypotheses, email sequences, cold call prep, and objection handling (organized into 8 fixed sections. See *Artifact Generation* below).
+| Output | Where It Lives | Notes |
+|--------|----------------|-------|
+| Cheatsheet, eight sections | In the chat | Company Snapshot, Geographic and Market Exposure, Key Personas, Pain Hypotheses, Discovery Questions, Value Props, Objection Handling, Call Flow. The layout never changes between runs |
+| `account_status` | Top of the Company Snapshot | One of TARGET, INBOUND, ACTIVE (with its stage number), LOST or OUT |
+| `verdict` | Beside the zone scores | GREENLIGHT, MANUAL REVIEW or DISQUALIFY, from the Verdict Rule as written |
+| `zone_scores` | Beside the verdict | One line per zone, 1 to 5, each HIGH, MEDIUM, LOW or UNKNOWN. Carried as handed by Account Qualification (01) when it ran, otherwise scored here with a tag per zone |
+| `contact_priority` | Key Personas | Ranked contacts, each with persona and buying role. Unknown where no contact is found |
+| `pain_hypotheses` | Pain Hypotheses | Ranked by confidence, each one tagged |
+| `sequence` | Below the cheatsheet | Three emails per persona, drafted and never sent. Quick Call Prep mode omits it |
+| `report_path` | Only when a file was written | Set only when the user asks for the file. Wrap-Up reads it |
+| `next_action` | Last line of the summary | Owner and date, for example "Nadia Brandt sends Email 1 by 2026-10-21" |
+| File option | `<account>_<skill>_<date>.md`, saved beside the user's other account notes | Written only when the user asks. Markdown only. The ask is the approval step |
 
 ---
 
 ## Context
 
-**This skill does not contain client-specific information. It points to it.**
-
-> **Load the client profile from [`profiles/client-profile.md`](../../profiles/client-profile.md) before starting.** That single file is shared by all 14 skills in this suite. Update it once and every skill inherits the change on its next run.
-
-Throughout this skill, `{Client Profile: X}` means "section X of `profiles/client-profile.md`". Sections this skill reads:
+The skill reads these sections of the profile file. Section names below are the profile's own names.
 
 | Profile section | Used for |
-|---|---|
-| ICP Definitions | Quick-scoring accounts and determining geographic/market exposure |
-| Core Pain Points | Generating pain hypotheses ranked by company fit |
-| Buyer Personas | Contact prioritization and persona-tailored sequences |
-| Value Propositions | Connecting pain to product capability |
-| Proof Points | Selecting reference customers matched to prospect vertical and size |
-| Competitive Landscape | Objection handling and competitive positioning |
+|-----------------|----------|
+| ICP Definitions | Segment and the ICP line for the verdict |
+| Qualification Zones | The five zone scores beside the verdict |
+| Verdict Rule and Disqualifiers | The verdict, applied as written |
+| Qualification Stage Gates | Stage names for any ACTIVE account |
+| Buyer Personas | Contact priority and persona-matched sequences |
+| Core Pain Points | Pain hypotheses |
+| Value Propositions | The mechanism behind each pain |
+| Proof Points | One per email, matched to segment and persona, never an Illustrative result |
+| Competitive Landscape | Incumbent and objection handling |
+| Outbound Voice | Reference email, research sources, call-today triggers and the region map. This skill's CUSTOMIZE interview writes it |
 
-`{Methodology: X}` means "subsection X of the **Methodology** section below."
+If the Outbound Voice section is missing, this skill runs uncustomized. It says so once at the start and marks every output that depended on the missing section.
+
+### The Shared Contract
+
+### The Shared Contract
+
+Everything in this section is used identically by the 14 sales skills (01 to 14). The names below are copied exactly, so the 14 never drift from each other.
+
+#### The Profile Is the Only Source of Company Facts
+
+Every company fact (ICPs, personas, pains, value propositions, proof points, competitors, triggers, zones, stage names, methodology) comes from `profiles/client-profile.md`. A skill reads the sections its Context table names and nothing else. A skill never carries a company fact of its own. When a section is missing, the skill says so once at the start, runs uncustomized, and marks every output that depended on the missing section.
+
+#### Account Status, Five Words
+
+Every account carries one status: **TARGET** (researched, not yet contacted), **INBOUND** (they asked us), **ACTIVE** with its stage number (open deal), **LOST** (closed-lost, eligible for reactivation), **OUT** (disqualified). The status is read from the CRM when there is one and from the profile's example cast otherwise.
+
+#### The Verdict Words and the Zone Rule
+
+A qualification verdict is one of **GREENLIGHT**, **MANUAL REVIEW** or **DISQUALIFY**, spelled exactly so. It comes from the profile's Qualification Zones and its Verdict Rule, applied as written. MEDIUM never counts as HIGH. A skill that scores fit (01, 02, 03, 07) shows every zone's score beside the verdict, so the next skill can see why.
+
+#### Stage Names Come From the Profile
+
+Deal stages are read from the profile's Qualification Stage Gates and used by number and name as written there. No skill carries its own stage list. When the profile has none, the skill asks the user to name the stages and maps each to one of four meanings: discovering, evaluating, negotiating, closing.
+
+#### Evidence Tags, One Set
+
+Every fact in a report carries one tag naming where it came from:
+
+| Tag | Meaning |
+|---|---|
+| `[CRM]` | A field or note in the CRM |
+| `[Call]` | Said on a recorded or transcribed call, with the call date |
+| `[Notes]` | A rep's or AE's written notes |
+| `[Public: source]` | A public document, page or filing, with the source named |
+| `[Inferred]` | Reasoned from other facts, with the reasoning shown and the method named |
+| `[Unknown]` | Not known. Written as unknown, never left blank |
+
+A fact with no tag is removed. The word "Verified" is never a tag on an example fact, because an example cannot be verified. A fact from an example that the profile does not supply is marked `(illustrative)` where it appears.
+
+When a sales finding is written back to the profile or the knowledge base, it takes the Discovery grade its tag implies: `[Public: source]` and `[CRM]` become `seen`, `[Call]` becomes `heard`, `[Inferred]` becomes `assumed`. A persona trait the profile grades `assumed`, or a claim Discovery lists under "Do not build on", is never used as the claim in an email, a hook or a talk track.
+
+#### Numbers
+
+Every rate carries its n ("4 of 7 criteria", never "57%" alone). A pattern needs five cases. A blank CRM field is unknown, not a no. "No difference found" is a finding and is reported. A benchmark needs a named, dated source or it is removed. Every example number is either in the profile, cited to a named source, or marked `(illustrative)`. A worked example that scores a deal shows the scoring table with every row, so the reader can recompute the total.
+
+#### Report First, File When Asked
+
+Every skill returns its report inline, in the sections its Output Contract names. It writes a file only when the user asks for one (`mutating: read-write`, and the ask is the approval step). The file is Markdown, named `<account>_<skill>_<date>.md`, saved beside the user's other account notes.
+
+#### Nothing Sends, Nothing Writes to the CRM
+
+A skill drafts emails, call openers and sequences. The rep sends them. A skill never sends, never enrolls a contact, and never writes to the CRM. The user does those, after reading the draft.
+
+#### The BDR Guard
+
+A BDR-facing skill (02, 03, 04, 05, 07, 12) never works an account that is ACTIVE with an AE owner unless that AE has said yes, because two people writing to one buyer costs the deal. An account pending AE assignment is not ACTIVE. It is worked, and the output says it is pending.
+
+#### Champion Tests, One List
+
+A contact scores **Strong** as a champion when three or more of these are met with evidence, each tagged: creates urgency inside their company, explains the internal politics, offers introductions, asks how to help, defends the solution when we are not in the room, shares competitor intelligence, commits to next steps with dates. One or two met is **Developing**. None met is **None**. A friendly contact is not a champion. The same list and thresholds are used by 09, 10 and 13.
+
+#### Incumbent Types, One List
+
+A competitor or incumbent is one of seven types: direct software, a single-function tool, a service bureau, a manual process, no program at all, outside professionals, an adjacent tool. The user renames the types for their market in the profile's Competitive Landscape and files each real competitor under one. The same seven are used by 11 and 12.
+
+#### Talk-Time Bands, One Table
+
+Rep talk time as a share of the call, by call type: discovery 30% to 40%, demo 50% to 60%, negotiation 40% to 50%, follow-up 35% to 45%, executive 30% to 40%. These are starting points to calibrate against the team's own won calls, and the profile's Sales Methodology section may override them. The same table is used by 06 and 13.
+
+#### What the Close Reads
+
+Wrap-Up reads by name the **report path** when a file was written, the **verdict** or **score** the session produced, and the **next action** with its owner and date. Ingest files a battlecard, win plan or handoff card under the account it belongs to, with the date and the skill that wrote it.
+
+#### Guild Disciplines, Restated
+
+1. **Evidence over optimism.** Score what the record proves, not what the rep believes. Under-scoring protects a deal. Over-scoring kills it.
+2. **Silence is not a no.** An empty field is unknown and is counted in no denominator.
+3. **One cast, one story.** Every example uses the profile's example company and its cast. An example never presents an invented number as a real result.
+4. **The profile is upstream.** Strategy skills write it. Sales skills read it. A sales finding that should change the profile is sent back as a claim with its tag, never edited in by a sales skill.
+5. **Published numbers only.** A figure from a published Guild article may be cited to it. Any other figure in an example is marked illustrative.
+6. **Names as roles** in anything shared. No vendor, tool or model names in a free skill beyond the platform line. The CRM is "the CRM".
+7. **Draft, never send.** A rep reads before anything leaves.
 
 ---
 
 ## Methodology
 
-Your evidence standards, confidence calibration, and scoring frameworks. The rules below enforce rigor in a speed-optimized workflow.
+### Evidence Tags for Rapid Research
 
-### Evidence Grading for Rapid Research
+Every fact in the report carries exactly one of the six shared tags. A fact with no tag is removed from the report.
 
-Even in a speed-optimized workflow, every data point must be labeled:
+| Tag | Meaning | Usable as a claim in an email |
+|-----|---------|-------------------------------|
+| `[CRM]` | A field or note in the CRM | Yes |
+| `[Call]` | Said on a recorded or transcribed call, with the call date | Yes |
+| `[Notes]` | A rep's or AE's written notes | Yes |
+| `[Public: source]` | A public document, page or filing, with the source named | Yes |
+| `[Inferred]` | Reasoned from other facts, with the reasoning shown and the method named | No. Written as a question |
+| `[Unknown]` | Not known. Written as unknown, never left blank | No. Becomes a discovery question |
 
-| Grade | Label | Definition | Usage |
-|-------|-------|------------|-------|
-| **VERIFIED** | `[CRM]` or `[Verified: Source]` | Confirmed from CRM data, company website, SEC filings, or authoritative source | Use directly in emails and call prep |
-| **INFERRED** | `[Inferred: Basis]` | Logical conclusion from verified data (e.g., "multi-state operations" inferred from branch locations) | Use in pain hypotheses and discovery questions |
-| **ESTIMATED** | `[Estimated: Method]` | Revenue or volume estimate from employee count, branch proxy, or industry ranking | Label clearly. Never present as fact |
-| **UNKNOWN** | `[Unknown]` | Data not available | Mark as a gap. Include a discovery question to fill it |
+Pain hypotheses carry the `[Inferred]` tag, because they are educated guesses from the profile and not confirmed pain. An estimate also takes `[Inferred]`, with its method named, because the tag set has no separate estimate tag.
 
-### Speed vs. Depth Trade-offs
-1. **CRM data first.** Always check CRM before web research. It is faster and more personalized.
-2. **5-minute research ceiling.** If research is taking longer than 5 minutes, stop and work with what you have.
-3. **Unknown is acceptable.** An `[Unknown]` label with a discovery question is better than a fabricated fact.
-4. **Pain hypotheses are always INFERRED.** They are educated guesses based on company profile, not confirmed pain.
-5. **ICP verdicts must be grounded.** Every GREENLIGHT / MANUAL REVIEW / DISQUALIFY verdict must cite at least 3 data points.
+### Speed Versus Depth
 
-### Confidence in Pain Hypotheses
-- **HIGH confidence**: Pain hypothesis matches company profile on 3+ signals (size, vertical, geographic exposure, CRM history)
-- **MEDIUM confidence**: Pain hypothesis matches on 1-2 signals. It is plausible but needs validation
-- **LOW confidence**: Pain hypothesis is generic. It could apply to any company in the industry. Rewrite to be more specific or flag as weak.
+1. **CRM first.** Check the CRM before web research. It is the record a manager can check, and it is faster.
+2. **Five-minute research ceiling.** If research runs past five minutes, stop and work with what you have. The rest becomes discovery questions.
+3. **Unknown is acceptable.** An `[Unknown]` tag with a discovery question beats a fabricated fact.
 
-### ICP Quick-Score Dimensions
+### Zone Scores and the Verdict
 
-Score each company against the scoring framework from `{Methodology: ICP Quick-Score Dimensions}` and `{Client Profile: ICP Definitions}`:
+Score each of the five zones HIGH, MEDIUM or LOW from tagged facts, using the profile's Qualification Zones definitions. Score a zone UNKNOWN when the record is silent. UNKNOWN is not LOW, because a blank field may only mean nobody recorded it. Zones 1 and 3 are must-haves.
+
+Apply the Verdict Rule as written:
+
+- **GREENLIGHT:** at least two zones HIGH, and no must-have zone at LOW.
+- **MANUAL REVIEW:** neither GREENLIGHT nor DISQUALIFY holds. Usually one HIGH zone, or a must-have zone at LOW.
+- **DISQUALIFY:** a disqualifier from the profile applies, or both must-have zones are LOW.
+
+MEDIUM never counts as HIGH. The next skill reads these zones, so a score that rounds up changes its verdict.
+
+Name the zones that carry the verdict beside it. A GREENLIGHT shows its two HIGH zones. A MANUAL REVIEW shows the one HIGH zone, or the must-have at LOW.
+
+### ICP Quick-Score Signals
+
+These five signals are the one-glance read a rep sees first. They do not set the verdict. The zones do.
 
 | Signal | Scoring |
 |--------|---------|
-| [Primary fit signal] | Yes / Partial / No |
-| [Geographic/scale signal] | Yes (X regions) / Single region |
-| [Regulatory or complexity signal] | High / Medium / Minimal |
-| Scale (revenue/volume) | Enterprise / Mid-Market / SMB |
-| [Team complexity signal] | Dedicated team / Small team / Unknown |
+| Primary fit signal | Yes, Partial or No, against the ICP Definitions |
+| Geographic or scale signal | Single region, or Multi-region (name the regions) |
+| Regulatory or complexity signal | High, Medium or Minimal |
+| Scale (volume) | Enterprise, Mid-Market or SMB, using the profile's own bands |
+| Team complexity signal | Dedicated team, Small team or Unknown |
 
-Verdict: **GREENLIGHT** (meets primary fit + scale/complexity signals) | **MANUAL REVIEW** (2-3 criteria met, gaps remain) | **DISQUALIFY** (primary signal = No, or scale below threshold).
+### Confidence in Pain Hypotheses
+
+- **HIGH:** the hypothesis matches the profile on three or more signals, such as size, vertical, footprint and CRM history.
+- **MEDIUM:** it matches on one or two signals. It is plausible and needs validation.
+- **LOW:** it is generic and could describe any company in the industry. Rewrite it to be specific, or flag it as weak.
+
+### Region Map
+
+The tiers come from the profile's Outbound Voice region map, not from this skill. Each tier names the cost of a missed rule there and its source. Rank accounts in the highest-cost tier first, because a missed rule costs the most there. A state that is not recorded in the CRM gets no tier until someone records it. A tier still marked as a record placeholder in the profile is not a tier yet, so say so instead of guessing one.
 
 ---
 
 ## Quick Reference
 
 **Use this skill when:**
-- Preparing for a prospecting call or outbound block
-- Need a quick account brief before reaching out
-- BDR needs a complete outbound package for a single account
-- Running rapid-fire prospecting across multiple accounts
+- Preparing for a prospecting call or an outbound block
+- Needing a quick account brief before reaching out
+- A BDR needs a complete outbound package for one account
+- Running snapshots across several accounts in one block
 
 **Don't use when:**
-- You need deep financial analysis (use `gtm-research-outbound` for public company filings)
+- You need deep financial analysis of a public company (use `gtm-research-outbound`)
 - The account has a known incumbent to displace (use `gtm-competitive-displacement`)
 - The account is a closed-lost deal (use `gtm-closed-loss-reactivation`)
 - A trigger event just happened (use `gtm-trigger-event-outbound`)
 
 **User roles:** BDR (primary), AE
-**Expected time:** 5-10 minutes per account (designed for speed)
+**Expected time:** 5 to 10 minutes per account
 
 ---
 
 ## Core Workflow
 
-### Step 0: Detect User Role
+### Step 0: Detect the User Role
 
-Determine whether the user is a BDR or AE. This affects call goals, summary framing, and coordination guidance.
+Decide whether the user is a BDR or an AE. The role changes the call goal, the summary framing and the owner check.
 
-**From CRM:** Check user role/profile. If unclear, check whether user appears as BDR Owner (contacts) or Account Owner (pipeline deals).
-**Fallback:** Ask: "Are you a BDR or AE?"
-**Output:** `user_role` (BDR / AE)
+Read the role from the CRM when it is recorded. If it is not clear, ask: "Are you a BDR or an AE?"
 
----
+**Produces:** `user_role` (BDR or AE)
 
-### Step 1: Gather Intelligence (Parallel)
+### Step 1: Gather Intelligence
 
-#### 1a. Search CRM
-Pull everything available:
-- Account record: name, industry, HQ, website, owner, status
-- Deal history: current opportunities, past closed-won/lost, amounts, stages
-- Contacts: all known contacts with titles, email, phone, engagement level, last activity
-- Engagement history: meetings, calls, emails (with dates and key notes)
-- AI summaries: any existing deal intelligence or AI-generated summaries
-- Tags/notes: anything reps have documented
-- BDR Owner / Account Owner: who owns this account today
+Run the CRM search first, then the research, because the CRM is the record a manager can check.
 
-#### 1b. Research the Company
-Build a quick profile using available information:
-- What they do (vertical, products/services)
-- Size signals (employee count, revenue if known, branch/location count)
-- Geographic footprint (regions of operation)
-- Ownership (public, private, PE-backed, ESOP, family)
-- Recent news (acquisitions, expansions, leadership changes)
+**1a. Search the CRM.** Pull the account record (name, industry, headquarters, website, owner, status), deal history with stages and amounts, every contact with title and last activity, engagement history with dates, and any notes or summaries reps wrote. Note the BDR owner and the account owner.
 
-**Label every data point** with its source per Epistemic Rules. If a data point cannot be found, mark as `[Unknown]` and generate a discovery question to fill the gap.
+**1b. Research the company.** Build a quick profile from public sources: what the company does, its size signals, its footprint, its ownership, and recent news such as acquisitions, expansions and leadership changes. Tag every fact. Where a fact cannot be found, tag it `[Unknown]` and write the discovery question that would fill it.
 
----
+**Produces:** a list of tagged facts from the CRM and from public sources, and the list of Unknown facts that become discovery questions.
 
-### Step 2: Build Account Snapshot
+### Step 2: Build the Account Snapshot
 
-#### Company Brief (5-8 bullets)
-- **Company:** Full name and HQ city/state
-- **Segment:** Determined using `{Methodology: ICP Quick-Score Dimensions}` against `{Client Profile: ICP Definitions}`
-- **Vertical:** Specific vertical
-- **Size:** Revenue estimate or employee count (with source label)
-- **Footprint:** Number of regions, number of locations, key markets
-- **Ownership:** Public, Private, PE-backed, ESOP, or Family
-- **CRM Status:** New, Existing pipeline, Former customer, or Closed-lost
-- **Current Owner / BDR Owner:** From CRM
-- **Active Deal?:** Yes/No (include stage, AE owner, amount if Yes)
-- **Coordination Required?:** If `user_role = BDR` AND active AE deal → "Yes (coordinate with [AE name])"
+Build the company brief, the quick-score signals, the zone scores with the verdict, and the region map, in that order. The zones come before any sequence, because the verdict decides whether a sequence is written at all.
 
-#### ICP Quick-Score
-Rate against `{Methodology: ICP Quick-Score Dimensions}` and `{Client Profile: ICP Definitions}`, then deliver verdict: GREENLIGHT / MANUAL REVIEW / DISQUALIFY (1 line).
+**Company brief (5 to 8 bullets):** Company (full name and headquarters), Segment (from the ICP Definitions), Vertical, Size (with its tag), Footprint (regions, locations, key markets), Ownership, CRM Status (TARGET, INBOUND, ACTIVE with its stage name from the profile, LOST or OUT), Current owner and BDR owner, and Coordination Required. Coordination is "Yes, coordinate with [AE name]" when the user is a BDR and an AE holds an open deal.
 
-**Scoring matrix:**
+**Zone scores and verdict:** Score the five zones with Step 2's rules, show each zone's score with its tag, and state the verdict from the Verdict Rule. Each verdict names the zones that carry it.
 
-| Verdict | Criteria |
-|---------|----------|
-| **GREENLIGHT** | Meets primary fit signal + scale/complexity signals from `{Methodology: ICP Quick-Score Dimensions}` |
-| **MANUAL REVIEW** | Meets 2-3 criteria but has gaps (e.g., single-region but large, or partial vertical fit) |
-| **DISQUALIFY** | Primary fit signal = No, or Scale = below threshold, or No Fit per ICP definitions |
+**Region map:** Map the account's state to the profile's tier, with its source. Name the cost of a missed rule in that tier.
 
-Each verdict must cite 3+ data points with source labels.
+**Produces:** the company brief, the five zone scores with their tags, the verdict, the account status, and the region tier (or an explicit "no tier yet").
 
-#### Geographic/Market Exposure Map
-Identify regions from company research and map to market tiers defined in `{Client Profile: ICP Definitions}`. Estimate monthly volume using available data.
+### Step 3: Map Contacts to Personas
 
-| Region | Tier | Estimated Monthly Volume | Source |
-|--------|------|-------------------------|--------|
-| [Region 1] | [Tier from profile] | [volume] | [source] |
-| [Region 2] | [Tier from profile] | [volume] | [source] |
-| ... | ... | ... | ... |
+Map the known CRM contacts to the profile's Buyer Personas. For each persona, record the name or Unknown, the title, the engagement level, the last activity and a priority from 1 to 5.
 
----
+Rank the contacts by four rules, in order: known contacts with engagement history come before cold ones, persona relevance to the likely pain comes next, recent activity counts above old activity, and prior deal context breaks ties. Recommend the top two or three personas to target first, with the reason for each. Name the personas with no contact on file as gaps.
 
-### Step 3: Contact Mapping + Persona Prioritization
+**Produces:** `contact_priority`, a ranked list of contacts with persona and buying role, and the persona gaps.
 
-Map known CRM contacts to `{Client Profile: Buyer Personas}`:
+### Step 4: Generate Pain Hypotheses
 
-| Persona | Name | Title | Engagement Level | Last Activity | Priority |
-|---------|------|-------|-----------------|---------------|----------|
-| [Persona 1] | [name or Unknown] | [title] | [level] | [date] | [1-5] |
-| [Persona 2] | [name or Unknown] | [title] | [level] | [date] | [1-5] |
-| ... | ... | ... | ... | ... | ... |
+Write three to five pain hypotheses from the profile's Core Pain Points, ranked by how well the account's profile supports each one. For each hypothesis, give:
 
-Mark gaps as "Unknown (no contact found)."
+- **Pain point:** the name from the profile's taxonomy
+- **Why likely:** the reasoning, with its tag
+- **Confidence:** HIGH, MEDIUM or LOW, per the confidence rules above
+- **Discovery question:** the question that validates it on a call
+- **Value prop:** the profile's value proposition that addresses it, stated as its mechanism
 
-Prioritize by:
-1. Known contacts with engagement history (warm > cold)
-2. Persona relevance to likely pain
-3. Recency of activity
-4. Previous deal context
+Order the hypotheses by confidence, HIGH first. If every hypothesis is MEDIUM or LOW, say the account needs more research or a discovery call before deeper work.
 
-Recommend **top 2-3 personas to target first** with reasoning.
+**Produces:** `pain_hypotheses`, ranked, each one tagged, each with its discovery question.
 
----
+### Step 5: Generate the Outbound Sequence
 
-### Step 4: Pain Hypothesis Generation
+Draft a three-step email sequence for each of the top two or three personas. The sequence comes after the pain hypotheses, because each email uses one hypothesis, so the ranked list must exist first.
 
-Generate 3-5 likely pain points from `{Client Profile: Core Pain Points}` ranked by probability based on the company's profile.
+**Rules for every email:**
+- Include a subject line.
+- Keep the body to 100 words or fewer.
+- Open with something specific to the company, tagged `[CRM]` or `[Public: source]`.
+- Use the contact's name when it is known.
+- Give each step a different pain or angle.
+- Use only `[CRM]`, `[Call]`, `[Notes]` and `[Public: source]` facts as claims. Write `[Inferred]` and `[Unknown]` facts as questions.
+- Use at most one proof point per email, from the profile's Proof Points table, matched to the segment and the persona. Never use an Illustrative result, because a prospect who asks for its source gets none. A Benchmark is cited with the source named.
 
-For each hypothesis, include:
-- **Pain Point:** Name from the taxonomy
-- **Why likely for this company:** Specific reasoning tied to company profile [with source label]
-- **Confidence:** HIGH / MEDIUM / LOW per Epistemic Rules
-- **Discovery question:** To validate the hypothesis on a call
-- **Value prop:** From `{Client Profile: Value Propositions}` that addresses this pain
+**Sequence structure (per persona):**
 
-**Ranking rule:** Pain hypotheses must be ordered by confidence level (HIGH first). If all hypotheses are MEDIUM or LOW, note that the account needs more research or a discovery call before deeper investment.
-
----
-
-### Step 5: Generate Outbound Sequences
-
-Produce a **3-step email sequence** for the top 2-3 prioritized personas. Account Snapshots use 3 steps (not 4) because this is volume outreach.
-
-#### Rules for Every Email
-- Include a **subject line**
-- Body **<= 100 words** (volume outreach demands brevity)
-- **First line must reference something specific about the company** (not generic)
-- Personalize with contact name when known
-- Each step uses a different pain hypothesis or angle
-- Only VERIFIED and INFERRED data may appear in emails. ESTIMATED data must be framed as questions
-
-#### Sequence Structure (Per Persona)
 | Step | Angle | Purpose |
 |------|-------|---------|
-| **Email 1** | Company-specific pain hypothesis + product connection | Prove homework. Earn the open |
-| **Email 2** | Different pain angle + proof point from similar company | Build credibility. Show results |
-| **Email 3** | Breakup + single question | Low-pressure close. One question |
+| Email 1 | A company-specific pain and the product connection | Show the homework and earn the open |
+| Email 2 | A different pain, with one proof point that fits | Build credibility |
+| Email 3 | A breakup note with one question | A low-pressure close |
 
-Match proof points from `{Client Profile: Proof Points}` to the prospect's vertical and size. Max 1 per email, labeled with source.
+Account Snapshots use three steps, not four, because this is volume outreach.
 
----
+**Produces:** `sequence`, one three-step set per persona, drafted, with each claim's tag listed beneath the draft.
 
-### Step 6: Cold Call Prep Sheet
+### Step 6: Build the Call Prep Sheet
 
-#### Role-Aware Call Goal
+**Role-aware call goal:**
+
 | Role | Call Goal |
-|------|----------|
-| **BDR** | "Book a 15-minute discovery call for [AE name]" |
-| **BDR + Active Deal** | "STOP (Share research with [AE name] instead)" |
-| **AE** | "Advance the deal ([specific next step])" |
-| **AE (no deal)** | "Qualify interest for new opportunity" |
+|------|-----------|
+| BDR | Book a 15-minute discovery call for the AE |
+| BDR with an active AE deal | Stop. Share the research with the AE instead |
+| AE | Advance the deal to its next stage step |
+| AE with no deal | Qualify interest for a new opportunity |
 
-#### 30-Second Opener
-Reference the company by name, state one specific reason for calling (tied to pain hypothesis #1), ask a permission-based question.
+**Next step after a first call:** a discovery call, not a demo, until the pain is confirmed. A demo asks the buyer for an hour before there is a reason to give it.
 
-**Structure:** "Hi [Name], this is [Rep] from [Company]. I'm calling because [specific reason tied to their company]. Do you have 30 seconds?"
+**Opener (30 seconds):** "Hi [name], this is [rep] from [company]. I'm calling because [a specific reason tied to pain hypothesis 1]. Do you have 30 seconds?"
 
-#### Talk Track (if they engage)
-- Pain validation question
-- Impact question ("What does that cost you in terms of...?")
-- Product bridge (1 sentence)
-- Ask ("Worth 15 minutes to see how [similar company] solved this?")
+**Talk track:** a pain validation question, an impact question, a one-sentence product bridge, and an ask for 15 minutes.
 
-#### Voicemail Script (<30 seconds)
-- Name + company
-- One specific, relevant statement
-- CTA: "I'll send a quick email with details"
+**Voicemail (under 30 seconds):** name and company, one specific statement, and the call to action "I'll send a quick email with details."
 
-#### Expected Objections + Rebuttals
-Use `{Client Profile: Competitive Landscape}` for competitive objections. Include 4-5 common objections with rebuttals tailored to the prospect's profile:
+**Objections:** Use the profile's Competitive Landscape for competitive objections. Include four to five objections with rebuttals tailored to the account.
 
 | Objection | Rebuttal |
 |-----------|----------|
-| "We already have a solution" | "Great (that means you understand the value). Curious what's working well and what you'd improve?" |
-| "Not interested" | "Totally fair. Quick question: how is your team handling [pain hypothesis] today?" |
-| "Send me an email" | "Happy to. What would be most useful: ROI benchmarks or the [relevant capability] overview?" |
-| "No budget" | "Makes sense. If I could show you how [similar company] achieved [metric], would that be worth a 15-minute conversation?" |
-| "We're too small / not ready" | "That's what [proof point company] said before they had a [specific consequence]. Worth understanding the risk?" |
+| "We already have a solution" | "Good, that means you understand the value. What's working well, and what would you improve?" |
+| "Not interested" | "Fair enough. How is your team handling [pain hypothesis 1] today?" |
+| "Send me an email" | "Happy to. Would the ROI overview or the capability overview be more useful?" |
+| "No budget" | "That makes sense. If I could show you how a similar operator solved [pain], would 15 minutes be worth it?" |
+| "We're too small or not ready" | "Smaller sites often say that until a records question comes up in a review. Is your plot list ready for one?" |
+
+**Produces:** the call goal, the opener, the talk track, the voicemail and the objection table, all tied to the ranked pain hypotheses.
+
+### Step 7: Assemble the Cheatsheet and Summary
+
+Assemble the eight cheatsheet sections in this order: Company Snapshot, Geographic and Market Exposure, Key Personas, Pain Hypotheses, Discovery Questions, Value Props, Objection Handling and Call Flow.
+
+Close with a summary line in this order: the user's role, the account, the status, the verdict with the zones that carry it, the contacts found and their gaps, the personas targeted, the number of sequence emails, the recommended first action with its owner and date (`next_action`), and the tag count for the report.
+
+**Produces:** the eight-section cheatsheet in the chat, the summary line, and `next_action`.
 
 ---
 
-### Step 7: Summary
+## Modes
 
-1. **User Role**: BDR / AE
-2. **Account**: Name, segment, vertical, size, regions
-3. **ICP Verdict**: Quick-score result + 3 supporting data points
-4. **CRM Status**: New / existing / closed-lost + owner
-5. **Active Deal?** Include stage, AE owner, and amount if yes.
-6. **Coordination Guidance**: (BDR only) Active deal coordination or "Clear to proceed"
-7. **Contacts Found**: Count + persona coverage gaps
-8. **Top Pain Hypotheses**: Ranked 1-3 with confidence levels
-9. **Personas Targeted**: Which 2-3 + reasoning
-10. **Sequences Generated**: [Count] personas x 3 emails
-11. **Call Prep Included**: Yes/No
-12. **Recommended First Action**: Email or call, which persona, which pain hypothesis
-13. **Data Quality**: Count of VERIFIED vs. INFERRED vs. UNKNOWN data points
+- **Full Snapshot (default).** Steps 0 to 7, all eight cheatsheet sections, and the sequence. Use it for a single account the rep will work this week.
+- **Quick Call Prep.** Steps 1 to 4 and Step 6 only. Skip the sequence. Use it when the rep says "quick call prep" or "calling in five minutes," because speed matters more than completeness before a call.
+- **Batch.** Steps 1 to 4 for each account, then a ranked summary table. Full sequences for the top two or three accounts only. Use it for five to ten accounts in one prospecting block.
+
+No mode writes a file. A file is written only when the user asks for one, under the Output Contract.
 
 ---
 
-## Artifact Generation
+## Epistemic Rules
 
-### Output Options
-- **Option A: Markdown** (default: `[COMPANY]_Account_Snapshot.md`)
-- **Option B: HTML** (Styled 8-section cheatsheet with color-coded sections)
-- **Option C: PDF** (Python + reportlab, single page, letter size)
+- **Print n beside every rate.** "4 of 7 criteria" is readable. "57%" alone is not, because the reader cannot tell whether it rests on four cases or four hundred.
+- **Five cases before a pattern.** A pattern across accounts needs at least five cases. Fewer cases are an observation, and the summary says so in the same sentence.
+- **Silence is not a no.** A blank CRM field is Unknown, and it counts in no denominator. Scoring it as a no invents a finding out of missing data.
 
-### Cheatsheet Sections (8 Sections)
-1. **Company Snapshot** (Firmographics, ICP verdict, CRM status)
-2. **Geographic/Market Exposure** (Regions mapped to tiers, volume estimate)
-3. **Key Personas** (Top 3-4 contacts with priorities and pain mapping)
-4. **Pain Hypotheses** (4-5 talk-track-ready hooks with validation questions)
-5. **Discovery Questions** (Organized open -> probe -> confirm)
-6. **Value Props** (Vertical-matched value prop, proof point, estimated impact)
-7. **Objection Handling** (5 common objections with rebuttals)
-8. **Call Flow** (5-step talk track + voicemail script)
+---
+
+## Hard Rules
+
+1. **Never cite an Illustrative proof point, and never use a proof point the profile does not list.** A prospect who asks for the source of an Illustrative result gets nothing, and the rep loses the buyer's trust in the first email.
+2. **Never use an `[Inferred]` or `[Unknown]` fact as the claim in an email.** A guess written as a claim is something the rep must defend on the call, so it goes in as a question.
+3. **Never score silence as a no, and never score UNKNOWN as LOW.** A blank field may mean nobody recorded it, and a LOW score moves the verdict.
+4. **Never override the Verdict Rule.** MEDIUM never counts as HIGH, because the next skill reads these zones, and a score that rounds up changes its verdict.
+5. **Never work an ACTIVE account with an AE owner unless that AE has said yes.** Two people writing to one buyer costs the deal, and the buyer sees the duplicate.
+6. **Never propose a demo as the next step while the pain is unconfirmed.** A demo asks the buyer for time before there is a reason to give it.
+7. **Never send an email, enroll a contact or write to the CRM.** The rep reads the draft and sends it, because the rep owns the relationship and the record.
+8. **Never write an outcome number without its source or its Illustrative mark.** An unsourced figure in an email becomes the first question the buyer asks.
+9. **Never use a tag outside the six.** A manager checks the report by tag, and a seventh label cannot be checked.
+
+---
+
+## Quality Bar
+
+Done when all are true:
+
+- [ ] Every fact carries one of the six tags, and no fact is left untagged
+- [ ] The verdict follows the Verdict Rule, with the zones that carry it named beside it
+- [ ] Every zone score carries its tag, and no UNKNOWN zone is scored LOW
+- [ ] The account status is one of the five words, and an ACTIVE status carries its stage name from the profile
+- [ ] The owner check ran, and an AE-owned account is named as coordination, not worked
+- [ ] Every Email 1 opens with a specific, tagged company fact
+- [ ] Every email is 100 words or fewer, and no email uses an `[Inferred]` or `[Unknown]` fact as a claim
+- [ ] Every proof point in an email is in the profile's Proof Points table and is not Illustrative
+- [ ] The call goal matches the user's role, and no demo is proposed before the pain is confirmed
+- [ ] Each rate carries its n, and each pattern rests on five cases or is labelled an observation
+- [ ] The hand-off block lists every field by name, with its value
 
 ---
 
 ## Examples
 
-Account facts in these examples come from the PlotIQ example cast, and they are tagged `[CRM]` as if the CRM held them. Any number the profile does not supply is tagged `(illustrative)`. Three examples follow: a BDR research pass that leads to outbound, an AE quick prep that ends in a MANUAL REVIEW verdict, and a batch that includes a disqualified account and a closed-lost one.
+These examples use the PlotIQ example cast, and every fact is tagged as the tag set requires. A number the profile does not supply is marked `(illustrative)`. The four examples cover a BDR research pass that leads to outbound, an AE quick call prep that ends in MANUAL REVIEW, a batch with a disqualified account and a closed-lost one, and the flagship account at its first snapshot. Each ends with a hand-off block.
 
-### Example 1: BDR Account Snapshot (Quill Hollow Memorial Park)
+### Example 1: BDR Account Snapshot (Quill Hollow Memorial Park, TARGET, GREENLIGHT)
 
-**Context:** A BDR prepares a first outbound touch to Quill Hollow Memorial Park during a morning block. The general manager, Ines Carmody, moved here six months ago from Lowmoor Memorial Gardens, where she was a champion.
+**Context:** A BDR prepares a first outbound touch during a morning block. The general manager, Ines Carmody, moved to Quill Hollow from Lowmoor Memorial Gardens six months ago. Her history at Lowmoor is a closed-loss matter for Closed-Loss Reactivation (05), not this outbound.
 
-**Input:** "Give me an account snapshot on Quill Hollow Memorial Park with outbound sequences and a cheatsheet."
+**Input:** "Account snapshot on Quill Hollow Memorial Park, with outbound sequences and a cheatsheet."
 
-**Step 0: Role Detection** User is BDR. CRM check: account exists, status TARGET, no active deal. Clear to proceed.
+**Step 0: Role Detection.** The user is a BDR. The CRM shows the account, status TARGET `[CRM]`, and no open deal `[CRM]`. Clear to proceed.
 
-**Step 1: Intelligence Gathering**
-CRM search: Account exists. No active deal. One contact found: Ines Carmody, General Manager (champion, `[CRM]`). The owner's name is not in the CRM. Site budget: the owner signs under $25K `[CRM]`. The last state review included a records finding `[CRM]`.
+**Step 1: Intelligence Gathering.** One site, 8,800 plots, paper plat maps `[CRM]`. One contact on file: Ines Carmody, General Manager, champion `[CRM]`. The owner signs under $25K `[CRM]`. The owner's name is `[Unknown]`. A records finding appears in the last state review `[CRM]`, and its date is `[Unknown]` (both illustrative). The owner brought a growth mandate when Ines Carmody arrived `[CRM]`. The state is not recorded `[Unknown]`, so no region tier yet.
 
-Company research: One site, 8,800 plots, paper plat maps `[CRM]`. The owner brought a growth mandate when Ines Carmody joined `[CRM]`. Region: `[Unknown]`, so the market tier is left blank until the profile's tiers are checked.
+**Step 2: Account Snapshot.**
 
-**Step 2: Account Snapshot**
-Company brief: Quill Hollow Memorial Park | State not in CRM | Independent cemetery | Ownership not recorded | 8,800 plots | Paper plat maps | Mid-size (one site).
+Company brief: Quill Hollow Memorial Park. Independent cemetery `[CRM]`. One site, 8,800 plots `[CRM]`. Ownership `[Unknown]`. CRM status TARGET. No active deal.
 
-ICP Quick-Score: **GREENLIGHT**
-- Primary fit signal: Yes (8,800 plots, paper plat maps, above the 2,000-plot threshold) `[CRM]`
-- Multi-region: Single site, so no multi-region signal `[CRM]`
-- Regulatory or complexity signal: High (a records finding in the last state review) `[CRM]`
-- Scale: Mid-size (one site, 8,800 plots) `[CRM]`
-- Team complexity: Dedicated owner and GM. Owner signs under $25K `[CRM]`
+Quick-score signals: primary fit Yes, 8,800 plots on paper, above the ICP1 Strong line `[CRM]`. Single region `[CRM]`. Regulatory complexity High, because of the records finding `[CRM]`. Scale mid-size, one site `[CRM]`. Team complexity: a dedicated GM and owner `[CRM]`.
 
-**Step 3: Contact Mapping**
+Zone scores (illustrative), with the verdict:
+
+- Zone 1, Records and Inventory Pain: MEDIUM. Paper plat maps `[CRM]`. The records finding has no date `[Unknown]`, so the HIGH test (a finding in the last 24 months) is not met.
+- Zone 2, Pre-Need Sales Motion: UNKNOWN. No pre-need activity is recorded `[Unknown]`. Silence is not a no.
+- Zone 3, Ownership and Decision Speed: HIGH. The owner signs under $25K `[CRM]`.
+- Zone 4, Technology Readiness: UNKNOWN. Website and tools are not yet checked `[Unknown]`.
+- Zone 5, Growth or Succession: HIGH. A new GM in the last 24 months `[CRM]`, and an owner growth mandate `[CRM]`.
+
+Verdict: **GREENLIGHT.** Two zones are HIGH (3 and 5), and no must-have zone is LOW. Zone 1 is MEDIUM, which blocks nothing. If the finding is dated inside 24 months, Zone 1 becomes HIGH, so the date is the first thing to find.
+
+Region map: no tier, because the state is not recorded `[Unknown]`.
+
+**Step 3: Contact Mapping.**
+
 | Persona | Name | Engagement | Last Activity | Priority |
 |---------|------|-----------|---------------|----------|
-| General Manager (champion) | Ines Carmody | Warm (champion from a prior site) | 2 weeks ago (illustrative) | 1 |
-| Owner (signs under $25K) | Unknown (no contact found) | n/a | n/a | 2 |
-| Pre-Need Sales Manager | Unknown (no contact found) | n/a | n/a | 3 |
+| General Manager, champion | Ines Carmody | Warm, champion at her last site `[CRM]` | Two weeks ago (illustrative) | 1 |
+| Owner, signs under $25K | Unknown, no contact found `[Unknown]` | n/a | n/a | 2 |
+| Pre-need manager | Unknown `[Unknown]` | n/a | n/a | 3 |
 
-Top personas: Ines Carmody first, because she has engagement history and runs the site now. The owner is second, because the owner signs. Her history at Lowmoor is closed-lost and belongs to Closed-Loss Reactivation (05), not this outbound.
+Ines Carmody ranks first because she has engagement history and runs the site now. The owner ranks second, because the owner signs.
 
-**Step 4: Pain Hypotheses**
-1. **Plot visibility** (The plot map is on paper, so nobody can list the unsold plots without walking the grounds. HIGH confidence. `[CRM: paper plat maps]` and `[Inferred: 8,800 plots on paper]`)
-2. **Records after a state finding** (The last state review found a records problem, so the next review is a pressure point. MEDIUM-HIGH confidence. `[CRM: records finding]`)
-3. **Pre-need follow-up** (No pre-need team is recorded, so this is a question, not a finding. LOW confidence. `[Unknown: pre-need activity not in CRM]`. Use it only as a discovery question.)
+**Step 4: Pain Hypotheses.**
 
-**Step 5: Sequences** (Ines Carmody, General Manager) Email 1
+1. **Plot visibility.** HIGH confidence. The plot map is on paper `[CRM]`. `[Inferred]`, by reasoning from the record type: a paper map cannot show which plots are sold without a walk of the grounds. Discovery question: "How do you check today which plots are open?" Value prop: plot inventory matched against sold records.
+2. **Records after a state finding.** MEDIUM confidence. The last state review found a records problem `[CRM]`, and its date is `[Unknown]`. The pressure is real, but its timing is not. Discovery question: "When was the last state review, and what did it ask you to fix?"
+3. **Pre-need follow-up.** LOW confidence. No pre-need activity is recorded `[Unknown]`. Use it as a question, not as a lead.
+
+**Step 5: Sequence (Ines Carmody, General Manager).**
+
+Email 1
+
 Subject: Plot records after the state review at Quill Hollow
 
 Ines,
 
-Quill Hollow's last state review turned up a records finding, and the plot maps are still on paper. How do you check, today, which plots are sold and which are open?
+Quill Hollow's last state review turned up a records finding, and the plot maps are still on paper. How do you check today which plots are sold and which are open?
 
-Fennick Gardens, a beta cemetery, found 212 unsold plots in 90 days with PlotIQ's plot inventory (beta result, illustrative). Worth 15 minutes to see whether your maps show the same gap?
+Most cemeteries your size carry 50 to 100 plots that are sold on paper but open on the map (Benchmark, deathcare research, paper-operations note, 2026-04-01). Worth 15 minutes to see whether your maps show the same gap?
 
-Emails 2 and 3 for this persona are omitted for length. They follow the same structure, with a different pain hypothesis in each.
+The email names no customer result, because every PlotIQ result in the profile is Illustrative. Emails 2 and 3 for this persona follow the same structure, each with a different pain, and are omitted for length.
 
-**Step 7: Summary** BDR. Quill Hollow Memorial Park, GREENLIGHT. One contact found (champion). Targeting Ines Carmody (General Manager). Owner and pre-need contacts are unknown, so they are next. 1 persona x 3 emails = 3 sequence emails (2 more omitted). Call prep omitted for length. Recommended first action: Send Email 1 to Ines Carmody. Data quality: 5 CRM, 2 INFERRED, 1 UNKNOWN (illustrative counts for this example).
+**Step 6: Call prep omitted for length.**
+
+**Step 7: Summary.** BDR. Quill Hollow Memorial Park, TARGET, GREENLIGHT, with Zones 3 and 5 HIGH. One contact on file, Ines Carmody, first. Owner and pre-need contacts unknown. One persona, three emails, two omitted. Next action: Nadia Brandt sends Email 1 to Ines Carmody by 2026-10-21. Unknown facts to resolve on the call: the records finding date, the owner's name, the state.
+
+```text
+Hand-off (read by 06):
+account: Quill Hollow Memorial Park (TARGET)
+account_status: TARGET
+verdict: GREENLIGHT
+zone_scores: 1 MEDIUM, 2 UNKNOWN, 3 HIGH, 4 UNKNOWN, 5 HIGH (illustrative)
+contact_priority: 1 Ines Carmody (General Manager, champion), 2 Owner, name Unknown (signs under $25K), 3 Pre-need manager, name Unknown
+pain_hypotheses: 1 Plot visibility (HIGH, CRM and Inferred), 2 Records after a state finding (MEDIUM, CRM, date Unknown), 3 Pre-need follow-up (LOW, Unknown)
+sequence: three emails to Ines Carmody, Emails 2 and 3 omitted for length
+report_path: none (inline)
+next_action: Nadia Brandt sends Email 1 to Ines Carmody by 2026-10-21
+```
 
 ---
 
-### Example 2: AE Quick Prep (Sable Fork Cemetery, Inbound, REVIEW)
+### Example 2: AE Quick Call Prep (Sable Fork Cemetery, INBOUND, MANUAL REVIEW)
 
-**Context:** An AE has 20 minutes before an inbound discovery call. Sable Fork Cemetery asked for a demo through the website form after a search. The general manager, Arlen Biggs, signs contracts under $25K.
+**Context:** An AE has 20 minutes before a call. Sable Fork Cemetery filled in the website form on 2026-10-15, four days ago, asking for a demo. The general manager, Arlen Biggs, signs under $25K.
 
-**Input:** "Quick call prep for Sable Fork Cemetery (they requested a demo from the website)."
+**Input:** "Quick call prep for Sable Fork Cemetery. They requested a demo from the website."
 
-**Step 0: Role Detection** User is AE. Quick Call Prep pattern detected. Skip sequence generation, deliver Steps 1-4 + Step 6 only.
+**Step 0: Role Detection.** The user is an AE. Quick Call Prep mode: Steps 1 to 4 and Step 6 only.
 
-**Step 1: Intelligence Gathering**
-CRM search: New account (inbound form), status INBOUND, no active deal, no prior history. Requester's name and title: `[Unknown]`, so confirm on the call.
+**Step 1: Intelligence Gathering.** The CRM holds a new record created from the form `[CRM]`, status INBOUND `[CRM]`, and no open deal `[CRM]`. Who filled in the form is `[Unknown]`. The search that led to the form is `[Unknown]`. One site, 2,900 plots `[CRM]`. The plot list is a spreadsheet `[CRM]`. The general manager, Arlen Biggs, signs under $25K `[CRM]`.
 
-Company research: Sable Fork Cemetery, one site, 2,900 plots `[CRM]`. Plot list kept in a spreadsheet `[CRM]`. General Manager Arlen Biggs signs under $25K `[CRM]`. The search that led to the form is not recorded `[Unknown]`.
+**Step 2: Account Snapshot.** Status INBOUND.
 
-**Step 2: Account Snapshot**
-ICP Quick-Score: **MANUAL REVIEW**
-- Primary fit signal: Yes (2,900 plots, above the 2,000-plot threshold) `[CRM]`
-- Multi-region: Single site, so no multi-region signal `[CRM]`
-- Regulatory or complexity signal: Minimal (no state finding recorded) `[Unknown: not asked]`
-- Scale: Single site, mid-size `[CRM]`
-- Team complexity: Unknown. No records team is named `[Unknown]`
+Quick-score signals: primary fit Yes, 2,900 plots, above the ICP1 Strong line `[CRM]`. Single site `[CRM]`. Regulatory complexity Unknown, because nobody has asked about a state finding `[Unknown]`. Scale mid-size `[CRM]`. Team complexity Unknown, because no records owner is named `[Unknown]`.
 
-Why not GREENLIGHT: two of five signals are unknown. Zone ratings (illustrative) from `{Client Profile: Qualification Zones}`: Zone 3 HIGH (GM signs under $25K). Zone 1 MEDIUM (spreadsheet plot list). Zones 2, 4 and 5 UNKNOWN. One HIGH zone is a MANUAL REVIEW.
+Zone scores (illustrative): Zone 1 MEDIUM (plot list in a spreadsheet `[CRM]`). Zone 2 LOW (illustrative). Zone 3 HIGH (the GM signs under $25K `[CRM]`). Zone 4 MEDIUM (illustrative). Zone 5 LOW (illustrative).
 
-**Step 4: Pain Hypotheses**
-1. **Plot lookups in a spreadsheet** (A 2,900-plot list in a spreadsheet makes unsold plots hard to see. MEDIUM confidence. `[Inferred: spreadsheet plot list]`)
-2. **Pre-need follow-up** (No pre-need activity is recorded, so this is a question to ask, not a hypothesis to lead with. LOW confidence. `[Unknown]`)
-3. **Single-person records risk** (The plot list may depend on one person. LOW confidence. `[Unknown: no records owner named]`. Ask who maintains the list.)
+Verdict: **MANUAL REVIEW.** One zone is HIGH (Zone 3), so GREENLIGHT does not hold. The Verdict Rule gives MANUAL REVIEW for one HIGH zone. A MANUAL REVIEW does not authorize outbound.
 
-**Step 6: Call Prep**
-Call goal: "Confirm whether pre-need sales happen, measure a real plot lookup, and find out who signs under $25K."
+Region map: no tier, because the state is not recorded `[Unknown]`.
 
-30-Second Opener: "Thanks for asking for a demo. Before I show you anything, tell me what prompted you to look for plot records software this week."
+**Step 4: Pain Hypotheses.**
 
-Talk Track:
+1. **Plot lookups in a spreadsheet.** MEDIUM confidence. `[Inferred]`, by reasoning from the record type: a 2,900-plot list in a spreadsheet is harder to check against sold records than a digital system. Discovery question: "When someone asks for a plot, how long does it take to find it today?"
+2. **Pre-need follow-up.** LOW confidence. No pre-need activity is recorded `[Unknown]`. Ask, do not lead with it.
+3. **Single-person records risk.** LOW confidence. No records owner is named `[Unknown]`. Ask who maintains the list.
+
+**Step 6: Call Prep.**
+
+Call goal: confirm the pain, measure a real plot lookup, and find out who signs under $25K. The next step is a discovery call, not a demo, until the pain is confirmed.
+
+Opener: "Thanks for asking for a demo. Before I show you anything, what prompted you to look for plot records software this week?"
+
+Talk track:
 - "When someone asks for a plot, how long does it take to find it today?"
-- "How many plots do you think are unsold right now, and how would you check?"
+- "How many plots do you think are open right now, and how would you check?"
 - "Do you sell pre-need, and where do those leads go when they come in?"
 - "Who signs off on a purchase under $25K, and does anyone else need to see it?"
 
-Objection prep: "We're happy with the spreadsheet" → "That makes sense. When did you last check the spreadsheet against the plots you have actually sold?"
+Objection prep: "We're happy with the spreadsheet." Rebuttal: "That makes sense. When did you last check the spreadsheet against the plots you have actually sold?"
 
-**Step 7: Summary.** AE. Sable Fork Cemetery, MANUAL REVIEW. Inbound request, no active deal. Quick call prep delivered. Recommended approach: Confirm pre-need (Zone 2) and plot lookup time (Zone 1) on the call, then re-score. A MANUAL REVIEW does not authorize outbound. Data quality: 3 CRM, 2 INFERRED, 3 UNKNOWN (illustrative counts for this example).
+**Step 7: Summary.** AE. Sable Fork Cemetery, INBOUND, MANUAL REVIEW, with Zone 3 the only HIGH zone. No active deal. Quick call prep delivered. Next action: the AE books a discovery call with Arlen Biggs by 2026-10-22. Re-score the zones after that call.
+
+```text
+Hand-off (read by 06 and 04):
+account: Sable Fork Cemetery (INBOUND)
+account_status: INBOUND
+verdict: MANUAL REVIEW
+zone_scores: 1 MEDIUM, 2 LOW, 3 HIGH, 4 MEDIUM, 5 LOW (illustrative)
+contact_priority: 1 Arlen Biggs (General Manager, signs under $25K), 2 Form filler, name Unknown
+pain_hypotheses: 1 Plot lookups in a spreadsheet (MEDIUM, Inferred), 2 Pre-need follow-up (LOW, Unknown), 3 Single-person records risk (LOW, Unknown)
+sequence: not generated, Quick Call Prep mode
+report_path: none (inline)
+next_action: The AE books a discovery call with Arlen Biggs by 2026-10-22
+```
 
 ---
 
-### Example 3: BDR Batch Mode (Rapid-Fire Prospecting Block)
+### Example 3: BDR Batch (Prospecting Block, Five Accounts, Mixed Outcomes)
 
-**Context:** A BDR has a 2-hour prospecting block and needs snapshots for 5 accounts to identify the best 2-3 to pursue deeply. The list mixes accounts at different stages on purpose, so the table shows what the batch does with each one.
+**Context:** A BDR has a two-hour prospecting block and needs snapshots for five accounts, so the best two or three can be worked in depth. The list mixes stages and verdicts on purpose, so the table shows what the batch does with each one.
 
-**Input:** "Quick snapshots on these 5 accounts for my outbound block: Corrow Ridge Cemetery, Greyfield Memorial Park, Tamsin Vale Cemetery, Northvale Memorial Holdings, Lowmoor Memorial Gardens."
+**Input:** "Quick snapshots on these five accounts for my outbound block: Corrow Ridge Cemetery, Greyfield Memorial Park, Tamsin Vale Cemetery, Northvale Memorial Holdings and Lowmoor Memorial Gardens."
 
-**Rapid-Fire Batch Mode activated.** Running abbreviated snapshots (Steps 1-4 only) for each, producing a ranked summary table. Plot counts are from the cast. Zone ratings are illustrative.
+**Batch Mode.** Steps 1 to 4 for each account, then this ranked table. Zone scores are illustrative. The table shows the zones that carry each verdict.
 
-| Account | ICP Verdict | Plots | Top Pain | Next Step | Priority |
-|---------|------------|-------|----------|-----------|----------|
-| Corrow Ridge Cemetery | GREENLIGHT | 14,000 | Paper plat maps and a double-recorded deed (illustrative) | Trigger Event Outbound: new owner four months ago | 1 |
-| Greyfield Memorial Park | GREENLIGHT | 9,000 | Pre-need and records wanted together | Competitive Displacement: Stonemark contract renews January 2027 | 2 |
-| Tamsin Vale Cemetery | MANUAL REVIEW (REVIEW in the profile) | 4,200 | Paper maps and one binder per section | Hold. Confirm who signs (Zone 3 is not HIGH) | 3 |
-| Lowmoor Memorial Gardens | LOST, re-scored REVIEW | 7,500 | Closed-lost to Oldgate on "timing" | Route to Closed-Loss Reactivation (05). Do not sequence from this table | 4 |
-| Northvale Memorial Holdings | DISQUALIFY (OUT) | Not applicable (240 funeral homes, 90 cemeteries) | None. Own in-house system | Do not prospect | 5 |
+| Account | Status and Verdict | Zones That Carry the Verdict | Plots | Top Pain | Next Step | Priority |
+|---------|--------------------|------------------------------|-------|----------|-----------|----------|
+| Corrow Ridge Cemetery | TARGET, GREENLIGHT | Zone 1 HIGH, Zone 5 HIGH (illustrative) | 14,000 | Paper plat maps and a deed recorded twice in 2025 (illustrative) | Trigger Event Outbound (04). The ownership change closed 110 days ago, and 10 days of the window remain | 1 |
+| Greyfield Memorial Park | TARGET, GREENLIGHT | Zone 1 MEDIUM (a digital map, with plot records and trust reporting still outside it), Zone 2 HIGH, Zone 3 HIGH | 9,000 | Pre-need and records wanted together | Competitive Displacement (12). The Stonemark contract renews January 2027 | 2 |
+| Tamsin Vale Cemetery | TARGET, MANUAL REVIEW | Zone 1 HIGH, the only HIGH zone | 4,200 | Paper maps and one binder per section | Hold until the signer is known. Zone 3 is not HIGH | 3 |
+| Lowmoor Memorial Gardens | LOST, re-scored MANUAL REVIEW | Re-scored on fit, zone detail in Closed-Loss Reactivation (05) | 7,500 | Closed-lost to Oldgate on "timing" `[CRM]` | Route to Closed-Loss Reactivation (05). Do not sequence from this table | 4 |
+| Northvale Memorial Holdings | OUT, DISQUALIFY | A disqualifier applies, so zones are not scored | Not applicable | Runs its own in-house system `[Public: annual filing]` | Do not prospect | 5 |
 
-**Recommendation:** Generate full sequences for Corrow Ridge (#1) and Greyfield (#2) first. Greyfield's Stonemark renewal is the time pressure. Hold Tamsin Vale (#3) until its decision maker is known. Send Lowmoor to the reactivation skill, because it is a closed-lost account and not a cold prospect. Drop Northvale from the queue.
+**Recommendation.** Write the snapshot sequences for Corrow Ridge and Greyfield now. Trigger Event Outbound (04) and Competitive Displacement (12) write the sharper sequences for those two from their own inputs, so use these as the first drafts. Hold Tamsin Vale until the person who signs is known. Send Lowmoor to Closed-Loss Reactivation (05), because it is a closed-lost account and not a cold prospect. Drop Northvale from the queue.
 
-Full sequences generated for the top 2 accounts. Tamsin Vale held pending a decision-maker check. Lowmoor routed to 05. Northvale removed.
+```text
+Hand-off (read by 06):
+account: five accounts, one row each in the batch table above
+account_status: TARGET for Corrow Ridge, Greyfield and Tamsin Vale. LOST for Lowmoor. OUT for Northvale
+verdict: GREENLIGHT (Corrow Ridge, Greyfield), MANUAL REVIEW (Tamsin Vale, Lowmoor re-scored), DISQUALIFY (Northvale)
+contact_priority: Corrow Ridge, the acquirer's CFO or controller and the site GM. Greyfield, the pre-need team, no names on file. Tamsin Vale, signer Unknown
+pain_hypotheses: ranked per account in the table, each tagged
+sequence: snapshot drafts for Corrow Ridge and Greyfield only. None for the other three
+report_path: none (inline)
+next_action: BDR sends the Corrow Ridge Email 1 by 2026-10-21
+```
+
+---
+
+### Example 4: Flagship Account Snapshot (Brackhaven Memorial Gardens, TARGET, GREENLIGHT)
+
+**Context:** A snapshot run the week the flagship was qualified, on 2026-05-04 (illustrative). At that point the account was TARGET, with no open deal, and the general manager was already on file as the buyer. This is the first snapshot in the PlotIQ chain, and its hand-off feeds the meeting prep for the first discovery call.
+
+**Input:** "Account snapshot on Brackhaven Memorial Gardens, before our first outreach."
+
+**Step 0: Role Detection.** The user is a BDR. CRM status TARGET `[CRM]`, no open deal `[CRM]`. Clear to proceed.
+
+**Step 1: Intelligence Gathering.** Two sites, 11,000 plots `[CRM]`. Paper plot maps `[CRM]`. A combination of cemetery and funeral home `[CRM]`. One double sale in the last 24 months `[CRM]` (illustrative). The incumbent is Oldgate Ledger Pro, direct software, with a renewal in March 2027 `[CRM]`. The general manager is Ruth Ellery `[CRM]`. The family board is the decision body `[Notes]` (illustrative). The board chair's name is `[Unknown]`.
+
+**Step 2: Account Snapshot.**
+
+Company brief: Brackhaven Memorial Gardens. Combination, two sites `[CRM]`. 11,000 plots `[CRM]`. Paper plot maps `[CRM]`. Family-owned, with a family board `[Notes]` (illustrative). CRM status TARGET. No active deal.
+
+Quick-score signals: primary fit Yes, a combination with 11,000 plots `[CRM]`. Two sites `[CRM]`. Regulatory complexity Medium `[Notes]` (illustrative). Scale enterprise for the segment `[CRM]`. Team: a GM and an operations director `[CRM]`.
+
+Zone scores (illustrative), with the verdict:
+
+- Zone 1, Records and Inventory Pain: HIGH. Paper plot maps at two sites `[CRM]`, and a double sale in the last 24 months `[CRM]` (illustrative).
+- Zone 2, Pre-Need Sales Motion: MEDIUM. A pre-need manager runs the pre-need side `[Notes]` (illustrative). The intake form is `[Unknown]`, so the HIGH test is not met.
+- Zone 3, Ownership and Decision Speed: MEDIUM. The GM recommends, and the family board approves and meets within 60 days `[Notes]` (illustrative).
+- Zone 4, Technology Readiness: MEDIUM. A legacy system from Oldgate `[CRM]`.
+- Zone 5, Growth or Succession: HIGH. The owner retires within three years `[Notes]` (illustrative).
+
+Verdict: **GREENLIGHT.** Two zones are HIGH (1 and 5), and no must-have zone is LOW. Zone 3 is MEDIUM, which is not LOW, so the must-have does not block.
+
+Region map: the state is not in the example notes `[Unknown]`, so no tier is assigned here.
+
+**Step 3: Contact Mapping.**
+
+| Persona | Name | Engagement | Last Activity | Priority |
+|---------|------|-----------|---------------|----------|
+| General Manager, buyer | Ruth Ellery | Known to the CRM `[CRM]` | Not recorded `[Unknown]` | 1 |
+| Operations Director, influencer | Walt Okonkwo | Known to the CRM `[CRM]` | Not recorded `[Unknown]` | 2 |
+| Pre-need manager, end user | Priscilla Dunmore | Known to the CRM `[CRM]` | Not recorded `[Unknown]` | 3 |
+
+The family board chair is recorded as a gap, not as a person: no name is on file `[Unknown]`.
+
+**Step 4: Pain Hypotheses.**
+
+1. **Plot records on paper across two sites.** HIGH confidence. Paper plot maps at both sites `[CRM]`. `[Inferred]`, by reasoning from the record type: two sites on paper mean two lists, so a sale on one list can be missed on the other. Discovery question: "Which site's plot list do your staff check first?"
+2. **The Oldgate renewal in March 2027.** MEDIUM confidence. The renewal date is `[CRM]`. `[Inferred]`, from the contract date: the renewal opens a decision window. Discovery question: "What happens at the Oldgate renewal, and who decides?"
+
+**Step 5: Sequence (Ruth Ellery, General Manager).**
+
+Email 1
+
+Subject: Two sites, one plot list
+
+Ruth,
+
+Brackhaven runs two sites, and the plot maps at both are still on paper. How do you find a plot that is sold on one map and open on the other?
+
+Most cemeteries your size carry 50 to 100 plots that are sold on paper but open on the map (Benchmark, deathcare research, paper-operations note, 2026-04-01). Worth 15 minutes to see whether your two sites show the same gap?
+
+Emails 2 and 3 are omitted for length. The email names no customer result, because the profile's Brackhaven result is Illustrative and not yet signed.
+
+**Step 6 and Step 7: omitted for length.** The summary states the verdict, the two HIGH zones, the three contacts, and the next action: Owen Pruitt books the first discovery call with Ruth Ellery. The board chair is the open question for that call.
+
+```text
+Hand-off (read by 06):
+account: Brackhaven Memorial Gardens (TARGET at the time of the snapshot)
+account_status: TARGET
+verdict: GREENLIGHT
+zone_scores: 1 HIGH, 2 MEDIUM, 3 MEDIUM, 4 MEDIUM, 5 HIGH (illustrative)
+contact_priority: 1 Ruth Ellery (General Manager, buyer), 2 Walt Okonkwo (Operations Director, influencer), 3 Priscilla Dunmore (pre-need manager, end user)
+pain_hypotheses: 1 Plot records on paper across two sites (HIGH, CRM and Inferred), 2 The Oldgate renewal in March 2027 (MEDIUM, CRM and Inferred)
+sequence: three emails to Ruth Ellery, Emails 2 and 3 omitted for length
+report_path: none (inline)
+next_action: Owen Pruitt books the first discovery call with Ruth Ellery (date set on the call)
+```
 
 ---
 
 ## Common Patterns
 
 ### Pattern: Rapid-Fire Batch Mode
-**When:** BDR needs snapshots for 5-10 accounts in a single prospecting block.
-**Approach:** Run abbreviated snapshots (Steps 1-4 only) for each, produce a ranked summary table, then generate full sequences for the top 3-5. See Example 3.
+**When:** A BDR needs snapshots for five to ten accounts in one prospecting block.
+**Approach:** Run Steps 1 to 4 for each account, produce the ranked table, then write full sequences for the top two or three. See Example 3.
 
 ### Pattern: Active Deal Guard (BDR)
-**When:** `user_role = BDR` and the account has an active AE deal.
-**Action:** Surface the deal in the summary. Recommend sharing research with AE instead of sending independent sequences.
+**When:** The user is a BDR and the account has an open AE deal.
+**Action:** Show the deal in the summary, and recommend sharing the research with the AE instead of sending independent emails.
 
 ### Pattern: Quick Call Prep Only
-**When:** User says "quick call prep" or "calling in 5 minutes."
-**Approach:** Skip sequence generation (Step 5). Deliver Steps 1-4 + Step 6 (call prep) only. Speed over completeness. See Example 2.
+**When:** The user says "quick call prep" or "calling in five minutes."
+**Approach:** Skip the sequence. Deliver Steps 1 to 4 and Step 6. See Example 2.
 
-### Pattern: Snapshot Reveals Trigger Event
-**When:** Research uncovers a recent news event (acquisition, expansion, leadership change).
-**Action:** Note the trigger in the snapshot summary. Recommend switching to `gtm-trigger-event-outbound` to capitalize on the time-sensitive angle.
+### Pattern: Snapshot Reveals a Trigger Event
+**When:** Research turns up a recent event such as an acquisition, an expansion or a leadership change.
+**Action:** Note the trigger in the summary, and recommend Trigger Event Outbound (04), which runs on the trigger's own window.
 
-### Pattern: Snapshot Reveals Known Incumbent
-**When:** CRM notes or research reveal a specific competing tool or vendor.
-**Action:** Note the incumbent in the snapshot summary. Recommend switching to `gtm-competitive-displacement` for deeper competitive positioning.
+### Pattern: Snapshot Reveals a Known Incumbent
+**When:** The CRM or the research names a specific competing product.
+**Action:** Note the incumbent in the summary, and recommend Competitive Displacement (12) for the competitive sequence.
 
 ---
 
 ## Troubleshooting
 
 ### "No CRM data available"
-**Solution:** Proceed with web research only. Note "No existing CRM record" in the output. Flag data gaps in the summary and recommend CRM enrichment. Label all data points as `[Verified: web]`, `[Inferred]`, or `[Estimated]` instead of `[CRM]`.
+**Likely cause:** The CRM record is missing, or the rep has no access.
+**Response:** Proceed with public research only. Write "No existing CRM record" in the output. Tag every fact `[Public: source]`, `[Inferred]` or `[Unknown]`. Recommend CRM enrichment as the first action.
 
-### "No contacts found for target personas"
-**Solution:** Research LinkedIn for likely contacts. Note persona gaps as "Unknown (no contact found)." Recommend contact discovery as the first action. Use title-based personalization in emails instead of names.
+### "No contacts found for the target personas"
+**Likely cause:** The CRM holds no contacts for those personas.
+**Response:** Look for likely contacts through public sources. Write each persona gap as "Unknown, no contact found." Make contact discovery the first action. Personalize emails by title until a name is found.
 
-### "Company spans multiple segments"
-**Solution:** Classify by primary business. A company with a secondary division qualifies under the primary ICP. Note the secondary classification as an opportunity signal. ICP scoring should be based on the primary segment.
+### "The company spans more than one segment"
+**Likely cause:** A company with a secondary division.
+**Response:** Classify the account by its primary business, and score the zones on that segment. Note the secondary division as an opportunity, not as a second verdict.
 
-### "Previously churned customer"
-**Solution:** Flag as a risk. Check CRM for churn reason. If addressed (product gap fixed, new leadership), may still warrant outreach. Consider using `gtm-closed-loss-reactivation` instead for a more tailored approach.
+### "The account is a previous customer that churned"
+**Likely cause:** The account was lost after it bought.
+**Response:** Flag it as a risk, and read the churn reason from the CRM. If the reason was fixed, outreach may still fit. Consider Closed-Loss Reactivation (05), which is built for this case.
 
 ### "Research turns up almost nothing on the company"
-**Solution:** This is common for small private companies. Work with what you have: CRM data, company website, LinkedIn employee count. Label everything as `[Estimated]` or `[Inferred]`. Generate a lean snapshot with 2-3 pain hypotheses and a call prep focused on discovery questions. The call itself becomes the primary research tool.
+**Likely cause:** Small private companies often publish little.
+**Response:** Work with what the CRM and the company's own website show. Tag everything `[Public: source]`, `[Inferred]` or `[Unknown]`. Produce a lean snapshot with two or three pain hypotheses, and let the discovery call be the main research.
 
-### "Should I prospect if ICP verdict is MANUAL REVIEW?"
-**Solution:** MANUAL REVIEW means plausible but uncertain. Check what specific signals are missing. If the gap is data quality (e.g., can't confirm revenue), proceed with outbound but prioritize discovery questions that fill the gap. If the gap is fit quality (e.g., partial vertical fit), deprioritize in favor of GREENLIGHT accounts.
+### "Should I prospect if the verdict is MANUAL REVIEW?"
+**Likely cause:** The Verdict Rule found one HIGH zone, or a must-have zone at LOW.
+**Response:** Find which zones are the gap. If the gap is data, such as an UNKNOWN zone, prioritize the discovery questions that fill it. If the gap is fit, such as a must-have at LOW, deprioritize the account in favor of GREENLIGHT accounts.
+
+### "A zone is UNKNOWN and the verdict is close"
+**Likely cause:** The record is silent on that zone.
+**Response:** Do not score it. Name it in the summary as the question that would decide the verdict, and say which way the verdict moves if the answer is HIGH or LOW.
 
 ---
 
 ## Best Practices
 
-### Do's
-- **Prioritize speed.** This skill is designed for volume prospecting, not deep research.
-- **Use CRM data first.** It is faster and more personalized than web research alone.
-- **Match proof points to vertical.** A prospect in one vertical doesn't care about proof points from a different vertical.
-- **Label every data point.** Use `[CRM]`, `[Verified: web]`, `[Inferred]`, `[Estimated]`, `[Unknown]`.
-- **Rank pain hypotheses by confidence.** HIGH confidence hypotheses should lead the outreach.
-- **Include persona coverage gaps.** Knowing which personas are unknown is as valuable as knowing who exists.
-
-### Don'ts
-- **Don't over-research.** If you're spending more than 10 minutes, use `gtm-research-outbound` instead.
-- **Don't send generic emails.** Every Email 1 must reference something specific about the company.
-- **Don't skip the call prep.** BDRs calling without prep waste the prospect's time and their own.
-- **Don't ignore active deals.** Always check for AE deals before BDR outbound.
-- **Don't present ESTIMATED data as fact.** Say "Your team likely handles..." not "Your team handles..."
-- **Don't use LOW confidence pain hypotheses as email openers.** They feel generic and damage credibility.
-
-### Quality Checklist
-- [ ] Company-specific details in every Email 1
-- [ ] Pain hypotheses grounded in company profile with confidence levels
-- [ ] Contact names used when available
-- [ ] Proof points match vertical
-- [ ] All emails <= 100 words
-- [ ] Call prep is conversational, not scripted
-- [ ] Voicemail < 30 seconds when read aloud
-- [ ] Role detected and coordination guidance applied
-- [ ] Every data point labeled with source
-- [ ] ICP verdict cites 3+ data points
+- **Prioritize speed.** This skill is built for volume prospecting. Past ten minutes on one account, switch to Research Outbound (03).
+- **Use the CRM first.** It is the record a manager can check, and it is faster than web research alone.
+- **Match proof points to the segment.** A prospect in one vertical does not care about a result from another.
+- **Tag every fact.** The six tags are the only labels, and a reader checks the report by tag.
+- **Rank pain hypotheses by confidence.** HIGH-confidence hypotheses lead the outreach.
+- **Name the persona gaps.** Knowing who is unknown is as useful as knowing who exists.
 
 ---
 
-## Integration with Other Skills
+## Integration With Other Skills
 
-- **`gtm-account-qualification`.** Run qualification first for net-new accounts, then snapshot for GREENLIGHT accounts.
-- **`gtm-research-outbound`.** Use for deeper analysis of public companies (10-K, earnings) or private companies with high strategic value.
-- **`gtm-competitive-displacement`.** When the snapshot reveals a known incumbent, switch to displacement sequences.
-- **`gtm-trigger-event-outbound`.** When research reveals a recent event, pivot to trigger-based outbound.
-- **`gtm-closed-loss-reactivation`.** If the account is closed-lost, use reactivation instead of cold snapshot.
-- **`gtm-deal-pulse`.** Once an opportunity is created, switch to deal health monitoring.
+**Reads from the skill before it:**
+- **`gtm-account-qualification`** (01). Reads `verdict`, `zone_scores`, `icp_match` and `fit_narrative`. When `zone_scores` arrive, use them instead of scoring the zones again, and say so. When they are absent, score the zones from the profile and say that the scores are new.
+- **`gtm-competitive-displacement`** (12). Reads `incumbent_type`, `displacement_difficulty`, `target_personas` and `sequence`. Use `target_personas` to order the contacts, and use `incumbent_type` in the competitive objections. Do not write a snapshot sequence for a persona that already has a displacement `sequence`.
+
+**Hands to the skills after it:**
+- **`gtm-research-outbound`** (03), **`gtm-trigger-event-outbound`** (04) and **`gtm-meeting-prep`** (06). Each receives `account_status`, `verdict`, `contact_priority`, `pain_hypotheses` and `sequence`. The receiving skill reads these names as written.
+
+**Hands to the close:**
+- **Wrap-Up** reads `report_path` when a file was written, the `verdict`, and `next_action` with its owner and date.
 
 ---
 
 ## Changelog
 
+### Version 2.0.0 (2026-10-20)
+- Verdict now comes from the profile's Qualification Zones and Verdict Rule, applied as written, with zone scores beside it. The five-signal quick-score stays as the one-glance read and no longer sets the verdict.
+- Region map uses the profile's own tiers, with a source per tier.
+- Proof points come only from the profile's Proof Points table, one per email. Illustrative results are never cited in an email.
+- Evidence labels replaced by the six shared tags.
+- Epistemic Rules gain the n rule and the five-case rule. Silence is not a no.
+- Hard Rules with reasons replace the Don'ts. The Quality Bar is now a checklist.
+- Hand-off fields named in the Output Contract, the Integration section and each example's hand-off block.
+- Examples aligned to the PlotIQ chain file. Sable Fork carries its chain zone scores. Quill Hollow shows why Zone 1 stays MEDIUM. A flagship snapshot for Brackhaven is added as the first account in the chain.
+- The old output-format section is folded into the Output Contract's file option, which is Markdown only and written on request.
+
 ### Version 1.3.0 (2026-10-13)
-- Examples re-cast on PlotIQ, the library's one example company. Example errors fixed and a non-success example added.
-- Lien-state tier wording replaced with vertical-neutral labels
+- Examples re-cast on PlotIQ, with the tier wording made vertical-neutral.
 
 ### Version 1.2.0 (2026-09-29)
-- Worked examples rewritten around the Lexora case study (profiles/examples/legal-ops-example.md)
-- Em dashes removed from prose
+- Worked examples rewritten around a single case study. Em dashes removed from prose.
 
 ### Version 1.1.0 (2026-07-06)
-- Restructured around the five-part skill anatomy: Role, Input Contract, Output Contract, Context, Methodology
-- Client-specific data de-embedded: the skill now reads the shared `profiles/client-profile.md` instead of carrying an embedded Client Profile block (one profile powers every skill)
-- Framework machinery (evidence grading, speed vs. depth trade-offs, confidence calibration, ICP Quick-Score dimensions) moved to an explicit Methodology section with `{Methodology: X}` references
-- No functional changes to the workflow, examples, or output formats
-- Prior release notes (2026-03-04): Added Epistemic Rules section with evidence grading framework. Added ICP Quick-Score scoring matrix
-- Expanded Example 1 with full step-by-step detail including CRM search results, evidence-labeled company research, contact mapping table, pain hypothesis confidence ratings, email sample, and data quality summary
-- Expanded Example 2 with AE quick call prep walkthrough including talk track and objection prep
-- Added Example 3 demonstrating Batch Mode pattern with 5-account ranked summary table and prioritization guidance
-- Added Snapshot Reveals Trigger Event and Snapshot Reveals Known Incumbent patterns
-- Added 2 new troubleshooting entries (thin research, MANUAL REVIEW guidance)
-- Expanded pain hypothesis generation with confidence levels and ranking rules
-- Added objection handling table to cold call prep with 5 scripted rebuttals
-- Updated quality checklist with evidence labeling and ICP verdict requirements
-- Added data quality count to summary report
+- Restructured around the five-part skill anatomy. Company-specific data moved to the shared profile. Framework machinery moved to an explicit Methodology section.
 
 ### Version 1.0.0 (2026-03-04)
-- Initial release
-- Generalized via Client Profile block with placeholder defaults
-- 7-step workflow, 3-step sequences, cold call prep, 8-section cheatsheet
-- Batch mode and quick call prep patterns
-- Vendor-agnostic CRM instructions
-- Multi-format artifact generation
+- Initial release, with the profile-driven design and the batch and quick call prep patterns.

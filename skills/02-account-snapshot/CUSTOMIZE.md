@@ -1,10 +1,8 @@
 # Customize: Account Snapshot
 
-A paste-in prompt that adapts this skill to *your* go-to-market motion.
+A paste-in interview that writes the Outbound Voice section of your profile. It asks one question at a time about your best email, your reliable research sources, the triggers that jump the queue, and the regions where a missed rule costs the most. It then produces that section, filled with your answers, ready to paste.
 
-Works in **Claude Code**, **OpenAI Codex**, **Claude.ai / ChatGPT Projects**, or a **custom GPT**
-(attach `SKILL.md` as knowledge and paste the block below) -- they all read the same `SKILL.md`
-format. Open the assistant, paste the block, and answer its questions.
+Works in Claude Code, in Codex, and in ChatGPT as a custom GPT.
 
 > This is a per-skill companion. For customizing the whole suite at once, see
 > [`docs/customization.md`](../../docs/customization.md) and
@@ -12,82 +10,66 @@ format. Open the assistant, paste the block, and answer its questions.
 
 ---
 
-## The prompt
+## The Prompt
 
 ```
-You are helping me adapt a GTM methodology skill to my company's go-to-market motion.
+You are helping me adapt a sales methodology skill to my company's go-to-market motion.
 
-Read the attached SKILL.md (gtm-account-snapshot). It is the BDR daily driver: rapid research, ICP quick-score, persona-mapped contacts, pain hypotheses, a 3-step email sequence, and a cold-call sheet -- one page.
+Read the attached SKILL.md (gtm-account-snapshot). It is the BDR daily driver: an account brief with a zone verdict, persona-ranked contacts, tagged pain hypotheses, a three-step email draft and call prep, all on one page.
 
-Your job is NOT to rewrite it. It is to make it fire on my accounts, my personas, and my
-vertical, and to tell me honestly where I cannot answer you.
+Your job is NOT to rewrite the skill. It is to make it fire on my accounts, my buyers and my region, and to tell me honestly where I cannot answer you.
 
-Ask me these, ONE AT A TIME, and wait for each answer:
+Ask me these questions, ONE AT A TIME, and wait for each answer:
 
-1. Which three personas do you actually get meetings with, and which persona are you told
-   to target but has never once converted? Titles as they appear in YOUR vertical, not the
-   generic ones.
+1. Paste your best-performing cold email, the one that got real replies. What about it is load-bearing: the trigger, the number, the tone? That becomes the reference email.
 
-2. Paste your best-performing cold email -- the one that got real replies. What about it is
-   load-bearing (the trigger, the number, the tone)? That becomes the sequence's voice.
+2. Which research sources are actually reliable in your vertical: state registries, permit databases, job boards, association directories, local trade press? For each one, what does it reliably tell you, and where does public data run out?
 
-3. Which research sources are actually reliable in your vertical (permit databases, state
-   registries, job boards, association directories, local trade press)? Where does public
-   data run out?
+3. Which facts make a rep call an account today rather than sequence it and wait? Name the specific, checkable facts, such as a new owner in a registry, a finding in the press, or an inbound form under 48 hours old.
 
-4. What is the honest time budget per account -- five minutes or twenty-five? The snapshot
-   depth has to match it or reps skip the skill.
+4. Which states or regions carry the highest cost of a missed rule for your buyers, and what is the rule and its source? Which regions do you not yet know well enough to rank?
 
-5. What separates "call this account today" from "sequence it and wait" in your motion?
+5. Which buyer titles are you told to target but have never once converted? Those go in the Buyer Personas section, not here, so keep them separate from your answers.
 
 Then produce:
 
-A. A revised "Quick Reference" written in terms of MY accounts, personas, and vertical,
-   not generic ones.
-B. A revised "Examples" section built from the real answers I gave you, recognizable to my
-   team but naming no individual.
-C. The fields this skill now needs from profiles/client-profile.md, with the exact values
-   I gave you, ready to paste in.
-D. THE HONEST PART: the questions above I could not answer concretely, and what I would
-   need to gather to answer them. Do not paper over these. An answer I guessed at is a
-   gap, and the gap is the finding.
+A. The honest part: the questions above that I could not answer concretely, what I would need to gather to answer them, and which of my answers are guesses. Do not paper over these. An answer I guessed at is a gap, and the gap is the finding.
+
+B. Any answer that belongs in Buyer Personas rather than Outbound Voice, written as a short list ready to paste into that section.
+
+C. The Outbound Voice section, filled with my answers, in the exact shape below, ready to paste into profiles/client-profile.md. Every research source carries what it reliably tells you. Every region carries its source. Nothing is invented to fill a blank: a blank stays a bracketed placeholder.
 
 Start with question 1.
 ```
 
 ---
 
-## What you should expect to happen
+## What You Should Expect to Happen
 
-**Question 2 stalls** when nobody kept the winning emails -- performance lives in anecdote,
-not in a swipe file. **Question 3 stalls** when research habits were inherited from a
-horizontal playbook and nobody has mapped what your vertical actually exposes publicly.
+**Question 1 stalls** when nobody kept the winning emails. Performance lives in anecdote, not in a swipe file, and the reference email is the single most useful thing the skill can learn.
 
-Both kinds of stall point at the same missing thing: a **context layer**. The skill is a
-procedure. A procedure needs to know who you sell to, what has worked, and what has already
-gone wrong. That is what `profiles/client-profile.md` is for -- build it once and every skill
-in the suite inherits it.
+**Question 2 stalls** when research habits were inherited from a horizontal playbook and nobody has mapped what your vertical exposes publicly. A source with no stated lag is a source the skill cannot weigh.
+
+**Question 4 stalls** when the team ranks regions by feel. The region map only works when each tier names its rule and its source, because the skill ranks accounts by that cost.
+
+All three stalls point at the same missing thing: a context layer. The skill is a procedure, and a procedure needs to know who you sell to, what has worked, and where a missed rule costs the most. That is what the profile is for. Build it once, and every skill in the suite inherits it.
 
 ---
 
-## Minimum profile fields this skill reads
+## Minimum Profile Fields This Skill Reads
 
-Add these to `profiles/client-profile.md` once:
+Add this section to `profiles/client-profile.md` once. The interview above writes it for you.
 
 ```markdown
-## Personas
-- **Converting personas:** [title -> what they care about -> proof point that lands]
-- **Dead persona (do not sequence):** [title + why it never converts]
-
 ## Outbound Voice
 - **Reference email:** [paste the best performer]
-- **Vertical research sources:** [source -> what it reliably tells you]
+- **Vertical research sources:** [source, what it reliably tells you]
 - **Call-today triggers:** [the facts that jump the queue]
+- **Region map:** [region or state, the cost of a missed rule there, the source]
 ```
 
 ---
 
-## If the one-pager grows
+## If the One-Pager Grows
 
-The cheatsheet is one page because a BDR reads it between dials. Anything that pushes it to
-two pages belongs in Research-Driven Outbound (03), which is the deep version of this skill.
+The cheatsheet is one page because a BDR reads it between dials. Anything that pushes it to two pages belongs in Research Outbound (03), which is the deep version of this skill.

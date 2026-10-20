@@ -5,6 +5,22 @@ bottom of its `SKILL.md`, with the detail.
 
 ---
 
+## 2026-10-20: Sales 2.0, Wave One (Skills 01 to 07)
+
+**The seven prospecting and discovery skills are one system.** Account Qualification, Account Snapshot, Research Outbound, Trigger Event Outbound, Closed-Loss Reactivation, Meeting Prep and Daily Prospecting are at 2.0.0, each brought to the skill standard in place and each carrying the same Shared Contract under its Context section: five account status words, three verdict words spelled one way, stage names read from the profile, one set of six evidence tags, the rule that every rate carries its n, report first and a file only when asked, nothing sends and nothing writes to the CRM, the BDR guard, and one list each for champion tests, incumbent types and talk-time bands.
+
+**Hand-offs by field name.** Each skill's Output Contract names the fields the next skill asks for (`verdict`, `zone_scores`, `contact_priority`, `pain_hypotheses`, `trigger_type`, `urgency_window`, `days_remaining`, `reactivation_strategy`, `history_opener`, `prep_sheet`, `top_pain`, `question_bank`, `dial_sheet`, `pre_call_briefs`, `exclusions` and the rest), every worked example ends with a hand-off block in those names, and every skill carries `next_action` and `report_path` for the session close. Fresh-agent hand-off tests ran on 01 to 02, 02 to 06, 02 to 04, 05 to 04 and 06, 04 and 07 to 06, and the close.
+
+**What each skill gained.** Verdicts come from the profile's Verdict Rule alone, with every zone shown (UNKNOWN allowed when there is no evidence). Trigger windows come from the profile, with one window rule and a refusal when the event is undated or the window has closed. Closed-loss outcomes are REACTIVATE, MONITOR or RETIRE. Meeting Prep carries a question bank per discovery phase, objection scripts, a minute-by-minute call flow and a follow-up email draft. Daily Prospecting scores against a Fit Grid in the profile and applies the BDR guard with the pending-assignment case stated. No Illustrative proof point is ever placed in an email, talk track or battlecard a prospect reads.
+
+**Template and example.** `profiles/client-profile-template.md` gains a "Persona who acts" column on Buying Triggers, a "Discovery question" column on Core Pain Points, two post-purchase pain columns and the seven incumbent types on Competitive Landscape, a Status (Verified, Benchmark or Illustrative) on Proof Points, numbered stage names, an optional talk-time override, and a Sales-Layer Sections block naming the section each sales skill's `CUSTOMIZE.md` writes. The PlotIQ example fills them all, with one calendar every example counts from.
+
+**Docs.** README rows 1 to 7, the skill reference (inputs, outputs and the chaining patterns rewritten with field names), the profile maps in `docs/how-it-fits.md` and `docs/customization.md`.
+
+Skills 08 to 14 follow in wave two.
+
+---
+
 ## 2026-10-18: Verification 2.0, Five Skills Rebuilt as One System
 
 **The five verification skills (Verify, Debug, Debate, Context Gap, Second Opinion) are 2.0.0.** Each was written clean-room from one spec, and they share one contract, pasted word for word into all five: the claim slip (claim, tier, check, evidence), four tiers with Functional as tier 4 everywhere, the honest sentence when tier 4 was not reached, one spelling of the six gap states, the six-column matrix, the severity, verdict and triage words, three attempts as the circuit breaker, and the list of what the session close reads by name.
@@ -41,7 +57,7 @@ The worked examples use the PlotIQ cast and one story that runs through all five
 
 ## 2026-10-13: The Example Company Is PlotIQ
 
-**One example company, now PlotIQ.** Every worked example in the docs and the 15 operating skills uses PlotIQ, a made-up software company for cemeteries and funeral homes. The 14 sales skills under `skills/` still use the earlier Lexora cast, and they switch to PlotIQ when they are rebuilt (the last phase of the 2.0 program), so until then the two groups do not share an example. Its completed profile, with the full cast of accounts, people, competitors, proof points and verdicts, is [`profiles/examples/plotiq-example.md`](profiles/examples/plotiq-example.md). The Lexora profile is retired and moved to [`profiles/examples/archive/lexora-legal-ops-example.md`](profiles/examples/archive/lexora-legal-ops-example.md).
+**One example company, now PlotIQ.** Every worked example in the docs and the 15 operating skills uses PlotIQ, a made-up software company for cemeteries and funeral homes. The 14 sales skills under `skills/` moved to the same cast the same day, at version 1.3.0, so every example in the repository runs on one company. Its completed profile, with the full cast of accounts, people, competitors, proof points and verdicts, is [`profiles/examples/plotiq-example.md`](profiles/examples/plotiq-example.md). The Lexora profile is retired and moved to [`profiles/examples/archive/lexora-legal-ops-example.md`](profiles/examples/archive/lexora-legal-ops-example.md).
 
 **Template**
 - The profile template gains a **Qualification Zones** section. Five groups of account traits are each scored HIGH, MEDIUM or LOW. Zones 1 and 3 are must-haves, and the section states the verdict rule. Skills 01, 03, 06 and 07 read it.

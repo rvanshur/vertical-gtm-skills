@@ -1,16 +1,19 @@
 ---
 name: gtm-wrap-up
-version: 2.0.1
+version: 2.0.2
 description: "Closes a working session in writing: a debrief, a project key taken from the files that changed, the checks the work earned, three lines, one next action the owner confirms, and a continuation note that supersedes the older one. Writes the note that Weekly Review reads."
 category: Operating-Discipline
 author: Ryan Vanshur
 license: MIT
-updated: 2026-10-18
+updated: 2026-10-20
 tags: [wrap-up, session-close, continuation-note, next-action, handoff, knowledge-base, operating-discipline, memory]
 requires:
   skills: [context-os-setup]
 mutating: true
 change_log:
+  - version: 2.0.2
+    date: 2026-10-20
+    summary: "The note gives the sales skills a named place: the account and its verdict, strategy or score under Where We Stopped, any report_path under What Happened, and the sales skill's next_action line (owner and date) as the draft next action confirmed at Stage 5. No stage changes."
   - version: 2.0.1
     date: 2026-10-18
     summary: "The note gives the five verification skills a named place: the gap state and any saved review path under What Happened, the tier each verified claim reached under Where We Stopped, a debate's matrix, posture, resolution and record path under Decisions Made, and a debug handoff file by path under Open Threads. No stage changes."
@@ -94,6 +97,8 @@ The `status` field takes one of three words. `draft` means the owner could not c
 The body has four sections: **What Happened**, **Where We Stopped**, **Decisions Made** (left out when there are none, with any decision that deserves a formal record flagged), and **Open Threads**. Weekly Review reads `project`, `date`, `status` and `next_action` by these names.
 
 The verification skills write into those four sections by name. What Happened carries the gap state of any build that started (NO GAP, CONFIG, COMPLETION, EXTENSION, PATTERN or TRUE GAP) and the path of any saved review file. Where We Stopped carries the tier each verified claim reached (1 to 4, as Verify states it, or the honest sentence "Built, and not yet verified, because [reason]."). Decisions Made carries a debate's matrix, its posture (converge or diverge), its resolution and its record path when one was saved. Open Threads carries a debug handoff file by its path when a session stopped at the circuit breaker.
+
+The sales skills write into the same sections by field name. Where We Stopped carries each account the session worked and the `verdict` (GREENLIGHT, MANUAL REVIEW or DISQUALIFY), `reactivation_strategy` (REACTIVATE, MONITOR or RETIRE) or score the skill produced for it. A skill that produces no verdict or score (Daily Prospecting hands a dial sheet) is recorded by what it produced and how many accounts it covered. What Happened carries the `report_path` of any report the user asked to have written to a file, and says "inline" when none was. The sales skill's `next_action` line, with its owner and date, is the draft next action, rewritten as an imperative sentence and confirmed at Stage 5 like any other. When two sales skills ran in one session, the owner picks the one next action, and the other goes to Open Threads.
 
 ---
 
@@ -384,7 +389,13 @@ The failure is visible in the note, the state line does not claim the item is li
 
 ---
 
+**From the sales skills (01 to 14).** Each hands `next_action` (owner and date), `report_path` (set only when a file was written) and its verdict, strategy or score with the account name. The close reads those three by name and never re-derives a verdict from the session text.
+
 ## Changelog
+
+### 2.0.2 (2026-10-20)
+
+- The note names a place for each sales skill's output: the account and its `verdict`, `reactivation_strategy` or score under Where We Stopped, `report_path` under What Happened, and `next_action` (owner and date) as the draft next action confirmed at Stage 5. Integration names the three fields. No stage changes.
 
 ### 2.0.1 (2026-10-18)
 
