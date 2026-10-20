@@ -1,6 +1,6 @@
 ---
 name: gtm-account-qualification
-version: 2.0.0
+version: 2.0.1
 description: "Scores an account against the ICP definitions, 8 weighted criteria and the profile's five qualification zones, and returns a GREENLIGHT, MANUAL REVIEW or DISQUALIFY verdict with every zone shown, for the BDR or AE who decides where to spend time."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: []
 mutating: read-write
 change_log:
+  - version: 2.0.1
+    date: 2026-10-20
+    summary: "Every hand-off block carries a run_date line after its account line, so two instruments on one deal are compared by date (found by the wave two hand-off tests). No other change."
   - version: 2.0.0
     date: 2026-10-20
     summary: "Moved to the Sales 2.0 standard. Zones, the Verdict Rule and the Fit Grid are read from the client profile, and every verdict shows every zone beside it. The six shared evidence tags replace the old labels, the Shared Contract is added, and the file is written only when asked. Four worked examples, one of them the chain 1 opener, sit on the PlotIQ cast with zone and criteria tables."
@@ -501,6 +504,7 @@ Four worked examples, all on the PlotIQ cast and the chain file. They show a mix
 ```text
 Hand-off (read by 02):
 account: Brackhaven Memorial Gardens (TARGET at the time of qualification, 2026-05-04)
+run_date: 2026-05-04 (illustrative)
 verdict: GREENLIGHT
 zone_scores: 1 HIGH, 2 MEDIUM, 3 MEDIUM, 4 MEDIUM, 5 HIGH
 icp_match: ICP2 Combination
@@ -551,6 +555,7 @@ report_path: none (inline)
 ```text
 Hand-off (read by 02):
 account: Corrow Ridge Cemetery (TARGET)
+run_date: 2026-10-19
 verdict: GREENLIGHT
 zone_scores: 1 HIGH, 2 UNKNOWN, 3 MEDIUM, 4 UNKNOWN, 5 HIGH
 icp_match: ICP1 Independent Cemetery (at site level, after the acquisition)
@@ -601,6 +606,7 @@ report_path: none (inline)
 ```text
 Hand-off (read by 02):
 account: Sable Fork Cemetery (INBOUND)
+run_date: 2026-10-19
 verdict: MANUAL REVIEW
 zone_scores: 1 MEDIUM, 2 LOW, 3 HIGH, 4 MEDIUM, 5 LOW
 icp_match: ICP1 Independent Cemetery
@@ -636,6 +642,7 @@ report_path: none (inline)
 ```text
 Hand-off (read by 02):
 account: Northvale Memorial Holdings (OUT)
+run_date: 2026-10-19
 verdict: DISQUALIFY
 zone_scores: 1 UNKNOWN, 2 UNKNOWN, 3 UNKNOWN, 4 LOW, 5 UNKNOWN
 icp_match: No Fit, ICP3 Multi-Location Group disqualifier (public consolidator running its own system)
@@ -707,6 +714,10 @@ An account pending AE assignment is not ACTIVE. Score it, and say that it is pen
 
 ## Changelog
 
+
+### 2.0.1 (2026-10-20)
+
+- Every hand-off block carries a run_date line after its account line, so two instruments on one deal are compared by date (found by the wave two hand-off tests). No other change.
 ### 2.0.0 (2026-10-20)
 - Moved to the Sales 2.0 standard: Overview with Core Principle, Why This Skill Exists, Role, Input and Output Contracts, Context with the Shared Contract, Core Workflow with a Produces line per stage, Epistemic Rules, Hard Rules with reasons, Quality Bar, and Integration with named hand-off fields.
 - The zones, the Verdict Rule and the Fit Grid are read from the profile, and every verdict shows all five zones beside it.

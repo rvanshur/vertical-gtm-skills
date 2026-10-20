@@ -1,6 +1,6 @@
 ---
 name: gtm-closed-loss-reactivation
-version: 2.0.0
+version: 2.0.1
 description: "Re-engages closed-lost accounts from the CRM history. Checks the recorded loss reason against the evidence, finds what has changed since the deal died, re-scores fit, and returns REACTIVATE, MONITOR or RETIRE with a history-aware opener for the BDR or AE who owns the next step."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: []
 mutating: read-write
 change_log:
+  - version: 2.0.1
+    date: 2026-10-20
+    summary: "Every hand-off block carries a run_date line after its account line, so two instruments on one deal are compared by date (found by the wave two hand-off tests). No other change."
   - version: 2.0.0
     date: 2026-10-20
     summary: "Shared contract added under Context. Loss taxonomy carries the pain-surfacing questions. Change assessment is tagged, and a blank CRM field is unknown. Proof matching reads the two new Competitive Landscape columns, and only Verified proof reaches a prospect. Outcomes are REACTIVATE, MONITOR and RETIRE, with examples on a MONITOR, a RETIRE and a champion move. Output is inline by default, and a Markdown file is written only when asked."
@@ -608,6 +611,7 @@ The held `history_opener` is: "When we last spoke, you went with Oldgate. Curiou
 ```text
 Hand-off (read by 04 and 06):
 account: Lowmoor Memorial Gardens (LOST)
+run_date: 2026-10-19
 loss_classification: Budget / Timing [Inferred] (the board date, from the CRM reason "timing" [CRM]). Lost to Competitor [CRM] (Oldgate named as winner). Champion Left does not apply
 change_assessment: account, Ines Carmody now at Quill Hollow [Public: state licensing database]. product, beta with no paid revenue [CRM]. market, Oldgate renewal date [Unknown]
 reactivation_strategy: MONITOR (Buyer's Remorse play, held until a reopening event fires)
@@ -639,6 +643,7 @@ report_path: none (inline)
 ```text
 Hand-off (read by 04 and 06):
 account: Northvale Memorial Holdings (OUT)
+run_date: 2026-10-19
 loss_classification: none. The account is OUT, with no closed-lost record to classify
 change_assessment: none found. Nothing in the cast shows a change to its system or ownership [Unknown]
 reactivation_strategy: RETIRE (disqualifier: a public consolidator that runs its own system [Public: annual filing])
@@ -668,6 +673,7 @@ Track A has priority, because she already knows the product from the evaluation,
 ```text
 Hand-off (read by 04 and 06):
 account: Lowmoor Memorial Gardens (LOST), with the champion now at Quill Hollow Memorial Park (TARGET)
+run_date: 2026-10-19
 loss_classification: unchanged from Example 1 (Budget / Timing and Lost to Competitor). Champion Left does not apply
 change_assessment: champion now at Quill Hollow [Public: state licensing database]. Quill Hollow status TARGET with a GREENLIGHT verdict [CRM] (illustrative, from the example cast)
 reactivation_strategy: MONITOR for Lowmoor (Track B only). Track A goes to Account Snapshot (02) as a new account
@@ -759,6 +765,10 @@ report_path: none (inline)
 
 ## Changelog
 
+
+### 2.0.1 (2026-10-20)
+
+- Every hand-off block carries a run_date line after its account line, so two instruments on one deal are compared by date (found by the wave two hand-off tests). No other change.
 ### 2.0.0 (2026-10-20)
 - The shared contract is pasted under Context, so the status words, verdict words, evidence tags and champion tests match the sales family.
 - The Loss Reason Taxonomy carries a pain-surfacing question for each category, and Step 7 reads it.

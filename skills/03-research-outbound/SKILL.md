@@ -1,6 +1,6 @@
 ---
 name: gtm-research-outbound
-version: 2.0.0
+version: 2.0.1
 description: "Builds a sourced point of view and outbound package from a public filing, an owner letter or an earnings call, with an ICP verdict, a signal map, a sourced wedge and persona sequences, for the rep and the meeting-prep skill to read"
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: [gtm-account-snapshot]
 mutating: read-write
 change_log:
+  - version: 2.0.1
+    date: 2026-10-20
+    summary: "Every hand-off block carries a run_date line after its account line, so two instruments on one deal are compared by date (found by the wave two hand-off tests). No other change."
   - version: 2.0.0
     date: 2026-10-20
     summary: "Industry Context is read from the profile as a sourced list. Proof points are named only from the profile and only when Verified or Benchmark. The persona count comes from Buyer Personas, so the email count is personas times steps, with no fixed count. Step 7 reads the Persona who acts column. Zones and the verdict come from the profile. The six evidence tags replace the old labels. A filing-mode example ends in DISQUALIFY with zero emails. Hand-off fields are named in the Output Contract and in Integration. The report is inline, and a Markdown file is written only when asked."
@@ -568,6 +571,7 @@ All examples use PlotIQ and its cast from the profile's Example Cast. Every figu
 ```text
 Hand-off (read by 06):
 account: Saltmarsh Heritage Group (TARGET)
+run_date: 2026-10-19
 pov_brief: POV statement, one system across five sites in 2027 as a records project first, verdict MANUAL REVIEW stated
 signal_map: six rows, each tagged and placed in a zone (table above)
 wedge: 2 cemetery sites x 50 to 100 plots = 100 to 200 plots to check (Benchmark, not a result). 5 sites x $10,788 = $53,940 a year at list, plus $5,000 setup once. Plot price unknown, so no payback figure
@@ -605,6 +609,7 @@ next_action: Nadia Brandt reads the 20 drafts and sends Email 1 to Hector Ruiz b
 ```text
 Hand-off (read by 06):
 account: Brackhaven Memorial Gardens (ACTIVE, Stage 5 Negotiate, AE Owen Pruitt)
+run_date: 2026-10-19
 pov_brief: none (guard fired, Owen Pruitt owns the deal)
 signal_map: none (guard fired)
 wedge: none (guard fired)
@@ -644,6 +649,7 @@ next_action: Nadia Brandt sends the coordination note to Owen Pruitt by 2026-10-
 ```text
 Hand-off (read by 06):
 account: Tamsin Vale Cemetery (TARGET)
+run_date: 2026-10-19
 pov_brief: none (one HIGH zone is not enough for a point of view)
 signal_map: none (three research actions listed instead)
 wedge: none (4,200 plots are on file, but the plot price is unknown)
@@ -692,6 +698,7 @@ The zones the filing does not speak to are not scored. A blank is unknown, not a
 ```text
 Hand-off (read by 06):
 account: Northvale Memorial Holdings (OUT)
+run_date: 2026-10-19
 pov_brief: none (DISQUALIFY)
 signal_map: none (DISQUALIFY, the disqualifier is the only signal)
 wedge: not computed (DISQUALIFY)
@@ -798,6 +805,10 @@ next_action: the rep is told the verdict and its disqualifier by 2026-10-21, and
 
 ## Changelog
 
+
+### 2.0.1 (2026-10-20)
+
+- Every hand-off block carries a run_date line after its account line, so two instruments on one deal are compared by date (found by the wave two hand-off tests). No other change.
 ### Version 2.0.0 (2026-10-20)
 
 - Industry Context is read from the profile as a sourced list. An unsourced industry claim is dropped.

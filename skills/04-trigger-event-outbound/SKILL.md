@@ -1,6 +1,6 @@
 ---
 name: gtm-trigger-event-outbound
-version: 2.0.0
+version: 2.0.1
 description: "Turns one dated business event at a target account into a short outbound sequence, but only after checking the event against its window. Reports when the window has closed or the event date is unknown. Read by the BDR or AE who sends the sequence."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: [gtm-account-snapshot, gtm-closed-loss-reactivation]
 mutating: read-write
 change_log:
+  - version: 2.0.1
+    date: 2026-10-20
+    summary: "Every hand-off block carries a run_date line after its account line, so two instruments on one deal are compared by date (found by the wave two hand-off tests). No other change."
   - version: 2.0.0
     date: 2026-10-20
     summary: "Windows now come from the profile's Buying Triggers table, with the rule or deadline cited in the Trigger Catalog. One window rule, the six shared evidence tags, UNVERIFIED for undated events, one name per trigger type, shared contract, Produces lines, hand-off fields by name, and three PlotIQ examples aligned to the chain file."
@@ -627,6 +630,7 @@ CFO. The site GM's three emails are omitted from this example.
 
 Hand-off (read by 06):
 account: Corrow Ridge Cemetery (TARGET)
+run_date: 2026-10-19
 trigger_type: Acquisition / M&A (profile trigger: consolidator buys the site)
 urgency_window: 2026-08-30 to 2026-10-29
 days_remaining: 10
@@ -673,6 +677,7 @@ The finding's own date sets the clock, never the date the CRM note was entered.
 
 Hand-off (read by 06):
 account: Quill Hollow Memorial Park (TARGET)
+run_date: 2026-10-19
 trigger_type: Compliance Failure / Costly Error (profile trigger: audit finding on records or trust fund)
 urgency_window: none, the event date is [Unknown]
 days_remaining: none
@@ -715,6 +720,7 @@ Displacement, and the AE decides when to raise it with the champion.
 
 Hand-off (read by 06):
 account: Brackhaven Memorial Gardens (ACTIVE, Stage 5 Negotiate, AE Owen Pruitt)
+run_date: 2026-10-19
 trigger_type: Competitor Contract Event (profile trigger: rival contract renewal)
 urgency_window: none, routed to Competitive Displacement (12)
 days_remaining: none
@@ -812,6 +818,10 @@ next_action: Nadia Brandt sends the note to Owen Pruitt by 2026-10-21, after rea
 
 ## Changelog
 
+
+### 2.0.1 (2026-10-20)
+
+- Every hand-off block carries a run_date line after its account line, so two instruments on one deal are compared by date (found by the wave two hand-off tests). No other change.
 ### Version 2.0.0 (2026-10-20)
 - Trigger windows and personas now come from the profile's Buying Triggers table. The rule or deadline comes from the Trigger Catalog with a citation. The unsourced 7-to-14-day and 30-to-60-day windows are removed from the taxonomy
 - One window rule, stated once, with the arithmetic printed in the Corrow Ridge example

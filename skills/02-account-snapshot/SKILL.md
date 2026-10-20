@@ -1,7 +1,7 @@
 ---
 name: gtm-account-snapshot
 description: "One-page account brief for BDRs and AEs: a zone-based verdict, persona-ranked contacts, tagged pain hypotheses, a three-step email draft and call prep, read by the rep before anything is sent."
-version: 2.0.0
+version: 2.0.1
 category: Sales-Methodology
 author: Ryan Vanshur
 license: MIT
@@ -11,6 +11,9 @@ requires:
   skills: [gtm-account-qualification, gtm-competitive-displacement]
 mutating: read-write
 change_log:
+  - version: 2.0.1
+    date: 2026-10-20
+    summary: "Every hand-off block carries a run_date line after its account line, so two instruments on one deal are compared by date (found by the wave two hand-off tests). No other change."
   - version: 2.0.0
     date: 2026-10-20
     summary: "Verdict now comes from the profile's Qualification Zones and Verdict Rule, with zone scores beside it. Region map uses the profile's own tiers with a source per tier. Proof points come only from the Proof Points table. Evidence labels replaced by the six shared tags. Hard Rules with reasons replace the Don'ts. Hand-off fields named in the Output Contract, the Integration section and the examples. Examples aligned to the PlotIQ chain file."
@@ -503,6 +506,7 @@ The email names no customer result, because every PlotIQ result in the profile i
 ```text
 Hand-off (read by 06):
 account: Quill Hollow Memorial Park (TARGET)
+run_date: 2026-10-19
 account_status: TARGET
 verdict: GREENLIGHT
 zone_scores: 1 MEDIUM, 2 UNKNOWN, 3 HIGH, 4 UNKNOWN, 5 HIGH (illustrative)
@@ -560,6 +564,7 @@ Objection prep: "We're happy with the spreadsheet." Rebuttal: "That makes sense.
 ```text
 Hand-off (read by 06 and 04):
 account: Sable Fork Cemetery (INBOUND)
+run_date: 2026-10-19
 account_status: INBOUND
 verdict: MANUAL REVIEW
 zone_scores: 1 MEDIUM, 2 LOW, 3 HIGH, 4 MEDIUM, 5 LOW (illustrative)
@@ -593,6 +598,7 @@ next_action: The AE books a discovery call with Arlen Biggs by 2026-10-22
 ```text
 Hand-off (read by 06):
 account: five accounts, one row each in the batch table above
+run_date: 2026-10-19
 account_status: TARGET for Corrow Ridge, Greyfield and Tamsin Vale. LOST for Lowmoor. OUT for Northvale
 verdict: GREENLIGHT (Corrow Ridge, Greyfield), MANUAL REVIEW (Tamsin Vale, Lowmoor re-scored), DISQUALIFY (Northvale)
 contact_priority: Corrow Ridge, the acquirer's CFO or controller and the site GM. Greyfield, the pre-need team, no names on file. Tamsin Vale, signer Unknown
@@ -666,6 +672,7 @@ Emails 2 and 3 are omitted for length. The email names no customer result, becau
 ```text
 Hand-off (read by 06):
 account: Brackhaven Memorial Gardens (TARGET at the time of the snapshot)
+run_date: 2026-05-06 (illustrative, the week of the qualification)
 account_status: TARGET
 verdict: GREENLIGHT
 zone_scores: 1 HIGH, 2 MEDIUM, 3 MEDIUM, 4 MEDIUM, 5 HIGH (illustrative)
@@ -761,6 +768,10 @@ next_action: Owen Pruitt books the first discovery call with Ruth Ellery (date s
 
 ## Changelog
 
+
+### 2.0.1 (2026-10-20)
+
+- Every hand-off block carries a run_date line after its account line, so two instruments on one deal are compared by date (found by the wave two hand-off tests). No other change.
 ### Version 2.0.0 (2026-10-20)
 - Verdict now comes from the profile's Qualification Zones and Verdict Rule, applied as written, with zone scores beside it. The five-signal quick-score stays as the one-glance read and no longer sets the verdict.
 - Region map uses the profile's own tiers, with a source per tier.
