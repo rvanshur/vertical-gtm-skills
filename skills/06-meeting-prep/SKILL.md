@@ -1,6 +1,6 @@
 ---
 name: gtm-meeting-prep
-version: 2.0.0
+version: 2.0.1
 description: "Prepares a rep for a discovery or demo call with one prep sheet: the top pain, a question bank for each discovery phase, one proof point per attendee, objection scripts, a minute-by-minute call flow and a follow-up email draft. The rep reads it during the call."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: [gtm-account-snapshot, gtm-research-outbound, gtm-trigger-event-outbound, gtm-closed-loss-reactivation, gtm-daily-prospecting, gtm-deal-pulse, gtm-stakeholder-mapping, gtm-competitive-strategy, gtm-competitive-displacement, gtm-call-coaching]
 mutating: read-write
 change_log:
+  - version: 2.0.1
+    date: 2026-10-20
+    summary: "Every hand-off block carries a run_date line after its account line, so two instruments on one deal are compared by date (found by the wave two hand-off tests). No other change."
   - version: 2.0.0
     date: 2026-10-20
     summary: "Sales 2.0 shared contract added. Prep method ported in general form: question bank per discovery phase with listen-for phrases, objection scripts, minute-by-minute call flow, follow-up email draft, three-beat demo arc, one proof point per attendee persona. Hand-off fields named in the Output Contract and Integration. the separate artifact section folded into the file option. Examples aligned to the PlotIQ chain, with a Brackhaven discovery example added and a shallow-discovery example."
@@ -595,6 +598,7 @@ If Ruth confirms the double sale and gives a count, run stage 3 and ask who appr
 ```text
 Hand-off (read by 07 and 13):
 account: Brackhaven Memorial Gardens (ACTIVE, Stage 2 Discovery at the time of the call)
+run_date: 2026-05-11 (illustrative, the day before the Stage 2 call)
 prep_sheet: inline, discovery, seven sections
 top_pain: plot records on paper, with a double sale [CRM] (illustrative)
 question_bank: Situation 3, Problem 3, Implication 3, Need-Payoff 2 (top three per phase)
@@ -657,6 +661,7 @@ report_path: none (inline)
 ```text
 Hand-off (read by 07 and 13):
 account: Sable Fork Cemetery (INBOUND)
+run_date: 2026-10-19
 prep_sheet: inline, discovery, seven sections, demo held
 top_pain: none confirmed. Working hypothesis: plot lookups on a spreadsheet, [Inferred]
 question_bank: Situation 3, Problem 3, Implication 3 (top three per phase)
@@ -719,6 +724,7 @@ The AE chooses. The skill does not pick (b) by default, because a demo built on 
 ```text
 Hand-off (read by 07 and 13):
 account: Greyfield Memorial Park (TARGET)
+run_date: 2026-10-19
 prep_sheet: not produced as a demo plan. Discovery-first recommendation with two options
 top_pain: none confirmed (0 of 2 needed for a demo)
 question_bank: Problem 2 questions and Need-Payoff 1 question, from Step 4
@@ -763,6 +769,7 @@ report_path: none (inline)
 ```text
 Hand-off (read by 07 and 13):
 account: Quill Hollow Memorial Park (TARGET)
+run_date: 2026-10-19
 prep_sheet: inline, short form (quick call prep, no file)
 top_pain: records finding in the last state review, [CRM], date [Unknown] (illustrative)
 question_bank: Situation 1, Problem 1, Implication 1 (three questions, from Step 4)
@@ -862,6 +869,10 @@ report_path: none (inline)
 
 ## Changelog
 
+
+### 2.0.1 (2026-10-20)
+
+- Every hand-off block carries a run_date line after its account line, so two instruments on one deal are compared by date (found by the wave two hand-off tests). No other change.
 ### 2.0.0 (2026-10-20)
 - Sales 2.0 shared contract added under Context. The evidence tags, status words, verdict words, stage handling, champion tests, incumbent types and talk-time bands come from it, and the skill refers to them rather than restating them.
 - Format brought to the house standard: Why This Skill Exists, Hard Rules with reasons, Quality Bar, Modes and Epistemic Rules added. the separate artifact section folded into the file option in the Output Contract.

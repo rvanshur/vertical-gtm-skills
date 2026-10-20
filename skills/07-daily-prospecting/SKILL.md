@@ -1,6 +1,6 @@
 ---
 name: gtm-daily-prospecting
-version: 2.0.0
+version: 2.0.1
 description: "Builds the morning dial sheet for a BDR or AE: ranks accounts into Hot, Warm, New and Recycle tiers, removes accounts the BDR guard blocks, and writes a pre-call brief for the top eight, read by the rep at the phone and by the meeting prep skill."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: [gtm-meeting-prep]
 mutating: read-write
 change_log:
+  - version: 2.0.1
+    date: 2026-10-20
+    summary: "Every hand-off block carries a run_date line after its account line, so two instruments on one deal are compared by date (found by the wave two hand-off tests). No other change."
   - version: 2.0.0
     date: 2026-10-20
     summary: "Moved to the Sales 2.0 shared contract. Fit now scored against the profile's Fit Grid with the row quoted. Discovery questions read from the Core Pain Points column. Zones read from the profile. Verdicts spelled GREENLIGHT, MANUAL REVIEW or DISQUALIFY. BDR guard states the pending-assignment case. Six evidence tags. Inline by default, file only when asked. Hand-off fields named for Meeting Prep (06). Worked examples rebuilt on the PlotIQ prospecting day."
@@ -624,6 +627,7 @@ Zone scores for Corrow Ridge zone 3 is `(illustrative)`, and Corrow Ridge and Qu
 ```text
 Hand-off (read by 06):
 account: the morning list of Nadia Brandt (BDR), 2026-10-19, seven accounts
+run_date: 2026-10-19
 dial_sheet: 7 accounts (Hot 2, Warm 2, New 2, Recycle 1 on hold). Corrow Ridge Cemetery, Sable Fork Cemetery, Quill Hollow Memorial Park, Greyfield Memorial Park, Saltmarsh Heritage Group, Tamsin Vale Cemetery, Lowmoor Memorial Gardens
 pre_call_briefs: 7 (the list holds seven accounts, so the top-eight slots are not all filled)
 exclusions: Brackhaven Memorial Gardens (BDR guard, Owen Pruitt named as owner). Northvale Memorial Holdings (OUT, DISQUALIFY). a former Lowmoor contact, name withheld (opt-out, illustrative)
@@ -679,6 +683,7 @@ Dashboard: 6 dials. 3 Hot, 1 Warm, 1 New, 1 Recycle (hold). No exclusions, becau
 ```text
 Hand-off (read by 06):
 account: the pipeline calls of Owen Pruitt (AE), 2026-10-19
+run_date: 2026-10-19
 dial_sheet: 6 accounts (Hot 3, Warm 1, New 1, Recycle 1 on hold). Brackhaven Memorial Gardens, Corrow Ridge Cemetery, Sable Fork Cemetery, Quill Hollow Memorial Park, Tamsin Vale Cemetery, Lowmoor Memorial Gardens
 pre_call_briefs: 6 (one per account on the sheet)
 exclusions: none (AE view, BDR guard not applied)
@@ -751,6 +756,10 @@ report_path: none (inline)
 
 ## Changelog
 
+
+### 2.0.1 (2026-10-20)
+
+- Every hand-off block carries a run_date line after its account line, so two instruments on one deal are compared by date (found by the wave two hand-off tests). No other change.
 ### Version 2.0.0 (2026-10-20)
 - Moved to the Sales 2.0 shared contract. The Shared Contract is pasted under Context unchanged.
 - Fit is scored against the profile's Fit Grid with the row quoted and the tests counted with n. A Weak row is applied only on evidence.
