@@ -89,19 +89,21 @@ the same job.
 **Motion skills (01 to 14)** read the standard sections. This is also the order to fill them in,
 because the first two feed nearly everything:
 
-| Profile section | Read by |
+| Profile section | Read by (counted from the 14 Context tables, 2026-10-20) |
 |---|---|
-| ICP Definitions | 13 of the 14 motion skills |
-| Competitive Landscape | 12 |
-| Core Pain Points | 8 |
-| Buyer Personas | 5 |
-| Qualification Criteria | 4 |
-| Proof Points | 4 |
-| Qualification Zones | 4 (01, 02, 03 and 07) |
-| Value Propositions | 3 |
-| Sales Methodology | 3 (Meeting Prep, MEDDPICC, Call Coaching calibrate to it) |
-| Company | every skill, for framing |
-| Product Modules | Sales-to-CS Handoff (implementation scope) |
+| Buyer Personas | 12 of the 14 motion skills (all but 01 and 14) |
+| Competitive Landscape | 10 |
+| Value Propositions | 10 |
+| Proof Points | 9 |
+| Qualification Criteria | 9 (its Buying Triggers and Disqualifiers tables included) |
+| Core Pain Points | 7 (with the Discovery question column) |
+| Company | 7 name it, and every skill uses it for framing |
+| ICP Definitions | 5 (01, 02, 03, 05 and 07) |
+| Qualification Zones | 5 (01, 02, 03, 07 and 11) |
+| Sales Methodology | 5 (06, 08, 09, 11 and 13 calibrate to it) |
+| Qualification Stage Gates | 3 (02, 06 and 07) |
+| Market Segments | 01 |
+| Product Modules | 14 Sales Handoff (implementation scope) |
 
 **Sales skills** each also read one section of their own, which the skill's `CUSTOMIZE.md`
 interview writes. The template's "Sales-Layer Sections" block lists them, and the PlotIQ example
@@ -116,7 +118,13 @@ shows each one filled.
 | `## Closed-Loss Intelligence` | 05 Closed-Loss Reactivation | 05 |
 | `## Meeting Prep` | 06 Meeting Prep | 06 |
 | `## Daily Prospecting` | 07 Daily Prospecting | 07 |
-| `## Deal Health`, `## MEDDPICC`, `## Buying Committee`, `## Competitive Patterns and Trends`, `## Displacement`, `## Call Coaching`, `## Implementation Profile` | 08 to 14, each its own | 08 to 14 |
+| `## Deal Health` | 08 Deal Pulse | 08 |
+| `## MEDDPICC` | 09 MEDDPICC Analysis | 09 |
+| `## Buying Committee` | 10 Stakeholder Mapping | 10 |
+| `## Competitive Patterns and Trends` | 11 Competitive Strategy | 11 |
+| `## Displacement` | 12 Competitive Displacement | 12 |
+| `## Call Coaching` | 13 Call Coaching | 13 |
+| `## Implementation Profile` | 14 Sales Handoff | 14 |
 
 **Operating skills** each add one optional section of their own. The skill's `CUSTOMIZE.md`
 interview writes it, and the skill's Context section reads it. If the section is missing, the

@@ -66,18 +66,18 @@ START: What are you trying to do?
 
 | Skill | Required Input | Optional Input | Output |
 |-------|---------------|---------------|--------|
-| **08 Deal Pulse** | Company name + known deal context | CRM data, call notes, emails | 16-signal scorecard, health score (0-100), risk flags, next actions |
-| **09 MEDDPICC** | Company name + deal context | Discovery notes, stakeholder info | 8-element analysis (1-5 scoring), evidence grades, gap identification |
-| **10 Stakeholder Map** | Company name + known contacts | Org chart, call mentions | 7-role buying committee map, influence assessment, ghost node alerts |
-| **11 Competitive Strategy** | Company name + competitor name | Competitor intel, prospect feedback | Battlecard, positioning matrix, gap questions, win plan |
-| **12 Competitive Displacement** | Target company + incumbent product | Incumbent failure signals | Displacement narrative, 4-step outbound sequences, failure-pattern messaging |
+| **08 Deal Pulse** | Account name with an open opportunity, CRM access | Call notes, emails | `health_score` (0 to 100), `risk_level`, `pillar_scores` (4), `signal_scores` (16), `next_actions`. Read by 09, 13 and 06 |
+| **09 MEDDPICC Analysis** | Account name, opportunity amount, deal stage, CRM access | Contact names and titles | `meddpicc_scores` (8, with the weighted table), `health_score`, `stage_minimum_met`, `stage_recommendation` (ADVANCE, HOLD, DOWNGRADE or DISQUALIFY), `risk_patterns`. Read by 10, 11 and 14 |
+| **10 Stakeholder Mapping** | Account name, known contacts with titles | Org chart, call mentions | `threading_score` (0 to 10, seven dimensions shown), `buying_roles`, `ghost_nodes` ("UNKNOWN, role", never a name), `champion_status` (Strong, Developing or None, with the tests met). Read by 09 and 06 |
+| **11 Competitive Strategy** | Account name with an open opportunity, the competitor or incumbent | Prospect feedback, competitor intelligence with its source | `incumbent_type` (one of the seven), `threat_level`, `gap_matrix`, `battlecard`, `win_plan`. Only Verified proof points enter a talk track. Read by 06 and 12 |
+| **12 Competitive Displacement** | Target account, the incumbent product | Incumbent failure signals with their source | `incumbent_type`, `displacement_difficulty` (Low, Medium or High), `target_personas`, `sequence`. Read by 02 and 06 |
 
 ### Close & Handoff Stage
 
 | Skill | Required Input | Optional Input | Output |
 |-------|---------------|---------------|--------|
-| **13 Call Coaching** | Call transcript or detailed notes, call type (discovery/demo) | Methodology preferences | Methodology grade (SPIN /30 or Challenger /40), category scores, coaching notes |
-| **14 Sales-to-CS Handoff** | Deal summary, key stakeholders, implementation scope | Technical requirements, timeline | 6-dimension readiness score, implementation plan, risk flags |
+| **13 Call Coaching** | Transcript or detailed notes, call type (discovery or demo) | Methodology preferences from the profile | `call_score` (discovery N of 35, demo N of 40), `category_scores`, `focus_area`, `coaching_points` (each with a quote or a grade), `key_moments` (seven types), `champion_status`. Read by 08, 09 and 06 |
+| **14 Sales Handoff** | Deal summary, stakeholders, contracted modules, kickoff date | Technical requirements, data sources | `readiness_score` (0 to 100), `dimension_scores` (6), `three_dates` (kickoff, go-live, full adoption), `risks`, `quick_wins`. Read by the implementation lead and Wrap-Up |
 
 ---
 
@@ -101,35 +101,51 @@ Each skill asks for the upstream fields by those names in its Integration sectio
 ### Pattern 2: Enterprise Target (AE + BDR)
 ```
 Research-Driven Outbound (03)
+  hands pov_brief, signal_map, wedge, persona_emails
   → Response / meeting booked?
     → Meeting Prep (06) [discovery]
+      hands prep_sheet, top_pain, question_bank, attendees, proof_point
       → After call: Call Coaching (13)
+        hands call_score, category_scores, focus_area, coaching_points, key_moments, champion_status
         → Deal Pulse (08)
+          hands health_score, risk_level, pillar_scores, signal_scores, next_actions
           → Meeting Prep (06) [demo]
 ```
+Every hand-off block names its account and its run date, so two instruments on one deal are compared by date, never assumed to be the same day.
 
 ### Pattern 3: Pipeline Review (Manager)
 ```
 Deal Pulse (08) on all commit deals
-  → Flag deals < 60 health score
+  hands health_score, risk_level, pillar_scores, signal_scores, next_actions
+  → Flag deals under 60 health score
     → MEDDPICC Analysis (09) on flagged deals
-      → Stakeholder Mapping (10) on deals with < 3 known contacts
+      hands meddpicc_scores, health_score, stage_minimum_met, stage_recommendation, risk_patterns
+      → Stakeholder Mapping (10) on deals with fewer than 3 known contacts
+        hands threading_score, buying_roles, ghost_nodes, champion_status back to 09 and on to 06
 ```
+Stage words after a slip are one rule in 08 and 09: HOLD with a dated action, then DOWNGRADE one stage if the date passes unconfirmed, never back to Discovery once the pain is confirmed.
 
 ### Pattern 4: Competitive Deal
 ```
 Competitive Strategy (11)
+  hands incumbent_type, threat_level, gap_matrix, battlecard, win_plan
   → Meeting Prep (06) [with battlecard context]
     → After call: Call Coaching (13)
       → Deal Pulse (08) [updated with competitive signals]
+  → Competitive Displacement (12) [when the same incumbent sits in TARGET accounts]
+    hands incumbent_type, displacement_difficulty, target_personas, sequence to 02 and 06
 ```
 
 ### Pattern 5: Deal Close + Handoff
 ```
 MEDDPICC Analysis (09) [final qualification check]
-  → All elements GREEN?
-    → Sales-to-CS Handoff (14)
+  hands meddpicc_scores, health_score, stage_minimum_met, stage_recommendation, risk_patterns
+  → stage_recommendation ADVANCE and the Stage 6 minimum met?
+    → Sales Handoff (14) [readiness check two weeks before signature, handoff at signature]
+      hands readiness_score, dimension_scores, three_dates, risks, quick_wins
+      → the implementation lead, and Wrap-Up for the session close
 ```
+A HOLD from 09 runs 14 as a preview only. No handoff is issued without the three dates.
 
 ### Pattern 6: Win-Back Campaign
 ```
@@ -159,12 +175,14 @@ These figures are taken from the skill files. If you change a skill's scoring, c
 - **Scale:** each of the 8 elements scored 1-5, weighted into a 0-100 health score
 - **Weights:** Economic Buyer 20%, Metrics 15%, Identified Pain 15%, Champion 15%, Decision Criteria 10%, Decision Process 10%, Paper Process 10%, Competition 5%
 - **Bands:** 80-100 Green, 60-79 Yellow, 40-59 Orange, 0-39 Red
-- **Stage minimums:** Discovery 30+, Trial & Evaluation 50+, Negotiation 65+, Closing 75+, each with critical elements that must score 3 or better
+- **Stage minimums (the skill's defaults):** Stage 2 Discovery 30 or higher, Stage 3 Demo and Stage 4 Proposal 50 or higher, Stage 5 Negotiate 65 or higher, Stage 6 Closed-Won and Handoff 75 or higher, each with critical elements at a floor. Where the profile's Qualification Stage Gates state a different figure, the report shows both and flags it
+- **Stage words:** ADVANCE, HOLD, DOWNGRADE, DISQUALIFY
 
 ### Call Coaching (Skill 13)
-- **Discovery (SPIN + Priority Ladder):** 6 categories, /30. 26-30 Excellent, 20-25 Good, 14-19 Needs Improvement, 8-13 Poor, 6-7 Critical
-- **Demo (Challenger + MEDDPICC + Question the Problem):** 8 categories, /40. 34-40 Excellent, 26-33 Good, 18-25 Needs Improvement, 10-17 Poor, 8-9 Critical
-- **Per category:** specific behavioral criteria, with evidence from the transcript
+- **Discovery (SPIN, Priority Ladder and Alternatives):** 7 categories, out of 35. 31 to 35 Excellent, 24 to 30 Good, 17 to 23 Needs Improvement, 10 to 16 Poor, 7 to 9 Critical
+- **Demo (Challenger, MEDDPICC and Question the Problem):** 8 categories, out of 40. 34 to 40 Excellent, 26 to 33 Good, 18 to 25 Needs Improvement, 10 to 17 Poor, 8 to 9 Critical
+- **Per category:** specific behavioral criteria, with a quote from the transcript or an evidence grade (Strong, Moderate, Weak) on every coaching point
+- **Talk time and champion tests:** the shared bands and the shared champion tests in the Shared Contract, used by 06, 09, 10 and 13 alike
 
 ### Account Pre-Qualification (Skill 01)
 - **Scale:** 8 criteria, each scored STRONG / PARTIAL / WEAK / UNKNOWN, plus Qualification Zones

@@ -242,9 +242,9 @@ follow what is written here.
 
 Named customers with specific metrics, matched to the personas and segments they resonate with. These get embedded into outbound sequences, meeting prep and battlecards.
 
-| Customer | Key Metric | Segment | Use When | Status |
-|----------|-----------|---------|----------|--------|
-| ___ | [A specific number, e.g. "212 unsold plots found in 90 days"] | [SMB/MM/Ent] | [Scenario where this proof point lands best] | [Verified / Benchmark / Illustrative] |
+| Customer | Key Metric | Segment | Displaced vendor | Use When | Status |
+|----------|-----------|---------|------------------|----------|--------|
+| ___ | [A specific number, e.g. "212 unsold plots found in 90 days"] | [SMB/MM/Ent] | [The incumbent this customer left, one of the seven types in Competitive Landscape, or "none" for an industry row, or [Unknown]] | [Scenario where this proof point lands best] | [Verified / Benchmark / Illustrative] |
 | ___ | ___ | ___ | ___ | ___ |
 | ___ | ___ | ___ | ___ | ___ |
 | ___ | ___ | ___ | ___ | ___ |
@@ -311,7 +311,7 @@ Each of the 14 sales skills in `skills/` reads one extra section of its own, whi
 
 Nothing to fill in here now. Run a skill's interview and paste the section it produces at the bottom of this file, as a `##` heading with the name above. The completed PlotIQ example shows each one filled.
 
-The seven that feed the prospecting and discovery skills have a fixed shape, so you can also fill them by hand:
+All fourteen have a fixed shape, so you can also fill them by hand. The first seven feed the prospecting and discovery skills, the last seven the deal, competitive, coaching and handoff skills:
 
 ```markdown
 ## Industry Context
@@ -355,6 +355,56 @@ The seven that feed the prospecting and discovery skills have a fixed shape, so 
 - **Exclusion rules:** [who never appears on the sheet]
 - **Opener, verbatim:** [what the best rep actually says]
 - **Trustworthy CRM fields:** [field, trust level, who maintains it]
+
+## Deal Health
+- **Rapport method name:** [your team's name for it]
+- **Momentum method name:** [your team's name for it]
+- **Urgency method name:** [your team's name for it]
+- **Day in the Life method name:** [your team's name for it]
+
+## MEDDPICC
+- **Stage minimums:** [the team's own health and critical-element minimums, or "default" to use the skill's table]
+- **Paper process steps:** [step, owner, typical duration. Read by Paper Process scoring]
+- **Metric, customer-worded:** [the number a champion repeats back. Read by Metrics scoring]
+- **Champion proof-of-life:** [the team's own examples of champion actions it has seen in won deals. Read by Champion scoring]
+- **Deal killers from real losses:** [the elements that lost deals, ranked. Read by the gap ranking in Step 4]
+
+## Buying Committee
+- **Role-title map:** [buying role, and the titles that fill it in our market]
+- **Non-buyer rows:** [each non-buyer who slows or stops our deals, why they matter here, and their usual stance as a hypothesis]
+- **Ghost patterns:** [where hidden stakeholders live in our accounts, by account type]
+- **Threading benchmark:** [named contacts and roles in our wins versus our losses, with the count]
+- **Standing tensions:** [the political patterns to check on every deal]
+- **Available plays:** [engagement moves our team can actually run]
+
+## Competitive Patterns and Trends
+- **Failure patterns:** [pattern | cases counted and source | discovery question]. Fewer than five cases is marked observation.
+- **Trends:** [trend | dated source | what it means for the incumbent's customers]. A number appears only with its source named.
+- **Proof point status:** [each proof point in Proof Points, marked Verified, Benchmark or Illustrative]. Only Verified rows go into talk tracks.
+- **Jurisdiction deadlines:** [rule | citation | date checked], or NONE on file.
+
+## Displacement
+- **Incumbent template rows:** one row per incumbent type, with Positioning (tagged), Wedge, three discovery questions, and the primary and secondary persona row numbers from Buyer Personas
+- **Difficulty tests:** for each active incumbent, whether the no-term, 180-day renewal and exit-fee tests are met, each contract fact with its tag
+- **Proof points against incumbents:** the Displaced vendor and Status for each proof point, read from the Proof Points table, where the customer rows stay
+- **Renewal timing:** each incumbent's renewal month and how we learned it, tagged
+- **Won-away failure patterns:** each pattern with the won-away customer's words and its tag
+
+## Call Coaching
+- **Discovery category names:** [your names in order, or "defaults"]
+- **Demo category names:** [your names in order, or "defaults"]
+- **Demo element names:** [your names, or "defaults"]
+- **Pacing overrides:** [your shares for each element, or "starting defaults"]
+- **Extra listen-for phrases:** [phrase, the pain it points to, one per line, or "none"]
+
+## Implementation Profile
+- **Typical days, kickoff to go-live:** [number of days from completed deals, or RECORD]
+- **How data moves:** [file upload, scheduled export or manual entry, and the standard format]
+- **Source systems per customer:** [how many, and the weeks each extra system adds]
+- **Export format familiarity:** [familiar or new to the team, and the weeks saved when familiar]
+- **IT lead time:** [weeks from request to a named IT owner]
+- **Full adoption months:** [2 unless your team differs]
+- **Team quick win types:** [any types beyond the four in the skill]
 ```
 
 ---

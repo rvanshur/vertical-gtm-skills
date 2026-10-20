@@ -5,6 +5,22 @@ bottom of its `SKILL.md`, with the detail.
 
 ---
 
+## 2026-10-20: Sales 2.0, Wave Two (Skills 08 to 14)
+
+**All 14 sales skills are now one system.** Deal Pulse, MEDDPICC Analysis, Stakeholder Mapping, Competitive Strategy, Competitive Displacement, Call Coaching and Sales Handoff are at 2.0.0, each brought to the skill standard in place and each carrying the same Shared Contract as wave one. The champion tests, the seven incumbent types and the talk-time bands appear once per skill, inside the contract, and nowhere else.
+
+**Hand-offs by field name, with a run date.** Each skill's Output Contract names the fields the next skill asks for (`health_score`, `risk_level`, `pillar_scores`, `signal_scores`, `meddpicc_scores`, `stage_recommendation`, `threading_score`, `ghost_nodes`, `champion_status`, `incumbent_type`, `gap_matrix`, `displacement_difficulty`, `call_score`, `coaching_points`, `key_moments`, `readiness_score`, `three_dates` and the rest). Every worked example ends with a hand-off block that names its account, its status and its run date, so two instruments on one deal are compared by date. Fresh-agent hand-off tests ran on 08 to 09, 09 to 10, 09 to 14, 13 to 08 and the session close.
+
+**Every scoring table is recomputed.** The family checker now parses each example's table (sixteen Deal Pulse signals, the eight MEDDPICC weights, the seven threading dimensions, the Call Coaching categories, the six readiness dimensions) and matches the printed total and the hand-off score to the rows.
+
+**What each skill gained.** Deal Pulse names its four methods in plain words and states the pillar-weakness rule precisely. MEDDPICC uses one set of stage words (ADVANCE, HOLD, DOWNGRADE, DISQUALIFY) and one rule after a slip, shared with Deal Pulse: HOLD with a dated action, then DOWNGRADE one stage, never back to Discovery once the pain is confirmed. Stakeholder Mapping adds the non-buyers who still shape a deal, writes every ghost node as a role, and shows the threading formula. Competitive Strategy carries the failure-pattern and trend tables and lets only Verified proof into a talk track. Competitive Displacement has a template per incumbent type, a directional difficulty scale, and the rule that every number in an email has a named, dated source. Call Coaching adds an Alternatives category (discovery is now 7 categories out of 35, bands restated with the arithmetic), demo pacing defaults, evidence grades on every coaching point, seven key-moment types, the unraised-objections checklist and the demo return-on-investment formulas with blank inputs. Sales Handoff reads an Implementation Profile from the profile, states the two-month default with every adjustment's arithmetic, and never issues a handoff without the three dates.
+
+**Template and example.** The seven wave-two profile sections (Deal Health, MEDDPICC, Buying Committee, Competitive Patterns and Trends, Displacement, Call Coaching, Implementation Profile) now have a fixed shape in the template, and the PlotIQ example fills each one (with `[RECORD]` where a beta company has no history). Proof Points gains a Displaced vendor column.
+
+**Docs.** README rows 8 to 14, the skill reference (the Execute and Close tables with field names, patterns 2 to 5 rewritten with the hand-offs, the scoring reference), and the read-count tables in `docs/how-it-fits.md` and `docs/customization.md`, recounted from the 14 Context tables.
+
+---
+
 ## 2026-10-20: Sales 2.0, Wave One (Skills 01 to 07)
 
 **The seven prospecting and discovery skills are one system.** Account Qualification, Account Snapshot, Research Outbound, Trigger Event Outbound, Closed-Loss Reactivation, Meeting Prep and Daily Prospecting are at 2.0.0, each brought to the skill standard in place and each carrying the same Shared Contract under its Context section: five account status words, three verdict words spelled one way, stage names read from the profile, one set of six evidence tags, the rule that every rate carries its n, report first and a file only when asked, nothing sends and nothing writes to the CRM, the BDR guard, and one list each for champion tests, incumbent types and talk-time bands.
@@ -17,7 +33,7 @@ bottom of its `SKILL.md`, with the detail.
 
 **Docs.** README rows 1 to 7, the skill reference (inputs, outputs and the chaining patterns rewritten with field names), the profile maps in `docs/how-it-fits.md` and `docs/customization.md`.
 
-Skills 08 to 14 follow in wave two.
+Skills 08 to 14 followed the same day, in the entry above.
 
 ---
 

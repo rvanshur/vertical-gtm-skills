@@ -1,79 +1,243 @@
 ---
 name: gtm-competitive-displacement
-description: "Generates targeted outbound sequences to displace a known incumbent (classifies the incumbent, loads competitor-specific failure patterns and displacement proof points, identifies gaps, and produces persona-tailored 4-step email sequences with competitive hooks, discovery questions, and objection handling)"
-version: 1.3.0
-category: GTM-Enablement
+version: 2.0.0
+description: "Plans outbound to displace a known incumbent, by classifying the incumbent, rating how hard the switch is, and drafting persona-tailored four-step email sequences for the rep to read and send, so the BDR or AE who works the account knows what to say and what not to say."
+category: Sales-Methodology
 author: Ryan Vanshur
 license: MIT
-updated: 2026-10-13
-tags: [competitive-displacement, incumbent-displacement, competitive-outbound, competitor-takeout, displacement-sequences]
+updated: 2026-10-20
+tags: [competitive-displacement, incumbent-displacement, competitive-outbound, competitor-takeout, displacement-sequences, displacement-difficulty]
 requires:
-  skills: []
+  skills: [gtm-competitive-strategy]
+mutating: read-write
+change_log:
+  - version: 2.0.0
+    date: 2026-10-20
+    summary: "Moved to the Sales 2.0 standard. Adds a displacement template per incumbent type (Positioning, Wedge, three discovery questions), a Low, Medium and High difficulty scale with one directional test each, and a Displaced vendor and Status column on proof points. Every number in an email needs a named, dated source or it is removed. The BDR guard is a Hard Rule with its reason. One Epistemic Rules section with one Confidence subsection. Hand-offs to 02 and 06 are named, and Integration reads 11 by field name. The report is inline, and the file is written only when asked."
+  - version: 1.3.0
+    date: 2026-10-13
+    summary: "Examples re-cast on the PlotIQ example company. Example arithmetic and listed errors fixed, and a non-success example added."
 ---
 
 # Competitive Displacement Outbound
 
 ## Overview
 
-Outbound sequences designed to displace a known incumbent. Classifies the incumbent type, loads competitor-specific failure patterns and labeled displacement proof points, identifies gaps between the incumbent and your product, and produces persona-tailored 4-step email sequences with competitive hooks, discovery questions, and objection handling. Best when you know what the account currently uses.
+Competitive Displacement builds outbound for an account that already uses a known incumbent. It classifies the incumbent by type, rates how hard the switch is, and drafts persona-tailored four-step email sequences that the rep reads, edits and sends. It is best used when you know what the account uses today. If you do not know, run Account Snapshot (02) first.
 
-**Core Principle:** Never attack a competitor directly. Lead with what your product enables, not what the competitor lacks. The prospect chose their current tool for a reason. Respect that decision while surfacing the gaps they may not realize they have.
+The report is for the BDR or AE who will write to the buyer. Every competitive claim in it carries an evidence tag, so the rep can see what may go into an email and what may only be asked on a call.
+
+Works in Claude Code, in Codex, and in ChatGPT as a custom GPT.
+
+**Core Principle:** Displace on the incumbent's known failure, with a wedge the buyer can see in one email.
+
+---
+
+## Why This Skill Exists
+
+A displacement email fails in one of two ways. It names a problem the buyer does not have, so it is ignored. Or it states a figure or a competitor weakness with no source, so the first buyer who asks where it came from finds nothing behind it. The people who receive these emails use the incumbent's product every day, so one wrong claim identifies the sender as a vendor who guesses.
+
+A second failure is timing. A BDR writes to a buyer who already has an AE in an active deal, and two people in one inbox cost the deal. This skill stops both failures before the first email is drafted: it checks the source of every claim, and it checks who owns the account.
 
 ---
 
 ## Role
 
-You are a **competitive outbound specialist generating displacement sequences**, not a generic email writer. You classify the incumbent, load competitor-specific failure patterns and displacement proof points, identify gaps between the incumbent and your product, and produce 4-step email sequences with competitive hooks that feel like genuine curiosity, not attacks. Everything company-specific (the competitors, the proof points) comes from the client profile (see **Context** below), so the same skill generates sequences for any vertical without modification.
+You are a competitive outbound specialist. You classify the incumbent, rate the displacement difficulty, and draft sequences that use the profile's own displacement template, failure patterns and proof points. You do not invent a competitor weakness.
+
+You refuse four things. You do not put a number or a competitive claim into an email without a named source and a tag. You do not write sequences for a BDR on an account that an AE owns in an active deal, unless that AE has said yes. You do not name the competitor in a subject line or attack the prospect's choice. You do not send anything or write to the CRM. The reasons sit in **Hard Rules**.
 
 ---
 
 ## Input Contract
 
-What this skill needs before it starts. **If a required input is missing, ask. Do not guess.**
+If a required input is missing, ask. Do not guess.
 
 | Input | Required | Notes |
 |-------|----------|-------|
-| Account name | ✅ Required | Company you're targeting for displacement |
-| Known incumbent | ✅ Required | Their current solution (or "unknown"). If unknown, run discovery first |
-| How incumbent identified | Optional | CRM notes, job posting, industry knowledge, etc. |
-| User role | Optional | BDR or AE (if BDR + active AE deal exists, generates analysis only, not sequences) |
-| Contacts at account | Optional | Known persona targets for sequencing |
+| Account name | Required | The target account. Its status (TARGET, INBOUND, ACTIVE with its stage number, LOST or OUT) is read from the CRM when there is one, otherwise from the profile's example cast |
+| Known incumbent | Required | The product the account uses now. If it is unknown, say so and run Account Snapshot (02) first. A suspected process, such as paper records, counts as an incumbent |
+| User role | Required | BDR or AE. Step 0 reads it from the CRM and asks only when the CRM does not say, because the BDR guard depends on it |
+| How the incumbent was identified | Optional | CRM note, prospect statement, job posting, conference conversation. Sets the confidence in Epistemic Rules |
+| Incumbent failure signals, with their source | Optional | Each one is used only with its tag. Without a source, it becomes a discovery question |
+| Contacts at the account | Optional | Named contacts are used by name. Without a name, the persona title is used and the contact is written `[Unknown]` |
 
 ---
 
 ## Output Contract
 
-Every run produces either a **full displacement cheatsheet (standalone BDR sequences)** or a **displacement analysis (for active AE deals)**. The structure is fixed: incumbent profile + competitive gaps + persona-specific 4-email sequences + objection handling + summary. This consistency makes sequences reviewable and reusable across your team.
+Every run returns its report in the chat. The file is written only when the user asks for it.
 
-Core commitments: **incumbent classification + gap matrix + persona sequences (4 emails each) + discovery questions + objection handling + proof points**. These are organized into eight fixed sections (see *Artifact Generation* below).
+| Output | Where It Lives | Notes |
+|--------|----------------|-------|
+| Displacement report | In the chat | Eight sections in this order: Company and Incumbent Snapshot, Competitive Gap Matrix, Key Personas, Displacement Hooks, Discovery Questions, Product Against Incumbent, Objection Handling, Call Flow. Under the BDR guard, only the Snapshot, the Gap Matrix and the Discovery Questions appear, with the guard note |
+| `incumbent_type` | Company and Incumbent Snapshot | The type the profile's Competitive Landscape files the incumbent under, with its confidence |
+| `displacement_difficulty` | Company and Incumbent Snapshot | Low, Medium or High, with the test that set it and whether that test was met |
+| `target_personas` | Key Personas | The profile rows used, ranked, each with its title, the count as n of N, and the contact or `[Unknown]` |
+| `sequence` | Below Key Personas | Four emails per persona, drafted and never sent. Under the BDR guard, `none (guard)` |
+| `report_path` | Header of the report | `none (inline)` unless the user asked for a file |
+| `next_action` | Last line of the report | The owner and a date, for example "Nadia Brandt finds the contact's name, then sends Email 1 by 2026-10-23" |
+| File, on request | `<account>_gtm-competitive-displacement_<date>.md`, saved beside the user's other account notes | Written only when the user asks, in Markdown. The ask is the approval step |
 
 ---
 
 ## Context
 
-**This skill does not contain client-specific information. It points to it.**
-
-> **Load the client profile from [`profiles/client-profile.md`](../../profiles/client-profile.md) before starting.** That single file is shared by all 14 skills in this suite. Update it once and every skill inherits the change on its next run.
-
-Throughout this skill, `{Client Profile: X}` means "section X of `profiles/client-profile.md`". Sections this skill reads:
+This skill does not carry client-specific information. It reads the client profile at [`profiles/client-profile.md`](../../profiles/client-profile.md). Throughout this skill, `{Client Profile: X}` means section X of that file.
 
 | Profile section | Used for |
 |---|---|
-| Company | Account framing, vertical context |
-| Buyer Personas | Persona selection for sequencing |
-| Competitive Landscape | Competitor classifications, failure patterns, discovery questions, proof points |
-| Value Propositions | Differentiation and displacement wedges |
-| Proof Points | Displacement stories matched to incumbent type |
+| Company | Account framing and vertical context |
+| Buyer Personas | The rows a template names as primary and secondary. The count is the profile's row count, written as n of N |
+| Competitive Landscape | The incumbent's row (type, pitch, weakness, pain reported after 6 to 12 months with its source) and the competitive discovery questions |
+| Value Propositions | The wording of the wedge |
+| Proof Points | The Displaced vendor and Status columns, which decide whether a proof point can be cited |
+| Displacement | One template row per incumbent type, and the team's notes on the difficulty tests |
 
-`{Methodology: X}` means "subsection X of the **Methodology** section below."
+If a section in this table is missing, the skill says so once at the start, says it is running uncustomized on the defaults in Methodology, and marks every output that depended on the missing section. The Displacement section is the one most often missing, and `CUSTOMIZE.md` writes it.
+
+### The Shared Contract
+
+Everything in this section is used identically by the 14 sales skills (01 to 14). The names below are copied exactly, so the 14 never drift from each other.
+
+#### The Profile Is the Only Source of Company Facts
+
+Every company fact (ICPs, personas, pains, value propositions, proof points, competitors, triggers, zones, stage names, methodology) comes from `profiles/client-profile.md`. A skill reads the sections its Context table names and nothing else. A skill never carries a company fact of its own. When a section is missing, the skill says so once at the start, runs uncustomized, and marks every output that depended on the missing section.
+
+#### Account Status, Five Words
+
+Every account carries one status: **TARGET** (researched, not yet contacted), **INBOUND** (they asked us), **ACTIVE** with its stage number (open deal), **LOST** (closed-lost, eligible for reactivation), **OUT** (disqualified). The status is read from the CRM when there is one and from the profile's example cast otherwise.
+
+#### The Verdict Words and the Zone Rule
+
+A qualification verdict is one of **GREENLIGHT**, **MANUAL REVIEW** or **DISQUALIFY**, spelled exactly so. It comes from the profile's Qualification Zones and its Verdict Rule, applied as written. MEDIUM never counts as HIGH. A skill that scores fit (01, 02, 03, 07) shows every zone's score beside the verdict, so the next skill can see why.
+
+#### Stage Names Come From the Profile
+
+Deal stages are read from the profile's Qualification Stage Gates and used by number and name as written there. No skill carries its own stage list. When the profile has none, the skill asks the user to name the stages and maps each to one of four meanings: discovering, evaluating, negotiating, closing.
+
+#### Evidence Tags, One Set
+
+Every fact in a report carries one tag naming where it came from:
+
+| Tag | Meaning |
+|---|---|
+| `[CRM]` | A field or note in the CRM |
+| `[Call]` | Said on a recorded or transcribed call, with the call date |
+| `[Notes]` | A rep's or AE's written notes |
+| `[Public: source]` | A public document, page or filing, with the source named |
+| `[Inferred]` | Reasoned from other facts, with the reasoning shown and the method named |
+| `[Unknown]` | Not known. Written as unknown, never left blank |
+
+A fact with no tag is removed. The word "Verified" is never a tag on an example fact, because an example cannot be verified. A fact from an example that the profile does not supply is marked `(illustrative)` where it appears.
+
+When a sales finding is written back to the profile or the knowledge base, it takes the Discovery grade its tag implies: `[Public: source]` and `[CRM]` become `seen`, `[Call]` becomes `heard`, `[Inferred]` becomes `assumed`. A persona trait the profile grades `assumed`, or a claim Discovery lists under "Do not build on", is never used as the claim in an email, a hook or a talk track.
+
+#### Numbers
+
+Every rate carries its n ("4 of 7 criteria", never "57%" alone). A pattern needs five cases. A blank CRM field is unknown, not a no. "No difference found" is a finding and is reported. A benchmark needs a named, dated source or it is removed. Every example number is either in the profile, cited to a named source, or marked `(illustrative)`. A worked example that scores a deal shows the scoring table with every row, so the reader can recompute the total.
+
+#### Report First, File When Asked
+
+Every skill returns its report inline, in the sections its Output Contract names. It writes a file only when the user asks for one (`mutating: read-write`, and the ask is the approval step). The file is Markdown, named `<account>_<skill>_<date>.md`, saved beside the user's other account notes.
+
+#### Nothing Sends, Nothing Writes to the CRM
+
+A skill drafts emails, call openers and sequences. The rep sends them. A skill never sends, never enrolls a contact, and never writes to the CRM. The user does those, after reading the draft.
+
+#### The BDR Guard
+
+A BDR-facing skill (02, 03, 04, 05, 07, 12) never works an account that is ACTIVE with an AE owner unless that AE has said yes, because two people writing to one buyer costs the deal. An account pending AE assignment is not ACTIVE. It is worked, and the output says it is pending.
+
+#### Champion Tests, One List
+
+A contact scores **Strong** as a champion when three or more of these are met with evidence, each tagged: creates urgency inside their company, explains the internal politics, offers introductions, asks how to help, defends the solution when we are not in the room, shares competitor intelligence, commits to next steps with dates. One or two met is **Developing**. None met is **None**. A friendly contact is not a champion. The same list and thresholds are used by 09, 10 and 13.
+
+#### Incumbent Types, One List
+
+A competitor or incumbent is one of seven types: direct software, a single-function tool, a service bureau, a manual process, no program at all, outside professionals, an adjacent tool. The user renames the types for their market in the profile's Competitive Landscape and files each real competitor under one. The same seven are used by 11 and 12.
+
+#### Talk-Time Bands, One Table
+
+Rep talk time as a share of the call, by call type: discovery 30% to 40%, demo 50% to 60%, negotiation 40% to 50%, follow-up 35% to 45%, executive 30% to 40%. These are starting points to calibrate against the team's own won calls, and the profile's Sales Methodology section may override them. The same table is used by 06 and 13.
+
+#### What the Close Reads
+
+Wrap-Up reads by name the **report path** when a file was written, the **verdict** or **score** the session produced, and the **next action** with its owner and date. Ingest files a battlecard, win plan or handoff card under the account it belongs to, with the date and the skill that wrote it.
+
+#### Guild Disciplines, Restated
+
+1. **Evidence over optimism.** Score what the record proves, not what the rep believes. Under-scoring protects a deal. Over-scoring kills it.
+2. **Silence is not a no.** An empty field is unknown and is counted in no denominator.
+3. **One cast, one story.** Every example uses the profile's example company and its cast. An example never presents an invented number as a real result.
+4. **The profile is upstream.** Strategy skills write it. Sales skills read it. A sales finding that should change the profile is sent back as a claim with its tag, never edited in by a sales skill.
+5. **Published numbers only.** A figure from a published Guild article may be cited to it. Any other figure in an example is marked illustrative.
+6. **Names as roles** in anything shared. No vendor, tool or model names in a free skill beyond the platform line. The CRM is "the CRM".
+7. **Draft, never send.** A rep reads before anything leaves.
 
 ---
 
 ## Methodology
 
-Your displacement playbook. The frameworks below provide a structured approach to outbound sequences focused on competitive positioning and evidence grading. These are the defaults. They adapt to your sales methodology if different.
+Your displacement playbook. The defaults below apply until the profile's Displacement section says otherwise. Evidence tags, numbers and confidence follow Epistemic Rules and the Shared Contract.
 
-The evidence grades, sourcing rules and confidence calibration are defined once, in the Epistemic Rules section below.
+### The Displacement Template
+
+The profile's Displacement section holds one row per incumbent type the account base uses. Every row has the same fields:
+
+```text
+Incumbent type: the type the profile's Competitive Landscape files the incumbent under
+Positioning: what the buyer does now, and why it falls short, with its tag
+Wedge: the one thing we do differently, in one sentence the buyer can read in one email
+Discovery question 1: a question that exposes the gap, asked from curiosity
+Discovery question 2: a second question on the same gap, or on the renewal
+Discovery question 3: a question that finds the decision maker or the renewal date
+Primary persona: a row number from the profile's Buyer Personas table
+Secondary persona: a row number from the profile's Buyer Personas table
+```
+
+A template keeps the team's tested wedge in front of the rep, so the rep does not invent one in the moment. Positioning is written with its tag, because the buyer will ask where it came from. Each discovery question must be a real question. A statement dressed as a question is rewritten before it is used.
+
+### Displacement Difficulty
+
+The difficulty scale has three levels. Each level has one test, and each test is directional. It sets a starting rating from the account's contract facts. It does not predict a win.
+
+| Rating | Test (directional) | Met means |
+|--------|--------------------|-----------|
+| Low | No contract term to exit. A manual process, or a tool the account can cancel at the next cycle | Low |
+| Medium | A renewal inside 180 days | Medium |
+| High | A contract term running more than 180 days past today, with an exit fee in the contract | High |
+
+The rating is the highest level whose test is met. When the contract term is unknown, no test can be run, so the rating is High and the output says the term is unknown. An unknown term is not a favorable one, and a plan that assumes an easy switch skips the question that decides it.
+
+### Persona Selection
+
+The profile's Buyer Personas table sets the options. The template row names a primary and a secondary persona by row number. Use the rows the template names, and write the count as n of N, so the reader sees how many rows the profile holds and how many were used. A persona with no contact on file keeps its title, and its contact is `[Unknown]`.
+
+### Sequence Structure (Per Persona)
+
+| Step | Angle | Purpose |
+|------|-------|---------|
+| **Email 1** | Industry trend, or a sourced benchmark | Give a reason the incumbent's limits cost more now. Do not attack. Create context |
+| **Email 2** | Capability gap question | Ask a question the incumbent cannot answer well, and let the buyer find the gap |
+| **Email 3** | Proof point from a comparable switch | Cite a customer result only when its Status is Verified. Otherwise hold the email |
+| **Email 4** | Contract timing | Acknowledge the current vendor. Ask when the contract renews. Frame it as worth 15 minutes before the next renewal |
+
+### Rules for Every Email
+
+- Include a subject line, and never name the competitor in it
+- Keep the body at 120 words or fewer
+- Make the first line refer to something specific about the prospect
+- Give each of the four steps a different displacement angle
+- Match each proof point to the prospect's vertical and size
+- Address a known contact by name, and an unknown one by title
+- Put a number in only with its named, dated source (see Epistemic Rules)
+
+### After Each Persona Sequence, Include
+
+- The displacement angle for this persona, in one line
+- The best discovery question for this persona, from the template row
+- Why this persona was selected for this scenario, in one line
 
 ---
 
@@ -81,395 +245,424 @@ The evidence grades, sourcing rules and confidence calibration are defined once,
 
 **Use this skill when:**
 - You know the account uses a specific incumbent
-- CRM notes or conversations mention a current vendor
-- Account is evaluating alternatives to their current solution
+- CRM notes or a conversation name the current vendor
+- The account is evaluating alternatives to its current solution
 - A competitor contract is up for renewal
 
 **Don't use when:**
-- You don't know what they're using (use `gtm-account-snapshot` to discover)
+- You do not know what the account uses (use `gtm-account-snapshot` to find out)
 - The account is net-new with no incumbent intelligence (use `gtm-account-snapshot` or `gtm-research-outbound`)
 - The account is closed-lost (use `gtm-closed-loss-reactivation`)
 
 **User roles:** BDR, AE
-**Expected time:** 15-25 minutes per account
-
----
-
-## Epistemic Rules
-
-### Evidence Grading
-Every competitive claim must be graded and labeled:
-
-| Grade | Label | Definition | Usage |
-|-------|-------|------------|-------|
-| **VERIFIED** | `[Verified: Source]` | Confirmed across 2+ accounts or documented in CRM/reviews | Use in emails, talk tracks, proof points |
-| **INFERRED** | `[Inferred: Basis]` | Logical conclusion from verified data, single account report | Use in discovery questions, hypotheses |
-| **UNVERIFIED** | `[Unverified: Rumor/Single source]` | Heard once, not confirmed | Do NOT use in outbound. Note as discovery target |
-
-### Competitive Intelligence Sourcing Rules
-1. **Failure patterns must cite account evidence**. "Verified across 8+ accounts" is acceptable. "Competitors often struggle" is not.
-2. **Proof points must be labeled**. Customer name, metric, verification status.
-3. **Discovery questions must be genuine curiosity**. If the question is really a statement in disguise, rewrite it.
-4. **Never fabricate competitor weaknesses**. If intelligence is thin for a specific incumbent, acknowledge the gap and rely on category-level positioning.
-5. **Displacement difficulty ratings are directional**. Medium-Low does not mean the deal is easy. It means the competitive positioning is favorable.
-
-### Confidence Calibration
-- **HIGH confidence**: Incumbent confirmed by CRM notes, discovery call, or prospect statement. Proceed with full displacement sequences.
-- **MEDIUM confidence**: Incumbent suspected from job postings, industry knowledge, or partial CRM data. Proceed but note the assumption. Discovery questions should validate it.
-- **LOW confidence**: Incumbent is a guess. Do NOT run displacement. Use `gtm-account-snapshot` to discover first.
+**Expected time:** 15 to 25 minutes per account
 
 ---
 
 ## Core Workflow
 
-### Step 0: Detect User Role
+### Step 0: Detect the User Role and the Account Status
 
-Determine whether the user is a BDR or AE.
+Determine whether the user is a BDR or an AE, and read the account's status and AE owner. Role comes first because the BDR guard decides whether any sequence is written at all, and running the guard before drafting saves the time a draft would take.
 
-**From CRM:** Check user role/profile. If unclear, check BDR Owner vs Account Owner patterns.
-**Fallback:** Ask: "Are you a BDR or AE?"
-**Output:** `user_role` (BDR / AE)
+**From CRM:** check the user's role. If it is unclear, check the BDR owner against the account owner.
+**Fallback:** ask, "Are you a BDR or an AE?"
 
-**CRITICAL GUARD: BDR + Active Deal**
-If `user_role = BDR` AND this account has an active deal owned by an AE:
-- **STOP.** Do NOT generate displacement sequences for the BDR.
-- Produce the displacement analysis (Steps 1-2) and deliver with guidance: "Active deal owned by [AE name] at [Stage]. Share displacement intelligence with [AE name]. They should decide how to use it in their deal strategy."
-- Skip sequence generation. Proceed directly to summary.
+If the user is a BDR and the account is ACTIVE with an AE owner, stop. Produce the analysis in Steps 1 and 2 only, and skip Step 3. The guard is a Hard Rule, and its reason is stated there. An account pending AE assignment is not ACTIVE, so it is worked, and the output says it is pending.
 
----
+**Produces:** `user_role` (BDR or AE), the account status word, and the AE owner if there is one.
 
-### Step 1: Identify the Incumbent + Gather Context
+### Step 1: Identify the Incumbent and Gather Context
 
 #### 1a. Confirm Inputs
 - Company name
-- Known incumbent tool/vendor (or "suspected manual process")
-- How we know (CRM note, prospect mentioned it, job posting, conference conversation)
-- Any known pain with the incumbent (if available)
-- Confidence level in the incumbent identification (HIGH / MEDIUM / LOW)
+- Known incumbent, or "suspected manual process"
+- How it is known (CRM note, prospect statement, job posting, conference conversation)
+- Any known pain with the incumbent, with its source
+- Confidence in the incumbent identification (HIGH, MEDIUM or LOW), by the Confidence rule below
 
-#### 1b. Search CRM
-Pull everything available: account record, deal stage, owner, contacts, BDR Owner, engagement history, previous deal outcomes, notes mentioning vendor/competitor.
+#### 1b. Search the CRM
+Pull the account record, deal stage, owner, contacts, BDR owner, engagement history, previous outcomes, and any note that names a vendor or competitor.
 
 **Key extraction targets:**
-- Any direct competitor mentions in notes, emails, or call transcripts.
-- Prior deal outcomes. Was the account previously won, lost, or stalled?
-- Contact engagement level. Who is active, who has gone dark?
-- Contract timing signals. Renewal dates, contract length mentions.
-- Pain signals. Any documented frustration with current tools.
+- Any direct competitor mention in notes, emails or call records, with its date
+- Prior outcomes. Was the account won, lost or stalled?
+- Contact engagement. Who is active, and who has gone quiet?
+- Contract timing. Renewal dates and term lengths
+- Pain signals about the current tools
 
 #### 1c. Classify the Incumbent
-Use `{Client Profile: Competitive Landscape}` to classify the incumbent by category, displacement difficulty, and primary advantage.
+Use `{Client Profile: Competitive Landscape}` to file the incumbent under the type the Shared Contract lists. Record the type as the profile names it.
 
 #### 1d. Assess Displacement Readiness
-Rate the account's readiness for displacement:
+Rate the account's readiness for displacement. Every cell that is not in the record is `[Unknown]`, never a no.
 
 | Signal | Assessment |
 |--------|-----------|
-| Known pain with incumbent | Yes (specific) / Suspected / Unknown |
-| Contract status | Month-to-month / Expiring within 6mo / Locked (12mo+) / Unknown |
-| Champion identified | Yes (name) / Partial / No |
-| Budget cycle alignment | In cycle / Off cycle / Unknown |
-| Previous evaluation of your product | Yes / No |
+| Known pain with the incumbent | Yes (specific, tagged) / Suspected / `[Unknown]` |
+| Contract status | Month-to-month / Expiring within 6 months / Locked (12 months or more) / `[Unknown]` |
+| Champion identified | Yes (name) / Partial / No / `[Unknown]` |
+| Budget cycle alignment | In cycle / Off cycle / `[Unknown]` |
+| Previous evaluation of our product | Yes / No / `[Unknown]` |
 
----
+#### 1e. Rate the Displacement Difficulty
+Run the three tests in Methodology against the contract facts from 1d, and record the rating, the test that set it, and the tag on the contract fact.
 
-### Step 2: Load Competitor-Specific Intelligence
+**Produces:** `incumbent_type`, the confidence level, the readiness table, and `displacement_difficulty` with its test. Step 1 comes before Step 2 because the template row depends on the type, and the difficulty depends on the contract facts gathered here.
 
-Based on the incumbent classification, load the detailed intelligence from `{Client Profile: Competitive Landscape}`:
-- Failure patterns / weaknesses
-- Discovery questions that expose gaps
-- Objection handling specific to this competitor
-- Displacement proof points from similar switches
+### Step 2: Load the Template Row and the Competitor Intelligence
+
+Load the profile's Displacement row for the incumbent type, and the matching Competitive Landscape row. If the competitive strategy output for this account exists (`gtm-competitive-strategy`), start from its `gap_matrix` and say so. Otherwise build the gap matrix here.
 
 Build a **competitive gap matrix**:
 
-| Capability | [Incumbent] | Your Product | Why It Matters |
-|-----------|-------------|--------------|----------------|
-| [Key capability 1] | [gap] | [strength] | [Account-specific relevance] |
-| [Key capability 2] | [gap] | [strength] | [Account-specific relevance] |
-| ... | ... | ... | ... |
+| Capability | The Incumbent | Our Product | Why It Matters for This Account |
+|-----------|-------------|-------------|----------------------------------|
+| Capability 1 | The gap, with its tag | The strength | Connected to this account's situation |
+| Capability 2 | The gap, with its tag | The strength | Connected to this account's situation |
 
-The "Why It Matters" column must connect each gap to the specific account's situation, not generic competitive positioning.
+The "Why It Matters for This Account" column connects each gap to the account's situation, not to generic positioning. A gap that is not known is written `[Unknown]` with the question that would settle it.
 
----
+**Produces:** the template row in use, and `gap_matrix` with a tag on every gap cell.
 
-### Step 3: Generate Displacement Sequences
+### Step 3: Generate the Displacement Sequences
 
-Produce a **4-step displacement sequence** for each recommended persona. The profile's Buyer Personas set the options, and the count is not fixed. Pick the personas that fit the incumbent and the account, usually two or three.
+Produce a four-step sequence for each persona the template row names, and for any other profile row that the account's facts support. The count is the number of persona rows used, written as n of N. Skip this step under the BDR guard.
 
-#### Persona Selection by Incumbent
+#### Persona Selection, Then Sequence
+Pick the persona rows from Methodology, then draft each sequence in the structure in Methodology, applying the Rules for Every Email. Check every number and every claim against Epistemic Rules before the email is written, not after.
 
-| Incumbent | Primary Persona | Secondary Personas |
-|-----------|----------------|-------------------|
-| Direct Software | [Functional Lead] | [Manager], [Operations Lead] |
-| Adjacent Platform Only | [VP Finance/Ops] | [Functional Lead], [CFO] |
-| BPO / Service Bureau | [Functional Lead] | [Manager] |
-| Manual / Spreadsheets | [Manager] | [Functional Lead], [CFO] |
-| No Program | [CFO] | [Functional Lead] |
-
-#### Rules for Every Email
-- Include a **subject line**
-- Body **<= 120 words**
-- **NEVER name the competitor in the subject line**
-- **First line must reference something specific about the prospect**, not generic.
-- Each step uses a different displacement angle
-- Proof points must match prospect's vertical and size
-- If a known contact exists, address by name
-- All competitive claims must be VERIFIED grade (see Epistemic Rules)
-
-#### Sequence Structure (Per Persona)
-
-| Step | Angle | Purpose |
-|------|-------|---------|
-| **Email 1** | Industry trend + implicit gap | Reference a macro trend that makes incumbent limitations more costly. Don't attack, create context. |
-| **Email 2** | Capability gap question | Ask a question their incumbent can't answer well. Let them discover the gap. |
-| **Email 3** | Proof point from comparable company | Reference a customer who made the same switch, with specific metrics. |
-| **Email 4** | Breakup + contract timing | Acknowledge existing vendor. Ask when contract renews. Frame as "worth 15 minutes before your next renewal." |
-
-#### After Each Persona Sequence, Include:
-- Displacement angle for this persona (1 line)
-- Best discovery question (1 bullet) from the incumbent-specific list
-- Why this persona was selected for this specific displacement scenario (1 line)
-
----
+**Produces:** `target_personas` (ranked, n of N) and `sequence` (four emails per persona, each with its subject line, its angle, and its persona note).
 
 ### Step 4: Summary Report
 
-1. **Company**: Name + incumbent identified
-2. **Incumbent Category**: From classification
-3. **Displacement Difficulty**: Assessment
-4. **Displacement Readiness**: From Step 1d assessment
-5. **CRM Status**: Existing contacts, deal history, current owner
-6. **Personas Targeted**: Which 2-3 and why
-7. **Sequences Generated**: [Count] personas x 4 emails
-8. **Strongest Opening**: Highest-impact first line
-9. **Key Displacement Lever**: Single most important gap the incumbent can't fill
-10. **Contract Timing**: Known or unknown. If unknown, Email 4 asks.
-11. **User Role**: BDR / AE
-12. **Coordination Note**: BDR + active deal guidance if applicable
-13. **Evidence Grade**: Confidence in competitive intelligence used (VERIFIED / INFERRED / UNVERIFIED)
+1. **Company:** name, and the incumbent identified
+2. **Incumbent type:** from the classification, as the profile names it
+3. **Displacement difficulty:** the rating, the test that set it, and whether the test was met
+4. **Displacement readiness:** from Step 1d, with the `[Unknown]` cells counted
+5. **CRM status:** status word, existing contacts, deal history, owner
+6. **Personas targeted:** n of N profile rows, and why
+7. **Sequences generated:** n personas x 4 emails, and which emails are on HOLD
+8. **Strongest opening:** the first line with the most specific reason
+9. **Key displacement lever:** the single gap the incumbent cannot fill
+10. **Contract timing:** known or unknown, with its tag. If unknown, Email 4 asks
+11. **User role:** BDR or AE
+12. **Coordination note:** the BDR guard result, and who the analysis goes to
+13. **Evidence tags used:** the tags behind the claims in the emails, and any `[Unknown]` that a call must settle
+
+**Produces:** the summary, the hand-off block, and `next_action` with its owner and date.
 
 ---
 
-## Artifact Generation
+## Epistemic Rules
 
-### Output Options
-- **Option A: Markdown** (default): `[COMPANY]_Displacement.md`
-- **Option B: HTML**: Styled cheatsheet with incumbent badge and gap matrix
-- **Option C: PDF**: Python + reportlab, single page, letter size
+- **Every count and rate carries its n.** Write "2 of 5 persona rows" and "1 of 2 template personas", never a bare number.
+- **One evidence tag set.** Facts use the six tags from the Shared Contract. A competitive claim may go into an email only when it carries `[CRM]`, `[Call]` or `[Public: source]`. An `[Inferred]` claim feeds discovery questions and hypotheses. An `[Unknown]` claim is a discovery target.
+- **Every number in an email has a named, dated source, or it is removed.** One good example: "Cemeteries of this kind often carry 50 to 100 plots that are sold on paper and unsold on the map (deathcare research, paper-operations note, 2026-04-01, Benchmark)." That sentence stays, because its source is named and dated. The version "Most cemeteries lose a third of their plots to paperwork" has no source, so the figure and the sentence come out, and the email asks the question instead: "How many plots could you sell today if the records were right?"
+- **Failure patterns need the buyer's own words.** A failure pattern used in outbound traces to a won-away customer who said it, with its tag. A pattern drawn across accounts needs five cases behind it. Fewer than five is an observation, and the report says so in the same sentence.
+- **Silence is not a no.** A blank CRM field is `[Unknown]`. An unknown contract term sets the difficulty to High, and it never sets it to Low.
+- **Never fabricate a competitor weakness.** If the intelligence for an incumbent is thin, say so, and use positioning tagged `[Inferred]` that rests on the category pattern.
+- **Difficulty ratings are directional.** A Low rating means the positioning is favorable. It does not mean the deal is easy.
 
-### Cheatsheet Sections (8 Sections)
-1. **Company + Incumbent Snapshot**: Firmographics, incumbent, category, displacement difficulty, contract status
-2. **Competitive Gap Matrix**: Side-by-side capability comparison
-3. **Key Personas**: CRM contacts filtered to target personas, flagging anyone who mentioned incumbent
-4. **Displacement Hooks**: 6 talk-track-ready angles (complete sentences BDR can read verbatim)
-5. **Discovery Questions**: Gap-exposing questions that feel like genuine curiosity
-6. **Product vs. Incumbent**: Primary advantage, quantified wedge, 2-3 matched proof points
-7. **Objection Handling**: Competitor-specific: "happy with incumbent," "switching is risky," "locked into contract," "cheaper"
-8. **Call Flow**: Displacement-focused 5-step talk track
+### Confidence
 
-**Include INCUMBENT BADGE at top** (e.g., "Current: [Competitor Name]").
+Confidence applies to the incumbent identification, and it decides whether displacement runs at all.
+
+- **HIGH:** the incumbent is confirmed by a CRM note, a discovery call or a prospect statement, each with its tag. Proceed with full sequences.
+- **MEDIUM:** the incumbent is suspected from job postings, industry knowledge or partial CRM data. Proceed, note the assumption, and make discovery question 1 validate it.
+- **LOW:** the incumbent is a guess. Do not run displacement. Run Account Snapshot (02) first to find the incumbent.
+
+---
+
+## Hard Rules
+
+1. **The BDR guard.** A BDR never gets sequences on an account that is ACTIVE with an AE owner, unless that AE has said yes. The analysis goes to the AE, who decides how to use it. Reason: two people writing to one buyer costs the deal, and the buyer cannot tell which of the two is the account owner. An account pending AE assignment is not ACTIVE. It is worked, and the output says it is pending.
+2. **A number in an email has a named, dated source, or it comes out.** Reason: a figure the buyer can ask about, with nothing behind it, identifies the sender as a guesser, and the buyer uses the incumbent every day, so a wrong figure is caught.
+3. **A competitive claim in an email carries `[CRM]`, `[Call]` or `[Public: source]`.** Reason: an `[Inferred]` claim is reasoned, and an `[Unknown]` claim is missing. Neither is evidence the buyer can check.
+4. **A proof point with Status Illustrative never appears in an email or a talk track.** Reason: Illustrative means invented for an example. Citing it to a prospect is a false claim. Verified is the only Status that may be cited as a customer result, and Benchmark may be cited only with its source named.
+5. **Never name the competitor in a subject line.** Reason: it reads as an attack, and it is the most common trigger for spam filters.
+6. **Never attack the competitor or the prospect's choice.** Reason: the prospect chose the current tool for reasons, and a sequence that mocks the choice makes the buyer defend it.
+7. **Never use the same displacement angle twice in one sequence.** Reason: each email must give the buyer a new reason to reply, and a repeated angle reads as a reminder rather than news.
+8. **Never send, never enroll a contact, never write to the CRM.** Reason: the rep owns the outreach and the record. The Shared Contract states this for every skill, and this skill keeps it in the same words.
+
+---
+
+## Quality Bar
+
+Done when all are true:
+
+- [ ] Every fact carries one of the six tags, and every blank cell is written `[Unknown]`
+- [ ] The incumbent type is the profile's type, and the confidence level follows the Confidence rule
+- [ ] The difficulty rating names the test that set it, whether that test was met, and that the test is directional
+- [ ] The persona count is written as n of N, with the profile's row count
+- [ ] Every number in every email has a named, dated source, or it has been removed
+- [ ] Every competitive claim in an email carries `[CRM]`, `[Call]` or `[Public: source]`
+- [ ] No proof point with Status Illustrative appears in an email or talk track
+- [ ] The competitor is not named in any subject line, and no email attacks the competitor or the prospect's choice
+- [ ] Each of the four emails uses a different angle, and each body is 120 words or fewer
+- [ ] The role was checked, and the BDR guard was applied where it applies
+- [ ] The `next_action` line is last, with an owner and a date
+- [ ] No file was written unless the user asked for one
 
 ---
 
 ## Examples
 
+Three worked examples on the PlotIQ cast and the chain file. They show a success path with one email on hold, a non-success where the sequence waits for facts, and the BDR guard on an active deal. Every figure is in the profile, carries a tag, or is marked `(illustrative)`. Each example ends with its hand-off block.
+
 ### Example 1: Pre-Need and Records Displacement, Stonemark at Greyfield Memorial Park
 
-**Context:** Greyfield Memorial Park is a one-site cemetery with 9,000 plots (profile). It runs a digital map from Stonemark, and its three-person pre-need team takes requests through an intake form on the site. The Stonemark contract renews in January 2027. The account is TARGET, not yet contacted, and its verdict is GREENLIGHT (Zones 2 and 3 HIGH). No contact names are on file, so the sequence uses titles.
+**Context:** Greyfield Memorial Park is a one-site cemetery with 9,000 plots (profile). It runs a digital map from Stonemark, a direct software incumbent, and its three-person pre-need team takes requests through an intake form on the site. The Stonemark renewal is January 2027. The account is TARGET, not yet contacted, and its verdict is GREENLIGHT (Zones 2 and 3 HIGH, Zone 1 MEDIUM, because the digital map holds no records or trust reporting). No contact names are on file, so every contact is `[Unknown]` and the sequence uses titles. The BDR guard does not apply, because a TARGET account is not ACTIVE.
 
 **Input:** "Greyfield Memorial Park uses Stonemark. Build displacement sequences."
 
-**Step 0. Role Detection:** User is a BDR (illustrative). CRM check: no active AE deal. Clear to generate sequences.
+**Step 0. Role and Status:** User is a BDR (illustrative). CRM check: TARGET, no open deal, no AE owner. The guard does not apply. Sequences are drafted.
 
-**Step 1. Identify Incumbent:** Incumbent: Stonemark, Direct (enterprise cemetery mapping). How we know: the account's own notes name its map vendor (illustrative). Confidence: HIGH.
+**Step 1. Identify the Incumbent:** Stonemark, direct software. How we know: the account's CRM note names its map vendor `[CRM]` (illustrative). Confidence: HIGH, because a CRM note confirms the incumbent.
 
 **Step 1d. Displacement Readiness:**
-- Known pain: Yes. The pre-need team wants pre-need and records together (account notes, illustrative)
-- Contract status: Expiring within 6 months. Renews January 2027
-- Champion: Partial. The pre-need team lead, name not on file
-- Budget cycle: Unknown
-- Previous evaluation: No
+- Known pain: Yes, specific. The pre-need team wants pre-need and records on one system `[Notes]` (illustrative)
+- Contract status: Expiring within 6 months. Renews January 2027 `[CRM]` (illustrative)
+- Champion: Partial. The pre-need team lead is named nowhere, so the name is `[Unknown]`
+- Budget cycle: `[Unknown]`
+- Previous evaluation of our product: `[Unknown]`
 
-**Step 2. Load Intelligence:** Stonemark is classified as Direct. Research estimates put its pricing at about $1,500 to $2,500 a month, with 90 to 120 days to live (profile, dated 2026-03-27). Gap matrix:
+**Step 1e. Displacement Difficulty: Medium.**
+- Low test (no contract term to exit): not met, the account has a contract.
+- Medium test (renewal inside 180 days): met. The renewal is January 2027, 74 to 104 days from today (2026-10-19), `[CRM]`.
+- High test (term past 180 days with an exit fee): not met on the record. The exit fee is `[Unknown]`.
+- The rating is Medium, the highest test met. All three tests are directional.
 
-| Capability | Stonemark | PlotIQ | Why It Matters for Greyfield |
+**Step 2. Template Row and Intelligence:** The profile's direct software row for Displacement:
+- **Positioning:** The buyer runs a map that works, but trust reporting and pre-need still run outside it, so staff keep a second system `[Inferred: category pattern for enterprise mapping tools, illustrative]`.
+- **Wedge:** Records, trust compliance and pre-need in one system, live in 6 weeks, against 90 to 120 days for the incumbent (profile, illustrative).
+- **Discovery question 1:** "Where does the plot map live today, and when was it last updated?"
+- **Discovery question 2:** "Which system runs the pre-need side, and who maintains it?"
+- **Discovery question 3:** "When does your map contract renew, and what does the renewal include for support?"
+- **Primary persona:** row 2, Pre-Need Sales Manager. **Secondary persona:** row 1, Cemetery General Manager.
+
+Gap matrix:
+
+| Capability | Stonemark | Our Product | Why It Matters for Greyfield |
 |---|---|---|---|
-| Sold and unsold plots on the map | [Unverified: ask] | Plot inventory shows sold and unsold plots | The pre-need team needs to know which plots are free before it sells one |
-| Pre-need leads | [Unverified: ask] | Pre-Need CRM and Lead Scoring | Leads from the intake form need a named follow-up owner |
-| Records and trust compliance | [Unverified: ask] | Records and Trust Compliance module | The account wants pre-need and records together |
-| Time to live | 90 to 120 days (research estimate) | 6 weeks (profile) | The January 2027 renewal sets the window |
+| Sold and unsold plots on the map | `[Unknown]`, ask in discovery | Plot inventory shows sold and unsold plots | The pre-need team needs to know which plots are free before it sells one |
+| Pre-need leads | `[Unknown]`, ask in discovery | Pre-Need CRM and Lead Scoring | Leads from the intake form need a named follow-up owner |
+| Records and trust compliance | `[Unknown]`, ask in discovery | Records and Trust Compliance module | The account wants pre-need and records together |
+| Time to live | 90 to 120 days (`[Public: competitive research estimate, 2026-03-27]`) | 6 weeks (profile) | The January 2027 renewal sets the window |
 
-Proof points: Fennick Gardens (212 unsold plots found in 90 days) and Holloway Hills (zero records findings in its first state review). Both are ILLUSTRATIVE beta results, not customer results, so neither can appear in an email yet.
+Proof points: Fennick Gardens (212 unsold plots found in 90 days) and Holloway Hills (zero records findings in its first state review). Both are Illustrative, and neither names a displaced vendor (`[Unknown]`). Neither can appear in an email, so the sequence uses the research benchmark in Email 1 instead.
 
-**Step 3. Sequences:** Persona selection: Pre-Need Sales Manager (primary, the team that feels the intake pain) and Cemetery General Manager (secondary, the buyer). Each gets a 4-step sequence, 8 emails in total. Emails use titles, not names.
+**Step 3. Sequences:** Persona selection: 2 of 5 profile rows, row 2 Pre-Need Sales Manager (primary, the team that feels the intake pain) and row 1 Cemetery General Manager (secondary, the buyer). Both contacts are `[Unknown]`, so the emails use titles. That makes 2 personas and 8 emails.
 
-**Pre-Need Sales Manager. Email 1 (Industry Trend):**
+**Pre-Need Sales Manager, Email 1 (Industry Trend). Drafted, not sent.**
 Subject: Pre-need requests from the intake form
 
-[Name], your team takes pre-need requests through the intake form on the site. Independent cemeteries capture pre-need on about 20% to 35% of at-need volume. The largest public operator reaches about 60% (deathcare research, March to April 2026).
+Your team takes pre-need requests through the intake form on the site. Independent cemeteries capture pre-need on 20% to 35% of at-need volume, and the largest public operator reaches about 60% (deathcare research, 2026-03-27 to 2026-04-01, Benchmark).
 
 How do the intake form requests get a first call back today?
 
-[Your name]
+Your name
 
-**Email 3 status: HOLD.** Its proof point is illustrative. The profile says the Fennick Gardens case study waits until its numbers cover a full year (January 2027). Until then, Email 3 names no customer result.
+The benchmark carries its source and date in the body, so a buyer who asks where it came from gets an answer. The question at the end is the discovery question from the template, which lets the buyer find the gap.
 
-**Step 4. Summary:** 2 personas, 8 emails. Key displacement lever: pre-need leads and records on one system. Contract timing: January 2027, known from the account notes, and Email 4 confirms it. Evidence grade: INFERRED. No competitor claim has reached VERIFIED, so the emails name no competitor claim.
+**Pre-Need Sales Manager, Email 3 (Proof Point). Status: HOLD.** The only proof point that fits is Illustrative, so Email 3 names no customer result. The profile says the Fennick Gardens case study waits until its numbers cover a full year (January 2027). Email 3 is held until then.
+
+**Step 4. Summary:**
+1. **Company:** Greyfield Memorial Park. Stonemark identified.
+2. **Incumbent type:** direct software.
+3. **Displacement difficulty:** Medium, set by the renewal test (1 of 3 tests met, directional).
+4. **Readiness:** pre-need and records pain is known, and the champion, budget cycle and prior evaluation are `[Unknown]`.
+5. **CRM status:** TARGET, no open deal, no AE owner, no contacts on file.
+6. **Personas targeted:** 2 of 5 profile rows, the two that feel the intake pain and sign the contract.
+7. **Sequences generated:** 2 personas x 4 emails. Email 1 is shown in full. Email 3 is on HOLD. Emails 2 and 4 follow the structure above.
+8. **Strongest opening:** "Your team takes pre-need requests through the intake form on the site."
+9. **Key displacement lever:** pre-need leads and records on one system.
+10. **Contract timing:** January 2027, `[CRM]`. Email 4 confirms it.
+11. **User role:** BDR.
+12. **Coordination note:** none. TARGET accounts are worked.
+13. **Evidence tags used:** `[CRM]` for the incumbent and the renewal, `[Public: deathcare research, 2026-03-27 to 2026-04-01]` for the benchmark, `[Unknown]` for the contacts, the budget cycle and the exit fee. No `[Inferred]` claim is in an email.
+
+Hand-off (read by 02 and 06):
+account: Greyfield Memorial Park (TARGET)
+run_date: 2026-10-19
+incumbent_type: direct software (Stonemark)
+displacement_difficulty: Medium (renewal inside 180 days, January 2027, test met, directional)
+target_personas: 2 of 5. Row 2 Pre-Need Sales Manager (primary). Row 1 Cemetery General Manager (secondary). Contacts [Unknown]
+sequence: 2 personas x 4 emails. Pre-Need Sales Manager Email 1 drafted. Email 3 on HOLD until the Illustrative proof point is Verified
+next_action: Nadia Brandt finds the Pre-Need Sales Manager's name on the site, reads Email 1, and sends it by 2026-10-23
+report_path: none (inline)
 
 ---
 
 ### Example 2: Manual-Process Displacement, Tamsin Vale Cemetery (Non-Success)
 
-**Context:** Tamsin Vale Cemetery is a one-site cemetery with 4,200 plots, paper plat maps and one binder per section. It has had two double sales in two years (illustrative). The account is TARGET, not yet contacted, and its verdict is MANUAL REVIEW (Zone 1 HIGH only). This is the non-success case: the displacement is easy to describe and hard to justify yet.
+**Context:** Tamsin Vale Cemetery is a one-site cemetery with 4,200 plots, paper plat maps and one binder per section. It has had two double sales in two years (illustrative). The account is TARGET, not yet contacted, and its verdict is MANUAL REVIEW (Zone 1 HIGH only). This is the non-success case. The displacement is easy to describe and hard to justify yet.
 
 **Input:** "Tamsin Vale Cemetery runs paper plat maps. Build displacement sequences."
 
-**Step 0. Role Detection:** User is a BDR (illustrative). CRM check: no active AE deal.
+**Step 0. Role and Status:** User is a BDR (illustrative). CRM check: TARGET, no open deal.
 
-**Step 1. Identify Incumbent:** Incumbent: paper maps and binders, Manual / Spreadsheets. How we know: the GM's description on one call (illustrative). Confidence: MEDIUM. The process is known, but the double sales come from one conversation and are not yet in writing.
+**Step 1. Identify the Incumbent:** Incumbent: paper maps and binders, a manual process. How we know: the GM described the process on one call `[Call, 2026-10-02 (illustrative)]`. Confidence: MEDIUM. The process is known, but the double sales come from that one conversation and are not yet in writing.
 
 **Step 1d. Displacement Readiness:**
-- Known pain: Suspected. The two double sales (illustrative) have not been counted in plots or dollars
-- Contract status: Unknown. Manual process, so there is no vendor contract to time against
-- Champion: No
-- Budget cycle: Unknown
-- Previous evaluation: No
+- Known pain: Suspected. The two double sales have not been counted in plots or dollars.
+- Contract status: `[Unknown]`. A manual process has no vendor contract to time against.
+- Champion: `[Unknown]`
+- Budget cycle: `[Unknown]`
+- Previous evaluation of our product: `[Unknown]`
 
-**Step 2. Load Intelligence:** Manual process, classified as Low displacement difficulty. Gap matrix: no single view of sold and unsold plots (one binder per section), no audit trail, and key-person risk. The only proof point is Fennick Gardens, which is ILLUSTRATIVE and cannot be cited yet.
+**Step 1e. Displacement Difficulty: Low.**
+- Low test (no contract term to exit): met, a manual process has no renewal.
+- Medium test (renewal inside 180 days): not met, there is no renewal.
+- High test (term past 180 days with an exit fee): not met, there is no contract.
+- The rating is Low, the highest test met. The test is directional.
 
-**Step 3. Sequences:** Persona selection: Cemetery General Manager, the primary persona for a manual process. The Operations Director is not on file. A CFO is not a fit for a single-site account (profile: the CFO role applies to groups). So the sequence has one persona, with 4 emails, not 8.
+**Step 2. Template Row and Intelligence:** The profile's manual process row for Displacement says the wedge is one view of sold and unsold plots with an audit trail, so no one person holds the records. Primary persona: row 1, Cemetery General Manager. Secondary persona: row 3, Operations Director, who is not on file. Gap matrix: no single view of sold and unsold plots (one binder per section), no audit trail, and key-person risk. The only proof point is Fennick Gardens, which is Illustrative and cannot be cited.
 
-**Cemetery General Manager. Email 1 (Pain Question):**
+**Step 3. Sequences:** Persona selection: 1 of 2 template personas. The Operations Director is not on file, so the sequence has one persona, not two. A CFO is not a fit for a single-site account (the profile's CFO row applies to groups). That is 1 persona and 4 emails.
+
+**Cemetery General Manager, Email 1 (Pain Question). Drafted, held.**
 Subject: Plot lookups across one binder per section
 
-[Name], Tamsin Vale keeps its plot records in one binder per section. When a family asks about a plot in another section, how long does the lookup take?
+Tamsin Vale keeps its plot records in one binder per section. When a family asks about a plot in another section, how long does the lookup take?
 
-[Your name]
+Your name
 
-**Step 4. Summary and recommendation (the non-success):** 1 persona, 4 emails drafted, 0 sent. Recommendation: hold the sequence. The verdict is MANUAL REVIEW, not GREENLIGHT, so Email 1 would put a double-sales claim in front of a buyer before anyone has confirmed it. Next step: a discovery call that asks for the two double sales in writing (plot numbers and dates) and names the person who decides. Release Email 1 only after both are in hand, because Zone 3 (decision speed) is still unknown. Evidence grade: INFERRED. If the double sales do not hold up, the displacement case is a guess, and it does not go out.
+**Step 4. Summary and Recommendation (the non-success):** 1 persona, 4 emails drafted, 0 sent. Recommendation: hold the sequence. The verdict is MANUAL REVIEW, not GREENLIGHT, so Email 1 would put a double-sales question in front of a buyer before anyone has confirmed the double sales. The next step is a discovery call that asks for the two double sales in writing, with plot numbers and dates, and names the person who decides. Release Email 1 only after both are in hand. Evidence tags: `[Call]` for the process, `[Inferred]` for the displacement case, and `[Unknown]` for the decision maker. If the double sales do not hold up, the displacement case is a guess, and it does not go out.
+
+Hand-off (read by 02 and 06):
+account: Tamsin Vale Cemetery (TARGET)
+run_date: 2026-10-19
+incumbent_type: manual process (paper plat maps and one binder per section)
+displacement_difficulty: Low (no contract term to exit, test met, directional)
+target_personas: 1 of 2. Row 1 Cemetery General Manager (primary). Row 3 Operations Director not on file, contact [Unknown]
+sequence: 1 persona x 4 emails drafted, 0 sent. On HOLD until the two double sales are in writing
+next_action: Nadia Brandt books a discovery call that asks for the two double sales, plot numbers and dates, by 2026-10-30
+report_path: none (inline)
 
 ---
 
-### Example 3: Active Deal Guard, Brackhaven Memorial Gardens
+### Example 3: The BDR Guard, Brackhaven Memorial Gardens
 
-**Context:** A BDR (illustrative) finds that Brackhaven Memorial Gardens runs Oldgate Ledger Pro, with a renewal in March 2027. The account has an ACTIVE AE deal at Stage 5 Negotiate, owned by Owen Pruitt (illustrative assignment).
+**Context:** A BDR finds that Brackhaven Memorial Gardens runs Oldgate Ledger Pro, a direct software incumbent with its renewal in March 2027 `[CRM]`. The account is ACTIVE at Stage 5 Negotiate, since 2026-09-09, and the AE owner is Owen Pruitt. The BDR is Nadia Brandt (illustrative).
 
 **Input:** "Brackhaven runs Oldgate. Build displacement sequences."
 
-**Step 0. Role Detection:** User is BDR. CRM check: active deal owned by Owen Pruitt at Stage 5 Negotiate.
+**Step 0. Role and Status:** User is a BDR. CRM check: ACTIVE, Stage 5 Negotiate, owner Owen Pruitt.
 
-**ACTIVE DEAL GUARD TRIGGERED.** The BDR cannot send independent displacement sequences on an active AE deal. Generating displacement analysis only (Steps 1 and 2).
+**THE BDR GUARD IS TRIGGERED.** The BDR does not get sequences on this account. Step 3 is skipped, the analysis goes to the AE, and the summary in Step 4 records the guard.
 
-**Steps 1 to 2. Analysis Delivered:**
-- Incumbent: Oldgate Ledger Pro (Direct, legacy on-premise). Confidence: MEDIUM. The March 2027 renewal is the only timing signal, and the GM stated it on one call (illustrative).
-- Gap matrix: mobile use by the grounds crew (research estimate: poor mobile), unsold-plot visibility (not yet known, ask), and trust fund records (a deep accounting pitch, so show the state filing format).
-- Discovery questions for the AE (both from the profile): "When does your software contract renew, and what did the last quote include for support?" and "Where does the plot map live today, and when was it last updated?"
-- Proof point: Fennick Gardens is ILLUSTRATIVE and cannot be used yet.
+**Steps 1 and 2. Analysis Delivered:**
+- **Incumbent:** Oldgate Ledger Pro, direct software. Confidence: HIGH, because the CRM records the incumbent `[CRM]`.
+- **Difficulty:** Medium. The renewal test is met: March 2027 is inside 180 days `[CRM]`. Directional.
+- **Gap matrix:** mobile use by the grounds crew `[Inferred: research pattern for legacy on-premise systems, illustrative]`, unsold-plot visibility `[Unknown]`, and trust fund records, which need a deeper accounting answer.
+- **Discovery questions for the AE** (both from the profile): "When does your software contract renew, and what did the last quote include for support?" and "Where does the plot map live today, and when was it last updated?"
+- **Proof point:** Fennick Gardens is Illustrative and cannot be used.
 
-**Coordination Guidance:** "Active deal owned by Owen Pruitt at Stage 5 Negotiate. Share this displacement intelligence with Owen and let him decide how to use the March 2027 renewal in his conversations with Ruth Ellery. Do not send sequences independently. The competitive strategy for this deal is in skill 11."
+**Coordination Guidance:** "Active deal owned by Owen Pruitt at Stage 5 Negotiate. Share this displacement analysis with Owen and let him decide how to use the March 2027 renewal in his conversations with Ruth Ellery. Do not send sequences independently. The competitive strategy for this deal is in gtm-competitive-strategy."
+
+Hand-off (read by 02 and 06):
+account: Brackhaven Memorial Gardens (ACTIVE, Stage 5 Negotiate)
+run_date: 2026-10-19
+incumbent_type: direct software (Oldgate Ledger Pro)
+displacement_difficulty: Medium (renewal inside 180 days, March 2027, test met, directional)
+target_personas: none. BDR guard, analysis only
+sequence: none (guard). The AE decides
+next_action: Nadia Brandt sends this analysis to Owen Pruitt by 2026-10-21
+report_path: none (inline)
 
 ---
 
 ## Common Patterns
 
-### Pattern: BDR Active Deal Guard
-**When:** `user_role = BDR` and account has active AE deal.
-**Action:** Generate analysis only (Steps 1-2). Skip sequence generation. Deliver intel to AE. "Active deal owned by [AE name] at [Stage]. Share displacement intelligence. Do not send sequences independently."
+### Pattern: The BDR Guard on an Active Deal
+**When:** The user is a BDR and the account is ACTIVE with an AE owner.
+**Action:** Produce the analysis only, in Steps 1 and 2. Name the AE and the stage. Say "Share this displacement analysis. Do not send sequences independently."
 
 ### Pattern: Unknown Incumbent
-**When:** User suspects a competitor but isn't certain.
-**Action:** Run `gtm-account-snapshot` first to discover the incumbent through CRM notes, job postings, or discovery questions. Then return to displacement with confirmed intelligence.
+**When:** The user suspects a competitor but is not sure of it.
+**Action:** Run `gtm-account-snapshot` first to find the incumbent through CRM notes, job postings or discovery questions. Then return here with a confirmed incumbent.
 
 ### Pattern: Dual-Tool Pain
-**When:** Account uses two separate tools (e.g., Competitor A for one function + Competitor B for another).
-**Action:** Build displacement around the unification angle. Reference proof points where your product replaced both tools simultaneously.
+**When:** The account uses two separate tools, one for each job.
+**Action:** Build the displacement around the unification angle. Use a proof point where one product replaced both tools, and only if its Status allows it.
 
 ### Pattern: Contract Renewal Window
-**When:** Contract renewal date is known or estimated.
-**Action:** Time the displacement sequence to arrive 60-90 days before renewal. Adjust Email 4 from "when does your contract renew?" to "with your renewal in [month], now is the right time to evaluate."
+**When:** The contract renewal date is known.
+**Action:** Time the sequence to arrive 60 to 90 days before renewal. Change Email 4 from asking when the contract renews to saying the renewal is the reason to look now.
 
 ---
 
 ## Troubleshooting
 
-### "We don't have competitive intelligence for this incumbent"
-**Solution:** Classify as "Unknown Incumbent." Use general displacement principles: lead with macro trends, ask capability gap questions, reference proof points from similar switches. Build competitive intelligence from the discovery call. Tag all claims as `[Inferred: category-level]` per Epistemic Rules.
-
-### "The prospect is in an active contract"
-**Solution:** Email 4 is specifically designed to surface contract timing. If contract timing is known, align the sequence cadence to arrive 60-90 days before renewal. If unknown, the sequence discovers it. Do not frame the outreach as "break your contract". Frame it as "evaluate before your next renewal."
-
-### "BDR wants to send displacement sequences on an AE's active deal"
-**Solution:** This is blocked by the Active Deal Guard in Step 0. The BDR should share displacement intelligence with the AE, not send independent sequences. The AE decides how to use competitive intel in their deal strategy.
-
-### "Incumbent confidence is MEDIUM. Should we still run displacement?"
-**Solution:** Yes, but adapt the approach. Frame discovery questions to validate the incumbent assumption before going deep on competitive positioning. Email 1 should use a broader industry angle that works regardless of the specific tool. Email 2 should include a question that surfaces what they actually use: "How does your team handle [domain] today?"
-
-### "Multiple contacts at the account mentioned different tools"
-**Solution:** The account may use different tools across divisions or branches. Build displacement around the primary incumbent (most frequently mentioned), but include a discovery question about tool standardization: "Are all locations using the same approach, or does it vary by region?" This can uncover a consolidation opportunity.
+| Symptom | Likely Cause | Response |
+|---------|--------------|----------|
+| No competitive intelligence exists for this incumbent | The profile's Competitive Landscape has no row for it | Use general positioning, tag it `[Inferred]`, and build the intelligence from the discovery call |
+| The prospect is in an active contract | The term is unknown, or it runs past the window | Email 4 asks about timing. Frame the outreach as "evaluate before your next renewal," never as "break your contract" |
+| A BDR wants sequences on an AE's active deal | The BDR guard applies | Send the analysis to the AE. The AE decides how to use it |
+| Incumbent confidence is MEDIUM | The incumbent is suspected, not confirmed | Proceed. Make discovery question 1 validate the incumbent, and open Email 1 with a broader industry angle |
+| Several contacts name different tools | Tools vary by branch or division | Build around the most-named incumbent, and add a discovery question about standardization |
+| The rating is Low but the deal feels hard | The Low test is directional and measures the contract, not the win | Say so in the report. A Low rating means the positioning is favorable, not that the deal is easy |
+| Every number in a draft is cut | The sources are not named or dated | Cut the figure and ask the question. Add the number back only when its named, dated source is in hand |
 
 ---
 
 ## Best Practices
 
-### Do's
-- **Lead with enablement, not criticism**. "Here's what's possible" beats "Here's what's broken."
-- **Use displacement proof points**. Stories from companies who made the same switch are the most powerful.
-- **Ask gap-exposing questions**. Genuine curiosity surfaces pain better than accusations.
-- **Address contract timing**. Every displacement sequence should discover or leverage renewal windows.
-- **Grade your evidence**. Tag claims as VERIFIED, INFERRED, or UNVERIFIED per Epistemic Rules.
-- **Personalize the gap matrix**. Connect each gap to this specific account's situation, not generic positioning.
-
-### Don'ts
-- **Don't name competitors in subject lines**. Unprofessional and triggers spam filters.
-- **Don't bash the prospect's decision**. They chose their current tool for reasons. Respect that.
-- **Don't assume incumbent pain**. Let discovery questions surface it naturally.
-- **Don't send displacement sequences as BDR on active AE deals**. Coordinate through the AE.
-- **Don't use UNVERIFIED competitive claims in outbound**. Only VERIFIED and INFERRED claims belong in emails.
-- **Don't use the same displacement angle twice**. Each email must use a different competitive hook.
-
-### Quality Checklist
-- [ ] Competitor never named in subject lines
-- [ ] Tone is "we enable" not "they lack"
-- [ ] Each email uses different displacement angle
-- [ ] Proof points match prospect's vertical and size
-- [ ] Discovery questions expose real gaps
-- [ ] Contract timing addressed (Email 4 asks if unknown)
-- [ ] All emails <= 120 words
-- [ ] Role detected. BDR + active deal guarded
-- [ ] Evidence graded per Epistemic Rules (VERIFIED / INFERRED / UNVERIFIED)
-- [ ] Gap matrix includes "Why It Matters" column specific to account
+- **Lead with enablement, not criticism.** "Here is what is possible" beats "here is what is broken," because the buyer is the one who has to defend the current choice.
+- **Use proof points that match.** A customer who made the same switch is the strongest line in a sequence, if its Status is Verified.
+- **Ask gap-exposing questions.** Genuine curiosity surfaces pain better than an accusation.
+- **Address contract timing in every sequence.** Each sequence should discover or use the renewal window.
+- **Tag every claim.** A reader should be able to see which claim is `[CRM]`, `[Call]` or `[Public: source]`, and which is only a question.
+- **Personalize the gap matrix.** Connect each gap to this account's situation, not to the category.
 
 ---
 
-## Integration with Other Skills
+## Integration With Other Skills
 
-- **`gtm-account-snapshot`**. Run first when incumbent is unknown. The snapshot may discover it.
-- **`gtm-competitive-strategy`**. For full battlecard generation across an entire competitive landscape, not just account-level displacement.
-- **`gtm-research-outbound`**. When displacement target is a public company, combine financial intelligence with competitive angles.
-- **`gtm-trigger-event-outbound`**. When a competitor contract event or vendor dissatisfaction signal triggers the displacement opportunity.
-- **`gtm-deal-pulse`**. Once displacement creates a pipeline opportunity, monitor deal health.
+**Reads from the skill before it, by field name:**
+- **`gtm-competitive-strategy`** (11): `incumbent_type`, `threat_level`, `gap_matrix`, `battlecard`, `win_plan`. When 11 has run on this account, start from its `gap_matrix` and use its `win_plan` to match the wedge to the team's plan. Use `threat_level` to set how direct the sequence is. When 11 has not run, Steps 1 and 2 build the same fields here.
+
+**Hands to the skills after it, by field name:**
+- **`gtm-account-snapshot`** (02): `incumbent_type`, `displacement_difficulty`, `target_personas`, `sequence`. Snapshot orders its contacts by `target_personas`, and writes no sequence for a persona that already has one here.
+- **`gtm-meeting-prep`** (06): `incumbent_type`, `displacement_difficulty`, `target_personas`, `sequence`. Meeting Prep uses `incumbent_type` in its competitive objections.
+
+**Hands to the close:**
+- **Wrap-Up** reads `report_path` when a file was written, the `displacement_difficulty` or verdict the session produced, and `next_action` with its owner and date.
 
 ---
 
 ## Changelog
 
-### Version 1.3.0 (2026-10-13)
-- Examples re-cast on PlotIQ, the library's one example company. Example arithmetic and listed errors fixed, and a non-success example added.
+### 2.0.0 (2026-10-20)
+- Moved to the Sales 2.0 standard: Overview with Core Principle and the platform line, Why This Skill Exists, Role, Input and Output Contracts, Context with the Shared Contract, a Core Workflow with a Produces line per step, Epistemic Rules, Hard Rules with reasons, a Quality Bar, and hand-offs named by field.
+- Adds a displacement template per incumbent type (Positioning, Wedge, three discovery questions, and the primary and secondary persona rows), read from the profile's Displacement section.
+- Adds the Low, Medium and High difficulty scale, with one directional test each. The rating is the highest test met, and an unknown term rates High.
+- Proof points gain Displaced vendor and Status columns, which the skill reads from the profile. Customer rows stay in the profile.
+- Every number in an email needs a named, dated source or it is removed. Greyfield Email 1 now names its benchmark source and date, which was the unsourced trend line.
+- The persona count is read from the profile's Buyer Personas table and written as n of N.
+- The BDR guard is a Hard Rule with its reason, and an account pending AE assignment is worked and marked pending.
+- One Epistemic Rules section, with one Confidence subsection. The evidence grades are replaced by the six tags.
+- Integration reads 11's fields by name and hands to 02 and 06 by name.
+- The old output-format section is removed. The file option is in the Output Contract and is written only when asked.
+- Examples: Greyfield, Tamsin Vale and Brackhaven now use the six tags, the stage words, and a hand-off block ending each one.
 
-### Version 1.2.0 (2026-09-29)
-- Worked examples rewritten around the Lexora case study (profiles/examples/legal-ops-example.md)
-- Em dashes removed from prose
+### 1.3.0 (2026-10-13)
+- Examples re-cast on the PlotIQ example company. Example arithmetic and listed errors fixed, and a non-success example added.
 
-### Version 1.1.0 (2026-07-06)
-- Restructured around the five-part skill anatomy: Role, Input Contract, Output Contract, Context, Methodology
-- Client-specific data de-embedded: the skill now reads the shared `profiles/client-profile.md` instead of carrying a copy-in Client Profile block (one profile powers every skill)
-- Framework machinery (Epistemic Rules, Confidence Calibration) moved to an explicit Methodology section with `{Methodology: X}` references
-- No functional changes to the workflow, examples, or output formats
+### 1.2.0 (2026-09-29)
+- Worked examples rewritten around an earlier example company.
+- Em dashes removed from prose.
 
-### Version 1.0.0 (2026-03-04)
-- Initial release (migrated from competitive displacement skill)
-- Generalized via Client Profile block with configurable defaults
-- Preserved all competitor intelligence structure, failure patterns, discovery questions, and proof points
-- Maintained BDR Active Deal Guard pattern
-- Multi-format artifact generation replacing reportlab-only
+### 1.1.0 (2026-07-06)
+- Restructured around the five-part skill anatomy: Role, Input Contract, Output Contract, Context, Methodology.
+- Client-specific data de-embedded: the skill reads the shared `profiles/client-profile.md` instead of carrying a copy-in Client Profile block.
+- Framework machinery (Epistemic Rules, Confidence Calibration) moved to an explicit Methodology section.
+- No functional changes to the workflow, examples, or output formats.
+
+### 1.0.0 (2026-03-04)
+- Initial release.
+- Generalized through a Client Profile block with configurable defaults.
+- Preserved the competitor intelligence structure, failure patterns, discovery questions, and proof points.
+- Kept the BDR Active Deal Guard pattern.
+- Multi-format artifact generation.
