@@ -1,6 +1,6 @@
 ---
 name: gtm-meddpicc-analysis
-version: 2.0.0
+version: 2.0.1
 description: "Scores an active deal across all eight MEDDPICC elements from the CRM record, computes a weighted health score, and recommends ADVANCE, HOLD, DOWNGRADE or DISQUALIFY. The deal's AE and sales manager read the output."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: ["gtm-deal-pulse", "gtm-call-coaching", "gtm-stakeholder-mapping"]
 mutating: read-write
 change_log:
+  - version: 2.0.1
+    date: 2026-10-20
+    summary: "The profile's Qualification Stage Gates figure is the stage minimum when the profile states one, and the report names the figure it used with the table's default beside it (Ryan, 2026-10-20). The PlotIQ examples use the profile's 70 for Stage 5 Negotiate."
   - version: 2.0.0
     date: 2026-10-20
     summary: "Moved to the Sales 2.0 standard. Stage names come from the profile. The champion element uses the shared champion tests. The stage recommendation words are ADVANCE, HOLD, DOWNGRADE and DISQUALIFY, with one stage rule shared with Deal Pulse. Hand-off fields to Stakeholder Mapping, Competitive Strategy and Sales Handoff are named. Reads Deal Pulse, Call Coaching and Stakeholder Mapping fields by name. Weighted table, rubrics, weights and health formula unchanged."
@@ -302,7 +305,7 @@ The champion status comes first, from the shared champion tests in the Shared Co
 | Stage 5 Negotiate | 65 or higher | All except Competition at 3 or higher, and Economic Buyer at 4 or higher |
 | Stage 6 Closed-Won and Handoff | 75 or higher | All at 3 or higher, and Economic Buyer and Paper Process at 4 or higher |
 
-Stage names come from the client profile's Qualification Stage Gates. Stage 1 Target has no minimum because no element is scored before a deal is active. If the team overrides these minimums in its MEDDPICC profile section, the override is used, and the report says it was used. Where the profile's Qualification Stage Gates state a different score than this table, the report shows both figures and flags the difference for the manager. It does not pick one silently.
+Stage names come from the client profile's Qualification Stage Gates. Stage 1 Target has no minimum because no element is scored before a deal is active. If the team overrides these minimums in its MEDDPICC profile section, the override is used, and the report says it was used. Where the profile's Qualification Stage Gates state a different score than this table, the profile's figure is the minimum, because the profile is the only source of company facts and a stage gate is one. The report names the figure it used and shows the table's default beside it.
 
 ### Stage Recommendation Rules
 
@@ -492,7 +495,7 @@ Write a file only when the user asks for one, named `<account>_gtm-meddpicc-anal
 
 **Health:** 4.20 ÷ 5 × 100 = **84, GREEN**.
 
-**Stage check:** Stage 5 Negotiate minimum is 65 or higher, and it is met at 84. The PlotIQ profile's Qualification Stage Gates set 70 or higher for the move into Stage 5 Negotiate, which 84 also meets, so both figures are shown and agree. Critical elements: all except Competition are at 3 or higher, and Economic Buyer is at 4 or higher, so met. The Stage 6 Closed-Won and Handoff minimum is 75 or higher and is met on health, but it is not met on the critical elements, because Paper Process is 3 and needs 4 or higher.
+**Stage check:** The PlotIQ profile's Qualification Stage Gates set the Stage 5 Negotiate minimum at 70 or higher, which overrides the table's default of 65, and it is met at 84. Critical elements: all except Competition are at 3 or higher, and Economic Buyer is at 4 or higher, so met. The Stage 6 Closed-Won and Handoff minimum is 75 or higher and is met on health, but it is not met on the critical elements, because Paper Process is 3 and needs 4 or higher.
 
 **Gaps and risks:** The top risk is Paper Process at 3, the one element holding the deal from Stage 6. The second is the board chair's name, which is `[Unknown]`, so Economic Buyer is identified by title only. The third is the ROI framework, which is shared but not agreed.
 
@@ -511,7 +514,7 @@ account: Brackhaven Memorial Gardens (ACTIVE, Stage 5 Negotiate)
 run_date: 2026-09-28
 meddpicc_scores: Metrics 4, Economic Buyer 4, Decision Criteria 4, Decision Process 4, Paper Process 3, Identified Pain 5, Champion 5, Competition 4
 health_score: 84
-stage_minimum_met: Yes for Stage 5 Negotiate (65 or higher). No for Stage 6 Closed-Won and Handoff (75 or higher), because Paper Process is 3 and needs 4
+stage_minimum_met: Yes for Stage 5 Negotiate (70 or higher, from the profile's stage gates). No for Stage 6 Closed-Won and Handoff (75 or higher), because Paper Process is 3 and needs 4
 stage_recommendation: HOLD
 risk_patterns: none flagged on the evidence. Economic Buyer identified by title only, name [Unknown]
 next_action: Owen Pruitt asks Ruth Ellery to walk through the legal and vendor steps by 2026-10-05
@@ -549,7 +552,7 @@ report_path: none (inline)
 
 **Health:** 2.90 ÷ 5 × 100 = **58, ORANGE**.
 
-**Stage check:** The Stage 5 Negotiate minimum is 65 or higher, and it is not met at 58. The PlotIQ profile's gate of 70 or higher for Stage 5 is not met either, so both figures agree. Critical elements failed: Economic Buyer (3, needs 4), Decision Process (2, needs 3) and Champion (2, needs 3).
+**Stage check:** The PlotIQ profile's Qualification Stage Gates set the Stage 5 Negotiate minimum at 70 or higher, which overrides the table's default of 65, and it is not met at 58. Critical elements failed: Economic Buyer (3, needs 4), Decision Process (2, needs 3) and Champion (2, needs 3).
 
 **Risk patterns:**
 - Close date fantasy: two slips, and the board date is not confirmed `[CRM]`.
@@ -573,7 +576,7 @@ account: Brackhaven Memorial Gardens (ACTIVE, Stage 5 Negotiate)
 run_date: 2026-10-19
 meddpicc_scores: Metrics 3, Economic Buyer 3, Decision Criteria 3, Decision Process 2, Paper Process 3, Identified Pain 4, Champion 2, Competition 3
 health_score: 58
-stage_minimum_met: No for Stage 5 Negotiate (65 or higher). Failed critical elements: Economic Buyer (3, needs 4), Decision Process (2, needs 3), Champion (2, needs 3)
+stage_minimum_met: No for Stage 5 Negotiate (70 or higher, from the profile's stage gates). Failed critical elements: Economic Buyer (3, needs 4), Decision Process (2, needs 3), Champion (2, needs 3)
 stage_recommendation: HOLD
 risk_patterns: Close date fantasy (two slips, board date unconfirmed), happy ears ("I'll take it to the board" with no date), single-threaded
 next_action: Owen Pruitt asks Ruth Ellery for the board date by 2026-10-23. If it is not confirmed by 2026-11-02, the stage moves to DOWNGRADE, Stage 4 Proposal
@@ -646,6 +649,10 @@ Re-run this analysis after every stage date or close date changes, and compare t
 
 ## Changelog
 
+
+### 2.0.1 (2026-10-20)
+
+- The profile's Qualification Stage Gates figure is the stage minimum when the profile states one, and the report names the figure it used with the table's default beside it (Ryan, 2026-10-20). The PlotIQ examples use the profile's 70 for Stage 5 Negotiate.
 ### Version 2.0.0 (2026-10-20)
 - Moved to the Sales 2.0 standard: Overview with Core Principle and the platform line, Why This Skill Exists, Role, Input and Output Contracts, Context with the Shared Contract, Core Workflow with a Produces line per step, Epistemic Rules, Hard Rules with reasons, Quality Bar, and Integration with named hand-off fields.
 - Stage names come from the profile's Qualification Stage Gates, written as Stage 2 Discovery and so on. No other stage list remains.

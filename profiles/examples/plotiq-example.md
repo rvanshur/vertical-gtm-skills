@@ -322,7 +322,7 @@ Source: the PlotIQ Sales Methodology section names SPIN Selling, Challenger and 
 
 ## MEDDPICC
 
-- **Stage minimums:** default. The skill's table applies (Stage 5 Negotiate at 65 or higher, with All except Competition at 3 or higher and Economic Buyer at 4 or higher). Flag for the team: the profile's Qualification Stage Gates set MEDDPICC at 70 or higher to move from 4 Proposal to 5 Negotiate, which is a different figure from the skill's 65. The team should confirm which one it means. `[RECORD]` until it does.
+- **Stage minimums:** the profile's Qualification Stage Gates: MEDDPICC at 70 or higher to move from 4 Proposal to 5 Negotiate (decided 2026-10-20). That figure overrides the skill table's default of 65 for Stage 5 Negotiate. The critical-element floors stay as the skill's table has them (all except Competition at 3 or higher, Economic Buyer at 4 or higher).
 - **Paper process steps:** `[RECORD]`. PlotIQ has no won deal to map from. The flagship's paper steps are open (Brackhaven's legal and vendor review is noted, timing not scoped, `[Unknown]`).
 - **Metric, customer-worded:** `[RECORD]` for the number a champion repeats back. The plot count of 11,000 for Brackhaven is the profile's figure, and it is not yet a metric a buyer has repeated.
 - **Champion proof-of-life:** `[RECORD]`. No won deal has shown one yet. The flagship's examples (Ruth Ellery's internal selling and her board introduction) are illustrative.

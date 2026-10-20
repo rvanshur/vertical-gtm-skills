@@ -175,7 +175,7 @@ These figures are taken from the skill files. If you change a skill's scoring, c
 - **Scale:** each of the 8 elements scored 1-5, weighted into a 0-100 health score
 - **Weights:** Economic Buyer 20%, Metrics 15%, Identified Pain 15%, Champion 15%, Decision Criteria 10%, Decision Process 10%, Paper Process 10%, Competition 5%
 - **Bands:** 80-100 Green, 60-79 Yellow, 40-59 Orange, 0-39 Red
-- **Stage minimums (the skill's defaults):** Stage 2 Discovery 30 or higher, Stage 3 Demo and Stage 4 Proposal 50 or higher, Stage 5 Negotiate 65 or higher, Stage 6 Closed-Won and Handoff 75 or higher, each with critical elements at a floor. Where the profile's Qualification Stage Gates state a different figure, the report shows both and flags it
+- **Stage minimums (the skill's defaults):** Stage 2 Discovery 30 or higher, Stage 3 Demo and Stage 4 Proposal 50 or higher, Stage 5 Negotiate 65 or higher, Stage 6 Closed-Won and Handoff 75 or higher, each with critical elements at a floor. Where the profile's Qualification Stage Gates state a different figure, the profile's figure is the minimum and the report says so (PlotIQ: 70 for Stage 5 Negotiate)
 - **Stage words:** ADVANCE, HOLD, DOWNGRADE, DISQUALIFY
 
 ### Call Coaching (Skill 13)
