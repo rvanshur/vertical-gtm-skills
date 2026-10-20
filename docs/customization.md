@@ -27,21 +27,22 @@ Counted from the Context sections of the 14 sales skills. Fill the top rows firs
 
 | Profile section | Sales skills that read it | What happens if it is thin |
 |---|---|---|
-| ICP Definitions | 13 of 14 | Qualification verdicts and account scores become guesses |
-| Competitive Landscape | 12 of 14 | Battlecards, displacement sequences and objection handling go generic |
-| Core Pain Points | 8 of 14 | Discovery questions and email hooks lose their edge |
-| Buyer Personas | 5 of 14 | Sequences and call sheets stop matching the person in the room |
-| Qualification Criteria | 4 of 14 | Trigger timing and disqualifiers stop working |
-| Proof Points | 4 of 14 | Emails and demos cite nothing, or cite the wrong customer |
-| Qualification Zones | 4 of 14 (01, 02, 03, 07) | Verdicts lose the zone check, so a missing must-have can pass unnoticed |
-| Value Propositions | 3 of 14 | Positioning and demo stories flatten |
-| Sales Methodology | 3 of 14 | Meeting Prep, MEDDPICC and Call Coaching fall back to their defaults |
+| Buyer Personas | 12 of 14 | Sequences, call sheets, buying-role maps and coaching stop matching the person in the room |
+| Competitive Landscape | 10 of 14 | Battlecards, displacement sequences and objection handling go generic |
+| Value Propositions | 10 of 14 | Positioning, demo stories and wedges flatten |
+| Proof Points | 9 of 14 | Emails, demos and battlecards cite nothing, or cite the wrong customer |
+| Qualification Criteria | 9 of 14 | Trigger timing, disqualifiers and the critical-element floors stop working |
+| Core Pain Points | 7 of 14 | Discovery questions, email hooks and the listen-for phrases lose their edge |
+| ICP Definitions | 5 of 14 (01, 02, 03, 05, 07) | Qualification verdicts and account scores become guesses |
+| Qualification Zones | 5 of 14 (01, 02, 03, 07, 11) | Verdicts lose the zone check, so a missing must-have can pass unnoticed |
+| Sales Methodology | 5 of 14 (06, 08, 09, 11, 13) | Meeting Prep, Deal Pulse, MEDDPICC, Competitive Strategy and Call Coaching fall back to their defaults |
+| Qualification Stage Gates | 3 of 14 (02, 06, 07) | Stage names and the gate to the next stage come from the skill's defaults instead of yours |
 | Company | all | Framing only, rarely the bottleneck |
-| Product Modules | Sales-to-CS Handoff | Implementation scope cannot be sized |
+| Product Modules | 14 Sales Handoff | Implementation scope cannot be sized |
 
 Four columns matter more than their size suggests: "Persona who acts" on Buying Triggers (03 and 04 send the sequence to that person), "Discovery question" on Core Pain Points (06, 07 and 13 ask it), the two post-purchase pain columns on Competitive Landscape (05 uses them on a buyer who chose a rival 6 to 12 months ago), and Status on Proof Points (only a Verified row reaches a prospect).
 
-Each sales skill also reads one section of its own, written by that skill's `CUSTOMIZE.md` interview (Fit Grid, Outbound Voice, Industry Context, Trigger Catalog, Closed-Loss Intelligence, Meeting Prep, Daily Prospecting, and the seven for skills 08 to 14). The operating skills do the same. Both maps are in [How It Fits Together](how-it-fits.md#what-each-skill-reads-from-the-profile).
+Each sales skill also reads one section of its own, written by that skill's `CUSTOMIZE.md` interview (Fit Grid, Outbound Voice, Industry Context, Trigger Catalog, Closed-Loss Intelligence, Meeting Prep, Daily Prospecting, Deal Health, MEDDPICC, Buying Committee, Competitive Patterns and Trends, Displacement, Call Coaching, Implementation Profile). The operating skills do the same. Both maps are in [How It Fits Together](how-it-fits.md#what-each-skill-reads-from-the-profile).
 
 ### How to Know the Profile Is Good Enough
 

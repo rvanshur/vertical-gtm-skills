@@ -96,25 +96,25 @@ Skills are organized by deal stage, matching the natural flow of a B2B sales cyc
 
 | # | Skill | What It Does | When to Use |
 |---|-------|-------------|-------------|
-| 8 | **[Deal Pulse](skills/08-deal-pulse/SKILL.md)** | 16-signal health score (0-100) across 4 pillars | Pipeline review, deal health check |
-| 9 | **[MEDDPICC Analysis](skills/09-meddpicc-analysis/SKILL.md)** | 8-element deep qualification with evidence grading | Deal strategy session, forecast commit |
-| 10 | **[Stakeholder Mapping](skills/10-stakeholder-mapping/SKILL.md)** | 7-role buying committee map + ghost node detection | Mid-deal: who are we missing? |
-| 11 | **[Competitive Strategy](skills/11-competitive-strategy/SKILL.md)** | Deal-specific battlecard + positioning matrix + win plan | Active deal against a known competitor |
-| 12 | **[Competitive Displacement](skills/12-competitive-displacement/SKILL.md)** | 4-step outbound targeting incumbent failure patterns | Prospecting into competitor accounts |
+| 8 | **[Deal Pulse](skills/08-deal-pulse/SKILL.md)** | 16-signal health score (0 to 100) across 4 pillars, every signal scored from the record with its tag, and the risk bump stated precisely | Pipeline review, deal health check |
+| 9 | **[MEDDPICC Analysis](skills/09-meddpicc-analysis/SKILL.md)** | 8-element weighted qualification with the table shown, stage minimums from the profile, and one stage word (ADVANCE, HOLD, DOWNGRADE, DISQUALIFY) | Deal strategy session, forecast commit |
+| 10 | **[Stakeholder Mapping](skills/10-stakeholder-mapping/SKILL.md)** | 7-role buying committee map, non-buyers who still shape the deal, ghost nodes written as roles, and a threading score with its seven dimensions shown | Mid-deal: who are we missing? |
+| 11 | **[Competitive Strategy](skills/11-competitive-strategy/SKILL.md)** | Deal-specific battlecard, gap matrix and win plan against one of seven incumbent types, with only Verified proof in a talk track | Active deal against a known competitor |
+| 12 | **[Competitive Displacement](skills/12-competitive-displacement/SKILL.md)** | A template per incumbent type, a difficulty rating (Low, Medium, High) and an outbound sequence where every number has a named, dated source | Prospecting into competitor accounts |
 
 ### Close (Skill 13)
 *Coach reps and improve execution quality.*
 
 | # | Skill | What It Does | When to Use |
 |---|-------|-------------|-------------|
-| 13 | **[Call Coaching](skills/13-call-coaching/SKILL.md)** | Post-call methodology grading (SPIN /30, Challenger /40) | After any recorded call |
+| 13 | **[Call Coaching](skills/13-call-coaching/SKILL.md)** | Post-call grading (discovery 7 categories out of 35, demo 8 out of 40), every coaching point with a quote or an evidence grade, seven key-moment types | After any recorded call |
 
 ### Handoff (Skill 14)
 *Ensure clean transitions from sales to customer success.*
 
 | # | Skill | What It Does | When to Use |
 |---|-------|-------------|-------------|
-| 14 | **[Sales-to-CS Handoff](skills/14-sales-handoff/SKILL.md)** | 6-dimension readiness score + implementation plan | Deal closing, pre-implementation |
+| 14 | **[Sales Handoff](skills/14-sales-handoff/SKILL.md)** | 6-dimension readiness score with the table shown, three dates (kickoff, go-live, full adoption) with the arithmetic, risks and quick wins for the implementation lead | Two weeks before signature, then at signature |
 
 ---
 

@@ -1,8 +1,8 @@
 # Customize: Stakeholder Mapping
 
-A paste-in prompt that adapts this skill to your go-to-market motion.
+A paste-in interview that adapts this skill to your market. It asks how your buying committees are built, which non-buyers slow your deals, and which hidden stakeholders keep appearing, then writes the Buying Committee section of your client profile.
 
-Works in Claude Code, OpenAI Codex, Claude.ai or ChatGPT Projects, or a custom GPT (attach `SKILL.md` as knowledge and paste the block below). They all read the same `SKILL.md` format. Open the assistant, paste the block, and answer its questions.
+Works in Claude Code, in Codex, and in ChatGPT as a custom GPT.
 
 > This is a per-skill companion. For customizing the whole suite at once, see
 > [`docs/customization.md`](../../docs/customization.md) and
@@ -10,82 +10,65 @@ Works in Claude Code, OpenAI Codex, Claude.ai or ChatGPT Projects, or a custom G
 
 ---
 
-## The prompt
+## The Prompt
 
 ```
-You are helping me adapt a GTM methodology skill to my company's go-to-market motion.
+You are helping me adapt a sales methodology skill to my company's buying committees.
 
-Read the attached SKILL.md (gtm-stakeholder-mapping). It builds the buying-committee map: 7-role classification, org hierarchy with ghost nodes, a weighted multi-threading score, and an engagement plan.
+Read the attached SKILL.md (gtm-stakeholder-mapping). It maps the buying committee for one account: it classifies each contact by buying role, places the non-buyers who still shape the deal, marks each missing decision-maker as an UNKNOWN ghost node, scores multi-threading, and writes an engagement plan.
 
-Your job is NOT to rewrite it. It is to make it fire on my accounts, my personas, and my
-vertical, and to tell me honestly where I cannot answer you.
+Your job is NOT to rewrite it. It is to make it fire on my accounts, my personas and my market, and to tell me honestly where I cannot answer you.
 
 Ask me these, ONE AT A TIME, and wait for each answer:
 
-1. Translate the seven buying roles into YOUR vertical's titles. Who is the economic buyer
-   in a single-site independent cemetery, a cemetery and funeral home combination, a
-   family-owned multi-site group, or whatever your accounts look like?
+1. Translate the buying roles into MY market's titles. Who is the economic buyer in a single-site independent operator, a combination operator, a family-owned multi-site group, or whatever my accounts look like?
 
-2. Ghost nodes: tell me about a deal that died because of someone who never appeared in
-   the CRM. Who were they, and what would have surfaced them earlier?
+2. Non-buyers: which people who never sign still slow or stop our deals (technical reviewer, systems administrator, general counsel, operations head, procurement, or others in my market)? For each, what do they usually ask for, and how do they usually behave? Mark every answer as my hypothesis until a call confirmed it.
 
-3. What does multi-threading actually look like in your wins vs losses -- how many
-   contacts, which roles covered? Even a rough count from your last five wins beats the
-   default weights.
+3. Ghost nodes: tell me about a deal that stalled because of someone who never appeared in the CRM. Who was it, and what would have surfaced them earlier?
 
-4. What political patterns repeat in your vertical -- IT vs operations, corporate vs
-   branch, owner vs general manager? Name the standing tensions.
+4. Threading: in my wins and losses, how many named contacts were engaged, and which roles did they cover? Even a rough count from my last five wins beats the default.
 
-5. Which engagement moves are available and acceptable in your motion -- exec sponsor
-   calls, site visits, event invites, peer references? The map is only useful if the moves
-   exist.
+5. Standing tensions: which political patterns repeat in my accounts (IT against operations, corporate against the site, owner against general manager)? Name the ones to check on every deal.
+
+6. Available plays: which engagement moves can my team actually run (an executive call brokered by the champion, a site visit, an event invitation, a peer reference)? The map is only useful if the moves exist.
 
 Then produce:
 
-A. A revised "Quick Reference" written in terms of MY accounts, personas, and vertical,
-   not generic ones.
-B. A revised "Examples" section built from the real answers I gave you, recognizable to my
-   team but naming no individual.
-C. The fields this skill now needs from profiles/client-profile.md, with the exact values
-   I gave you, ready to paste in.
-D. THE HONEST PART: the questions above I could not answer concretely, and what I would
-   need to gather to answer them. Do not paper over these. An answer I guessed at is a
-   gap, and the gap is the finding.
+A. A revised "Quick Reference" written in terms of MY accounts and titles, not generic ones.
+B. A revised "Examples" section built from my real answers, recognizable to my team, naming no individual.
+C. The Buying Committee section for my client profile, using the exact field names below, with the values I gave you. Ready to paste.
+D. THE HONEST PART: the questions above I could not answer concretely, and what I would need to gather to answer them. Do not paper over these. An answer I guessed at is a gap, and the gap is the finding.
 
 Start with question 1.
 ```
 
 ---
 
-## What you should expect to happen
+## What You Should Expect to Happen
 
-**Question 3 stalls** when contact roles were never recorded, so threading history cannot be
-reconstructed. **Question 2 is answered instantly** -- everyone has the ghost-node story --
-and then stalls on "what would have surfaced them," which is the part that changes behavior.
+Question 4 stalls when contact roles were never recorded, because threading history cannot be rebuilt from notes that do not say who was in the room. Question 3 is answered at once, since everyone has a ghost-node story, and then stalls on what would have surfaced that person earlier. That second stall is the part that changes behavior.
 
-Both kinds of stall point at the same missing thing: a **context layer**. The skill is a
-procedure. A procedure needs to know who you sell to, what has worked, and what has already
-gone wrong. That is what `profiles/client-profile.md` is for -- build it once and every skill
-in the suite inherits it.
+Both stalls point at the same missing thing: a context layer. The skill is a procedure. A procedure needs to know who you sell to, which people never sign but still decide, what has worked, and what has already gone wrong. That is what `profiles/client-profile.md` is for. Build it once, and every skill in the suite inherits it.
 
 ---
 
-## Minimum profile fields this skill reads
+## Minimum Profile Fields This Skill Reads
 
-Add these to `profiles/client-profile.md` once:
+Add this section to `profiles/client-profile.md` once. Each field is read by a step in the skill:
 
 ```markdown
 ## Buying Committee
-- **Role-title map:** [buying role -> titles in our vertical]
-- **Ghost patterns:** [where hidden stakeholders live in our accounts]
-- **Threading benchmark:** [contacts and roles in wins vs losses]
-- **Standing tensions:** [the political patterns to check every deal for]
-- **Available plays:** [engagement moves we can actually run]
+- **Role-title map:** [buying role, and the titles that fill it in our market]
+- **Non-buyer rows:** [each non-buyer who slows or stops our deals, why they matter here, and their usual stance as a hypothesis]
+- **Ghost patterns:** [where hidden stakeholders live in our accounts, by account type]
+- **Threading benchmark:** [named contacts and roles in our wins versus our losses, with the count]
+- **Standing tensions:** [the political patterns to check on every deal]
+- **Available plays:** [engagement moves our team can actually run]
 ```
 
 ---
 
-## Map what is true, not what is complete
+## Map What Is True, Not What Is Complete
 
-An UNKNOWN in a role slot is information; a guessed name is contamination. The skill's value
-is showing you where the map is empty while there is still time to fill it.
+An UNKNOWN in a role slot is information. A guessed name is contamination. The skill's value is showing where the map is still empty while there is time to fill it.
