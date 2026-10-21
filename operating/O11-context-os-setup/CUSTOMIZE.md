@@ -1,123 +1,105 @@
 # Customize: Context OS Setup
 
-A paste-in prompt that adapts this skill to your knowledge architecture.
+A paste-in prompt that sets up your knowledge base. It asks where the base lives, who reads it and who approves changes, and then records your evidence for each company and competitor claim. It writes the answers into your client profile.
 
-Works in **Claude Code**, **Claude.ai Projects**, or **OpenAI Codex**, all three read the same
-`SKILL.md` format. Open the assistant, paste the block below, and answer its questions one at a time.
+This runs in Claude Code, in Codex, or as a ChatGPT custom GPT. Open the assistant, paste the block below, attach SKILL.md if the tool allows it, and answer the questions one at a time.
 
-> This is a per-skill companion. For customizing the whole suite at once, see
-> [`docs/customization.md`](../../docs/customization.md), and for how this skill sets up the
-> knowledge base that Weekly Review, Graph Health, Dream and Ingest run on, see
-> [`docs/how-it-fits.md`](../../docs/how-it-fits.md).
+> This companion writes three parts of `profiles/client-profile.md`: the `## Knowledge Base` section, and the `## Company` and `## Competitive Landscape` sections. It does not change any other profile section.
 
 ---
 
-## The prompt
+## The Prompt
 
 ```
-You are helping me build a knowledge base for go-to-market intelligence.
+You are helping me set up the knowledge base for my go-to-market work.
 
-Read the attached SKILL.md (context-os-setup). It guides building a two-layer knowledge system
-where atomic concepts are defined once and referenced everywhere, so facts stay synchronized
-as they change. If profiles/client-profile.md exists, treat it as the first strategic document
-the knowledge base should hold.
+Read the attached SKILL.md (context-os-setup, version 2.0.0). The skill builds the base
+from material I already have. It refuses to start without one real seed item, it asks
+whether each file is still true, and it writes nothing until I approve the folder layout.
 
-Your job is NOT to design a complex taxonomy. It is to help me capture what we know about our
-market in a way that does not drift.
+Your job is not to change the skill. It is to fill in my knowledge base settings and my
+two profile sections from my answers, and to tell me where my material does not match
+what the skill assumes.
 
 Ask me these, ONE AT A TIME, and wait for each answer:
 
-1. What do you already know about your market that you never want to lose? (Positioning,
-   customer profile, competitors, regulatory, revenue metrics, whatever exists)
+1. Where should the base folder live? Give a path, or say "none yet" and I will decide later.
 
-2. Where is it stored right now, and is it scattered or consolidated? (Notion, spreadsheets,
-   documents, email, Slack; how fragmented?)
+2. What is the purpose of the base? Go-to-market is the default. Product, research and
+   consulting are also options.
 
-3. Who needs to read this knowledge? (Just you, the team, investors, customers?)
+3. Who reads the base? One person, a team, or a custom GPT the team uses.
 
-4. What breaks if this knowledge gets out of sync? (If positioning used old customer data,
-   what happens?)
+4. Who approves new tags and new folders? Name the role, not a person's name.
 
-5. If you had to stop at one synthesis document, the 5% that answers 95% of questions, what
-   would it be?
+5. How often should the deeper review run? Every two weeks or monthly. Say which one,
+   and name the role that owns it.
+
+6. Company facts. Paste the Company section of my client profile. For each line, tell me
+   the evidence behind it. Use exactly one of these grades: assumed, heard, seen, confirmed.
+   Confirmed means the evidence shows it across at least five recent cases with no
+   contrary case. If I say confirmed on less evidence, grade it heard and tell me why.
+
+7. Competitive Landscape. Ask the same questions for each competitor row.
 
 Then produce:
 
-A. A directory structure (Layer 1 atomic concepts + Layer 2 strategic documents) customized to
-   my market
+A. The "## Knowledge Base" section, with five fields: Location, Taxonomy file, Synthesis
+   document, Owner and Maintenance cadence. Mark any field I did not answer as [ASK LATER],
+   never as a guess.
 
-B. A starter taxonomy (5-7 blessed tags, defined)
+B. The "## Company" and "## Competitive Landscape" sections, with every entry marked with
+   its grade.
 
-C. A starter ontology (how my key concepts relate)
-
-D. A one-page documentation guide for how to add knowledge without breaking the system
-
-E. A plan for seeding the base with my first content
-
-F. The "Knowledge Base" profile section below, filled in, so the other knowledge skills know
-   where the base lives
-
-G. THE HONEST PART: most knowledge bases are abandoned because they are too complex or nobody
-   uses them. Mine will work only if it is simple enough that anyone can use it and immediate
-   enough that people will. Tell me which of my answers suggest I am overbuilding.
+C. A short list of what does not match: a missing seed item, a profile section that is
+   missing, a claim I graded higher than its evidence supports, or an owner who is not
+   named by role.
 
 Start with question 1.
 ```
 
 ---
 
-## What you should expect to happen
+## What You Should Expect
 
-Questions 1 and 2 are easy and usually produce a long, scattered list. That is fine. Question 4
-is the one that decides the design: if nobody can name what breaks when a fact goes stale, the
-knowledge base has no job yet, and it will be abandoned.
+Question 1 can be answered "none yet". In that case the setup stops before it writes anything, and you come back once the folder exists. Question 4 decides who signs off on new tags and folders, so name a role and keep it stable.
 
-Question 5 stalls more than people expect. If you cannot name the one synthesis document, start
-with your client profile. It is already the document every GTM skill in this repo reads.
+Question 5 is your decision, not the skill's. Both options are sound, and the owner's role should be the one that will actually run the review.
+
+Questions 6 and 7 are where most setups slow down, because a grade needs evidence behind it. If you cannot name the evidence for a line, its honest grade is `assumed`. An `assumed` entry is useful, because it tells the next skill not to build on that line yet.
 
 ---
 
-## Minimum profile fields this skill writes
+## Profile Sections This Interview Writes
 
-This skill does not need the profile to run. It writes one small section that the other
-knowledge skills (Weekly Review, Graph Health, Dream, Ingest) can read:
+The interview writes these sections into `profiles/client-profile.md`. You can edit them by hand at any time.
 
 ```markdown
 ## Knowledge Base
 
-- **Location:** [the folder, e.g. knowledge_base/]
-- **Taxonomy file:** [where the blessed tags are defined, e.g. knowledge_base/_system/taxonomy.yaml]
-- **Synthesis document:** [the one document a new team member reads first]
-- **Owner:** [who approves new tags and structural changes]
+- **Location:** [folder path of the base, or "none yet"]
+- **Taxonomy file:** [path to `_system/taxonomy.yaml`]
+- **Synthesis document:** [path to the summary page the team reads first, or "none yet"]
+- **Owner:** [a role]
+- **Maintenance cadence:** [the cadence you chose, with the owning role]
+
+## Company
+
+- **[Field]:** [value], grade: [assumed | heard | seen | confirmed], evidence: [source]
+
+## Competitive Landscape
+
+- **[Competitor]:** [position or detail], grade: [assumed | heard | seen | confirmed], evidence: [source]
 ```
 
 ---
 
-## If you are stuck on any question
+## Troubleshooting
 
-- **Question 1 stalls:** open the last three decks or documents you sent a customer or investor.
-  Every fact in them that you would hate to get wrong belongs in the base.
-- **Question 2 stalls:** you do not know where it lives, which is the answer. Seed from the one
-  place most people actually check, even if it is a single shared document.
-- **Question 4 stalls:** pick one fact that changes often (pricing, a competitor's position, the
-  ICP) and trace every place it appears. Each of those is a place it can go stale.
-- **Question 5 stalls:** use the client profile as the synthesis document for the first month.
-
----
-
-## When your knowledge base works
-
-You will know it is working when:
-- A new team member can onboard by reading one document (the synthesis)
-- When facts change (customer feedback, competitive move), they get updated once and everywhere
-  reflects the change
-- When discovery runs next quarter, they do not re-derive what was learned last quarter
-- When launch planning needs competitive data, they do not rebuild what positioning already has
-
-That is the compounding effect. One fact defined once, referenced everywhere, updated in one place.
-
-If you are three months in and people are still asking "do we know this" or emailing to "confirm
-the pricing" or rebuilding the customer profile, the base is not working. Make it simpler. Make
-it more visible. Use the synthesis layer.
-
-A knowledge base that gets used beats a perfect knowledge base that does not.
+| Problem | Cause | Response |
+|---------|-------|----------|
+| The setup says there is no seed item | No real file has been named yet | Add one of these: a pricing sheet, a call transcript, a customer list or a competitor note |
+| Every grade reads `assumed` | No source has been named for any line | Name one source for each line. `assumed` is a valid grade and marks an open bet |
+| Other skills cannot find the base | The Location line is empty or holds the wrong path | Correct the Location line, then run the interview again |
+| A skill reports a missing section | The heading is not exactly `## Knowledge Base` | Rename the heading to match exactly, keeping the five field names |
+| The owner line names a person | Names change when staff change | Replace the name with the role that owns the base |
