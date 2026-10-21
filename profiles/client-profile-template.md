@@ -413,7 +413,7 @@ All fourteen have a fixed shape, so you can also fill them by hand. The first se
 ## Optional: Operating-Layer Sections
 
 The 15 operating skills in `operating/` each read one extra section of their own, which that
-skill's `CUSTOMIZE.md` interview writes for you (for example `## Review Process` for Second
+skill's `CUSTOMIZE.md` interview writes for you (for example `## Second Opinion` for Second
 Opinion, or `## Knowledge Base` for Context OS Setup). Nothing to fill in here now. When you run
 an operating skill's interview, paste the section it produces at the bottom of this file. The
 full list is in [`docs/how-it-fits.md`](../docs/how-it-fits.md#what-each-skill-reads-from-the-profile).
