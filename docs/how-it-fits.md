@@ -134,14 +134,14 @@ skill runs with its defaults and says so.
 |---|---|---|
 | `## Verification` | O1 Verify | Your test, lint and build commands, and what counts as done |
 | `## Debugging` | O2 Debug | Where bugs show up and how you reproduce them |
-| `## Decision Discipline` | O3 Debate | Which decisions get a panel, and the expert archetypes that fit your work |
-| `## Knowledge Locations` | O4 Context Gap | Where to search before building |
-| `## Review Process` | O5 Second Opinion | Your builder vendor, your second vendor and how you reach it |
-| `## Operational Health Metrics` | O6 Weekly Review | What the weekly record measures |
-| `## Knowledge Base Structure` | O7 Graph Health | Your thresholds for tags, links and provisional items |
-| `## Knowledge Base Consolidation` | O8 Dream | How stale items are handled |
-| `## Knowledge Ingestion` | O9 Ingest | Your source types and where items land |
-| `## Session Handoff` | O10 Wrap-up | Where continuation notes go |
+| `## Debate` | O3 Debate | Which decisions get a panel, and the expert archetypes that fit your work |
+| `## Context Gap` | O4 Context Gap | Where to search before building |
+| `## Second Opinion` | O5 Second Opinion | Your builder vendor, your second vendor and how you reach it |
+| `## Weekly Review` | O6 Weekly Review | What the weekly record measures |
+| `## Graph Health` | O7 Graph Health | Your thresholds for tags, links and provisional items |
+| `## Dream` | O8 Dream | How stale items are handled |
+| `## Ingest` | O9 Ingest | Your source types and where items land |
+| `## Wrap-Up` | O10 Wrap-Up | Where continuation notes go |
 | `## Knowledge Base` | O11 Context OS Setup | Where the base lives, so O6 to O9 can find it |
 | `## Growth System` | O12 GTM Engine | Growth goal and window, team time for growth work, growth measure, current bottleneck, sprint cadence, narrative |
 | `## Launch Plan` | O13 GTM Launch | Knowledge base path, decision owner, what is launching, motion, revenue goal and window, launch day owner and date, budget in dollars, day-30 review date, channel cap, kill and volume rules, reserve, war room, permission and cost records |
