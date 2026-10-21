@@ -1,6 +1,6 @@
 ---
 name: gtm-discovery
-version: 2.1.0
+version: 2.1.1
 description: "Diagnoses which Guild archetype a business is, grades every belief about its customer by evidence (assumed, heard, seen, confirmed), plans the cheapest evidence for the bets that matter most, names the real alternatives and a starting segment, and writes the result to the knowledge base for Positioning, Launch and Engine to read."
 category: Operating-Discipline
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: [context-os-setup]
 mutating: true
 change_log:
+  - version: 2.1.1
+    date: 2026-10-21
+    summary: "Alignment with Context OS Setup 2.0. The knowledge base location is read from the Location field of the profile's Knowledge Base section, and the Discovery section keeps the archetype guess and re-grade windows. The claims ledger has a named home and a first-run rule. The five output nodes carry the shared item frontmatter with a node_type and a folder each. Profile entries carry a grade, not a confidence. No stage changes."
   - version: 2.1.0
     date: 2026-10-13
     summary: "Hand-off block now names the load-bearing claim, the do-not-build-on list, the open bets with their text, and the source of each alternative count."
@@ -67,7 +70,7 @@ You do not decide the strategy. You make the evidence state of the strategy visi
 | `profiles/client-profile.md` | If it exists | Treated as claims to grade, not as facts. Its ICP, persona and competitor entries are the first claims |
 | Deal history: the last 10 to 20 won and lost deals | Strongly recommended | Cycle length, contract value, stakeholders, source, loss reason. Without it, most claims stay `assumed` |
 | Call notes, transcripts, support tickets | Optional | Each one is a possible source for a claim. Record which claim each one supports |
-| Knowledge base location | If one exists | From Context OS Setup. Without it, outputs are written to the profile and the brief only |
+| Knowledge base location | If one exists | The `Location` field of the `## Knowledge Base` section of the client profile, which Context OS Setup writes. Without it, outputs are written to the profile and the brief only |
 
 ---
 
@@ -94,7 +97,7 @@ Discovery reads, in this order:
 1. The team's own statement of beliefs (Stage 1)
 2. The client profile, if it exists: Company, ICP Definitions, Buyer Personas, Core Pain Points and Competitive Landscape
 3. The deal history and any call or ticket records the team provides
-4. The `## Discovery` section of the profile, if the team has run the customization interview. It holds the knowledge base path, the team's starting archetype guess, and the re-grade windows
+4. The `## Knowledge Base` section of the profile, for the base location (its `Location` field), and the `## Discovery` section, if the team has run the customization interview, for the team's starting archetype guess and the re-grade windows. A knowledge base path written in `## Discovery` is used only when the Knowledge Base section is absent
 
 If there is no knowledge base, say so once at the start and write the outputs to the profile and the brief. If there is no profile, run the workflow anyway and write the outputs to the brief. Say once which of these applies.
 
@@ -106,7 +109,7 @@ Run the seven stages in order. Stages 3 and 4 branch on the archetype, so Stage 
 
 ### Stage 1. Write Down What We Believe
 
-Before any data is read, the team lists every belief about the customer: who buys, why they buy, how fast, what they would do otherwise, and what would make them leave. Each belief becomes a **claim** in the claims ledger. Every claim starts as `assumed`, with one line stating what evidence would change the team's mind.
+Before any data is read, the team lists every belief about the customer: who buys, why they buy, how fast, what they would do otherwise, and what would make them leave. Each belief becomes a **claim** in the claims ledger, a file at `<base>/gtm/claims-ledger.md` that this skill creates on its first run (when there is no base, the ledger sits inside the Discovery brief). Every claim starts as `assumed`, with one line stating what evidence would change the team's mind.
 
 *Why first:* a belief written down before the evidence can be proven wrong. A belief formed while reading the evidence simply agrees with it.
 
@@ -193,8 +196,8 @@ Recommend one starting segment, and say what would make the team switch. Name a 
 
 ### Stage 7. Write It Back
 
-- **Atomic nodes** to the knowledge base: the archetype, each persona (every trait traced to a claim), the alternatives, the starting segment, and the open bets.
-- **The client profile.** Update the Company, ICP Definitions, Buyer Personas and Competitive Landscape sections, and mark the confidence of each entry.
+- **Atomic nodes** to the knowledge base: the archetype, each persona (every trait traced to a claim), the alternatives, the starting segment, and the open bets. Each node carries the shared item frontmatter (`name`, `description`, `domain`, `node_type`, `status`, `created`, `updated`, `tags`, `related`, `source`) with `domain: gtm`, `status: emergent` and three or more links. The `node_type` is `concept` for the archetype and the open bets, `competitor-intel` for the alternatives, `decision` for the starting segment and `persona-insight` for each persona. Personas file under `people/`, the rest under `gtm/`.
+- **The client profile.** Update the Company, ICP Definitions, Buyer Personas and Competitive Landscape sections, and mark the grade of each entry (assumed, heard, seen or confirmed).
 - **One strategic document,** the Discovery brief, two pages at most. It links to the nodes rather than copying them.
 - **Re-grade dates** on every claim, following the windows in the Loop section.
 - **A hand-off block** for Positioning, listing the five Output Contract fields in one place.
@@ -395,7 +398,7 @@ The CFO or Controller persona (groups only) has no trait with a source in this r
 
 ## Integration With Other Skills
 
-- **Context OS Setup (`context-os-setup`)** creates the knowledge base this skill writes to. Run it first if no knowledge base exists. Without it, this skill writes to the profile and the brief only.
+- **Context OS Setup (`context-os-setup`)** creates the knowledge base this skill writes to and records its location in the `Location` field of the profile's `## Knowledge Base` section, which this skill reads. Run it first if no knowledge base exists. Without it, this skill writes to the profile and the brief only.
 - **Positioning (`gtm-positioning`)** reads the five Output Contract fields. It refuses any claim still `assumed`, and it reads the open bets to know what not to build on.
 - **Launch (`gtm-launch`)** and **Engine (`gtm-engine`)** read the archetype and the starting segment, and write their results back as new claims for Discovery to grade.
 
@@ -410,6 +413,7 @@ The CFO or Controller persona (groups only) has no trait with a source in this r
 
 ## Changelog
 
+- **2.1.1 (2026-10-21):** Knowledge base location now comes from the `Location` field of the `## Knowledge Base` section that Context OS Setup writes. The `## Discovery` section keeps the starting archetype guess and the re-grade windows, and a path written there is used only when the Knowledge Base section is absent. The claims ledger lives at `<base>/gtm/claims-ledger.md` (or inside the Discovery brief when there is no base) and is created on the first run. Stage 7 nodes carry the shared item frontmatter, with a `node_type` and a folder for each of the five outputs. Profile entries are marked with their grade (assumed, heard, seen, confirmed), the same word used everywhere else in the skill.
 - **2.1.0 (2026-10-13):** Hand-off block now names the load-bearing claim, the do-not-build-on list, the open bets with their text, and the source of each alternative count.
 - **2.0.1 (2026-10-13):** Example 1 re-cast on PlotIQ, the library's one example company, matching article 51.
 - **2.0.0 (2026-10-12):** Ground-up rewrite around the archetype diagnosis and the evidence ladder. Adds the open-bets output, the seven-stage workflow with a re-grade loop, and the per-segment ten-deal test.

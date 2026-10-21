@@ -1,6 +1,6 @@
 ---
 name: gtm-graph-health
-version: 2.0.0
+version: 2.0.1
 description: "Measures the shape of a knowledge base (tag sprawl, link density, provisional age and broken links), returns a structure score with every deduction shown, and hands the owner a decision for each crossed threshold. Dream and Weekly Review read its score. It never edits an item and never judges whether one is true."
 category: Operating-Discipline
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: [gtm-ingest]
 mutating: false
 change_log:
+  - version: 2.0.1
+    date: 2026-10-21
+    summary: "Alignment with Context OS Setup 2.0: when the Graph Health section has no knowledge base location or tag list location, both are read from the profile's Knowledge Base section (Location, Taxonomy file). No stage or scoring changes."
   - version: 2.0.0
     date: 2026-10-18
     summary: "Ground-up rewrite. Measures structure only, with the score kept apart from Dream's content count. Tag, link and provisional-age measures are named by field, claims are counted by grade word when the base holds them, and the seven hand-off fields are fixed by name."
@@ -56,8 +59,8 @@ You refuse to do three things:
 
 | Input | Required | Notes |
 |-------|----------|-------|
-| Knowledge base location | Required | The folder holding the items. Without it, the skill asks and does not start |
-| Tag list location | Optional | Enables the "tag not on the list" deduction. Without it, that deduction is null, with the reason |
+| Knowledge base location | Required | The folder holding the items, from the `## Graph Health` section, or from the `Location` field of `## Knowledge Base` when that section names none. Without either, the skill asks and does not start |
+| Tag list location | Optional | Enables the "tag not on the list" deduction. From the `## Graph Health` section, or from the `Taxonomy file` field of `## Knowledge Base`. Without either, that deduction is null, with the reason |
 | Last report | Optional | Lets the report show change since the last run. Without it, deltas read as a dash, meaning no baseline |
 | Content of items | Never | The skill reads the item fields and links listed below. It does not read or judge the words of an item |
 
@@ -133,7 +136,7 @@ Hand-off Fields
 
 Graph Health reads, in this order:
 
-1. The `## Graph Health` section of `profiles/client-profile.md`, if it exists. It holds the knowledge base location, the tag list location, the link syntax, the run cadence and the report location. This skill's CUSTOMIZE.md writes it.
+1. The `## Graph Health` section of `profiles/client-profile.md`, if it exists. It holds the knowledge base location, the tag list location, the link syntax, the run cadence and the report location. This skill's CUSTOMIZE.md writes it. When it does not name a knowledge base location or a tag list location, those two values come from the `Location` and `Taxonomy file` fields of the `## Knowledge Base` section that Context OS Setup writes.
 2. The item fields listed under Input Contract, for every item in the base.
 3. The last report, if one is supplied.
 
@@ -399,6 +402,10 @@ Degradation table. When an input is missing, the report still runs, and it says 
 ---
 
 ## Changelog
+
+### 2.0.1 (2026-10-21)
+
+- The knowledge base location and the tag list location fall back to the `Location` and `Taxonomy file` fields of the `## Knowledge Base` section that Context OS Setup writes, when the `## Graph Health` section does not name them.
 
 ### 2.0.0 (2026-10-18)
 
