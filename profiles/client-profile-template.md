@@ -13,6 +13,7 @@
 2. **Fill out the sections below** with your company's actual data. None should run longer than a page.
 3. **Write in operator voice, not marketing voice.** A skill can't score an account against "innovative".
 4. **Refine over time.** After running a few skills you'll spot gaps. Add the missing data, and every skill picks up the change on its next run.
+5. **Write `[RECORD]` where you have no data yet, never a guess.** A field marked `[RECORD]` tells every skill the team has not recorded that fact, so the skill treats it as unknown and says so in its output instead of scoring against an invented value. Fill it in from a real deal, a real call or a dated source when one exists. The PlotIQ example carries `[RECORD]` in its deal-history sections on purpose, because an invented company has no won deals to draw from.
 
 A completed example lives at [`profiles/examples/plotiq-example.md`](examples/plotiq-example.md): PlotIQ, the made-up software company for cemeteries and funeral homes that every worked example in the library uses.
 
