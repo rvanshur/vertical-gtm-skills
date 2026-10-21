@@ -1,6 +1,6 @@
 ---
 name: gtm-wrap-up
-version: 2.0.2
+version: 2.0.3
 description: "Closes a working session in writing: a debrief, a project key taken from the files that changed, the checks the work earned, three lines, one next action the owner confirms, and a continuation note that supersedes the older one. Writes the note that Weekly Review reads."
 category: Operating-Discipline
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: [context-os-setup]
 mutating: true
 change_log:
+  - version: 2.0.3
+    date: 2026-10-21
+    summary: "Alignment with Context OS Setup 2.0: the setup's tier statement, written as a claim slip, is named as a Where We Stopped source alongside Verify's. No stage changes."
   - version: 2.0.2
     date: 2026-10-20
     summary: "The note gives the sales skills a named place: the account and its verdict, strategy or score under Where We Stopped, any report_path under What Happened, and the sales skill's next_action line (owner and date) as the draft next action confirmed at Stage 5. No stage changes."
@@ -382,7 +385,7 @@ The failure is visible in the note, the state line does not claim the item is li
 
 **Reads from the verification skills, by name.** Verify's tier statement per claim (Where We Stopped). Context Gap's gap state per build (What Happened). Debate's matrix, posture, resolution and record path (Decisions Made). Debug's handoff file path (Open Threads). Second Opinion's review file path (What Happened). A session that used none of them writes nothing for them, and never invents a tier.
 
-- **Reads from Context OS Setup:** the knowledge base location, from the `## Knowledge Base` section of the client profile, and the folder layout it created.
+- **Reads from Context OS Setup:** the knowledge base location, from the `## Knowledge Base` section of the client profile, the folder layout it created, and its tier statement, written as a claim slip (claim, tier, check, evidence), which goes under Where We Stopped like any verified claim.
 - **Reads from no other memory skill.** Wrap-Up reads its own earlier continuation notes and the knowledge base, and nothing else.
 - **Hands to gtm-weekly-review:** every continuation note, by these field names: `project`, `date`, `status`, `next_action`. gtm-weekly-review reads the open notes, lists those older than one week with their next action, so these four fields must be present and accurate.
 - **Next step:** name gtm-weekly-review by default, and gtm-dream when the knowledge base is due for its run.
@@ -392,6 +395,10 @@ The failure is visible in the note, the state line does not claim the item is li
 **From the sales skills (01 to 14).** Each hands `next_action` (owner and date), `report_path` (set only when a file was written) and its verdict, strategy or score with the account name. The close reads those three by name and never re-derives a verdict from the session text.
 
 ## Changelog
+
+### 2.0.3 (2026-10-21)
+
+- Context OS Setup's tier statement (a claim slip: claim, tier, check, evidence) is recorded under Where We Stopped the way Verify's tier statements are.
 
 ### 2.0.2 (2026-10-20)
 

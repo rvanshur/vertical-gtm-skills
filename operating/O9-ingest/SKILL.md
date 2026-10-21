@@ -1,6 +1,6 @@
 ---
 name: gtm-ingest
-version: 2.0.0
+version: 2.0.1
 description: "Turns a call, meeting, document, set of notes or conversation summary into structured knowledge items. Each item has a compiled truth on top and a dated timeline below. Existing records get new entries instead of duplicates, and nothing is saved until the owner approves. Writes the fields that Graph Health, Dream and Weekly Review read by name."
 category: Operating-Discipline
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: [context-os-setup]
 mutating: true
 change_log:
+  - version: 2.0.1
+    date: 2026-10-21
+    summary: "Alignment with Context OS Setup 2.0: the tag list is read from the Taxonomy file field of the profile's Knowledge Base section (or a list named in the Ingest section), and non-default folder names are recorded in the Ingest section, one line per domain value. No stage changes."
   - version: 2.0.0
     date: 2026-10-18
     summary: "Rewrite of the Ingest skill. Every item now has two zones, a compiled truth that is rewritten as understanding changes and a timeline that is only appended to. Ingest searches the base before it writes, appends to existing records, and asks the owner before it creates any person record. Each item carries the full field set that Graph Health, Dream and Weekly Review read by name, including the valid_until expiry field, and every item gets three or more links. Saves wait for the owner's approval. The 1.1.0 version stays in history."
@@ -123,7 +126,7 @@ The skill reads these, in this order:
 
 1. **The client profile**, `profiles/client-profile.md`, its `## Ingest` section (written by `CUSTOMIZE.md`). That section holds the save rules.
 2. **The `## Knowledge Base` section of the profile**, which Context OS Setup writes. It holds where the base lives.
-3. **The tag list**, if the profile names one.
+3. **The tag list**, if the profile names one: the `Taxonomy file` field of the `## Knowledge Base` section, or a list named in `## Ingest`.
 4. **The base itself**, searched for existing records before anything is written.
 
 If the profile has no `## Ingest` section, say so once at the start of the run, then use these defaults. Ask where to save. Use free tags and flag each one. Ask before creating any person record. Suggest expiry dates but never set them. Show the full save plan before any write. The run stays safe even when it is uncustomized.
@@ -195,7 +198,7 @@ Both start at 100, deduct with caps, floor at zero, and report the same bands: *
 
 ### Routing Table
 
-Stage 4 uses this table to choose a folder. It is the default. The owner can name different folders in the profile, and if the base already uses other names, the existing names win.
+Stage 4 uses this table to choose a folder. It is the default. The owner can name different folders in the profile's `## Ingest` section, one line per `domain` value, and if the base already uses other names, the existing names win.
 
 | Domain | Default Folder | What Goes There |
 |---|---|---|
@@ -442,6 +445,11 @@ When part of the setup is missing, Ingest keeps working where it safely can, and
 ---
 
 ## Changelog
+
+### 2.0.1 (2026-10-21)
+
+- The tag list comes from the `Taxonomy file` field of the `## Knowledge Base` section that Context OS Setup writes, or from a list named in `## Ingest`.
+- Non-default folder names are recorded in the `## Ingest` section, one line per `domain` value, which is where Stage 4 reads them.
 
 ### 2.0.0 (2026-10-18)
 
