@@ -208,13 +208,13 @@ Wrap-Up reads by name the **report path** when a file was written, the **verdict
 
 #### Guild Disciplines, Restated
 
-1. **Evidence over optimism.** Score what the record proves, not what the rep believes. Under-scoring protects a deal. Over-scoring kills it.
-2. **Silence is not a no.** An empty field is unknown and is counted in no denominator.
-3. **One cast, one story.** Every example uses the profile's example company and its cast. An example never presents an invented number as a real result.
-4. **The profile is upstream.** Strategy skills write it. Sales skills read it. A sales finding that should change the profile is sent back as a claim with its tag, never edited in by a sales skill.
-5. **Published numbers only.** A figure from a published Guild article may be cited to it. Any other figure in an example is marked illustrative.
-6. **Names as roles** in anything shared. No vendor, tool or model names in a free skill beyond the platform line. The CRM is "the CRM".
-7. **Draft, never send.** A rep reads before anything leaves.
+1. **Evidence Over Optimism.** Score what the record proves, not what the rep believes. Under-scoring protects a deal. Over-scoring kills it.
+2. **Silence Is Not A No.** An empty field is unknown and is counted in no denominator.
+3. **One Cast, One Story.** Every example uses the profile's example company and its cast. An example never presents an invented number as a real result.
+4. **The Profile Is Upstream.** Strategy skills write it. Sales skills read it. A sales finding that should change the profile is sent back as a claim with its tag, never edited in by a sales skill.
+5. **Published Numbers Only.** A figure from a published Guild article may be cited to it. Any other figure in an example is marked illustrative.
+6. **Names As Roles** in anything shared. No vendor, tool or model names in a free skill beyond the platform line. The CRM is "the CRM".
+7. **Draft, Never Send.** A rep reads before anything leaves.
 
 ---
 
@@ -634,7 +634,7 @@ Each [v] is 100 for GREEN, 50 for YELLOW, 0 for RED, or INSUFFICIENT, which has 
 ## Epistemic Rules
 
 - **Score the record, not the rep.** Evidence comes from the CRM, call transcripts, emails and notes. Each fact carries one of the six shared tags, and a fact with no tag is removed.
-- **Silence is not a no.** An empty field is written as `[Unknown]` and named in the justification. A signal with no evidence at all is scored INSUFFICIENT: it has no value, it is left out of both the sum and the count, and its justification reads "Insufficient data to score", so the reader sees a gap and not a finding that the thing is absent.
+- **Silence Is Not A No.** An empty field is written as `[Unknown]` and named in the justification. A signal with no evidence at all is scored INSUFFICIENT: it has no value, it is left out of both the sum and the count, and its justification reads "Insufficient data to score", so the reader sees a gap and not a finding that the thing is absent.
 - **Claimed is not confirmed.** What the rep says on a call is `[Call]` with its date. The same point visible in the CRM activity is `[CRM]`. A signal that the rubric grades on confirmed behaviour needs the second.
 - **Every rate carries its n.** "N of 16 signals scored" and "N of 7 champion tests met", never a rate without its count.
 

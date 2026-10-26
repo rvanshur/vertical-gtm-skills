@@ -203,13 +203,13 @@ Wrap-Up reads by name the **report path** when a file was written, the **verdict
 
 #### Guild Disciplines, Restated
 
-1. **Evidence over optimism.** Score what the record proves, not what the rep believes. Under-scoring protects a deal. Over-scoring kills it.
-2. **Silence is not a no.** An empty field is unknown and is counted in no denominator.
-3. **One cast, one story.** Every example uses the profile's example company and its cast. An example never presents an invented number as a real result.
-4. **The profile is upstream.** Strategy skills write it. Sales skills read it. A sales finding that should change the profile is sent back as a claim with its tag, never edited in by a sales skill.
-5. **Published numbers only.** A figure from a published Guild article may be cited to it. Any other figure in an example is marked illustrative.
-6. **Names as roles** in anything shared. No vendor, tool or model names in a free skill beyond the platform line. The CRM is "the CRM".
-7. **Draft, never send.** A rep reads before anything leaves.
+1. **Evidence Over Optimism.** Score what the record proves, not what the rep believes. Under-scoring protects a deal. Over-scoring kills it.
+2. **Silence Is Not A No.** An empty field is unknown and is counted in no denominator.
+3. **One Cast, One Story.** Every example uses the profile's example company and its cast. An example never presents an invented number as a real result.
+4. **The Profile Is Upstream.** Strategy skills write it. Sales skills read it. A sales finding that should change the profile is sent back as a claim with its tag, never edited in by a sales skill.
+5. **Published Numbers Only.** A figure from a published Guild article may be cited to it. Any other figure in an example is marked illustrative.
+6. **Names As Roles** in anything shared. No vendor, tool or model names in a free skill beyond the platform line. The CRM is "the CRM".
+7. **Draft, Never Send.** A rep reads before anything leaves.
 
 ---
 
@@ -415,7 +415,7 @@ Pick the persona rows from Methodology, then draft each sequence in the structur
 - **Every number in an email has a named, dated source, or it is removed.** One good example: "Cemeteries of this kind often carry [figure] plots that are sold on paper and unsold on the map ([named report and date, within 90 days of the run date], Benchmark)." That sentence stays, because its source is named, dated and recent enough to use. The version "Most cemeteries lose a third of their plots to paperwork" has no source, so the figure and the sentence come out, and the email asks the question instead: "How many plots could you sell today if the records were right?"
 - **An illustrative figure never goes into an email.** A figure an example marks (illustrative) is shown in the report and stays out of every email, because Hard Rule 2 accepts only a named, dated source.
 - **Failure patterns need the buyer's own words.** A failure pattern used in outbound traces to a won-away customer who said it, with its tag. A pattern drawn across accounts needs five cases behind it. Fewer than five is an observation, and the report says so in the same sentence.
-- **Silence is not a no.** A blank CRM field is `[Unknown]`. An unknown contract term sets the difficulty to High, and it never sets it to Low.
+- **Silence Is Not A No.** A blank CRM field is `[Unknown]`. An unknown contract term sets the difficulty to High, and it never sets it to Low.
 - **Never fabricate a competitor weakness.** If the intelligence for an incumbent is thin, say so, and use positioning tagged `[Inferred]` that rests on the category pattern.
 - **Difficulty ratings are directional.** A Low rating means the positioning is favorable. It does not mean the deal is easy.
 - **Research older than 90 days.** A research citation dated more than 90 days before the run date is flagged in its citation as over 90 days old at the run date, and it is used only as a research estimate, never as a benchmark and never in an email (Old Research in Email, under Settled Judgments).
