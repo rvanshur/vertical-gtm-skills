@@ -153,6 +153,32 @@ Competitive Landscape sections, which is where the motion skills pick them up.
 
 ---
 
+## Sales Chains
+
+The 14 sales skills hand fields to each other by name, so they run as chains. Each chain below follows hand-offs
+the skills already define. Start a chain at any step if you already have the upstream output.
+
+| Chain | Steps, In Order | What Passes Between Steps |
+|---|---|---|
+| Qualify To Book | Account Qualification (01), Account Snapshot (02), Research Outbound (03) or Trigger Event Outbound (04), Meeting Prep (06) | `verdict` and `zone_scores`; then `contact_priority`, `pain_hypotheses` and `sequence`; then `pov_brief` or `trigger_type` and `urgency_window` |
+| Daily Pipeline | Daily Prospecting (07), Meeting Prep (06) | `dial_sheet`, `pre_call_briefs`, `exclusions` |
+| Win Back | Closed-Loss Reactivation (05), Trigger Event Outbound (04), Meeting Prep (06) | `loss_classification`, `reactivation_strategy`, `history_opener`; then the trigger fields |
+| Work The Deal | Meeting Prep (06), Call Coaching (13), Deal Pulse (08), MEDDPICC Analysis (09), Stakeholder Mapping (10) | `prep_sheet` and `question_bank`; then `call_score` and `champion_status`; then `health_score` and `signal_scores`; then `meddpicc_scores`; then `threading_score` and `ghost_nodes` |
+| Beat The Incumbent | MEDDPICC Analysis (09), Competitive Strategy (11), Competitive Displacement (12), Account Snapshot (02) or Meeting Prep (06) | `risk_patterns`; then `incumbent_type`, `gap_matrix`, `battlecard`; then `displacement_difficulty` and `target_personas` |
+| Close And Hand Off | MEDDPICC Analysis (09), Sales Hand-Off (14), Wrap-Up (O10) | `stage_recommendation`; then `readiness_score`, `three_dates`, `quick_wins`; then `report_path` and `next_action` |
+
+**The knowledge base and connectors.** Every sales skill reads the base that Context OS Setup (O11) builds, through
+the `Location` field of the profile's `## Knowledge Base` section, and opens only the items its Context table names.
+When your assistant is connected to the CRM or a call recorder, the skill offers to read the records you point at,
+asks first, and never writes back. Without either, pasting works the same way.
+
+**Guild Pro kits (optional, paid).** The Business Case & ROI Kit reads the hand-off blocks of Account Snapshot (02),
+Meeting Prep (06), Deal Pulse (08), MEDDPICC Analysis (09), Call Coaching (13) and Sales Hand-Off (14) by field
+name, and Meeting Prep, Deal Pulse and MEDDPICC can read the kit's block back. Each skill names those fields in its
+Guild Pro Kits subsection. Every skill here is free and works without any kit.
+
+---
+
 ## Where Output Goes
 
 Generated artifacts (call sheets, scorecards, sequences, review packets) go to `output/`,

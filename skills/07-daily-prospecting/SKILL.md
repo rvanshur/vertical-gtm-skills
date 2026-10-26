@@ -1,16 +1,19 @@
 ---
 name: gtm-daily-prospecting
-version: 2.0.1
+version: 2.1.0
 description: "Builds the morning dial sheet for a BDR or AE: ranks accounts into Hot, Warm, New and Recycle tiers, removes accounts the BDR guard blocks, and writes a pre-call brief for the top eight, read by the rep at the phone and by the meeting prep skill."
 category: Sales-Methodology
 author: Ryan Vanshur
 license: MIT
-updated: 2026-10-20
+updated: 2026-10-25
 tags: [daily-prospecting, dial-prep, bdr-prep, morning-report, call-prep, outbound-report, prospecting-brief]
 requires:
   skills: [gtm-meeting-prep]
 mutating: read-write
 change_log:
+  - version: 2.1.0
+    date: 2026-10-25
+    summary: "Reads the Context OS account folders for the accounts that pass the guard and offers read-only CRM and call connectors through the shared contract's new Knowledge Base and Connectors section, and adds a Chains subsection that places the skill in Daily Pipeline. No other change."
   - version: 2.0.1
     date: 2026-10-20
     summary: "Every hand-off block carries a run_date line after its account line, so two instruments on one deal are compared by date (found by the wave two hand-off tests). No other change."
@@ -108,6 +111,7 @@ Throughout this skill, `{Profile: X}` means "section X of `profiles/client-profi
 | Proof Points, with Status | The proof point a brief may name, shown with its Status |
 | Qualification Stage Gates | Stage names used by number and name, for example "Stage 5 Negotiate" |
 | Daily Prospecting (Sales-Layer Sections) | The Hot definition, daily capacity, exclusion rules, the verbatim opener and the trustworthy CRM fields |
+| Knowledge Base | The Location field of the base, and the base items this skill opens: the account folder under `accounts/` (notes, calls and decisions) for each account on the dial sheet, read in Step 2 with the CRM snapshot |
 
 `{Methodology: X}` means "subsection X of the **Methodology** section below."
 
@@ -120,6 +124,12 @@ Everything in this section is used identically by the 14 sales skills (01 to 14)
 #### The Profile Is the Only Source of Company Facts
 
 Every company fact (ICPs, personas, pains, value propositions, proof points, competitors, triggers, zones, stage names, methodology) comes from `profiles/client-profile.md`. A skill reads the sections its Context table names and nothing else. A skill never carries a company fact of its own. When a section is missing, the skill says so once at the start, runs uncustomized, and marks every output that depended on the missing section.
+
+#### The Knowledge Base and Connectors
+
+When the profile has a `## Knowledge Base` section, which Context OS Setup writes, the skill reads its `Location` field and opens only the base items its Context table names: account folders under `accounts/`, competitors, plays and pricing under `gtm/`, personas under `people/`. Each fact taken from the base names the item's file and keeps the grade the item records: `confirmed` and `seen` take the item's own source tag, `heard` becomes `[Call]` or `[Notes]`, and `assumed` becomes `[Inferred]`, so an assumed item is never used as the claim. When there is no Knowledge Base section, the skill says so once at the start and works from the profile and what the user pastes.
+
+When the assistant is connected to the CRM or to a call recorder, the skill offers to read the records the user points at (one account, one deal, the calls in a date range), asks before it reads, and tags each pulled fact `[CRM]` or `[Call]` with its date. It reads only. It never searches records nobody named and never writes back. Without a connector, pasting the same records works the same way.
 
 #### Account Status, Five Words
 
@@ -284,6 +294,8 @@ The role is set before the tasks are pulled, because the same task list yields a
 ---
 
 ### Step 1: Pull Today's Tasks and Apply the BDR Guard
+
+Before pulling anything, offer the CRM read for the one rep's task list and, when a call recorder is connected, the call read for the date range you name. Nothing is read from the CRM or the call recorder until you say yes. The account folders under `accounts/` in the Knowledge Base, if the profile has one, are opened in Step 2, and only for accounts that survive the guard.
 
 Query the CRM for every task that is:
 - Assigned to the requesting rep
@@ -752,10 +764,17 @@ report_path: none (inline)
 - `gtm-closed-loss-reactivation` (05): for Recycle accounts that were closed-lost, before any dial.
 - `gtm-competitive-displacement` (12): when a Hot dial reveals a known incumbent.
 
+### Chains
+
+- **Daily Pipeline:** Daily Prospecting (07, this skill, first), then Meeting Prep (06). This skill ranks the morning dials, removes the accounts the BDR guard blocks, and writes the brief for the top eight, so that each booked call reaches Meeting Prep with its account already screened.
+
 ---
 
 ## Changelog
 
+
+### 2.1.0 (2026-10-25)
+- Reads the Context OS account folders for the accounts that pass the BDR guard, and offers read-only CRM and call connectors through the shared contract's new Knowledge Base and Connectors section. Adds a Chains subsection. No other change.
 
 ### 2.0.1 (2026-10-20)
 

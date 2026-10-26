@@ -1,16 +1,19 @@
 ---
 name: gtm-competitive-displacement
-version: 2.0.0
+version: 2.1.0
 description: "Plans outbound to displace a known incumbent, by classifying the incumbent, rating how hard the switch is, and drafting persona-tailored four-step email sequences for the rep to read and send, so the BDR or AE who works the account knows what to say and what not to say."
 category: Sales-Methodology
 author: Ryan Vanshur
 license: MIT
-updated: 2026-10-20
+updated: 2026-10-25
 tags: [competitive-displacement, incumbent-displacement, competitive-outbound, competitor-takeout, displacement-sequences, displacement-difficulty]
 requires:
   skills: [gtm-competitive-strategy]
 mutating: read-write
 change_log:
+  - version: 2.1.0
+    date: 2026-10-25
+    summary: "Reads the Context OS base and offers read-only connectors through the shared contract's new Knowledge Base and Connectors section, with a Chains subsection."
   - version: 2.0.0
     date: 2026-10-20
     summary: "Moved to the Sales 2.0 standard. Adds a displacement template per incumbent type (Positioning, Wedge, three discovery questions), a Low, Medium and High difficulty scale with one directional test each, and a Displaced vendor and Status column on proof points. Every number in an email needs a named, dated source or it is removed. The BDR guard is a Hard Rule with its reason. One Epistemic Rules section with one Confidence subsection. Hand-offs to 02 and 06 are named, and Integration reads 11 by field name. The report is inline, and the file is written only when asked."
@@ -93,8 +96,9 @@ This skill does not carry client-specific information. It reads the client profi
 | Value Propositions | The wording of the wedge |
 | Proof Points | The Displaced vendor and Status columns, which decide whether a proof point can be cited |
 | Displacement | One template row per incumbent type, and the team's notes on the difficulty tests |
+| Knowledge Base | The Location field of the base, and the base items this skill opens: the account's folder under `accounts/` (notes, calls and decisions for that account), the competitors under `gtm/` (the incumbent's row), and the personas under `people/` |
 
-If a section in this table is missing, the skill says so once at the start, says it is running uncustomized on the defaults in Methodology, and marks every output that depended on the missing section. The Displacement section is the one most often missing, and `CUSTOMIZE.md` writes it.
+If a section in this table is missing, the skill says so once at the start, says it is running uncustomized on the defaults in Methodology, and marks every output that depended on the missing section. The Displacement section is the one most often missing, and `CUSTOMIZE.md` writes it. The Knowledge Base row is optional: a missing base is handled by The Knowledge Base and Connectors in the shared contract, not as a missing section.
 
 ### The Shared Contract
 
@@ -103,6 +107,12 @@ Everything in this section is used identically by the 14 sales skills (01 to 14)
 #### The Profile Is the Only Source of Company Facts
 
 Every company fact (ICPs, personas, pains, value propositions, proof points, competitors, triggers, zones, stage names, methodology) comes from `profiles/client-profile.md`. A skill reads the sections its Context table names and nothing else. A skill never carries a company fact of its own. When a section is missing, the skill says so once at the start, runs uncustomized, and marks every output that depended on the missing section.
+
+#### The Knowledge Base and Connectors
+
+When the profile has a `## Knowledge Base` section, which Context OS Setup writes, the skill reads its `Location` field and opens only the base items its Context table names: account folders under `accounts/`, competitors, plays and pricing under `gtm/`, personas under `people/`. Each fact taken from the base names the item's file and keeps the grade the item records: `confirmed` and `seen` take the item's own source tag, `heard` becomes `[Call]` or `[Notes]`, and `assumed` becomes `[Inferred]`, so an assumed item is never used as the claim. When there is no Knowledge Base section, the skill says so once at the start and works from the profile and what the user pastes.
+
+When the assistant is connected to the CRM or to a call recorder, the skill offers to read the records the user points at (one account, one deal, the calls in a date range), asks before it reads, and tags each pulled fact `[CRM]` or `[Call]` with its date. It reads only. It never searches records nobody named and never writes back. Without a connector, pasting the same records works the same way.
 
 #### Account Status, Five Words
 
@@ -264,6 +274,8 @@ The profile's Buyer Personas table sets the options. The template row names a pr
 ### Step 0: Detect the User Role and the Account Status
 
 Determine whether the user is a BDR or an AE, and read the account's status and AE owner. Role comes first because the BDR guard decides whether any sequence is written at all, and running the guard before drafting saves the time a draft would take.
+
+Before pulling anything, read the account's folder under `accounts/`, the competitors under `gtm/` and the personas under `people/` in the knowledge base, when the profile has one. Then offer to read the CRM account record, and ask before reading it, as set out in The Knowledge Base and Connectors.
 
 **From CRM:** check the user's role. If it is unclear, check the BDR owner against the account owner.
 **Fallback:** ask, "Are you a BDR or an AE?"
@@ -630,9 +642,17 @@ report_path: none (inline)
 **Hands to the close:**
 - **Wrap-Up** reads `report_path` when a file was written, the `displacement_difficulty` or verdict the session produced, and `next_action` with its owner and date.
 
+### Chains
+
+- **Beat The Incumbent:** MEDDPICC Analysis (09), Competitive Strategy (11), **Competitive Displacement (12)**, Account Snapshot (02) or Meeting Prep (06). This skill adds the outbound plan to displace a known incumbent: a difficulty rating and the sequences the rep reads and sends.
+
 ---
 
 ## Changelog
+
+### 2.1.0 (2026-10-25)
+- Reads the Context OS base (the account's folder under `accounts/`, the competitors under `gtm/` and the personas under `people/`) and offers read-only CRM connectors through the shared contract's Knowledge Base and Connectors section, before the CRM read.
+- Adds a Chains subsection placing the skill in the Beat The Incumbent chain.
 
 ### 2.0.0 (2026-10-20)
 - Moved to the Sales 2.0 standard: Overview with Core Principle and the platform line, Why This Skill Exists, Role, Input and Output Contracts, Context with the Shared Contract, a Core Workflow with a Produces line per step, Epistemic Rules, Hard Rules with reasons, a Quality Bar, and hand-offs named by field.

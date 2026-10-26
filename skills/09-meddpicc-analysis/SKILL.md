@@ -1,16 +1,19 @@
 ---
 name: gtm-meddpicc-analysis
-version: 2.0.1
+version: 2.1.0
 description: "Scores an active deal across all eight MEDDPICC elements from the CRM record, computes a weighted health score, and recommends ADVANCE, HOLD, DOWNGRADE or DISQUALIFY. The deal's AE and sales manager read the output."
 category: Sales-Methodology
 author: Ryan Vanshur
 license: MIT
-updated: 2026-10-20
+updated: 2026-10-25
 tags: [meddpicc, deal-analysis, deal-scoring, pipeline-review, sales-methodology, deal-qualification]
 requires:
   skills: ["gtm-deal-pulse", "gtm-call-coaching", "gtm-stakeholder-mapping"]
 mutating: read-write
 change_log:
+  - version: 2.1.0
+    date: 2026-10-25
+    summary: "Reads the Context OS base and offers read-only connectors through the shared contract's new Knowledge Base and Connectors section, with a Chains subsection and a Guild Pro Kits subsection."
   - version: 2.0.1
     date: 2026-10-20
     summary: "The profile's Qualification Stage Gates figure is the stage minimum when the profile states one, and the report names the figure it used with the table's default beside it (Ryan, 2026-10-20). The PlotIQ examples use the profile's 70 for Stage 5 Negotiate."
@@ -61,7 +64,7 @@ What this skill needs before it starts. **If a required input is missing, ask. D
 | Account name | Required | Account with an active opportunity |
 | Opportunity amount (ARR or total contract value) | Required | For health benchmarking. Shown with its basis, for example $21,576 a year at list |
 | Deal stage | Required | Read from the CRM as one of the profile's six stages. Sets the stage-appropriate minimums |
-| CRM access (interaction history, contact data, notes) | Required | Evidence for element scoring. Without it every element is `[Unknown]` and the report says so |
+| CRM access (interaction history, contact data, notes), or the same records pasted | Required | Evidence for element scoring. Without it every element is `[Unknown]` and the report says so |
 | Contact names and titles | Optional | For Economic Buyer and Champion identification. A missing name is written `[Unknown]` |
 | Deal Pulse, Call Coaching and Stakeholder Mapping outputs | Optional | Read by field name when present (see Integration). When absent, the report says so and scores from the CRM alone |
 
@@ -104,8 +107,9 @@ Throughout this skill, `{Client Profile: X}` means "section X of `profiles/clien
 | Qualification Criteria | Decision criteria and the winning-zone assessment |
 | Sales Methodology | The team's stage names (the Qualification Stage Gates) and its MEDDPICC vocabulary |
 | MEDDPICC | The team's own minimums, paper steps, metric wording, champion proof-of-life examples and deal killers (see the minimum fields in CUSTOMIZE.md) |
+| Knowledge Base | The Location field of the base, and the base items this skill opens: the account's folder under `accounts/` (notes, calls and decisions for that account), and the competitors under `gtm/` for the Competition element |
 
-If any section in this table is missing, the skill says so once at the start, runs uncustomized on the defaults in Methodology, and marks every output that depended on the missing section.
+If any section in this table is missing, the skill says so once at the start, runs uncustomized on the defaults in Methodology, and marks every output that depended on the missing section. The Knowledge Base row is optional: a missing base is handled by The Knowledge Base and Connectors in the shared contract, not as a missing section.
 
 `{Methodology: X}` means "subsection X of the **Methodology** section below."
 
@@ -116,6 +120,12 @@ Everything in this section is used identically by the 14 sales skills (01 to 14)
 #### The Profile Is the Only Source of Company Facts
 
 Every company fact (ICPs, personas, pains, value propositions, proof points, competitors, triggers, zones, stage names, methodology) comes from `profiles/client-profile.md`. A skill reads the sections its Context table names and nothing else. A skill never carries a company fact of its own. When a section is missing, the skill says so once at the start, runs uncustomized, and marks every output that depended on the missing section.
+
+#### The Knowledge Base and Connectors
+
+When the profile has a `## Knowledge Base` section, which Context OS Setup writes, the skill reads its `Location` field and opens only the base items its Context table names: account folders under `accounts/`, competitors, plays and pricing under `gtm/`, personas under `people/`. Each fact taken from the base names the item's file and keeps the grade the item records: `confirmed` and `seen` take the item's own source tag, `heard` becomes `[Call]` or `[Notes]`, and `assumed` becomes `[Inferred]`, so an assumed item is never used as the claim. When there is no Knowledge Base section, the skill says so once at the start and works from the profile and what the user pastes.
+
+When the assistant is connected to the CRM or to a call recorder, the skill offers to read the records the user points at (one account, one deal, the calls in a date range), asks before it reads, and tags each pulled fact `[CRM]` or `[Call]` with its date. It reads only. It never searches records nobody named and never writes back. Without a connector, pasting the same records works the same way.
 
 #### Account Status, Five Words
 
@@ -355,6 +365,8 @@ The profile's Qualification Stage Gates set the exit criteria for each stage. Th
 The steps run in this order because each one feeds the next. Scores must cite a record, so the data pull comes first. The stage recommendation comes last because its rules read the minimum check, the critical elements and the risk patterns.
 
 ### Step 1: Pull Deal Data from CRM
+
+Before pulling anything, read the account's folder under `accounts/` and the competitors under `gtm/` in the knowledge base, when the profile has one. Then offer to read the CRM deal record and, when a call recorder is connected, the deal's calls, and ask before reading either, as set out in The Knowledge Base and Connectors.
 
 Query the CRM for the account. Extract the deal basics (account, amount, stage and days in stage, close date and slip history, owner, supporting team, deal origin), the engagement history (touchpoints, last activity, meeting dates and participants), the contact records (name, title, department, seniority, meeting attendance versus email only), the deal notes (next steps, objections, competitors named, budget and timeline signals) and any prior closed-lost record at this account.
 
@@ -645,10 +657,28 @@ Re-run this analysis after every stage date or close date changes, and compare t
 
 **Related skills:** Call Coaching (13) after a call, to see whether the new intel changes any element score. Meeting Prep (06) uses the gaps to set the meeting's target, for example "this meeting should target Economic Buyer access and Decision Process mapping."
 
+### Chains
+
+- **Work The Deal:** Meeting Prep (06), Call Coaching (13), Deal Pulse (08), **MEDDPICC Analysis (09)**, Stakeholder Mapping (10). This skill adds the eight-element score and the stage recommendation.
+- **Beat The Incumbent:** **MEDDPICC Analysis (09)**, Competitive Strategy (11), Competitive Displacement (12), Account Snapshot (02) or Meeting Prep (06). This skill adds the Competition element and the stage check that sets how urgent the plan is.
+- **Close And Hand Off:** **MEDDPICC Analysis (09)**, Sales Hand-Off (14), Wrap-Up (O10). This skill adds the stage minimum check that decides whether the deal is ready to move to the handoff stage.
+
+### Guild Pro Kits (Optional)
+
+The Business Case & ROI Kit (a paid Guild Pro kit) reads this skill's hand-off block by field name. This skill is free and works without any kit. This skill also reads the kit's hand-off block back as optional context (`case_status`, `hard_value`, `payback_months_hard`, `open_bets` and `next_action`), and it never presents an ASSUMPTION line from the kit as a buyer fact. The fields the kit reads from this skill:
+
+- `meddpicc_scores` (the Metrics and Economic Buyer elements)
+- `stage_recommendation` (below 4 on Metrics, where the case says the metrics are not yet agreed)
+
 ---
 
 ## Changelog
 
+
+### 2.1.0 (2026-10-25)
+- Reads the Context OS base (the account's folder under `accounts/`, and the competitors under `gtm/`) and offers read-only CRM connectors through the shared contract's Knowledge Base and Connectors section, before the CRM deal read.
+- Adds a Chains subsection placing the skill in the Work The Deal, Beat The Incumbent and Close And Hand Off chains.
+- Adds a Guild Pro Kits subsection naming the hand-off fields the Business Case & ROI Kit reads, and the kit's fields this skill reads back.
 
 ### 2.0.1 (2026-10-20)
 

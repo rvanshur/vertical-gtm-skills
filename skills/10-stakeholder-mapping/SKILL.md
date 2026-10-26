@@ -1,16 +1,19 @@
 ---
 name: gtm-stakeholder-mapping
-version: 2.0.0
+version: 2.1.0
 description: "Maps the buying committee for one account: classifies every contact by buying role, marks each missing decision-maker as an UNKNOWN ghost node, scores multi-threading on seven weighted dimensions, and returns an engagement plan the AE or BDR reads before the next meeting."
 category: Sales-Methodology
 author: Ryan Vanshur
 license: MIT
-updated: 2026-10-20
+updated: 2026-10-25
 tags: [stakeholder-mapping, org-map, org-chart, multi-threading, buying-committee, influence-map, contact-mapping, deal-strategy, ghost-nodes, non-buyers]
 requires:
   skills: [gtm-meddpicc-analysis]
 mutating: read-write
 change_log:
+  - version: 2.1.0
+    date: 2026-10-25
+    summary: "Reads the Context OS base and offers read-only connectors through the shared contract's new Knowledge Base and Connectors section, with a Chains subsection."
   - version: 2.0.0
     date: 2026-10-20
     summary: "Moved to the Sales 2.0 standard. Epistemic Rules added. Non-buyer table added (technical reviewer, systems administrator, general counsel, operations head, procurement), with every stance a hypothesis until a conversation confirms it. Threading formula written out: seven weighted rows, raw 0 to 20, divided by 2 and rounded half up to a whole score. Ghost nodes written UNKNOWN, role. Champion status set from the shared champion tests. Hand-off fields named in the Output Contract, Integration and examples. Integration reads the Meddpicc fields by name. Examples aligned to the PlotIQ chain: the family board chair is an unnamed ghost node, and nobody at Brackhaven owns IT."
@@ -92,8 +95,9 @@ Throughout this skill, `{Client Profile: X}` means "section X of `profiles/clien
 | Qualification Criteria | Org structure expectations for the winning zones |
 | Value Propositions | Engagement messaging, persona relevance |
 | Buying Committee | The five fields written by this skill's interview: role-title map, non-buyer rows, ghost patterns, threading benchmark, standing tensions and available plays |
+| Knowledge Base | The Location field of the base, and the base items this skill opens: the account's folder under `accounts/` (contacts, notes and calls for that account), and the personas under `people/` |
 
-If the Buying Committee section is missing, this skill says so once at the start, runs uncustomized on the generic non-buyer table and the generic ghost node rules, and marks every output that depended on that section.
+If the Buying Committee section is missing, this skill says so once at the start, runs uncustomized on the generic non-buyer table and the generic ghost node rules, and marks every output that depended on that section. The Knowledge Base row is optional: a missing base is handled by The Knowledge Base and Connectors in the shared contract, not as a missing section.
 
 `{Methodology: X}` means "subsection X of the **Methodology** section below."
 
@@ -104,6 +108,12 @@ Everything in this section is used identically by the 14 sales skills (01 to 14)
 #### The Profile Is the Only Source of Company Facts
 
 Every company fact (ICPs, personas, pains, value propositions, proof points, competitors, triggers, zones, stage names, methodology) comes from `profiles/client-profile.md`. A skill reads the sections its Context table names and nothing else. A skill never carries a company fact of its own. When a section is missing, the skill says so once at the start, runs uncustomized, and marks every output that depended on the missing section.
+
+#### The Knowledge Base and Connectors
+
+When the profile has a `## Knowledge Base` section, which Context OS Setup writes, the skill reads its `Location` field and opens only the base items its Context table names: account folders under `accounts/`, competitors, plays and pricing under `gtm/`, personas under `people/`. Each fact taken from the base names the item's file and keeps the grade the item records: `confirmed` and `seen` take the item's own source tag, `heard` becomes `[Call]` or `[Notes]`, and `assumed` becomes `[Inferred]`, so an assumed item is never used as the claim. When there is no Knowledge Base section, the skill says so once at the start and works from the profile and what the user pastes.
+
+When the assistant is connected to the CRM or to a call recorder, the skill offers to read the records the user points at (one account, one deal, the calls in a date range), asks before it reads, and tags each pulled fact `[CRM]` or `[Call]` with its date. It reads only. It never searches records nobody named and never writes back. Without a connector, pasting the same records works the same way.
 
 #### Account Status, Five Words
 
@@ -334,6 +344,8 @@ Determine whether the user is a BDR or AE.
 ---
 
 ### Step 1: Gather Account Context
+
+Before pulling anything, read the account's folder under `accounts/` and the personas under `people/` in the knowledge base, when the profile has one. Then offer to read the CRM contact records for the account, and ask before reading them, as set out in The Knowledge Base and Connectors.
 
 Query the CRM for the account record:
 
@@ -773,9 +785,17 @@ report_path: none (inline)
 - `gtm-competitive-strategy`: a contact who is loyal to the incumbent (Blocker role) belongs in that skill's competitive work.
 - `gtm-call-coaching`: after a call, update the map with the stakeholder intelligence the call produced.
 
+### Chains
+
+- **Work The Deal:** Meeting Prep (06), Call Coaching (13), Deal Pulse (08), MEDDPICC Analysis (09), **Stakeholder Mapping (10)**. This skill adds the buying-committee map and the ghost nodes that the Economic Buyer and Champion elements are checked against.
+
 ---
 
 ## Changelog
+
+### 2.1.0 (2026-10-25)
+- Reads the Context OS base (the account's folder under `accounts/`, and the personas under `people/`) and offers read-only CRM connectors through the shared contract's Knowledge Base and Connectors section, before the CRM contact read.
+- Adds a Chains subsection placing the skill in the Work The Deal chain.
 
 ### 2.0.0 (2026-10-20)
 - Sales 2.0 standard. Shared Contract added under Context, and the champion tests, the status words and the evidence tags come from it. Nothing from it is restated here.

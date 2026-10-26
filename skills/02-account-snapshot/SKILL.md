@@ -1,16 +1,19 @@
 ---
 name: gtm-account-snapshot
 description: "One-page account brief for BDRs and AEs: a zone-based verdict, persona-ranked contacts, tagged pain hypotheses, a three-step email draft and call prep, read by the rep before anything is sent."
-version: 2.0.1
+version: 2.1.0
 category: Sales-Methodology
 author: Ryan Vanshur
 license: MIT
-updated: 2026-10-20
+updated: 2026-10-25
 tags: [account-snapshot, bdr-daily-driver, outbound, prospecting, cold-call-prep, email-sequences, cheatsheet, sales-2-0]
 requires:
   skills: [gtm-account-qualification, gtm-competitive-displacement]
 mutating: read-write
 change_log:
+  - version: 2.1.0
+    date: 2026-10-25
+    summary: "Reads the Context OS account folder and offers read-only CRM and call connectors through the shared contract's new Knowledge Base and Connectors section. Adds a Chains subsection (Qualify To Book, Beat The Incumbent) and a Guild Pro Kits subsection that names the five hand-off fields the Business Case & ROI Kit reads."
   - version: 2.0.1
     date: 2026-10-20
     summary: "Every hand-off block carries a run_date line after its account line, so two instruments on one deal are compared by date (found by the wave two hand-off tests). No other change."
@@ -101,10 +104,9 @@ The skill reads these sections of the profile file. Section names below are the 
 | Proof Points | One per email, matched to segment and persona, never an Illustrative result |
 | Competitive Landscape | Incumbent and objection handling |
 | Outbound Voice | Reference email, research sources, call-today triggers and the region map. This skill's CUSTOMIZE interview writes it |
+| Knowledge Base | The Location field of the base, and the base items this skill opens: the account's folder under `accounts/` (notes, calls, decisions for that account), read in Step 1 for prior history on the account |
 
 If the Outbound Voice section is missing, this skill runs uncustomized. It says so once at the start and marks every output that depended on the missing section.
-
-### The Shared Contract
 
 ### The Shared Contract
 
@@ -113,6 +115,12 @@ Everything in this section is used identically by the 14 sales skills (01 to 14)
 #### The Profile Is the Only Source of Company Facts
 
 Every company fact (ICPs, personas, pains, value propositions, proof points, competitors, triggers, zones, stage names, methodology) comes from `profiles/client-profile.md`. A skill reads the sections its Context table names and nothing else. A skill never carries a company fact of its own. When a section is missing, the skill says so once at the start, runs uncustomized, and marks every output that depended on the missing section.
+
+#### The Knowledge Base and Connectors
+
+When the profile has a `## Knowledge Base` section, which Context OS Setup writes, the skill reads its `Location` field and opens only the base items its Context table names: account folders under `accounts/`, competitors, plays and pricing under `gtm/`, personas under `people/`. Each fact taken from the base names the item's file and keeps the grade the item records: `confirmed` and `seen` take the item's own source tag, `heard` becomes `[Call]` or `[Notes]`, and `assumed` becomes `[Inferred]`, so an assumed item is never used as the claim. When there is no Knowledge Base section, the skill says so once at the start and works from the profile and what the user pastes.
+
+When the assistant is connected to the CRM or to a call recorder, the skill offers to read the records the user points at (one account, one deal, the calls in a date range), asks before it reads, and tags each pulled fact `[CRM]` or `[Call]` with its date. It reads only. It never searches records nobody named and never writes back. Without a connector, pasting the same records works the same way.
 
 #### Account Status, Five Words
 
@@ -279,7 +287,7 @@ Read the role from the CRM when it is recorded. If it is not clear, ask: "Are yo
 
 ### Step 1: Gather Intelligence
 
-Run the CRM search first, then the research, because the CRM is the record a manager can check.
+Run the CRM search first, then the research, because the CRM is the record a manager can check. Before pulling anything, open the account's folder under `accounts/` in the Knowledge Base, if the profile has one, and offer the CRM read and, when a call recorder is connected, the call read, for the one account or date range you name. Nothing is read from the CRM or the call recorder until you say yes.
 
 **1a. Search the CRM.** Pull the account record (name, industry, headquarters, website, owner, status), deal history with stages and amounts, every contact with title and last activity, engagement history with dates, and any notes or summaries reps wrote. Note the BDR owner and the account owner.
 
@@ -764,10 +772,28 @@ next_action: Owen Pruitt books the first discovery call with Ruth Ellery (date s
 **Hands to the close:**
 - **Wrap-Up** reads `report_path` when a file was written, the `verdict`, and `next_action` with its owner and date.
 
+### Chains
+
+- **Qualify To Book:** Account Qualification (01), then Account Snapshot (02, this skill, second), then Research Outbound (03) or Trigger Event Outbound (04), then Meeting Prep (06). This skill turns the verdict into the one-page brief, the ranked contacts, the pain hypotheses and the first sequence.
+- **Beat The Incumbent:** Competitive Strategy (11) and Competitive Displacement (12) come first, then this skill (02, last in the chain) or Meeting Prep (06). This skill sets the contact order and the incumbent objections on one page, using the incumbent type from 12.
+
+### Guild Pro Kits (Optional)
+
+The Business Case & ROI Kit (a paid Guild Pro kit) reads this skill's hand-off block by field name. This skill is free and works without any kit. The kit reads these five fields, with `contact_priority` as the economic buyer candidates and each pain hypothesis as a candidate value driver graded assumed until a buyer fact arrives:
+
+- `account`
+- `run_date`
+- `verdict`
+- `contact_priority`
+- `pain_hypotheses`
+
 ---
 
 ## Changelog
 
+
+### 2.1.0 (2026-10-25)
+- Reads the Context OS account folder and offers read-only CRM and call connectors through the shared contract's new Knowledge Base and Connectors section. Adds a Chains subsection and a Guild Pro Kits subsection. No other change.
 
 ### 2.0.1 (2026-10-20)
 
