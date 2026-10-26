@@ -47,7 +47,7 @@ Start with question 1.
 
 ---
 
-## What You Should Expect to Happen
+## What You Should Expect To Happen
 
 **Question 2 stalls** because the win-loss "why" was never captured within a week of the outcome, after which it becomes folklore. **Question 3 is where honesty pays**: most gap matrices are half folklore, and a rep who repeats an unprovable gap to a well-informed buyer loses the room. **Question 6 stalls** when the team has not written down what customers said after the sale. Count what you have, even if it is one case, and label it as one case.
 
@@ -71,4 +71,4 @@ Add this section to `profiles/client-profile.md` once. It sits beside the Compet
 
 ## Evidence Tags on Every Gap-Matrix Row
 
-Each gap-matrix row carries one of the six evidence tags: `[CRM]`, `[Call]`, `[Notes]`, `[Public: source]`, `[Inferred]` or `[Unknown]`. A claim with no tag is removed before it reaches a buyer. The matrix's job is not to make you feel armed. It is to keep a rep from confidently repeating something a prospect can disprove.
+Each gap-matrix row carries an evidence tag, which is `[CRM]`, `[Call]`, `[Notes]`, `[Public: source]`, `[Inferred]` or `[Unknown]`, or a `(profile: Section)` citation for a fact from the profile. A fact with neither is removed before it reaches a buyer. The matrix's job is not to make you feel armed. It is to keep a rep from confidently repeating something a prospect can disprove.

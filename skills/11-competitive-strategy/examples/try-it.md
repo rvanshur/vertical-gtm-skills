@@ -8,6 +8,7 @@ Every name, date and number in this file is invented for the PlotIQ example. Not
 ## The Records
 - Run date: 2026-10-19. Brackhaven Memorial Gardens is a combination with 2 sites, 11,000 plots and paper plot maps [CRM] (illustrative).
 - Deal: ACTIVE at Stage 5 Negotiate since 2026-09-09. $21,576 a year at list, owned by Owen Pruitt, 40 days in stage [CRM].
+- Close date: moved twice since 2026-09-28, on 2026-10-07 and 2026-10-14 [CRM] (illustrative). The family board has not confirmed a date. The CRM holds a family board meeting set for 2026-11-12, not formally confirmed by the board [CRM].
 - Account Qualification (01) verdict: GREENLIGHT `[Notes]`.
 - Contacts: Ruth Ellery, General Manager, champion [Call, 2026-09-26]. Walt Okonkwo, Operations Director, skeptical of tablets [Call, 2026-09-21]. Priscilla Dunmore, pre-need manager [CRM]. The family board chair is the economic buyer, on one call [CRM], name [Unknown].
 - Reason to look, in Ruth's words on the 2026-05-19 discovery call: "We can't tell which plots are sold without going to the binder." [Call, 2026-05-19] (illustrative).
@@ -18,22 +19,22 @@ Every name, date and number in this file is invented for the PlotIQ example. Not
   - "Oldgate tells us what sold. It doesn't tell us what's left." (illustrative)
   - "The state auditor asks for the trust numbers, and somebody digs them out of the ledger." (illustrative)
   - "The trust numbers come out of Oldgate as one file a year. The plot records stay in the binders." (illustrative). The migration scope of that file is [Unknown].
-  - Cost, in Ruth's words on the same call: "Every year we pay Oldgate maintenance on top of the license, and it still doesn't tell us what's left." [Call, 2026-05-19] (illustrative).
-  - Timing, in Ruth's words on the same call: "The renewal is in March. If the new system isn't running by then, we pay Oldgate for another year." [Call, 2026-05-19] (illustrative).
-- Walt works from paper, per Ruth's call [Call, 2026-05-19] (illustrative). No satisfaction rating of the incumbent is recorded.
+  - Cost, in Ruth's words on the same call: "Every year we pay Oldgate maintenance on top of the license, and it still doesn't tell us what's left." [Call, 2026-05-19] (illustrative)
+  - Timing, in Ruth's words on the same call: "The renewal is in March. If the new system isn't running by then, we pay Oldgate for another year." [Call, 2026-05-19] (illustrative)
+- Walt works from paper, per Ruth's call [Call, 2026-05-19] (illustrative). Ruth's named failures of Oldgate on that call are the record of the incumbent's satisfaction (Step 2c).
 - Incumbent pitch and research: "Mature, deep accounting." Research weaknesses: $10,000 to $50,000 upfront, plus maintenance at 20% a year, poor mobile, and no AI [Public: Deathcare research project, competitive research note, 2026-03-27] (research estimate, over 90 days old at the run date).
 - Incumbent unsold-plot visibility: Oldgate shows sold records only, not what is left [Call, 2026-05-19] (illustrative).
-- Legacy on-premise pattern: "Maintenance is charged every year, and the grounds crew stays on paper work orders." Cases counted on the PlotIQ record: not recorded yet (profile: Competitive Patterns and Trends).
-- Stonemark was also evaluated [Call, 2026-09-26].
+- Legacy on-premise pattern: "Maintenance is charged every year, and the grounds crew stays on paper work orders." 0 of 5 cases counted on record, observation only (profile: Competitive Patterns and Trends).
+- Stonemark was also evaluated [Call, 2026-09-26]. No preference is on record [Unknown], and no criterion for comparing the two tools is on record [Unknown].
 - PlotIQ capabilities: Mobile field app (profile: Product Modules). Plot inventory digitization shows unsold plots (profile: Product Modules). Records and Trust Compliance module (profile: Product Modules).
 - PlotIQ price: $899 a month per site, plus $5,000 setup once (profile: Product Modules).
-- Time to live: the incumbent at 120 to 180 days [Public: Deathcare research project, competitive research note, 2026-03-27] (research estimate, over 90 days old at the run date). PlotIQ at 6 weeks (profile: Value Propositions).
+- Time to live: the incumbent at 120 to 180 days [Public: Deathcare research project, competitive research note, 2026-03-27] (research estimate, over 90 days old at the run date). PlotIQ's target is six weeks, with go-live in week 6 of the roadmap and no completed deal yet (profile: Value Propositions).
 - Trust records: the incumbent's "deep accounting" is its pitch [Public: Deathcare research project, competitive research note, 2026-03-27] (research estimate, over 90 days old at the run date).
 
 ## What You Should Get
-- Incumbent: direct software, Oldgate Ledger Pro [CRM].
-- Threat level: MEDIUM. The five factors are 2, 1, 2, 1 and 2, with an average of 1.6.
-- Rival: Stonemark, evaluated [Call, 2026-09-26], with no preference on record [Unknown]. The rival record is not scored and does not change the threat level. Its full form is Example 3 in SKILL.md.
-- Gap matrix: four rows, covering unsold-plot visibility, trust fund records, cost and time to live. The mobile row is removed, because no buyer statement ties it to a stated pain.
-- Win plan starts with Ruth counting the plots with no recorded sale in her own number, and confirming the exact renewal day and the trust-file scope with her. No estimate is used.
-- Next action: Owen Pruitt asks Ruth Ellery for the exact Oldgate renewal day, the trust-file export scope and the criteria the board will judge Oldgate and Stonemark on, by 2026-10-26, five business days after the run date of 2026-10-19.
+- Incumbent: direct software [Inferred: row match], Oldgate Ledger Pro [CRM].
+- Threat level: LOW. The five factors are 1, 1, 2, 1 and 2. The sum is 7, and the average is 7 ÷ 5 = 1.4. Satisfaction is Frustrated, because Ruth names three failures of Oldgate on the 2026-05-19 call. The actively-frustrated clause and the already-evaluating-alternatives clause are both met, and LOW clauses never lower the level, so the level is the average of 1.4. No HIGH clause meets a new recorded fact.
+- Rival: Stonemark, evaluated [Call, 2026-09-26], with no preference on record [Unknown]. Its rival record is in section 1, its rows are in section 3, and its test questions are in section 4. It is not scored, and it does not change the threat level.
+- Gap matrix: four rows, covering unsold-plot visibility, trust fund records, cost and time to live. Each row rests on a statement Ruth made on a dated call. The cost row says that Oldgate's basis for Brackhaven is unknown. The mobile row is removed, because no buyer statement ties it to a stated pain.
+- Win plan starts with Ruth answering the question she named as her reason to look, which plots are sold and which are open, from her own records. Her count of plots with no recorded sale is the test of that answer. No estimate is used.
+- Next action: Owen Pruitt asks Ruth Ellery for the exact Oldgate renewal day and the trust-file export scope, by 2026-10-26, five business days after the run date of 2026-10-19.
