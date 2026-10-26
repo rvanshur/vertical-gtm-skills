@@ -26,4 +26,4 @@ Every name, date and number in this file is invented for the PlotIQ example. Not
 - Incumbent: direct software, Stonemark. Difficulty: Medium, because the renewal test is met (January 2027 is inside 180 days). The rating is directional.
 - Personas: 2 of 5 profile rows. Pre-Need Sales Manager is primary, and Cemetery General Manager is secondary. Both contacts are [Unknown].
 - Sequences: 2 personas, 4 emails each. Pre-Need Sales Manager Email 1 is drafted and Email 3 is on HOLD until a proof point is Verified. The other drafts follow the same rules and are left off the page: Pre-Need Sales Manager Emails 2 and 4, and all four Cemetery General Manager emails.
-- Next action: Nadia Brandt finds the Pre-Need Sales Manager's name, reviews Email 1, and sends it by 2026-10-23.
+- Next action: Nadia Brandt finds the Pre-Need Sales Manager's name, reviews Email 1, and sends it by 2026-10-26, five business days after the run date of 2026-10-19.

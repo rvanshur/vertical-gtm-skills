@@ -1,6 +1,6 @@
 ---
 name: gtm-trigger-event-outbound
-version: 2.1.4
+version: 2.1.5
 description: "Turns one dated business event at a target account into a short outbound sequence, but only after checking the event against its window. Reports when the window has closed or the event date is unknown. Read by the BDR or AE who sends the sequence."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: [gtm-account-snapshot, gtm-closed-loss-reactivation]
 mutating: read-write
 change_log:
+  - version: 2.1.5
+    date: 2026-10-26
+    summary: "The next action follows the family's one deadline rule: five business days after the run date, or an earlier date the records set for that step, which is then named. The skill's own within-five-days wording is replaced by a pointer to that rule. Each example next action carries its date, and an earlier send-date constraint is named as the source of its date."
   - version: 2.1.4
     date: 2026-10-26
     summary: "Try-it evidence completed so a strict first run reproduces Example 1. Day 1 is defined as the day after the run date, the disqualifier check gates each email whose claim depends on it, a contact the record does not name is found before its Email 1, the decision tree gains a branch for an acquisition that changes ownership, the Example Cast facts take the tag of their record, and the next action gets a date rule."
@@ -111,7 +114,7 @@ when the user asks for one.
 | `event_tag` | Event Summary, inline | One evidence tag for the event, for example `[Public: state licensing database]` |
 | `sequence` | Sequence section, inline | Three emails per persona, each under 100 words, or "none" with the reason |
 | `report_path` | Close section | Set only when a file was written. Otherwise "none (inline)" |
-| `next_action` | Close section | The action, its owner and a date within five business days after the run date |
+| `next_action` | Close section | The action, its owner and the date the shared contract's next-action rule gives (What the Close Reads: five business days after the run date, or an earlier date the records set for that step, named with its source) |
 | File option | `<account>_<skill>_<date>.md`, saved beside the user's account notes | Written only when the user asks for a file. Not written by default |
 
 ---
@@ -480,7 +483,7 @@ with the reason the status blocks it.
 If the user asks for a file, save it as `<account>_<skill>_<date>.md` beside their account notes, with the
 same ten items as sections. Otherwise leave `report_path` as "none (inline)".
 
-**Produces:** the summary in the chat, `next_action` with an owner and a date within five business days after the run date, and `report_path`.
+**Produces:** the summary in the chat, `next_action` with an owner and the date the shared contract's next-action rule gives, and `report_path`.
 
 ---
 
@@ -675,7 +678,7 @@ days_remaining: 10
 event_tag: [Public: state licensing database]
 sequence: six emails, three to the acquirer's CFO or controller (name [Unknown]) and three to the site GM. The GM's three are omitted from this example
 report_path: none (inline)
-next_action: Nadia Brandt finds the acquirer's CFO or controller by 2026-10-20, then sends Email 1 after reading the draft
+next_action: Nadia Brandt finds the acquirer's CFO or controller by 2026-10-20 (Day 1, the earlier date the Step 3 timing sets for this step, because Email 1 cannot go before the name is found), then sends Email 1 after reading the draft
 
 ---
 
@@ -722,7 +725,7 @@ days_remaining: none
 event_tag: [CRM], date [Unknown] (illustrative)
 sequence: none, trigger status UNVERIFIED
 report_path: none (inline)
-next_action: Nadia Brandt asks Ines Carmody for the review date by 2026-10-23
+next_action: Nadia Brandt asks Ines Carmody for the review date by 2026-10-26
 
 ---
 
@@ -765,7 +768,7 @@ days_remaining: none
 event_tag: [CRM]
 sequence: none, coordination note to the AE
 report_path: none (inline)
-next_action: Nadia Brandt sends the note to Owen Pruitt by 2026-10-21, after reading it
+next_action: Nadia Brandt sends the note to Owen Pruitt by 2026-10-26, after reading it
 
 ---
 
@@ -861,6 +864,11 @@ next_action: Nadia Brandt sends the note to Owen Pruitt by 2026-10-21, after rea
 
 ## Changelog
 
+
+### 2.1.5 (2026-10-26)
+- The next action follows the family's one deadline rule. Where the sequence timing (Day 1) must come first, the next action names that timing as the earlier date and its source.
+- The Output Contract and Step 4 point to the shared next-action rule instead of restating a window of days.
+- The examples' next actions carry the dates the rule gives.
 
 ### 2.1.4 (2026-10-26)
 - Try-it evidence completed so a strict first run reproduces Example 1.

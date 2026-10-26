@@ -35,4 +35,4 @@ Every name, date and number in this file is invented for the PlotIQ example. Not
 - Threat level: MEDIUM. The five factors are 2, 1, 2, 1 and 2, with an average of 1.6.
 - Gap matrix: five rows, covering mobile use, unsold-plot visibility, trust fund records, cost and time to live.
 - Win plan starts with Ruth counting the plots with no recorded sale in her own number, and confirming the exact renewal day and the trust-file scope with her. No estimate is used.
-- Next action: Owen Pruitt asks Ruth Ellery for the exact Oldgate renewal day and the trust-file export scope by 2026-10-23.
+- Next action: Owen Pruitt asks Ruth Ellery for the exact Oldgate renewal day and the trust-file export scope by 2026-10-26, five business days after the run date of 2026-10-19.

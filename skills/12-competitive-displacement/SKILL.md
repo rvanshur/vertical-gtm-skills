@@ -1,6 +1,6 @@
 ---
 name: gtm-competitive-displacement
-version: 2.1.4
+version: 2.1.5
 description: "Plans outbound to displace a known incumbent, by classifying the incumbent, rating how hard the switch is, and drafting persona-tailored four-step email sequences for the rep to read and send, so the BDR or AE who works the account knows what to say and what not to say."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: [gtm-competitive-strategy]
 mutating: read-write
 change_log:
+  - version: 2.1.5
+    date: 2026-10-26
+    summary: "The next action follows the family's one deadline rule: five business days after the run date, or an earlier date the CRM or the records set for that step, named with its source. The skill's own four-business-day rule is replaced by a pointer to that rule, and the example next actions carry the recomputed dates."
   - version: 2.1.4
     date: 2026-10-26
     summary: "Try-it fixes from the blind retest: the Output Contract names the parts the steps produce and the four the steps do not produce, the next action takes a date rule and an action verb, the Context names the example profile for a first run, a CRM note confirms the incumbent only when its text names it, the hand-off block is defined, the competitive research is cited by its Sources name, and the Methodology settles the open judgments (Settled Judgments) and bars illustrative figures from emails."
@@ -93,7 +96,7 @@ Every run returns its report in the chat. The file is written only when the user
 | `target_personas` | Key Personas | The profile rows used, ranked, each with its title, the count as n of N, and the contact or `[Unknown]` |
 | `sequence` | Below Key Personas | Four emails per persona, drafted and never sent. A page may show fewer. Then it says the other drafts follow the same rules and are left off the page, and names them. Under the BDR guard, `none (guard)` |
 | `report_path` | Header of the report | `none (inline)` unless the user asked for a file |
-| `next_action` | Last line of the report | The owner and a date, for example "Nadia Brandt finds the contact's name, then reviews and sends Email 1 by 2026-10-23". The owner is the BDR or AE of record in the CRM, and a blank owner is written `[Unknown]`, never a name from another account. The date is four business days after the run date, unless the CRM already sets a date for the step. The step names the action the owner takes, not the result |
+| `next_action` | Last line of the report | The owner and a date, for example "Nadia Brandt finds the contact's name, then reviews and sends Email 1 by 2026-10-26" on a 2026-10-19 run. The owner is the BDR or AE of record in the CRM, and a blank owner is written `[Unknown]`, never a name from another account. The date follows the shared contract's next-action rule (five business days after the run date, or an earlier date the CRM or the records already set for that step, named with its source). The step names the action the owner takes, not the result |
 | File, on request | `<account>_gtm-competitive-displacement_<date>.md`, saved beside the user's other account notes | Written only when the user asks, in Markdown. The ask is the approval step |
 
 ---
@@ -542,7 +545,7 @@ displacement_difficulty: Medium (renewal inside 180 days, January 2027, test met
 target_personas: 2 of 5. Row 2 Pre-Need Sales Manager (primary). Row 1 Cemetery General Manager (secondary). Contacts [Unknown]
 sequence: 2 personas x 4 emails. Pre-Need Sales Manager Email 1 drafted. Email 3 on HOLD until the Illustrative proof point is Verified
 report_path: none (inline)
-next_action: Nadia Brandt finds the Pre-Need Sales Manager's name, reviews Email 1, and sends it by 2026-10-23
+next_action: Nadia Brandt finds the Pre-Need Sales Manager's name, reviews Email 1, and sends it by 2026-10-26
 
 ---
 
@@ -589,7 +592,7 @@ incumbent_type: manual process (paper plat maps and one binder per section)
 displacement_difficulty: Low (no contract term to exit, test met, directional)
 target_personas: 1 of 2. Row 1 Cemetery General Manager (primary). Row 3 Operations Director not on file, contact [Unknown]
 sequence: 1 persona x 4 emails drafted, 0 sent. On HOLD until the two double sales are in writing
-next_action: Nadia Brandt books a discovery call that asks for the two double sales, plot numbers and dates, by 2026-10-30
+next_action: Nadia Brandt books a discovery call that asks for the two double sales, plot numbers and dates, by 2026-10-26
 report_path: none (inline)
 
 ---
@@ -620,7 +623,7 @@ incumbent_type: direct software (Oldgate Ledger Pro)
 displacement_difficulty: Medium (renewal inside 180 days, March 2027, test met, directional)
 target_personas: none. BDR guard, analysis only
 sequence: none (guard). The AE decides
-next_action: Nadia Brandt sends this analysis to Owen Pruitt by 2026-10-21
+next_action: Nadia Brandt sends this analysis to Owen Pruitt by 2026-10-26
 report_path: none (inline)
 
 ---
@@ -689,6 +692,10 @@ report_path: none (inline)
 ---
 
 ## Changelog
+
+### 2.1.5 (2026-10-26)
+- The next action follows the family's one deadline rule. The Output Contract points to that rule in place of the skill's own four-business-day wording.
+- The examples' next actions carry the dates the rule gives. No sequence or difficulty rating changes.
 
 ### 2.1.4 (2026-10-26)
 - Try-it fixes from the blind retest. The Output Contract names the parts the steps produce and the four the steps do not produce. The next action takes a date rule and an action verb. The Context names the example profile for a first run. A CRM note confirms the incumbent only when its text names it. The hand-off block is defined. The competitive research is cited by its Sources name. Settled Judgments records the open judgments, and an illustrative figure never goes into an email. The Example 1 page leaves out only the sections no step produces.

@@ -1,6 +1,6 @@
 ---
 name: gtm-deal-pulse
-version: 2.1.4
+version: 2.1.5
 description: "Scores one open deal across 16 signals in 4 pillars and produces a 0 to 100 health score, a risk level and named next actions. The AE and the sales manager read it, and the MEDDPICC, Call Coaching and Meeting Prep skills take its fields by name."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: ["gtm-call-coaching"]
 mutating: read-write
 change_log:
+  - version: 2.1.5
+    date: 2026-10-26
+    summary: "The next action follows the family's one deadline rule: five business days after the run date, or an earlier date the records set for that step, which is named with its source. The Output Contract points to that rule, and each example names the record behind its next action date. No score, verdict, band or risk level changes."
   - version: 2.1.4
     date: 2026-10-26
     summary: "Try-it evidence completed so a strict first run reproduces Example 1. Settles the champion who is also the buyer contact for Signal 1, the decision influence a champion needs for Signal 4, the rule for an unnamed economic buyer on Signals 9 and 14, and the owner of the IT question on Technical Readiness. The hand-off block is written out in the Output Contract instead of pointing at the examples. Example 1 gains a second stakeholder on pain. No score, verdict, band or risk level changes."
@@ -91,7 +94,7 @@ Core commitments: **a 16-signal scorecard across 4 pillars**, **a health score f
 | `pillar_scores` | Pillar averages line of the report, and the hand-off block | Four values, one decimal place: Why Anything, Why Us, Why Now, Execution. A pillar with fewer than 2 scored signals reads insufficient |
 | `signal_scores` | Score column of the scorecard, and the hand-off block | Sixteen entries in signal order: 100 (GREEN), 50 (YELLOW), 0 (RED), or INSUFFICIENT, which has no value and is left out of the sum and the count |
 | `next_actions` | Recommended Actions section, and the hand-off block | One numbered action for each RED signal, the evidence needed for each YELLOW, and the evidence that would score each INSUFFICIENT signal |
-| `next_action` | Last line of the report | The owner and the date. Wrap-Up reads this line |
+| `next_action` | Last line of the report | The owner and the date the shared contract's next-action rule gives (five business days after the run date, or an earlier date the records set for that step, named with its source). Wrap-Up reads this line |
 | `report_path` | Hand-off block | `none (inline)` unless a file was written |
 | File option | Written only when the user asks | Named `<account>_<skill>_<date>.md`, saved beside the user's other account notes. Never written by default |
 
@@ -670,7 +673,7 @@ All figures are from the PlotIQ profile and the PlotIQ chain file, or marked `(i
 1. **Pull deal data.** Stage 5 Negotiate since 2026-09-09, 19 days in stage `[CRM]`. Amount $21,576 a year at list `[CRM]`. Close date 2026-11-12 with no change on record `[CRM]`. Primary contact Ruth Ellery, General Manager `[CRM]`.
 2. **Pull activity.** 11 interactions in the last 90 days `[CRM]` (illustrative): a discovery call, a demo on Brackhaven's own plot records and two contract calls. Three contacts engaged: Ruth Ellery, Walt Okonkwo and Priscilla Dunmore, pre-need manager `[CRM]`. Most recent interaction: a contract terms call with Ruth on 2026-09-26 `[Call]` (illustrative).
 3. **Score Why Anything, pillar average 87.5.** Pain Clarity is GREEN. The one double sale in the last 24 months is a note in the CRM `[CRM]` (illustrative), and Ruth describes the paper plot records as the reason it happened `[Call]`. Ruth puts the staff time to unwind one double sale at about 40 hours `[Call]` (illustrative), a time impact. Walt Okonkwo, the Operations Director, puts a double sale at about a day of searching paper maps `[Call]` (illustrative), on the 2026-09-21 call. Ruth is the buyer contact and the champion, so her account counts for the buyer under the rule above, and Walt's account is the second stakeholder. Reason to Change is GREEN. Ruth named the March 2027 Oldgate renewal as the deadline `[Call]`, and the renewal date is in the CRM `[CRM]`. Strategic Initiative is YELLOW. Ruth's stated goal for the cemetery side is one system for plot records before the owner retires `[Call]` (illustrative), a departmental goal. The owner's retirement within three years is not a company priority the board has confirmed `[Unknown]`. Champion Strength is GREEN. Ruth meets four of the shared champion tests, four of seven, each tagged `[Call]`: she offers introductions to the board chair, explains the internal politics, shares competitor intelligence, and commits to next steps with dates. The CRM note of 2026-09-25 records that she briefed the board chair on the records fix and forwarded the ledger comparison `[CRM]` (illustrative), which is the decision influence the GREEN rubric needs, because she briefs the board chair and forwards the evidence the chair decides on. (100 + 100 + 50 + 100) ÷ 4 = 87.5.
-4. **Score Why Us, pillar average 62.5.** Solution Fit is GREEN. Ruth confirmed the records fix answers her double-sale problem `[Call]`. Technical Readiness is RED. No IT contact is on file and nobody at Brackhaven owns IT `[Unknown]`, and the Oldgate ledger export is unscoped `[Unknown]`. Owen proposed Friday 2026-10-02 for a technical discovery on the export `[Notes]` (illustrative). Competitive Landscape is YELLOW. Stonemark mapping was also evaluated, and no preference has been stated `[Call]`. Product Alignment is GREEN. The CRM note lists 12 requirements, and the demo covered 10 of them, or 83% `[CRM]` (illustrative). The demo ran on Brackhaven's own plot records `[CRM]`. (100 + 0 + 50 + 100) ÷ 4 = 62.5.
+4. **Score Why Us, pillar average 62.5.** Solution Fit is GREEN. Ruth confirmed the records fix answers her double-sale problem `[Call]`. Technical Readiness is RED. No IT contact is on file and nobody at Brackhaven owns IT `[Unknown]`, and the Oldgate ledger export is unscoped `[Unknown]`. Owen proposed Friday 2026-10-02 for a technical discovery on the export `[Notes]` (illustrative), which is the earlier date the records set for that step. Competitive Landscape is YELLOW. Stonemark mapping was also evaluated, and no preference has been stated `[Call]`. Product Alignment is GREEN. The CRM note lists 12 requirements, and the demo covered 10 of them, or 83% `[CRM]` (illustrative). The demo ran on Brackhaven's own plot records `[CRM]`. (100 + 0 + 50 + 100) ÷ 4 = 62.5.
 5. **Score Why Now, pillar average 62.5.** Budget Path is YELLOW. The family board chair is the economic buyer, but the chair's name is `[Unknown]`, pricing was delivered in Stage 4 `[CRM]`, and the budget is not yet allocated `[Notes]`. Decision Process is YELLOW. The board chair has joined one call `[CRM]`, and the approval steps after the board are not mapped `[Unknown]`. Timeline Alignment is GREEN. The March 2027 renewal is a confirmed internal deadline `[Call]`, and the close date of 2026-11-12 sits ahead of it `[CRM]`. Ruth confirmed 2026-11-12 as the date she is working to on the 2026-09-26 call `[Call]` (illustrative), so the close date is buyer-validated. The board itself has not formally confirmed it, so this is the closest call in the pulse. It holds at GREEN because the close date is buyer-validated and the deadline it answers to is confirmed. Procurement Awareness is YELLOW. Legal review and vendor onboarding are known in outline `[Call]`, and their timing is not scoped `[Unknown]`. (50 + 50 + 100 + 50) ÷ 4 = 62.5.
 6. **Score Execution, pillar average 75.0.** Buyer Responsiveness is GREEN. Ruth replies within a day, started the 2026-09-22 call request, and attended all four meetings on the calendar `[CRM]` (illustrative). Multi-Threaded Engagement is YELLOW. Three contacts are engaged `[CRM]`, but the board chair has joined only one call and no second meeting is booked `[CRM]`. Follow-Through is GREEN. Both sides kept their dated commitments before the next meeting. Ruth sent the trust fund ledger sample on 2026-09-24 and returned the markup on 2026-09-25 `[Notes]` (illustrative). Owen sent the revised terms on 2026-09-17 and called Walt on 2026-09-21 `[CRM]` (illustrative). Meeting Progression is YELLOW. The last two calls covered the same contract terms with the same attendees `[CRM]`. (100 + 50 + 100 + 50) ÷ 4 = 75.0.
 7. **Health.** There are 8 GREEN, 7 YELLOW and 1 RED. The sum is 800 + 350 + 0 = 1,150. Health = 1,150 ÷ 16 = 71.9, shown as 72. A score of 72 falls in the 46 to 84 band, so the risk is **Medium Risk**. The lowest pillar average is 62.5, which is not below 30, so the pillar step does not apply.
@@ -711,7 +714,7 @@ Pillar bands: Why Anything GREEN, Why Us YELLOW, Why Now YELLOW, Execution GREEN
 
 **Output:** Medium Risk at a health of 72, with one RED signal (Technical Readiness) and seven YELLOW signals, each with the evidence that would move it. Recommended actions:
 
-1. Technical Readiness (RED, urgency method): Owen asks Ruth who runs IT at Brackhaven, if anyone, and books a technical discovery on the Oldgate export by 2026-10-02.
+1. Technical Readiness (RED, urgency method): Owen asks Ruth who runs IT at Brackhaven, if anyone, and books a technical discovery on the Oldgate export by 2026-10-02, the Friday Owen proposed in his notes, which is earlier than the five-business-day date of 2026-10-05.
 2. Multi-Threaded Engagement (YELLOW): Owen asks Ruth for a second call with the board chair, so the economic buyer is on the record.
 3. Competitive Landscape (YELLOW): Owen asks Walt what would make the tablet question a non-issue, since his concern is how the team uses it, not the product `[Call]` (illustrative).
 
@@ -736,7 +739,7 @@ risk_level: Medium Risk
 pillar_scores: Why Anything 87.5, Why Us 62.5, Why Now 62.5, Execution 75.0
 signal_scores: Pain 100, Reason 100, Strategic 50, Champion 100, Fit 100, Technical 0, Competitive 50, Product 100, Budget 50, Decision 50, Timeline 100, Procurement 50, Responsiveness 100, Multi-Threading 50, Follow-Through 100, Progression 50
 next_actions: 1. Owen Pruitt asks Ruth Ellery who runs IT and books a technical discovery on the Oldgate export by 2026-10-02. 2. Owen Pruitt asks Ruth Ellery for a second call with the board chair. 3. Owen Pruitt asks Walt Okonkwo what would make the tablet question a non-issue.
-next_action: Owen Pruitt asks Ruth Ellery for a technical discovery session on the Oldgate export by 2026-10-02
+next_action: Owen Pruitt asks Ruth Ellery for a technical discovery session on the Oldgate export by 2026-10-02 (the Friday Owen proposed in his notes, earlier than 2026-10-05)
 report_path: none (inline)
 ```
 
@@ -744,7 +747,7 @@ report_path: none (inline)
 
 ### Example 2: Second Pulse, High Risk (Brackhaven Memorial Gardens, 2026-10-19)
 
-**Context:** Brackhaven again, on 2026-10-19, three weeks after Example 1. The deal is still ACTIVE at Stage 5 Negotiate, now on day 40 in stage `[CRM]`. Ruth Ellery has not replied since 2026-10-03, which is 16 days `[CRM]`. The board meeting is still set for 2026-11-12, but the board has not confirmed the date `[Notes]`. This is the non-success case: a deal that looked close and is now stalling in Stage 5. The same day's MEDDPICC scores 58 (ORANGE), a different instrument on the same deal, so the two numbers are not meant to match. Compared with the first pulse, health falls 34 points, from 72 to 38.
+**Context:** Brackhaven again, on 2026-10-19, three weeks after Example 1. The deal is still ACTIVE at Stage 5 Negotiate, now on day 40 in stage `[CRM]`. Ruth Ellery has not replied since 2026-10-03, which is 16 days `[CRM]`. The CRM holds a dated action due 2026-10-23 for Owen to get the board date from Ruth `[CRM]` (illustrative). The board meeting is still set for 2026-11-12, but the board has not confirmed the date `[Notes]`. This is the non-success case: a deal that looked close and is now stalling in Stage 5. The same day's MEDDPICC scores 58 (ORANGE), a different instrument on the same deal, so the two numbers are not meant to match. Compared with the first pulse, health falls 34 points, from 72 to 38.
 
 **Input:** "Run the deal pulse for Brackhaven again and compare it to last time."
 
@@ -804,7 +807,7 @@ risk_level: High Risk
 pillar_scores: Why Anything 62.5, Why Us 37.5, Why Now 37.5, Execution 12.5
 signal_scores: Pain 50, Reason 100, Strategic 50, Champion 50, Fit 50, Technical 0, Competitive 50, Product 50, Budget 50, Decision 50, Timeline 0, Procurement 50, Responsiveness 0, Multi-Threading 50, Follow-Through 0, Progression 0
 next_actions: 1. Owen Pruitt asks Ruth Ellery for the board date by 2026-10-23, and the stage HOLDs at Stage 5 Negotiate. 2. Owen Pruitt drafts a breakup email framed around the March 2027 renewal. 3. Owen Pruitt asks Ruth Ellery who owns IT and books a technical discovery. 4. Lena Vasquez joins the next call. 5. Keep the Stonemark comparison ready for Walt Okonkwo.
-next_action: Owen Pruitt asks Ruth Ellery for the family board date by 2026-10-23, and the board date decides between HOLD and DOWNGRADE to Stage 4 Proposal on 2026-11-02
+next_action: Owen Pruitt asks Ruth Ellery for the family board date by 2026-10-23 (the dated action the CRM holds, earlier than the five-business-day date of 2026-10-26), and the board date decides between HOLD and DOWNGRADE to Stage 4 Proposal on 2026-11-02
 report_path: none (inline)
 ```
 
@@ -910,6 +913,10 @@ The Business Case & ROI Kit (a paid Guild Pro kit) reads this skill's hand-off b
 ---
 
 ## Changelog
+
+### 2.1.5 (2026-10-26)
+- The next action follows the family's one deadline rule. The Output Contract points to that rule, and each example names the record (a proposed date in the notes or a dated CRM action) when that record sets an earlier date.
+- No score, verdict, band or risk level changes.
 
 ### 2.1.4 (2026-10-26)
 - Try-it evidence completed so a strict first run reproduces Example 1. Signal 1 states how a champion who is also the buyer contact counts, and that a quantified account counts only within 14 days of the score. Signal 4 states what decision influence means. Signals 9 and 14 state how an unnamed economic buyer is scored. The Technical Readiness action states who asks about IT. The hand-off block is written out in the Output Contract, with its field order and the meaning of each value. Example 1 gains a second stakeholder on the pain and a note on the date of its call facts. Example 2 applies the 14-day rule to the pain. No score, verdict, band or risk level changes.

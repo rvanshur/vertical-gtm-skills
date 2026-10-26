@@ -34,4 +34,4 @@ The Account
 - Email 1 (2026-10-20): subject "Corrow Ridge after the Harborline close". Email 2 (2026-10-23 to 2026-10-24) and Email 3 (2026-10-27 to 2026-10-29) follow.
 - Proof point: none. The profile's proof point for this trigger is Illustrative, so no figure goes into any email.
 - Disqualifier check: Harborline's ownership type and its system are [Unknown]. The check is due by 2026-10-22. Email 1 asks nothing that depends on it and may go first. Email 2 waits for the check.
-- Next action: Nadia Brandt finds the acquirer's CFO or controller by 2026-10-20, then sends Email 1 after reading the draft.
+- Next action: Nadia Brandt finds the acquirer's CFO or controller by 2026-10-20 (Day 1, the earlier date the sequence timing sets for this step, since Email 1 cannot go before the name is found), then sends Email 1 after reading the draft.

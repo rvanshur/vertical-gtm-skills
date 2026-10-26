@@ -1,6 +1,6 @@
 ---
 name: gtm-closed-loss-reactivation
-version: 2.1.4
+version: 2.1.5
 description: "Re-engages closed-lost accounts from the CRM history. Checks the recorded loss reason against the evidence, finds what has changed since the deal died, re-scores fit, and returns REACTIVATE, MONITOR or RETIRE with a history-aware opener for the BDR or AE who owns the next step."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: []
 mutating: read-write
 change_log:
+  - version: 2.1.5
+    date: 2026-10-26
+    summary: "The next action follows the family's one deadline rule: five business days after the run date, or an earlier date the records set for that step. The skill's own within-five-days wording is replaced by a pointer to that rule. The Zone 3 MEDIUM cell is quoted with the profile's wording (next meeting more than 60 days out), and an UNKNOWN zone is stated with the Verdict Rule's wording. The examples' next actions carry the recomputed dates."
   - version: 2.1.4
     date: 2026-10-26
     summary: "Try-it evidence completed so a strict first run reproduces Example 1. Settles the order of two categories when the AE notes are blank, the timing of a champion's move, unknown zones in the verdict, the anchor of the timing and competitor re-entry windows, the Zone 3 board path after the general manager leaves, and the owner and date of a next step. Oldgate is cited to the competitive research note. Adds the example profile to the try-it pointer in the body."
@@ -414,7 +417,7 @@ Use `{Client Profile: Qualification Criteria}` (Buying Triggers) and `{Client Pr
 
 ### Step 4: Re-Qualify Fit and Set the Verdict
 
-Re-score fit against `{Client Profile: ICP Definitions}`. The company may have changed since the original evaluation. Use the profile's verdict words, GREENLIGHT, MANUAL REVIEW or DISQUALIFY, and show what moved against the original score. When the general manager who would recommend has left, the profile's Zone 3 MEDIUM cell still applies, which reads: GM recommends, board approves, next meeting three or more months out. The board path is the observable fact, and the HIGH cell needs a GM or owner who signs under $25K, which no longer describes the account. A zone with no record is UNKNOWN. It counts toward neither HIGH nor LOW, so GREENLIGHT needs two zones HIGH on evidence, and each UNKNOWN zone is named as the evidence still to find.
+Re-score fit against `{Client Profile: ICP Definitions}`. The company may have changed since the original evaluation. Use the profile's verdict words, GREENLIGHT, MANUAL REVIEW or DISQUALIFY, and show what moved against the original score. When the general manager who would recommend has left, the profile's Zone 3 MEDIUM cell still applies, which reads: GM recommends, board approves, next meeting more than 60 days out. The board path is the observable fact, and the HIGH cell needs a GM or owner who signs under $25K, which no longer describes the account. A zone with no record is UNKNOWN. It counts toward neither HIGH nor LOW, so it never earns or blocks GREENLIGHT, and each UNKNOWN zone is named as the evidence still to find.
 
 Then set the reactivation verdict:
 
@@ -539,7 +542,7 @@ Present the complete reactivation analysis inline, in this order:
 9. **Coordination Guidance (BDR only):** "Coordinate with the original AE named in Step 0 before sending reactivation outreach."
 10. **Recommended Next Action:** one step, with its owner and date
 
-The owner of the next action is the person who does the step. For a BDR, that is the BDR, who asks the original AE for what the step needs. A step that asks a colleague for an answer is dated within five business days of the run date.
+The owner of the next action is the person who does the step. For a BDR, that is the BDR, who asks the original AE for what the step needs. A step that asks a colleague for an answer is dated by the shared contract's next-action rule (five business days after the run date, or an earlier date the records set for that step).
 
 Write a file only when the user asks for one. When they do, the file is the one-page cheatsheet built from this same analysis, in Markdown, named `<account>_gtm-closed-loss-reactivation_<date>.md`, with eight sections in this order: deal history banner, what has changed, reactivation strategy, key contacts, reactivation hooks, discovery questions, objection handling, and call flow. Asking for the file is the approval step.
 
@@ -625,7 +628,7 @@ The AE's loss notes decide between the two categories. That question goes to the
 | Zone | At the Deal `[CRM]` (illustrative) | Now | What Moved |
 |------|-----------------------------------|-----|------------|
 | 1 Records and Inventory Pain | MEDIUM | MEDIUM | Nothing. Paper deeds and lookups that take days `[CRM]` (illustrative). The trust filing is current with no finding on record `[Public: state licensing database]` (illustrative), so the HIGH test is not met |
-| 3 Ownership and Decision Speed (must-have) | HIGH | MEDIUM | The GM who signed has left. Above $25K the board approves, and its next meeting is 2027-01-20, more than three months out `[CRM]` (illustrative). That is the profile's MEDIUM cell |
+| 3 Ownership and Decision Speed (must-have) | HIGH | MEDIUM | The GM who signed has left. Above $25K the board approves, and its next meeting is 2027-01-20, 93 days after the run date, which is more than 60 days out `[CRM]` (illustrative). That is the profile's MEDIUM cell |
 | 2 Pre-Need, 4 Technology, 5 Growth | `[Unknown]` | `[Unknown]` | No record speaks to them, so they are not scored |
 
 The one HIGH zone at the deal, Zone 3, is now MEDIUM, so no zone is HIGH. GREENLIGHT needs two HIGH zones, and DISQUALIFY needs a disqualifier or two must-haves at LOW, so the Verdict Rule gives MANUAL REVIEW. The fit is MANUAL REVIEW at the deal and now, and what moved is the ownership zone. No reopening event has fired. Verdict: **MONITOR**. Set the reminder between 2026-12-18 (60 days) and 2027-01-17 (90 days).
@@ -641,7 +644,7 @@ The reopening events for Lowmoor are the three the profile lists: a new general 
 The held `history_opener` is: "When we last spoke, you went with Oldgate. Curious how that has been working out, specifically around the area the AE recorded." It is held until a reopening event fires and the AE's notes confirm the area. Its anchor is checked: the Oldgate loss is `[CRM]`, dated 2026-01-20.
 
 **Summary: MONITOR.** Lowmoor Memorial Gardens, with these next actions:
-1. The BDR asks the original AE for the loss notes and the deal value, by 2026-10-23.
+1. The BDR asks the original AE for the loss notes and the deal value, by 2026-10-26 (five business days after the run date of 2026-10-19, a Monday, and the records set no earlier date for this step).
 2. The BDR finds the current Lowmoor contact, who is `[Unknown]` today, by 2026-11-02.
 3. The BDR sets the reminder for the window 2026-12-18 to 2027-01-17 to check the reopening events.
 4. Quill Hollow runs as its own account through Account Snapshot (02), not as part of this reactivation.
@@ -654,7 +657,7 @@ loss_classification: Budget / Timing [CRM] (logged reason "timing", board date a
 change_assessment: account, Ines Carmody now at Quill Hollow [Public: state licensing database]. product, beta with no paid revenue [CRM]. market, Oldgate renewal date [Unknown]
 reactivation_strategy: MONITOR (Buyer's Remorse play, held until a reopening event fires)
 history_opener: held. Oldgate loss [CRM], dated 2026-01-20. Written when a reopening event fires and the AE's notes confirm the area
-next_action: BDR asks the original AE for the loss notes and the deal value, by 2026-10-23
+next_action: BDR asks the original AE for the loss notes and the deal value, by 2026-10-26
 report_path: none (inline)
 ```
 
@@ -686,7 +689,7 @@ loss_classification: none. The account is OUT, with no closed-lost record to cla
 change_assessment: none found. Nothing in the cast shows a change to its system or ownership [Unknown]
 reactivation_strategy: RETIRE (disqualifier: a public consolidator that runs its own system [Public: annual filing])
 history_opener: none. No sequence written (0 emails)
-next_action: the rep logs the disqualifier in the CRM, by 2026-10-23
+next_action: the rep logs the disqualifier in the CRM, by 2026-10-26
 report_path: none (inline)
 ```
 
@@ -716,7 +719,7 @@ loss_classification: unchanged from Example 1 (Budget / Timing and Lost to Compe
 change_assessment: champion now at Quill Hollow [Public: state licensing database]. Quill Hollow status TARGET with a GREENLIGHT verdict [CRM] (illustrative, from the example cast)
 reactivation_strategy: MONITOR for Lowmoor (Track B only). Track A goes to Account Snapshot (02) as a new account
 history_opener: held for Track B. Track A's opener is written in Account Snapshot
-next_action: BDR routes Track A to Account Snapshot, by 2026-10-23
+next_action: BDR routes Track A to Account Snapshot, by 2026-10-26
 report_path: none (inline)
 ```
 
@@ -807,6 +810,12 @@ report_path: none (inline)
 
 ## Changelog
 
+
+### 2.1.5 (2026-10-26)
+- The next action follows the family's one deadline rule (five business days after the run date, or an earlier date the records set for that step). The Step 8 rule for a request to a colleague points to that rule.
+- The Zone 3 MEDIUM cell in Step 4 uses the profile's wording (next meeting more than 60 days out), and Example 1 states its board date against that wording.
+- An UNKNOWN zone in Step 4 counts toward neither HIGH nor LOW, and never earns or blocks GREENLIGHT, as the profile's Verdict Rule states.
+- The examples' next actions carry the recomputed dates.
 
 ### 2.1.4 (2026-10-26)
 - Try-it evidence completed so a strict first run reproduces Example 1. Step 2 names the CRM-logged category first when the AE notes are blank, and states that Champion Left needs a champion who left before the close. Step 4 settles unknown zones, so GREENLIGHT needs two evidenced HIGH zones, and it cites the profile's Zone 3 MEDIUM cell after the general manager leaves. Step 5 counts a timing window from the close date and a competitor window from the rival's renewal date. Step 8 names the owner of a next action and dates a request to a colleague. The Oldgate citation points to the competitive research note. The Input Contract points to the example profile. No output changed.

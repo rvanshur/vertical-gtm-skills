@@ -41,4 +41,4 @@ Owner Letter
 - Wedge: 2 cemetery sites at 50 to 100 plots each = 100 to 200 plots to check (Benchmark, a hook and not a result). Five sites at $10,788 a year at list = $53,940 a year, plus $5,000 setup once [Inferred: units x profile list price]. No payback figure, because the price of an unsold plot is [Unknown].
 - Sequences: 5 personas x 4 emails = 20 emails. Email 1 goes to the CFO, Hector Ruiz, with the subject "One system across five sites in 2027".
 - Open items: which system the group picks and when the plot records move, who in the family signs the 2027 plan besides the CFO, and which state's filing applies to each cemetery site.
-- Next action: Nadia Brandt reads the 20 drafts and sends Email 1 to Hector Ruiz by 2026-10-23.
+- Next action: Nadia Brandt reads the 20 drafts and sends Email 1 to Hector Ruiz by 2026-10-26, five business days after the run date of 2026-10-19.

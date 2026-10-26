@@ -13,6 +13,7 @@ Every name, date and number in this file is invented for the PlotIQ example. Not
 - The account record states annual revenue under $50M [CRM] (illustrative), and 60 employees [CRM] (illustrative).
 - Legal review and vendor onboarding are known in outline, with timing not scoped [Unknown].
 - Ruth Ellery has not replied since 2026-10-03, 16 days ago [CRM].
+- The CRM holds a dated action due 2026-10-23 for Owen to get the board date from Ruth [CRM] (illustrative).
 - The family board chair joined one call, in Stage 4 Proposal [Call]. The chair is not on file by name.
 - Upstream MEDDPICC run on 2026-10-19: 58, ORANGE [CRM].
 - Contacts on file, all [CRM]:
@@ -31,4 +32,4 @@ Every name, date and number in this file is invented for the PlotIQ example. Not
 - Champion: Strong (Ruth Ellery, four of seven shared champion tests met).
 - Ghost nodes: UNKNOWN, family board chair (the economic buyer slot), UNKNOWN, systems administrator and UNKNOWN, funeral home owner.
 - Economic buyer: a ghost node with one call and no named contact.
-- Next action: Owen Pruitt asks Ruth Ellery for the board date and the board chair's name by 2026-10-23.
+- Next action: Owen Pruitt asks Ruth Ellery for the board date and the board chair's name by 2026-10-23, the CRM's dated action, which is earlier than five business days after the 2026-10-19 run date (2026-10-26).

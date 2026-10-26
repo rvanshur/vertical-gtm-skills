@@ -1,7 +1,7 @@
 ---
 name: gtm-account-snapshot
 description: "One-page account brief for BDRs and AEs: a zone-based verdict, persona-ranked contacts, tagged pain hypotheses, a three-step email draft and call prep, read by the rep before anything is sent."
-version: 2.1.4
+version: 2.1.5
 category: Sales-Methodology
 author: Ryan Vanshur
 license: MIT
@@ -11,6 +11,9 @@ requires:
   skills: [gtm-account-qualification, gtm-competitive-displacement]
 mutating: read-write
 change_log:
+  - version: 2.1.5
+    date: 2026-10-26
+    summary: "The next action follows the family's one deadline rule: five business days after the run date, or an earlier date the records set for that step. The skill's own within-five-days wording is replaced by a pointer to that rule, and the example next actions carry the recomputed dates. An UNKNOWN zone is stated with the Verdict Rule's wording, neither HIGH nor LOW, and the flagship example's next action gains its date."
   - version: 2.1.4
     date: 2026-10-26
     summary: "Try-it evidence completed so a strict first run reproduces Example 1. The GM move is tagged as a CRM fact, Example Cast facts take the tag of their record, scale uses the profile's Size Bands, the gap and champion rules are settled, an undated signal does not count toward a timing hypothesis, a sequence is drafted only for GREENLIGHT, and the next action gets a date rule."
@@ -97,7 +100,7 @@ Every run returns its report in the chat. The file is written only when the user
 | `pain_hypotheses` | Pain Hypotheses | Ranked by confidence, each one tagged |
 | `sequence` | Below the cheatsheet | Three emails per persona, drafted and never sent. Quick Call Prep mode omits it |
 | `report_path` | Only when a file was written | Set only when the user asks for the file. Wrap-Up reads it |
-| `next_action` | Last line of the summary | Owner and a calendar date within five business days after the run date, in the form "[owner] sends Email 1 to [contact] by [date]" |
+| `next_action` | Last line of the summary | Owner and a calendar date set by the shared contract's next-action rule (What the Close Reads: five business days after the run date, or an earlier date the records set for that step), in the form "[owner] sends Email 1 to [contact] by [date]" |
 | File option | `<account>_<skill>_<date>.md`, saved beside the user's other account notes | Written only when the user asks. Markdown only. The ask is the approval step |
 
 ---
@@ -246,7 +249,7 @@ Apply the Verdict Rule as written:
 
 MEDIUM never counts as HIGH. The next skill reads these zones, so a score that rounds up changes its verdict.
 
-Name the zones that carry the verdict beside it. A GREENLIGHT shows its two HIGH zones, and any UNKNOWN zone beside it is named as an open fact that does not count toward the verdict. A MANUAL REVIEW shows the one HIGH zone, or the must-have at LOW.
+Name the zones that carry the verdict beside it. A GREENLIGHT shows its two HIGH zones. An UNKNOWN zone beside it counts as neither HIGH nor LOW, so it never earns or blocks GREENLIGHT, and it is named as an open fact. A MANUAL REVIEW shows the one HIGH zone, or the must-have at LOW.
 
 ### ICP Quick-Score Signals
 
@@ -405,7 +408,7 @@ Account Snapshots use three steps, not four, because this is volume outreach.
 
 Assemble the eight cheatsheet sections in this order: Company Snapshot, Geographic and Market Exposure, Key Personas, Pain Hypotheses, Discovery Questions, Value Props, Objection Handling and Call Flow.
 
-Close with a summary line in this order: the user's role, the account, the status, the verdict with the zones that carry it, the contacts found and their gaps, the personas targeted, the number of sequence emails, the recommended first action with its owner and a date within five business days after the run date (`next_action`), and the tag count for the report.
+Close with a summary line in this order: the user's role, the account, the status, the verdict with the zones that carry it, the contacts found and their gaps, the personas targeted, the number of sequence emails, the recommended first action with its owner and the date the shared contract's next-action rule gives (five business days after the run date, or an earlier date the records set for that step) (`next_action`), and the tag count for the report.
 
 **Produces:** the eight-section cheatsheet in the chat, the summary line, and `next_action`.
 
@@ -564,7 +567,7 @@ Voicemail: "Hi Ines, this is Nadia Brandt at PlotIQ, about the records finding i
 | "Send me an email" | "Happy to. Would the ROI overview or the capability overview be more useful?" |
 | "No budget" | "That makes sense. If I could show you how a similar operator solved the records finding, would 15 minutes be worth it?" |
 
-**Step 7: Summary.** BDR. Quill Hollow Memorial Park, TARGET, GREENLIGHT, with Zones 3 and 5 HIGH. One contact on file, Ines Carmody, first. Owner and pre-need contacts unknown. One persona, three emails. Next action: Nadia Brandt sends Email 1 to Ines Carmody by 2026-10-21. Unknown facts to resolve on the call: the records finding date, the owner's name, the state.
+**Step 7: Summary.** BDR. Quill Hollow Memorial Park, TARGET, GREENLIGHT, with Zones 3 and 5 HIGH. One contact on file, Ines Carmody, first. Owner and pre-need contacts unknown. One persona, three emails. Next action: Nadia Brandt sends Email 1 to Ines Carmody by 2026-10-26 (five business days after the run date of 2026-10-19, a Monday, and the records set no earlier date for this step). Unknown facts to resolve on the call: the records finding date, the owner's name, the state.
 
 ```text
 Hand-off (read by 06):
@@ -577,7 +580,7 @@ contact_priority: 1 Ines Carmody (General Manager, champion), 2 Owner, name Unkn
 pain_hypotheses: 1 Plot visibility (HIGH, CRM and Inferred), 2 Records after a state finding (MEDIUM, CRM, date Unknown), 3 Pre-need follow-up (LOW, Unknown)
 sequence: three emails to Ines Carmody, with call prep
 report_path: none (inline)
-next_action: Nadia Brandt sends Email 1 to Ines Carmody by 2026-10-21
+next_action: Nadia Brandt sends Email 1 to Ines Carmody by 2026-10-26
 ```
 
 ---
@@ -622,7 +625,7 @@ Talk track:
 
 Objection prep: "We're happy with the spreadsheet." Rebuttal: "That makes sense. When did you last check the spreadsheet against the plots you have actually sold?"
 
-**Step 7: Summary.** AE. Sable Fork Cemetery, INBOUND, MANUAL REVIEW, with Zone 3 the only HIGH zone. No active deal. Quick call prep delivered. Next action: the AE books a discovery call with Arlen Biggs by 2026-10-22. Re-score the zones after that call.
+**Step 7: Summary.** AE. Sable Fork Cemetery, INBOUND, MANUAL REVIEW, with Zone 3 the only HIGH zone. No active deal. Quick call prep delivered. Next action: the AE books a discovery call with Arlen Biggs by 2026-10-26 (five business days after the run date of 2026-10-19, a Monday, and the records set no earlier date for this step). Re-score the zones after that call.
 
 ```text
 Hand-off (read by 06 and 04):
@@ -635,7 +638,7 @@ contact_priority: 1 Arlen Biggs (General Manager, signs under $25K), 2 Form fill
 pain_hypotheses: 1 Plot lookups in a spreadsheet (MEDIUM, Inferred), 2 Pre-need follow-up (LOW, Unknown), 3 Single-person records risk (LOW, Unknown)
 sequence: not generated, Quick Call Prep mode
 report_path: none (inline)
-next_action: The AE books a discovery call with Arlen Biggs by 2026-10-22
+next_action: The AE books a discovery call with Arlen Biggs by 2026-10-26
 ```
 
 ---
@@ -668,7 +671,7 @@ contact_priority: Corrow Ridge, the acquirer's CFO or controller and the site GM
 pain_hypotheses: ranked per account in the table, each tagged
 sequence: snapshot drafts for Corrow Ridge and Greyfield only. None for the other three
 report_path: none (inline)
-next_action: BDR sends the Corrow Ridge Email 1 by 2026-10-21
+next_action: BDR sends the Corrow Ridge Email 1 by 2026-10-26
 ```
 
 ---
@@ -769,12 +772,12 @@ Voicemail: "Hi Ruth, this is Nadia Brandt at PlotIQ, about the two plot maps at 
 | "No budget" | "That makes sense. If I could show you how a similar operator solved the two-list problem, would 15 minutes be worth it?" |
 | "Send me an email" | "Happy to. Would the ROI overview or the capability overview be more useful?" |
 
-**Step 7: Summary.** The summary states the verdict, the two HIGH zones, the three contacts, and the next action: Owen Pruitt books the first discovery call with Ruth Ellery. The board chair is the open question for that call.
+**Step 7: Summary.** The summary states the verdict, the two HIGH zones, the three contacts, and the next action: Owen Pruitt books the first discovery call with Ruth Ellery by 2026-05-11 (illustrative), five business days after the run date of 2026-05-04, a Monday, and the records set no earlier date for this step. The board chair is the open question for that call.
 
 ```text
 Hand-off (read by 06):
 account: Brackhaven Memorial Gardens (TARGET at the time of the snapshot)
-run_date: 2026-05-06 (illustrative, the week of the qualification)
+run_date: 2026-05-04 (illustrative, the day of the qualification)
 account_status: TARGET
 verdict: GREENLIGHT
 zone_scores: 1 HIGH, 2 MEDIUM, 3 MEDIUM, 4 MEDIUM, 5 HIGH (illustrative)
@@ -782,7 +785,7 @@ contact_priority: 1 Ruth Ellery (General Manager, buyer), 2 Walt Okonkwo (Operat
 pain_hypotheses: 1 Plot records on paper across two sites (HIGH, CRM and Inferred), 2 The Oldgate renewal in March 2027 (MEDIUM, CRM and Inferred)
 sequence: three emails to Ruth Ellery, with call prep
 report_path: none (inline)
-next_action: Owen Pruitt books the first discovery call with Ruth Ellery (date set on the call)
+next_action: Owen Pruitt books the first discovery call with Ruth Ellery by 2026-05-11 (illustrative)
 ```
 
 ---
@@ -885,6 +888,11 @@ The Business Case & ROI Kit (a paid Guild Pro kit) reads this skill's hand-off b
 
 ## Changelog
 
+
+### 2.1.5 (2026-10-26)
+- The next action follows the family's one deadline rule (five business days after the run date, or an earlier date the records set for that step). The Output Contract and Step 7 point to that rule, and each example next action carries its date under it.
+- The UNKNOWN zone sentence beside a GREENLIGHT uses the profile's Verdict Rule wording: neither HIGH nor LOW, never earns or blocks GREENLIGHT.
+- The flagship example's hand-off run date matches its own context line, and its next action gains a date.
 
 ### 2.1.4 (2026-10-26)
 - Try-it evidence completed so a strict first run reproduces Example 1.

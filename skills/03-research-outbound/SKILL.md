@@ -1,6 +1,6 @@
 ---
 name: gtm-research-outbound
-version: 2.1.4
+version: 2.1.5
 description: "Builds a sourced point of view and outbound package from a public filing, an owner letter or an earnings call, with an ICP verdict, a signal map, a sourced wedge and persona sequences, for the rep and the meeting-prep skill to read"
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: [gtm-account-snapshot]
 mutating: read-write
 change_log:
+  - version: 2.1.5
+    date: 2026-10-26
+    summary: "The next action follows the family's one deadline rule: five business days after the run date, or an earlier date the records set for that step. The skill's own within-five-days wording is replaced by a pointer to that rule, and every example next action carries its recomputed date."
   - version: 2.1.4
     date: 2026-10-26
     summary: "Try-it evidence completed so a strict first run reproduces Example 1. The owner letter carries a day, the persona rule covers a persona the account's business or trigger row calls for, a Benchmark stated per cemetery is multiplied by the sites, a payback figure needs a sourced unit price, the next action has a date and scope rule, and the open items are the Step 8 research gaps."
@@ -96,7 +99,7 @@ Every run returns its report in the chat, in the sections below, in this order. 
 | Cheatsheet | Chat, Cheatsheet section | The eight sections for the research type, in the order set in Methodology |
 | Intelligence appendix | Chat, Appendix section | The top eight items, each tagged, and two to four research gaps |
 | `report_path` | Set only when a file was written | Empty when the report is inline |
-| `next_action` | Chat, last line | One step, with its owner and a date within five business days after the run date. Read by Wrap-Up |
+| `next_action` | Chat, last line | One step, with its owner and the date the shared contract's next-action rule gives (What the Close Reads: five business days after the run date, or an earlier date the records set for that step). Read by Wrap-Up |
 | Markdown file, on request | The account notes folder | Named `<account>_research-outbound_<date>.md`. Written only when the user asks for it |
 
 ---
@@ -472,7 +475,7 @@ Write the summary as one numbered list, in this order:
 12. Coordination note: the guard result, if it fired
 13. Research gaps: the three unknowns from Step 8, in Step 8 order. These are the open items the rep carries into the call
 
-Then write the cheatsheet, then the hand-off block, which lists the fields from Output Contract by name, and the `next_action` line with its owner and date. The `next_action` covers the rep's review of every draft in the package and the first send, names the first send's date, and puts that date within five business days after the run date. Reason: the rep reads the whole package before one email leaves.
+Then write the cheatsheet, then the hand-off block, which lists the fields from Output Contract by name, and the `next_action` line with its owner and date. The `next_action` covers the rep's review of every draft in the package and the first send, names the first send's date, and puts that date on the shared contract's next-action rule (five business days after the run date, or an earlier date the records set for that step). Reason: the rep reads the whole package before one email leaves.
 
 **Produces:** the summary, the cheatsheet, the hand-off block, and the next action with owner and date.
 
@@ -831,7 +834,7 @@ verdict: MANUAL REVIEW
 zone_scores: 1 MEDIUM, 2 HIGH, 3 LOW, 4 MEDIUM, 5 HIGH
 account_status: TARGET
 report_path: none (inline)
-next_action: Nadia Brandt reads the 20 drafts and sends Email 1 to Hector Ruiz by 2026-10-23
+next_action: Nadia Brandt reads the 20 drafts and sends Email 1 to Hector Ruiz by 2026-10-26
 ```
 
 ### Example 2: Active Deal Guard (Brackhaven Memorial Gardens)
@@ -869,7 +872,7 @@ verdict: GREENLIGHT (shown to Owen, not for outbound)
 zone_scores: 1 HIGH, 2 MEDIUM, 3 MEDIUM, 4 MEDIUM, 5 HIGH
 account_status: ACTIVE, Stage 5 Negotiate
 report_path: none (inline)
-next_action: Nadia Brandt sends the coordination note to Owen Pruitt by 2026-10-21, and Owen decides what outreach happens
+next_action: Nadia Brandt sends the coordination note to Owen Pruitt by 2026-10-26, and Owen decides what outreach happens
 ```
 
 ### Example 3: Insufficient Intelligence Fallback (Tamsin Vale Cemetery)
@@ -909,7 +912,7 @@ verdict: MANUAL REVIEW
 zone_scores: 1 HIGH, 2 LOW, 3 MEDIUM, 4 LOW, 5 MEDIUM
 account_status: TARGET
 report_path: none (inline)
-next_action: Nadia Brandt runs gtm-account-snapshot on Tamsin Vale by 2026-10-23 to find the signer
+next_action: Nadia Brandt runs gtm-account-snapshot on Tamsin Vale by 2026-10-26 to find the signer
 ```
 
 ### Example 4: Filing Check Ends in DISQUALIFY (Northvale Memorial Holdings)
@@ -958,7 +961,7 @@ verdict: DISQUALIFY
 zone_scores: 1 [Unknown], 2 [Unknown], 3 [Unknown], 4 LOW, 5 [Unknown]
 account_status: OUT
 report_path: none (inline)
-next_action: the rep is told the verdict and its disqualifier by 2026-10-21, and no sequence is drafted
+next_action: the rep is told the verdict and its disqualifier by 2026-10-26, and no sequence is drafted
 ```
 
 ---
@@ -1060,6 +1063,9 @@ next_action: the rep is told the verdict and its disqualifier by 2026-10-21, and
 
 ## Changelog
 
+
+### 2.1.5 (2026-10-26)
+- The next action follows the family's one deadline rule (five business days after the run date, or an earlier date the records set for that step). The Output Contract and Step 9 point to that rule, and each example next action carries its date under it.
 
 ### 2.1.4 (2026-10-26)
 - Try-it evidence completed so a strict first run reproduces Example 1.
