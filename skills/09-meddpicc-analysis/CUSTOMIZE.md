@@ -59,7 +59,7 @@ Start with question 1.
 
 ---
 
-## What You Should Expect to Happen
+## What You Should Expect To Happen
 
 **Question 4 stalls** on champion inflation, where every friendly contact is recorded as a
 champion until the deal needs one. **Question 2 stalls** when the metric lives in your deck
@@ -88,7 +88,7 @@ Add this section to `profiles/client-profile.md` once. Each field is read by a n
 
 ---
 
-## Keep the Evidence Grades
+## Keep The Evidence Grades
 
 Whatever else you adapt, do not remove evidence grading. A MEDDPICC score without evidence
 grades is a confidence survey of the rep, and reps are confident.

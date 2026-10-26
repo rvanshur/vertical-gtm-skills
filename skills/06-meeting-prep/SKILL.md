@@ -1,6 +1,6 @@
 ---
 name: gtm-meeting-prep
-version: 2.1.7
+version: 2.1.8
 description: "Prepares a rep for a discovery or demo call with one prep sheet: the top pain, a question bank for each discovery phase, one proof point per attendee, objection scripts, a minute-by-minute call flow and a follow-up email draft. The rep reads it during the call."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: [gtm-account-snapshot, gtm-research-outbound, gtm-trigger-event-outbound, gtm-closed-loss-reactivation, gtm-daily-prospecting, gtm-deal-pulse, gtm-stakeholder-mapping, gtm-competitive-strategy, gtm-competitive-displacement, gtm-call-coaching]
 mutating: read-write
 change_log:
+  - version: 2.1.8
+    date: 2026-10-26
+    summary: "Profile facts are cited (profile: Section), in place of the older profile forms. ENGAGED is a rule in the open: an account that replied or met with us, with no open deal, is opened on that reply and is not restarted as a cold first meeting. Example 4 (Quill Hollow) is relabelled ENGAGED after Ines Carmody's reply of 2026-10-27, and its open names the reply. Example 2 (Sable Fork) states that a booked call does not make an INBOUND account ENGAGED. No verdict, question or next action changes."
   - version: 2.1.7
     date: 2026-10-26
     summary: "Round 7 scrub and fix. A discovery phase's question count follows a fixed rule: Need-Payoff writes two questions, and the sheet shows the top three of the other phases. The question ranking rule, the default cell colour for elements without a cell rule, and the Champion colour mapping are now stated. The research target is labelled when its figure has no dated source. The next action asks for the signer above the buyer as the record names that role, not a chair the record does not name. The rule sentences no longer quote a worked record, and the Example pointers are reworded."
@@ -179,7 +182,7 @@ When the profile has a `## Knowledge Base` section, which Context OS Setup write
 
 When the assistant is connected to the CRM or to a call recorder, the skill offers to read the records the user points at (one account, one deal, the calls in a date range), asks before it reads, and tags each pulled fact `[CRM]` or `[Call]` with its date. It reads only. It never searches records nobody named and never writes back. Without a connector, pasting the same records works the same way.
 
-#### Account Status, Five Words
+#### Account Status, Six Words
 
 Every account carries one status: **TARGET** (researched, no two-way contact yet, though outreach may have gone out with no reply), **ENGAGED** (two-way contact: the account replied or met with us, and no deal is open), **INBOUND** (they asked us first, and no deal is open yet, which stays INBOUND until a deal opens or the account goes OUT), **ACTIVE** with its stage number (open deal), **LOST** (closed-lost, eligible for reactivation), **OUT** (disqualified). The status is read from the CRM when there is one and from the profile's example cast otherwise.
 
@@ -370,7 +373,7 @@ Read `meeting_type` from the request.
 
 If the type is unclear, ask: "Is this a discovery call or a demo?"
 
-**Prerequisite (demo only).** Count the confirmed pains and the quantified ones in the record. A demo needs at least two confirmed pains and one with a quantified impact. These match the profile's Stage 2 exit criteria. If the count falls short, the prep becomes a discovery-first recommendation. It names what is missing and sends the rep back to the question bank in Step 4. It offers two options, and the rep chooses between them: run discovery prep for the meeting, or keep the demo and open with five to ten minutes of discovery questions. The skill does not choose for the rep, because a demo built on unconfirmed pain is a feature tour.
+**Prerequisite (demo only).** Count the confirmed pains and the quantified ones in the record. A demo needs at least two confirmed pains and one with a quantified impact. These match the Stage 2 exit criteria in (profile: Qualification Stage Gates). If the count falls short, the prep becomes a discovery-first recommendation. It names what is missing and sends the rep back to the question bank in Step 4. It offers two options, and the rep chooses between them: run discovery prep for the meeting, or keep the demo and open with five to ten minutes of discovery questions. The skill does not choose for the rep, because a demo built on unconfirmed pain is a feature tour.
 
 **Produces:** `meeting_type`, and the prerequisite result (pass, or the missing items named).
 
@@ -381,7 +384,7 @@ Before pulling anything, open the account's folder under `accounts/` in the Know
 1. **Confirm inputs:** account name, meeting type, attendees with titles, call date and length, other team members attending.
 2. **Read the profile sections** named in Context. Take the stage names from Qualification Stage Gates.
 3. **Read the upstream fields by name** if they are present, as listed in Integration With Other Skills. Report any missing one as missing.
-4. **Build the account profile:** company, vertical, size, states, status, deal amount, the rep, and the attendees with buying role.
+4. **Build the account profile:** company, vertical, size, states, status, deal amount, the rep, and the attendees with buying role. The status is one of the status words in the Shared Contract. An ENGAGED account is labelled so in the header, and its reply is listed as a finding in Step 2.
 
 **Produces:** the account profile table and the attendee table. Each attendee has a name or `[Unknown]`, a title, and a buying role as the record names it.
 
@@ -406,7 +409,7 @@ Branch by meeting type.
 
 - **Pain hypothesis:** a specific statement, in the buyer's terms.
 - **Evidence:** tagged with its source.
-- **Business impact:** filled from the profile's Business Impact column or from the call, with its tag. If neither supplies one, write `[Unknown]`. Never write a figure without a source.
+- **Business impact:** filled from the Business Impact column of (profile: Core Pain Points) or from the call, with its tag. If neither supplies one, write `[Unknown]`. Never write a figure without a source.
 - **Urgency:** the trigger or deadline, tagged, or `[Unknown]`.
 - **Strength:** the strongest tag on the evidence. A pain the buyer named on a call (`[Call]`) outranks one reasoned from other facts (`[Inferred]`).
 
@@ -431,7 +434,7 @@ Branch by meeting type.
 **Discovery.** Build questions for each SPIN phase, tied to the hypotheses:
 
 - **Situation (4 to 6 questions):** process, tools, team, volume. Listen for: manual work against automated work, team size, gaps in the tools.
-- **Problem (4 to 6 questions):** the cost of the current state, one per pain, using the profile's Discovery question column as the anchor.
+- **Problem (4 to 6 questions):** the cost of the current state, one per pain, using the Discovery question column of (profile: Core Pain Points) as the anchor.
 - **Implication (3 to 4 questions):** what they have tried, past evaluations, why earlier attempts stopped.
 - **Need-Payoff (two questions):** value framing for the weaker hypotheses. A benchmark may appear in the question only with its source and date named.
 
@@ -445,7 +448,7 @@ Apply the follow-up ladder rule from the Methodology. For a vague answer, ask fo
 
 ### Step 5. Frame the Call
 
-**Discovery: qualification pre-fill.** For each element of the team's qualification framework, mark what is known (green), partly known (yellow) or unknown (red). Each yellow or red cell gets the question that fills it. Identified Pain needs at least one pain quantified, which is the stage 3 depth target. Metrics is green when the record holds a figure for the outcome the solution moves and the buyer has agreed it, yellow when that figure is recorded but not agreed, and red when no such figure is recorded, because account size such as a plot count describes the account and never scores the cell. Economic Buyer is green when the record names the person who signs at this deal's value, yellow when a buyer is named but the signer above that buyer's limit is not confirmed, and red when no buyer is named. Identified Pain is green when one pain is quantified, yellow when a pain is named but not quantified, and red when none is named. An incident count does not quantify a pain: a pain is quantified only when its cost is stated in plots, hours or dollars, as the profile's Stage 2 gate requires. Champion is green on a Strong result from the shared champion tests, yellow on Developing and red on None. Decision Criteria, Decision Process, Paper Process and Competition have no cell rule of their own, so they take the default: known green, partial yellow, unknown red.
+**Discovery: qualification pre-fill.** For each element of the team's qualification framework, mark what is known (green), partly known (yellow) or unknown (red). Each yellow or red cell gets the question that fills it. Identified Pain needs at least one pain quantified, which is the stage 3 depth target. Metrics is green when the record holds a figure for the outcome the solution moves and the buyer has agreed it, yellow when that figure is recorded but not agreed, and red when no such figure is recorded, because account size such as a plot count describes the account and never scores the cell. Economic Buyer is green when the record names the person who signs at this deal's value, yellow when a buyer is named but the signer above that buyer's limit is not confirmed, and red when no buyer is named. Identified Pain is green when one pain is quantified, yellow when a pain is named but not quantified, and red when none is named. An incident count does not quantify a pain: a pain is quantified only when its cost is stated in plots, hours or dollars, as the Stage 2 gate in (profile: Qualification Stage Gates) requires. Champion is green on a Strong result from the shared champion tests, yellow on Developing and red on None. Decision Criteria, Decision Process, Paper Process and Competition have no cell rule of their own, so they take the default: known green, partial yellow, unknown red.
 
 **Demo: pain-to-workflow map and structure.** Map each pain to a workflow, the differentiating feature, and the proof that makes it land, with its Status. Plan the demo as: the opening (three to five minutes), a problem slide built on the three-beat arc, a block for each pain in order of importance, and a recap and close. Check the five demo habits before the sheet is handed back.
 
@@ -468,7 +471,7 @@ A discovery flow for a 30-minute call (illustrative) looks like this:
 
 1. **Identify the current solution** from the CRM and the history. Tag how the team knows it, and note the contract status and satisfaction if the record holds them. A blank is `[Unknown]`.
 2. **Name the incumbent type** using the shared incumbent types in The Shared Contract, tagged with its source.
-3. **Write the competitor probes as questions only.** Use the profile's Competitive Discovery Questions and the probes for that incumbent type. A stated weakness of a competitor carries a source, such as `[Public: source]` or `[Call]`, or it is labelled a hypothesis with `[Inferred]` and its reasoning. The reason: a rep who states a rival's weakness as fact, and is wrong, loses credibility in the room.
+3. **Write the competitor probes as questions only.** Use the Competitive Discovery Questions in (profile: Competitive Landscape) and the probes for that incumbent type. A stated weakness of a competitor carries a source, such as `[Public: source]` or `[Call]`, or it is labelled a hypothesis with `[Inferred]` and its reasoning. The reason: a rep who states a rival's weakness as fact, and is wrong, loses credibility in the room.
 4. **Choose two or three differentiators** from Value Propositions. Give each one a matched proof point, with its Status.
 
 **Produces:** the incumbent with its tags, the probes as questions, and the differentiators with their proof.
@@ -492,8 +495,10 @@ A discovery flow for a 30-minute call (illustrative) looks like this:
 
 1. **The open** follows the Meeting Open and Close part by part, built from the record. A first meeting, which is one with no earlier logged meeting with the attendees, asks how the buyer's team handles the process. A follow-up names the pain they raised last time. A demo quotes discovery back in the buyer's words: name the attendee, then say the pain as they said it.
 2. **The close:** recap what matters most in the buyer's words, ask who else belongs in the next conversation, propose the next agenda from what was discussed, and agree the next milestone with an owner and a date.
-3. **The objection scripts** from the Methodology, one for each objection the profile lists for the persona.
+3. **The objection scripts** from the Methodology, one for each objection that (profile: Buyer Personas) lists for the persona.
 4. **The follow-up email draft:** a short note to the attendees, marked DRAFT, not sent. It names the pain in the buyer's words, carries at most one proof point with its Status (Verified or Benchmark only), and states the next step with an owner and a date. The rep reads it and sends it.
+
+**ENGAGED accounts.** When the account is ENGAGED (it replied or met with us, and no deal is open), the open names that reply, its date and the words the buyer used, and it does not restart as a cold first meeting. A reply is not a meeting, so a first meeting with an ENGAGED account is still a first meeting under the rule above, but its open leads with the reply. The reply is a finding in Step 2, tagged `[CRM]` or `[Call]` with its date.
 
 **Produces:** the open, the close, the objection scripts and the follow-up email draft.
 
@@ -565,6 +570,7 @@ Done when all are true:
 - [ ] Talk time is stated as the shared band or the profile's override, with no restated numbers.
 - [ ] The follow-up email is marked DRAFT, not sent.
 - [ ] `next_action` names an owner and a date.
+- [ ] An ENGAGED account's open names its reply and the reply's date, and the sheet does not restart it as a cold first meeting
 - [ ] Every rate carries its n, and every fact carries a tag.
 - [ ] Demo only: pains are ranked, the shares of demo minutes add up, the top pain is shown first, and the five demo habits are checked.
 - [ ] Discovery only: each yellow or red qualification cell has the question that fills it.
@@ -583,7 +589,7 @@ All four examples use PlotIQ and its cast from the profile's Example Cast. Facts
 
 **Step 0.** `meeting_type = discovery`. The demo prerequisite does not apply.
 
-**Step 1.** Account profile: combination, two sites, 11,000 plots `[CRM]`. Status ACTIVE, Stage 2 Discovery `[CRM]`. Upstream from Account Snapshot (02), run when the account was TARGET: `account_status: TARGET (then)` and `verdict: GREENLIGHT`. Its `contact_priority` ranks Ruth Ellery first and Walt Okonkwo second `[Inferred]`, from the persona order in the profile. Its `pain_hypotheses` are plot records on paper across two sites (HIGH, `[CRM]`, `[Inferred]` from the record type) and the Oldgate renewal in March 2027 (MEDIUM, `[CRM]`, `[Inferred]` from the contract date). Its `sequence` is three emails to Ruth Ellery, with call prep, drafted and not sent (illustrative). Attendees:
+**Step 1.** Account profile: combination, two sites, 11,000 plots `[CRM]`. Status ACTIVE, Stage 2 Discovery `[CRM]`. Upstream from Account Snapshot (02), run when the account was TARGET: `account_status: TARGET (then)` and `verdict: GREENLIGHT`. Its `contact_priority` ranks Ruth Ellery first and Walt Okonkwo second `[Inferred]`, from the persona order in (profile: Buyer Personas). Its `pain_hypotheses` are plot records on paper across two sites (HIGH, `[CRM]`, `[Inferred]` from the record type) and the Oldgate renewal in March 2027 (MEDIUM, `[CRM]`, `[Inferred]` from the contract date). Its `sequence` is three emails to Ruth Ellery, with call prep, drafted and not sent (illustrative). Attendees:
 
 | Name | Title | Buying role |
 |------|-------|-------------|
@@ -594,8 +600,8 @@ All four examples use PlotIQ and its cast from the profile's Example Cast. Facts
 
 **Step 3.** Pain hypotheses, ranked by the strength of their tags:
 
-1. **Plot records on paper, with a double sale.** Top pain. Evidence: the double sale `[CRM]` (illustrative). Business impact: unsold plots nobody knows exist. The research hook is 50 to 100 plots `[Public: deathcare research, paper-operations note, 2026-04-01]`. Brackhaven's own count is `[Unknown]`.
-2. **Trust fund reporting by hand.** `[Inferred]` from the paper records and the profile's annual filing rule. The filing that applies depends on the state, which is `[Unknown]`.
+1. **Plot records on paper, with a double sale.** Top pain. Evidence: the double sale `[CRM]` (illustrative). Business impact: unsold plots nobody knows exist (profile: Core Pain Points). The research hook is 50 to 100 plots `[Public: deathcare research, paper-operations note, 2026-04-01]`. Brackhaven's own count is `[Unknown]`.
+2. **Trust fund reporting by hand.** `[Inferred]` from the paper records and the annual filing rule in (profile: Industry Context). The filing that applies depends on the state, which is `[Unknown]`.
 3. **Pre-need leads without a follow-up owner.** `[Unknown]`. No pre-need activity is recorded. Negative framing: "Do you take pre-need calls, and who calls back?"
 
 **Top pain:** plot records on paper, with a double sale `[CRM]`.
@@ -612,7 +618,7 @@ Follow-up ladder on the top pain: stages 1 and 2 when confirmed, and stage 3 on 
 **Step 5.** Qualification pre-fill:
 
 - **Metrics: red.** No plot-loss figure is recorded `[Unknown]`. The plot count (11,000) describes the account and the double sale describes the problem, so neither scores the cell.
-- **Economic buyer: yellow.** Ruth is the buyer. The likely signer is above her `[Inferred]`. Two sites at the list price in the profile come to $21,576 a year, plus the $5,000 setup, for $26,576 in year one. That is above the $25K board line in the profile, so the GM cannot sign alone on the record.
+- **Economic buyer: yellow.** Ruth is the buyer. The likely signer is above her `[Inferred]`. Two sites at the list price in (profile: Product Modules) come to $21,576 a year, plus the $5,000 setup, for $26,576 in year one. That is above the $25K board line in (profile: Qualification Zones), so the GM cannot sign alone on the record.
 - **Decision criteria: red.** None are stated.
 - **Decision process: red.** The approval body and its meeting dates are `[Unknown]`. Question: "Who has to approve a purchase above the board line, and when does that group meet?"
 - **Identified pain: yellow.** One pain is named and not yet quantified. The stage 3 depth target is not met.
@@ -620,7 +626,7 @@ Follow-up ladder on the top pain: stages 1 and 2 when confirmed, and stage 3 on 
 
 **Step 6.** Competitive: the incumbent is Oldgate Ledger Pro `[CRM]`, an incumbent of the direct-software type in the shared list. Renewal is March 2027 `[CRM]`. Probes, as questions: "When does the Oldgate contract renew, and what did the last quote include for support?" and "Where does the plot map live today, and when was it last updated?" Oldgate's mobile weakness matters only if the grounds crew still uses paper work orders `[Inferred]`.
 
-**Step 7.** Proof for Ruth Ellery, the GM: Holloway Hills, zero records findings in its first state review, Status Illustrative. Not cited to Ruth. The row is Illustrative, so the sheet marks it "do not cite" and gives the research target beside it: 50 to 100 plots sold on paper and unsold on the map (Benchmark, deathcare research, paper-operations note, 2026-04-01). For Walt Okonkwo, the profile's persona-proof map also names Holloway Hills, Status Illustrative, marked "do not cite". No Verified proof exists for an Operations Director yet, so the research target beside it is a plot answer in 20 seconds (profile target, research, not a customer result).
+**Step 7.** Proof for Ruth Ellery, the GM: Holloway Hills, zero records findings in its first state review, Status Illustrative. Not cited to Ruth. The row is Illustrative, so the sheet marks it "do not cite" and gives the research target beside it: 50 to 100 plots sold on paper and unsold on the map (Benchmark, deathcare research, paper-operations note, 2026-04-01). For Walt Okonkwo, (profile: Meeting Prep) also names Holloway Hills, Status Illustrative, marked "do not cite". No Verified proof exists for an Operations Director yet, so the research target beside it is a plot answer in 20 seconds, a research target in (profile: Value Propositions), not a customer result.
 
 **Step 8.** Open: "Ruth, thanks for making the time. Before we go further, how are the plot records kept at Brackhaven today?" Close: recap the pain in Ruth's words, ask who else belongs in the next conversation, and agree the next date with an owner.
 
@@ -628,7 +634,7 @@ Follow-up ladder on the top pain: stages 1 and 2 when confirmed, and stage 3 on 
 
 If Ruth confirms the double sale and gives a count, run stage 3 and ask who approves above the board line. If she says the records are fine, ask for the last state filing. If she names an approval body, ask for the next meeting date and the name of its chair.
 
-**Step 10.** Call flow, 30 minutes (illustrative), with the discovery band from the Shared Contract. PlotIQ has no talk-time override in its profile yet.
+**Step 10.** Call flow, 30 minutes (illustrative), with the discovery band from the Shared Contract. PlotIQ has no talk-time override in (profile: Sales Methodology) yet.
 
 ```text
 Hand-off (read by 07 and 13):
@@ -645,7 +651,7 @@ report_path: none (inline)
 
 ### Example 2: Prep for an Inbound Request (Sable Fork Cemetery, MANUAL REVIEW)
 
-**Context:** Sable Fork Cemetery has one site, 2,900 plots and a plot list in a spreadsheet `[CRM]`. The GM, Arlen Biggs, signs under $25K `[CRM]`. The account is INBOUND. Someone filled in the website form on Thursday 2026-10-15, four days ago, and asked for a demo. The form filler is `[Unknown]` until confirmed. The BDR replied to the form on the afternoon of 2026-10-19 and booked discovery for Thursday 2026-10-22 `[CRM]`. This prep is written on the run date, 2026-10-19, after that booking, so the call it prepares is the booked call. The verdict is MANUAL REVIEW, with Zone 3 HIGH the only HIGH zone.
+**Context:** Sable Fork Cemetery has one site, 2,900 plots and a plot list in a spreadsheet `[CRM]`. The GM, Arlen Biggs, signs under $25K `[CRM]`. The account is INBOUND. Someone filled in the website form on Thursday 2026-10-15, four days ago, and asked for a demo. The form filler is `[Unknown]` until confirmed. The BDR replied to the form on the afternoon of 2026-10-19 and booked discovery for Thursday 2026-10-22 `[CRM]`. This prep is written on the run date, 2026-10-19, after that booking, so the call it prepares is the booked call. The verdict is MANUAL REVIEW, with Zone 3 HIGH the only HIGH zone. The account stays INBOUND, not ENGAGED, because INBOUND stays until a deal opens (Shared Contract), so the booked call does not change its status.
 
 **Input:** "Prep me for the demo with Sable Fork on Thursday."
 
@@ -662,8 +668,8 @@ report_path: none (inline)
 
 **Step 3.** Pain hypotheses, ranked:
 
-1. **Plot lookups on a spreadsheet.** `[Inferred]` from the plot list `[CRM]` and the profile's lookup pain, which takes minutes to hours. Not measured. Business impact `[Unknown]`.
-2. **Unsold plots nobody can see.** `[Inferred]` from the same spreadsheet and the profile's paper-to-digital gap. The GM may not know how many plots are open `[Unknown]`.
+1. **Plot lookups on a spreadsheet.** `[Inferred]` from the plot list `[CRM]` and the lookup pain in (profile: Core Pain Points), which takes minutes to hours. Not measured. Business impact `[Unknown]`.
+2. **Unsold plots nobody can see.** `[Inferred]` from the same spreadsheet and the paper-to-digital gap in (profile: Core Pain Points). The GM may not know how many plots are open `[Unknown]`.
 3. **Pre-need leads with no follow-up.** Not supported by the record: pre-need is none `[CRM]`, and the GM sells plots directly, with no counselor and no intake form. Kept as a question only: "Do you sell pre-need?"
 
 **Top pain:** none confirmed. Working hypothesis: plot lookups on a spreadsheet `[Inferred]`.
@@ -710,7 +716,7 @@ report_path: none (inline)
 
 ### Example 3: Shallow Discovery Holds the Demo (Greyfield Memorial Park)
 
-**Context:** Greyfield Memorial Park has one site, 9,000 plots, a digital map from Stonemark, and a renewal in January 2027 `[CRM]`. It runs a pre-need team of three, with an intake form on its website `[Public: company website]`. This prep is written on 2026-11-16. The pre-need manager replied to Email 1 on 2026-11-03 `[CRM]` (illustrative), and Owen Pruitt became the AE owner that day `[CRM]` (illustrative). Owen held one discovery call with the account on 2026-11-09 `[Call, 2026-11-09]` (illustrative). The call named the January 2027 renewal and confirmed no pain. No contact names are on file `[Unknown]`. The verdict is GREENLIGHT, with Zones 2 and 3 HIGH. The account is ACTIVE at Stage 2 Discovery `[CRM]` (illustrative). An AE has a demo on the calendar for Friday 2026-11-20 with the general manager and the pre-need manager, both unnamed.
+**Context:** Greyfield Memorial Park has one site, 9,000 plots, a digital map from Stonemark, and a renewal in January 2027 `[CRM]` (profile: Example Cast). It runs a pre-need team of three, with an intake form on its website `[Public: company website]`. This prep is written on 2026-11-16. The pre-need manager replied to Email 1 on 2026-11-03 `[CRM]` (illustrative), and Owen Pruitt became the AE owner that day `[CRM]` (illustrative). Owen held one discovery call with the account on 2026-11-09 `[Call, 2026-11-09]` (illustrative). The call named the January 2027 renewal and confirmed no pain. No contact names are on file `[Unknown]`. The verdict is GREENLIGHT, with Zones 2 and 3 HIGH. The account is ACTIVE at Stage 2 Discovery `[CRM]` (illustrative). An AE has a demo on the calendar for Friday 2026-11-20 with the general manager and the pre-need manager, both unnamed.
 
 **Input:** "Prep me for the demo with Greyfield on Friday. Attendees are the GM and the pre-need manager."
 
@@ -739,7 +745,7 @@ Because the record is shallow, the sheet names the missing items and returns the
 
 - "How do pre-need leads move from the intake form to a counselor today?"
 - "How do you check, today, which plots are sold?"
-- Need-Payoff: "Most operators take 24 hours or more to call back a pre-need lead. Is that your experience?" The 24-hour figure is a research target, not a customer result, so the question states it as the research's view. "If a pre-need lead waited a day, what would that cost the counselor's sale?"
+- Need-Payoff: "Most operators take 24 hours or more to call back a pre-need lead. Is that your experience?" The 24-hour figure in (profile: Value Propositions) is a research target, not a customer result, so the question states it as the research's view. "If a pre-need lead waited a day, what would that cost the counselor's sale?"
 
 **Missing items, named on the sheet:**
 
@@ -754,7 +760,7 @@ Because the record is shallow, the sheet names the missing items and returns the
 
 The AE chooses. The skill does not pick (b) by default, because a demo built on unconfirmed pains is a feature tour.
 
-**Step 7.** Proof, one line per attendee. For the General Manager, the persona-proof map names Holloway Hills, Status Illustrative, marked "do not cite", and the research target beside it is 50 to 100 plots sold on paper and unsold on the map (Benchmark, deathcare research, paper-operations note, 2026-04-01). For the pre-need manager, the profile has no proof for this persona yet, so the sheet says so. The research target for pre-need follow-up, within an hour, stands in as the goal, labelled as a target.
+**Step 7.** Proof, one line per attendee. For the General Manager, (profile: Meeting Prep) names Holloway Hills, Status Illustrative, marked "do not cite", and the research target beside it is 50 to 100 plots sold on paper and unsold on the map (Benchmark, deathcare research, paper-operations note, 2026-04-01). For the pre-need manager, the profile has no proof for this persona yet, so the sheet says so. The research target for pre-need follow-up, within an hour (profile: Value Propositions), stands in as the goal, labelled as a target.
 
 **Step 10.** Hand-off:
 
@@ -773,7 +779,7 @@ report_path: none (inline)
 
 ### Example 4: Quick Call Prep for a Champion (Quill Hollow Memorial Park)
 
-**Context:** Ines Carmody, general manager of Quill Hollow Memorial Park, moved here six months ago from Lowmoor Memorial Gardens. She is the champion label, with the Champion Test not yet run `[CRM]`. Ines Carmody replied to Email 1 on 2026-10-27 and booked a call for 2026-11-02 `[CRM]` (illustrative). Quill Hollow is a TARGET account with a GREENLIGHT verdict. It has one site, 8,800 plots and paper plat maps `[CRM]`. This prep is written on 2026-11-02, and the discovery call is in 15 minutes.
+**Context:** Ines Carmody, general manager of Quill Hollow Memorial Park, moved here six months ago from Lowmoor Memorial Gardens. She is the champion label, with the Champion Test not yet run `[CRM]`. Ines Carmody replied to Email 1 on 2026-10-27 and booked a call for 2026-11-02 `[CRM]` (illustrative). Quill Hollow is an ENGAGED account, with no open deal: Ines Carmody has replied, and that reply is the basis for this call. It has a GREENLIGHT verdict (illustrative). It has one site, 8,800 plots and paper plat maps `[CRM]`. This prep is written on 2026-11-02, and the discovery call is in 15 minutes.
 
 **Input:** "Quick call prep for Quill Hollow. Ines is on the call."
 
@@ -785,7 +791,7 @@ report_path: none (inline)
 2. **A records finding in the last state review.** `[CRM]` for the fact, with its date `[Unknown]`. It ranks below the inferred pain because an undated finding cannot be the hook. It stays a discovery question only (illustrative).
 3. **Pre-need leads.** `[Unknown]`. No pre-need activity is recorded.
 
-**Step 8.** Opener: "Ines, thanks for making the time. Before we go further, how are the plot records kept at Quill Hollow today?" Do not reference the Lowmoor history unless she raises it.
+**Step 8.** Opener: "Ines, thanks for making the time, and for writing back on October 27. Before we go further, how are the plot records kept at Quill Hollow today?" Do not reference the Lowmoor history unless she raises it. The open names her reply, because the account is ENGAGED.
 
 **Step 4.** Top three discovery questions:
 
@@ -799,13 +805,13 @@ report_path: none (inline)
 - If she says the records are fine, ask for the last audit.
 - If the owner joins, ask about the growth mandate `[CRM]`.
 
-**Step 7.** Proof: the persona-proof map puts Holloway Hills first for the general manager. It is Status Illustrative, so it is not cited. The sheet uses the audit question in place of a result.
+**Step 7.** Proof: (profile: Meeting Prep) puts Holloway Hills first for the general manager. It is Status Illustrative, so it is not cited. The sheet uses the audit question in place of a result.
 
 **Output (short form, no file).** Steps 1 to 4 and Steps 8 and 9 are delivered in short form. No seven-section sheet is produced, because this is a quick prep.
 
 ```text
 Hand-off (read by 07 and 13):
-account: Quill Hollow Memorial Park (TARGET)
+account: Quill Hollow Memorial Park (ENGAGED, reply 2026-10-27 [CRM], no open deal)
 run_date: 2026-11-02
 prep_sheet: inline, short form (quick call prep, no file)
 top_pain: unsold plots on paper plat maps, [Inferred]. The records finding is a question, not the hook, because its date is [Unknown] (illustrative)
@@ -829,7 +835,7 @@ report_path: none (inline)
 **Approach:** Read the earlier `prep_sheet` and the findings from the CRM, which the discovery call populated. Rank the confirmed pains. Check the prerequisite. Flag any discovery gap in the demo opening, and send the rep back to the question bank for it.
 
 ### Pattern: Re-Engagement Discovery
-**When:** The account has been quiet for three or more months and is re-engaging.
+**When:** The account has been quiet for three or more months and is re-engaging. An ENGAGED account that replied recently is handled by the ENGAGED rule in Step 8, not by this pattern.
 **Approach:** Discovery mode, with emphasis on Step 2. Surface what was discussed before. Add a "what has changed since we last spoke" hypothesis. If Closed-Loss Reactivation (05) ran, use its `history_opener` only when its reopening event has fired. Otherwise it stays held.
 
 ### Pattern: Multi-Attendee Demo
@@ -923,6 +929,13 @@ This skill also reads the kit's hand-off block back as optional context: `case_s
 
 ## Changelog
 
+
+### 2.1.8 (2026-10-26)
+- Profile facts are cited as (profile: Section), with the profile's own section name, in place of the older profile forms.
+- ENGAGED is a rule in the first-meeting open (Step 8): an account that replied or met with us, with no open deal, is opened on that reply and not restarted as a cold meeting. The Quality Bar checks it.
+- Example 4 (Quill Hollow) is relabelled ENGAGED after Ines Carmody's reply of 2026-10-27. Its open names the reply, and its hand-off status matches. Its verdict and call prep otherwise stand.
+- Example 2 (Sable Fork) states that a booked discovery call does not make an INBOUND account ENGAGED.
+- No verdict, question or next action changes.
 
 ### 2.1.7 (2026-10-26)
 - Need-Payoff writes two questions in every discovery prep, and the sheet shows the top three questions of the other phases. The earlier range of two or three left the count open.

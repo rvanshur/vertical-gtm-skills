@@ -32,7 +32,7 @@ A former Lowmoor contact (name withheld)
 - The opted-out contact is a different former Lowmoor contact, not Ines Carmody [CRM] (illustrative)
 
 Corrow Ridge Cemetery
-- Consolidator bought the site on 2026-07-01 [Public: state licensing database]. Profile window: 60 to 120 days
+- Consolidator bought the site on 2026-07-01 [Public: state licensing database]. Buying Trigger window: 60 to 120 days (profile: Qualification Criteria)
 - Owner of record: Harborline Funeral Partners, a new owner since 2026-07-01 [Public: state licensing database]
 - One site, 14,000 plots, paper plat maps (illustrative)
 - A deed recorded twice in 2025 [CRM] (illustrative)
@@ -81,6 +81,7 @@ Saltmarsh Heritage Group
 - Status: TARGET [CRM] (illustrative)
 - Owner letter on the company site says: "Growth in 2027 means one system for all five sites" [Public: company site, owner letter 2026]
 - CFO Hector Ruiz approves budget [CRM]
+- The group reviews system spend twice a year, so a decision takes 6 to 9 months [CRM] (illustrative)
 - Pre-need counselors at three funeral homes [CRM]
 - Pre-need intake form on the company website [Public: company website] (illustrative)
 - Social ads feed leads into email at the three funeral homes [CRM] (illustrative)

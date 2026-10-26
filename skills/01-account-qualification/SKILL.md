@@ -1,6 +1,6 @@
 ---
 name: gtm-account-qualification
-version: 2.1.7
+version: 2.1.8
 description: "Scores an account against the ICP definitions, 8 weighted criteria and the profile's five qualification zones, and returns a GREENLIGHT, MANUAL REVIEW or DISQUALIFY verdict with every zone shown, for the BDR or AE who decides where to spend time."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: []
 mutating: read-write
 change_log:
+  - version: 2.1.8
+    date: 2026-10-26
+    summary: "Round 8 profile citations and ENGAGED status. Every profile citation is written (profile: Section). ENGAGED is one of six statuses and changes the BDR and AE next step for an account already in conversation, which continues the open thread instead of starting a cold sequence. The verdict does not change with status. Heading and label capitalization is aligned word by word, and the Quality Bar and status list read six words."
   - version: 2.1.7
     date: 2026-10-26
     summary: "Round 7 leak scrub. The rule text no longer points at the examples by number, the ICP2 criteria that need a rule are counted as four, Sub-Vertical Match has a fallback for a profile with no priority list, and the zone rules state how a named staff member, an unknown HIGH condition and an UNKNOWN zone score. The try-it records state facts only."
@@ -50,7 +53,7 @@ change_log:
 
 ## Overview
 
-Account Qualification scores one account against the client's ICP definitions using 8 weighted criteria. It then scores every qualification zone in the client profile as HIGH, MEDIUM, LOW or UNKNOWN, applies the profile's Verdict Rule to those zones, and returns a GREENLIGHT, MANUAL REVIEW or DISQUALIFY verdict. It also flags buying triggers, risks and opportunity signals. This is pure qualification. It does not write outbound sequences.
+Account Qualification scores one account against the client's ICP definitions using 8 weighted criteria. It then scores every qualification zone in the client profile as HIGH, MEDIUM, LOW or UNKNOWN, applies the Verdict Rule to those zones (profile: Qualification Zones), and returns a GREENLIGHT, MANUAL REVIEW or DISQUALIFY verdict. It also flags buying triggers, risks and opportunity signals. This is pure qualification. It does not write outbound sequences.
 
 The report is for the BDR or AE who has to decide whether an account earns a morning. A verdict is only as good as the zones under it, so every zone is shown beside the verdict. The next skill can then see why the account landed where it did.
 
@@ -64,7 +67,7 @@ Works in Claude Code, in Codex, and in ChatGPT as a custom GPT.
 
 Reps spend mornings on accounts that look good on one fact, a large plot count or a familiar name, and they skip the trait that decides the sale. Without a fixed zone check, the verdict moves with the rep's mood, and two reps reading the same account reach different answers. The account with the least evidence can then take the most pipeline time, which is the opposite of what the team needs.
 
-This skill fixes the scoring in place. The five zones come from the profile. Each has a HIGH, MEDIUM and LOW column of observable facts, and two of them are must-haves. The verdict follows from the zones as written, so two runs on the same facts give the same answer. A missing fact shows up as UNKNOWN instead of hiding inside a score that looks complete.
+This skill fixes the scoring in place. The five zones come from the profile (profile: Qualification Zones). Each has a HIGH, MEDIUM and LOW column of observable facts, and two of them are must-haves. The verdict follows from the zones as written, so two runs on the same facts give the same answer. A missing fact shows up as UNKNOWN instead of hiding inside a score that looks complete.
 
 ---
 
@@ -101,7 +104,7 @@ Every run returns the verdict and the zone scores in the chat. It writes a file 
 | Qualification report | Inline, in the chat | The twelve items of Step 6, in order. Each fact carries one evidence tag |
 | `verdict` | Inline, first line of the report | GREENLIGHT, MANUAL REVIEW or DISQUALIFY, spelled exactly so. Set by Step 6 |
 | `zone_scores` | Inline, the zone table under the verdict | One line per zone, in zone order: HIGH, MEDIUM, LOW or UNKNOWN. UNKNOWN is used only when no evidence supports a score |
-| `icp_match` | Inline, the ICP line of the report | The profile's ICP name, such as `ICP2 Combination`, or `No Fit` with the disqualifier named |
+| `icp_match` | Inline, the ICP line of the report | The ICP name (profile: ICP Definitions), such as `ICP2 Combination`, or `No Fit` with the disqualifier named |
 | `fit_narrative` | Inline, the ICP and Fit Grid lines | Two or three sentences that say why, each fact tagged |
 | `report_path` | Set only when a file was written | `none (inline)` when the report stayed in the chat |
 | `next_action` | Inline, last line of the report | One step, with its owner (BDR or AE) and the date the shared contract's next-action rule gives (What the Close Reads: five business days after the run date, or an earlier date the records or the skill's own schedule set for that step) |
@@ -113,7 +116,7 @@ Every run returns the verdict and the zone scores in the chat. It writes a file 
 
 This skill does not carry client-specific information. It reads the client profile at [`profiles/client-profile.md`](../../profiles/client-profile.md). Throughout this skill, `{Client Profile: X}` means section X of that file. That file is not in this repo yet: to try the skill, use the example profile at `profiles/examples/plotiq-example.md`, and to set up your own company, copy `profiles/client-profile-template.md` to `profiles/client-profile.md`.
 
-| Profile section | Used for |
+| Profile Section | Used For |
 |---|---|
 | ICP Definitions | Classifying the account as ICP1, ICP2, Adjacent or No Fit |
 | Market Segments | The segment rows and the Size Bands (by sites and plots) used in Step 2 |
@@ -139,7 +142,7 @@ When the profile has a `## Knowledge Base` section, which Context OS Setup write
 
 When the assistant is connected to the CRM or to a call recorder, the skill offers to read the records the user points at (one account, one deal, the calls in a date range), asks before it reads, and tags each pulled fact `[CRM]` or `[Call]` with its date. It reads only. It never searches records nobody named and never writes back. Without a connector, pasting the same records works the same way.
 
-#### Account Status, Five Words
+#### Account Status, Six Words
 
 Every account carries one status: **TARGET** (researched, no two-way contact yet, though outreach may have gone out with no reply), **ENGAGED** (two-way contact: the account replied or met with us, and no deal is open), **INBOUND** (they asked us first, and no deal is open yet, which stays INBOUND until a deal opens or the account goes OUT), **ACTIVE** with its stage number (open deal), **LOST** (closed-lost, eligible for reactivation), **OUT** (disqualified). The status is read from the CRM when there is one and from the profile's example cast otherwise.
 
@@ -219,7 +222,7 @@ Your qualification frameworks. The criteria below are the skill's defaults. The 
 
 ### Qualification Criteria (ICP1)
 
-| # | Criterion | What to Assess |
+| # | Criterion | What To Assess |
 |---|-----------|----------------|
 | 1 | Company Type Match | Does the company match your primary ICP segment? Cross-reference industry codes. |
 | 2 | Core Transaction Fit | Does the company perform the core activities your product serves? |
@@ -232,9 +235,9 @@ Your qualification frameworks. The criteria below are the skill's defaults. The 
 
 ### Qualification Criteria (ICP2)
 
-| # | Criterion | What to Assess |
+| # | Criterion | What To Assess |
 |---|-----------|----------------|
-| 1 | Sub-Vertical Match | Which sub-vertical? Check the profile's priority list first. When the profile holds no priority list, score the account's type as the CRM records it, with its tag |
+| 1 | Sub-Vertical Match | Which sub-vertical? Check the priority list (profile: ICP Definitions) first. When the profile holds no priority list, score the account's type as the CRM records it, with its tag |
 | 2 | Revenue Threshold | Meets your minimum revenue threshold for this ICP |
 | 3 | Multi-Region Operations | Operating across multiple regions increases complexity and need |
 | 4 | Ownership / Growth Profile | PE-backed (highest), ESOP, publicly traded, or actively acquiring |
@@ -258,20 +261,20 @@ When revenue is unavailable, use these formulas. The per-employee, per-site and 
 
 ## Quick Reference
 
-**Use this skill when:**
+**Use This Skill When:**
 - Evaluating a net-new account for prospecting fit
 - Prioritizing a list of target accounts
 - Deciding whether to invest BDR or AE time in an account
 - Batch-qualifying accounts from a target list
 
-**Don't use when:**
+**Don't Use When:**
 - The account already has an active opportunity (use `gtm-deal-pulse` or `gtm-meddpicc-analysis`)
 - You need outbound sequences (use `gtm-account-snapshot` after GREENLIGHT)
 - You need competitive strategy for an active deal (use `gtm-competitive-strategy`)
 
-**User roles:** BDR, AE, Sales Ops, Sales Manager
+**User Roles:** BDR, AE, Sales Ops, Sales Manager
 
-**Expected time:** 10 to 15 minutes per account
+**Expected Time:** 10 to 15 minutes per account
 
 ---
 
@@ -295,11 +298,11 @@ Determine whether the user is a BDR or an AE, because that changes the recommend
 
 Every later step reads these facts. A fact gathered after scoring cannot move a score that was already set, so the research comes first and is complete before Step 2. Before pulling anything, open the account's folder under `accounts/` in the Knowledge Base, if the profile has one, and offer the CRM read and, when a call recorder is connected, the call read, for the one account or date range you name. Nothing is read from the CRM or the call recorder until you say yes.
 
-#### 1a. Search the CRM
+#### 1a. Search The CRM
 
 Pull everything available: the account record, existing contacts, deal history, engagement history and any previous qualification notes.
 
-#### 1b. Research the Company Profile
+#### 1b. Research The Company Profile
 
 | Field | Where It Comes From |
 |-------|---------------------|
@@ -313,7 +316,7 @@ Pull everything available: the account record, existing contacts, deal history, 
 | Industry Codes | `[CRM]`, `[Public: source]` or public filings |
 | ERP or Core System(s) | `[CRM]`, `[Public: source]` or `[Inferred]` |
 | Current Solution | `[CRM]` or `[Call]` or `[Notes]` |
-| Account Status | One of the five status words: TARGET, INBOUND, ACTIVE with its stage number, LOST or OUT |
+| Account Status | One of the six status words: TARGET, ENGAGED, INBOUND, ACTIVE with its stage number, LOST or OUT |
 
 #### 1c. Industry Code Validation
 
@@ -357,7 +360,7 @@ Use the criteria table for the ICP from Step 2: `{Methodology: Qualification Cri
 
 Each score carries an evidence tag. Count the criteria scored STRONG or PARTIAL, and write the count as N of 8.
 
-Four ICP2 criteria need a rule the table leaves open: criteria 2, 4, 6 and 7. For criterion 2, test the cemetery-side plot count from the CRM against the profile's ICP2 revenue threshold, which the profile states as a plot count. A count at or above the threshold scores STRONG, with the count and its tag named. A revenue range from the CRM that is not confirmed scores PARTIAL when no plot count is recorded, and no revenue figure at all scores UNKNOWN. For criterion 4, a family-owned company with no PE, ESOP, public or acquiring owner scores PARTIAL, not WEAK, and its ownership type must carry a `[Public: source]` tag. For criterion 6, a named role whose title covers the function the product serves scores STRONG, with its source tagged. A named role whose title does not cover that function scores PARTIAL. For criterion 7, a listed buying trigger counts only inside the urgency window that the profile's Buying Triggers table gives it, and a succession signal with no change in leadership yet is not a listed trigger, so it scores PARTIAL.
+Four ICP2 criteria need a rule the table leaves open: criteria 2, 4, 6 and 7. For criterion 2, test the cemetery-side plot count from the CRM against the ICP2 revenue threshold (profile: ICP Definitions), which that section states as a plot count. A count at or above the threshold scores STRONG, with the count and its tag named. A revenue range from the CRM that is not confirmed scores PARTIAL when no plot count is recorded, and no revenue figure at all scores UNKNOWN. For criterion 4, a family-owned company with no PE, ESOP, public or acquiring owner scores PARTIAL, not WEAK, and its ownership type must carry a `[Public: source]` tag. For criterion 6, a named role whose title covers the function the product serves scores STRONG, with its source tagged. A named role whose title does not cover that function scores PARTIAL. For criterion 7, a listed buying trigger counts only inside the urgency window that the profile's Buying Triggers table gives it, and a succession signal with no change in leadership yet is not a listed trigger, so it scores PARTIAL.
 
 **Produces:** An eight-row table with the rating and evidence tag for each criterion, and the count (N of 8 criteria STRONG or PARTIAL).
 
@@ -386,20 +389,20 @@ A HIGH condition that cannot apply to the account counts as met, so an owner who
 
 **Risk Flags** (each cites its evidence and tag):
 
-| Flag | What to Look For |
+| Flag | What To Look For |
 |------|-----------------|
 | No Fit Indicator | Matches a disqualifier in `{Client Profile: Qualification Criteria}`. Points at the disqualifier clause of the Verdict Rule |
 | Previous DQ | Previously disqualified or churned, with the reason still standing. Points at the disqualifier clause while the reason stands |
 | Competitor Lock-In | Long-term contract with an incumbent, high switching costs |
 | Incomplete Data | Revenue unknown, footprint unclear, no contacts |
 | Low Volume | Below the minimum thresholds |
-| Approval Above Signing Line | A board or corporate approval step above the signing line in the profile's decision zone. It holds that zone at MEDIUM and names the line. It does not change the verdict on its own |
+| Approval Above Signing Line | A board or corporate approval step above the signing line in the decision zone (profile: Qualification Zones). It holds that zone at MEDIUM and names the line. It does not change the verdict on its own |
 
 No Fit Indicator and Previous DQ both point at the disqualifier clause of the Verdict Rule, which says any disqualifier produces DISQUALIFY. They are not a separate gate. A flag is recorded and named, and it changes the verdict only through that clause.
 
 **Opportunity Signals** (each cites its evidence and tag):
 
-| Signal | What to Look For |
+| Signal | What To Look For |
 |--------|-----------------|
 | Active Buying Trigger | A trigger in `{Client Profile: Qualification Criteria}`, such as a PE acquisition, new leadership, expansion or a process failure, with its date and its window |
 | Competitor Dissatisfaction | Use of an incumbent with documented frustrations |
@@ -411,9 +414,9 @@ No Fit Indicator and Previous DQ both point at the disqualifier clause of the Ve
 
 ---
 
-### Step 6: Deliver the Qualification Verdict
+### Step 6: Deliver The Qualification Verdict
 
-The verdict comes from the profile's Verdict Rule alone, as the Shared Contract states. An UNKNOWN zone counts as neither HIGH nor LOW, so it never earns or blocks GREENLIGHT, and the report names it as an open fact. The 8-criteria scorecard from Step 3 does not gate the verdict. It feeds `icp_match` and `fit_narrative`. Reason: a second gate would be a second definition of fit, and the profile is the one place that definition lives. A Moderate cell in the Fit Grid row does not block GREENLIGHT when the account meets the ICP definition with evidence, because the Fit Grid row is recorded as context and the Verdict Rule decides.
+The verdict comes from the Verdict Rule alone (profile: Qualification Zones), as the Shared Contract states. An UNKNOWN zone counts as neither HIGH nor LOW, so it never earns or blocks GREENLIGHT, and the report names it as an open fact. The 8-criteria scorecard from Step 3 does not gate the verdict. It feeds `icp_match` and `fit_narrative`. Reason: a second gate would be a second definition of fit, and the profile is the one place that definition lives. A Moderate cell in the Fit Grid row does not block GREENLIGHT when the account meets the ICP definition with evidence, because the Fit Grid row is recorded as context and the Verdict Rule decides.
 
 #### Verdict Framework
 
@@ -421,19 +424,19 @@ The verdict comes from the profile's Verdict Rule alone, as the Shared Contract 
 - The Verdict Rule is met: at least two zones HIGH, and no must-have zone (1 or 3) at LOW
 - No disqualifier in the Verdict Rule applies
 - ICP match confirmed with evidence, recorded in `icp_match`
-- *BDR:* Run Account Snapshot Outbound and book discovery for the AE. Check for active AE deals first.
-- *AE:* Identify target personas, then start outbound or add the account to the pipeline.
+- *BDR:* Run Account Snapshot Outbound and book discovery for the AE. Check for active AE deals first. For an ENGAGED account, follow the ENGAGED Account pattern below instead of starting new outbound.
+- *AE:* Identify target personas, then start outbound or add the account to the pipeline. An ENGAGED account already has a two-way conversation, so continue that thread before any new outbound.
 
 **MANUAL REVIEW** (needs more data)
 - Neither GREENLIGHT nor DISQUALIFY. Usually one zone HIGH, or a must-have zone at LOW
 - ICP match plausible but not confirmed, recorded in `icp_match` and `fit_narrative`
 - Data gaps that could change the verdict
-- *BDR:* Research the specific gaps. Do not start outbound until they close.
+- *BDR:* Research the specific gaps. Do not start outbound until they close. For an ENGAGED account, the open thread continues while the gaps close, and only new outbound waits.
 - *AE:* Run the specific research actions before committing pipeline resources.
 
 **DISQUALIFY** (do not pursue)
 - A disqualifier in `{Client Profile: Qualification Criteria}` applies, or both must-have zones (1 and 3) are LOW
-- *Both:* Do not prospect. Give the reason, and the conditions that could reverse the verdict.
+- *Both:* Do not prospect. Give the reason, and the conditions that could reverse the verdict. For an ENGAGED account, the rep closes the open thread once, in the rep's own words, and sends nothing after that.
 
 #### Summary Report
 
@@ -448,7 +451,7 @@ Return these twelve items inline, in this order.
 7. **Open Facts:** each `[Unknown]` or `[Inferred]` fact that could change the verdict, with the fact that would settle it. Reason: confidence is carried by the tags on each fact, so a separate confidence word would say it twice
 8. **Top Opportunity Signals**
 9. **Top Risk Flags**
-10. **Account Status:** TARGET, INBOUND, ACTIVE with its stage number, LOST or OUT
+10. **Account Status:** TARGET, ENGAGED, INBOUND, ACTIVE with its stage number, LOST or OUT. ENGAGED changes the next step, not the verdict
 11. **Active Deal?** If yes, the stage, the AE owner and the amount. For a BDR, coordinate with the AE
 12. **Recommended Next Steps:** role-specific, with the `next_action` line last. The `next_action` date follows the shared contract's next-action rule (What the Close Reads, under The Shared Contract) and is written as a calendar date, so the step can be checked against the run. Reason: a step with no date cannot be checked
 
@@ -471,7 +474,7 @@ Return these twelve items inline, in this order.
 
 1. **Never give a verdict with a zone unscored.** Reason: the verdict is read from the zones, so an unscored zone is a must-have check nobody made. If no evidence exists, score the zone UNKNOWN and name the fact that would settle it.
 2. **MEDIUM never counts as HIGH.** Reason: the Verdict Rule counts HIGH only. Reading a MEDIUM as HIGH lets a near-fit account reach GREENLIGHT.
-3. **Apply the profile's Verdict Rule as written.** Do not set a threshold of this skill's own in its place. Reason: the profile is where the team's definition lives, and a second definition in the skill would drift from it.
+3. **Apply the Verdict Rule as written** (profile: Qualification Zones). Do not set a threshold of this skill's own in its place. Reason: the profile is where the team's definition lives, and a second definition in the skill would drift from it.
 4. **Never qualify on the name alone or on a rep's say-so.** Reason: a well-known name carries no fit evidence, and a rep's belief is a claim until a record backs it.
 5. **Every fact carries one of the six evidence tags, or it is removed.** Reason: the next skill reads the tags to decide what it may use in an email or a call.
 6. **Never state a revenue estimate without naming its method and tagging it.** Reason: an unlabeled estimate becomes a fact the first time someone quotes it.
@@ -488,9 +491,9 @@ Done when all are true:
 - [ ] The ICP classification names the Fit Grid row it matched, for each ICP considered
 - [ ] All 8 criteria are scored with an evidence tag, and the count is written as N of 8
 - [ ] All five zones are scored, each with its tag, and the two must-have zones are marked
-- [ ] The verdict follows from the zones by the profile's Verdict Rule, with every zone shown beside it
+- [ ] The verdict follows from the zones by the Verdict Rule (profile: Qualification Zones), with every zone shown beside it
 - [ ] Risks and opportunities are cited with evidence, and any flag that points at a disqualifier is named
-- [ ] The verdict words are spelled exactly, and the account status uses one of the five status words
+- [ ] The verdict words are spelled exactly, and the account status uses one of the six status words
 - [ ] Role-specific next steps are present, with the `next_action` line last and an owner and a date
 - [ ] No file was written unless the user asked for one
 
@@ -500,20 +503,20 @@ Done when all are true:
 
 Four worked examples, all on the PlotIQ cast and the chain file. They show a mix of outcomes, including two GREENLIGHT verdicts on different triggers, a MANUAL REVIEW and a DISQUALIFY. Each figure is in the profile, is sourced, or is marked (illustrative). Each example ends with its hand-off block.
 
-### Example 1: GREENLIGHT, the Flagship Account at Qualification (Brackhaven Memorial Gardens)
+### Example 1: GREENLIGHT, The Flagship Account At Qualification (Brackhaven Memorial Gardens)
 
 **Context:** Qualified on 2026-05-04, while Brackhaven was TARGET with no open AE deal recorded `[CRM]` (illustrative). Combination, 2 sites, 11,000 plots, paper plot maps, and one double sale in the last 24 months `[CRM]` (illustrative). The current system is a legacy on-premise ledger from Oldgate `[CRM]` (illustrative), and the family board chair's name is `[Unknown]`. The company is family-owned `[Public: company website, about page, 2026]` (illustrative), and its owner's bio gives a retirement date of 2029-03-31 `[Public: company website, owner bio, 2026]` (illustrative).
 
 **Input:** "Qualify Brackhaven Memorial Gardens for fit."
 
-**Process:** Step 0 reads the user's role as BDR `[CRM]` (illustrative). Step 2 classifies the account as ICP2 Combination. The Fit Grid row is Strong on "cemetery side on paper". It is Moderate on "owner and GM both sign", because a family board signs. The year-one cost with setup is $26,576 (illustrative), which is above the $25K board line. Step 3 scores the criteria below. Step 4 scores the zones below, using the zone rule in the profile.
+**Process:** Step 0 reads the user's role as BDR `[CRM]` (illustrative). Step 2 classifies the account as ICP2 Combination. The Fit Grid row (profile: Fit Grid) is Strong on "cemetery side on paper". It is Moderate on "owner and GM both sign", because a family board signs. The year-one cost with setup is $26,576 (illustrative), which is above the $25K board line. Step 3 scores the criteria below. Step 4 scores the zones below, using the zone rule (profile: Qualification Zones).
 
 **Criteria (ICP2), 7 of 8 STRONG or PARTIAL:**
 
 | # | Criterion | Rating | Evidence |
 |---|-----------|--------|----------|
 | 1 | Sub-Vertical Match | STRONG | Combination of a cemetery and a funeral home, 2 sites `[CRM]` (illustrative) |
-| 2 | Revenue Threshold | STRONG | 11,000 plots on the cemetery side `[CRM]` (illustrative), above the ICP2 threshold of about 2,000 plots. The CRM also notes a revenue range of $2 to 4 million a year `[CRM]` (illustrative), which is a range and not a confirmed figure |
+| 2 | Revenue Threshold | STRONG | 11,000 plots on the cemetery side `[CRM]` (illustrative), above the ICP2 threshold of about 2,000 plots (profile: ICP Definitions). The CRM also notes a revenue range of $2 to 4 million a year `[CRM]` (illustrative), which is a range and not a confirmed figure |
 | 3 | Multi-Region Operations | UNKNOWN | Location spread not checked `[Unknown]` |
 | 4 | Ownership / Growth Profile | PARTIAL | Family-owned, not PE-backed `[Public: company website, about page, 2026]` (illustrative). The owner's bio gives a retirement date within 3 years, a succession signal `[Public: company website, owner bio, 2026]` (illustrative) |
 | 5 | Transaction Complexity | STRONG | Plot records on paper, pre-need sales, two sites `[CRM]` (illustrative) |
@@ -527,7 +530,7 @@ Four worked examples, all on the PlotIQ cast and the chain file. They show a mix
 |---|------|--------|----------|
 | 1 | Records and Inventory Pain (must-have) | HIGH | Paper plot maps and a double sale in 24 months `[CRM]` (illustrative) |
 | 2 | Pre-Need Sales Motion | MEDIUM | A pre-need manager exists, and there is no intake form on the site `[Public: company website]` (illustrative). Social ads are not recorded `[Unknown]` |
-| 3 | Ownership and Decision Speed (must-have) | MEDIUM | The GM recommends and the board approves, which is the profile's MEDIUM cell as written, so the zone is MEDIUM. The board meets within 60 days, which meets the HIGH timing test, but the signing test fails, because year one is above the $25K line `[Public: company website, board calendar]` (illustrative) |
+| 3 | Ownership and Decision Speed (must-have) | MEDIUM | The GM recommends and the board approves, which is the MEDIUM cell as written (profile: Qualification Zones), so the zone is MEDIUM. The board meets within 60 days `[Public: company website, board calendar]` (illustrative), which meets the HIGH timing test, but the signing test fails, because year one, $26,576 (illustrative), is above the $25K line (profile: Qualification Zones) |
 | 4 | Technology Readiness | MEDIUM | Staff use company email, which the staff page shows `[Public: company website, staff page]` (illustrative). The website shows no plot lookup. The Oldgate ledger does not hold plot records, which stay on paper maps `[CRM]` (illustrative), so the system fits poorly. The facts sit between the HIGH and MEDIUM columns with no LOW condition, so MEDIUM under the partial-match rule in Step 4 (illustrative) |
 | 5 | Growth or Succession | HIGH | The owner's bio gives a retirement date of 2029-03-31, inside 3 years of the run date `[Public: company website, owner bio, 2026]` (illustrative) |
 
@@ -537,7 +540,7 @@ Four worked examples, all on the PlotIQ cast and the chain file. They show a mix
 
 **Opportunity Signals:** Records pain with a double sale `[CRM]` (illustrative), and a succession window of about 3 years (illustrative).
 
-**Next action:** The BDR on the account checks for active AE deals first, then runs Account Snapshot Outbound and books discovery for the AE by 2026-05-11 (illustrative), a Monday. That date is five business days after the run date of 2026-05-04, a Monday, and the records set no earlier date for this step.
+**Next Action:** The BDR on the account checks for active AE deals first, then runs Account Snapshot Outbound and books discovery for the AE by 2026-05-11 (illustrative), a Monday. That date is five business days after the run date of 2026-05-04, a Monday, and the records set no earlier date for this step.
 
 ```text
 Hand-off (read by 02):
@@ -551,13 +554,13 @@ next_action: The BDR on the account checks for active AE deals first, then runs 
 report_path: none (inline)
 ```
 
-### Example 2: GREENLIGHT on an Ownership Change (Corrow Ridge Cemetery)
+### Example 2: GREENLIGHT On An Ownership Change (Corrow Ridge Cemetery)
 
 **Context:** One cemetery site, 14,000 plots on paper plat maps, and a deed recorded twice in 2025 (illustrative). Acquired on 2026-07-01 by Harborline Funeral Partners, a 14-site regional consolidator `[Public: state licensing database]`. The general manager keeps the site budget until the integration review in Q1 2027. Status: TARGET.
 
 **Input:** "Qualify Corrow Ridge Cemetery for fit."
 
-**Process:** The site still runs as one cemetery, so ICP1 holds at site level. The acquisition is a buying trigger, not a change of fit. Step 3 scores the criteria below. The Fit Grid row is Strong on plot count and paper records.
+**Process:** The site still runs as one cemetery, so ICP1 holds at site level. The acquisition is a buying trigger, not a change of fit. Step 3 scores the criteria below. The Fit Grid row (profile: Fit Grid) is Strong on plot count and paper records.
 
 **Criteria (ICP1), 6 of 8 STRONG or PARTIAL:**
 
@@ -568,7 +571,7 @@ report_path: none (inline)
 | 3 | Multi-Region Operations | WEAK | One site |
 | 4 | Volume Indicators | STRONG | 14,000 plots `[CRM]` (illustrative) |
 | 5 | Relevant Department Exists | PARTIAL | The GM holds the budget. No records staff is named `[Unknown]` |
-| 6 | Revenue / Scale | PARTIAL | Above the Fit Grid's 2,000-plot Strong line. Revenue not stated `[Unknown]` |
+| 6 | Revenue / Scale | PARTIAL | Above the 2,000-plot Strong line (profile: Fit Grid). Revenue not stated `[Unknown]` |
 | 7 | Technology Readiness | UNKNOWN | Whether the site's own system is kept is `[Unknown]`, and it is the first question |
 | 8 | Current Solution Gap | STRONG | Paper plat maps and a deed recorded twice in 2025 (illustrative) `[CRM]` |
 
@@ -584,11 +587,11 @@ report_path: none (inline)
 
 **Verdict:** GREENLIGHT. Two zones are HIGH (1 and 5), and no must-have zone is LOW. Six of eight criteria are STRONG or PARTIAL, which is recorded in `icp_match`. No disqualifier applies yet.
 
-**Risk Flags:** Harborline's ownership type and its system are both `[Unknown]`. If Harborline is public or PE-backed and runs its own system, the profile's disqualifier applies. Check this before any outbound.
+**Risk Flags:** Harborline's ownership type and its system are both `[Unknown]`. If Harborline is public or PE-backed and runs its own system, the disqualifier applies (profile: Qualification Criteria). Check this before any outbound.
 
-**Opportunity Signals:** The acquisition is a consolidator trigger. Its window runs from 2026-08-30 to 2026-10-29, which is 60 to 120 days after the 2026-07-01 close `[Public: state licensing database]`. On 2026-10-19 there are 10 days left in the window.
+**Opportunity Signals:** The acquisition is a consolidator trigger. Its window runs from 2026-08-30 to 2026-10-29, which is 60 to 120 days after the 2026-07-01 close (profile: Qualification Criteria) `[Public: state licensing database]`. On 2026-10-19 there are 10 days left in the window.
 
-**Next action:** The BDR confirms Harborline's ownership type and system by 2026-10-22 (illustrative), a Thursday. The five-business-day date from the run date of 2026-10-19 (a Monday) is 2026-10-26, but Trigger Event Outbound (04, Step 1c) sets this check due by 2026-10-22, and the shared rule uses the earlier date its source names, so a sequence can start before the window closes on 2026-10-29.
+**Next Action:** The BDR confirms Harborline's ownership type and system by 2026-10-22 (illustrative), a Thursday. The five-business-day date from the run date of 2026-10-19 (a Monday) is 2026-10-26, but Trigger Event Outbound (04, Step 1c) sets this check due by 2026-10-22, and the shared rule uses the earlier date its source names, so a sequence can start before the window closes on 2026-10-29.
 
 ```text
 Hand-off (read by 02):
@@ -602,13 +605,13 @@ next_action: The BDR confirms Harborline's ownership type and system by 2026-10-
 report_path: none (inline)
 ```
 
-### Example 3: MANUAL REVIEW on an Inbound Request (Sable Fork Cemetery)
+### Example 3: MANUAL REVIEW On An Inbound Request (Sable Fork Cemetery)
 
 **Context:** One cemetery site with 2,900 plots. The plot list is kept in a spreadsheet. The general manager, Arlen Biggs, signs contracts under $25K `[CRM]` (illustrative). The cemetery requested a demo through the website form on Thursday 2026-10-15, four days before this run. Who filled in the form is `[Unknown]`. Status: INBOUND.
 
 **Input:** "Qualify Sable Fork Cemetery from their inbound request."
 
-**Process:** The account is ICP1. The Fit Grid row is Strong on plot count (2,900 is above the 2,000-plot line) and Moderate on records format (a spreadsheet). The inbound request shows interest. It does not raise any zone score.
+**Process:** The account is ICP1. The Fit Grid row (profile: Fit Grid) is Strong on plot count (2,900 is above the 2,000-plot line) and Moderate on records format (a spreadsheet). The inbound request shows interest. It does not raise any zone score.
 
 **Criteria (ICP1), 5 of 8 STRONG or PARTIAL, 2 UNKNOWN:**
 
@@ -631,7 +634,7 @@ report_path: none (inline)
 | 2 | Pre-Need Sales Motion | LOW | Pre-need: none. The general manager sells plots directly, with no counselor and no intake form `[CRM]` (illustrative) |
 | 3 | Ownership and Decision Speed (must-have) | HIGH | The GM signs under $25K `[Notes]` (illustrative) |
 | 4 | Technology Readiness | MEDIUM | Spreadsheets only, per the plot list `[CRM]` (illustrative) |
-| 5 | Growth or Succession | LOW | Plot sales flat for three years, and no succession plan on the record `[CRM]` (illustrative). The profile's LOW cell, not the MEDIUM cell of a stable account |
+| 5 | Growth or Succession | LOW | Plot sales flat for three years, and no succession plan on the record `[CRM]` (illustrative). The LOW cell (profile: Qualification Zones), not the MEDIUM cell of a stable account |
 
 **Verdict:** MANUAL REVIEW. One zone is HIGH (3), so GREENLIGHT is not met. No must-have zone is LOW, so DISQUALIFY is not met. The 8-criteria scorecard reads 5 of 8 criteria STRONG or PARTIAL with 2 UNKNOWN. That is recorded in `fit_narrative` and does not set the verdict.
 
@@ -639,7 +642,7 @@ report_path: none (inline)
 
 **Opportunity Signals:** The inbound request itself, `[CRM]`, received 2026-10-15.
 
-**Next action:** The BDR confirms who filled in the form by 2026-10-26 (illustrative), a Monday, five business days after the run date of 2026-10-19. Re-run the verdict if any zone changes.
+**Next Action:** The BDR confirms who filled in the form by 2026-10-26 (illustrative), a Monday, five business days after the run date of 2026-10-19. Re-run the verdict if any zone changes.
 
 ```text
 Hand-off (read by 02):
@@ -653,15 +656,15 @@ next_action: The BDR confirms who filled in the form by 2026-10-26 (illustrative
 report_path: none (inline)
 ```
 
-### Example 4: DISQUALIFY, a Public Consolidator (Northvale Memorial Holdings)
+### Example 4: DISQUALIFY, A Public Consolidator (Northvale Memorial Holdings)
 
 **Context:** A public consolidator with about 240 funeral homes and 90 cemeteries. It runs its own in-house system `[Public: annual filing]`. Status: OUT. OUT is not LOST. There is no closed-lost record, and nothing has been lost, because the account was never a fit.
 
 **Input:** "Qualify Northvale Memorial Holdings for fit."
 
-**Process:** Step 2 matches the account to the ICP3 Multi-Location Group weak row, which names a public or PE-backed consolidator running its own system as a disqualifier. The profile's disqualifier applies, so the zones are recorded but not weighed. Step 3 is not scored past the disqualifier check.
+**Process:** Step 2 matches the account to the ICP3 Multi-Location Group weak row (profile: Fit Grid), which names a public or PE-backed consolidator running its own system as a disqualifier. The disqualifier applies (profile: Qualification Criteria), so the zones are recorded but not weighed. Step 3 is not scored past the disqualifier check.
 
-**Zones (recorded, not weighed):**
+**Zones (Recorded, Not Weighed):**
 
 | # | Zone | Rating | Evidence |
 |---|------|--------|----------|
@@ -675,7 +678,7 @@ report_path: none (inline)
 
 **Risk Flags:** No Fit Indicator. It points at the disqualifier clause, which is the reason for the verdict.
 
-**Next action:** No outbound. The BDR logs the disqualifier and its filing source in the CRM by 2026-10-26 (illustrative), a Monday, five business days after the run date of 2026-10-19, so no rep re-qualifies the account from scratch. The rep does the logging, not this skill.
+**Next Action:** No outbound. The BDR logs the disqualifier and its filing source in the CRM by 2026-10-26 (illustrative), a Monday, five business days after the run date of 2026-10-19, so no rep re-qualifies the account from scratch. The rep does the logging, not this skill.
 
 ```text
 Hand-off (read by 02):
@@ -684,7 +687,7 @@ run_date: 2026-10-19
 verdict: DISQUALIFY
 zone_scores: 1 UNKNOWN, 2 UNKNOWN, 3 UNKNOWN, 4 LOW, 5 UNKNOWN
 icp_match: No Fit, ICP3 Multi-Location Group disqualifier (public consolidator running its own system)
-fit_narrative: About 240 funeral homes and 90 cemeteries, running its own in-house system `[Public: annual filing]`. The profile's disqualifier applies, so the zones are not weighed. Status OUT, not LOST.
+fit_narrative: About 240 funeral homes and 90 cemeteries, running its own in-house system `[Public: annual filing]`. The disqualifier applies (profile: Qualification Criteria), so the zones are not weighed. Status OUT, not LOST.
 next_action: The BDR logs the disqualifier and its filing source in the CRM by 2026-10-26 (illustrative)
 report_path: none (inline)
 ```
@@ -706,6 +709,14 @@ report_path: none (inline)
 **Action:** List the account in a separate "Active Deal Exclusions" table, with the account, the deal stage, the AE owner and the recommended action. Do not include it in the BDR's outbound queue. Recommend sharing the intelligence with the AE instead. Reason: two people writing to one buyer costs the deal.
 
 An account pending AE assignment is not ACTIVE. Score it, and say that it is pending.
+
+### Pattern: ENGAGED Account
+
+**When:** The account is ENGAGED: it replied or met with us, and no deal is open. The BDR or AE is already in a conversation with it.
+
+**Action:** The verdict does not change, because the zones decide it. The next step does. The rep who holds the open thread answers it and books the next step, and this skill does not start a new cold sequence. A BDR books the AE's discovery through that thread, and the AE continues the conversation before any new outbound. Reason: a cold message to an account already talking to us reads as not listening, and it can undo the reply.
+
+**INBOUND Is Not ENGAGED:** An account that asked us first stays INBOUND under the status rule, even after the rep answers, until a deal opens or the account goes OUT.
 
 ---
 
@@ -734,15 +745,15 @@ An account pending AE assignment is not ACTIVE. Score it, and say that it is pen
 
 ## Integration With Other Skills
 
-**Reads from:** No other skill. The client profile is the only input, through the sections named in Context.
+**Reads From:** No other skill. The client profile is the only input, through the sections named in Context.
 
-**Hands to Account Snapshot (02):** `verdict`, `zone_scores`, `icp_match`, `fit_narrative`. Snapshot reads them by these names.
+**Hands To Account Snapshot (02):** `verdict`, `zone_scores`, `icp_match`, `fit_narrative`. Snapshot reads them by these names.
 
-**Also read by Daily Prospecting (07):** the Fit Grid section, from the profile directly. It is not a hand-off field, because 07 scores from the profile, not from this skill's output.
+**Also Read By Daily Prospecting (07):** the Fit Grid section, from the profile directly (profile: Fit Grid). It is not a hand-off field, because 07 scores from the profile, not from this skill's output.
 
-**Hands to Wrap-Up at the close:** `report_path` when a file was written, the `verdict` or score, and `next_action` with its owner and date.
+**Hands To Wrap-Up At The Close:** `report_path` when a file was written, the `verdict` or score, and `next_action` with its owner and date.
 
-**Next steps by verdict:**
+**Next Steps By Verdict:**
 - After GREENLIGHT, run Account Snapshot (`gtm-account-snapshot`) to build prospecting intelligence and outbound sequences.
 - For a public company, Research Outbound (03) builds point-of-view sequences from financial filings.
 - Once an opportunity exists, Deal Pulse (08) replaces qualification with deal health monitoring.
@@ -756,6 +767,12 @@ An account pending AE assignment is not ACTIVE. Score it, and say that it is pen
 
 ## Changelog
 
+
+### 2.1.8 (2026-10-26)
+- Every profile citation is written (profile: Section), naming the real section, in the Overview, the steps, the examples and the hard rules. Template placeholders and the shared contract are unchanged.
+- ENGAGED is added to the status list in Step 1b, the Summary Report and the Quality Bar, which read six words. An ENGAGED account gets a pattern that continues the open thread, and the BDR and AE next steps in the Verdict Framework point to it. The verdict itself does not change with status.
+- Headings and labels are capitalized word by word, and the Example headings follow the same rule.
+- Example 1 cites the $25K line to the profile, not to the board calendar, and the year-one cost sits beside it.
 
 ### 2.1.7 (2026-10-26)
 - The rule text no longer refers to the examples by number. The try-it pointer names a full first run.

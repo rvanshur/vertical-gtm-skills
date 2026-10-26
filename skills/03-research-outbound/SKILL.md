@@ -1,6 +1,6 @@
 ---
 name: gtm-research-outbound
-version: 2.1.7
+version: 2.1.8
 description: "Builds a sourced point of view and outbound package from a public filing, an owner letter or an earnings call, with an ICP verdict, a signal map, a sourced wedge and persona sequences, for the rep and the meeting-prep skill to read"
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: [gtm-account-snapshot]
 mutating: read-write
 change_log:
+  - version: 2.1.8
+    date: 2026-10-26
+    summary: "Round 8 profile citations, ENGAGED status and held drafts. Every profile citation is written (profile: Section). A MANUAL REVIEW sequence is held: it is marked Held on its first line, and nothing in it goes out before a person clears the verdict. An ENGAGED account gets one reply draft to its open thread for the replying persona, not a cold sequence. The trigger leads every persona's sequence, and the first line of each email names it. The Saltmarsh decision-cycle fact is restored to the records and the zone basis in identical words, and Saltmarsh stays Zone 3 LOW and MANUAL REVIEW. Heading and label capitalization is aligned word by word."
   - version: 2.1.7
     date: 2026-10-26
     summary: "Round 7 leak scrub. The rule text no longer carries a worked persona count or a persona example, and the email count follows one rule: every applicable persona gets a sequence, and the trigger row sets the order and the lead. The unit of a profile price is defined as a site, the Benchmark applicability rule is stated, a MANUAL REVIEW account gets its sequences, and the business-it-serves test is defined. The try-it records state facts only."
@@ -96,12 +99,12 @@ Every run returns its report in the chat, in the sections below, in this order. 
 
 | Output | Where It Lives | Notes |
 |--------|----------------|-------|
-| `verdict` | Chat, Verdict section | GREENLIGHT, MANUAL REVIEW or DISQUALIFY, from the profile's Verdict Rule as written |
+| `verdict` | Chat, Verdict section | GREENLIGHT, MANUAL REVIEW or DISQUALIFY, from the Verdict Rule as written (profile: Qualification Zones) |
 | `zone_scores` | Chat, Verdict section, beside the verdict | One line per zone: HIGH, MEDIUM or LOW, or `[Unknown]` where the sources do not speak to the zone. Not handed on. Shown so the reader can see why the verdict landed where it did |
 | `signal_map` | Chat, Signal Map section | Six to ten rows, each tagged and placed in one zone. Handed to 06 |
 | `wedge` | Chat, Wedge section | The figure, its arithmetic and its tags. Or "Insufficient data", with the missing figure named. Handed to 06 |
 | `pov_brief` | Chat, POV Brief section | Under 500 words, in the five parts of Step 6. Handed to 06 |
-| `persona_emails` | Chat, Persona Sequences section | The count shown as personas times steps, then each sequence. Handed to 06 |
+| `persona_emails` | Chat, Persona Sequences section | The count shown as personas times steps, then each sequence, marked Held when the verdict is MANUAL REVIEW. For an ENGAGED account, the replying persona has one reply draft in place of four emails. Handed to 06 |
 | Cheatsheet | Chat, Cheatsheet section | The eight sections for the research type, in the order set in Methodology |
 | Intelligence appendix | Chat, Appendix section | The top eight items, each tagged, and two to four research gaps |
 | `report_path` | Set only when a file was written | Empty when the report is inline |
@@ -116,7 +119,7 @@ Every run returns its report in the chat, in the sections below, in this order. 
 
 Read the profile, `profiles/client-profile.md`, which is written from `profiles/client-profile-template.md`. The sections below are the only ones this skill reads. The skill carries no company fact of its own. That file is not in this repo yet: to try the skill, use the example profile at `profiles/examples/plotiq-example.md`, and to set up your own company, copy `profiles/client-profile-template.md` to `profiles/client-profile.md`.
 
-| Profile section | Used for |
+| Profile Section | Used For |
 |---|---|
 | Industry Context | The sourced industry facts, the number the account moves, the vertical financial signals and the private-company sources. Also read by Trigger Event Outbound (04) and Closed-Loss Reactivation (05) |
 | ICP Definitions | The ICP the account is scored against, and the market segments |
@@ -146,7 +149,7 @@ When the profile has a `## Knowledge Base` section, which Context OS Setup write
 
 When the assistant is connected to the CRM or to a call recorder, the skill offers to read the records the user points at (one account, one deal, the calls in a date range), asks before it reads, and tags each pulled fact `[CRM]` or `[Call]` with its date. It reads only. It never searches records nobody named and never writes back. Without a connector, pasting the same records works the same way.
 
-#### Account Status, Five Words
+#### Account Status, Six Words
 
 Every account carries one status: **TARGET** (researched, no two-way contact yet, though outreach may have gone out with no reply), **ENGAGED** (two-way contact: the account replied or met with us, and no deal is open), **INBOUND** (they asked us first, and no deal is open yet, which stays INBOUND until a deal opens or the account goes OUT), **ACTIVE** with its stage number (open deal), **LOST** (closed-lost, eligible for reactivation), **OUT** (disqualified). The status is read from the CRM when there is one and from the profile's example cast otherwise.
 
@@ -250,10 +253,10 @@ A per-employee or per-branch rate needs a named, dated source. Without one, the 
 
 The cheatsheet is the one-page summary a rep reads before a call. It always has eight sections, in this order.
 
-**For a 10-K filing or a private company:**
+**For A 10-K Filing Or A Private Company:**
 
 1. Company Snapshot: key facts from the intelligence profile
-2. Geographic or Market Exposure: regions mapped to the profile's market tiers
+2. Geographic or Market Exposure: regions mapped to the market tiers (profile: Outbound Voice)
 3. Key Personas: the contacts on file, and which persona each one is
 4. Pain Points and Signals: six hooks from the signal map, written as talk tracks
 5. Discovery Questions: grouped by persona, grounded in the sources
@@ -261,7 +264,7 @@ The cheatsheet is the one-page summary a rep reads before a call. It always has 
 7. Objection Handling: CRM notes and the common objections for this segment
 8. Call Flow: a five-step talk track built on the research above
 
-**For an earnings call:**
+**For An Earnings Call:**
 
 1. Earnings Snapshot: quarter, revenue, key metrics and the relevance window
 2. Top Signals: ranked by urgency, with the speaker named
@@ -278,21 +281,21 @@ An earnings package puts a timeliness banner at the top, showing the days since 
 
 ## Quick Reference
 
-**Use this skill when:**
+**Use This Skill When:**
 - Prospecting a high-value enterprise account that has a public filing, an owner letter or a recent earnings call
 - Researching a private company for strategic outbound, where the sources are published
 - Acting on a quarterly earnings call while its signals are still fresh
 - A persona-tailored sequence needs to rest on the account's own published words
 
-**Don't use when:**
+**Don't Use When:**
 - You need a quick snapshot for volume prospecting (use `gtm-account-snapshot`)
 - The account has a known incumbent and the question is displacement (use `gtm-competitive-displacement`)
 - A trigger event just happened (use `gtm-trigger-event-outbound`)
 - The account is LOST (use `gtm-closed-loss-reactivation`)
 - The account is ACTIVE with an AE owner and the AE has not said yes (the guard fires, and the skill writes only a coordination note)
 
-**User roles:** BDR, AE
-**Expected time:** 20 to 45 minutes per account
+**User Roles:** BDR, AE
+**Expected Time:** 20 to 45 minutes per account
 
 ---
 
@@ -300,7 +303,7 @@ An earnings package puts a timeliness banner at the top, showing the days since 
 
 Each step ends with what it produces. The order matters at three points. The role check comes first because the guard in Step 1 depends on it. The verdict comes before the wedge and the sequences, so a disqualified account never gets either. The signal map comes after the zone scores, so the map cannot disagree with the verdict.
 
-### Step 0: Detect the User Role
+### Step 0: Detect The User Role
 
 Determine whether the user is a BDR or an AE, from the CRM's user role or profile. If the CRM does not say, ask: "Are you a BDR or AE?"
 
@@ -310,30 +313,31 @@ Role-aware framing:
 
 **Produces:** `user_role` (BDR or AE), and the one question asked if the CRM was silent.
 
-### Step 1: Gather the Inputs and Check the CRM
+### Step 1: Gather The Inputs And Check The CRM
 
 Before pulling anything, open the account's folder under `accounts/` in the Knowledge Base, if the profile has one, and offer the CRM read and, when a call recorder is connected, the call read, for the one account or date range you name. Nothing is read from the CRM or the call recorder until you say yes.
 
-#### 1a. Confirm the Inputs by Source
+#### 1a. Confirm The Inputs By Source
 
 - **10-K filing:** company name and ticker, fiscal year, filing date, and the filing text or its key sections
 - **Private company (owner letter, company site, news):** company name, the letter or page with its date, and anything known about headquarters, size and ownership
 - **Earnings call:** company name and ticker, quarter, call date, and the transcript or its key sections
 
-#### 1b. Check the Account Status and the Guard
+#### 1b. Check The Account Status And The Guard
 
-Read the account's status and owner from the CRM. Without a CRM, read it from the profile's example cast. Then apply the guard for the case that matches:
+Read the account's status and owner from the CRM. Without a CRM, read it from the example cast (profile: Example Cast). Then apply the guard for the case that matches:
 
 - **ACTIVE with an AE owner, and the user is a BDR:** the guard fires. Write one coordination note for the AE, with the intelligence the AE can use, and stop. Write no POV brief and no sequences. Run the rest of the workflow only after the AE has said yes.
 - **Pending AE assignment:** the account is not ACTIVE. Work it, and say in the output that it is pending.
-- **OUT:** a disqualifier applies in the profile. Carry the account to Step 3, where the verdict ends the run.
+- **OUT:** a disqualifier applies (profile: Qualification Criteria). Carry the account to Step 3, where the verdict ends the run.
 - **LOST:** stop, and name `gtm-closed-loss-reactivation` as the right skill.
+- **ENGAGED:** the account replied or met with us, and no deal is open. The package is built as usual, but the replying persona's sequence becomes one reply draft to the open thread, answering what the account said, and not a cold four-email sequence. The report names the replying contact, so the rep checks with that person before a colleague of theirs is emailed. Reason: a cold sequence to someone who already answered reads as not listening.
 
 **Produces:** the source, the status word, and the guard result (fired, not fired, or pending). This runs before any research, because the guard decides whether research happens at all.
 
-### Step 2: Build the Sourced Intelligence Profile
+### Step 2: Build The Sourced Intelligence Profile
 
-Only tagged facts enter the profile. Industry claims come only from the profile's Industry Context section, and each one keeps its own source and year. An industry claim with no source there is dropped.
+Only tagged facts enter the profile. Industry claims come only from the Industry Context section (profile: Industry Context), and each one keeps its own source and year. An industry claim with no source there is dropped.
 
 #### For 10-K Filings: Fact Bank
 
@@ -347,7 +351,7 @@ Scan the required sections: Items 1, 1A, 3, 7 and 9A. Record each fact with its 
 
 Research every available source:
 
-| Source | What to Look For |
+| Source | What To Look For |
 |--------|-----------------|
 | Company website | About, leadership, locations, services, history, careers |
 | News and press releases | Acquisitions, expansions, hires, awards, milestones |
@@ -363,16 +367,16 @@ Tag every fact with one of the six evidence tags. `[Public: source, date]` marks
 
 The transcript is public, so its quotes are tagged `[Public: earnings call transcript, date]`. Scan the full transcript for the priority signals:
 
-| Signal Category | What to Look For | Product Connection |
+| Signal Category | What To Look For | Product Connection |
 |----------------|-----------------|-------------------|
-| Working Capital | DSO, receivables trends, cash conversion | The profile's relevant value proposition |
-| Bad Debt or Credit Loss | Allowance changes, write-offs, collections | The profile's relevant value proposition |
-| Operational Efficiency | Headcount, SG&A optimization | The profile's relevant value proposition |
-| Growth or Expansion | New markets, acquisitions, organic growth | The profile's relevant value proposition |
-| M&A Activity | Acquisitions, integration commentary | The profile's relevant value proposition |
-| Systems | Technology investments, consolidation | The profile's relevant value proposition |
-| Margin Pressure | Gross margin, cost inflation | The profile's relevant value proposition |
-| Guidance Changes | Lowered outlook, revised targets | The profile's relevant value proposition |
+| Working Capital | DSO, receivables trends, cash conversion | The relevant value proposition (profile: Value Propositions) |
+| Bad Debt or Credit Loss | Allowance changes, write-offs, collections | The relevant value proposition (profile: Value Propositions) |
+| Operational Efficiency | Headcount, SG&A optimization | The relevant value proposition (profile: Value Propositions) |
+| Growth or Expansion | New markets, acquisitions, organic growth | The relevant value proposition (profile: Value Propositions) |
+| M&A Activity | Acquisitions, integration commentary | The relevant value proposition (profile: Value Propositions) |
+| Systems | Technology investments, consolidation | The relevant value proposition (profile: Value Propositions) |
+| Margin Pressure | Gross margin, cost inflation | The relevant value proposition (profile: Value Propositions) |
+| Guidance Changes | Lowered outlook, revised targets | The relevant value proposition (profile: Value Propositions) |
 
 Extract six to ten signals, ranked by urgency, in this format:
 
@@ -388,17 +392,17 @@ Extract six to ten signals, ranked by urgency, in this format:
 
 **Produces:** the intelligence profile, with every fact tagged and every industry claim sourced from Industry Context.
 
-### Step 3: Score the Zones and Apply the Verdict
+### Step 3: Score The Zones And Apply The Verdict
 
-Score each of the profile's five zones HIGH, MEDIUM or LOW, from observable facts. Apply the profile's Verdict Rule as written, so the verdict is GREENLIGHT, MANUAL REVIEW or DISQUALIFY. Show every zone's score beside the verdict, and name any must-have zone that scored LOW in the reason.
+Score each of the five zones HIGH, MEDIUM or LOW, from observable facts (profile: Qualification Zones). Apply the Verdict Rule as written (profile: Qualification Zones), so the verdict is GREENLIGHT, MANUAL REVIEW or DISQUALIFY. Show every zone's score beside the verdict, and name any must-have zone that scored LOW in the reason.
 
 Four rules apply here. MEDIUM never counts as HIGH. A zone the sources do not speak to is `[Unknown]`, not LOW, because silence is not a no. A zone scored on a checked absence (a search that was run and found nothing, for example) is scored, and the check is named so a reader can repeat it. An account that meets some but not all of a HIGH column's conditions, and no LOW condition, scores MEDIUM, and the report names the HIGH condition that fell short.
 
 The reasons for the verdict go in three to six bullets, each with its tag.
 
-**Produces:** every zone's score, the verdict, and its reasons. A DISQUALIFY ends the run here. No wedge and no sequence follow it. A MANUAL REVIEW does not end the run: this skill writes the wedge and the sequences for GREENLIGHT and MANUAL REVIEW, whereas Account Snapshot (02) writes sequences for GREENLIGHT only.
+**Produces:** every zone's score, the verdict, and its reasons. A DISQUALIFY ends the run here. No wedge and no sequence follow it. A MANUAL REVIEW does not end the run: this skill writes the wedge and the sequences for GREENLIGHT and MANUAL REVIEW, and Account Snapshot (02) does the same. A MANUAL REVIEW sequence is a held package: it is marked Held on its first line, and nothing in it goes out before a person clears the verdict.
 
-### Step 4: Map the Signals to the Zones
+### Step 4: Map The Signals To The Zones
 
 Place each signal or fact from Step 2 against the zone it bears on. Build the table with six to ten rows:
 
@@ -409,7 +413,7 @@ Each row has one tag in the Source column. Each Discovery Question is something 
 
 **Produces:** the signal map, six to ten rows, each tagged and placed in a zone. It comes after Step 3 so the zone column matches the scores already given.
 
-### Step 5: Build the Quantified Wedge
+### Step 5: Build The Quantified Wedge
 
 Build a wedge only when the sources support the numbers. Show every calculation, one line per step, so the reader can recompute it.
 
@@ -420,11 +424,11 @@ Build a wedge only when the sources support the numbers. Show every calculation,
 | A profile Benchmark | Cite the benchmark with its source and date. It is a hook, not a result | `[Public: source, date]` |
 | A figure the sources lack | Write it as unknown, and name it as a discovery question | `[Unknown]` |
 
-Never claim savings as a guarantee. Frame the result as what companies of a similar size typically see, and name the source for that claim. A Benchmark stated per cemetery is multiplied by the number of cemetery sites in the account, and the multiplication is shown. A Benchmark about plot records applies to a site whose plot list is kept by hand, on paper or in a spreadsheet, and the wedge names the record type it was applied to. A unit in a profile price is one site in the account's footprint, cemetery or funeral home alike, because the profile prices per site. A payback figure is written only when the price of the unit it recovers is sourced or in the profile. Otherwise the wedge says that no payback figure is written, and names the missing price.
+Never claim savings as a guarantee. Frame the result as what companies of a similar size typically see, and name the source for that claim. A Benchmark stated per cemetery is multiplied by the number of cemetery sites in the account, and the multiplication is shown. A Benchmark about plot records applies to a site whose plot list is kept by hand, on paper or in a spreadsheet, and the wedge names the record type it was applied to. A unit in a profile price is one site in the account's footprint, cemetery or funeral home alike, because the profile prices per site (profile: Product Modules). A payback figure is written only when the price of the unit it recovers is sourced or in the profile. Otherwise the wedge says that no payback figure is written, and names the missing price.
 
 **Produces:** the wedge as a sentence with its arithmetic, or "Insufficient data" with the missing figure named.
 
-### Step 6: Write the POV Brief
+### Step 6: Write The POV Brief
 
 Keep the brief under 500 words, skimmable, with every claim tagged.
 
@@ -436,11 +440,11 @@ Keep the brief under 500 words, skimmable, with every claim tagged.
 
 **Produces:** the POV brief, under 500 words, with the verdict stated.
 
-### Step 7: Generate the Persona Sequences
+### Step 7: Generate The Persona Sequences
 
-**Count First.** Every persona that applies to this account gets a sequence. The persona count comes from the profile's Buyer Personas. A persona applies when the profile's own rule for it is met, such as a group-only persona for a group. A persona also applies when the account runs the business that persona owns, which is the business it serves: a funeral home for the funeral home owner persona. A persona also applies when the trigger row names it, even where the profile limits that persona to another account type. Multiply the applicable personas by the steps for the mode. In a filing or private package, that is personas x 4. The count follows from the profile and the account, so it is never fixed in this skill.
+**Count First.** Every persona that applies to this account gets a sequence. The persona count comes from the Buyer Personas (profile: Buyer Personas). A persona applies when the rule the profile sets for it is met (profile: Buyer Personas), such as a group-only persona for a group. A persona also applies when the account runs the business that persona owns, which is the business it serves: a funeral home for the funeral home owner persona. A persona also applies when the trigger row names it, even where the profile limits that persona to another account type. Multiply the applicable personas by the steps for the mode. In a filing or private package, that is personas x 4. The count follows from the profile and the account, so it is never fixed in this skill.
 
-**Order By The Trigger.** Match the source's signal to a row in the profile's Buying Triggers table. The row's Persona who acts column names the person who has to respond first. That persona's sequence is listed first, and its Email 1 is the one the rep sends first. When a row names two personas, the one who approves budget leads, as the records name the approver, and the other persona's sequence follows with its own emails. The trigger sets the order and the lead. It does not remove a persona from the count.
+**Order By The Trigger.** Match the source's signal to a row in the Buying Triggers table (profile: Qualification Criteria). The row's Persona who acts column names the person who has to respond first. That persona's sequence is listed first, and its Email 1 is the one the rep sends first. When a row names two personas, the one who approves budget leads, as the records name the approver, and the other persona's sequence follows with its own emails. The trigger sets the order and the lead. It does not remove a persona from the count.
 
 | Step | Angle | Purpose |
 |------|-------|---------|
@@ -449,21 +453,23 @@ Keep the brief under 500 words, skimmable, with every claim tagged.
 | **Email 3** | Process or efficiency | An industry trend or operational pain hypothesis |
 | **Email 4** | Breakup and validation | A soft close with one specific question |
 
-Rules for every email: 120 words or fewer (100 for an earnings call). A different intelligence anchor in each email, so no signal repeats within a persona's sequence. A citation in the first line. At most one proof point, and only one whose Status in the profile is Verified or Benchmark. An Illustrative proof point is never named in an email, because the prospect reads it and it is not a real result.
+Rules for every email: 120 words or fewer (100 for an earnings call). A different intelligence anchor in each email, so no signal repeats within a persona's sequence. A citation in the first line, and the first line names the trigger, so the trigger leads every persona's sequence. At most one proof point, and only one whose Status in the profile is Verified or Benchmark. An Illustrative proof point is never named in an email, because the prospect reads it and it is not a real result.
 
 Earnings sequences draw two to three personas from the trigger row, with two emails each, and the subject line names the earnings event.
 
 After each persona's sequence, include the persona's hook focus (one line) and that persona's two best discovery questions, grounded in the source.
 
+**Held Packages.** A GREENLIGHT sequence is ready, and the rep reads it before sending. A MANUAL REVIEW sequence is held: its first line reads "Held: send only after a person clears the verdict", and nothing in it goes out before then. An ENGAGED account gets one reply draft to its open thread for the replying persona, as Step 1b says.
+
 **Produces:** the persona sequences, with the count shown as "N personas x M emails = total", and the trigger routing named.
 
-### Step 8: Build the Intelligence Appendix
+### Step 8: Build The Intelligence Appendix
 
 List the top eight intelligence items, each as a finding with its tag. Then list two to four research gaps: unknowns that would strengthen the outreach if they were found.
 
 **Produces:** eight tagged findings and two to four gaps, each gap written as a question the rep could answer on a call.
 
-### Step 9: Write the Summary and Hand Off
+### Step 9: Write The Summary And Hand-Off
 
 Write the summary as one numbered list, in this order:
 
@@ -472,7 +478,7 @@ Write the summary as one numbered list, in this order:
 3. Verdict and zones: the verdict word, the zone scores and the top three reasons
 4. Quantified wedge: the strongest figure, or "Insufficient data"
 5. CRM status: pipeline activity and known contacts
-6. Geographic exposure: regions mapped to the profile's tiers (filing and private only)
+6. Geographic exposure: regions mapped to the tiers (profile: Outbound Voice), filing and private only
 7. Relevance window: days remaining (earnings only)
 8. Sequences: the persona count, times the steps, equals the total
 9. Personalized contacts: which emails address a known person
@@ -517,10 +523,12 @@ No mode writes a file on its own. A file is written only when the user asks for 
 4. **Never name an Illustrative proof point in an email or a talk track.** The prospect reads it, and an illustrative result is not a real result. Only Verified or Benchmark proof points are named.
 5. **Never score a zone LOW from silence.** A blank is unknown. Scoring it LOW turns a gap into a no, and the verdict then rests on something nobody checked.
 6. **Never write a wedge or a sequence for a DISQUALIFY.** The verdict is the gate. A sequence to a disqualified account spends the rep's first touch on an account that cannot buy.
-7. **Never use a fixed persona count.** The count comes from the profile's Buyer Personas and the account, so a profile with fewer applicable personas produces fewer emails. A fixed count invents work the profile does not support.
+7. **Never use a fixed persona count.** The count comes from the Buyer Personas (profile: Buyer Personas) and the account, so a profile with fewer applicable personas produces fewer emails. A fixed count invents work the profile does not support.
 8. **Never claim savings as a guarantee.** Use typical outcomes with a named source. A guaranteed figure is a promise the company cannot keep, and the buyer's finance team will ask for the proof.
 9. **Use only the six evidence tags.** The next skill grades every fact by its tag, and a label outside the set cannot be read.
 10. **Write no file unless the user asks.** The report is for the rep to read in the chat. A file that nobody asked for is one more thing to find and delete later.
+11. **Never let a held package go out before a person clears the verdict.** Reason: a MANUAL REVIEW means the zones are not settled, and a draft that reads as ready invites a send before the gap closes.
+12. **Never send a cold sequence to a contact who has already replied.** Reason: an ENGAGED account is already in conversation, and the reply belongs in that thread.
 
 ---
 
@@ -530,8 +538,10 @@ No mode writes a file on its own. A file is written only when the user asks for 
 
 - [ ] Every fact carries one of the six evidence tags, and no fact is untagged
 - [ ] Every quote appears in the source, with its location
-- [ ] Every zone is scored or marked `[Unknown]`, and the verdict follows the profile's Verdict Rule as written
+- [ ] Every zone is scored or marked `[Unknown]`, and the verdict follows the Verdict Rule as written (profile: Qualification Zones)
 - [ ] The email count equals the applicable personas times the steps for the mode, and the count is shown
+- [ ] A MANUAL REVIEW sequence is marked Held on its first line, and nothing in it is ready to send
+- [ ] An ENGAGED account has one reply draft for the replying persona, not a cold sequence
 - [ ] No Illustrative proof point appears in any email or talk track
 - [ ] The guard result is in the output, and an ACTIVE account with an AE owner has either the AE's yes or no sequences
 - [ ] Every rate carries its n
@@ -554,8 +564,8 @@ All examples use PlotIQ and its cast from the profile's Example Cast. Every figu
 
 **Process:**
 
-- **Steps 0 and 1:** BDR. Status TARGET, no open deal, no AE owner. Mode: Private Company, because the source is a company-site letter.
-- **Step 2, the sourced profile:**
+- **Steps 0 And 1:** BDR. Status TARGET, no open deal, no AE owner. Mode: Private Company, because the source is a company-site letter.
+- **Step 2, The Sourced Profile:**
   - All five sites move to one system in 2027. `[Public: company site, owner letter 2026]`
   - The owner letter is dated 2026-03-02. `[Public: company site, owner letter 2026]` (illustrative)
   - Five sites: 2 cemeteries and 3 funeral homes. `[CRM]`
@@ -566,21 +576,21 @@ All examples use PlotIQ and its cast from the profile's Example Cast. Every figu
   - Social media ads on the group's pages send pre-need enquiries into the group's shared email. `[Public: company social media pages]` (illustrative)
   - The group is family owned. `[CRM]`
   - The CFO, Hector Ruiz, approves budget. `[CRM]`
-  - The group reviews system spend twice a year `[CRM]` (illustrative). The 6 to 9 month cycle is the profile's Zone 3 LOW cell, which the zone scoring applies `[Inferred: profile Zone 3 LOW cell]`
+  - The group reviews system spend twice a year, so a decision takes 6 to 9 months [CRM], illustrative. This is the Zone 3 LOW cell (profile: Qualification Zones), which the zone scoring applies
   - Which system replaces the spreadsheets, and when the plot records move: `[Unknown]`
-- **Step 3, the zones and the verdict.** ICP3 Multi-Location Group, four to ten sites. The five zones from the profile:
+- **Step 3, The Zones And The Verdict.** ICP3 Multi-Location Group, four to ten sites. The five zones (profile: Qualification Zones):
 
 | Zone | Score | Basis |
 |---|---|---|
-| 1 Records and Inventory Pain | MEDIUM | Both cemetery sites keep plot records in spreadsheets `[Notes]` (illustrative), which is the MEDIUM basis |
+| 1 Records and Inventory Pain | MEDIUM | Both cemetery sites keep plot records in spreadsheets `[Notes]` (illustrative), which is the MEDIUM basis (profile: Qualification Zones) |
 | 2 Pre-Need Sales Motion | HIGH | Pre-need counselors at three funeral homes `[CRM]`, a pre-need intake form on the company website `[Public: company website]` (illustrative), and social media ads sending enquiries into email `[Public: company social media pages]` (illustrative). All three HIGH conditions are met |
-| 3 Ownership and Decision Speed | LOW | The CFO approves budget `[CRM]`, and the group's budget review runs twice a year `[CRM]` (illustrative), which the profile's Zone 3 LOW cell reads as a 6 to 9 month cycle `[Inferred: profile Zone 3 LOW cell]`. A must-have zone |
-| 4 Technology Readiness | MEDIUM | The cemetery sites run on spreadsheets only `[Notes]` (illustrative), which is the MEDIUM basis |
+| 3 Ownership and Decision Speed | LOW | The CFO approves budget `[CRM]`, and the group reviews system spend twice a year, so a decision takes 6 to 9 months `[CRM]`, illustrative. That is the Zone 3 LOW cell (profile: Qualification Zones). A must-have zone |
+| 4 Technology Readiness | MEDIUM | The cemetery sites run on spreadsheets only `[Notes]` (illustrative), which is the MEDIUM basis (profile: Qualification Zones) |
 | 5 Growth or Succession | HIGH | The owner letter names growth as the 2027 plan, one system for all five sites `[Public: company site, owner letter 2026]`. That is the owner update naming growth the HIGH test asks for |
 
 **MANUAL REVIEW.** Two zones are HIGH (2 and 5), but a must-have zone (3) is LOW, so GREENLIGHT is out. No disqualifier applies and only one must-have is LOW, so DISQUALIFY is out too. The open items are the CFO gate and the 6 to 9 month cycle.
 
-- **Step 4, the signal map:**
+- **Step 4, The Signal Map:**
 
 | Intelligence Signal | Why It Matters | Zone | Value Prop | Discovery Question | Source |
 |---|---|---|---|---|---|
@@ -591,8 +601,8 @@ All examples use PlotIQ and its cast from the profile's Example Cast. Every figu
 | Spreadsheets only at the cemetery sites | Sets how hard the move will be | 4 MEDIUM | A migration plan the sites can staff | What replaces the spreadsheets at each site, and when? | `[Notes]` (illustrative) |
 | Family owned and owner-led | The owner letter is the family's own plan | 5 HIGH | A growth story the owner can carry | Who in the family signs off on the 2027 move? | `[Public: company site, owner letter 2026]` |
 
-- **Step 5, the wedge.** Two cemetery sites x 50 to 100 plots each = 100 to 200 plots to check. The 50 to 100 is the profile's first-call hook, a Benchmark `[Public: deathcare research, 2026-03-27 to 2026-04-01]`. It is a hook, not a result. It is read against the two sites' own counts, 3,100 and 2,800 plots `[CRM]` (illustrative). Five sites x $10,788 a year at list = $53,940 a year, plus $5,000 setup once `[Inferred: units x profile list price]`. The price of an unsold plot is `[Unknown]`, so no payback figure is written. The first discovery question asks for it.
-- **Step 6, the POV brief** (five parts, under 500 words):
+- **Step 5, The Wedge.** Two cemetery sites x 50 to 100 plots each = 100 to 200 plots to check. The 50 to 100 is the first-call hook (profile: Core Pain Points), a Benchmark `[Public: deathcare research, 2026-03-27 to 2026-04-01]`. It is a hook, not a result. It is read against the two sites' own counts, 3,100 and 2,800 plots `[CRM]` (illustrative). Five sites x $10,788 a year at list = $53,940 a year, plus $5,000 setup once `[Inferred: units x profile list price]`. The price of an unsold plot is `[Unknown]`, so no payback figure is written. The first discovery question asks for it.
+- **Step 6, The POV Brief** (Five Parts, Under 500 Words):
 
   **1. Company Context**
   - Saltmarsh Heritage Group is a family-owned group with five sites, two cemeteries and three funeral homes. `[CRM]`
@@ -604,19 +614,21 @@ All examples use PlotIQ and its cast from the profile's Example Cast. Every figu
   - Three funeral homes run pre-need counselors, so the sales side needs the plot record in the same place. `[CRM]`
   - Both cemetery sites keep plot records in spreadsheets. `[Notes]` (illustrative)
 
-  **3. Risks and Complexity Signals**
+  **3. Risks And Complexity Signals**
   - The two cemeteries hold 3,100 and 2,800 plots. `[CRM]` (illustrative)
-  - The CFO, Hector Ruiz, approves budget, and the group reviews system spend twice a year, which the profile's Zone 3 LOW cell reads as a 6 to 9 month decision `[CRM]` (illustrative) `[Inferred: profile Zone 3 LOW cell]`
+  - The CFO, Hector Ruiz, approves budget. The group reviews system spend twice a year, so a decision takes 6 to 9 months `[CRM]`, illustrative. That is the Zone 3 LOW cell (profile: Qualification Zones)
   - The date the plot records move is not set. `[Unknown]`
 
   **4. Fit Verdict:** MANUAL REVIEW. Zones 2 and 5 are HIGH, but Zone 3, a must-have, is LOW, so GREENLIGHT does not hold. `[Inferred: zone rules, Step 3]`
 
-  **5. POV Statement** (eight sentences): Five sites under one family owner are moving to one system in 2027. `[Public: company site, owner letter 2026]` That makes the first question records, not software, because both cemetery sites keep plot records in spreadsheets. `[Notes]` (illustrative) The first-call hook is 50 to 100 plots per cemetery site. `[Public: deathcare research, 2026-03-27 to 2026-04-01]` That figure is a hook, not a result, so the two cemeteries, at 3,100 and 2,800 plots, set the scale to check. `[CRM]` (illustrative) Three funeral homes already run pre-need counselors, so the same system has to reach the sales side. `[CRM]` The CFO gate and the 6 to 9 month cycle set the timing, so the group can start with the cemetery plots. `[CRM]` (illustrative) The wedge is five sites at $10,788 a year at list, which is $53,940 a year, plus $5,000 setup once. `[Inferred: units x profile list price]` The ask is 20 minutes to map which records and leads move first.
-- **Step 7, the sequences.** Five personas apply. Saltmarsh is a group, so the profile's CFO or Controller in a group persona applies, and its three funeral homes sit in the same footprint under the same owner, so the Funeral Home Owner persona applies too. The cemetery, pre-need and operations personas apply to the two cemeteries and the funeral side. Five personas x 4 steps = 20 emails. The owner-letter trigger's Persona who acts column reads "Funeral Home Owner, or CFO or Controller in a group". The row names two personas, and the one who approves budget leads, so the CFO's sequence is listed first. The other four sequences follow in the order below. Each email opens with a citation.
+  **5. POV Statement** (Eight Sentences): Five sites under one family owner are moving to one system in 2027. `[Public: company site, owner letter 2026]` That makes the first question records, not software, because both cemetery sites keep plot records in spreadsheets. `[Notes]` (illustrative) The first-call hook is 50 to 100 plots per cemetery site. `[Public: deathcare research, 2026-03-27 to 2026-04-01]` That figure is a hook, not a result, so the two cemeteries, at 3,100 and 2,800 plots, set the scale to check. `[CRM]` (illustrative) Three funeral homes already run pre-need counselors, so the same system has to reach the sales side. `[CRM]` The CFO gate and the 6 to 9 month cycle set the timing, so the group can start with the cemetery plots. `[CRM]` (illustrative) The wedge is five sites at $10,788 a year at list, which is $53,940 a year, plus $5,000 setup once. `[Inferred: units x profile list price]` The ask is 20 minutes to map which records and leads move first.
+- **Step 7, The Sequences.** Five personas apply. Saltmarsh is a group, so the CFO or Controller in a group persona applies (profile: Buyer Personas), and its three funeral homes sit in the same footprint under the same owner, so the Funeral Home Owner persona applies too. The cemetery, pre-need and operations personas apply to the two cemeteries and the funeral side. Five personas x 4 steps = 20 emails. The owner-letter trigger's Persona who acts column (profile: Qualification Criteria) reads "Funeral Home Owner, or CFO or Controller in a group". The row names two personas, and the one who approves budget leads, so the CFO's sequence is listed first. The other four sequences follow in the order below. All 20 emails are held, because the verdict is MANUAL REVIEW. Each email opens with the trigger citation.
 
-**Persona 5, CFO or Controller in a group (Hector Ruiz, approves budget). Leads.**
+**Held: send only after a person clears the verdict.** All 20 emails below are held.
 
-Email 1, point of view and wedge
+**Persona 5, CFO Or Controller In A Group (Hector Ruiz, Approves Budget). Leads.**
+
+Email 1, Point Of View And Wedge
 Subject: One system across five sites in 2027
 
 Hector,
@@ -627,7 +639,7 @@ Three of your funeral homes already run pre-need counselors. Where do those lead
 
 Worth 20 minutes to map it before the move?
 
-Email 2, complexity
+Email 2, Complexity
 Subject: Two cemeteries, one budget cycle
 
 Hector,
@@ -636,23 +648,23 @@ Your 2026 owner letter names one system for all five sites, and both cemetery si
 
 Would 15 minutes to see the order help?
 
-Email 3, process and efficiency
+Email 3, Process And Efficiency
 Subject: The review date
 
 Hector,
 
 Your 2026 owner letter sets 2027 as the year for one system. The group reviews system spend twice a year (illustrative), so a decision takes six to nine months from the first meeting to sign-off. What would you need to see at the first meeting to put the decision on the next review?
 
-Email 4, breakup
+Email 4, Breakup
 Subject: Should I close this?
 
 Hector,
 
 Your 2026 owner letter set a 2027 date, and I have not heard back, so I will stop after this note. If the budget review is the right moment, who on your team should I reach before it?
 
-**Persona 4, Funeral Home Owner (the owner of the three funeral homes).**
+**Persona 4, Funeral Home Owner (The Owner Of The Three Funeral Homes).**
 
-Email 1, point of view and wedge
+Email 1, Point Of View And Wedge
 Subject: Three funeral homes, one pre-need list
 
 Hello,
@@ -661,32 +673,32 @@ Your 2026 owner letter says all five Saltmarsh sites move to one system in 2027,
 
 Worth 20 minutes to see how the funeral side fits the move?
 
-Email 2, complexity
+Email 2, Complexity
 Subject: Enquiries into one inbox
 
 Hello,
 
-Your website's pre-need intake form and the ads on your social pages both send enquiries into one shared inbox. When a family asks about a pre-need plot, how long does it take your team to confirm the plot is open?
+Your 2026 owner letter names one system for the move, and your website's pre-need intake form and the ads on your social pages both send enquiries into one shared inbox. When a family asks about a pre-need plot, how long does it take your team to confirm the plot is open?
 
 Would 15 minutes next week help?
 
-Email 3, process and efficiency
+Email 3, Process And Efficiency
 Subject: The pre-need share
 
 Hello,
 
-Deathcare research (2026-03-27 to 2026-04-01) puts independent operators' pre-need at 20% to 35% of at-need volume, with the largest public operator near 60%. What share do your three funeral homes capture today, and how is it counted?
+Your 2026 owner letter sets the 2027 move, and deathcare research (2026-03-27 to 2026-04-01) puts independent operators' pre-need at 20% to 35% of at-need volume, with the largest public operator near 60%. What share do your three funeral homes capture today, and how is it counted?
 
-Email 4, breakup
+Email 4, Breakup
 Subject: Last note
 
 Hello,
 
 Your 2026 owner letter names the 2027 move, and I have not heard back, so this is my last note. If the funeral side is not on that list, who should I talk to instead?
 
-**Persona 1, Cemetery General Manager (name not on file). Works the two cemetery sites.**
+**Persona 1, Cemetery General Manager (Name Not On File). Works The Two Cemetery Sites.**
 
-Email 1, point of view and wedge
+Email 1, Point Of View And Wedge
 Subject: Plot records at two cemeteries
 
 Hello,
@@ -695,7 +707,7 @@ Your 2026 owner letter says all five sites move to one system in 2027. For the t
 
 Worth 20 minutes to walk through one cemetery's list?
 
-Email 2, complexity
+Email 2, Complexity
 Subject: Two lists, one answer
 
 Hello,
@@ -704,23 +716,23 @@ Your 2026 owner letter names one system, and each cemetery keeps its own plot li
 
 Would it help to see what one shared list shows for one site?
 
-Email 3, process and efficiency
+Email 3, Process And Efficiency
 Subject: The 50 to 100 plot check
 
 Hello,
 
-The first-call hook for cemeteries is 50 to 100 plots that the paper records and the map do not agree on (Benchmark, deathcare research, paper-operations note, 2026-04-01). Would a check of one site show whether that gap exists?
+Your 2026 owner letter names one system, and the first-call hook for cemeteries is 50 to 100 plots that the paper records and the map do not agree on (Benchmark, deathcare research, paper-operations note, 2026-04-01). Would a check of one site show whether that gap exists?
 
-Email 4, breakup
+Email 4, Breakup
 Subject: Closing the loop
 
 Hello,
 
 Your 2026 owner letter sets the 2027 date, and I have not heard back, so I will stop here. If one site's list ever disagreed with the map, who would find out first?
 
-**Persona 2, Pre-Need Sales Manager (name not on file). Works the funeral side's leads.**
+**Persona 2, Pre-Need Sales Manager (Name Not On File). Works The Funeral Side's Leads.**
 
-Email 1, point of view and wedge
+Email 1, Point Of View And Wedge
 Subject: Pre-need leads across three funeral homes
 
 Hello,
@@ -729,30 +741,30 @@ Your 2026 owner letter says all five sites move to one system in 2027, and three
 
 Worth 15 minutes to compare two of them?
 
-Email 2, complexity
+Email 2, Complexity
 Subject: The plot after the lead
 
 Hello,
 
 Your 2026 owner letter names one system for the move, and a pre-need sale needs the plot record in the same place as the lead. Today the plot lists sit in spreadsheets at the two cemeteries (illustrative). When a counselor sells a plot, who confirms it is still open?
 
-Email 3, process and efficiency
+Email 3, Process And Efficiency
 Subject: The pre-need share
 
 Hello,
 
-Deathcare research (2026-03-27 to 2026-04-01) puts independents' pre-need at 20% to 35% of at-need volume. Where does your group sit on that range, and how is it counted?
+Your 2026 owner letter names one system for the move, and deathcare research (2026-03-27 to 2026-04-01) puts independents' pre-need at 20% to 35% of at-need volume. Where does your group sit on that range, and how is it counted?
 
-Email 4, breakup
+Email 4, Breakup
 Subject: Last note
 
 Hello,
 
 Your 2026 owner letter sets the 2027 date, and I will stop after this note. If a pre-need lead came in this week, who would call it back?
 
-**Persona 3, Operations Director (name not on file). Runs the daily work at both cemeteries.**
+**Persona 3, Operations Director (Name Not On File). Runs The Daily Work At Both Cemeteries.**
 
-Email 1, point of view and wedge
+Email 1, Point Of View And Wedge
 Subject: Find the plot in seconds
 
 Hello,
@@ -761,37 +773,37 @@ Your 2026 owner letter says all five sites move to one system in 2027. For opera
 
 Worth 15 minutes to time one?
 
-Email 2, complexity
+Email 2, Complexity
 Subject: Records across two sites and three funeral homes
 
 Hello,
 
 Your 2026 owner letter names one system, and both cemetery sites keep plot records in spreadsheets (illustrative), while the funeral homes keep their own paperwork. When a funeral home needs a plot, how many records does your team check?
 
-Email 3, process and efficiency
+Email 3, Process And Efficiency
 Subject: Where the time goes
 
 Hello,
 
-Four of four independent cemetery conversations in the deathcare research named plot lookup as a pain (observation, n=4, 2026-04-01). Would a timed lookup at each site show where the time goes: the search, the sold record or the paper map?
+Your 2026 owner letter sets the 2027 move, and four of four independent cemetery conversations in the deathcare research named plot lookup as a pain (observation, n=4, 2026-04-01). Would a timed lookup at each site show where the time goes: the search, the sold record or the paper map?
 
-Email 4, breakup
+Email 4, Breakup
 Subject: Last note
 
 Hello,
 
 Your 2026 owner letter names the 2027 move, and I have not heard back, so I will stop here. If a plot lookup ran long on one site, who would you want to see it first?
 
-**Sequence check:** 5 personas x 4 emails = 20 emails. Each email is under 120 words, names no Illustrative proof point, and uses at most one Benchmark, which is cited with its source and date.
+**Sequence Check:** 5 personas x 4 emails = 20 emails, all held until a person clears the MANUAL REVIEW verdict. Each email is under 120 words, names no Illustrative proof point, and uses at most one Benchmark, which is cited with its source and date.
 
-- **Step 8, the intelligence appendix.** The top eight items, each tagged:
+- **Step 8, The Intelligence Appendix.** The top eight items, each tagged:
   1. One system across five sites in 2027. `[Public: company site, owner letter 2026]`
   2. Five sites: two cemeteries and three funeral homes. `[CRM]`
   3. Three funeral homes run pre-need counselors. `[CRM]`
   4. A pre-need intake form on the company website. `[Public: company website]` (illustrative)
   5. Social media ads send pre-need enquiries into one shared email. `[Public: company social media pages]` (illustrative)
   6. Both cemetery sites keep plot records in spreadsheets. `[Notes]` (illustrative)
-  7. The CFO approves budget, and the group reviews system spend twice a year `[CRM]` (illustrative). The 6 to 9 month cycle is the profile's Zone 3 LOW cell `[Inferred: profile Zone 3 LOW cell]`
+  7. The CFO approves budget. The group reviews system spend twice a year, so a decision takes 6 to 9 months `[CRM]`, illustrative. That is the Zone 3 LOW cell (profile: Qualification Zones)
   8. The first-call hook is 50 to 100 plots per cemetery site. `[Public: deathcare research, 2026-03-27 to 2026-04-01]` (a Benchmark, a hook and not a result)
 
   Research gaps, each a question for a call:
@@ -799,7 +811,7 @@ Your 2026 owner letter names the 2027 move, and I have not heard back, so I will
   2. Who in the family signs the 2027 plan, besides the CFO? `[Unknown]`
   3. Which state's records or trust filing applies to each cemetery site? `[Unknown]`
 
-- **Step 9, the summary, cheatsheet and hand-off.** The summary, as one numbered list:
+- **Step 9, The Summary, Cheatsheet And Hand-Off.** The summary, as one numbered list:
   1. Company: Saltmarsh Heritage Group, family owned `[CRM]`, five sites in the ICP3 Multi-Location Group segment, headquarters and revenue `[Unknown]`.
   2. Research type: Private Company, from an owner letter.
   3. Verdict and zones: MANUAL REVIEW. Zone 1 MEDIUM, Zone 2 HIGH, Zone 3 LOW, Zone 4 MEDIUM, Zone 5 HIGH. The reasons are the 2027 system plan (Zone 5), the pre-need motion (Zone 2) and the CFO gate with its 6 to 9 month cycle (Zone 3).
@@ -807,7 +819,7 @@ Your 2026 owner letter names the 2027 move, and I have not heard back, so I will
   5. CRM status: TARGET, no open deal, no AE owner. The only named contact is Hector Ruiz, CFO.
   6. Geographic exposure: state `[Unknown]`, so no region tier yet.
   7. Relevance window: not applicable to a private company.
-  8. Sequences: 5 personas x 4 emails = 20 emails.
+  8. Sequences: 5 personas x 4 emails = 20 emails, held until a person clears the MANUAL REVIEW verdict.
   9. Personalized contacts: Hector Ruiz, the one named person, receives the personalized Email 1.
   10. Strongest entry point: the CFO's Email 1, which ties the owner letter to the one-system plan.
   11. User role: BDR, Nadia Brandt.
@@ -824,9 +836,9 @@ Your 2026 owner letter names the 2027 move, and I have not heard back, so I will
   7. **Objection Handling:** "Our current system works." Reply: "Which records would you check first if a state review came back tomorrow?" "Staff won't adopt." Reply: "What happened the last time a new tool came into the office?" "Data migration is risky." Reply: "What would make the move safe enough to start?"
   8. **Call Flow:** (1) Open: "Hi [name], this is [rep] from PlotIQ. Your 2026 owner letter says all five sites move to one system in 2027. Do you have 30 seconds?" (2) Pain validation: "How do you check which plots are sold and which are open today?" (3) Impact: "What does a lookup cost you, in time or in families waiting?" (4) Bridge: "PlotIQ keeps plot and trust records in a form a state auditor can accept." (5) Ask: "Would 20 minutes next week map which records and leads move first?"
 
-- **Hand-off and next action.** Shown in the hand-off block below.
+- **Hand-Off And Next Action.** Shown in the hand-off block below.
 
-**Output:** Intelligence profile with tags. Five-part point of view brief built on the single-system plan. Twenty persona emails, all shown in Step 7. Verdict MANUAL REVIEW.
+**Output:** Intelligence profile with tags. Five-part point of view brief built on the single-system plan. Twenty held persona emails, all shown in Step 7. Verdict MANUAL REVIEW.
 
 ```text
 Hand-off (read by 06):
@@ -835,12 +847,12 @@ run_date: 2026-10-19
 pov_brief: POV statement, one system across five sites in 2027 as a records project first, verdict MANUAL REVIEW stated
 signal_map: six rows, each tagged and placed in a zone (table above)
 wedge: 2 cemetery sites x 50 to 100 plots = 100 to 200 plots to check (Benchmark, not a result). 5 sites x $10,788 = $53,940 a year at list, plus $5,000 setup once. Plot price unknown, so no payback figure
-persona_emails: 20 (5 personas x 4 steps), all shown in Step 7
+persona_emails: 20 (5 personas x 4 steps), held until a person clears MANUAL REVIEW, all shown in Step 7
 verdict: MANUAL REVIEW
 zone_scores: 1 MEDIUM, 2 HIGH, 3 LOW, 4 MEDIUM, 5 HIGH
 account_status: TARGET
 report_path: none (inline)
-next_action: Nadia Brandt reads the 20 drafts and sends Email 1 to Hector Ruiz by 2026-10-26
+next_action: a person clears the MANUAL REVIEW verdict, then Nadia Brandt reads the 20 held drafts and sends Email 1 to Hector Ruiz, on or after that clearance and by 2026-10-26
 ```
 
 ### Example 2: Active Deal Guard (Brackhaven Memorial Gardens)
@@ -849,11 +861,11 @@ next_action: Nadia Brandt reads the 20 drafts and sends Email 1 to Hector Ruiz b
 
 **Input:** "Build a research outbound package for Brackhaven Memorial Gardens."
 
-**Step 0: Role detection.** The user is a BDR.
+**Step 0: Role Detection.** The user is a BDR.
 
 **Step 1b: The guard fires.** "Active deal owned by Owen Pruitt (AE) at Stage 5 Negotiate. Share this analysis with Owen. Do not send sequences independently. This skill writes no POV brief and no sequences for a BDR on this account."
 
-**Intelligence for Owen, not for outbound:**
+**Intelligence For Owen, Not For Outbound:**
 
 - Two sites, 11,000 plots, paper plot maps `[CRM]`
 - One double sale in the last 24 months `[CRM]` (illustrative)
@@ -862,7 +874,7 @@ next_action: Nadia Brandt reads the 20 drafts and sends Email 1 to Hector Ruiz b
 - The owner retires within 3 years `[Public: company website, owner bio, 2026]` (illustrative)
 - Ruth Ellery, GM, is the champion `[Call, 2026-09-26]`. Walt Okonkwo, Operations Director, is skeptical of tablets `[Call, 2026-09-21]`
 
-**Zones shown beside the verdict:** 1 HIGH, 2 MEDIUM, 3 MEDIUM, 4 MEDIUM, 5 HIGH. **GREENLIGHT**, because two zones are HIGH and no must-have zone is LOW. Zone 3 stays MEDIUM because the GM recommends and the board approves, which is the profile's MEDIUM cell as written, even though the family board meets within 60 days (2026-11-12). Year one with setup, $26,576, is above the $25K board line.
+**Zones Shown Beside The Verdict:** 1 HIGH, 2 MEDIUM, 3 MEDIUM, 4 MEDIUM, 5 HIGH. **GREENLIGHT**, because two zones are HIGH and no must-have zone is LOW. Zone 3 stays MEDIUM because the GM recommends and the board approves, which is the MEDIUM cell as written (profile: Qualification Zones), even though the family board meets within 60 days (2026-11-12). Year one with setup, $26,576, is above the $25K board line (profile: Qualification Zones).
 
 **Output:** A coordination note for Owen. The March 2027 Oldgate renewal is the timing hook. Owen should lead it, because BDR outreach to a deal in Negotiate would cross Owen's conversation with Ruth Ellery. No sequences are written.
 
@@ -889,20 +901,20 @@ next_action: Nadia Brandt sends the coordination note to Owen Pruitt by 2026-10-
 
 **Process:**
 
-- **Step 2, the sourced profile:** 4,200 plots, paper plat maps and one binder per section `[CRM]`. Two double sales in 2 years `[CRM]` (illustrative). No owner letter, filing or news found `[Unknown]`. The signer is `[Unknown]`.
+- **Step 2, The Sourced Profile:** 4,200 plots, paper plat maps and one binder per section `[CRM]`. Two double sales in 2 years `[CRM]` (illustrative). No owner letter, filing or news found `[Unknown]`. The signer is `[Unknown]`.
 - **Step 3, the zones:**
 
 | Zone | Score | Basis |
 |---|---|---|
 | 1 Records and Inventory Pain | HIGH | Paper plat maps, one binder per section, two double sales in 2 years `[CRM]` (illustrative) |
-| 2 Pre-Need Sales Motion | LOW | No pre-need sales on the record `[CRM]` (illustrative), which is the profile's LOW cell. A web search on 2026-10-19 also found no intake form, which agrees with it |
-| 3 Ownership and Decision Speed | MEDIUM | The GM recommends and the board approves above $25K, and the next board meeting is 2027-02-10, which is 114 days after the run date `[CRM]` (illustrative). Both conditions of the profile's MEDIUM cell are met. The signer is `[Unknown]`, so the first research action names who signs |
-| 4 Technology Readiness | LOW | A web search on 2026-10-19 found no website `[Public: web search, 2026-10-19]` (illustrative). No website is one of the profile's LOW conditions. This is a checked absence, named so a reader can repeat it, and a site visit or a call can overturn it |
-| 5 Growth or Succession | MEDIUM | One growth project: a new plot section planned for 2027 `[CRM]` (illustrative). That is the profile's MEDIUM cell, stable with one growth project |
+| 2 Pre-Need Sales Motion | LOW | No pre-need sales on the record `[CRM]` (illustrative), which is the LOW cell (profile: Qualification Zones). A web search on 2026-10-19 also found no intake form, which agrees with it |
+| 3 Ownership and Decision Speed | MEDIUM | The GM recommends and the board approves above $25K, and the next board meeting is 2027-02-10, which is 114 days after the run date `[CRM]` (illustrative). Both conditions of the MEDIUM cell (profile: Qualification Zones) are met. The signer is `[Unknown]`, so the first research action names who signs |
+| 4 Technology Readiness | LOW | A web search on 2026-10-19 found no website `[Public: web search, 2026-10-19]` (illustrative). No website is one of the LOW conditions (profile: Qualification Zones). This is a checked absence, named so a reader can repeat it, and a site visit or a call can overturn it |
+| 5 Growth or Succession | MEDIUM | One growth project: a new plot section planned for 2027 `[CRM]` (illustrative). That is the MEDIUM cell (profile: Qualification Zones), stable with one growth project |
 
 **Verdict: MANUAL REVIEW.** One zone is HIGH, and no must-have zone is LOW enough to disqualify, but one HIGH zone does not reach GREENLIGHT. Do not write a point of view brief from one strong fact.
 
-**Gate:** Insufficient Intelligence Fallback. The output has no point of view brief, no signal map and no sequences, so it has 0 emails.
+**Gate:** Insufficient Intelligence Fallback. The output has no point of view brief, no signal map and no sequences, so it has 0 emails. No held package is written here either, because the gate stops before Step 7. Held drafts appear only after the research actions close the gap.
 
 **Output:** What the sources show, and three research actions: find the signer (Zone 3), confirm the pre-need sales (Zone 2), and check what staff use day to day (Zone 4). Recommend `gtm-account-snapshot` as the faster route to a usable profile.
 
@@ -921,7 +933,7 @@ report_path: none (inline)
 next_action: Nadia Brandt runs gtm-account-snapshot on Tamsin Vale by 2026-10-26 to find the signer
 ```
 
-### Example 4: Filing Check Ends in DISQUALIFY (Northvale Memorial Holdings)
+### Example 4: Filing Check Ends In DISQUALIFY (Northvale Memorial Holdings)
 
 **Context:** A rep asks for a research outbound package on Northvale Memorial Holdings, a public consolidator with about 240 funeral homes and 90 cemeteries. Its annual filing says it runs its own in-house system `[Public: annual filing]`. The status is OUT, not LOST. OUT means the profile has disqualified the account. A LOST status would mean a closed loss, and there is no loss record here.
 
@@ -929,8 +941,8 @@ next_action: Nadia Brandt runs gtm-account-snapshot on Tamsin Vale by 2026-10-26
 
 **Process:**
 
-- **Step 0 and 1:** The user is the rep, who has asked for the package. Status OUT, so the guard does not apply. No AE owns the account.
-- **Step 2, the filing (10-K Filing mode):**
+- **Step 0 And 1:** The user is the rep, who has asked for the package. Status OUT, so the guard does not apply. No AE owns the account.
+- **Step 2, The Filing (10-K Filing Mode):**
   - Public consolidator, about 240 funeral homes and 90 cemeteries `[Public: annual filing]`
   - Runs its own in-house system `[Public: annual filing]`
   - Quoted passage (illustrative, not a quote from a real filing): "All of our funeral homes and cemeteries run on one in-house records platform that we build and maintain." `[Public: annual filing]` (illustrative)
@@ -948,9 +960,9 @@ next_action: Nadia Brandt runs gtm-account-snapshot on Tamsin Vale by 2026-10-26
 
 The zones the filing does not speak to are not scored. A blank is unknown, not a no, and the verdict does not need them.
 
-**DISQUALIFY.** The profile's disqualifiers include public or PE-backed consolidators that run their own system. This account is one.
+**DISQUALIFY.** The disqualifiers (profile: Qualification Criteria) include public or PE-backed consolidators that run their own system. This account is one.
 
-- **Steps 4 to 7:** No signal map, no wedge and no sequences. A disqualified account gets no wedge and 0 emails. The point of the disqualifier is that the company already runs the system PlotIQ would sell into.
+- **Steps 4 To 7:** No signal map, no wedge and no sequences. A disqualified account gets no wedge and 0 emails. The point of the disqualifier is that the company already runs the system PlotIQ would sell into.
 - **Step 8:** Research gaps: none that would change the verdict.
 
 **Output:** A plain verdict for the rep: DISQUALIFY, with its disqualifier named and its filing source tagged. The rep is told the reason in one sentence, and no outreach is drafted.
@@ -974,7 +986,7 @@ next_action: the rep is told the verdict and its disqualifier by 2026-10-26, and
 
 ## Common Patterns
 
-### Pattern: 10-K vs. Earnings Selection
+### Pattern: 10-K Vs. Earnings Selection
 
 **When:** A public company has both an annual filing and a recent earnings call.
 **Approach:** Use the earnings call for time-sensitive outbound, where the window is 7 to 14 days. Use the filing for deeper strategic outbound, where the relevance lasts months. Both can run on the same company at different times.
@@ -998,37 +1010,37 @@ next_action: the rep is told the verdict and its disqualifier by 2026-10-26, and
 
 ## Troubleshooting
 
-### "The 10-K content is too long to process"
+### "The 10-K Content Is Too Long To Process"
 
 **Symptom:** The filing is too large to read in one pass.
 **Likely cause:** The whole document was pasted.
 **Response:** Work the required sections only: Items 1, 1A, 7 and 9A. These carry most of the relevant intelligence. Skip the financial statement tables, and say in the summary that they were skipped.
 
-### "The earnings call transcript is not available yet"
+### "The Earnings Call Transcript Is Not Available Yet"
 
 **Symptom:** The transcript has not been published.
 **Likely cause:** The call is recent, or the company does not publish transcripts.
 **Response:** Use the earnings press release as the substitute. It carries the key metrics but not the analyst questions. Tag it `[Public: earnings press release, date]`, and note the reduced depth at the top of the output.
 
-### "The private company has almost no public information"
+### "The Private Company Has Almost No Public Information"
 
 **Symptom:** Step 2 finds only one or two tagged facts.
 **Likely cause:** The company is small, new, or has no press presence.
 **Response:** Classify it as MANUAL REVIEW only if at least one zone is scored HIGH. Otherwise say "Insufficient data" and list the research gaps. Recommend the routes that do exist: a licensing record search, a job posting review, and the company's own staff pages.
 
-### "The revenue estimation methods give conflicting results"
+### "The Revenue Estimation Methods Give Conflicting Results"
 
 **Symptom:** The employee benchmark and the branch proxy give different figures.
 **Likely cause:** The rates come from different sources, or the company's footprint does not match its headcount.
 **Response:** Report the range from each method and name the spread. Tag each figure with its method. Do not average them into a single number.
 
-### "A zone cannot be scored"
+### "A Zone Cannot Be Scored"
 
 **Symptom:** The sources do not say anything about a zone.
 **Likely cause:** The source is narrow, such as a single filing that covers only financial matters.
 **Response:** Mark the zone `[Unknown]`. Never score it LOW from silence. Name the source that would settle it as a research action.
 
-### "The account is ACTIVE with an AE owner"
+### "The Account Is ACTIVE With An AE Owner"
 
 **Symptom:** The user is a BDR and the account has an open deal.
 **Likely cause:** The account is in a late stage, and the BDR was not aware of the AE's work.
@@ -1049,16 +1061,16 @@ next_action: the rep is told the verdict and its disqualifier by 2026-10-26, and
 
 ## Integration With Other Skills
 
-- **Reads from `gtm-account-snapshot` (02), by these names:**
-  - `account_status`: an ACTIVE status with an AE owner triggers the guard
+- **Reads From `gtm-account-snapshot` (02), By These Names:**
+  - `account_status`: an ACTIVE status with an AE owner triggers the guard, and an ENGAGED status turns the replying persona's sequence into one reply draft (Step 1b)
   - `verdict`: a DISQUALIFY from 02 is confirmed here, not assumed, before research starts
   - `contact_priority`: the ranked personas and names to write to first
   - `pain_hypotheses`: each one is tagged. Only a claim tagged `[Public: source]` or `[CRM]` may be the claim in an email. An `[Inferred]` hypothesis is not used as a claim
   - `sequence`: 02's sequence is not repeated. This skill's sequences add the source-based anchors that 02 did not have
 - **Account Qualification (01)** runs before 02. Its verdict reaches this skill through 02's `verdict` field, so nothing is read from 01 directly.
-- **Hands to `gtm-meeting-prep` (06), by these names:** `pov_brief`, `signal_map`, `wedge` (with its arithmetic shown) and `persona_emails`. Meeting prep reads them to start the first call from the same facts.
-- **Hands to Wrap-Up:** `report_path` when a file was written, the `verdict` and `zone_scores` as the session's result, and `next_action` with its owner and date.
-- **Shared profile section:** Trigger Event Outbound (04) and Closed-Loss Reactivation (05) read the same Industry Context section. This skill hands them no fields.
+- **Hands To `gtm-meeting-prep` (06), By These Names:** `pov_brief`, `signal_map`, `wedge` (with its arithmetic shown) and `persona_emails`. Meeting prep reads them to start the first call from the same facts.
+- **Hands To Wrap-Up:** `report_path` when a file was written, the `verdict` and `zone_scores` as the session's result, and `next_action` with its owner and date.
+- **Shared Profile Section:** Trigger Event Outbound (04) and Closed-Loss Reactivation (05) read the same Industry Context section. This skill hands them no fields.
 - **Routes to:** `gtm-competitive-displacement` (12) when a specific incumbent is named in the source, `gtm-trigger-event-outbound` (04) when the source carries a dated event, and `gtm-deal-pulse` (08) once an opportunity exists.
 
 ### Chains
@@ -1069,6 +1081,15 @@ next_action: the rep is told the verdict and its disqualifier by 2026-10-26, and
 
 ## Changelog
 
+
+### 2.1.8 (2026-10-26)
+- Every profile citation is written (profile: Section), naming the real section. Template placeholders and the shared contract are unchanged.
+- A MANUAL REVIEW sequence is a held package: its first line is marked Held, nothing in it goes out before a person clears the verdict, and Hard Rule 11 says so. Account Snapshot (02) holds its MANUAL REVIEW sets the same way.
+- ENGAGED is one of six statuses. Step 1b gives an ENGAGED account one reply draft to its open thread for the replying persona, not a cold sequence, and Hard Rule 12, the Quality Bar and the Integration section follow it.
+- The trigger leads every persona's sequence. The first line of each email names the trigger source, and every one of Example 1's twenty emails now opens on the owner letter.
+- Example 1 restores the Saltmarsh decision-cycle fact, in the words the records hold: the group reviews system spend twice a year, so a decision takes 6 to 9 months [CRM], illustrative. Saltmarsh stays Zone 3 LOW and MANUAL REVIEW, and its 20 emails are held.
+- Example 3 stays at 0 emails. Its fallback gate stops before Step 7, so there is no sequence to hold until the research actions close the gap.
+- Headings and labels are capitalized word by word.
 
 ### 2.1.7 (2026-10-26)
 - The count rule is one rule. Every applicable persona gets a sequence, and the persona count comes from the profile and the account. The trigger row sets the order and the lead, and it does not remove a persona. The rule text no longer carries a worked count.

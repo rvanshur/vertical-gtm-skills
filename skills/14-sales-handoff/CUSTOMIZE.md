@@ -48,7 +48,7 @@ Start with question 1.
 
 ---
 
-## What You Should Expect to Happen
+## What You Should Expect To Happen
 
 **Question 1 stalls** when rocky onboardings never got a post-mortem. The implementation team remembers them as war stories, not as patterns. **Question 2 is where most profiles stop.** A typical duration needs completed deals, and a team with none should leave it as RECORD rather than estimate it. **Question 7 needs the implementation team to be asked directly.** The answer usually arrives quickly, because they have been saying it to each other for a long time.
 

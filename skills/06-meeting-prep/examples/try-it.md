@@ -36,7 +36,7 @@ The People
 Upstream From Account Snapshot, Run Earlier
 - account_status: TARGET (then)
 - verdict: GREENLIGHT
-- contact_priority: Ruth Ellery first, Walt Okonkwo second [Inferred] (persona order in the profile's Buyer Personas)
+- contact_priority: Ruth Ellery first, Walt Okonkwo second [Inferred] (profile: Buyer Personas)
 - pain_hypotheses: plot records on paper across two sites (HIGH, [CRM], [Inferred] from the record type), and the Oldgate renewal in March 2027 (MEDIUM, [CRM], [Inferred] from the contract date)
 - sequence: three emails to Ruth Ellery, with call prep, drafted and not sent (illustrative)
 
@@ -48,5 +48,5 @@ The lines below are the checked ones. The full sheet also holds the call flow, t
 - Top pain: plot records on paper, with a double sale [CRM] (illustrative).
 - Question bank: Situation 3, Problem 3, Implication 3 (top three each), Need-Payoff 2.
 - Qualification pre-fill: Metrics red. Economic buyer yellow. Decision criteria red. Decision process red. Identified pain yellow. Champion red.
-- Proof for the attendees, one per persona, each marked "do not cite": Ruth Ellery (General Manager): Holloway Hills, Status Illustrative, with the research target beside it: 50 to 100 plots sold on paper and unsold on the map (Benchmark, deathcare research, paper-operations note, 2026-04-01). Walt Okonkwo (Operations Director): Holloway Hills, Status Illustrative, with the research target beside it: a plot answer in 20 seconds (profile target, research, not a customer result).
+- Proof for the attendees, one per persona, each marked "do not cite": Ruth Ellery (General Manager): Holloway Hills, Status Illustrative, with the research target beside it: 50 to 100 plots sold on paper and unsold on the map (Benchmark, deathcare research, paper-operations note, 2026-04-01). Walt Okonkwo (Operations Director): Holloway Hills, Status Illustrative, with the research target beside it: a plot answer in 20 seconds (a research target from (profile: Value Propositions), not a customer result).
 - Next action: Owen Pruitt asks Ruth Ellery who signs above her, and for the next meeting date, on this call. Date: 2026-05-12 (illustrative), the call date on record, which is earlier than the five-business-day date of 2026-05-18 for a 2026-05-11 run. The meeting date is [Unknown] until agreed.

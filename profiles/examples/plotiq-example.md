@@ -413,7 +413,7 @@ PlotIQ has no won-away customers yet. Every figure below is illustrative or a re
 ## Call Coaching
 
 - **Discovery category names:** Defaults (illustrative). Pre-Call Preparation, SPIN Discovery Quality, Priority Ladder Execution, Active Listening, Value Articulation, Next Steps and Momentum, Alternatives. PlotIQ has no graded calls to name them from yet, so the defaults stand.
-- **Demo category names:** Defaults (illustrative). Meeting Opening, Meeting Closing, Teach and Tailor, Pain Alignment and Proof, Question the Problem, Pain-to-Workflow Mapping, Prospect Engagement, Resistance Handling.
+- **Demo category names:** Defaults (illustrative). Meeting Opening, Meeting Closing, Teach and Tailor, Pain Alignment and Proof, Question The Problem, Pain-To-Workflow Mapping, Prospect Engagement, Resistance Handling.
 - **Demo element names:** Defaults (illustrative). Introduction, Problem Restatement, Solution, Return on Investment, Next Steps. Questions run through the solution and the return on investment.
 - **Pacing overrides:** [RECORD]. No PlotIQ demo has been graded, so the starting defaults apply (40% to 50% for the solution, 15% to 20% for return on investment and for questions, 5% to 10% for the other three elements). Replace them with PlotIQ's own shares once ten won calls exist, as the Sales Methodology section asks.
 - **Extra listen-for phrases:** None beyond Core Pain Points. The "What to Listen For" column carries the phrases (illustrative until calls are heard).

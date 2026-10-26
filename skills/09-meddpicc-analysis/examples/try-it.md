@@ -6,26 +6,26 @@ Every name, date and number in this file is invented for the PlotIQ example. Not
 "Run MEDDPICC Analysis on Brackhaven Memorial Gardens using skills/09-meddpicc-analysis/examples/try-it.md and the PlotIQ profile at profiles/examples/plotiq-example.md"
 
 ## The Records
-- Run date: 2026-09-28. Brackhaven Memorial Gardens is a combination of two sites with 11,000 plots `[CRM]`.
+- Run Date: 2026-09-28. Brackhaven Memorial Gardens is a combination of two sites with 11,000 plots `[CRM]`.
 - AE: Owen Pruitt (illustrative assignment).
 - Stage: ACTIVE at Stage 5 Negotiate since 2026-09-09. Day 19 in stage on the run date.
-- Amount: $21,576 a year at list, which is two sites at the $10,788 list price `[Notes]`, plus the $5,000 setup once `[Notes]`.
-- Close date: 2026-11-12, the family board meeting [CRM]. No change to the close date on record since it was set [CRM].
+- Amount: $21,576 a year at list, which is two sites at the $10,788 list price (profile: Product Modules), plus the $5,000 setup once (profile: Product Modules).
+- Close Date: 2026-11-12, the family board meeting [CRM]. No change to the close date on record since it was set [CRM].
 - Champion: GM Ruth Ellery. Economic buyer: the family board chair, name [Unknown], who joined one call in Stage 4 Proposal.
 - Deal Pulse (08) run on 2026-09-28: health 72, Medium Risk. This is an upstream output read by field name, not evidence for any element.
-- Pain: one double sale in 24 months [CRM] (illustrative). Trust fund reporting done by hand [Call, 2026-09-26]. Ruth, on the 2026-09-26 call, in her own words: "Each double sale costs my staff about 40 hours to unwind." [Call, 2026-09-26] (illustrative). She named the March 2027 Oldgate renewal as the deadline behind the 2026-11-12 board date [Call, 2026-09-26] (illustrative). Zone 1 facts: plot records on paper, and one double sale in 24 months `[CRM]`, read against the profile's Zone 1 row `[Notes]`.
-- Second stakeholder pain: Walt Okonkwo, Operations Director, on the 2026-09-17 call: "A double-sale search costs me half a day, and I run about two lookups a week" [Call, 2026-09-17] (illustrative).
+- Pain: one double sale in 24 months [CRM] (illustrative). Trust fund reporting done by hand [Call, 2026-09-26]. Ruth, on the 2026-09-26 call, in her own words: "Each double sale costs my staff about 40 hours to unwind." [Call, 2026-09-26] (illustrative). She named the March 2027 Oldgate renewal as the deadline behind the 2026-11-12 board date [Call, 2026-09-26] (illustrative). Zone 1 facts: plot records on paper, and one double sale in 24 months `[CRM]`, read against the Zone 1 row (profile: Qualification Zones).
+- Second Stakeholder Pain: Walt Okonkwo, Operations Director, on the 2026-09-17 call: "A double-sale search costs me half a day, and I run about two lookups a week" [Call, 2026-09-17] (illustrative).
 - Metrics: Ruth gave the plot count, 11,000 `[CRM]`. On the 2026-09-26 call she gave her own current-state number: the trust fund report takes her office about 30 hours each year, built by hand from the ledger [Call, 2026-09-26] (illustrative). The ROI framework was shared, not yet agreed [Call, 2026-09-26].
-- Economic buyer: identified by title. Direct access was established on one call [CRM]. Budget was discussed, not confirmed [Call, 2026-09-26].
-- Decision criteria: must-haves are known from discovery, and the deal maps to them strongly [Call, 2026-05-19]. The pre-need module is a nice-to-have [Call, 2026-09-26].
-- Decision process: committee mapped as board, GM and Operations Director [CRM]. The board meets 2026-11-12 [CRM]. The approval sequence is partly confirmed [Notes].
-- Paper process: aware that legal and vendor review exists [Notes]. Steps and timing are not scoped [Unknown].
+- Economic Buyer: identified by title. Direct access was established on one call [CRM]. Budget was discussed, not confirmed [Call, 2026-09-26].
+- Decision Criteria: must-haves are known from discovery, and the deal maps to them strongly [Call, 2026-05-19]. The pre-need module is a nice-to-have [Call, 2026-09-26].
+- Decision Process: committee mapped as board, GM and Operations Director [CRM]. The board meets 2026-11-12 [CRM]. The approval sequence is partly confirmed [Notes].
+- Paper Process: aware that legal and vendor review exists (profile: MEDDPICC). Steps and timing are not scoped [Unknown].
 - Champion: Ruth Ellery has four of seven shared champion tests met, each tagged with its source and date: she offers introductions to the board chair [Call, 2026-09-26]; she commits to the 2026-11-12 board date with a dated next step [Call, 2026-09-26]; she explains the internal politics, saying the chair decides after the family's vote [Call, 2026-09-26]; and she defends the solution when we are not in the room, having briefed the board chair on the records fix and forwarded the ledger comparison [CRM, 2026-09-25]. She also coached us on Walt Okonkwo's objection to tablets [Call, 2026-09-26] (illustrative).
 - Competition: Oldgate Ledger Pro is the incumbent, direct software, with renewal in March 2027 [CRM]. Stonemark was evaluated with no preference stated [Call, 2026-09-26]. A strategy exists and is not yet tested with the buyer [Notes].
 
 ## What You Should Get
 - Health 84, scored 8 of 8, GREEN (4.20 ÷ 5 × 100 = 84).
-- Element scores: Metrics 4, Economic Buyer 4, Decision Criteria 4, Decision Process 4, Paper Process 3, Identified Pain 5, Champion 5, Competition 4.
-- Stage check: the Stage 5 Negotiate minimum of 70 is met. The Stage 6 Closed-Won and Handoff minimum of 75 is met on health but not on the critical elements, because Paper Process is 3 and needs 4.
-- Stage recommendation: HOLD at Stage 5 Negotiate, checked 2026-10-05. The top risk is Paper Process at 3.
-- Next action: Owen Pruitt asks Ruth Ellery to walk through the legal and vendor steps by 2026-10-05, five business days after the run date of 2026-09-28, with no earlier record date.
+- Element Scores: Metrics 4, Economic Buyer 4, Decision Criteria 4, Decision Process 4, Paper Process 3, Identified Pain 5, Champion 5, Competition 4.
+- Stage Check: the Stage 5 Negotiate minimum of 70 is met. The Stage 6 Closed-Won and Handoff minimum of 75 is met on health but not on the critical elements, because Paper Process is 3 and needs 4.
+- Stage Recommendation: HOLD at Stage 5 Negotiate, checked 2026-10-05. The top risk is Paper Process at 3.
+- Next Action: Owen Pruitt asks Ruth Ellery to walk through the legal and vendor steps by 2026-10-05, five business days after the run date of 2026-09-28, with no earlier record date.

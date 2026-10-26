@@ -2,7 +2,7 @@
 
 Every name, date and number in this file is invented for the PlotIQ example. Nothing here is a real company.
 
-These records are as of 2026-05-12, before Brackhaven's deal reached Stage 5 Negotiate; the profile's Example Cast shows where the account stands later.
+These records are as of 2026-05-12, before Brackhaven's deal reached Stage 5 Negotiate. Where the account stands later, see (profile: Example Cast).
 
 ## Ask Your Assistant
 "Run Call Coaching on Brackhaven Memorial Gardens using skills/13-call-coaching/examples/try-it.md and the PlotIQ profile at profiles/examples/plotiq-example.md" Treat today as 2026-05-12.
@@ -13,7 +13,7 @@ These records are as of 2026-05-12, before Brackhaven's deal reached Stage 5 Neg
 - Attendees: Ruth Ellery, General Manager, buyer [CRM]. Walt Okonkwo, Operations Director, influencer [CRM].
 - Prep sheet: the top pain is plot records on paper [Notes]. A double sale is on file in the CRM [CRM].
 - Prep sheet question_bank [Notes] (illustrative): "When a family asks for a plot, where do you look first, and how long does that take?" and "How many plots could you sell today if the records were right?"
-- Prep sheet proof_point [Notes]: the Benchmark that most cemeteries your size carry 50 to 100 plots sold on paper and unsold on the map (deathcare research, 2026-03-27 to 2026-04-01). The Holloway Hills proof point is Illustrative.
+- Prep sheet proof_point [Notes]: the Benchmark that most cemeteries your size carry 50 to 100 plots sold on paper and unsold on the map `[Public: deathcare research, 2026-03-27 to 2026-04-01]` (profile: Proof Points). The Holloway Hills proof point is Illustrative (profile: Proof Points).
 - Source: a speaker-labelled transcript, checked end to end for silence and talk share. The excerpts below are the lines the score rests on, each verbatim with its transcript time. No pause after any answer ran past two seconds [Call, 2026-05-12] (illustrative).
 - Rep talk time: 36% (illustrative) [Call, 2026-05-12].
 - 00:40, Owen: "Ruth, Walt, thanks for the time." [Call, 2026-05-12]

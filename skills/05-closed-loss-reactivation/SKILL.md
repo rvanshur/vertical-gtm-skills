@@ -1,6 +1,6 @@
 ---
 name: gtm-closed-loss-reactivation
-version: 2.1.7
+version: 2.1.8
 description: "Re-engages closed-lost accounts from the CRM history. Checks the recorded loss reason against the evidence, finds what has changed since the deal died, re-scores fit, and returns REACTIVATE, MONITOR or RETIRE with a history-aware opener for the BDR or AE who owns the next step."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: []
 mutating: read-write
 change_log:
+  - version: 2.1.8
+    date: 2026-10-26
+    summary: "Profile facts are cited (profile: Section), in place of the older profile forms. ENGAGED is now a branch: an account that replied or met with us after the close, with no open deal, gets no cold reactivation sequence or opener. Steps 5 to 7 are skipped for it and Account Snapshot (02) works the reply. The Step 1 status rule, the Quick Reference and the Quality Bar name the case. The try-it beta fact cites the Company section, and Example 3 states that Quill Hollow had no reply on record on its run date, so it stays TARGET. No verdict, score, date or next action changes."
   - version: 2.1.7
     date: 2026-10-26
     summary: "Round 7 scrub and fix. The two Example pointers in the rule text are reworded. The board-date sub-reason is written only when the record shows a board date that passed without a decision, and the try-it promise follows that rule. The next step to the original AE asks for the loss notes and the anchor of a held window, not the optional deal value. Four first-run questions are settled in one sentence each: primary category against the competitor play, held contact, which window times contact, and weekend window dates. A departed contact is not written to. The try-it deal record states its qualification fields as recorded fields, not as analysis."
@@ -151,7 +154,7 @@ When the profile has a `## Knowledge Base` section, which Context OS Setup write
 
 When the assistant is connected to the CRM or to a call recorder, the skill offers to read the records the user points at (one account, one deal, the calls in a date range), asks before it reads, and tags each pulled fact `[CRM]` or `[Call]` with its date. It reads only. It never searches records nobody named and never writes back. Without a connector, pasting the same records works the same way.
 
-#### Account Status, Five Words
+#### Account Status, Six Words
 
 Every account carries one status: **TARGET** (researched, no two-way contact yet, though outreach may have gone out with no reply), **ENGAGED** (two-way contact: the account replied or met with us, and no deal is open), **INBOUND** (they asked us first, and no deal is open yet, which stays INBOUND until a deal opens or the account goes OUT), **ACTIVE** with its stage number (open deal), **LOST** (closed-lost, eligible for reactivation), **OUT** (disqualified). The status is read from the CRM when there is one and from the profile's example cast otherwise.
 
@@ -304,6 +307,7 @@ Each pain-surfacing question is a draft. Check it against the AE's loss notes be
 **Don't use when:**
 - The account is net-new. Use Account Snapshot (02) or Research Outbound (03)
 - The account is an active deal. Use Deal Pulse (08)
+- The account replied or met with us after the close and no deal is open (ENGAGED). Use Account Snapshot (02) on the reply
 - A trigger event is the primary angle. Use Trigger Event Outbound (04) first, and reference the loss history as context
 
 An account marked OUT is a special case. It has no loss to classify, so the skill records the disqualifier and returns RETIRE, with no sequence.
@@ -340,6 +344,7 @@ Check the status first. It is one of the five status words in the Shared Contrac
 - **ACTIVE:** stop. Name the AE owner and give the BDR guard as the reason. Write no opener.
 - **OUT:** skip to Step 4. There is no loss to classify, so the disqualifier on file is the reason.
 - **TARGET or INBOUND:** this skill does not apply. Use Account Snapshot (02).
+- **ENGAGED:** the account replied or met with us after the close, and no deal is open. Steps 2 to 4 still run, because the rep needs the loss history and the fit re-score, but no cold reactivation is written. Steps 5 to 7 are skipped, and the account goes to Account Snapshot (02), which works the buyer's own reply. A buyer who has already written back should be answered on that message, not sent a reactivation sequence.
 
 Checking the status first stops the skill from classifying a loss that never happened, and from writing to an account that two people are already working.
 
@@ -451,7 +456,7 @@ Assess the timing as too soon, right time or overdue. Check it against two windo
 
 ### Step 6: Generate Reactivation Sequences
 
-Write a four-step email sequence for each of the top two or three personas in `{Client Profile: Buyer Personas}`. Each sequence needs a contact with a name from the CRM or the notes. Without a name, write no sequence and say why, because Email 1 cannot reference the relationship without one. The persona count comes from the profile, so the total is personas times four.
+Write a four-step email sequence for each of the top two or three personas in `{Client Profile: Buyer Personas}`. Each sequence needs a contact with a name from the CRM or the notes. Without a name, write no sequence and say why, because Email 1 cannot reference the relationship without one. The persona count comes from (profile: Buyer Personas), so the total is personas times four. An ENGAGED account gets no sequence (Step 1), because its buyer has already answered.
 
 Reactivation differs from cold outreach in three ways:
 1. **Acknowledge the history.** Never pretend the prior deal did not happen.
@@ -496,6 +501,8 @@ If the rival's row has no sourced pain, leave the proof blank and say so. Then c
 ---
 
 ### Step 7: Build Reactivation Call Prep
+
+For an ENGAGED account (Step 1), write no reactivation opener. The rep answers the buyer's reply, and Account Snapshot (02) builds that conversation.
 
 #### Reactivation Opener (30 seconds)
 **Structure: Acknowledge → Reference → Bridge** (not the standard cold call opener)
@@ -588,6 +595,7 @@ Write a file only when the user asks for one. When they do, the file is the one-
 **Done when all are true:**
 
 - [ ] The status was read first. The account is LOST, or it is OUT and was returned as RETIRE with its disqualifier recorded
+- [ ] An ENGAGED account was routed to Account Snapshot (02) on its reply, with no reactivation sequence or opener written
 - [ ] Deal history was pulled from the CRM, and every blank field is written as `[Unknown]`
 - [ ] The loss reason is classified, each supporting fact is tagged, and the question for the AE's notes is stated
 - [ ] The change assessment covers at least two of the three dimensions (account, product, market), and each change is tagged
@@ -608,7 +616,7 @@ The examples use the PlotIQ example company and its cast, and they match the sha
 
 ### Example 1: The Loss Reason Is a Claim, MONITOR (Lowmoor Memorial Gardens)
 
-**Context:** Lowmoor Memorial Gardens is one site with 7,500 plots. It closed-lost to Oldgate Ledger Pro on 2026-01-20. The CRM reason is "timing" `[CRM]`. The general manager, Ines Carmody, was the champion. She moved to Quill Hollow Memorial Park in April 2026, six months ago `[Public: state licensing database]`.
+**Context:** Lowmoor Memorial Gardens is one site with 7,500 plots (profile: Example Cast). It closed-lost to Oldgate Ledger Pro on 2026-01-20. The CRM reason is "timing" `[CRM]`. The general manager, Ines Carmody, was the champion. She moved to Quill Hollow Memorial Park in April 2026, six months ago `[Public: state licensing database]`.
 
 **Input:** "Should we reactivate Lowmoor Memorial Gardens? We lost to Oldgate on timing."
 
@@ -626,23 +634,23 @@ The AE's loss notes decide between the two categories. That question goes to the
 **Step 3: What Has Changed.**
 - **Account:** Ines Carmody now runs Quill Hollow Memorial Park `[Public: state licensing database]`. That is a new account for the team. It is not a reason to reactivate Lowmoor.
 - **Account:** the current Lowmoor contact is `[Unknown]`. The champion left, and no successor is recorded.
-- **Product:** PlotIQ is in beta, with two beta cemeteries and no paid revenue `[CRM]`. Every proof point in the profile is Illustrative, so none goes into a message a prospect reads. A beta result is not a customer win.
-- **Competitor:** the profile records Oldgate's weak points as upfront cost, weak mobile support and no AI. These are competitor estimates `[Public: deathcare research, competitive research note, 2026-03-27] (research estimate, over 90 days old at the run date)`. The Oldgate pain after 6 to 12 months is a research pattern `(illustrative)`.
-- **Market:** Oldgate's renewal date for Lowmoor is `[Unknown]`. The profile's Buying Triggers list a rival renewal as a trigger, but without the date no window can be placed.
+- **Product:** PlotIQ is in beta, with two beta cemeteries and no paid revenue (profile: Company). Every proof point in (profile: Proof Points) is Illustrative, so none goes into a message a prospect reads. A beta result is not a customer win.
+- **Competitor:** (profile: Competitive Landscape) records Oldgate's weak points as upfront cost, weak mobile support and no AI. These are competitor estimates `[Public: deathcare research, competitive research note, 2026-03-27] (research estimate, over 90 days old at the run date)`. The Oldgate pain after 6 to 12 months is a research pattern `(illustrative)`.
+- **Market:** Oldgate's renewal date for Lowmoor is `[Unknown]`. The Buying Triggers in (profile: Qualification Criteria) list a rival renewal as a trigger, but without the date no window can be placed.
 
 **Step 4: Re-Qualification.** The re-score is set against the original qualification on the deal record, zone by zone. Only the zones the records speak to are scored, and the rest are `[Unknown]`.
 
 | Zone | At the Deal `[CRM]` (illustrative) | Now | What Moved |
 |------|-----------------------------------|-----|------------|
 | 1 Records and Inventory Pain | MEDIUM | MEDIUM | Nothing. Paper deeds and lookups that take days `[CRM]` (illustrative). The trust filing is current with no finding on record `[Public: state licensing database]` (illustrative), so the HIGH test is not met |
-| 3 Ownership and Decision Speed (must-have) | HIGH | MEDIUM | The GM who signed has left. Above $25K the board approves, and its next meeting is 2027-01-20, 93 days after the run date, so the next board meeting is more than 60 days out `[CRM]` (illustrative). With the GM gone, the board path carries the profile's MEDIUM cell |
+| 3 Ownership and Decision Speed (must-have) | HIGH | MEDIUM | The GM who signed has left. Above $25K the board approves, and its next meeting is 2027-01-20, 93 days after the run date, so the next board meeting is more than 60 days out `[CRM]` (illustrative). With the GM gone, the board path carries the MEDIUM cell in (profile: Qualification Zones) |
 | 2 Pre-Need, 4 Technology, 5 Growth | `[Unknown]` | `[Unknown]` | No record speaks to them, so they are not scored |
 
 The one HIGH zone at the deal, Zone 3, is now MEDIUM, so no zone is HIGH. GREENLIGHT needs two HIGH zones, and DISQUALIFY needs a disqualifier or two must-haves at LOW, so the Verdict Rule gives MANUAL REVIEW. The fit is MANUAL REVIEW at the deal and now, and what moved is the ownership zone. No reopening event has fired. Verdict: **MONITOR**. Set the reminder between 2026-12-18 (60 days) and 2027-01-17 (90 days).
 
-The reopening events for Lowmoor are the three the profile lists: a new general manager in the licensing record, an audit finding, or a consolidator purchase. The champion's move is not counted here. It has already happened, and its play runs at Quill Hollow (Example 3).
+The reopening events for Lowmoor are the three that (profile: Closed-Loss Intelligence) lists: a new general manager in the licensing record, an audit finding, or a consolidator purchase. The champion's move is not counted here. It has already happened, and its play runs at Quill Hollow (Example 3).
 
-**Step 5: Strategy (held).** The Buyer's Remorse play, the competitor pattern, is held until a reopening event fires. The hold is for one reason: the Oldgate window cannot be placed. The Lost to Competitor re-entry window runs 90 to 180 days before Oldgate's renewal date, and that renewal date is `[Unknown]`, so the window has no dates to check. The pain window of 6 to 12 months after the loss is open, at 272 days, and so is the Budget / Timing window, 6 to 9 months after close, which runs 2026-07-20 to 2026-10-20. Because the two categories name two re-entry windows, the later-opening window governs contact, and that window cannot be placed. Contact therefore holds until the renewal date is found. When it opens, the entry angle is to ask how Oldgate is working out, specifically around the area the AE recorded.
+**Step 5: Strategy (held).** The Buyer's Remorse play, the competitor pattern, is held until a reopening event fires. The hold is for one reason: the Oldgate window cannot be placed. The Lost to Competitor re-entry window runs 90 to 180 days before Oldgate's renewal date (profile: Closed-Loss Intelligence), and that renewal date is `[Unknown]`, so the window has no dates to check. The pain window of 6 to 12 months after the loss is open, at 272 days, and so is the Budget / Timing window, 6 to 9 months after close (profile: Closed-Loss Intelligence), which runs 2026-07-20 to 2026-10-20. Because the two categories name two re-entry windows, the later-opening window governs contact, and that window cannot be placed. Contact therefore holds until the renewal date is found. When it opens, the entry angle is to ask how Oldgate is working out, specifically around the area the AE recorded.
 
 **Step 6: Sequences (held, 0 emails).** No contact is named, so no email is written. Email 1 cannot name anyone, and no sequence goes to a guessed name.
 
@@ -670,21 +678,21 @@ report_path: none (inline)
 
 ### Example 2: Re-Qualification Retires the Account (Northvale Memorial Holdings)
 
-**Context:** Northvale Memorial Holdings is a public consolidator with about 240 funeral homes and 90 cemeteries. It runs its own in-house system `[Public: annual filing]`. The cast marks it OUT. OUT means disqualified, which is a different status from LOST. The cast holds no closed-lost record for Northvale, so there is no deal to pull and no loss to classify.
+**Context:** Northvale Memorial Holdings is a public consolidator with about 240 funeral homes and 90 cemeteries (profile: Example Cast). It runs its own in-house system `[Public: annual filing]`. The example cast marks it OUT (profile: Example Cast). OUT means disqualified, which is a different status from LOST. The cast holds no closed-lost record for Northvale, so there is no deal to pull and no loss to classify.
 
 **Input:** "Northvale closed-lost last year. Should we try again?"
 
 **Step 0: Role Detection.** The role is not stated. The skill asks, "Are you a BDR or an AE?", before it writes any coordination guidance. The answer does not change the verdict.
 
-**Step 1: Status Check.** Status is OUT, not LOST. The premise, "closed-lost last year," does not match the status. The skill asks for the CRM record. Close date and deal value are `[Unknown]` until it arrives. The verdict does not wait for the record, because the disqualifier is in the profile and in the filing `[Public: annual filing]`, and it does not depend on a loss.
+**Step 1: Status Check.** Status is OUT, not LOST. The premise, "closed-lost last year," does not match the status. The skill asks for the CRM record. Close date and deal value are `[Unknown]` until it arrives. The verdict does not wait for the record, because the disqualifier is in (profile: Qualification Criteria) and in the filing `[Public: annual filing]`, and it does not depend on a loss.
 
 **Step 2: Loss Classification.** Not run. Nothing in the record is a loss. The reason on file is a disqualifier, and the loss taxonomy does not apply to it.
 
 **Step 3: What Has Changed.** Nothing in the cast shows a change to Northvale's system or its ownership structure. That is `[Unknown]`, not "unchanged." The verdict stands without it, because the disqualifier does not depend on a change.
 
-**Step 4: Re-Qualification.** The profile's disqualifier applies: a public consolidator that runs its own system `[Public: annual filing]`. Fit was weak then, and nothing in the record shows it has improved. Verdict: **RETIRE**.
+**Step 4: Re-Qualification.** The disqualifier in (profile: Qualification Criteria) applies: a public consolidator that runs its own system `[Public: annual filing]`. Fit was weak then, and nothing in the record shows it has improved. Verdict: **RETIRE**.
 
-**Steps 5 and 6: No Strategy, No Sequences (0 emails).** The account reopens only if the company stops running its own system. The profile sets that as the test, and the filing is where to check it.
+**Steps 5 and 6: No Strategy, No Sequences (0 emails).** The account reopens only if the company stops running its own system. The disqualifier in (profile: Qualification Criteria) sets that as the test, and the filing is where to check it.
 
 **Summary: RETIRE.** The rep logs the disqualifier in the CRM, so no one re-qualifies Northvale from scratch. The rep makes that entry, not the skill.
 
@@ -702,7 +710,7 @@ report_path: none (inline)
 
 ### Example 3: The Champion Moves to an ICP Account (Ines Carmody, Lowmoor to Quill Hollow)
 
-**Context:** Ines Carmody, Lowmoor's champion, now runs Quill Hollow Memorial Park. Quill Hollow is a TARGET account with a GREENLIGHT verdict, in the cast (illustrative). It has 8,800 plots on paper plat maps, and its owner signs under $25K.
+**Context:** Ines Carmody, Lowmoor's champion, now runs Quill Hollow Memorial Park. Quill Hollow is a TARGET account with a GREENLIGHT verdict. Its status and verdict come from (profile: Example Cast) (illustrative). No reply from Quill Hollow is on record on the run date of 2026-10-19, so it stays TARGET. It has 8,800 plots on paper plat maps, and its owner signs under $25K.
 
 **Input:** "Our champion from Lowmoor is now at Quill Hollow. What do we do?"
 
@@ -817,6 +825,13 @@ report_path: none (inline)
 
 ## Changelog
 
+
+### 2.1.8 (2026-10-26)
+- Profile facts are cited as (profile: Section), with the profile's own section name, in place of the older profile forms.
+- ENGAGED is a status branch in Step 1: an account that replied or met with us after the close, with no open deal, gets no cold reactivation. Steps 2 to 4 still run, Steps 5 to 7 are skipped, and Account Snapshot (02) works the reply. The Quick Reference and the Quality Bar name the case.
+- Example 3 states that Quill Hollow had no reply on record on its run date of 2026-10-19, so its TARGET status holds.
+- The try-it beta fact cites the Company section.
+- No verdict, score, date or next action changes.
 
 ### 2.1.7 (2026-10-26)
 - The two Example pointers in the rule text are reworded, so the rules read on their own.
