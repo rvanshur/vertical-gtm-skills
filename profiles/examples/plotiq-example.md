@@ -122,7 +122,7 @@ Not used as the lead line: "AI-powered cemetery management." Article 51 tested i
 | Pre-Need CRM and Lead Scoring | Captures web and social leads, scores them, assigns follow-up | Light: needs the web form and lead inbox connected |
 | Proposals and Mobile Field App | Proposal generator with plot picks, mobile app for grounds crew | Light to medium |
 
-**Pricing:** One plan at $899 a month per site, plus a $5,000 one-time setup. At list, year one is $10,788 plus $5,000, or $15,788, under the $25K line where a cemetery board signs off. The research's three-tier price list ($499, $899, $1,499) and its add-on prices are not used here, because article 51 names one price.
+**Pricing:** One plan at $899 a month per site, plus a $5,000 one-time setup per deal, whatever the number of sites. At list, year one is $10,788 plus $5,000, or $15,788, under the $25K line where a cemetery board signs off. The research's three-tier price list ($499, $899, $1,499) and its add-on prices are not used here, because article 51 names one price.
 
 ## Competitive Landscape
 
@@ -428,7 +428,7 @@ PlotIQ has no won deals yet. The two timing values below that carry numbers are 
 - **Export format familiarity:** [RECORD]. Brackhaven's export is confirmed by the vendor but has not been tested by the implementation team (`[Notes]`, illustrative). The weeks saved when the format is familiar are not yet set.
 - **IT lead time:** 14 days (illustrative). A planning value for the example, added to kickoff when no IT owner is named. It has not been measured on a real deal.
 - **Full adoption months:** 2 (the skill default). PlotIQ has not yet set its own value.
-- **Team quick win types:** [RECORD]. The four types in the skill apply. Week-one examples are added after the first handoff. Brackhaven's are illustrative: replace the binder lookup with a timed search, and run a double-sale risk audit of open plots.
+- **Team quick win types:** [RECORD]. The four types in the skill apply. Week-one examples are added after the first handoff.
 
 ## Sources
 
