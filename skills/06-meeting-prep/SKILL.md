@@ -1,6 +1,6 @@
 ---
 name: gtm-meeting-prep
-version: 2.1.11
+version: 2.1.12
 description: "Prepares a rep for a discovery or demo call with one prep sheet: the top pain, a question bank for each discovery phase, one proof point per attendee, objection scripts, a minute-by-minute call flow and a follow-up email draft. The rep reads it during the call."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: [gtm-account-snapshot, gtm-research-outbound, gtm-trigger-event-outbound, gtm-closed-loss-reactivation, gtm-daily-prospecting, gtm-deal-pulse, gtm-stakeholder-mapping, gtm-competitive-strategy, gtm-competitive-displacement, gtm-call-coaching]
 mutating: read-write
 change_log:
+  - version: 2.1.12
+    date: 2026-10-26
+    summary: "Settles the strict retest readings. Identified Pain scores on what the buyer has named in their own words, so a pain the rep infers from the CRM or the profile is a hypothesis for the call and scores red until the buyer names it. Example 1 moves Identified Pain from yellow to red and its totals to 0 green, 2 yellow and 6 red. The next action follows a written priority order, with the reply owed to a buyer first, then a confirmation the meeting cannot run without, then the ask for the buyer's words on the top pain, then the signer ask, then the follow-up draft. Asks to the same person in the same message travel together, so Example 1 bundles the pain ask with the signer and meeting-date ask. The rep input row settles who owns the next action when the rep is not named. A profile label never sets a champion or signer cell, and a research target keeps the status its profile figure carries. Example 1's next action keeps its owner and date and changes its wording. Examples 2 to 4 and the try-it follow the settled rules."
   - version: 2.1.11
     date: 2026-10-26
     summary: "Settles the open readings from the strict retest. A record fact that shows the cost of a pain is evidence for that pain, so a double sale on the plot records is one top pain, and a renewal date is an urgency. The proof line is a usable Verified or Benchmark row from Proof Points, or none usable with a labelled research target, and an Illustrative row is never the proof line. Competition has its own cell rule, green on a stated preference and yellow on a known incumbent with no preference on record. Paper Process and Competition are scored in Example 1 and the try-it. No verdict, question or next action changes."
@@ -109,6 +112,7 @@ To try the skill without your own data, use `examples/try-it.md`, which holds a 
 | CRM notes and prior call notes | Optional | Read in Step 2. A blank field is unknown, not a no |
 | Known competitor or incumbent | Optional | Sharpens the competitive probes |
 | Upstream outputs named in Integration | Optional | Read by name in Step 1. A missing one is reported as missing, not rebuilt here |
+| Rep running the prep | Optional | Names the owner of the next action. Without it, the owner is the account's AE owner on the record, and the header says the owner came from the record |
 
 **Prerequisite (demo only):** the record must hold confirmed pain before a demo plan is built. Step 0 runs this check.
 
@@ -125,7 +129,7 @@ Every run produces one prep sheet with the same sections in the same order. The 
 | `question_bank` | Section 3 of the prep sheet (demo: Section 4) | Discovery: the top three questions for each of Situation, Problem and Implication, and the two Need-Payoff questions, each with its listen-for phrase. Demo: four questions per module |
 | `attendees` | Header of the prep sheet | Each attendee's name or `[Unknown]`, title, and buying role as the record names it |
 | `proof_point` | Section 5 of the prep sheet | One usable proof point per attendee persona, with its Status shown, or a line that says none is usable and gives the research target. An Illustrative row is never the proof line |
-| `next_action` | Last line of the prep sheet | The owner and the date. Wrap-Up reads this line |
+| `next_action` | Last line of the prep sheet | The owner and the date. Wrap-Up reads this line. When more than one step is open, the next action is the highest-ranked of these kinds, and the rest are later steps. (1) A reply owed to a buyer who wrote to us, due the next business day. (2) A confirmation the booked meeting cannot run without, such as the form filler, the attendees, or whether discovery or demo runs. (3) The ask on the call for the buyer's own words on the top pain, while Identified Pain is not green. (4) The ask for the signer above the buyer and the next meeting date, while Economic Buyer is yellow or red. (5) The follow-up email after the call, as a DRAFT. An ask to the same person in the same message travels with the first ask. Ties go to the earlier date, then to the step the rep owns |
 | `report_path` | Header of the prep sheet | `none (inline)` unless a file was written |
 | File option | Written only when the user asks | Named `<account>_<skill>_<date>.md`, saved beside the user's other account notes. Never written by default |
 
@@ -454,7 +458,7 @@ Apply the follow-up ladder rule from the Methodology. For a vague answer, ask fo
 
 ### Step 5. Frame The Call
 
-**Discovery: Qualification Pre-Fill.** For each element of the team's qualification framework, mark what is known (green), partly known (yellow) or unknown (red). Each yellow or red cell gets the question that fills it. Identified Pain needs at least one pain quantified, which is the stage 3 depth target. Metrics is green when the record holds a figure for the outcome the solution moves and the buyer has agreed it, yellow when that figure is recorded but not agreed, and red when no such figure is recorded, because account size such as a plot count describes the account and never scores the cell. Economic Buyer is green when the record names the person who signs at this deal's value, yellow when a buyer is named but the signer above that buyer's limit is not confirmed, and red when no buyer is named. Identified Pain is green when one pain is quantified, yellow when a pain is named but not quantified, and red when none is named. An incident count does not quantify a pain: a pain is quantified only when its cost is stated in plots, hours or dollars, as the Stage 2 gate in (profile: Qualification Stage Gates) requires. Champion is green on a Strong result from the shared champion tests, yellow on Developing and red on None. Decision Criteria, Decision Process and Paper Process have no cell rule of their own, so they take the default: known green, partial yellow, unknown red. Competition is green when the incumbent is known and the buyer has stated a preference among the options, yellow when the incumbent is known and no preference is on record, and red when no incumbent is known.
+**Discovery: Qualification Pre-Fill.** For each element of the team's qualification framework, mark what is known (green), partly known (yellow) or unknown (red). Each yellow or red cell gets the question that fills it. Identified Pain needs at least one pain quantified, which is the stage 3 depth target. Metrics is green when the record holds a figure for the outcome the solution moves and the buyer has agreed it, yellow when that figure is recorded but not agreed, and red when no such figure is recorded, because account size such as a plot count describes the account and never scores the cell. Economic Buyer is green when the record names the person who signs at this deal's value, yellow when a buyer is named but the signer above that buyer's limit is not confirmed, and red when no buyer is named. Identified Pain is green when the buyer has named one pain in their own words and it is quantified, yellow when the buyer has named a pain but it is not quantified, and red when the buyer has named none. A pain the rep infers from the CRM, the profile or the facts of an account is a hypothesis for the call to test, so it scores red until the buyer names it. An incident count does not quantify a pain: a pain is quantified only when its cost is stated in plots, hours or dollars, as the Stage 2 gate in (profile: Qualification Stage Gates) requires. Champion is green on a Strong result from the shared champion tests, yellow on Developing and red on None. Decision Criteria, Decision Process and Paper Process have no cell rule of their own, so they take the default: known green, partial yellow, unknown red. Competition is green when the incumbent is known and the buyer has stated a preference among the options, yellow when the incumbent is known and no preference is on record, and red when no incumbent is known. A label in the profile, such as a champion named in the Example Cast or a signer named in a role-title map, never sets a cell. The record sets it, and the champion cell takes the shared champion tests on tagged evidence.
 
 **Demo: Pain-To-Workflow Map And Structure.** Map each pain to a workflow, the differentiating feature, and the proof that makes it land, with its Status. Plan the demo as: the opening (three to five minutes), a problem slide built on the three-beat arc, a block for each pain in order of importance, and a recap and close. Check the five demo habits before the sheet is handed back.
 
@@ -489,7 +493,7 @@ A discovery flow for a 30-minute call (illustrative) looks like this:
    - **Benchmark:** context only, with its source and date named. Never "our customer got this."
    - **Illustrative:** never cited to a prospect, and never the proof line.
 
-   Every attendee gets one proof line, including an attendee whose persona is not yet known. That line says the persona is unknown and that no proof is set until it is confirmed. If the profile has no usable proof for a persona, the sheet says so and gives the research target in its place. The proof line is a usable row only: a Verified row from Proof Points, or a Benchmark row from Proof Points whose wording matches the persona's Hook Focus. The research target is the profile figure whose wording matches the Hook Focus, with its research source named. If that figure has no dated source, state it as "target, no dated source", and do not present it as a benchmark. An Illustrative row does not make a persona usable, and it is never the proof line. The reason: a rep who says "we have no proof for this yet" is more credible than one who reaches for a row that does not exist.
+   Every attendee gets one proof line, including an attendee whose persona is not yet known. That line says the persona is unknown and that no proof is set until it is confirmed. If the profile has no usable proof for a persona, the sheet says so and gives the research target in its place. The proof line is a usable row only: a Verified row from Proof Points, or a Benchmark row from Proof Points whose wording matches the persona's Hook Focus. The research target is the profile figure whose wording matches the Hook Focus, with its research source named. If that figure has no dated source, state it as "target, no dated source", and do not present it as a benchmark. A research target keeps the status the profile gives its figure: a figure the profile labels a Benchmark, with its source and date, is shown as one, and any other figure is shown as a research target. An Illustrative row does not make a persona usable, and it is never the proof line. The reason: a rep who says "we have no proof for this yet" is more credible than one who reaches for a row that does not exist.
 2. **Script Two Or Three Feel-Felt-Found Stories:** Feel (validate their concern), Felt (a similar customer felt the same), Found (the outcome, with a metric whose Status allows its use). If no story can carry a Verified or Benchmark result, the Found line uses the Benchmark and says so.
 3. **Prepare Typed Resistance** (demo): Reactance, Skepticism or Inertia, each with its response from the Methodology.
 4. **Prepare The Redirect:** if a buyer asks about something the product does not lead with, acknowledge it and return to the pain they ranked first.
@@ -521,7 +525,7 @@ A discovery flow for a 30-minute call (illustrative) looks like this:
 
 ### Step 10. Assemble The Prep Sheet
 
-Lay out the sheet in the section order from The Prep Sheet Sections. Fill the header with the attendees and `report_path: none (inline)`. End the sheet with `next_action`, which names an owner and a date. The date follows the shared contract's next-action rule. When the next action happens on a call whose date is on record, that call date is used and named as its source, as long as it falls before the five-business-day date. When the Economic Buyer cell is yellow, the next action asks the buyer for the signer above the named buyer, and for the next meeting's date, on the call. Write the signer's title only as the record names it. If the record names no signer, the next action asks for the signer's name, and the title stays `[Unknown]`. Hand the sheet back in the reply. Write a file only if the user asks, using the file option. Run the Quality Bar before handing back.
+Lay out the sheet in the section order from The Prep Sheet Sections. Fill the header with the attendees and `report_path: none (inline)`. End the sheet with `next_action`, which names an owner and a date. The date follows the shared contract's next-action rule. When the next action happens on a call whose date is on record, that call date is used and named as its source, as long as it falls before the five-business-day date. The next action is the highest-ranked open step in the Output Contract's order, and asks made to the same person in the same message travel with it. When the Economic Buyer cell is yellow, the signer above the named buyer and the next meeting's date are asked on the call. Write the signer's title only as the record names it. If the record names no signer, the next action asks for the signer's name, and the title stays `[Unknown]`. Hand the sheet back in the reply. Write a file only if the user asks, using the file option. Run the Quality Bar before handing back.
 
 **Produces:** `prep_sheet` (inline), `top_pain`, `question_bank`, `attendees`, `proof_point`, `next_action` and `report_path`.
 
@@ -575,7 +579,7 @@ Done when all are true:
 - [ ] The call flow adds up to the call length, or to the stated 30-minute default.
 - [ ] Talk time is stated as the shared band or the profile's override, with no restated numbers.
 - [ ] The follow-up email is marked DRAFT, not sent.
-- [ ] `next_action` names an owner and a date.
+- [ ] `next_action` names an owner and a date, and it is the highest-ranked open step in the Output Contract's order.
 - [ ] An ENGAGED account's open names its reply and the reply's date, and the sheet does not restart it as a cold first meeting
 - [ ] Every rate carries its n, and every fact carries a tag.
 - [ ] Demo only: pains are ranked, the shares of demo minutes add up, the top pain is shown first, and the five demo habits are checked.
@@ -627,12 +631,12 @@ Follow-up ladder on the top pain: stages 1 and 2 when confirmed, and stage 3 on 
 - **Economic Buyer: Yellow.** Ruth is the buyer. The likely signer is above her `[Inferred]`. Two sites at the list price in (profile: Product Modules) come to $21,576 a year, plus the $5,000 setup, for $26,576 in year one. That is above the $25K board line in (profile: Qualification Zones), so the GM cannot sign alone on the record.
 - **Decision Criteria: Red.** None are stated.
 - **Decision Process: Red.** The approval body and its meeting dates are `[Unknown]`. Question: "Who has to approve a purchase above the board line, and when does that group meet?"
-- **Identified Pain: Yellow.** One pain is named and not yet quantified. The stage 3 depth target is not met.
+- **Identified Pain: Red.** The buyer has named no pain on record. The paper plot maps and the double sale are CRM facts about the account, so they are the hypothesis this call tests, not Ruth's words. The cell turns yellow when Ruth names a pain, and green when she quantifies it.
 - **Champion: Red.** The shared champion tests cannot be scored from a first discovery call. They are scored after the call.
 - **Paper Process: Red.** No legal, vendor or signing steps are on record.
 - **Competition: Yellow.** The incumbent, Oldgate Ledger Pro, is known `[CRM]`. The second system, Stonemark, was evaluated, and no preference is on record `[Notes]`, undated.
 
-Totals: 0 green, 3 yellow and 5 red, of 8 elements.
+Totals: 0 green, 2 yellow and 6 red, of 8 elements.
 
 **Step 6.** Competitive: the incumbent is Oldgate Ledger Pro `[CRM]`, an incumbent of the direct-software type in the shared list. Renewal is March 2027 `[CRM]`. Probes, as questions: "When does the Oldgate contract renew, and what did the last quote include for support?" and "Where does the plot map live today, and when was it last updated?" Oldgate's mobile weakness matters only if the grounds crew still uses paper work orders `[Inferred]`.
 
@@ -655,7 +659,7 @@ top_pain: plot records on paper, with a double sale [CRM] (illustrative)
 question_bank: Situation 3, Problem 3, Implication 3 (top three each), Need-Payoff 2
 attendees: Ruth Ellery, General Manager, buyer. Walt Okonkwo, Operations Director, influencer
 proof_point: Ruth Ellery, none usable, research target 50 to 100 plots (Benchmark, 2026-04-01). Walt Okonkwo, none usable, target a plot answer in 20 seconds (target, no dated source)
-next_action: Owen Pruitt asks Ruth Ellery who signs above her, and for the next meeting date, on this call. Date: 2026-05-12 (illustrative), the call date on record, which is earlier than the five-business-day date of 2026-05-18. The meeting date is [Unknown] until agreed
+next_action: Owen Pruitt asks Ruth Ellery on this call, in her own words, what the paper records and the double sale cost in plots, hours or dollars (rank 3: Identified Pain is red). In the same message he asks who signs above her and for the next meeting date (rank 4, travels with the first ask). Date: 2026-05-12 (illustrative), the call date on record, which is earlier than the five-business-day date of 2026-05-18. The meeting date is [Unknown] until agreed
 report_path: none (inline)
 ```
 
@@ -720,7 +724,7 @@ top_pain: none confirmed. Working hypothesis: plot lookups on a spreadsheet, [In
 question_bank: Situation 3, Problem 3, Implication 3, Need-Payoff 2
 attendees: Arlen Biggs, General Manager, buyer (signs under $25K). Form filler: [Unknown]
 proof_point: Arlen Biggs, none usable, research target 50 to 100 plots (Benchmark, 2026-04-01). Form filler, no proof until the persona is confirmed
-next_action: the rep on the Thursday call confirms the form filler and runs discovery, not the demo. Owner: that rep. Date: 2026-10-22, the discovery call booked on 2026-10-19 `[CRM]`, which is earlier than the five-business-day date of 2026-10-26
+next_action: the rep on the Thursday call asks Arlen Biggs first who filled in the website form and what role they hold (rank 2, a confirmation the call cannot run without), and in the same message asks what a plot lookup costs and how long it takes (rank 3, travels with it). Discovery runs, not the demo. Owner: the rep on the call, whom the records do not name (see the rep row in the Input Contract). Date: 2026-10-22, the discovery call booked on 2026-10-19 `[CRM]`, which is earlier than the five-business-day date of 2026-10-26
 report_path: none (inline)
 ```
 
@@ -783,7 +787,7 @@ top_pain: none confirmed (0 of 2 needed for a demo)
 question_bank: Problem 2 questions and Need-Payoff 2 questions, from Step 4
 attendees: General Manager, name [Unknown], buyer. Pre-Need Sales Manager, name [Unknown], buying role [Unknown]
 proof_point: General Manager, none usable, research target 50 to 100 plots (Benchmark, 2026-04-01). Pre-need manager, none usable, target within an hour (target, no dated source)
-next_action: the AE confirms discovery or demo with the GM and asks for the pre-need manager's name. Owner: the AE. Date: 2026-11-19, the working day before the Friday meeting on record (2026-11-20), a date the skill's own schedule sets for the confirmation, which is earlier than the five-business-day date of 2026-11-23
+next_action: Owen Pruitt, the AE owner on the record, confirms discovery or demo with the GM and asks for the pre-need manager's name, in one message (rank 2, a confirmation the meeting cannot run without). Owner: Owen Pruitt. Date: 2026-11-19, the working day before the Friday meeting on record (2026-11-20), a date the skill's own schedule sets for the confirmation, which is earlier than the five-business-day date of 2026-11-23
 report_path: none (inline)
 ```
 
@@ -828,7 +832,7 @@ top_pain: unsold plots on paper plat maps, [Inferred]. The records finding is a 
 question_bank: Situation 1, Problem 1, Implication 1 (three questions, from Step 4)
 attendees: Ines Carmody, General Manager, champion label, Champion Test Developing (1 of 7 met: commits to next steps with dates) [CRM]. The owner signs under $25K
 proof_point: none usable. Research target 50 to 100 plots (Benchmark, 2026-04-01)
-next_action: the AE asks Ines Carmody when the last state review was and what it asked for. Owner: the AE on the call. Date: 2026-11-02, the call booked on 2026-10-27 `[CRM]`, which is earlier than the five-business-day date of 2026-11-09
+next_action: the rep on the call asks Ines Carmody, in one message, what the records problem costs and when the last state review was and what it asked for (rank 3: Identified Pain is red, and the state review question is the pain's test). Owner: the rep on the call, whom the records do not name. Date: 2026-11-02, the call booked on 2026-10-27 `[CRM]`, which is earlier than the five-business-day date of 2026-11-09
 report_path: none (inline)
 ```
 
@@ -939,6 +943,14 @@ This skill also reads the kit's hand-off block back as optional context: `case_s
 
 ## Changelog
 
+
+### 2.1.12 (2026-10-26)
+- Identified Pain is scored on what the buyer has named in their own words. A pain the rep infers from the CRM or the profile is a hypothesis, and it scores red until the buyer names it. Example 1 moves to red, and its totals move to 0 green, 2 yellow and 6 red.
+- The next action follows a written priority order in the Output Contract: a reply owed to a buyer, a confirmation the meeting cannot run without, the ask for the buyer's words on the top pain, the signer ask, then the follow-up draft. Asks to the same person in the same message travel together.
+- The Input Contract has a rep row. Without it, the owner is the AE owner on the record, and the header says so.
+- A profile label, such as a champion in the Example Cast or a signer in a role-title map, never sets a champion or Economic Buyer cell.
+- A research target keeps the status its profile figure carries.
+- Example 1's next action keeps its owner and date, and bundles the pain ask with the signer ask and the meeting date. Examples 2 to 4 are re-derived under the order, and their owners and dates are named from the records.
 
 ### 2.1.11 (2026-10-26)
 - A record fact that shows the cost of a pain is evidence for that pain, not a second hypothesis. A renewal or deadline is an urgency. Ties on tag take the Core Pain Points order, so the double sale and the plot records give one top pain.

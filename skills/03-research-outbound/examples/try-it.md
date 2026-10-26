@@ -35,7 +35,9 @@ Owner Letter
 
 - Verdict: MANUAL REVIEW. Two zones are HIGH (2 and 5), but the must-have Zone 3 is LOW, so GREENLIGHT does not hold.
 - Zones: 1 MEDIUM, 2 HIGH, 3 LOW, 4 MEDIUM, 5 HIGH.
-- Wedge: 2 cemetery sites at 50 to 100 plots each = 100 to 200 plots to check (Benchmark, a hook and not a result). All five sites, cemetery and funeral home alike, at $10,788 a year at list = $53,940 a year, plus $5,000 setup once [Inferred: units x profile list price]. No payback figure, because the price of an unsold plot is [Unknown].
-- Sequences: 5 personas x 4 emails = 20 emails, held. The verdict is MANUAL REVIEW, so the package is marked Held and nothing goes out until a person clears the verdict. Email 1 goes to the CFO, Hector Ruiz, with the subject "One system across five sites in 2027".
-- Open items: which system the group picks and when the plot records move, who in the family signs the 2027 plan besides the CFO, and which state's filing applies to each cemetery site.
-- Next action: a person clears the MANUAL REVIEW verdict, then Nadia Brandt reads the 20 held drafts and sends Email 1 to Hector Ruiz, on or after that clearance and by 2026-10-26, five business days after the run date of 2026-10-19.
+- Region tier: no tier yet, because the records give no state for Saltmarsh.
+- Wedge, benefit line: 2 cemetery sites at 50 to 100 plots each = 100 to 200 plots to check (Benchmark, a hook and not a result).
+- Wedge, cost basis line: all five sites, cemetery and funeral home alike, at $10,788 a year at list = $53,940 a year, plus $5,000 setup once [Inferred: units x profile list price]. No payback figure, because the price of an unsold plot is [Unknown].
+- Sequences: 5 personas x 4 emails = 20 emails, held. The verdict is MANUAL REVIEW, so the package is marked Held and nothing goes out until the Sales Manager clears the hold. Email 1 goes to the CFO, Hector Ruiz, with the subject "One system across five sites in 2027".
+- Open items: which system the group picks and when the plot records move, who in the family signs the 2027 plan besides the CFO, and which state's filing applies to each cemetery site (the records give no state for either site, so this is open, not a result).
+- Next action: Lena Vasquez (Sales Manager) clears the held package by 2026-10-26, five business days after the run date of 2026-10-19. Later step, after that clearance: Nadia Brandt sends Email 1 to Hector Ruiz.

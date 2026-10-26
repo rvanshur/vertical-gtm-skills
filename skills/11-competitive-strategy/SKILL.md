@@ -1,6 +1,6 @@
 ---
 name: gtm-competitive-strategy
-version: 2.1.11
+version: 2.1.12
 description: "Builds a deal-specific competitive strategy for one open opportunity: the incumbent filed under a shared type, a gap matrix, a displacement playbook and a win plan with a battlecard. The AE who owns the deal runs it, and the sales manager reviews the output."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: [gtm-meddpicc-analysis]
 mutating: read-write
 change_log:
+  - version: 2.1.12
+    date: 2026-10-26
+    summary: "Sets the next-action priority order and the scope of an open gap. The next action is the first live step in the order: a reply owed to a buyer, then the buyer ask for the open current-solution gaps, then other buyer steps, then internal steps. An open gap is a current-solution fact the records mark Unknown that the win plan cannot run without, so the buyer's count of plots with no recorded sale, the exact renewal day and the trust-file scope are asked in one message, and the board's criteria and the chair's name, which have no date of their own, travel in the same message to the same person. A step for a different person, or with a later dated record, is listed after it. Product Advantage is three questions in order, and Broad needs the buyer's own dated statement that the part the incumbent answers works. Satisfaction counts a stated gap in what the incumbent shows as a named failure, and Internal Champion has defined values. A zone takes the highest cell whose every condition is on record. The records in the try-it hold the buyer's statement that the sold list works, the double sale, the owner's retirement and the year-one board figure, so Example 1 reproduces from the records, and Example 1's zones, next action and calibration wording are aligned to them."
   - version: 2.1.11
     date: 2026-10-26
     summary: "Settles the product advantage reading. An incumbent that answers part of the job the buyer named, where the buyer says that part works, scores Broad, and the part it leaves out is the gap. Ruth's reason to look now names both halves of her question, sold and open, and Example 1 moves from LOW at an average of 1.4 to MEDIUM at an average of 1.6, with its try-it promise changed to match. Switching barriers count software systems, so paper binders and sites are places and two sites of binders is Moderate. More than one open discovery gap is one next action, asking for each gap in one message under one owner and one date. A met LOW calibration clause is a confirmation only. Example 1 follows the battlecard's section order, a LOST and OUT hand-off form is added, and the no-deal, troubleshooting, labelling, step-reference and citation fixes from the review are made."
@@ -172,7 +175,7 @@ Every run returns one outcome, chosen by the account's status in the Status Rule
 | `gap_matrix` | Battlecard section 2 | One row per capability: the incumbent's status, our status, why it matters for this buyer, and the tag on each claim. A row qualifies only on a pain or criterion the buyer stated on a dated call |
 | `battlecard` | The full reply, in the chat | For an ACTIVE account: eight sections in this order, account and incumbent summary, competitive gap matrix, winning zone strategy with landmines, discovery questions, displacement talk tracks, objection handling, proof points and reference stories, and win plan checklist, then the Step 6 summary. For any other status: the no-deal note, or the routing the Status Rule names |
 | `win_plan` | Battlecard section 8 | The checklist by stage (pre-meeting, discovery, demo, post-meeting), each item with an owner and a date where one is known. No-deal note: `none (no open deal)` |
-| `next_action` | The line directly above `report_path` in the hand-off block | One step, with its owner and a date. For an ACTIVE account, the step asks the buyer for the open discovery gaps that Step 6, item 8 names. When there is more than one, the one step asks for each of them in the same message or call, under one owner and one date. Its date is the one the shared contract's next-action rule gives (five business days after the run date, or an earlier date the records or the skill's own schedule set for that step, named with its source). For a no-deal note, the owner is the rep who holds the account in the CRM, or `[Unknown]`. For LOST, it is the routing to Closed-Loss Reactivation (05). For OUT, it is `none`. Wrap-Up reads this line by its name |
+| `next_action` | The line directly above `report_path` in the hand-off block | One step, with its owner and a date. **Priority order, first to last:** (1) a reply owed to a buyer who wrote to us, due the next business day. (2) For an ACTIVE account, the buyer ask for the open current-solution gaps that Step 6, item 8 names, in one message to one person under one owner and one date. (3) Other buyer steps for a different person, or with a later dated record, in order of that date. (4) Internal steps, such as CRM updates and mitigation prep. The first step in this order that has a live item is the next action. Asks to the same person that fit in the same message travel with it, including a board criterion or chair's name that has no date of its own. A step for a different person, or with a later date set by a record or the skill's schedule, is listed after it as a later step. Ties go to the earlier date on record, then to the earlier Step 5 stage (Pre-Meeting, During Discovery, During Demo, Post-Meeting), then to the first gap listed in item 8. Its date is the one the shared contract's next-action rule gives (five business days after the run date, or an earlier date the records or the skill's own schedule set for that step, named with its source). For a no-deal note, the owner is the rep who holds the account in the CRM, or `[Unknown]`. For LOST, it is the routing to Closed-Loss Reactivation (05). For OUT, it is `none`. Wrap-Up reads this line by its name |
 | `report_path` | Last line of the hand-off block | `none (inline)` unless a file was written |
 | File, on request | `<account>_gtm-competitive-strategy_<date>.md`, beside the user's account notes | Written only when the user asks, in Markdown. The ask is the approval step |
 
@@ -415,11 +418,18 @@ Using the calibration in Epistemic Rules, score the five factors. LOW is 1, MEDI
 
 Every factor row scores Unknown as MEDIUM. A factor scores LOW or HIGH only when a recorded fact sets it, because silence is not a no.
 
-**Satisfaction:** Frustrated means the buyer names specific failures of the incumbent, in their own words, on a dated call. A failure is something the incumbent does not do, or a cost the buyer resents. Neutral means the buyer describes the incumbent without naming a failure, and indifference alone, such as "it's just what we've always had", is Neutral. Satisfied means the buyer names what works and no failure. Unknown means no dated buyer statement on satisfaction is on record. A rep's own view does not count, and a rival's evaluation never counts (Rival Method).
+**Satisfaction:** Frustrated means the buyer names specific failures of the incumbent, in their own words, on a dated call. A failure is something the incumbent does not do, or a cost the buyer resents. A dated buyer statement that the incumbent does not show or tell them something they need is a named failure, so "it doesn't tell us what's left" counts. Neutral means the buyer describes the incumbent without naming a failure, and indifference alone, such as "it's just what we've always had", is Neutral. Satisfied means the buyer names what works and no failure. Unknown means no dated buyer statement on satisfaction is on record. A rep's own view does not count, and a rival's evaluation never counts (Rival Method).
+
+**Internal Champion For Incumbent:** None means a dated buyer statement that no one on staff is attached to the incumbent. Confirmed means a named advocate, with the date the buyer named them. Suspected means a dated hint that someone may advocate for the incumbent, short of a named advocate. Unknown means no dated statement, which scores MEDIUM. Silence is not None.
 
 **Contract Status:** Expiring means a renewal within six months (LOW). Active means more than six months to renewal (HIGH). Month-to-month is LOW. Unknown is MEDIUM, and no contract on record counts as Unknown, so it is MEDIUM too.
 
-**Product Advantage:** None means the incumbent holds no advantage over your product in the job the buyer named as the reason to look. Niche means its advantage sits in an adjacent job. Broad means its advantage sits in the job the buyer named. Unknown means the job is not on record in the buyer's own words, so the advantage cannot be placed, and it scores MEDIUM. The job is defined in Methodology. When the buyer names a count, the job is that count, and an incumbent whose strength sits in the work beside that count is Niche. When the buyer names a question rather than a count, the job is the answer to that question, and the battlecard quotes the buyer's words beside it. An incumbent that answers part of that question, where the buyer says the part it answers works, has its advantage in the job, so it scores Broad, and the part it leaves out is a gap in Step 3B.
+**Product Advantage:** Answer three questions, in this order, and stop at the first one that ends the scoring.
+1. **Is the job on record in the buyer's own words, on a dated call?** If not, the factor is Unknown, which scores MEDIUM. The job is defined in Methodology. When the buyer names a count, the job is that count. When the buyer names a question, the job is the answer to that question, and the battlecard quotes the buyer's words beside it.
+2. **Does the incumbent answer any part of that job?** If it answers none, the factor is None, which scores LOW. If its strength sits only in an adjacent job the buyer did not name, the factor is Niche, which scores MEDIUM.
+3. **Does the buyer say, on a dated call, that the part the incumbent answers works?** If yes, the factor is Broad, which scores HIGH, and the part the incumbent leaves out is a gap in Step 3B. If the buyer says nothing on that point, the factor is Niche, which scores MEDIUM.
+
+Broad needs the buyer's own dated statement that the part works. A rep's view that the incumbent is strong does not count, and neither does the incumbent's own pitch.
 
 **Switching Barriers:** Minimal means little or nothing has to move by hand. Moderate means the record has to move by hand from a bounded set of places, one per site, and no contract term holds it. Significant means it has to move across two or more software systems, or an early exit from a contract holds it in place. Paper binders and sites are places, not systems, so two sites of binders with one software system is Moderate.
 
@@ -444,7 +454,7 @@ Rank `{Client Profile: Qualification Zones}` by relevance to this deal:
 | 1 | [Zone] | [Assessment] | [How To Position] |
 | ... | ... | ... | ... |
 
-Each zone takes the cell its recorded facts match in full, as the profile's Qualification Zones write it. A zone whose facts match no cell in full is UNKNOWN, and the battlecard names the fact still to find. In an example, a fact from the profile's Example Cast counts as a recorded fact when the example tags it (illustrative). In a live run, only the CRM, calls and notes count. A zone scored UNKNOWN neither earns nor blocks a verdict.
+Each zone takes the highest cell, as the profile's Qualification Zones write it, whose every condition is on record. An Unknown condition is not on record, so a HIGH cell with one Unknown condition does not match, and the zone takes the MEDIUM cell only when every condition of that cell is on record. A zone with no cell fully on record is UNKNOWN, and the battlecard names the fact still to find. In an example, a fact from the profile's Example Cast counts as a recorded fact when the example tags it (illustrative). In a live run, only the CRM, calls and notes count. A zone scored UNKNOWN neither earns nor blocks a verdict.
 
 #### 3B. Competitive Gap Matrix
 
@@ -566,10 +576,10 @@ Build a checklist for this competitive scenario. The checklist below is the full
 5. **Top Three Competitive Gaps To Exploit:** the gaps the incumbent cannot close, each meeting the Step 3B test, a pain the buyer stated on a dated call or a criterion the buyer named on a dated call. A gap is a matrix row that meets that test. A claimed win also needs the board's written criteria. When no gap yet meets that test, name the top three candidates as gaps to test, and say that none is claimed
 6. **Positioning Landmines:** where the conversation could go badly, with mitigations
 7. **Displacement Proof Point:** the most relevant Verified proof point, or a note that none exists, with its Status shown
-8. **Critical Discovery Gap:** what is still unknown about the buyer's current solution, one line for each open gap
+8. **Critical Discovery Gap:** one line for each open gap. An open gap is a fact about the buyer's current solution that the records mark `[Unknown]` and that the Step 5 win plan cannot run without. A profile question with no `[Unknown]` on record is asked in discovery and is not listed here. The board's written criteria and the family board chair's name are not current-solution facts, so they are not lines in this item. They have no date of their own, so they travel with the next action in the same message to the same person (item 11)
 9. **Win Strategy Summary:** two or three sentences on how to win this deal competitively
 10. **Risk Assessment:** where the competitor could win, stated honestly
-11. **Recommended Next Step:** one next action with a timeline. It asks the buyer for each open gap in item 8, in one message or call, under one owner and one date, and the date comes from the shared contract's next-action rule (five business days after the run date, or an earlier date the records or the skill's own schedule set for that step)
+11. **Recommended Next Step:** the first live step in the Output Contract's priority order. For an ACTIVE account it asks the buyer for each open gap in item 8, in one message or call, under one owner and one date, with the gaps in the order item 8 lists them. Its date comes from the shared contract's next-action rule (five business days after the run date, or an earlier date the records or the skill's own schedule set for that step). A reply owed to a buyer who wrote to us comes before it. Asks to the same person with no separate date travel in the same message, and a step for a different person or with a later dated record follows as a later step
 
 **Produces:** The battlecard in its eight sections, with `battlecard`, `incumbent_type`, `threat_level`, `next_action` and `report_path`. The summary comes last because it draws on every step above it.
 
@@ -610,7 +620,7 @@ Read the LOW clauses as confirmations only. A met LOW clause changes nothing at 
 
 The calibration catches a threat the average hides, and it does so without counting a fact twice. A HIGH clause raises the level one band (LOW to MEDIUM, or MEDIUM to HIGH) only when a recorded fact meets it, and that fact is one no factor row already scored. A LOW clause never lowers the level. A MEDIUM clause has no effect. An Unknown fact never meets a clause. The reason is that the five factor rows already carry the facts they score, so a clause that restated one of them would count the same fact twice, while a fact no row scores is a threat the average cannot see.
 
-**Facts A Factor Row Already Scored:** any fact that sets one of the five rows: the satisfaction level, the contract status, the switching barriers, the internal champion, or the product advantage. A clause that restates one of those facts, in any words, does not raise the level. Of the five HIGH clauses, four restate a row (satisfied, the contract more than six months from renewal, no switching-cost concern, Broad advantage). The entrenchment clause is the only one that names a fact no row scores, so it is the only HIGH clause that can raise the level, and only when a recorded fact shows the incumbent in place for 2 years or more. "Actively" in the LOW clause means the buyer acts on the frustration, shown by an open deal with us `[CRM]` or by a dated buyer action against the incumbent, and a rival's evaluation does not count. This is a working test, not a fact about the buyer's mood, and the rep checks it against the record. A raise moves one band at most, and the level never passes HIGH.
+**Facts A Factor Row Already Scored:** any fact that sets one of the five rows: the satisfaction level, the contract status, the switching barriers, the internal champion, or the product advantage. A clause that restates one of those facts, in any words, does not raise the level. Of the five HIGH clauses, four restate a row (satisfied, the contract more than six months from renewal, no switching-cost concern, Broad advantage). The entrenchment clause is the only one that names a fact no row scores, so it is the only HIGH clause that can raise the level, and only when a recorded fact shows the incumbent in place for 2 years or more. "Actively" in the LOW clause means the buyer acts on the frustration, shown by an open deal with us `[CRM]` or by a dated buyer action against the incumbent, and a rival's evaluation does not count. This is a working test, not a fact about the buyer's mood, and the rep checks it against the record. "Already evaluating alternatives" is met by the open deal with us, where the buyer is evaluating us in place of the incumbent. A rival fact never meets a calibration clause (Rival Method). A raise moves one band at most, and the level never passes HIGH.
 
 ---
 
@@ -642,7 +652,7 @@ Done when all are true:
 - [ ] Each objection script shows its status, Field-tested or Test and refine
 - [ ] Any jurisdiction deadline cites its rule and the date checked
 - [ ] Any rival advantage is named, with the criterion it wins on
-- [ ] The win plan has actions for each stage, and the hand-off block's `next_action` line has an owner and a date and sits directly above `report_path`, which ends the block
+- [ ] The win plan has actions for each stage, and the hand-off block's `next_action` line is the first live step in the priority order, with one owner, one person and one date, and sits directly above `report_path`, which ends the block
 - [ ] No file was written unless the user asked for one
 - [ ] An account with no open deal gets the no-deal note, with no stage, owner or close date written for it
 - [ ] When a rival is evaluated, its record is tagged and unscored, and no buyer criterion appears that the buyer did not state
@@ -664,13 +674,15 @@ Three worked examples, all on the PlotIQ cast and the chain file. The first is t
 **Step 1: CRM Intelligence:**
 - Account: Brackhaven Memorial Gardens, combination, 2 sites, 11,000 plots, paper plot maps `[CRM]` (illustrative)
 - Deal: Stage 5 Negotiate, $21,576 a year at list, owned by Owen Pruitt, 40 days in stage `[CRM]`
-- Close date: moved twice since 2026-09-28, on 2026-10-07 and 2026-10-14 `[CRM]` (illustrative). The family board has not confirmed a date. The CRM holds a family board meeting set for 2026-11-12, not formally confirmed by the board `[CRM]`
+- Close date: moved twice since 2026-09-28, on 2026-10-07 and 2026-10-14 `[CRM]` (illustrative). The current close date value is `[Unknown]` in the record. The family board has not confirmed a date. The CRM holds a family board meeting set for 2026-11-12, not formally confirmed by the board `[CRM]`
 - Contacts: Ruth Ellery, General Manager, champion `[Call, 2026-09-26]`. Walt Okonkwo, Operations Director, skeptical of tablets `[Call, 2026-09-21]`. Priscilla Dunmore, pre-need manager `[CRM]`. The family board chair is the economic buyer, on one call `[CRM]`, name `[Unknown]`
 - Reason to look, in Ruth's words on the 2026-05-19 discovery call (illustrative quote): "We can't tell which plots are sold, or which are open, without going to the binder." `[Call, 2026-05-19]` (illustrative). The job is the answer to her question, which plots are sold and which are open.
-- Incumbent: Oldgate Ledger Pro `[CRM]`. Ruth named it in discovery, and the call was logged. Renewal in March 2027 `[CRM]`
+- Incumbent: Oldgate Ledger Pro `[CRM]`. Ruth named it in discovery, and the call was logged. Renewal in March 2027 `[CRM]`. The exact renewal day is `[Unknown]`. Oldgate is a legacy on-premise system `(profile: Competitive Landscape)`
+- Ruth's count of plots with no recorded sale: `[Unknown]`. Her count is the test of the answer to her question, and no estimate stands in for it
+- Facts for the zones, all tagged in the example: one double sale in the last 24 months, and the owner retires within 3 years `(profile: Example Cast)` `(illustrative)`. No pre-need intake form, and no social leads feeding email, are on record `[Unknown]`. The board approves spend above $25K `(profile: Qualification Zones, Zone 3)`. Year one with the two sites and the $5,000 setup is $26,576 `(profile: Product Modules)`, above that line
 - Discovery call, 2026-05-19 (illustrative), Ruth on the incumbent `[Call, 2026-05-19]`:
   - "Nobody here is attached to Oldgate. It's just what we've always had." (illustrative)
-  - "Oldgate tells us what sold. It doesn't tell us what's left." (illustrative)
+  - "Oldgate tells us what sold, and that part works. It doesn't tell us what's left." (illustrative)
   - "The state auditor asks for the trust numbers, and somebody digs them out of the ledger." (illustrative)
   - "The trust numbers come out of Oldgate as one file a year. The plot records stay in the binders." (illustrative). The migration scope of that file is `[Unknown]`
   - Cost, in Ruth's words on the same call: "Every year we pay Oldgate maintenance on top of the license, and it still doesn't tell us what's left." `[Call, 2026-05-19]` (illustrative)
@@ -695,7 +707,7 @@ Three worked examples, all on the PlotIQ cast and the chain file. The first is t
 | Contract | Expiring: renewal in March 2027, under six months away | LOW |
 | Switching Barriers | Moderate. The records move by hand from two sites of binders, which are places and not systems, and from one software system, Oldgate. The March 2027 renewal is a timing hold, not an early exit | MEDIUM |
 | Internal Champion For Incumbent | None | LOW |
-| Incumbent Product Advantage | Broad. Oldgate tells Ruth what sold, and she says that part works, so the advantage sits in the job she named. What is left, which Oldgate does not show, is the gap in Step 3B `[Call, 2026-05-19]` (illustrative) | HIGH |
+| Incumbent Product Advantage | Broad, by the three questions in Step 2C. (1) The job is on record in Ruth's words, on 2026-05-19: which plots are sold and which are open. (2) Oldgate answers part of it, the sold list. (3) Ruth says on the same dated call that the sold list works: "Oldgate tells us what sold, and that part works." What is left, which Oldgate does not show, is the gap in Step 3B `[Call, 2026-05-19]` (illustrative) | HIGH |
 
 **Overall: MEDIUM Threat.** The five scores are 1, 1, 2, 1 and 3. The sum is 8, so the average is 8 ÷ 5 = 1.6, which is MEDIUM under the rounding bands. Each clause was checked against the rule above:
 - HIGH, "the prospect is satisfied with the incumbent": not met, and it restates the satisfaction row, which is Frustrated. No raise.
@@ -707,7 +719,7 @@ Three worked examples, all on the PlotIQ cast and the chain file. The first is t
 - LOW, "the prospect is actively frustrated": met, and it restates the satisfaction row. At a MEDIUM average a met LOW clause has no effect.
 - LOW, "the incumbent is manual or absent": not met. Oldgate is in place and holds the sold records. The binders hold the plot records, which Oldgate does not cover. No effect either way.
 - LOW, "the switching barriers are minimal": not met. The score is Moderate.
-- LOW, "the prospect is already evaluating alternatives": met. The buyer is evaluating PlotIQ at Stage 5 `[CRM]`. The Stonemark evaluation does not meet this clause, because it is a rival fact. At a MEDIUM average it has no effect, because a met LOW clause only confirms LOW when the average already reads LOW.
+- LOW, "the prospect is already evaluating alternatives": met on the open deal with us. The buyer is evaluating PlotIQ in place of the incumbent at Stage 5 `[CRM]`. The Stonemark evaluation is not what meets it, because a rival fact never meets a calibration clause. At a MEDIUM average this met clause has no effect, because a met LOW clause only confirms LOW when the average already reads LOW.
 
 Result: no HIGH clause raises the level, so the threat is MEDIUM at the average of 1.6. The main risk is inertia: Walt's paper process has no one pushing for change `[Inferred]`, so a MEDIUM threat does not make the deal safe.
 
@@ -736,11 +748,11 @@ Classification: direct software `(profile: Competitive Landscape)` `[Inferred: r
 
 | # | Zone | Relevance To This Deal | Positioning Strategy |
 |---|------|------------------------|----------------------|
-| 1 | Zone 1, Records and Inventory Pain (must-have) | HIGH. Paper plot maps `[CRM] (illustrative)`, and one double sale in the last 24 months `[CRM] (illustrative)`. Both facts meet the HIGH cell `(profile: Qualification Zones)` | Lead with unsold plots, the job Ruth named. Show sold and unsold plots on Brackhaven's own records |
+| 1 | Zone 1, Records and Inventory Pain (must-have) | HIGH. Paper plot maps `[CRM] (illustrative)`, and one double sale in the last 24 months `(profile: Example Cast) (illustrative)`. Both facts are on record and meet the HIGH cell `(profile: Qualification Zones)` | Lead with unsold plots, the job Ruth named. Show sold and unsold plots on Brackhaven's own records |
 | 2 | Zone 5, Growth or Succession | HIGH. The owner retires within 3 years `(profile: Example Cast)` `(illustrative)`, which meets the retirement condition of the HIGH cell `(profile: Qualification Zones)` | Ask who inherits the system decision after the owner retires. Do not position on succession until Ruth raises it |
 | 3 | Zone 3, Ownership and Decision Speed (must-have) | MEDIUM. The family board chair is the economic buyer `[CRM]`. Year one at list for two sites is $26,576 with setup `(profile: Product Modules, $21,576 for two sites plus the $5,000 setup, arithmetic)`, above the $25K board line `(profile: Product Modules)`. The board approves above that line, so the GM does not sign alone, which is the MEDIUM cell `(profile: Qualification Zones)`. The family board meeting is set for 2026-11-12, not formally confirmed by the board `[CRM]` | Give Ruth the board's path in writing before the proposal |
 | 4 | Zone 2, Pre-Need Sales Motion | UNKNOWN. The record names a pre-need manager, Priscilla Dunmore `[CRM]`. It holds no intake form, no social leads feeding email and no lead tracking `[Unknown]`, so the facts match neither the HIGH cell nor the MEDIUM cell in full. The missing fact is how a pre-need lead reaches a counselor | Ask how a pre-need lead reaches a counselor. Do not lead with pre-need until Priscilla raises it |
-| 5 | Zone 4, Technology Readiness | MEDIUM. Oldgate is a legacy system that fits poorly: "Oldgate tells us what sold. It doesn't tell us what's left" `[Call, 2026-05-19] (illustrative)`. Staff email and shared-drive use is `[Unknown]` | Position on fit with the records the team already keeps, not on the tool |
+| 5 | Zone 4, Technology Readiness | MEDIUM. Oldgate is a legacy on-premise system `(profile: Competitive Landscape)` that fits poorly on the job: it does not show what is left `[Call, 2026-05-19] (illustrative)`. The HIGH cell is not matched, because staff email and shared-drive use is `[Unknown]` | Position on fit with the records the team already keeps, not on the tool |
 
 Verdict: GREENLIGHT. Zones 1 and 5 are HIGH, and no must-have zone is LOW `(profile: Qualification Zones, Verdict Rule)`. Zone 2 is UNKNOWN, which neither earns nor blocks GREENLIGHT.
 
@@ -806,15 +818,15 @@ The battlecard names the capability, and the demo shows it on Brackhaven's own c
 **Step 5: Win Plan (Live Items):** The items the record makes live at each stage, with the rest of the Step 5 checklist still applying.
 
 **Pre-Meeting (Live Items)**
-- [ ] Ask Ruth to answer the question she named as her reason to look, which plots are sold and which are open, from her own records. Use her own count of plots with no recorded sale as the test of that answer, and do not estimate it. Owner: Owen Pruitt. Date: `[Unknown]` until Ruth agrees
+- [ ] Ask Ruth to answer the question she named as her reason to look, which plots are sold and which are open, from her own records. Use her own count of plots with no recorded sale as the test of that answer, and do not estimate it. Owner: Owen Pruitt. Date: 2026-10-26, the next action, which asks for this count first
 - [ ] Know that no Verified proof point exists, so the demo shows the capability on Brackhaven's own counts and no customer is named. Owner: Owen Pruitt. Date: before the next meeting, `[Unknown]` until it is set
 - [ ] Confirm the exact Oldgate renewal day and the trust-file scope with Ruth. Do not assume either. Owner: Owen Pruitt. Date: 2026-10-26 (the next action, five business days after the run date of 2026-10-19)
 - [ ] Prepare a mitigation for each landmine in Step 3C, the rival rows included. Owner: Owen Pruitt. Date: before the next meeting, `[Unknown]` until it is set
 
 **During Discovery**
-- [ ] Ask Ruth to put the board's decision criteria in her own words. Owner: Owen Pruitt. Date: `[Unknown]`
+- [ ] Ask Ruth to put the board's decision criteria in her own words, in the next action's message. Owner: Owen Pruitt. Date: 2026-10-26
 - [ ] Plan the evaluation to finish before the March 2027 renewal decision. The 60 to 90 day evaluation window is an illustrative assumption to calibrate with Ruth. Owner: Owen Pruitt, with Ruth. Date: `[Unknown]`
-- [ ] Confirm the economic buyer: the family board chair, who has been on one call `[CRM]`. Ruth builds the case. Owner: Owen Pruitt, through Ruth. Date: `[Unknown]`
+- [ ] Confirm the economic buyer: the family board chair, who has been on one call `[CRM]`. Ruth builds the case. Owner: Owen Pruitt, through Ruth, in the next action's message. Date: 2026-10-26
 
 **During Demo**
 - [ ] The demo leads with an unsold-plot list drawn from Brackhaven's own records, not a feature tour. Owner: Owen Pruitt. Date: `[Unknown]`
@@ -833,10 +845,10 @@ Risk: the "deep accounting" argument lands with the board chair, and the mitigat
 5. **Top Three Competitive Gaps To Exploit:** (a) Unsold-plot visibility, the job Ruth named as her reason to look, which Oldgate does not show `[Call, 2026-05-19] (illustrative)`. (b) Trust numbers an auditor reads, Ruth's stated pain on the same call `[Call, 2026-05-19] (illustrative)`. (c) Time to live against the March 2027 renewal, from Ruth's timing statement on the same call `[Call, 2026-05-19] (illustrative)`, set against the research estimate of 120 to 180 days for Oldgate (Deathcare research project, competitive research note, 2026-03-27, over 90 days old at the run date) and the six-week target `(profile: Value Propositions)`. Each gap meets the Step 3B test, a pain the buyer stated on a dated call. None is claimed as a win, because the board has not written its criteria `[Unknown]`
 6. **Positioning Landmines:** see Step 3C, rival rows included
 7. **Displacement Proof Point:** none is Verified. Fennick Gardens is the closest match on unsold plots, and it is Illustrative, so it is marked do not cite
-8. **Critical Discovery Gap:** two open gaps, one line each: the exact Oldgate renewal day `[Unknown]`, and the trust-file export scope `[Unknown]`
+8. **Critical Discovery Gap:** three open gaps, one line each, in this order: Ruth's count of plots with no recorded sale `[Unknown]`, the exact Oldgate renewal day `[Unknown]`, and the trust-file export scope `[Unknown]`. The board's written criteria and the family board chair's name are not current-solution facts, so they are not gap lines. They have no date of their own, so they travel with the three gaps in the same message to Ruth Ellery (see item 11)
 9. **Win Strategy Summary:** have Ruth answer her question, which plots are sold and which are open, from her own records, and use her count of plots with no recorded sale to test the answer. Then show the sold and unsold view on Brackhaven's own records. Confirm the renewal day and the trust-file scope before the proposal
 10. **Risk Assessment:** Oldgate's accounting depth could land with the board chair, and the paper process could stay the default `[Inferred]`. Ruth says nobody is attached to Oldgate `[Call, 2026-05-19] (illustrative)`, which is not the same as resisting change. The question that tests it is what the team would stop doing if the binders went. A MEDIUM threat means the incumbent holds on the sold records. It does not mean the board has chosen
-11. **Recommended Next Step:** Owen Pruitt asks Ruth Ellery for both gaps in item 8, the exact Oldgate renewal day and the trust-file export scope, in one message, by 2026-10-26, five business days after the run date
+11. **Recommended Next Step:** Owen Pruitt asks Ruth Ellery for the three gaps in item 8, in one message, by 2026-10-26, five business days after the run date of 2026-10-19. No reply is owed on record, so the gap ask is the first live step. The same message also asks Ruth Ellery for the board's written criteria for the two tools, and for the family board chair's name with the dates that depend on it. Both have no date of their own, so both travel with the next action. No other step is listed after it
 
 **Output:** Full eight-section battlecard, with the rival record in section 1 and the rival rows in section 3. Threat level MEDIUM at an average of 1.6. The strongest competitive lever is unsold-plot visibility, and records a state auditor accepts, both to be shown on Brackhaven's own counts once Ruth provides them. The honest risk is Oldgate's accounting depth, and the chance that the paper process stays the default.
 
@@ -850,7 +862,7 @@ rival_record: Stonemark, direct software (profile: Competitive Landscape). Evalu
 gap_matrix: 4 rows, unsold-plot visibility, trust fund records, cost, time to live
 battlecard: 8 sections, inline, rival record in section 1, rival rows in section 3, rival test questions in section 4
 win_plan: 4 stages, owner on each item, date where known
-next_action: Owen Pruitt asks Ruth Ellery for both open gaps, the exact Oldgate renewal day and the trust-file export scope, in one message, by 2026-10-26
+next_action: Owen Pruitt asks Ruth Ellery, in one message, for three open gaps in this order: her count of plots with no recorded sale, the exact Oldgate renewal day, and the trust-file export scope. The same message also asks for the board's written criteria and the family board chair's name, which have no date of their own, by 2026-10-26
 report_path: none (inline)
 ```
 
@@ -1010,7 +1022,7 @@ No Verified row exists, so no talk track or email names a customer. The demo sho
 
 **Pre-Meeting (Live Items)**
 - [ ] No reason to look is on record in the buyer's own words, so the first ask is the open discovery gap: the pain the demo must solve, and the Stonemark renewal day and scope. Owner: Owen Pruitt. Date: 2026-11-20, the demo date, an earlier date than the five-business-day rule and set by the records
-- [ ] Get the names of the general manager and the pre-need manager, because no contact name is on file. Owner: Owen Pruitt. Date: before 2026-11-20, `[Unknown]` until set
+- [ ] Get the names of the general manager and the pre-need manager, because no contact name is on file. Owner: Owen Pruitt. Date: 2026-11-20, in the next action's message
 - [ ] Know that no Verified proof point exists, so the demo shows the capability on Greyfield's own records and no customer is named. Owner: Owen Pruitt. Date: before 2026-11-20
 - [ ] Prepare a mitigation for each landmine in Section 3. Owner: Owen Pruitt. Date: before 2026-11-20
 
@@ -1018,7 +1030,7 @@ No Verified row exists, so no talk track or email names a customer. The demo sho
 - [ ] Ask discovery questions 1 to 6 with genuine curiosity, and listen for pain about the map and the pre-need call back. Owner: Owen Pruitt. Date: `[Unknown]` until the next call is booked
 - [ ] Confirm the exact Stonemark renewal day and the scope of the map move with the buyer. Do not assume either. Owner: Owen Pruitt. Date: `[Unknown]` until the buyer names the day
 - [ ] Ask the buyer to state the decision criteria in their own words before any demo. Owner: Owen Pruitt. Date: 2026-11-20 (the demo date)
-- [ ] Confirm the economic buyer, the owner who signs under $25K alone `[CRM] (illustrative)`. Owner: Owen Pruitt. Date: `[Unknown]`
+- [ ] Confirm the economic buyer, the owner who signs under $25K alone `[CRM] (illustrative)`. Owner: Owen Pruitt. Date: 2026-11-20, in the next action's message
 
 **During Demo (Live Items)**
 - [ ] Lead with the capabilities that answer the criteria the buyer wrote. If none are written, say so, and do not give a feature tour. Owner: Owen Pruitt. Date: 2026-11-20
@@ -1042,10 +1054,10 @@ No Verified row exists, so no talk track or email names a customer. The demo sho
 5. **Top Three Competitive Gaps To Test, Not Claim:** (a) pre-need leads and their call-back owner. (b) Records and trust reporting, which the map does not hold `[CRM] (illustrative)`. (c) Time to live against the January 2027 renewal, a research estimate (Deathcare research project, competitive research note, 2026-03-27, over 90 days old at the run date). No gap is tied to a dated buyer statement yet, so none is claimed
 6. **Positioning Landmines:** see Section 3
 7. **Displacement Proof Point:** none is Verified. Holloway Hills and Fennick Gardens are Illustrative and are not cited
-8. **Critical Discovery Gap:** two open gaps, one line each: the buyer's confirmed pain, and the Stonemark renewal day and scope `[Unknown]`. The 2026-11-09 call confirmed no pain
+8. **Critical Discovery Gap:** three open gaps, one line each: the buyer's confirmed pain `[Unknown]`, the exact Stonemark renewal day `[Unknown]`, and the scope of the map move `[Unknown]`. The 2026-11-09 call confirmed no pain
 9. **Win Strategy Summary:** get the buyer's pain and criteria in their own words before the demo. Then show the pre-need call back and the records beside the map. If the criteria name only the map, say so and reassess the deal
 10. **Risk Assessment:** Stonemark could win if the buyer decides on the map alone, because the map is its real strength. Stonemark renews in January 2027, so the buyer may renew by default if the decision stalls. Until the buyer states a criterion, the battlecard cannot claim a win over Stonemark
-11. **Recommended Next Step:** Owen Pruitt asks the buyer for each open gap in item 8, in one message, by 2026-11-20, the demo date, before the demo
+11. **Recommended Next Step:** Owen Pruitt asks the buyer for each open gap in item 8, in one message, by 2026-11-20, the demo date, before the demo. No reply is owed on record: the pre-need manager's 2026-11-03 reply `[CRM]` is followed by the 2026-11-09 call `[Call, 2026-11-09]`, the last buyer contact on record. The same message to the same buyer also asks for the decision criteria in the buyer's own words (dated 2026-11-20 in the Step 5 list), the names of the general manager and the pre-need manager, and the economic buyer's confirmation, the two items with no date of their own. All of them travel with the next action
 
 **Output:** Full eight-section battlecard, threat MEDIUM at an average of 1.8. No gap row qualifies yet, so the win strategy is to get the buyer's confirmed pain and criteria before the demo, then test the pre-need call back and the records against them.
 
@@ -1059,7 +1071,7 @@ rival_record: none evaluated
 gap_matrix: 0 rows qualify under the dated-call rule. Four candidates held as discovery targets
 battlecard: 8 sections, inline, Stonemark named as the incumbent, no proof named as a customer result
 win_plan: 4 stages, owner on each item, date where known
-next_action: Owen Pruitt asks the buyer for the open discovery gap, the confirmed pain and the Stonemark renewal day and scope, by 2026-11-20, the demo date (an earlier date the records set)
+next_action: Owen Pruitt asks the buyer, in one message, for the three open gaps in item 8 (the confirmed pain, the Stonemark renewal day and the scope of the map move), and in the same message for the decision criteria, the general manager's and pre-need manager's names, and the economic buyer's confirmation, by 2026-11-20, the demo date (an earlier date than the five-business-day default, set by the demo the input names)
 report_path: none (inline)
 ```
 
@@ -1101,7 +1113,7 @@ rival_record: Stonemark, direct software (profile: Competitive Landscape). Evalu
 gap_matrix: Example 1's, unchanged
 battlecard: the rival part of Example 1's run. Adds no section of its own
 win_plan: Example 1's, unchanged
-next_action: Example 1's, unchanged (Owen Pruitt asks Ruth Ellery for the renewal day and the trust-file scope, by 2026-10-26). This example adds none
+next_action: Example 1's, unchanged (Owen Pruitt asks Ruth Ellery, in one message, for her count of plots with no recorded sale, the exact renewal day and the trust-file scope, and the same message asks for the board's written criteria and the family board chair's name, by 2026-10-26). This example adds none
 report_path: none (inline)
 ```
 
@@ -1180,6 +1192,19 @@ report_path: none (inline)
 ---
 
 ## Changelog
+
+### 2.1.12 (2026-10-26)
+- Next-action priority order is written in the Output Contract and Step 6. The order is a reply owed to a buyer who wrote to us (due the next business day), then the buyer ask for the open current-solution gaps in item 8, then other buyer steps for a different person or a later dated record, then internal steps. Ties go to the earlier date on record, then to the earlier Step 5 stage, then to the first item in item 8.
+- Open gap has one scope. It is a fact about the buyer's current solution that the records mark Unknown and that the Step 5 win plan cannot run without. A profile question with no Unknown on record is asked in discovery and is not listed as a gap. The board's criteria, the family board chair's name and a rival's position are not current-solution facts, so they are not gap lines. Asks to the same person that fit in the same message travel with the next action, and a criterion or chair's name with no date of its own fits that rule.
+- Example 1's next action asks Ruth Ellery, in one message, for her count of plots with no recorded sale, the exact Oldgate renewal day and the trust-file export scope, by 2026-10-26. The count is the test the win plan already asks for, so it is an open gap, and the try-it promise changes from two gaps to three, with the board's criteria and the chair's name asked to Ruth in the same message.
+- Product Advantage is three questions in order: is the job on record in the buyer's words, does the incumbent answer any part of it, and does the buyer say on a dated call that the part works. Broad needs that dated statement. Without it, the part the incumbent answers scores Niche.
+- Satisfaction: a buyer's statement that the incumbent does not show or tell them something they need is a named failure.
+- Internal Champion For Incumbent has defined values: None, Confirmed, Suspected and Unknown, with a dated statement needed for None.
+- Zones: a zone takes the highest cell whose every condition is on record, so one Unknown condition stops a HIGH cell from matching.
+- Example 1 records now hold the buyer's dated statement that the sold list works, the exact renewal day as Unknown, the current close date as Unknown, the double sale and the owner's retirement from the Example Cast, the pre-need intake facts as Unknown, and the year-one board figure of $26,576 against the $25K line. Its zones follow from those records: Zones 1 and 5 HIGH, Zones 3 and 4 MEDIUM, Zone 2 UNKNOWN, GREENLIGHT.
+- A met LOW clause for already evaluating alternatives is met on the open deal with us, never on a rival, which the Rival Method already says.
+- Example 2's next action lists three open gaps, one line each, and states that no reply is owed on record. Its criteria, names and economic-buyer asks have no date of their own, so they travel in the same message. Example 3's hand-off carries Example 1's next action.
+- Correction after review: asks to the same person that fit in the same message travel with the next action, and a step for a different person, or with a later date set by a record or the skill's schedule, is listed after it. The priority order and the scope rule in the Output Contract and Step 6 now say so.
 
 ### 2.1.11 (2026-10-26)
 - Product advantage: an incumbent that answers part of the job the buyer named, where the buyer says that part works, scores Broad, and the part it leaves out is the gap in Step 3B. Ruth's reason to look now names both halves of her question, which plots are sold and which are open. Oldgate's sold records are the part that works, so Example 1 moves from LOW at an average of 1.4 to MEDIUM at an average of 1.6, with factors 1, 1, 2, 1 and 3. Its try-it promise changes to match, and Example 3 follows it.

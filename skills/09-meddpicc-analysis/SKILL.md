@@ -112,8 +112,8 @@ Core commitments: **eight-element scorecard with weighted scores**, **overall he
 | `stage_minimum_met` | Inline, the stage line under the health score | Yes or No against the minimum for the deal's stage, with each failed critical element named and its required score |
 | `stage_recommendation` | Inline, the stage section before the actions | One word: ADVANCE, HOLD, DOWNGRADE or DISQUALIFY, with the rationale and the dated action |
 | `risk_patterns` | Inline, the gap analysis | Each pattern flagged from the risk table, with its evidence tag, or the words "none flagged" |
-| Next Actions (Five) | Inline, after the stage recommendation | Action, element targeted, owner, deadline and success criterion. The first action is the one the close reads |
-| `next_action` | Last line of the analysis | The first of the five actions, with its owner and the date the shared contract's next-action rule gives (five business days after the run date, or an earlier date the records or the skill's own schedule set for that step, named with its source) |
+| Next Actions (Five) | Inline, after the stage recommendation | Action, element targeted, owner, deadline and success criterion, in the priority order of the `next_action` row. The first action is the one the close reads, and the line under the list names which actions travel with it and which are later steps |
+| `next_action` | Last line of the analysis | One move by one owner to one person on one date, with its owner and the date the shared contract's next-action rule gives (five business days after the run date, or an earlier date the records or the skill's own schedule set for that step, named with its source). **Priority order, first to last:** (1) a reply owed to a buyer who wrote to us and has had no answer, due the next business day, when the record holds one, because a buyer waiting on us is the one step that loses ground every day. (2) A failed critical element for the deal's current stage, lowest score first, because the stage the CRM shows is not supported until that floor is met. An INSUFFICIENT critical element counts as failed and comes before any scored one, because the missing evidence is the step. (3) The element that blocks the next stage's critical floor or carries the next stage's exit criterion, lowest score first, because it is what holds the deal where it is. (4) Every other gap, in the Step 4 ranking. Ties at any level go to the lower score, then to the element that comes first in the weighted table. The first step in this order that the record holds is the next action. An ask to the same person from the same owner travels with the next action in the same message. A step for a different person or owner, or with a later date, is listed after it as a later step with its own owner and date, never folded in. The ten-business-day deadline Step 5 gives a moderate gap is this skill's own schedule for that step, so a moderate ask dated later than the next action is a later step. For an account that is not scored (Step 1, Status Check), the next action is the reply when one is owed, and otherwise the step that opens a deal |
 | `report_path` | Set only when a file was written | `none (inline)` when the analysis stayed in the chat |
 | File Option | `<account>_gtm-meddpicc-analysis_<date>.md`, saved beside the user's other account notes | Written only when the user asks, in Markdown. The ask is the approval step |
 
@@ -261,6 +261,8 @@ Score each element against its rubric using the evidence in the record. Tag ever
 | 2 | Pain acknowledged but not quantified. No numbers shared. |
 | 1 | No metrics discussion has occurred. |
 
+The current-state numbers in row 4 are the prospect's own: a number the prospect stated on a call, or one the CRM records as the prospect's. A figure taken only from the profile is not the prospect's, so it does not by itself earn row 4. Step 2 applies the same test.
+
 #### E. Economic Buyer (Weight: 20%)
 | Score | Evidence Required |
 |-------|------------------|
@@ -279,6 +281,8 @@ Score each element against its rubric using the evidence in the record. Tag ever
 | 2 | Vague sense of what matters. No specific requirements documented. |
 | 1 | No discussion of evaluation criteria. |
 
+"Strong on most" in row 4 is read against the must-haves on the record. A proposal or demo that covers every recorded must-have meets it, and so does one that covers more than half of them. Covering every must-have does not reach row 5, which needs the buyer's criteria in writing.
+
 #### D. Decision Process (Weight: 10%)
 | Score | Evidence Required |
 |-------|------------------|
@@ -288,7 +292,7 @@ Score each element against its rubric using the evidence in the record. Tag ever
 | 2 | Champion said "I'll handle it internally" without specifics. |
 | 1 | No discussion of decision process. |
 
-A stakeholder is known when its role is on the record, even if its name is not, so a board chair named only by role counts toward the known stakeholders in row 4.
+A stakeholder is known when its role is on the record, even if its name is not, so a board chair named only by role counts toward the known stakeholders in row 4. Rows 3 and 4 are told apart by the steps. Row 4 holds when the approval steps are on the record one by one (who recommends, who approves) and their stakeholders are known, even when the date the process works to is set but not yet confirmed by the approver, because a set date the approver has not confirmed is a fuzzy date. Row 3 holds when the process is known only in general terms, with no step and its stakeholder named. Row 5 needs the approval sequence confirmed, with its dates.
 
 #### P. Paper Process (Weight: 10%)
 | Score | Evidence Required |
@@ -308,7 +312,7 @@ A stakeholder is known when its role is on the record, even if its name is not, 
 | 2 | We think there's pain based on profile, but prospect hasn't confirmed. |
 | 1 | No pain identified. Deal is feature-led or relationship-led. |
 
-A score of 5 needs pains from two or more stakeholders on the record, each stated in that stakeholder's own words, so one stakeholder's pains score at most 4. An urgent timeline is a deadline the buyer named that the close date is set against. Urgency with no named deadline scores 4.
+A score of 5 needs pains from two or more stakeholders on the record, each stated in that stakeholder's own words, so one stakeholder's pains score at most 4. An urgent timeline is a deadline the buyer named that the close date is set against. The close date is set against a named deadline when the buyer, on the record, names that deadline as the reason for the close date or for the event the close date sits on, such as a board meeting. The deadline does not have to be the close date itself, so a renewal the buyer names as the deadline behind the board date counts while the close date sits on that board date. The link holds whether or not the board has confirmed its date. It ends when the close date moves off the date the buyer tied to the deadline and no buyer ties the new date to it. Urgency with no named deadline behind the close date scores 4.
 
 #### C. Champion (Weight: 15%)
 The champion status comes first, from the shared champion tests in the Shared Contract: Strong, Developing or None, read from the record as it stands on the run date. The definition of "shares competitor intelligence" is in the Shared Contract and is not restated here. The rubric row then follows the status and the evidence the record shows today. A test met by active selling inside the buying committee on our behalf, such as a briefing of the economic buyer that the champion gave and the record shows, is the evidence row 5 asks for. A briefing reaches the holder of a role that the record names only by role, so a briefing to the board chair reaches the economic buyer.
@@ -407,7 +411,7 @@ Before pulling anything, read the account's folder under `accounts/` and the com
 
 Query the CRM for the account. Extract the deal basics (account, amount, stage and days in stage, close date and slip history, owner, supporting team, deal origin), the engagement history (touchpoints, last activity, meeting dates and participants), the contact records (name, title, department, seniority, meeting attendance versus email only), the deal notes (next steps, objections, competitors named, budget and timeline signals) and any prior closed-lost record at this account.
 
-Read the Deal Pulse, Call Coaching and Stakeholder Mapping fields by name when those outputs exist. Use them to focus the check, and never as evidence for an element on their own. When one is absent, say so.
+Read the Deal Pulse, Call Coaching and Stakeholder Mapping fields by name when those outputs exist. Use them to focus the check, and never as evidence for an element on their own. When one is absent, say so in the deal profile, one line per output. An output with no record at all is shown as `Deal Pulse (08): none on record`. An output the record says exists but whose fields are not supplied is shown with its date and each field it lacks as `[Unknown]`, for example `Deal Pulse (08), 2026-09-28: Pulse health [Unknown], risk_level [Unknown]`. In both cases no comparison between the two instruments is made, and no score changes.
 
 **Status Check:** Only an ACTIVE account is scored. An ENGAGED account (the account replied or met with us, and no deal is open) has no deal record and no stage, so the skill stops after the CRM pull and returns `ENGAGED, no open deal: not scored`. The health score, the stage line and the stage recommendation are all omitted. Scoring a stage the buyer has not agreed to would put a deal in the forecast before one exists, and two-way contact is not a deal. The next action names the step that opens a deal and its owner, dated under the shared contract's next-action rule. Any other status with no open deal gets the same one-line result, with its status word.
 
@@ -418,7 +422,7 @@ Read the Deal Pulse, Call Coaching and Stakeholder Mapping fields by name when t
 Score each element against its rubric in {Methodology: MEDDPICC Scoring Rubrics}. Be honest. An element with no evidence is INSUFFICIENT, not scored (the INSUFFICIENT rule in Methodology). Add the client context for each element.
 
 **Client Context By Element:**
-- **Metrics:** look for the numbers in `{Client Profile: Value Propositions}`, such as time saved, cost reduced, compliance rates or volume. Use the team's own metric wording from the MEDDPICC section. A number counts as the prospect's only when the prospect stated it on a call or in the CRM, so a figure taken only from the profile does not by itself earn the score 4.
+- **Metrics:** look for the numbers in `{Client Profile: Value Propositions}`, such as time saved, cost reduced, compliance rates or volume. Use the team's own metric wording from the MEDDPICC section. A number counts as the prospect's only when the prospect stated it on a call, or the CRM records it as the prospect's, so a figure taken only from the profile does not by itself earn the score 4 (the same test as the note under the Metrics rubric).
 - **Economic Buyer:** use the economic-buyer persona from `{Client Profile: Buyer Personas}`, the one that owns budget. A buyer identified by title who has had direct access on at least one call scores 4 even when the name is `[Unknown]`, and a title known only from the org chart, never confirmed, scores 2. Where the profile's Buying Committee role-title map names the economic buyer for the account's type (for a combination operator, the family board chair), that title is the one used, and the Buyer Personas row is used only where the map names none.
 - **Decision Criteria:** push toward `{Client Profile: Qualification Criteria}`, and redirect away from areas where competitors are stronger.
 - **Decision Process:** a "we'll handle it internally" answer without dates scores 2, not 3.
@@ -452,7 +456,13 @@ Then check the risk patterns in the Methodology table. Name each pattern that th
 
 ### Step 5: Generate Coaching Recommendations
 
-Generate five prioritized next actions, each targeting a specific MEDDPICC gap. Each action names the methodology step it uses from `{Client Profile: Sales Methodology}`, the owner (AE, BDR, SE or manager), a deadline (five business days for critical gaps, ten for moderate ones) and a success criterion that shows the action worked. The first action targets the failed critical element with the lowest score, with ties taken in table order. When no current-stage floor fails, it targets the element that blocks the next stage's floor. A critical gap is one that fails the next stage's critical floor, or the element that carries the next stage's exit criterion in the profile's Qualification Stage Gates, such as the approval date for Stage 6 Closed-Won and Handoff, which sits with Decision Process. An exit criterion sits with the element whose rubric names the fact it needs. Every other gap is moderate. The first action is the next action, so its date is set by the shared contract's next-action rule (five business days after the run date, or an earlier date the records or the skill's own schedule set for that step, named with its source). The other four actions keep the deadline above. The first action's date is the shared rule's date even when its gap is moderate, so the ten-day deadline never applies to it.
+Generate five prioritized next actions, each targeting a specific MEDDPICC gap. Each action names the methodology step it uses from `{Client Profile: Sales Methodology}`, the owner (AE, BDR, SE or manager), a deadline (five business days for critical gaps, ten for moderate ones) and a success criterion that shows the action worked. Order the actions by the priority order in the Output Contract's `next_action` row:
+1. A reply owed to a buyer who wrote to us and has had no answer, when the record holds one. It is due the next business day and is listed above the five gap actions as the next action.
+2. A failed critical element for the deal's current stage, lowest score first. An INSUFFICIENT critical element counts as failed and comes first.
+3. The element that blocks the next stage's critical floor or carries the next stage's exit criterion, lowest score first.
+4. Every other gap, in the Step 4 ranking.
+
+Ties at any level go to the lower score, then to the element that comes first in the weighted table. The reason for the order: a buyer waiting on us loses ground every day, a failed current floor means the stage the CRM shows is not supported today, and a next-stage blocker is what holds the deal where it is. After the list, write one line naming the next action, the asks that travel with it (same owner, same person, no later date) and the later steps. A critical gap is one that fails the next stage's critical floor, or the element that carries the next stage's exit criterion in the profile's Qualification Stage Gates, such as the approval date for Stage 6 Closed-Won and Handoff, which sits with Decision Process. An exit criterion sits with the element whose rubric names the fact it needs. A failed critical element for the current stage is also a critical gap. Every other gap is moderate. The first action is the next action, so its date is set by the shared contract's next-action rule (five business days after the run date, or an earlier date the records or the skill's own schedule set for that step, named with its source). The other four actions keep the deadline above. The first action's date is the shared rule's date even when its gap is moderate, so the ten-day deadline never applies to it.
 
 **Produces:** Five actions, each with element targeted, owner, deadline and success criterion.
 
@@ -524,10 +534,10 @@ Write a file only when the user asks for one, named `<account>_gtm-meddpicc-anal
 **Scoring Summary (Scored 8 Of 8):**
 - **Metrics: 4 Of 5.** Ruth gave the plot count, 11,000 `[CRM]`. Her own current-state number is the trust fund report, which takes her office about 30 hours each year, built by hand from the ledger (`[Call, 2026-09-26]`, illustrative). The ROI framework was shared, not yet agreed `[Call, 2026-09-26]`.
 - **Economic Buyer: 4 Of 5.** The family board chair is identified by title. Direct access was established on one call `[CRM]`. Budget was discussed, not confirmed `[Call, 2026-09-26]`.
-- **Decision Criteria: 4 Of 5.** Must-haves are known from discovery and the deal maps to them strongly `[Call, 2026-05-19]`. The pre-need module is a nice-to-have `[Call, 2026-09-26]`.
-- **Decision Process: 4 Of 5.** The committee is mapped: board, GM and Operations Director `[CRM]`. The family board meeting is set for 2026-11-12 in the CRM `[CRM]`. That is the date Ruth is working to, and the board itself has not formally confirmed it `[Call, 2026-09-26]`. The approval sequence is partly confirmed `[Notes]`.
+- **Decision Criteria: 4 Of 5.** Must-haves are known from discovery `[Call, 2026-05-19]`. The pre-need module is a nice-to-have `[Call, 2026-09-26]`. The proposal covers both must-haves, plot records and trust reporting `[Notes]`, which meets "strong on most". No written criteria have been received, so the score is not 5.
+- **Decision Process: 4 Of 5.** The committee is mapped: board, GM and Operations Director `[CRM]`. The family board meeting is set for 2026-11-12 in the CRM `[CRM]`. That is the date Ruth is working to, and the board itself has not formally confirmed it `[Call, 2026-09-26]`. The approval steps on record are the GM's recommendation and the board's vote `[Notes]`. The steps and their stakeholders are known one by one and the set date is not yet confirmed, which is row 4, and the sequence is not confirmed, so the score is not 5.
 - **Paper Process: 3 Of 5.** Aware that legal and vendor review exists (profile: MEDDPICC). The steps and timing are not scoped `[Unknown]`.
-- **Identified Pain: 5 Of 5.** Two stakeholders each state a quantified pain in their own words. Ruth Ellery, General Manager, on the 2026-09-26 call: "Each double sale costs my staff about 40 hours to unwind" (`[Call, 2026-09-26]`, illustrative), after one double sale in 24 months `[CRM]` (illustrative). Trust fund reporting is done by hand `[Call, 2026-09-26]`. She named the March 2027 Oldgate renewal as the deadline behind the 2026-11-12 board date `[Call, 2026-09-26]` (illustrative), so the timeline is urgent. Walt Okonkwo, Operations Director, on the 2026-09-17 call: "A double-sale search costs me half a day, and I run about two lookups a week" (`[Call, 2026-09-17]`, illustrative). The pain maps to Zone 1, HIGH: plot records on paper and one double sale in 24 months `[CRM]`, read against the Zone 1 row (profile: Qualification Zones). Two stakeholders meet the rule for 5.
+- **Identified Pain: 5 Of 5.** Two stakeholders each state a quantified pain in their own words. Ruth Ellery, General Manager, on the 2026-09-26 call: "Each double sale costs my staff about 40 hours to unwind" (`[Call, 2026-09-26]`, illustrative), after one double sale in 24 months `[CRM]` (illustrative). Trust fund reporting is done by hand `[Call, 2026-09-26]`. She named the March 2027 Oldgate renewal as the deadline behind the 2026-11-12 board date `[Call, 2026-09-26]` (illustrative), and the close date sits on that board date `[CRM]`, so the close date is set against a deadline the buyer named and the timeline is urgent. Walt Okonkwo, Operations Director, on the 2026-09-17 call: "A double-sale search costs me half a day, and I run about two lookups a week" (`[Call, 2026-09-17]`, illustrative). The pain maps to Zone 1, HIGH: plot records on paper and one double sale in 24 months `[CRM]`, read against the Zone 1 row (profile: Qualification Zones). Two stakeholders meet the rule for 5.
 - **Champion: 5 Of 5.** Ruth Ellery is Strong: four of seven shared champion tests met, each tagged with its source and date. Offers introductions (she offers to introduce the board chair, `[Call, 2026-09-26]`). Commits to next steps with dates (the 2026-11-12 board date, `[Call, 2026-09-26]`). Explains the internal politics (the chair decides after the family's vote, `[Call, 2026-09-26]`). Defends the solution when we are not in the room (she briefed the board chair on the records fix and forwarded the ledger comparison, `[CRM, 2026-09-25]`, the active selling that row 5 asks for). She also coached us on Walt Okonkwo's objection to tablets `[Call, 2026-09-26]` (illustrative).
 - **Competition: 4 Of 5.** Oldgate Ledger Pro is the incumbent, direct software, renewal March 2027 `[CRM]`. Stonemark was evaluated with no preference stated `[Call, 2026-09-26]`. A strategy exists and is not yet tested with the buyer `[Notes]`.
 
@@ -557,6 +567,8 @@ Write a file only when the user asks for one, named `<account>_gtm-meddpicc-anal
 4. Lena Vasquez, Sales Manager, joins the next call with the board chair, by 2026-10-12. Element: Economic Buyer and happy ears check. Owner: manager. Success: the manager records what the chair commits to.
 5. Owen agrees the ROI framework with Ruth in writing, by 2026-10-12. Element: Metrics. Owner: AE. Success: the framework is agreed by Ruth and filed on the record, moving Metrics to 5.
 
+Next action: action 1. No current-stage floor fails, and Paper Process (3) blocks the Stage 6 floor, so it comes first. Action 2 goes from the same owner to the same person with no later date, so its ask travels in the same message. Actions 3 and 5 are later steps (a later date), and action 4 is a later step (a different owner).
+
 **Stage Recommendation: HOLD at Stage 5 Negotiate, checked 2026-10-05.** The deal passes the Stage 5 minimum and misses the Stage 6 minimum on Paper Process alone. Its dated actions close that gap by 2026-10-05, the date the stage is checked, and the board date sits on the calendar for 2026-11-12. The deal moves to Stage 6 when Paper Process reaches 4 and the board approval date is confirmed.
 
 ```text
@@ -568,7 +580,7 @@ health_score: 84 (scored 8 of 8)
 stage_minimum_met: Yes for Stage 5 Negotiate (70 or higher, profile: Qualification Stage Gates). No for Stage 6 Closed-Won and Handoff (75 or higher), because Paper Process is 3 and needs 4
 stage_recommendation: HOLD, checked 2026-10-05
 risk_patterns: none flagged on the evidence. Economic Buyer identified by title only, name [Unknown]
-next_action: Owen Pruitt asks Ruth Ellery to walk through the legal and vendor steps by 2026-10-05 (five business days after the run date of 2026-09-28, with no earlier record date)
+next_action: Owen Pruitt asks Ruth Ellery to walk through the legal and vendor steps by 2026-10-05 (five business days after the run date of 2026-09-28, with no earlier record date), and in the same message asks for the board's approval sequence and confirmation of the 2026-11-12 meeting. Later steps: actions 3 to 5
 report_path: none (inline)
 ```
 
@@ -584,7 +596,7 @@ report_path: none (inline)
 - **Decision Criteria: 3 Of 5.** Some criteria are known `[Call, 2026-09-26]`. Stonemark is still being evaluated and the criteria it is judged on are not on the record `[Notes]` (illustrative).
 - **Decision Process: 2 Of 5.** Ruth said "I'll take it to the board" with no date and no approval sequence `[Notes]`.
 - **Paper Process: 3 Of 5.** Aware that legal and vendor steps exist, details unclear (profile: MEDDPICC).
-- **Identified Pain: 4 Of 5.** The primary pain is clear and partly quantified `[Call, 2026-09-26]`. Walt Okonkwo's quantified account from the 2026-09-17 call is also on record `[Call, 2026-09-17]` (illustrative). The score stays at 4, not 5, because the urgency is not tied to a confirmed date: the March 2027 Oldgate renewal is the deadline behind the board date `[CRM]`, but the board has not confirmed 2026-11-12 and the deal has not tied its own date to it.
+- **Identified Pain: 4 Of 5.** The primary pain is clear and partly quantified `[Call, 2026-09-26]`. Walt Okonkwo's quantified account from the 2026-09-17 call is also on record `[Call, 2026-09-17]` (illustrative). The score stays at 4, not 5, because no deadline the buyer named now sits behind the close date. Ruth named the March 2027 Oldgate renewal as the deadline behind the 2026-11-12 board date `[Call, 2026-09-26]`, but the close date has moved off that board date twice since, on 2026-10-07 and 2026-10-14 `[CRM]` (illustrative), and no buyer has tied the moved date to the renewal `[Unknown]`.
 - **Champion: 5 Of 5.** Champion status is Strong on the 2026-10-19 record, with four of seven shared champion tests on record, each dated: introductions, dated next steps and internal politics on 2026-09-26 `[Call, 2026-09-26]`, and defending the solution when we are not in the room on 2026-09-25 `[CRM, 2026-09-25]`. The 2026-09-25 briefing of the board chair is the active selling that row 5 asks for. Ruth has been silent for 16 days `[CRM]`, and silence is not a no, so the status and the row are read from the tests on record, and the score is 5, not 4.
 - **Competition: 3 Of 5.** Stonemark is still in the evaluation with no preference stated `[Call, 2026-09-26]`, and no written position against it is on the record `[Notes]` (illustrative).
 
@@ -611,12 +623,14 @@ report_path: none (inline)
 
 **Next Actions:**
 1. Owen Pruitt asks Ruth Ellery for the board date, by 2026-10-26. Element: Decision Process (2 to 3). Owner: AE. Success: a dated board meeting is on the record.
-2. Owen asks Ruth for a call with the board chair, by 2026-10-26. Element: Economic Buyer (4 to 5). Owner: AE. Success: the chair attends, states the budget, and the chair's name is recorded.
+2. Owen asks Ruth for a call with the board chair, by 2026-11-02. Element: Economic Buyer (4 to 5). Owner: AE. Success: the chair attends, states the budget, and the chair's name is recorded.
 3. Lena Vasquez, Sales Manager, joins the next call with Ruth, by 2026-10-26. Element: Decision Process (2 to 3). Owner: manager. Success: the approval steps after the board are named, each with a person.
-4. Owen re-runs the ROI numbers with Ruth now that the board has moved, by 2026-10-26. Element: Metrics (3 to 4). Owner: AE. Success: current-state numbers are on the record.
-5. Owen asks Ruth which criteria Stonemark is being judged on and writes a position against it, by 2026-10-26. Element: Decision Criteria (3 to 4). Owner: AE. Success: the criteria are on the record and a Stonemark position is written.
+4. Owen re-runs the ROI numbers with Ruth now that the board has moved, by 2026-11-02. Element: Metrics (3 to 4). Owner: AE. Success: current-state numbers are on the record.
+5. Owen asks Ruth which criteria Stonemark is being judged on and writes a position against it, by 2026-11-02. Element: Decision Criteria (3 to 4). Owner: AE. Success: the criteria are on the record and a Stonemark position is written.
 
-**Stage Recommendation: HOLD at Stage 5 Negotiate, with a dated action.** Owen asks Ruth for the board date by 2026-10-26, five business days after the run date of 2026-10-19. If the board date is not confirmed by 2026-11-02, the deal moves one stage back to Stage 4 Proposal. It does not return to Stage 2 Discovery, because the Identified Pain is 4 and the pain is confirmed.
+Next action: action 1. Decision Process (2) is the one failed critical element for Stage 5, so it comes first. Actions 1 and 3 are critical and dated five business days after the run date. Actions 2, 4 and 5 are moderate gaps, so they keep the ten-business-day deadline of 2026-11-02 and are later steps (a later date). Action 3 is also a later step (a different owner). No ask travels with action 1.
+
+**Stage Recommendation: HOLD at Stage 5 Negotiate, checked 2026-10-26.** Owen asks Ruth for the board date by 2026-10-26, five business days after the run date of 2026-10-19, and that deadline is the date the stage is checked. If the board date is not confirmed by 2026-10-26, the deal moves one stage back to Stage 4 Proposal. It does not return to Stage 2 Discovery, because the Identified Pain is 4 and the pain is confirmed.
 
 At Stage 4 Proposal this deal meets the minimum of 50 and its critical elements: Identified Pain (4), Champion (5) and Decision Criteria (3) are each at 3 or higher. The move brings the forecast in line with the buyer's real date. The deal returns to Stage 5 only when Decision Process reaches 3, health stays at 70 or higher (profile: Qualification Stage Gates), and the board chair has been met directly.
 
@@ -627,9 +641,9 @@ run_date: 2026-10-19
 meddpicc_scores: Metrics 3, Economic Buyer 4, Decision Criteria 3, Decision Process 2, Paper Process 3, Identified Pain 4, Champion 5, Competition 3
 health_score: 71 (scored 8 of 8)
 stage_minimum_met: No for Stage 5 Negotiate (70 or higher, profile: Qualification Stage Gates). Failed critical element: Decision Process (2, needs 3)
-stage_recommendation: HOLD
+stage_recommendation: HOLD, checked 2026-10-26
 risk_patterns: Close date fantasy (two moves since 2026-09-28, board date unconfirmed), happy ears ("I'll take it to the board" with no date)
-next_action: Owen Pruitt asks Ruth Ellery for the board date by 2026-10-26 (five business days after the run date of 2026-10-19). If it is not confirmed by 2026-11-02, the stage moves to DOWNGRADE, Stage 4 Proposal
+next_action: Owen Pruitt asks Ruth Ellery for the board date by 2026-10-26 (five business days after the run date of 2026-10-19). If it is not confirmed by 2026-10-26, the stage moves to DOWNGRADE, Stage 4 Proposal. Later steps: actions 2 to 5
 report_path: none (inline)
 ```
 

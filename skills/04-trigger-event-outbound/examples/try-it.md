@@ -11,7 +11,7 @@ Run date: 2026-10-19 (illustrative)
 User role: BDR (Nadia Brandt)
 
 The Event
-- Event: Harborline Funeral Partners acquired Corrow Ridge Cemetery. Harborline is a 14-site regional consolidator [Public: deal notice, 2026-07-01] (illustrative)
+- Event: Harborline Funeral Partners acquired Corrow Ridge Cemetery [Public: state licensing database]. Harborline is a 14-site regional consolidator, per its deal notice [Public: deal notice, 2026-07-01] (illustrative)
 - Event date: 2026-07-01, from the state licensing database
 - Source: State licensing database, ownership change
 - Deal notice: Harborline's deal notice publishes the integration review date, 2027-02-16 [Public: deal notice, 2026-07-01] (illustrative)
@@ -32,6 +32,7 @@ The Account
 - Sequence: two personas, three emails each, six emails in total: the acquirer's CFO or controller, whose name is [Unknown], and the site GM, whose name is [Unknown].
 - Email 1 on 2026-10-20 (Day 1), subject "Corrow Ridge after the Harborline close". Email 2 on 2026-10-23 (Day 4). Email 3 on 2026-10-27 (Day 8).
 - Proof point: none. The proof point for this trigger (profile: Trigger Catalog) is Illustrative, so no figure goes into any email.
-- Disqualifier check: Harborline's ownership type and its system are [Unknown]. The check is due by 2026-10-22, the business day before Email 2's send day. Email 1 asks nothing that depends on it, so it may go out before the check. Email 2 waits for the check.
+- Disqualifier check: Harborline's ownership type and its system are [Unknown]. Email 1 neither states nor asks about either one, so it goes out on Day 1 without waiting. Email 2 asks which system keeps the records, so it is the first email that depends on the check. The check is due 2026-10-22, the business day before Email 2's send day, and Email 2 waits for it.
 - Deadline in Email 1: the integration review date, 2027-02-16, from the deal notice, because the trigger is STALE. The body of Email 1 names it.
-- Next action: Nadia Brandt finds the acquirer's CFO or controller and the site GM, sends Email 1 on 2026-10-20 (Day 1) after reading the draft, and completes the Harborline ownership and system check by 2026-10-22, before Email 2.
+- Next action: Nadia Brandt finds the acquirer's CFO or controller and the site GM by 2026-10-20, the send day of Email 1.
+- Later steps: send Email 1 on 2026-10-20 (Day 1) after reading the draft. Run the Harborline ownership and system check by 2026-10-22, before Email 2 on 2026-10-23.

@@ -1,6 +1,6 @@
 ---
 name: gtm-closed-loss-reactivation
-version: 2.1.11
+version: 2.1.12
 description: "Re-engages closed-lost accounts from the CRM history. Checks the recorded loss reason against the evidence, finds what has changed since the deal died, re-scores fit, and returns REACTIVATE, MONITOR or RETIRE with a history-aware opener for the BDR or AE who owns the next step."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: []
 mutating: read-write
 change_log:
+  - version: 2.1.12
+    date: 2026-10-26
+    summary: "Adds the next-action priority order to the Output Contract and Step 8, and re-derives every example's next action under it. The order ranks a reply owed to a buyer first, then a warm champion who moved to an ICP account and is routed to Account Snapshot, then the original AE's answer that a held outreach waits on, then the search for a named contact, then a dated reminder or CRM entry. Settles three first-run readings: a general manager who has left with no successor is not a new general manager, the Zone 3 MEDIUM cell holds with or without a successor, and Zone 4 scores the account's own system and never the winning competitor's. The logged reason names the primary category, the winner sets the strategy, and the pain question follows the strategy's category. Example 1 names one next action and lists the others as later steps. No verdict, date or next action changes."
   - version: 2.1.11
     date: 2026-10-26
     summary: "Settles the open readings from the strict retest. The strategy is selected even when contact is held, and only the contact and the history opener are held. The history opener reads none for a RETIRE or an ENGAGED account, and held for a MONITOR or REACTIVATE whose contact or facts are not yet checked. The original AE's answer comes before any BDR outreach. The Quality Bar names the held call-prep slot. The example deal record no longer states zone scores or a verdict, so the fit re-score stands on current facts, and the Zone 3 MEDIUM cell replaces any HIGH recorded for that zone. The example and try-it follow the settled rules. No verdict, date or next action changes."
@@ -114,7 +117,7 @@ Every run returns the reactivation analysis inline, in the order of Step 8. The 
 | `history_opener` | Inline, Step 7 | The opener that names the prior conversation. Marked held when a MONITOR or REACTIVATE account's contact or facts are not yet checked. Written as `none` when the verdict is RETIRE or the account is ENGAGED |
 | Email sequences | Inline, Step 6 | One four-step sequence per persona with a named contact. Drafts only. Empty, with the reason, when no contact is known |
 | Call prep | Inline, Step 7 | Opener, talk track, voicemail, objection handling, and the pain question checked against the AE's notes |
-| `next_action` | Inline, Step 8 | One step, with its owner and date |
+| `next_action` | Inline, Step 8 | One step, with its owner and date. It is the open step with the highest rank in this order, and every other open step is a later step listed after it. (1) A reply owed to a buyer who wrote to us, routed to Account Snapshot (02) the next business day. (2) A warm champion who moved to an ICP account, routed to 02 as a new account (Track A in Example 3). (3) The ask to the original AE that a held outreach waits on. (4) The search for a named contact that releases a held sequence. (5) The dated MONITOR reminder or the CRM entry for a disqualifier. Ties at one rank go to the step that releases more held output, and then to the step the user owns over one a colleague owns |
 | `report_path` | Set only when a file was written | `none (inline)` otherwise |
 | Reactivation file | Written only when the user asks | `<account>_gtm-closed-loss-reactivation_<date>.md`, the one-page cheatsheet built from the same analysis |
 
@@ -396,7 +399,7 @@ The CRM comes first because the person who logged it heard the buyer. Inference 
 - Died at Stage 5 Negotiate: likely Price, Budget or Lost to Competitor
 - Last three or more touchpoints unanswered: likely No Decision / Went Dark
 
-When more than one reason applies, classify by the primary reason, the one that ended the deal, and name it first. A second category is named too when the record supports both, with the evidence for each. Note the secondary factors as context. A category takes the `[CRM]` tag when the logged reason maps to it. A board-date reading is an `[Inferred]` sub-reason, and it is written only when the record shows a board date that passed without a decision. A future board date alone does not make one. A winning competitor that the CRM logs in its competitor field is a logged reason for Lost to Competitor, so that category takes the `[CRM]` tag too. The primary category is the one the logged reason names, and the strategy follows the competitor play when the CRM logs a winner, as Step 5 sets out.
+When more than one reason applies, classify by the primary reason, the one that ended the deal, and name it first. A second category is named too when the record supports both, with the evidence for each. Note the secondary factors as context. A category takes the `[CRM]` tag when the logged reason maps to it. A board-date reading is an `[Inferred]` sub-reason, and it is written only when the record shows a board date that passed without a decision. A future board date alone does not make one. A winning competitor that the CRM logs in its competitor field is a logged reason for Lost to Competitor, so that category takes the `[CRM]` tag too. The primary category is the one the logged reason names. A logged winner does not change that category. It sets the strategy, which is the competitor play, as Step 5 sets out.
 
 Two rules settle the order and the timing. When the AE's notes are blank, the category that matches the logged reason is named first, because the CRM comes first, and the second category is named as the one the notes must rule in or out. Champion Left applies only when the champion left before the close date. A move after the close is a new opening for that person, and the account keeps its logged reason.
 
@@ -431,7 +434,7 @@ Use `{Client Profile: Qualification Criteria}` (Buying Triggers) and `{Client Pr
 
 ### Step 4: Re-Qualify Fit And Set The Verdict
 
-Re-score fit against `{Client Profile: ICP Definitions}`. The company may have changed since the original evaluation. Use the profile's verdict words, GREENLIGHT, MANUAL REVIEW or DISQUALIFY, and show what moved against the original score (`[Unknown]` where the deal recorded none). When the general manager who would recommend has left, the profile's Zone 3 MEDIUM cell still applies and replaces any HIGH recorded for that zone, which reads: GM recommends and the board approves, or the next board meeting is more than 60 days out. The board path is the observable fact, and the HIGH cell needs a signer under the limit to be on record. A zone with no record is UNKNOWN. It counts toward neither HIGH nor LOW, so it never earns or blocks GREENLIGHT, and each UNKNOWN zone is named as the evidence still to find.
+Re-score fit against `{Client Profile: ICP Definitions}`. The company may have changed since the original evaluation. Use the profile's verdict words, GREENLIGHT, MANUAL REVIEW or DISQUALIFY, and show what moved against the original score (`[Unknown]` where the deal recorded none). When the general manager who would recommend has left, the profile's Zone 3 MEDIUM cell still applies and replaces any HIGH recorded for that zone, which reads: GM recommends and the board approves, or the next board meeting is more than 60 days out. This holds whether or not a successor is recorded. The board path is the observable fact, and the HIGH cell needs a signer under the limit to be on record. A general manager who has left with no successor on record is not a new general manager. Zone 5's HIGH test (a new owner or GM in the last 24 months) is therefore not met, the zone stays UNKNOWN until a successor is on record, and the departure does not count as a new general manager for a reopening event. Zone 4 scores the account's own system, never the winning competitor's. A zone with no record is UNKNOWN. It counts toward neither HIGH nor LOW, so it never earns or blocks GREENLIGHT, and each UNKNOWN zone is named as the evidence still to find.
 
 Then set the reactivation verdict:
 
@@ -557,9 +560,9 @@ Present the complete reactivation analysis inline, in this order:
 7. **Call Prep:** opener, talk track, voicemail and objection handling
 8. **User Role:** BDR or AE
 9. **Coordination Guidance (BDR only):** "Coordinate with the original AE named in Step 0 before sending reactivation outreach."
-10. **Recommended Next Action:** one step, with its owner and date
+10. **Recommended Next Action:** one step, with its owner and date, chosen by the priority order in the Output Contract. Every other open step is listed after it as a later step
 
-The owner of the next action is the person who does the step. For a BDR, that is the BDR, who asks the original AE for what the step needs. A step that asks a colleague for an answer is dated by the shared contract's next-action rule (five business days after the run date, or an earlier date the records or the skill's own schedule set for that step). The request to the original AE asks for the AE loss notes, which settle the category, and for the fact that anchors a held window. An optional fact such as deal value is not requested in that step.
+The next action is the highest-ranked open step in the Output Contract's priority order, and every other open step is listed after it with its owner and date. The owner of the next action is the person who does the step. For a BDR, that is the BDR, who asks the original AE for what the step needs. A step that asks a colleague for an answer is dated by the shared contract's next-action rule (five business days after the run date, or an earlier date the records or the skill's own schedule set for that step). The request to the original AE asks for the AE loss notes, which settle the category, and for the fact that anchors a held window. An optional fact such as deal value is not requested in that step.
 
 Write a file only when the user asks for one. When they do, the file is the one-page cheatsheet built from this same analysis, in Markdown, named `<account>_gtm-closed-loss-reactivation_<date>.md`, with eight sections in this order: deal history banner, what has changed, reactivation strategy, key contacts, reactivation hooks, discovery questions, objection handling, and call flow. Asking for the file is the approval step.
 
@@ -604,6 +607,7 @@ Write a file only when the user asks for one. When they do, the file is the one-
 - [ ] The change assessment covers at least two of the three dimensions (account, product, market), and each change is tagged
 - [ ] Fit was re-scored with the profile's verdict words and compared with the original
 - [ ] The verdict is REACTIVATE, MONITOR or RETIRE, with its reason. A MONITOR names its reopening event
+- [ ] The next action is the highest-ranked open step in the Output Contract's priority order, and every other open step is listed as a later step
 - [ ] The strategy matches the classification, not a generic opener
 - [ ] Each sequence has a named contact, and Email 1 references the prior relationship with a checked fact
 - [ ] Only Verified proof points appear in anything a prospect reads
@@ -661,11 +665,14 @@ The reopening events for Lowmoor are the three that (profile: Closed-Loss Intell
 
 The held `history_opener` is: "When we last spoke, you went with Oldgate. Curious how that has been working out, specifically around the area the AE recorded." It is held until a reopening event fires and the AE's notes confirm the area. Its anchor is checked: the Oldgate loss is `[CRM]`, dated 2026-01-20.
 
-**Summary: MONITOR.** Lowmoor Memorial Gardens, with these next actions:
-1. The BDR asks the original AE for the loss notes and the Oldgate renewal date, by 2026-10-26 (five business days after the run date of 2026-10-19, a Monday, and the records set no earlier date for this step).
-2. The BDR finds the current Lowmoor contact, who is `[Unknown]` today, by 2026-10-26 (the shared rule's five business days after the run date).
-3. The BDR sets the reminder for the window 2026-12-18 to 2027-01-17 to check the reopening events.
-4. Quill Hollow runs as its own account through Account Snapshot (02), not as part of this reactivation.
+**Summary: MONITOR.** Lowmoor Memorial Gardens.
+
+**Next action:** The BDR asks the original AE, Owen Pruitt, for the loss notes, the Oldgate renewal date, and the name of the current Lowmoor contact, in one message, by 2026-10-26 (five business days after the run date of 2026-10-19, a Monday, and the records set no earlier date for this step). A held outreach waits on this answer, so it is priority 3 in the Output Contract's order, and no higher-ranked step is open in this report.
+
+**Later steps:**
+1. The current Lowmoor contact is asked of Owen in the next action, so it travels with that ask and has no separate step. If Owen does not name anyone, the BDR's search for the contact becomes the next action, by the shared five-business-day rule.
+2. The BDR sets the reminder for the window 2026-12-18 to 2027-01-17 to check the reopening events.
+3. Quill Hollow is a separate account. Its routing is the Track A step in Example 3, and it is not a step in this report.
 
 ```text
 Hand-off (read by 04 and 06):
@@ -725,7 +732,7 @@ report_path: none (inline)
 - **Track A: Follow Ines Carmody To Quill Hollow.** This is a new-account play, so route it to Account Snapshot (02) as a new account. Reference Lowmoor only if she raises it.
 - **Track B: Find The Current Lowmoor Contact.** This stays in this skill, on MONITOR, until the open items in Example 1 close.
 
-Track A has priority, because she already knows the product from the evaluation, and her new account fits the ICP.
+Track A has priority, because she already knows the product from the evaluation, and her new account fits the ICP. Under the Output Contract's order, Track A is priority 2 and is the next action. Track B's ask to the original AE (Example 1) is priority 3 and is a later step.
 
 **Step 6: Sequences.** Track A's sequence is written in Account Snapshot, not here. Track B has 0 emails, because no contact is named.
 
@@ -738,6 +745,7 @@ change_assessment: champion now at Quill Hollow [Public: state licensing databas
 reactivation_strategy: MONITOR for Lowmoor (Track B only). Track A goes to Account Snapshot (02) as a new account
 history_opener: held for Track B. Track A's opener is written in Account Snapshot
 next_action: BDR routes Track A to Account Snapshot, by 2026-10-26
+later_steps: BDR asks the original AE for the Lowmoor loss notes and the Oldgate renewal date (Track B), by 2026-10-26
 report_path: none (inline)
 ```
 
@@ -828,6 +836,13 @@ report_path: none (inline)
 
 ## Changelog
 
+
+### 2.1.12 (2026-10-26)
+- The Output Contract's next_action row and Step 8 carry the priority order: a reply owed to a buyer, a warm moved champion routed to 02, the original AE's answer a held outreach waits on, a named-contact search, then a dated reminder or CRM entry. Ties go to the step that releases more held output, then to the user's own step.
+- Example 1 names one next action (the AE ask, unchanged) and lists the other open steps as later steps. Example 3 names Track A as its next action (unchanged) and the Track B ask as a later step. Example 2 is unchanged.
+- Step 4: a general manager who has left with no successor is not a new general manager, so Zone 5 stays UNKNOWN and the departure is not a reopening event. The Zone 3 MEDIUM cell holds with or without a successor. Zone 4 scores the account's own system.
+- Step 2: the logged reason names the primary category, and a logged winner sets the strategy. The call-prep pain question follows the strategy's category.
+- The try-it promise and the hand-off next actions are unchanged after re-derivation.
 
 ### 2.1.11 (2026-10-26)
 - The strategy is selected even when contact is held. Only the contact and the history opener are held, and Step 5 says so in one sentence.
