@@ -25,8 +25,8 @@ Every name, date and number in this file is invented for the PlotIQ example. Not
 - Incumbent unsold-plot visibility: Oldgate shows sold records only, not what is left [Call, 2026-05-19] (illustrative).
 - Legacy on-premise pattern: "Maintenance is charged every year, and the grounds crew stays on paper work orders." Cases counted on the PlotIQ record: [RECORD] of 5, an observation only until five cases (profile).
 - Stonemark was also evaluated [Call, 2026-09-26].
-- PlotIQ capabilities: Mobile field app [Public: PlotIQ product modules]. Plot inventory digitization shows unsold plots [Public: PlotIQ product modules]. Records and Trust Compliance module [Public: PlotIQ product modules].
-- PlotIQ price: $899 a month per site, plus $5,000 setup once [Public: PlotIQ price list].
+- PlotIQ capabilities: Mobile field app [Public: PlotIQ profile, Product Modules]. Plot inventory digitization shows unsold plots [Public: PlotIQ profile, Product Modules]. Records and Trust Compliance module [Public: PlotIQ profile, Product Modules].
+- PlotIQ price: $899 a month per site, plus $5,000 setup once [Public: PlotIQ profile, Pricing].
 - Time to live: the incumbent at 120 to 180 days [Public: Deathcare research project, competitive research note, 2026-03-27] (research estimate, over 90 days old at the run date). PlotIQ at 6 weeks [Public: PlotIQ profile].
 - Trust records: the incumbent's "deep accounting" is its pitch [Public: Deathcare research project, competitive research note, 2026-03-27] (research estimate, over 90 days old at the run date).
 
