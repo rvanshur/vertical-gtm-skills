@@ -308,7 +308,7 @@ Read by Closed-Loss Reactivation (05). All values illustrative.
 Read by Meeting Prep (06).
 
 - **Discovery Framework And Team Vocabulary:** SPIN, by its public stage names (Situation, Problem, Implication, Need-Payoff). PlotIQ has no acronyms of its own
-- **Persona-Proof Map** (every PlotIQ proof point is Illustrative today, so the rep names the pattern and not the figure until a row is Verified): Cemetery General Manager, Holloway Hills (compliance) first, Fennick Gardens second. Pre-Need Sales Manager, no proof yet, say so and use the target. Operations Director, Holloway Hills. Funeral Home Owner, Fennick Gardens. CFO or Controller, no group proof yet
+- **Persona-Proof Map** (every PlotIQ proof point is Illustrative today, so the rep names the pattern and not the figure until a row is Verified): Cemetery General Manager, no usable proof yet: Holloway Hills (compliance) and Fennick Gardens are the patterns to name once a row is Verified, and until then the rep uses the research target. Pre-Need Sales Manager, no proof yet, say so and use the target. Operations Director, Holloway Hills. Funeral Home Owner, Fennick Gardens. CFO or Controller, no group proof yet
 - **The Demo Reframe:** they believe "pen and paper is free". We teach what a 20-minute lookup and an unsold plot cost. The evidence is Fennick Gardens, 212 plots in 90 days (illustrative)
 
 ## Daily Prospecting

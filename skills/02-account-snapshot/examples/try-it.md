@@ -17,7 +17,7 @@ Company
 - Plot records: Paper plat maps [CRM] (illustrative)
 - Records finding: A records finding appears in the last state review [CRM] (illustrative)
 - Records finding date: [Unknown]
-- Owner signing authority: The owner signs under $25K, alone [CRM] (illustrative). No board approval step is recorded [CRM]
+- Owner signing authority: The owner signs under $25K, alone [CRM] (illustrative)
 - Owner name: [Unknown]
 - Growth: The owner brought a growth mandate when Ines Carmody arrived [CRM]
 - Status: TARGET. No open deal [CRM]
@@ -35,6 +35,6 @@ People
 - Status: TARGET, no open deal. No reply from the contact is on record, so the account is not ENGAGED. Verdict: GREENLIGHT, with Zones 3 and 5 HIGH. The sequence is a ready draft, not a held one, because the verdict is GREENLIGHT.
 - Zones: 1 MEDIUM, 2 UNKNOWN, 3 HIGH, 4 UNKNOWN, 5 HIGH. No must-have zone is LOW.
 - Risk level: Regulatory complexity High, because of the records finding [CRM] (illustrative). Region tier: none, because the state is [Unknown].
-- Contacts: Ines Carmody first (General Manager, champion label [CRM]; Champion Test not yet run). The owner and the pre-need manager are gaps, both Unknown.
+- Contacts: Ines Carmody first (General Manager, champion label [CRM]). Champion Test not yet run. The owner and the pre-need manager are gaps, both Unknown.
 - Pain hypotheses: Plot visibility (HIGH, Inferred), Records after a state finding (MEDIUM, date Unknown), Plot lookups take minutes (MEDIUM, Inferred).
 - Next action: Nadia Brandt sends Email 1 to Ines Carmody by 2026-10-26, five business days after the run date of 2026-10-19. The unknowns to resolve on the call are the records finding date, the owner's name and the state.

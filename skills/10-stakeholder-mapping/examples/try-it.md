@@ -16,13 +16,13 @@ Every name, date and number in this file is invented for the PlotIQ example. Not
 - The family board chair joined one call, in Stage 4 Proposal [CRM]. The chair is not on file by name.
 - Upstream MEDDPICC run on 2026-10-19: 71, YELLOW [CRM].
 - Contacts on file, all [CRM]:
-  - Ruth Ellery, General Manager. Champion tests on record, four of seven, each tagged with its source and date: offers introductions [Call, 2026-09-26]; commits to next steps with dates [Call, 2026-09-26]; explains the internal politics, saying the chair decides after the family's vote [Call, 2026-09-26]; and defends the solution when we are not in the room, having briefed the board chair on the records fix [CRM, 2026-09-25]. Demonstrated seniority in meetings: she set the 2026-11-12 date the family board is working to [Call, 2026-09-26] (illustrative). Logged interactions: the 2026-09-26 call and her reply on 2026-10-03 [CRM]. Her last logged reply is 2026-10-03.
+  - Ruth Ellery, General Manager. Champion tests on record, each tagged with its source and date: offers introductions [Call, 2026-09-26]; commits to next steps with dates [Call, 2026-09-26]; explains the internal politics, saying the chair decides after the family's vote [Call, 2026-09-26]; and defends the solution when we are not in the room, having briefed the board chair on the records fix [CRM, 2026-09-25]. She set the 2026-11-12 date the family board is working to [Call, 2026-09-26] (illustrative). Logged interactions: the 2026-09-26 call and her reply on 2026-10-03 [CRM]. Her last logged reply is 2026-10-03.
   - Walt Okonkwo, Operations Director. Skeptical of tablets [Call, 2026-09-21]. He controls daily use of the system. Logged interaction: the 2026-09-21 call [CRM].
-  - Priscilla Dunmore, pre-need manager. A pre-need walkthrough on 2026-10-08, which was not a demo [CRM] (illustrative), and a second logged interaction on 2026-10-14 [CRM] (illustrative).
+  - Priscilla Dunmore, pre-need manager. A pre-need walkthrough on 2026-10-08, which was not a demo [CRM], and a second logged interaction on 2026-10-14 [CRM].
 - Departments On File: Executive, Operations and Sales [CRM].
-- No IT contact is on the full contact list [CRM], and nobody at Brackhaven owns IT [Unknown].
+- The full contact list holds three names [CRM]. Who owns IT at Brackhaven is [Unknown].
 - The Oldgate ledger export has no named owner [Unknown].
-- The family board chair is the economic buyer, identified by role. One call in Stage 4 Proposal [CRM]. Budget not confirmed [Call, 2026-09-26]. The chair is interested in cost and is not yet a supporter [Call, date Unknown].
+- The family board approves spend above the $25K line (profile: Qualification Zones), and the chair decides after the family's vote [Call, 2026-09-26]. The chair has joined one call, in Stage 4 Proposal [CRM]. Budget not confirmed [Call, 2026-09-26]. The chair's stated concern was cost [Call, date Unknown].
 - Account Type In The CRM: Combination, two sites, with a funeral home side under the same owner [CRM].
 - Strategy For Walt: a demo on his own work orders (profile: Buying Committee).
 

@@ -1,6 +1,6 @@
 ---
 name: gtm-deal-pulse
-version: 2.1.8
+version: 2.1.11
 description: "Scores one open deal across 16 signals in 4 pillars and produces a 0 to 100 health score, a risk level and named next actions. The AE and the sales manager read it, and the MEDDPICC, Call Coaching and Meeting Prep skills take its fields by name."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: ["gtm-call-coaching"]
 mutating: read-write
 change_log:
+  - version: 2.1.11
+    date: 2026-10-26
+    summary: "Settles the open readings from the strict retest. Budget Path RED and YELLOW are split by the economic buyer alone: no buyer identified, or a stated no, is RED, and an identified buyer with the budget not yet confirmed is YELLOW, so one row applies. A contract expiration the buyer names as a deadline is a forcing event, and Timeline Alignment scores its distance. A briefing counts when the record names the economic buyer as recipient, by name or by role. Demo-confirmed alignment means the buyer says on the record that the product answers the requirements. A proposed date in the record counts as the step's date and is named as proposed. Evidence Confidence states that exactly 10 is Moderate. The example and try-it notes follow. No score, band, risk level or next action changes."
   - version: 2.1.8
     date: 2026-10-26
     summary: "Profile facts are cited (profile: Section), in place of the older profile forms. ENGAGED is now a stop: an account that replied or met with us, with no open deal, has no deal to score, so the skill names its status and its last reply and routes it to Account Qualification (01). The Input Contract, Step 1, the Troubleshooting entry and the Quick Reference name the case. No score, verdict, band, risk level or next action changes."
@@ -103,7 +106,7 @@ Core commitments: **a 16-signal scorecard across 4 pillars**, **a health score f
 | `pillar_scores` | Pillar averages line of the report, and the hand-off block | Four values, one decimal place: Why Anything, Why Us, Why Now, Execution. A pillar with fewer than 2 scored signals reads insufficient |
 | `signal_scores` | Score column of the scorecard, and the hand-off block | Sixteen entries in signal order: 100 (GREEN), 50 (YELLOW), 0 (RED), or INSUFFICIENT, which has no value and is left out of the sum and the count |
 | `next_actions` | Recommended Actions section, and the hand-off block | One numbered action for each RED signal, the evidence needed for each YELLOW, and the evidence that would score each INSUFFICIENT signal |
-| `next_action` | Last line of the report | The owner and the date the shared contract's next-action rule gives (five business days after the run date, or an earlier date the records or the skill's own schedule set for that step, named with its source). Wrap-Up reads this line |
+| `next_action` | Last line of the report | The owner and the date the shared contract's next-action rule gives (five business days after the run date, or an earlier date the records or the skill's own schedule set for that step, named with its source). A date proposed in the record and not yet agreed counts as the step's date, and the action names it as proposed. Wrap-Up reads this line |
 | `report_path` | Hand-off block | `none (inline)` unless a file was written |
 | File option | Written only when the user asks | Named `<account>_<skill>_<date>.md`, saved beside the user's other account notes. Never written by default |
 
@@ -256,7 +259,7 @@ A champion who is also the buyer contact, the persona that (profile: Buyer Perso
 #### Signal 2: Compelling Reason To Change
 | Score | Criteria |
 |-------|----------|
-| GREEN | Clear trigger event or deadline forcing action: contract expiration, compliance risk, M&A integration, system failure, leadership mandate or regulatory change. |
+| GREEN | Clear trigger event or deadline forcing action: contract expiration, compliance risk, M&A integration, system failure, leadership mandate or regulatory change. A contract expiration the buyer names as a deadline is forcing, however far off it falls. The buyer's naming is the test, and Timeline Alignment scores how close it is. |
 | YELLOW | General dissatisfaction with the status quo but no forcing event. Buyer acknowledges problems but has no deadline to solve them. |
 | RED | No urgency indicators. "Looking for the future," "exploring options." Status quo is tolerable. |
 
@@ -274,7 +277,7 @@ A champion who is also the buyer contact, the persona that (profile: Buyer Perso
 | YELLOW | Friendly contact who supports us but has limited influence or has not demonstrated internal advocacy. |
 | RED | No champion identified, or primary contact is purely informational or transactional. |
 
-A contact has decision influence when the contact briefs the economic buyer before the decision and forwards the evidence that buyer decides on. A briefing counts only when the record shows it reached the economic buyer, so a briefing to an unnamed role with no record of who received it does not count. Being liked, or offering one introduction, does not show influence.
+A contact has decision influence when the contact briefs the economic buyer before the decision and forwards the evidence that buyer decides on. A briefing counts when the record names the economic buyer as its recipient, by name or by role, such as the family board chair. A briefing to an unnamed group does not count. Being liked, or offering one introduction, does not show influence.
 
 ### Signal Scoring Rubrics (Why Us Pillar)
 
@@ -306,18 +309,20 @@ A technical requirement recorded as unknown is scored RED under this row. INSUFF
 #### Signal 8: Product Alignment
 | Score | Criteria |
 |-------|----------|
-| GREEN | Product capabilities match more than 80% of stated requirements. Demo or proof of concept confirmed strong alignment. |
+| GREEN | Product capabilities match more than 80% of stated requirements. Demo or proof of concept confirmed strong alignment, which means the buyer has said on the record that the product answers their requirements. |
 | YELLOW | Core features fit but secondary requirements have gaps or have not been validated. |
 | RED | Major feature gaps identified, or the product has not been demonstrated against requirements. |
 
 ### Signal Scoring Rubrics (Why Now Pillar)
 
 #### Signal 9: Budget Path Identified
+RED and YELLOW are split by the economic buyer alone. A budget that is not yet confirmed is the normal state of an open deal, so it is RED only when no economic buyer is identified or the buyer has said no.
+
 | Score | Criteria |
 |-------|----------|
 | GREEN | Budget owner identified (name and title), funding confirmed or allocated, pricing discussed or proposal delivered. |
-| YELLOW | Budget exists in principle but is not formally allocated. Economic buyer identified but not engaged on pricing. |
-| RED | No budget confirmed, no economic buyer engaged, or buyer has said "no budget this year." |
+| YELLOW | An economic buyer is identified by name or title, but the budget is not yet confirmed or allocated. |
+| RED | No economic buyer identified by name or title, or the buyer has said "no budget this year." |
 
 #### Signal 10: Decision Process Clarity
 | Score | Criteria |
@@ -608,7 +613,7 @@ Health = [sum] ÷ [n scored] = [unrounded], shown as [rounded] (scored [n] of 16
 
 **Recommended Actions:** Numbered. Each RED signal gets its specific action and the method it uses. Each YELLOW signal gets the evidence needed to move it.
 
-**Evidence Confidence:** Name the intelligence quality: "Strong" (more than 10 recent interactions), "Moderate" (5 to 10), "Limited" (fewer than 5), or "Stale" (most recent interaction more than 30 days ago). Give the count with it. A figure the record marks (illustrative) counts as the record states it, and the line repeats the marking.
+**Evidence Confidence:** Name the intelligence quality: "Strong" (more than 10 recent interactions), "Moderate" (5 to 10, so exactly 10 is Moderate), "Limited" (fewer than 5), or "Stale" (most recent interaction more than 30 days ago). Give the count with it. A figure the record marks (illustrative) counts as the record states it, and the line repeats the marking.
 
 **Hand-Off Block:** the block below, with these fields in this order, so 09, 13 and 06 can read it by name. Each field sits on its own line. A health score appears only when 12 or more signals are scored, and otherwise the line reads "not scored".
 
@@ -686,8 +691,8 @@ All figures are from the PlotIQ profile and the PlotIQ chain file, or marked `(i
 1. **Pull Deal Data.** Stage 5 Negotiate since 2026-09-09, 19 days in stage `[CRM]`. Amount $21,576 a year at list `[CRM]`. Close date 2026-11-12 with no change on record `[CRM]`. Primary contact Ruth Ellery, General Manager `[CRM]`.
 2. **Pull Activity.** 10 interactions in the last 90 days `[CRM]` (illustrative), including a demo on 2026-09-17 on Brackhaven's own plot records and two contract calls. The discovery call of 2026-05-12 falls before the window opens on 2026-06-30, so it is not counted. Three contacts engaged: Ruth Ellery, Walt Okonkwo and Priscilla Dunmore, pre-need manager `[CRM]`. Most recent interaction: a contract terms call with Ruth on 2026-09-26 `[Call, 2026-09-26]` (illustrative).
 3. **Score Why Anything, Pillar Average 87.5.** Pain Clarity is GREEN. The one double sale in the last 24 months is a note in the CRM `[CRM]` (illustrative), and Ruth describes the paper plot records as the reason it happened `[Call, 2026-09-26]`. Ruth puts the staff time to unwind one double sale at about 40 hours `[Call, 2026-09-26]` (illustrative), a time impact. Walt Okonkwo, the Operations Director, puts a double-sale search at half a day, and lookups at two a week `[Call, 2026-09-17]` (illustrative). Ruth is the buyer contact and the champion, so her account counts for the buyer under the rule above, and Walt's account is the second stakeholder. Reason to Change is GREEN. Ruth named the March 2027 Oldgate renewal as the deadline `[Call, 2026-09-26]`, and the renewal date is in the CRM `[CRM]`. Strategic Initiative is YELLOW. Ruth's stated goal for the cemetery side is one system for plot records before the owner retires `[Call, 2026-09-26]` (illustrative), a departmental goal. The owner's retirement within three years is not a company priority the board has confirmed `[Unknown]`. Champion Strength is GREEN. Ruth meets four of the shared champion tests, four of seven, each tagged with its date: she offers introductions to the board chair `[Call, 2026-09-26]`, explains the internal politics `[Call, 2026-09-26]`, commits to next steps with dates `[Call, 2026-09-26]`, and defends the solution when we are not in the room `[CRM, 2026-09-25]`. The CRM note of 2026-09-25 records that she briefed the board chair on the records fix and forwarded the ledger comparison `[CRM]` (illustrative), which is the decision influence the GREEN rubric needs, because she briefs the board chair and forwards the evidence the chair decides on. (100 + 100 + 50 + 100) ÷ 4 = 87.5.
-4. **Score Why Us, Pillar Average 62.5.** Solution Fit is GREEN. Ruth confirmed the records fix answers her double-sale problem `[Call, 2026-09-26]`. Technical Readiness is RED. No IT contact is on file and nobody at Brackhaven owns IT `[Unknown]`, and the Oldgate ledger export is unscoped `[Unknown]`. Owen proposed Friday 2026-10-02 for a technical discovery on the export `[Notes]` (illustrative), which is the earlier date the records set for that step. Competitive Landscape is YELLOW. Stonemark mapping was also evaluated, and no preference has been stated `[Call, 2026-09-26]`. Product Alignment is GREEN. The CRM note lists 12 requirements, and the demo covered 10 of them, or 83% `[CRM]` (illustrative). The demo ran on 2026-09-17 on Brackhaven's own plot records, with Ruth in the room `[CRM]`. (100 + 0 + 50 + 100) ÷ 4 = 62.5.
-5. **Score Why Now, Pillar Average 62.5.** Budget Path is YELLOW. The family board chair is the economic buyer, but the chair's name is `[Unknown]`, pricing was delivered in Stage 4 `[CRM]`, and the budget is not yet allocated `[Notes]`. Decision Process is YELLOW. The board chair has joined one call `[CRM]`, and the approval steps after the board are not mapped `[Unknown]`. Timeline Alignment is GREEN. The March 2027 renewal is a confirmed internal deadline `[Call, 2026-09-26]`, and the close date of 2026-11-12 sits ahead of it `[CRM]`. Ruth confirmed 2026-11-12 as the date she is working to on the 2026-09-26 call `[Call, 2026-09-26]` (illustrative), so the close date is buyer-validated. The board itself has not formally confirmed it, so this is the closest call in the pulse. It holds at GREEN because the close date is buyer-validated and the deadline it answers to is confirmed. Procurement Awareness is YELLOW. Legal review and vendor onboarding are known in outline `[Call, 2026-09-26]`, and their timing is not scoped `[Unknown]`. (50 + 50 + 100 + 50) ÷ 4 = 62.5.
+4. **Score Why Us, Pillar Average 62.5.** Solution Fit is GREEN. Ruth confirmed the records fix answers her double-sale problem `[Call, 2026-09-26]`. Technical Readiness is RED. No IT contact is on file and nobody at Brackhaven owns IT `[Unknown]`, and the Oldgate ledger export is unscoped `[Unknown]`. Owen proposed Friday 2026-10-02 for a technical discovery on the export `[Notes]` (illustrative), which is the earlier date the records set for that step. Competitive Landscape is YELLOW. Stonemark mapping was also evaluated, and no preference has been stated `[Call, 2026-09-26]`. Product Alignment is GREEN. The CRM note lists 12 requirements, and the demo covered 10 of them, or 83% `[CRM]` (illustrative). Ruth's statement on the 2026-09-26 call that the records fix answers her problem is the buyer's own word on fit `[Call, 2026-09-26]`. The demo ran on 2026-09-17 on Brackhaven's own plot records, with Ruth in the room `[CRM]`. (100 + 0 + 50 + 100) ÷ 4 = 62.5.
+5. **Score Why Now, Pillar Average 62.5.** Budget Path is YELLOW. The family board chair is the economic buyer, identified by title, though the chair's name is `[Unknown]`. Pricing was delivered in Stage 4 `[CRM]`, and the budget is not yet allocated `[Notes]`. Because the buyer is identified, the row is YELLOW, not RED. Decision Process is YELLOW. The board chair has joined one call `[CRM]`, and the approval steps after the board are not mapped `[Unknown]`. Timeline Alignment is GREEN. The March 2027 renewal is a confirmed internal deadline `[Call, 2026-09-26]`, and the close date of 2026-11-12 sits ahead of it `[CRM]`. Ruth confirmed 2026-11-12 as the date she is working to on the 2026-09-26 call `[Call, 2026-09-26]` (illustrative), so the close date is buyer-validated. The board itself has not formally confirmed it, so this is the closest call in the pulse. It holds at GREEN because the close date is buyer-validated and the deadline it answers to is confirmed. Procurement Awareness is YELLOW. Legal review and vendor onboarding are known in outline `[Call, 2026-09-26]`, and their timing is not scoped `[Unknown]`. (50 + 50 + 100 + 50) ÷ 4 = 62.5.
 6. **Score Execution, Pillar Average 75.0.** Buyer Responsiveness is GREEN. Ruth replies within a day, started the 2026-09-22 call request, and attended all four meetings on the calendar `[CRM]` (illustrative). Multi-Threaded Engagement is YELLOW. Three contacts are engaged `[CRM]`, but the board chair has joined only one call and no second meeting is booked `[CRM]`. Follow-Through is GREEN. Both sides kept their dated commitments before the next meeting. Ruth sent the trust fund ledger sample on 2026-09-24 and returned the markup on 2026-09-25 `[Notes]` (illustrative). Owen sent the revised terms on 2026-09-17 and called Walt on 2026-09-21 `[CRM]` (illustrative). Meeting Progression is YELLOW. The last two calls covered the same contract terms with the same attendees `[CRM]`. (100 + 50 + 100 + 50) ÷ 4 = 75.0.
 7. **Health.** There are 8 GREEN, 7 YELLOW and 1 RED. The sum is 800 + 350 + 0 = 1,150. Health = 1,150 ÷ 16 = 71.9, shown as 72. A score of 72 falls in the 46 to 84 band, so the risk is **Medium Risk**. The lowest pillar average is 62.5, which is not below 30, so the pillar step does not apply.
 
@@ -770,7 +775,7 @@ report_path: none (inline)
 2. **Pull Activity.** 5 interactions in the last 30 days `[CRM]` (illustrative): Ruth on 2026-09-26 and 2026-10-03, Walt on 2026-09-21, and Priscilla Dunmore on 2026-10-08 (a pre-need walkthrough, not a demo) and 2026-10-14. Ruth's last reply was on 2026-10-03, 16 days ago `[CRM]`, so the last buyer-initiated contact on her record is past 14 days.
 3. **Score Why Anything, Pillar Average 62.5.** Pain Clarity is YELLOW. Ruth still names the problem `[Call, 2026-09-26]`, but her quantified account is from the 2026-09-26 call, 23 days before this pulse, and Walt's is from 2026-09-17, 32 days before. Neither is inside the 14-day window the signal uses `[Call, 2026-09-26]`. Reason to Change is GREEN. The March 2027 renewal is still a dated trigger `[CRM]`. Strategic Initiative is YELLOW, unchanged from the first pulse `[Unknown]`. Champion Strength is YELLOW. Ruth has shown no internal advocacy since the board meeting moved `[Notes]` (illustrative). The champion status stays Strong, because four of seven shared tests are on record and dated 2026-09-25 and 2026-09-26. Signal 4 is scored on its own rubric, which reads recent internal advocacy, and none is on record since 2026-10-03, so the signal is YELLOW while the status word is Strong. Silence is not a no, but the signal is scored on what is on record. (50 + 100 + 50 + 50) ÷ 4 = 62.5.
 4. **Score Why Us, Pillar Average 37.5.** Solution Fit is YELLOW. The use case is confirmed by Ruth `[Call, 2026-09-26]`, but the mapping for Walt's concerns is not finished `[Notes]`. Technical Readiness is RED. IT is not engaged and nobody at Brackhaven owns the Oldgate data question `[Unknown]`, which is a known blocker. Competitive Landscape is YELLOW. Stonemark is still in the evaluation, and no preference has been stated `[Call, 2026-09-26]`. Product Alignment is YELLOW. Walt's tablet question is open `[Call, 2026-09-21]`. (50 + 0 + 50 + 50) ÷ 4 = 37.5.
-5. **Score Why Now, Pillar Average 37.5.** Budget Path is YELLOW. The board has not allocated the budget `[Notes]`. Decision Process is YELLOW. The board chair has joined one call, in Stage 4 `[CRM]`, and no second meeting is booked. Timeline Alignment is RED. The close date has moved twice since 2026-09-28 `[CRM]` (illustrative), which meets the RED row for two or more moves, and the board date is not confirmed. Procurement Awareness is YELLOW. The steps are known, but their details are unclear `[Unknown]`. (50 + 50 + 0 + 50) ÷ 4 = 37.5.
+5. **Score Why Now, Pillar Average 37.5.** Budget Path is YELLOW. The board has not allocated the budget `[Notes]`, and the economic buyer is still identified by title, so the row is YELLOW, not RED. Decision Process is YELLOW. The board chair has joined one call, in Stage 4 `[CRM]`, and no second meeting is booked. Timeline Alignment is RED. The close date has moved twice since 2026-09-28 `[CRM]` (illustrative), which meets the RED row for two or more moves, and the board date is not confirmed. Procurement Awareness is YELLOW. The steps are known, but their details are unclear `[Unknown]`. (50 + 50 + 0 + 50) ÷ 4 = 37.5.
 6. **Score Execution, Pillar Average 12.5.** Buyer Responsiveness is RED. Ruth has been silent for 16 days `[CRM]`, which is more than two weeks, and the buyer-initiated contact on her record is past 14 days. Priscilla Dunmore's 2026-10-14 interaction does not record who started it, so it does not show a buyer-initiated contact. Multi-Threaded Engagement is YELLOW. Three contacts are on record, and each has an interaction in the last 30 days `[CRM]`, but the economic buyer has been in one meeting, so the GREEN condition is not met. Follow-Through is RED. Ruth agreed to send the Oldgate export sample by 2026-10-09, and it did not arrive `[Notes]` (illustrative). Meeting Progression is RED. The last meeting with the decision side was the 2026-09-26 call, 23 days ago. Priscilla Dunmore's 2026-10-08 pre-need walkthrough was with an end user and did not move the decision forward, and no next meeting is booked `[CRM]` (illustrative), so progression is stalled. (0 + 50 + 0 + 0) ÷ 4 = 12.5.
 7. **Health.** There is 1 GREEN, 10 YELLOW and 5 RED. The sum is 100 + 500 + 0 = 600. Health = 600 ÷ 16 = 37.5, shown as 38. The score falls in the 0 to 45 band, so the risk is **High Risk**. The pillar step applies because Why Us is at 37.5 (not below 30) and Execution is at 12.5 (below 30). The step would raise the risk by one level, but the deal is already at High Risk, so the rating does not change.
 
@@ -926,6 +931,15 @@ The Business Case & ROI Kit (a paid Guild Pro kit) reads this skill's hand-off b
 ---
 
 ## Changelog
+
+### 2.1.11 (2026-10-26)
+- Signal 9 splits RED and YELLOW by the economic buyer alone. RED is no buyer identified or a stated no. YELLOW is an identified buyer with the budget not yet confirmed. The two rows no longer overlap.
+- Signal 2: a contract expiration the buyer names as a deadline is forcing, and Timeline Alignment scores how close it is.
+- Signal 4: a briefing counts when the record names the economic buyer as recipient, by name or by role.
+- Signal 8: "demo confirmed alignment" means the buyer's own statement on the record that the product answers the requirements.
+- Step 8 and the hand-off: a proposed date in the record and not yet agreed is the step's date, named as proposed.
+- Evidence Confidence: exactly 10 interactions is Moderate.
+- Example 1 and Example 2 say why Budget Path is YELLOW. No score, band, risk level or next action changes.
 
 ### 2.1.8 (2026-10-26)
 - Profile facts are cited as (profile: Section), with the profile's own section name, in place of the older profile forms.

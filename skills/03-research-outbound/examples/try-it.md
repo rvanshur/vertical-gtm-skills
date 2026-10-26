@@ -9,7 +9,7 @@ Every name, date and number in this file is invented for the PlotIQ example. Not
 
 Run date: 2026-10-19 (illustrative)
 User role: BDR (Nadia Brandt)
-Research source: The company's annual owner letter, posted on the company site (Private Company mode)
+Research source: The company's annual owner letter, posted on the company site
 
 Company
 - Account: Saltmarsh Heritage Group
@@ -21,7 +21,7 @@ Company
 - Pre-need intake form: The company website has a pre-need intake form [Public: company website] (illustrative)
 - Pre-need leads from ads: Social media ads on the group's pages send pre-need enquiries into the group's shared email [Public: company social media pages] (illustrative)
 - Budget: The CFO, Hector Ruiz, approves budget [CRM]
-- The group reviews system spend twice a year, so a decision takes 6 to 9 months [CRM], illustrative
+- The group reviews system spend twice a year, and the decision cycle is 6 to 9 months [CRM], illustrative
 - Status: TARGET. No open deal and no AE owner
 - Plot records method: Both cemetery sites keep plot records in spreadsheets [Notes] (illustrative)
 - Current system: Spreadsheets only, at the two cemetery sites [Notes] (illustrative)

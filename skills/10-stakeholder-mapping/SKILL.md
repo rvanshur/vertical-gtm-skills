@@ -1,6 +1,6 @@
 ---
 name: gtm-stakeholder-mapping
-version: 2.1.8
+version: 2.1.11
 description: "Maps the buying committee for one account: classifies every contact by buying role, marks each missing decision-maker as an UNKNOWN ghost node, scores multi-threading on seven weighted dimensions, and returns an engagement plan the AE or BDR reads before the next meeting."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: [gtm-meddpicc-analysis]
 mutating: read-write
 change_log:
+  - version: 2.1.11
+    date: 2026-10-26
+    summary: "Round 11 settlement. A contact that fits two roles takes the role the record evidences, so a Champion needs one shared test met. The Economic Buyer is the person whose approval moves the spend, so a board chair holds the slot where a board approves above a limit. Each ghost node names its source. A dated interaction counts in its window, and Economic Buyer Engaged scores 2 only with two or more dated interactions. The gone-quiet test is not applied, because the skill starts no sequence. The try-it records and Example 1 state facts only, with the champion count, the stance and the seniority label removed and the dates' illustrative marks lifted. Scores, threading score, ghost nodes and next action do not change."
   - version: 2.1.8
     date: 2026-10-26
     summary: "Citations, ENGAGED and tags. A fact taken from the profile is cited (profile: Section) in place of [Notes]. An ENGAGED account keeps its existing thread: no new first-touch outreach, and the first URGENT action is a reply. The Brackhaven IT-owner fact is tagged Unknown and the Saltmarsh CFO approval is tagged CRM, matching the 2.1.6 record. The champion tests are applied by pointer to the Shared Contract. Headings and labels are capitalized word by word. The example scores, threading scores and next actions do not change."
@@ -272,7 +275,7 @@ One HIGH criterion is enough: demonstrated seniority in meetings places a contac
 | Never Contacted | On file but no recorded outreach |
 | Active Blocker | Has expressed opposition in notes/calls |
 
-A logged interaction with no date is not counted in the 30-day or 90-day window, and the status reads `[Unknown]` until its date is on the record.
+A logged interaction with no date is not counted in the 30-day or 90-day window, and the status reads `[Unknown]` until its date is on the record. A dated interaction on the record counts in its window.
 
 ### Relationship Strength (1-5)
 
@@ -305,6 +308,8 @@ Champion status is set from the shared champion tests in the Shared Contract, wh
 **Skeptics Count Toward Blocker Mitigation.** A contact with a Skeptic position and a stated objection, with a strategy in place, scores 1 on Blocker Mitigation (Developing), because an objection not yet acted on is the early form of a block. The contact keeps the Influencer role. This score does not make the contact a Blocker: the Blocker role needs a contact who opposes or delays the deal on the record, and a stated objection alone does not give it.
 
 **End Users Engaged** means at least one end user Actively Engaged under the Engagement Status table, with 2 or more logged interactions in the last 30 days.
+
+**Economic Buyer Engaged** scores 2 only when the buyer has two or more dated interactions in the last 30 days, whether or not the buyer is named. An economic buyer with one call, or with a call whose date is unknown, scores 1.
 
 **Absence Scores Only From A Read Record.** A 0 on a dimension counts only when the rubric's own 0 describes the full contact list (for example, no IT contact on the list). A Blocker Mitigation score of 2 needs notes that were read and show no blocker or a neutralized one. A contact not yet contacted has no notes to read, so the blocker check is INSUFFICIENT, not 2.
 
@@ -474,6 +479,8 @@ For each contact, assign:
 
 Non-buyers from the Methodology table are placed in the same pass. They take a role label of their own and are never given the Economic Buyer slot. A stated objection alone makes a contact an Influencer with a Skeptic position, not a Blocker.
 
+When a contact fits two roles, the record decides. A Champion needs at least one shared test met, so a contact with none takes the other role that fits. The Economic Buyer is the person whose approval the record shows moves the spend. Where a board approves above a set limit, the board chair holds that slot, and a general manager who recommends to the board takes the role the evidence shows instead.
+
 #### Influence Level
 
 | Level | Evidence |
@@ -505,7 +512,7 @@ Build a hierarchical tree from the classified contacts:
 4. **Flag Confirmed Vs. Inferred Relationships:**
    - **Confirmed:** CRM explicitly shows relationship, or notes reference it
    - **Inferred:** Based on title hierarchy and department, tagged `[Inferred]` with the method named
-5. **Identify Ghost Nodes:** Positions that SHOULD exist based on the profile's Buyer Personas and the revenue table, with no named contact on file. Write each one as "UNKNOWN, role". Tag the reason it exists.
+5. **Identify Ghost Nodes:** Positions that SHOULD exist based on the profile's Buyer Personas and the revenue table, with no named contact on file. Write each one as "UNKNOWN, role". Tag the reason it exists, and name its source: a Buyer Persona row, the revenue table, or a Non-Buyers row that a dated step or an open question needs.
 6. **Check the ghost nodes against the Economic Buyer and the Technical Evaluator.** If either slot is empty, say so in the coverage gaps.
 
 Present as a department-grouped table showing:
@@ -581,7 +588,7 @@ Create a prioritized engagement plan:
 | MEDIUM | Strengthen existing relationship, expand into adjacent department | Next 30 days |
 | LOW | Informational contact, maintain awareness | Ongoing |
 
-Deadlines run from the run date. URGENT actions fall due on the date the shared contract's next-action rule gives (five business days after the run date, or an earlier date the records or the skill's own schedule set for that step, named with its source). HIGH actions fall due 14 days after the run date, and MEDIUM actions 30 days after it. Within one priority, the first action is the first of these conditions that applies. First, an unaddressed blocker. Second, an economic buyer who is a ghost node, where the first action asks for the buyer's name and any date that depends on it before any introduction. Third, an economic buyer who is named but not engaged, where the first action asks for an introduction. Fourth, a champion at risk. A ghost node counts as not engaged, because no named contact exists to engage. For an ENGAGED account, the first URGENT action is a reply to the contact's last message that asks for the next dated step, and it comes before any introduction request.
+Deadlines run from the run date. URGENT actions fall due on the date the shared contract's next-action rule gives (five business days after the run date, or an earlier date the records or the skill's own schedule set for that step, named with its source). HIGH actions fall due 14 days after the run date, and MEDIUM actions 30 days after it. Within one priority, the first action is the first of these conditions that applies. First, an unaddressed blocker. Second, an economic buyer who is a ghost node, where the first action asks for the buyer's name and any date that depends on it before any introduction. Third, an economic buyer who is named but not engaged, where the first action asks for an introduction. Fourth, a champion at risk. A ghost node counts as not engaged, because no named contact exists to engage. This skill starts no follow-up sequence, so the gone-quiet test in the shared contract is not applied here, and a missing date for our last message does not block an action. For an ENGAGED account, the first URGENT action is a reply to the contact's last message that asks for the next dated step, and it comes before any introduction request.
 
 For each recommended action:
 - **Who:** Contact name or ghost node ("UNKNOWN, role")
@@ -682,7 +689,7 @@ The plays come from the profile's Buying Committee section (available plays). A 
 Contacts on file, `[CRM]`:
 - Ruth Ellery, General Manager (Executive). Champion, Strong: four of seven shared champion tests met, each tagged with its source and date: offers introductions `[Call, 2026-09-26]`, commits to next steps with dates `[Call, 2026-09-26]`, explains the internal politics, saying the chair decides after the family's vote `[Call, 2026-09-26]`, and defends the solution when we are not in the room, having briefed the board chair on the records fix `[CRM, 2026-09-25]`. Influence HIGH, from demonstrated seniority in meetings: she set the 2026-11-12 date the family board is working to `[Call, 2026-09-26]` (illustrative). Actively Engaged: two logged interactions in the last 30 days, the 2026-09-26 call and her reply on 2026-10-03. Her last logged reply is 2026-10-03.
 - Walt Okonkwo, Operations Director (Operations). Influencer with a Skeptic position `[Call, 2026-09-21]`, skeptical of tablets. Influence MEDIUM, and he controls daily use of the system. Partially Engaged: one logged interaction in the last 30 days, the 2026-09-21 call.
-- Priscilla Dunmore, pre-need manager (Sales). End User, Influence LOW, Actively Engaged: a pre-need walkthrough on 2026-10-08, which was not a demo, and a second logged interaction on 2026-10-14, two in the last 30 days `[CRM]` (illustrative).
+- Priscilla Dunmore, pre-need manager (Sales). End User, Influence LOW, Actively Engaged: a pre-need walkthrough on 2026-10-08, which was not a demo, and a second logged interaction on 2026-10-14, two in the last 30 days `[CRM]`.
 
 Ghost nodes, written by role only:
 - "UNKNOWN, family board chair" (Executive). Economic Buyer, identified by role. One call in Stage 4 Proposal `[CRM]`, and budget not confirmed `[Call, 2026-09-26]`.
@@ -698,7 +705,7 @@ Ghost nodes, written by role only:
 | Department Breadth | 1x | 1 | 1 | Executive, Operations and Sales: 3 departments (the 2 to 3 band) `[CRM]` |
 | Technical Evaluator | 1x | 0 | 0 | No IT contact on file `[Unknown]`. Nobody owns IT `[Unknown]` |
 | Economic Buyer Engaged | 2x | 1 | 2 | Identified by role only, one call in Stage 4 Proposal `[CRM]`, budget not confirmed `[Call, 2026-09-26]` |
-| End User Validation | 1x | 2 | 2 | Priscilla Dunmore, Actively Engaged: a pre-need walkthrough on 2026-10-08, which was not a demo, and a second logged interaction on 2026-10-14, two in the last 30 days `[CRM]` (illustrative) |
+| End User Validation | 1x | 2 | 2 | Priscilla Dunmore, Actively Engaged: a pre-need walkthrough on 2026-10-08, which was not a demo, and a second logged interaction on 2026-10-14, two in the last 30 days `[CRM]` |
 | Blocker Mitigation | 1x | 1 | 1 | Walt Okonkwo, a Skeptic with a stated objection, identified, and a strategy exists (a demo on his own work orders) (profile: Buying Committee). Developing under the Skeptic rule in Methodology |
 | **Total** | | | **12 of 20** (scored 7 of 7) | |
 
@@ -842,6 +849,13 @@ report_path: none (inline)
 ---
 
 ## Changelog
+
+### 2.1.11 (2026-10-26)
+- Two roles. A contact that fits two roles takes the role the record evidences. A Champion needs one shared test met, and the Economic Buyer is the person whose approval moves the spend, so the board chair holds that slot where a board approves above a limit.
+- Ghost nodes name their source: a Buyer Persona row, the revenue table, or a Non-Buyers row that a dated step or open question needs.
+- Engagement. A dated interaction counts in its window. Economic Buyer Engaged scores 2 only with two or more dated interactions in the last 30 days, and one call scores 1.
+- Gone quiet. The shared gone-quiet test is not applied, because this skill starts no sequence, and a missing date for our last message does not block an action.
+- Try-it and Example 1. The champion count, the stance label and the seniority label are removed from the records, and the illustrative marks on dated interactions are lifted, since a date on the record is a fact. The scores, threading score, ghost nodes and next action do not change.
 
 ### 2.1.8 (2026-10-26)
 - Citations. A fact taken from the profile is cited (profile: Section) with the profile's own section name, in place of [Notes]. A rep's or AE's own notes keep [Notes].

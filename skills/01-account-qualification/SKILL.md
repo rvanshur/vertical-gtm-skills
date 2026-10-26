@@ -1,6 +1,6 @@
 ---
 name: gtm-account-qualification
-version: 2.1.8
+version: 2.1.11
 description: "Scores an account against the ICP definitions, 8 weighted criteria and the profile's five qualification zones, and returns a GREENLIGHT, MANUAL REVIEW or DISQUALIFY verdict with every zone shown, for the BDR or AE who decides where to spend time."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: []
 mutating: read-write
 change_log:
+  - version: 2.1.11
+    date: 2026-10-26
+    summary: "Round 11 settled judgments. Criteria 5 and 6 of ICP2 gain counting rules, so the 7 of 8 count does not depend on a judgment. A zone with only a named staff condition met scores MEDIUM, and the rule says why. The count does not gate the verdict, and MANUAL REVIEW covers every account that meets neither GREENLIGHT nor DISQUALIFY. The try-it records gain a tag, a dated double sale, the Oldgate licence date and the pricing facts, and the signing amount is derived in the rule. Promises are unchanged: GREENLIGHT, zones 1 HIGH, 2 MEDIUM, 3 MEDIUM, 4 MEDIUM, 5 HIGH, and 7 of 8."
   - version: 2.1.8
     date: 2026-10-26
     summary: "Round 8 profile citations and ENGAGED status. Every profile citation is written (profile: Section). ENGAGED is one of six statuses and changes the BDR and AE next step for an account already in conversation, which continues the open thread instead of starting a cold sequence. The verdict does not change with status. Heading and label capitalization is aligned word by word, and the Quality Bar and status list read six words."
@@ -358,9 +361,9 @@ Use the criteria table for the ICP from Step 2: `{Methodology: Qualification Cri
 - **WEAK** (evidence against fit)
 - **UNKNOWN** (cannot determine, needs research)
 
-Each score carries an evidence tag. Count the criteria scored STRONG or PARTIAL, and write the count as N of 8.
+Each score carries an evidence tag. Count the criteria scored STRONG or PARTIAL, and write the count as N of 8. The count feeds `icp_match` and `fit_narrative`, and it does not gate the verdict (Step 6).
 
-Four ICP2 criteria need a rule the table leaves open: criteria 2, 4, 6 and 7. For criterion 2, test the cemetery-side plot count from the CRM against the ICP2 revenue threshold (profile: ICP Definitions), which that section states as a plot count. A count at or above the threshold scores STRONG, with the count and its tag named. A revenue range from the CRM that is not confirmed scores PARTIAL when no plot count is recorded, and no revenue figure at all scores UNKNOWN. For criterion 4, a family-owned company with no PE, ESOP, public or acquiring owner scores PARTIAL, not WEAK, and its ownership type must carry a `[Public: source]` tag. For criterion 6, a named role whose title covers the function the product serves scores STRONG, with its source tagged. A named role whose title does not cover that function scores PARTIAL. For criterion 7, a listed buying trigger counts only inside the urgency window that the profile's Buying Triggers table gives it, and a succession signal with no change in leadership yet is not a listed trigger, so it scores PARTIAL.
+Five ICP2 criteria need a rule the table leaves open: criteria 2, 4, 5, 6 and 7. For criterion 2, test the cemetery-side plot count from the CRM against the ICP2 revenue threshold (profile: ICP Definitions), which that section states as a plot count. A count at or above the threshold scores STRONG, with the count and its tag named. A revenue range from the CRM that is not confirmed scores PARTIAL when no plot count is recorded, and no revenue figure at all scores UNKNOWN. For criterion 4, a family-owned company with no PE, ESOP, public or acquiring owner scores PARTIAL, not WEAK, and its ownership type must carry a `[Public: source]` tag. For criterion 5, count the complexity signals on record: more than one site, a second sales or service process that must be matched to the same plot records (profile: ICP Definitions), and a legacy system under a licence with a renewal date. Two or more signals score STRONG, one scores PARTIAL, and none scores UNKNOWN. For criterion 6, a named role whose title covers a function that a Product Module serves (profile: Product Modules) scores STRONG, with its source tagged. A named role whose title covers no module function scores PARTIAL, and no named role scores UNKNOWN. For criterion 7, a listed buying trigger counts only inside the urgency window that the profile's Buying Triggers table gives it, and a succession signal with no change in leadership yet is not a listed trigger, so it scores PARTIAL.
 
 **Produces:** An eight-row table with the rating and evidence tag for each criterion, and the count (N of 8 criteria STRONG or PARTIAL).
 
@@ -377,9 +380,9 @@ Score each zone in `{Client Profile: Qualification Zones}` as HIGH, MEDIUM, LOW 
 | LOW | Weak or no alignment, with evidence |
 | UNKNOWN | Insufficient data to assess |
 
-MEDIUM never counts as HIGH. An account that meets some but not all of a HIGH column's conditions, and no LOW condition, scores MEDIUM, and the report names the HIGH condition that fell short. A hedged statement such as "may retire" is a possibility, not a met HIGH condition, so the zone is scored on the firm, dated fact that would settle it. A named role counts for a staff condition in a zone's HIGH column when its title covers that condition's function. So a named manager of the function, with none of the zone's other HIGH conditions met, scores MEDIUM, not LOW, because the named staff member is a fact on record, and the report names each HIGH condition that fell short. A HIGH condition whose fact is `[Unknown]` is not met. It is named as an open fact, and it does not by itself lower the zone to LOW. A zone is UNKNOWN only when none of its three columns holds an observed fact.
+MEDIUM never counts as HIGH. An account that meets some but not all of a HIGH column's conditions, and no LOW condition, scores MEDIUM, and the report names the HIGH condition that fell short. A hedged statement such as "may retire" is a possibility, not a met HIGH condition, so the zone is scored on the firm, dated fact that would settle it. A named role counts for a staff condition in a zone's HIGH column when its title covers that condition's function. So a named manager of the function, with none of the zone's other HIGH conditions met, scores MEDIUM, not LOW, because LOW needs a LOW condition on record, and the report names each HIGH condition that fell short. A HIGH condition whose fact is `[Unknown]` is not met. It is named as an open fact, and it does not by itself lower the zone to LOW. A zone is UNKNOWN only when none of its three columns holds an observed fact.
 
-A HIGH condition that cannot apply to the account counts as met, so an owner who signs alone, with no board approval step, meets a board condition such as "board meets within 60 days". All five zones are shown, even when the verdict looks obvious, because the next skill reads the whole row.
+A HIGH condition that cannot apply to the account counts as met, so an owner who signs alone, with no board approval step, meets a board condition such as "board meets within 60 days". When a zone asks whether the signing limit is under $25K, the year-one cost is the per-site list price times the sites, plus the one-time setup (profile: Product Modules), tagged `[Inferred]` with its arithmetic. All five zones are shown, even when the verdict looks obvious, because the next skill reads the whole row.
 
 **Produces:** Five zone scores, each with its evidence tag, the must-have zones marked, and the count (N of 5 zones HIGH or MEDIUM).
 
@@ -428,7 +431,7 @@ The verdict comes from the Verdict Rule alone (profile: Qualification Zones), as
 - *AE:* Identify target personas, then start outbound or add the account to the pipeline. An ENGAGED account already has a two-way conversation, so continue that thread before any new outbound.
 
 **MANUAL REVIEW** (needs more data)
-- Neither GREENLIGHT nor DISQUALIFY. Usually one zone HIGH, or a must-have zone at LOW
+- Every account that meets neither GREENLIGHT nor DISQUALIFY. That includes one zone HIGH with a must-have zone at MEDIUM, and a must-have zone at LOW with the other must-have not at LOW
 - ICP match plausible but not confirmed, recorded in `icp_match` and `fit_narrative`
 - Data gaps that could change the verdict
 - *BDR:* Research the specific gaps. Do not start outbound until they close. For an ENGAGED account, the open thread continues while the gaps close, and only new outbound waits.
@@ -505,11 +508,11 @@ Four worked examples, all on the PlotIQ cast and the chain file. They show a mix
 
 ### Example 1: GREENLIGHT, The Flagship Account At Qualification (Brackhaven Memorial Gardens)
 
-**Context:** Qualified on 2026-05-04, while Brackhaven was TARGET with no open AE deal recorded `[CRM]` (illustrative). Combination, 2 sites, 11,000 plots, paper plot maps, and one double sale in the last 24 months `[CRM]` (illustrative). The current system is a legacy on-premise ledger from Oldgate `[CRM]` (illustrative), and the family board chair's name is `[Unknown]`. The company is family-owned `[Public: company website, about page, 2026]` (illustrative), and its owner's bio gives a retirement date of 2029-03-31 `[Public: company website, owner bio, 2026]` (illustrative).
+**Context:** Qualified on 2026-05-04, while Brackhaven was TARGET with no open AE deal recorded `[CRM]` (illustrative). Combination, 2 sites, 11,000 plots, paper plot maps, and one double sale recorded in 2025, inside 24 months of the run date `[CRM]` (illustrative). The current system is a legacy on-premise ledger from Oldgate `[CRM]` (illustrative), and the family board chair's name is `[Unknown]`. The company is family-owned `[Public: company website, about page, 2026]` (illustrative), and its owner's bio gives a retirement date of 2029-03-31 `[Public: company website, owner bio, 2026]` (illustrative).
 
 **Input:** "Qualify Brackhaven Memorial Gardens for fit."
 
-**Process:** Step 0 reads the user's role as BDR `[CRM]` (illustrative). Step 2 classifies the account as ICP2 Combination. The Fit Grid row (profile: Fit Grid) is Strong on "cemetery side on paper". It is Moderate on "owner and GM both sign", because a family board signs. The year-one cost with setup is $26,576 (illustrative), which is above the $25K board line. Step 3 scores the criteria below. Step 4 scores the zones below, using the zone rule (profile: Qualification Zones).
+**Process:** Step 0 reads the user's role as BDR `[CRM]` (illustrative). Step 2 classifies the account as ICP2 Combination. The Fit Grid row (profile: Fit Grid) is Strong on "cemetery side on paper". It is Moderate on "owner and GM both sign", because a family board signs. Two sites at the per-site list price, plus the one-time setup, give a year-one cost of $26,576 (illustrative): 2 x $10,788, plus $5,000 (profile: Product Modules). That is above the $25K board line. Step 3 scores the criteria below. Step 4 scores the zones below, using the zone rule (profile: Qualification Zones).
 
 **Criteria (ICP2), 7 Of 8 STRONG Or PARTIAL:**
 
@@ -519,8 +522,8 @@ Four worked examples, all on the PlotIQ cast and the chain file. They show a mix
 | 2 | Revenue Threshold | STRONG | 11,000 plots on the cemetery side `[CRM]` (illustrative), above the ICP2 threshold of about 2,000 plots (profile: ICP Definitions). The CRM also notes a revenue range of $2 to 4 million a year `[CRM]` (illustrative), which is a range and not a confirmed figure |
 | 3 | Multi-Region Operations | UNKNOWN | Location spread not checked `[Unknown]` |
 | 4 | Ownership / Growth Profile | PARTIAL | Family-owned, not PE-backed `[Public: company website, about page, 2026]` (illustrative). The owner's bio gives a retirement date within 3 years, a succession signal `[Public: company website, owner bio, 2026]` (illustrative) |
-| 5 | Transaction Complexity | STRONG | Plot records on paper, pre-need sales, two sites `[CRM]` (illustrative) |
-| 6 | Relevant Department Exists | STRONG | A pre-need manager and an Operations Director `[Public: company website, staff page]` (illustrative) |
+| 5 | Transaction Complexity | STRONG | Three signals on record: two sites `[CRM]` (illustrative), pre-need leads that must be matched to plots (profile: ICP Definitions), and a legacy Oldgate licence that renews in March 2027 `[CRM]` (illustrative) |
+| 6 | Relevant Department Exists | STRONG | A pre-need manager, named on the staff page, covers the Pre-Need CRM module (profile: Product Modules) `[Public: company website, staff page]` (illustrative) |
 | 7 | Buying Trigger Present | PARTIAL | The succession signal above, with no dated trigger yet `[Inferred]` |
 | 8 | Current Solution Gap | STRONG | Paper plot maps and one double sale in 24 months `[CRM]` (illustrative) |
 
@@ -528,10 +531,10 @@ Four worked examples, all on the PlotIQ cast and the chain file. They show a mix
 
 | # | Zone | Rating | Evidence |
 |---|------|--------|----------|
-| 1 | Records and Inventory Pain (must-have) | HIGH | Paper plot maps and a double sale in 24 months `[CRM]` (illustrative) |
+| 1 | Records and Inventory Pain (must-have) | HIGH | Paper plot maps, and a double sale recorded in 2025, inside 24 months `[CRM]` (illustrative) |
 | 2 | Pre-Need Sales Motion | MEDIUM | A pre-need manager exists, and there is no intake form on the site `[Public: company website]` (illustrative). Social ads are not recorded `[Unknown]` |
-| 3 | Ownership and Decision Speed (must-have) | MEDIUM | The GM recommends and the board approves, which is the MEDIUM cell as written (profile: Qualification Zones), so the zone is MEDIUM. The board meets within 60 days `[Public: company website, board calendar]` (illustrative), which meets the HIGH timing test, but the signing test fails, because year one, $26,576 (illustrative), is above the $25K line (profile: Qualification Zones) |
-| 4 | Technology Readiness | MEDIUM | Staff use company email, which the staff page shows `[Public: company website, staff page]` (illustrative). The website shows no plot lookup. The Oldgate ledger does not hold plot records, which stay on paper maps `[CRM]` (illustrative), so the system fits poorly. The facts sit between the HIGH and MEDIUM columns with no LOW condition, so MEDIUM under the partial-match rule in Step 4 (illustrative) |
+| 3 | Ownership and Decision Speed (must-have) | MEDIUM | The GM recommends and the board approves, which is the MEDIUM cell as written (profile: Qualification Zones), so the zone is MEDIUM. The board meets within 60 days `[Public: company website, board calendar]` (illustrative), which meets the HIGH timing test, but the signing test fails, because year one, $26,576 (illustrative, two sites at list price), is above the $25K line (profile: Qualification Zones) |
+| 4 | Technology Readiness | MEDIUM | Staff use company email, which the staff page shows `[Public: company website, staff page]` (illustrative). The website shows no plot lookup. The Oldgate ledger does not hold plot records, which stay on paper maps `[CRM]` (illustrative), so the system fits poorly. Its licence renews in March 2027 `[CRM]` (illustrative), so it is not under contract to 2028, which is the LOW condition. The facts sit between the HIGH and MEDIUM columns with no LOW condition, so MEDIUM under the partial-match rule in Step 4 (illustrative) |
 | 5 | Growth or Succession | HIGH | The owner's bio gives a retirement date of 2029-03-31, inside 3 years of the run date `[Public: company website, owner bio, 2026]` (illustrative) |
 
 **Verdict:** GREENLIGHT. Two zones are HIGH (1 and 5), and no must-have zone is LOW. Seven of eight criteria are STRONG or PARTIAL, which is recorded in `icp_match` and `fit_narrative`. No disqualifier applies.
@@ -767,6 +770,15 @@ An account pending AE assignment is not ACTIVE. Score it, and say that it is pen
 
 ## Changelog
 
+
+### 2.1.11 (2026-10-26)
+- Criterion 5 of ICP2 (Transaction Complexity) has a counting rule: complexity signals on record decide STRONG, PARTIAL or UNKNOWN, so the count does not rest on a judgment about "complex". Criterion 6 (Relevant Department Exists) reads a named role by whether its title covers a Product Module's function. Step 3 names both rules with criteria 2, 4 and 7.
+- Step 3 says the count feeds the ICP and the fit narrative, and does not gate the verdict.
+- Step 4 states that a zone with only a named staff condition met scores MEDIUM, because LOW needs a LOW condition on record.
+- Step 4 states how the year-one signing amount is derived from the profile's list price.
+- Step 6 says that every account meeting neither GREENLIGHT nor DISQUALIFY is MANUAL REVIEW, including one HIGH zone with a must-have at MEDIUM.
+- Example 1 shows the criterion 5 signals, the criterion 6 rule, the dated double sale, the Oldgate licence date and the year-one arithmetic. Its verdict, zones and count are unchanged.
+- The try-it records gain the tag on the type line, the dated double sale, the Oldgate licence date, the pre-need fact and the pricing facts. The pre-computed year-one figure leaves the records.
 
 ### 2.1.8 (2026-10-26)
 - Every profile citation is written (profile: Section), naming the real section, in the Overview, the steps, the examples and the hard rules. Template placeholders and the shared contract are unchanged.

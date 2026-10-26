@@ -25,7 +25,7 @@ These records are as of 2026-05-12, before Brackhaven's deal reached Stage 5 Neg
 - 14:20, Ruth: "We sold section F twice last spring." [Call, 2026-05-12]
 - 16:40, Owen: "So the files go back to the 1970s, and they are all paper?" [Call, 2026-05-12]
 - 16:55, Owen: "What have you tried for the lookups so far?" [Call, 2026-05-12]
-- 17:05, Ruth: "We started moving plots into Oldgate and stopped." Owen asked why it stopped. Cost was not asked. [Call, 2026-05-12]
+- 17:05, Ruth: "We started moving plots into Oldgate and stopped." Owen asked why it stopped. The lines above hold no question about cost. [Call, 2026-05-12]
 - 19:05, Owen: "So that's a problem for the trust report too?" [Call, 2026-05-12]
 - 21:30, Ruth described the lookups. Owen moved on. [Call, 2026-05-12]
 - 23:40, Walt: "I don't want my crew walking around with a tablet in a cemetery." Owen: "They're just screens, you can use them at the desk." [Call, 2026-05-12]
@@ -41,6 +41,6 @@ These records are as of 2026-05-12, before Brackhaven's deal reached Stage 5 Neg
 ## What You Should Get
 - Call score: 24 of 35, Good (the 24 to 30 band of the restated scale).
 - Category scores: Pre-Call Preparation 4, SPIN Discovery Quality 3, Priority Ladder Execution 3, Active Listening 4, Value Articulation 3, Next Steps and Momentum 3, Alternatives 4.
-- Champion status: Developing, with two of seven shared champion tests met on this call.
-- Focus area for the next call: Priority Ladder to Level 3 on the cost of a plot lookup and of a double sale.
+- Champion status: Strong, with three of seven shared champion tests met on this call: explains the internal politics (28:30), asks how to help (33:00), and shares competitor intelligence (17:05).
+- Focus area for the next call: Priority Ladder to Level 3 on the cost of a plot lookup and of a double sale. The stage gate it serves is "Records problem quantified (plots, hours or dollars)."
 - Next action: Owen Pruitt holds the second discovery session with Ruth Ellery on 2026-05-19, the five-business-day date from the run date with no earlier date on record, and quantifies the lookup cost and the double-sale cost in it (illustrative).

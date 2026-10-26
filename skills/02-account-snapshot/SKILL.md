@@ -1,7 +1,7 @@
 ---
 name: gtm-account-snapshot
 description: "One-page account brief for BDRs and AEs: a zone-based verdict, persona-ranked contacts, tagged pain hypotheses, a three-step email draft and call prep, read by the rep before anything is sent."
-version: 2.1.10
+version: 2.1.11
 category: Sales-Methodology
 author: Ryan Vanshur
 license: MIT
@@ -11,6 +11,9 @@ requires:
   skills: [gtm-account-qualification, gtm-competitive-displacement]
 mutating: read-write
 change_log:
+  - version: 2.1.11
+    date: 2026-10-26
+    summary: "Round 11 settled judgments. The economic buyer is the signer the record names: the owner when the record says the owner signs, even if the GM champions the account. Persona ties are broken by buying role, with a champion ahead of an influencer, once no persona has a HIGH pain. A region with no recorded state reads as no tier yet. The Quill Hollow example and try-it keep their contacts, gaps and verdict, and the board-approval wording is removed from the records, leaving the signing fact. No try-it promise changes."
   - version: 2.1.10
     date: 2026-10-26
     summary: "Round 10 alignment to the shared contract. Gone quiet is no longer restated here, and Step 5 points to What The Close Reads. Example 5's reply to Ines Carmody is due 2026-10-29, the next business day after its 2026-10-28 run, and the booked call of 2026-11-02 is later, so it sets no earlier date. A DISQUALIFY on an INBOUND account now gets one short decline draft, held for the rep, in Step 5, the Output Contract, Hard Rule 13 and the Quality Bar. Quick Call Prep keeps its no-draft rule except for that decline. No try-it promise, verdict, zone score or pain hypothesis changes."
@@ -259,7 +262,7 @@ Score each of the five zones HIGH, MEDIUM or LOW from tagged facts, using the Qu
 Apply the Verdict Rule as written:
 
 - **GREENLIGHT:** at least two zones HIGH, and no must-have zone at LOW.
-- **MANUAL REVIEW:** neither GREENLIGHT nor DISQUALIFY holds. Usually one HIGH zone, or a must-have zone at LOW.
+- **MANUAL REVIEW:** neither GREENLIGHT nor DISQUALIFY holds. That covers one HIGH zone, no HIGH zone, or a must-have zone at LOW.
 - **DISQUALIFY:** a disqualifier (profile: Qualification Criteria) applies, or both must-have zones are LOW.
 
 MEDIUM never counts as HIGH. The next skill reads these zones, so a score that rounds up changes its verdict.
@@ -286,7 +289,7 @@ These five signals are the one-glance read a rep sees first. They do not set the
 
 ### Region Map
 
-The tiers come from the region map (profile: Outbound Voice), not from this skill. Each tier names the cost of a missed rule there and its source. Rank accounts in the highest-cost tier first, because a missed rule costs the most there. A state that is not recorded in the CRM gets no tier until someone records it. A tier still marked as a record placeholder in the profile is not a tier yet, so say so instead of guessing one.
+The tiers come from the region map (profile: Outbound Voice), not from this skill. Each tier names the cost of a missed rule there and its source. Rank accounts in the highest-cost tier first, because a missed rule costs the most there. A state that is not recorded in the CRM gets no tier until someone records it. In that case, write `Region tier: no tier yet` on its own line, and do not guess one. A tier still marked as a record placeholder in the profile is not a tier yet, so say so instead of guessing one.
 
 ---
 
@@ -345,7 +348,7 @@ Build the company brief, the quick-score signals, the zone scores with the verdi
 
 Map the known CRM contacts to the Buyer Personas (profile: Buyer Personas). For each persona, record the name or Unknown, the title, the engagement level, the last activity and a priority from 1 to 5.
 
-Rank the contacts by four rules, in order: known contacts with engagement history come before cold ones, persona relevance to the likely pain comes next, recent activity counts above old activity, and prior deal context breaks ties. A champion label in the CRM is recorded as a label, tagged `[CRM]`. The Champion Test in the shared contract decides whether a contact is a champion, and a snapshot does not call a contact Strong on the label alone. The test is the shared list of seven behaviours: three or more met with evidence is Strong, one or two is Developing, and none is None. When the records hold none of the seven behaviours, the Champion Test is reported as not yet run, not as None, because silence is not a no. None is reported only after a call or note has been checked against the seven. Recommend the top two or three personas to target first, with the reason for each. Rank the applicable personas by who signs first, then by the persona whose pain ranks first in Step 4, then by the influencer. Name as gaps the top-three personas in the contact priority with no contact on file, and the economic buyer when the record names the buyer but not the person. A persona outside the top three is listed as not targeted, not as a gap.
+Rank the contacts by four rules, in order: known contacts with engagement history come before cold ones, persona relevance to the likely pain comes next, recent activity counts above old activity, and prior deal context breaks ties. A champion label in the CRM is recorded as a label, tagged `[CRM]`. The Champion Test in the shared contract decides whether a contact is a champion, and a snapshot does not call a contact Strong on the label alone. The test is the shared list of seven behaviours: three or more met with evidence is Strong, one or two is Developing, and none is None. When the records hold none of the seven behaviours, the Champion Test is reported as not yet run, not as None, because silence is not a no. None is reported only after a call or note has been checked against the seven. Recommend the top two or three personas to target first, with the reason for each. Rank the applicable personas by who signs first, then by the persona whose hook is a HIGH pain in Step 4 (the hook is read from the Buyer Personas table), then by buying role, with a champion ahead of an influencer. Name as gaps the top-three personas in the contact priority with no contact on file, and the economic buyer when the record names who signs but not the person. The signer is the owner when the record says the owner signs, even if the GM is the champion. A GM is the signer only when the record says the GM signs. A persona outside the top three is listed as not targeted, not as a gap.
 
 **Produces:** `contact_priority`, a ranked list of contacts with persona and buying role, and the persona gaps.
 
@@ -365,7 +368,7 @@ Order the hypotheses by confidence, HIGH first, and within a level by the Core P
 
 ### Step 5: Generate The Outbound Sequence
 
-Draft a three-step email sequence for each of the top two or three personas. What is drafted depends on the verdict, and on whether the account is already in conversation.
+Draft a three-step email sequence for each of the top two or three personas that have a named contact. A persona with no named contact gets no sequence yet: finding the name is its gap, and the summary says so. A snapshot is the fast first pass, so it writes only to people a rep can reach today, while Research Outbound (03) drafts by title for its deeper package. What is drafted depends on the verdict, and on whether the account is already in conversation.
 
 - **GREENLIGHT:** a ready sequence. The rep reads it, edits it if needed and sends it.
 - **MANUAL REVIEW:** a held package. Its first line reads "Held: send only after a person clears the verdict", and nothing in it goes out before then.
@@ -514,7 +517,7 @@ These examples use the PlotIQ example cast, and every fact is tagged as the tag 
 
 **Step 0: Role Detection.** The user is a BDR. The CRM shows the account, status TARGET `[CRM]`, and no open deal `[CRM]`. Clear to proceed.
 
-**Step 1: Intelligence Gathering.** One site, 8,800 plots, paper plat maps `[CRM]`. One contact on file: Ines Carmody, General Manager, champion `[CRM]`. The owner signs under $25K `[CRM]`, alone, with no board approval step `[CRM]` (illustrative). The owner's name is `[Unknown]`. A records finding appears in the last state review `[CRM]`, and its date is `[Unknown]` (both illustrative). The owner brought a growth mandate when Ines Carmody arrived `[CRM]`. The state is not recorded `[Unknown]`, so no region tier yet. The BDR owner is Nadia Brandt `[CRM]` (illustrative).
+**Step 1: Intelligence Gathering.** One site, 8,800 plots, paper plat maps `[CRM]`. One contact on file: Ines Carmody, General Manager, champion `[CRM]`. The owner signs under $25K `[CRM]`, alone (illustrative), so the board condition counts as met. The owner's name is `[Unknown]`. A records finding appears in the last state review `[CRM]`, and its date is `[Unknown]` (both illustrative). The owner brought a growth mandate when Ines Carmody arrived `[CRM]`. The state is not recorded `[Unknown]`, so no region tier yet. The BDR owner is Nadia Brandt `[CRM]` (illustrative).
 
 **Step 2: Account Snapshot.**
 
@@ -526,7 +529,7 @@ Zone scores (illustrative), with the verdict:
 
 - Zone 1, Records and Inventory Pain: MEDIUM. Paper plat maps `[CRM]`. The records finding has no date `[Unknown]`, so the HIGH test (a finding in the last 24 months) is not met.
 - Zone 2, Pre-Need Sales Motion: UNKNOWN. No pre-need activity is recorded `[Unknown]`. Silence is not a no.
-- Zone 3, Ownership and Decision Speed: HIGH. The owner signs under $25K alone, with no board approval step `[CRM]` (illustrative).
+- Zone 3, Ownership and Decision Speed: HIGH. The owner signs under $25K alone `[CRM]` (illustrative), so the board condition counts as met.
 - Zone 4, Technology Readiness: UNKNOWN. Website and tools are not yet checked `[Unknown]`.
 - Zone 5, Growth or Succession: HIGH. A new GM in the last 24 months `[CRM]` (illustrative) meets the HIGH column. The owner's growth mandate `[CRM]` is context, not a second condition.
 
@@ -542,7 +545,7 @@ Region map: no tier, because the state is not recorded `[Unknown]`.
 | Owner, signs under $25K | Unknown, no contact found `[Unknown]` | n/a | n/a | 2 |
 | Pre-need manager | Unknown `[Unknown]` | n/a | n/a | 3 |
 
-Ines Carmody ranks first because she is the only named contact and runs the site now. Her champion label stays a label until the Champion Test runs. The owner ranks second, because the owner signs.
+Ines Carmody ranks first because she is the only named contact and runs the site now. Her champion label stays a label until the Champion Test runs. The owner ranks second, because the owner signs. The pre-need manager is the champion persona, and the Operations Director is an influencer. Neither persona's hook is a HIGH pain, so the champion ranks ahead of the influencer.
 
 **Step 4: Pain Hypotheses.**
 
@@ -841,7 +844,7 @@ next_action: Nadia Brandt books the first discovery call for Owen Pruitt with Ru
 
 **Step 0: Role Detection.** The user is a BDR, Nadia Brandt `[CRM]` (illustrative). The CRM shows status ENGAGED `[CRM]`, the reply of 2026-10-27 `[CRM]` and no open deal `[CRM]`. The BDR guard does not apply, because the account is not ACTIVE. The ENGAGED path applies: one reply draft, and no cold sequence.
 
-**Step 1: Intelligence Gathering.** One site, 8,800 plots, paper plat maps `[CRM]` (illustrative). One contact on file: Ines Carmody, General Manager, champion label `[CRM]`. She moved to Quill Hollow from Lowmoor Memorial Gardens six months ago `[Public: state licensing database]` (illustrative). The owner signs under $25K, alone, with no board approval step `[CRM]` (illustrative). The owner's name is `[Unknown]`. A records finding appears in the last state review `[CRM]`, and its date is `[Unknown]` (illustrative). The owner brought a growth mandate when Ines Carmody arrived `[CRM]`. The state is `[Unknown]`, so there is no region tier yet. The new records are the reply of 2026-10-27 and the booked call of 2026-11-02, both `[CRM]` (illustrative).
+**Step 1: Intelligence Gathering.** One site, 8,800 plots, paper plat maps `[CRM]` (illustrative). One contact on file: Ines Carmody, General Manager, champion label `[CRM]`. She moved to Quill Hollow from Lowmoor Memorial Gardens six months ago `[Public: state licensing database]` (illustrative). The owner signs under $25K, alone `[CRM]` (illustrative), so the board condition counts as met. The owner's name is `[Unknown]`. A records finding appears in the last state review `[CRM]`, and its date is `[Unknown]` (illustrative). The owner brought a growth mandate when Ines Carmody arrived `[CRM]`. The state is `[Unknown]`, so there is no region tier yet. The new records are the reply of 2026-10-27 and the booked call of 2026-11-02, both `[CRM]` (illustrative).
 
 **Step 2: Account Snapshot.**
 
@@ -851,7 +854,7 @@ Zone scores (illustrative), with the verdict. The reply adds no zone fact, and t
 
 - Zone 1, Records and Inventory Pain: MEDIUM. Paper plat maps `[CRM]`. The records finding has no date `[Unknown]`, so the HIGH test (a dated finding inside 24 months) is not met (profile: Qualification Zones).
 - Zone 2, Pre-Need Sales Motion: UNKNOWN. No pre-need activity is recorded `[Unknown]`. Silence is not a no.
-- Zone 3, Ownership and Decision Speed: HIGH. The owner signs under $25K alone, with no board approval step `[CRM]` (illustrative).
+- Zone 3, Ownership and Decision Speed: HIGH. The owner signs under $25K alone `[CRM]` (illustrative), so the board condition counts as met.
 - Zone 4, Technology Readiness: UNKNOWN. Website and tools are not checked `[Unknown]`.
 - Zone 5, Growth or Succession: HIGH. A new GM in the last 24 months `[Public: state licensing database]` (illustrative) meets the HIGH column. The growth mandate is context, not a second condition.
 
@@ -1025,6 +1028,13 @@ The Business Case & ROI Kit (a paid Guild Pro kit) reads this skill's hand-off b
 
 ## Changelog
 
+
+### 2.1.11 (2026-10-26)
+- Step 3 settles the persona tie. Once no persona has a HIGH pain, a champion ranks ahead of an influencer, so the pre-need manager (champion) comes before the Operations Director (influencer) in Example 1.
+- Step 3 settles the signer. The economic buyer is the person the record names as the signer, so the owner is the gap when the record says the owner signs, even if the GM champions the account. A GM is the signer only when the record says so.
+- Step 2 writes "no tier yet" on its own line when the state is not recorded.
+- The records state the signing fact only. The words "no board approval step is recorded" leave the records, and Zone 3 HIGH reads the signing fact under the rule that a condition which cannot apply counts as met.
+- No try-it promise, verdict, zone score or contact gap changes.
 
 ### 2.1.10 (2026-10-26)
 - Gone quiet is no longer restated locally. Step 5 points to the shared rule in What The Close Reads.

@@ -23,7 +23,7 @@ The Account
 - Status at the time of the call: ACTIVE, Stage 2 Discovery [CRM] (illustrative)
 - AE owner: Owen Pruitt
 - Incumbent: Oldgate Ledger Pro, logged [CRM]. Renewal in March 2027 [CRM]
-- Second system evaluated: Stonemark mapping, with no preference stated [Notes], undated (Owen Pruitt's note)
+- Second system evaluated: Stonemark mapping [Notes], undated (Owen Pruitt's note). The note records the evaluation only
 - Pre-need manager: Priscilla Dunmore, the end user. She is not on this call [CRM]
 - Economic buyer, the signer above the GM: [Unknown]. Buyer contact: Ruth Ellery [CRM]. The approval process: [Unknown]
 - Plot loss figure: [Unknown]
@@ -47,6 +47,6 @@ The lines below are the checked ones. The full sheet also holds the call flow, t
 - Meeting type: discovery. The demo check does not apply.
 - Top pain: plot records on paper, with a double sale [CRM] (illustrative).
 - Question bank: Situation 3, Problem 3, Implication 3 (top three each), Need-Payoff 2.
-- Qualification pre-fill: Metrics red. Economic buyer yellow. Decision criteria red. Decision process red. Identified pain yellow. Champion red.
-- Proof for the attendees, one per persona, each marked "do not cite": Ruth Ellery (General Manager): Holloway Hills, Status Illustrative, with the research target beside it: 50 to 100 plots sold on paper and unsold on the map (Benchmark, deathcare research, paper-operations note, 2026-04-01). Walt Okonkwo (Operations Director): Holloway Hills, Status Illustrative, with the research target beside it: a plot answer in 20 seconds (a research target from (profile: Value Propositions), not a customer result).
+- Qualification pre-fill: Metrics red. Economic buyer yellow. Decision criteria red. Decision process red. Paper process red. Identified pain yellow. Champion red. Competition yellow. Totals: 0 green, 3 yellow and 5 red, of 8.
+- Proof for the attendees, one line each: Ruth Ellery (General Manager): none usable. The research target is 50 to 100 plots sold on paper and unsold on the map (Benchmark, deathcare research, paper-operations note, 2026-04-01). Walt Okonkwo (Operations Director): none usable. The target is a plot answer in 20 seconds (target, no dated source, from (profile: Value Propositions)), not a customer result.
 - Next action: Owen Pruitt asks Ruth Ellery who signs above her, and for the next meeting date, on this call. Date: 2026-05-12 (illustrative), the call date on record, which is earlier than the five-business-day date of 2026-05-18 for a 2026-05-11 run. The meeting date is [Unknown] until agreed.

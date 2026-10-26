@@ -1,6 +1,6 @@
 ---
 name: gtm-competitive-displacement
-version: 2.1.10
+version: 2.1.11
 description: "Plans outbound to displace a known incumbent, by classifying the incumbent, rating how hard the switch is, and drafting persona-tailored four-step email sequences for the rep to read and send, so the BDR or AE who works the account knows what to say and what not to say."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: [gtm-competitive-strategy]
 mutating: read-write
 change_log:
+  - version: 2.1.11
+    date: 2026-10-26
+    summary: "Round 11 settlement. Email 1 states a trend with no figure when its research is older than 90 days, and the sequence starts at the rep's send date rather than waiting for a renewal window. A renewal known only by its month is tested from its first day, next to the difficulty tests. A profile example is not a buyer statement, so Known Pain reads Suspected until a buyer or a record states it. Email 1 is drafted in full, with its subject and its question taken from the template. The try-it records state facts only, and the next-action rule names when a contact's name is the task. The rating, personas, sequence count, hand-off and next action do not change."
   - version: 2.1.10
     date: 2026-10-26
     summary: "Round 10 alignment to the shared contract. The INBOUND quiet window moves from 14 days to the shared rule: no reply within five business days after our last message, the same test every other skill uses. An INBOUND account with a DISQUALIFY verdict gets one short decline draft, held for the rep to read, in place of any sequence. The rule sits in Step 0, the Output Contract, Hard Rule 11 and the Quality Bar. No example or try-it promise changes."
@@ -111,7 +114,7 @@ Every run returns its report in the chat. The file is written only when the user
 | `target_personas` | Key Personas | The profile rows used, ranked, each with its title, the count as n of N, and the contact or `[Unknown]` |
 | `sequence` | Below Key Personas | Four emails per persona, drafted and never sent. A page may show fewer. Then it says the other drafts follow the same rules and are left off the page, and names them. Under the BDR guard, `none (guard)`. Under ENGAGED, `none (ENGAGED: reply plan)`, and the reply plan takes the place of the four emails. Under INBOUND, `reply first (INBOUND)`: the reply to the buyer's request takes the place of the four emails until the account goes quiet, and then the four-step sequence follows. Under INBOUND with a DISQUALIFY verdict, `decline draft (INBOUND)`: one short decline takes the place of the reply, and no sequence follows. |
 | `report_path` | Header of the report | `none (inline)` unless the user asked for a file |
-| `next_action` | Last line of the report | The owner, the action and a date, written as "[owner] [action] by [date]", for example "[owner] finds the contact's name, then reviews and sends the first email by [date]". The owner is the BDR or AE of record in the CRM. When the CRM names the owner, that name is written with `[CRM]`. When the owner field is blank, the name is written `[Unknown]` and the role is kept, never a name from another account. The date follows the shared contract's next-action rule (five business days after the run date, or an earlier date the CRM or the records already set for that step, named with its source). The step names the action the owner takes, not the result |
+| `next_action` | Last line of the report | The owner, the action and a date, written as "[owner] [action] by [date]", for example "[owner] finds the contact's name, then reviews and sends the first email by [date]". The owner is the BDR or AE of record in the CRM. When the CRM names the owner, that name is written with `[CRM]`. When the owner field is blank, the name is written `[Unknown]` and the role is kept, never a name from another account. The date follows the shared contract's next-action rule (five business days after the run date, or an earlier date the CRM or the records already set for that step, named with its source). The step names the action the owner takes, not the result. Where the task is finding a contact's name, the action says so without naming a source, unless the records name one (Contact Names) |
 | File, On Request | `<account>_gtm-competitive-displacement_<date>.md`, saved beside the user's other account notes | Written only when the user asks, in Markdown. The ask is the approval step |
 
 ---
@@ -250,7 +253,7 @@ The difficulty scale has three levels. Each level has one test, and each test is
 | Medium | A renewal inside 180 days | Medium |
 | High | A contract term running more than 180 days past today, with an exit fee in the contract | High |
 
-The rating is the highest level whose test is met. When the contract term is unknown, no test can be run, so the rating is High and the output says the term is unknown, unless a renewal month is on record, which fixes the end of the term (Settled Judgments). An unknown term is not a favorable one, and a plan that assumes an easy switch skips the question that decides it.
+The rating is the highest level whose test is met. A renewal known only by its month is tested from the first day of that month (Month-Only Renewals). When the contract term is unknown, no test can be run, so the rating is High and the output says the term is unknown, unless a renewal month is on record, which fixes the end of the term (Settled Judgments). An unknown term is not a favorable one, and a plan that assumes an easy switch skips the question that decides it.
 
 ### Persona Selection
 
@@ -264,6 +267,8 @@ The profile's Buyer Personas table sets the options. The template row names a pr
 | **Email 2** | Capability gap question | Ask a question the incumbent cannot answer well, and let the buyer find the gap |
 | **Email 3** | Proof point from a comparable switch | Cite a customer result only when its Status is Verified. Otherwise hold the email |
 | **Email 4** | Contract timing | Acknowledge the current vendor. Ask when the contract renews, unless the renewal month is on record, in which case Email 4 confirms it (see Settled Judgments). Frame it as worth 15 minutes before the next renewal |
+
+Email 1 cites a research figure only when it is dated within 90 days of the run date. Otherwise it states the trend with no figure (Old Research In Email).
 
 ### Rules For Every Email
 
@@ -287,6 +292,7 @@ The profile's Buyer Personas table sets the options. The template row names a pr
 - **Month-Only Renewals.** A renewal known only to its month is tested from the first day of that month. That month also fixes the end of the term, so the term is not unknown: the rating follows the three tests, and an exit fee that is not on record does not raise it.
 - **Old Research In Email.** A research figure dated more than 90 days before the run date does not appear in an email, even with its source named. The report keeps it as a research estimate. Email 1 then uses the industry trend without a figure, with its question carrying the point, unless a figure dated within 90 days of the run date is on record.
 - **Email 4 Timing.** When the renewal month is on record, Email 4 confirms it and makes the renewal the reason to look now, as the Contract Renewal Window pattern says. The question in Email 4 is used only when no renewal month is on record.
+- **Sequence Start.** The sequence starts at the rep's send date for Email 1. A renewal window never holds it, and the window sets the aim for Email 4.
 - **Best Discovery Question.** A persona's best discovery question is the template question about that persona's own pain. A persona with no such question uses the template's first question.
 - **Roadmap Figures.** A figure from the profile's roadmap, such as weeks to go-live, is PlotIQ's plan and not a sourced number. It appears in the report as the plan and never in an email.
 - **Contact Names.** A next action names no place to find a contact's name unless the records name one. Until a name is found, the contact is written with its title.
@@ -365,7 +371,7 @@ Rate the account's readiness for displacement. Every cell that is not in the rec
 | Budget Cycle Alignment | In cycle / Off cycle / `[Unknown]` |
 | Previous Evaluation Of Our Product | Yes / No / `[Unknown]` |
 
-A champion is `Partial` only when a named contact shows some champion behavior with a tag. A contact who is not named is `[Unknown]`, never `Partial`.
+A champion is `Partial` only when a named contact shows some champion behavior with a tag. A contact who is not named is `[Unknown]`, never `Partial`. A profile example is not a buyer statement, so it does not make Known Pain Yes. Without a buyer statement the signal reads Suspected.
 
 #### 1E. Rate The Displacement Difficulty
 Run the three tests in Methodology against the contract facts from 1d, and record the rating, the test that set it, and the tag on the contract fact.
@@ -491,7 +497,7 @@ Three worked examples on the PlotIQ cast and the chain file. They show a success
 **Step 1. Identify The Incumbent:** Stonemark, direct software. How we know: the account's CRM note names Stonemark as its map vendor `[CRM]` (illustrative). Confidence: HIGH, because the CRM note names the incumbent.
 
 **Step 1D. Displacement Readiness:**
-- Known Pain: Yes, specific. The pre-need team wants pre-need and records on one system (profile: Example Cast) (illustrative)
+- Known Pain: Suspected. No buyer has stated it on a dated call or in the CRM. The profile's example cast names the pattern (profile: Example Cast) (illustrative)
 - Contract Status: Expiring within 6 months. Renews January 2027 `[CRM]` (illustrative)
 - Champion: `[Unknown]`. The pre-need team lead is named nowhere, so there is no named contact to score
 - Budget Cycle: `[Unknown]`
@@ -527,13 +533,13 @@ Proof points: Fennick Gardens (212 unsold plots found in 90 days) and Holloway H
 **Pre-Need Sales Manager, Email 1 (Industry Trend, Held Without A Figure). Drafted, not sent.**
 Subject: Pre-need requests from the intake form
 
-Your team takes pre-need requests through the intake form on the site.
+Your team takes pre-need requests through the intake form on the site. A counselor's sale is easiest when the plot record sits in the same system as the lead.
 
-How do the intake form requests get a first call back today?
+Which system runs the pre-need side, and who maintains it?
 
-Your name
+Nadia Brandt
 
-The trend figure is held. Its only source, the deathcare research dated 2026-03-27 to 2026-04-01, is over 90 days old at the run date, so it may not appear in an email, and the email names no figure. The question at the end is the discovery question from the template, which lets the buyer find the gap.
+The trend is stated with no figure. Its only research source, the deathcare research dated 2026-03-27 to 2026-04-01, is over 90 days old at the run date, so no figure may appear in an email. The question is template question 2, which lets the buyer find the gap.
 
 **Pre-Need Sales Manager, Email 3 (Proof Point). Status: HOLD.** The only proof point that fits is Illustrative, so Email 3 names no customer result. The Fennick Gardens case study waits until its numbers cover a full year (January 2027) (profile: Proof Points). Email 3 is released only when a proof point is Verified, and Verified also needs the customer's agreement to be named. The earliest date for Fennick Gardens is therefore January 2027, so Email 3 cannot go before then.
 
@@ -551,7 +557,7 @@ The trend figure is held. Its only source, the deathcare research dated 2026-03-
 1. **Company:** Greyfield Memorial Park. Stonemark identified.
 2. **Incumbent Type:** direct software.
 3. **Displacement Difficulty:** Medium, set by the renewal test (1 of 3 tests met, directional).
-4. **Readiness:** pre-need and records pain is known, and the champion, budget cycle and prior evaluation are `[Unknown]`.
+4. **Readiness:** pre-need and records pain is suspected, with no buyer statement on record, and the champion, budget cycle and prior evaluation are `[Unknown]`.
 5. **CRM Status:** TARGET, one touch on 2026-09-24 with no named contact, no open deal, no AE owner, no contacts on file.
 6. **Personas Targeted:** 2 of 5 profile rows, the two that feel the intake pain and sign the contract.
 7. **Sequences Generated:** 2 personas x 4 emails. Email 1 is shown in full. Email 3 is on HOLD. Emails 2 and 4 follow the structure above.
@@ -720,6 +726,14 @@ report_path: none (inline)
 ---
 
 ## Changelog
+
+### 2.1.11 (2026-10-26)
+- Email 1 uses no research figure older than 90 days, and the rule sits under the sequence table where the email is drafted. Email 1 is drafted in full, with its subject line and its question taken from the template.
+- A renewal known only by its month is tested from its first day, stated beside the difficulty tests.
+- The sequence starts at the rep's send date. A renewal window sets Email 4's aim and does not hold the sequence.
+- Known Pain is Suspected until a buyer or a record states it. A profile example is not a buyer statement.
+- The next-action rule names when finding a contact's name is the task, with no source named unless the records name one.
+- Try-it. The benchmark's age note and the proof points' status words are removed from the records, and the dates and the profile's Status column carry the facts. The rating, personas, sequence count, hand-off and next action do not change.
 
 ### 2.1.10 (2026-10-26)
 - The INBOUND quiet window is the shared rule in What The Close Reads: no reply within five business days after our last message. The earlier 14-day window in 2.1.9 is removed, so a cold sequence for an INBOUND account waits on the same test as the other skills.
