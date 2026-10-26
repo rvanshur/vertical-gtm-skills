@@ -172,7 +172,7 @@ Zones are groups of account traits the team agrees predict a win. Score each zon
 |------|-----------|------|--------|-----|
 | 1. Records and Inventory Pain | Yes | Plot map or records on paper or binders, plus a double sale, lost deed or records finding in the last 24 months | Plot spreadsheet, paper deeds, lookups take days, or a digital map with plot records or trust reporting still outside it | Full digital plot and records system in place, or no plots (funeral only) |
 | 2. Pre-Need Sales Motion | No | Pre-need counselors, a pre-need intake form on the website, social ads feeding leads into email | Pre-need sold informally by the GM, nothing tracked | No pre-need sales |
-| 3. Ownership and Decision Speed | Yes | GM or owner signs under $25K, board meets within 60 days | GM recommends, board approves, next meeting 3 or more months out | Decision sits with a CFO or corporate gate, 6 to 9 month cycle |
+| 3. Ownership and Decision Speed | Yes | GM or owner signs under $25K, board meets within 60 days | GM recommends, board approves, next meeting more than 60 days out | Decision sits with a CFO or corporate gate, 6 to 9 month cycle |
 | 4. Technology Readiness | No | Staff use email and a shared drive daily, website shows plot or pre-need information, has tried a digital tool | Legacy system that fits poorly, or spreadsheets only | No website, no staff email, or an enterprise system under contract to 2028 |
 | 5. Growth or Succession | No | New owner or GM in the last 24 months, owner update naming growth, or retirement within 3 years | Stable, one growth project | Flat plot sales for 3 years, no succession plan |
 
@@ -184,7 +184,7 @@ Grounding: Zone 1 comes from the paper-operations research. Zone 2 from the pre-
 - **MANUAL REVIEW:** Neither GREENLIGHT nor DISQUALIFY. Usually one HIGH zone, or a must-have at LOW
 - **DISQUALIFY:** Any disqualifier above, or both must-have zones at LOW
 
-Skills apply this rule as written. MEDIUM never counts as HIGH.
+Skills apply this rule as written. MEDIUM never counts as HIGH. A zone with no observable fact is UNKNOWN: it counts as neither HIGH nor LOW, so it never earns GREENLIGHT and never blocks it, and the report names it as an open fact.
 
 ## Proof Points
 
@@ -299,7 +299,7 @@ Read by Trigger Event Outbound (04). One row per trigger in Buying Triggers. A d
 Read by Closed-Loss Reactivation (05). All values illustrative.
 
 - **Loss taxonomy mapping:** "timing" usually means the board date passed or the champion left. "Price" usually means year one crossed the $25K board line, so the $5,000 setup is the issue. "Went with competitor" names Oldgate, Stonemark or Lanternfield and their renewal date. "No decision" means no economic buyer was ever found
-- **Re-entry windows:** timing, 6 to 9 months. Competitor, 90 to 180 days before their renewal. Price, the next budget cycle. No decision, 12 months or a trigger, whichever first
+- **Re-entry windows:** timing, 6 to 9 months after the close date. Competitor, 90 to 180 days before the rival's renewal date. Price, the next budget cycle. No decision, 12 months or a trigger, whichever first
 - **Reopening events:** a new GM in the licensing record, an audit finding, a consolidator purchase. A champion moving to a new site (Lowmoor to Quill Hollow) does not reopen the lost account. It opens a play at the new site, through Account Snapshot (02)
 - **Incumbent renewal cycles:** Oldgate, multi-year license with annual maintenance (research estimate). Stonemark, three-year term (research estimate). Lanternfield, annual per-user (research estimate)
 
@@ -332,7 +332,7 @@ Source: the PlotIQ Sales Methodology section names SPIN Selling, Challenger and 
 
 ## MEDDPICC
 
-- **Stage minimums:** the profile's Qualification Stage Gates: MEDDPICC at 70 or higher to move from 4 Proposal to 5 Negotiate (decided 2026-10-20). That figure overrides the skill table's default of 65 for Stage 5 Negotiate. The critical-element floors stay as the skill's table has them (all except Competition at 3 or higher, Economic Buyer at 4 or higher).
+- **Stage minimums:** the profile's Qualification Stage Gates: MEDDPICC at 70 or higher to move from 4 Proposal to 5 Negotiate, the team's own gate for every deal. That figure overrides the skill table's default of 65 for Stage 5 Negotiate. The critical-element floors stay as the skill's table has them (all except Competition at 3 or higher, Economic Buyer at 4 or higher).
 - **Paper process steps:** `[RECORD]`. PlotIQ has no won deal to map from. The flagship's paper steps are open (Brackhaven's legal and vendor review is noted, timing not scoped, `[Unknown]`).
 - **Metric, customer-worded:** `[RECORD]` for the number a champion repeats back. The plot count of 11,000 for Brackhaven is the profile's figure, and it is not yet a metric a buyer has repeated.
 - **Champion proof-of-life:** `[RECORD]`. No won deal has shown one yet. The flagship's examples (Ruth Ellery's internal selling and her board introduction) are illustrative.
