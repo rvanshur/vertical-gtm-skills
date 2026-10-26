@@ -1,6 +1,6 @@
 ---
 name: gtm-account-qualification
-version: 2.1.5
+version: 2.1.6
 description: "Scores an account against the ICP definitions, 8 weighted criteria and the profile's five qualification zones, and returns a GREENLIGHT, MANUAL REVIEW or DISQUALIFY verdict with every zone shown, for the BDR or AE who decides where to spend time."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,9 +11,12 @@ requires:
   skills: []
 mutating: read-write
 change_log:
+  - version: 2.1.6
+    date: 2026-10-26
+    summary: "The next action for an ownership check follows the earlier date a skill's own schedule sets for that step, and names its source. The examples' zone evidence cites the record that holds each fact: the current system, the Zone 2 and Zone 5 facts for the inbound account, and the source tag for the site budget. Example dates are recomputed under the shared rule."
   - version: 2.1.5
     date: 2026-10-26
-    summary: "The Zone 3 row of Example 1 quotes the profile's Zone 3 cell as written. "The next action follows the shared contract's one deadline rule: five business days after the run date, or an earlier date the records or the skill's own schedule set for that step. The skill's own within-five-days wording is replaced by a pointer to that rule, and the example dates are recomputed under it. An UNKNOWN zone is named as an open fact under the Verdict Rule, as the profile states it."
+    summary: "The Zone 3 row of Example 1 quotes the profile's Zone 3 cell as written. The next action follows the shared contract's one deadline rule: five business days after the run date, or an earlier date the records or the skill's own schedule set for that step. The skill's own within-five-days wording is replaced by a pointer to that rule, and the example dates are recomputed under it. An UNKNOWN zone is named as an open fact under the Verdict Rule, as the profile states it."
   - version: 2.1.4
     date: 2026-10-26
     summary: "Try-it evidence completed so a strict first run reproduces Example 1. ICP2 criterion 2 is tested against the profile's ICP2 threshold, a Fit Grid row is read at its key indicator, a named pre-need manager counts as pre-need staff, an approval step above the signing line is a risk flag, and the next action gets a date rule. Example 1 gains the records each rule reads."
@@ -496,7 +499,7 @@ Four worked examples, all on the PlotIQ cast and the chain file. They show a mix
 
 ### Example 1: GREENLIGHT, the Flagship Account at Qualification (Brackhaven Memorial Gardens)
 
-**Context:** Qualified on 2026-05-04, while Brackhaven was TARGET with no open AE deal recorded `[CRM]` (illustrative). Combination, 2 sites, 11,000 plots, paper plot maps, and one double sale in the last 24 months `[CRM]` (illustrative). Before the first call, the current system is `[Unknown]`, and the family board chair's name is `[Unknown]`. The company is family-owned `[Public: company website, about page, 2026]` (illustrative), and its owner's bio gives a retirement date of 2029-03-31 `[Public: company website, owner bio, 2026]` (illustrative).
+**Context:** Qualified on 2026-05-04, while Brackhaven was TARGET with no open AE deal recorded `[CRM]` (illustrative). Combination, 2 sites, 11,000 plots, paper plot maps, and one double sale in the last 24 months `[CRM]` (illustrative). The current system is a legacy on-premise ledger from Oldgate `[CRM]` (illustrative), and the family board chair's name is `[Unknown]`. The company is family-owned `[Public: company website, about page, 2026]` (illustrative), and its owner's bio gives a retirement date of 2029-03-31 `[Public: company website, owner bio, 2026]` (illustrative).
 
 **Input:** "Qualify Brackhaven Memorial Gardens for fit."
 
@@ -522,7 +525,7 @@ Four worked examples, all on the PlotIQ cast and the chain file. They show a mix
 | 1 | Records and Inventory Pain (must-have) | HIGH | Paper plot maps and a double sale in 24 months `[CRM]` (illustrative) |
 | 2 | Pre-Need Sales Motion | MEDIUM | A pre-need manager exists, and there is no intake form on the site `[Public: company website]` (illustrative). Social ads are not recorded `[Unknown]` |
 | 3 | Ownership and Decision Speed (must-have) | MEDIUM | The GM recommends and the board approves, which is the profile's MEDIUM cell as written, so the zone is MEDIUM. The board meets within 60 days, which meets the HIGH timing test, but the signing test fails, because year one is above the $25K line `[Public: company website, board calendar]` (illustrative) |
-| 4 | Technology Readiness | MEDIUM | Staff use company email, which the staff page shows `[Public: company website, staff page]` (illustrative). The website shows no plot lookup, and the records system is not named `[Unknown]`. The facts sit between the HIGH and MEDIUM columns with no LOW condition, so MEDIUM under the partial-match rule in Step 4 (illustrative) |
+| 4 | Technology Readiness | MEDIUM | Staff use company email, which the staff page shows `[Public: company website, staff page]` (illustrative). The website shows no plot lookup. The Oldgate ledger does not hold plot records, which stay on paper maps `[CRM]` (illustrative), so the system fits poorly. The facts sit between the HIGH and MEDIUM columns with no LOW condition, so MEDIUM under the partial-match rule in Step 4 (illustrative) |
 | 5 | Growth or Succession | HIGH | The owner's bio gives a retirement date of 2029-03-31, inside 3 years of the run date `[Public: company website, owner bio, 2026]` (illustrative) |
 
 **Verdict:** GREENLIGHT. Two zones are HIGH (1 and 5), and no must-have zone is LOW. Seven of eight criteria are STRONG or PARTIAL, which is recorded in `icp_match` and `fit_narrative`. No disqualifier applies.
@@ -572,7 +575,7 @@ report_path: none (inline)
 |---|------|--------|----------|
 | 1 | Records and Inventory Pain (must-have) | HIGH | Paper plat maps, and a double-recorded deed inside 24 months (illustrative) `[CRM]` |
 | 2 | Pre-Need Sales Motion | UNKNOWN | Pre-need sales are not yet confirmed `[Unknown]` (illustrative) |
-| 3 | Ownership and Decision Speed (must-have) | MEDIUM | The GM keeps the site budget until the Q1 2027 review `[Public: acquirer's announcement]` (illustrative) |
+| 3 | Ownership and Decision Speed (must-have) | MEDIUM | The GM keeps the site budget until the Q1 2027 review `[CRM]` (illustrative) |
 | 4 | Technology Readiness | UNKNOWN | Harborline's system is `[Unknown]` (illustrative) |
 | 5 | Growth or Succession | HIGH | A new owner within the last 24 months `[Public: state licensing database]` |
 
@@ -582,7 +585,7 @@ report_path: none (inline)
 
 **Opportunity Signals:** The acquisition is a consolidator trigger. Its window runs from 2026-08-30 to 2026-10-29, which is 60 to 120 days after the 2026-07-01 close `[Public: state licensing database]`. On 2026-10-19 there are 10 days left in the window.
 
-**Next action:** The BDR confirms Harborline's ownership type and system by 2026-10-26 (illustrative), a Monday, five business days after the run date of 2026-10-19, so a sequence can start before the window closes on 2026-10-29.
+**Next action:** The BDR confirms Harborline's ownership type and system by 2026-10-22 (illustrative), a Thursday. The five-business-day date from the run date of 2026-10-19 (a Monday) is 2026-10-26, but Trigger Event Outbound (04, Step 1c) sets this check due by 2026-10-22, and the shared rule uses the earlier date its source names, so a sequence can start before the window closes on 2026-10-29.
 
 ```text
 Hand-off (read by 02):
@@ -592,13 +595,13 @@ verdict: GREENLIGHT
 zone_scores: 1 HIGH, 2 UNKNOWN, 3 MEDIUM, 4 UNKNOWN, 5 HIGH
 icp_match: ICP1 Independent Cemetery (at site level, after the acquisition)
 fit_narrative: One cemetery site with 14,000 plots on paper plat maps (illustrative) and a new owner inside 24 months. Zones 1 and 5 are HIGH and no must-have zone is LOW. Harborline's type and system are [Unknown] and are checked first.
-next_action: The BDR confirms Harborline's ownership type and system by 2026-10-26 (illustrative)
+next_action: The BDR confirms Harborline's ownership type and system by 2026-10-22 (illustrative), the earlier date set by Trigger Event Outbound (04, Step 1c)
 report_path: none (inline)
 ```
 
 ### Example 3: MANUAL REVIEW on an Inbound Request (Sable Fork Cemetery)
 
-**Context:** One cemetery site with 2,900 plots. The plot list is kept in a spreadsheet. The general manager, Arlen Biggs, signs contracts under $25K `[Notes]` (illustrative). The cemetery requested a demo through the website form on Thursday 2026-10-15, four days before this run. Who filled in the form is `[Unknown]`. Status: INBOUND.
+**Context:** One cemetery site with 2,900 plots. The plot list is kept in a spreadsheet. The general manager, Arlen Biggs, signs contracts under $25K `[CRM]` (illustrative). The cemetery requested a demo through the website form on Thursday 2026-10-15, four days before this run. Who filled in the form is `[Unknown]`. Status: INBOUND.
 
 **Input:** "Qualify Sable Fork Cemetery from their inbound request."
 
@@ -622,18 +625,18 @@ report_path: none (inline)
 | # | Zone | Rating | Evidence |
 |---|------|--------|----------|
 | 1 | Records and Inventory Pain (must-have) | MEDIUM | Plot list in a spreadsheet. Lookup time is not yet measured `[Unknown]` (illustrative) |
-| 2 | Pre-Need Sales Motion | LOW | The inbound form says the cemetery does not sell pre-need `[Notes]` (illustrative). The form's author is `[Unknown]`, so this LOW is provisional |
+| 2 | Pre-Need Sales Motion | LOW | Pre-need: none. The general manager sells plots directly, with no counselor and no intake form `[CRM]` (illustrative) |
 | 3 | Ownership and Decision Speed (must-have) | HIGH | The GM signs under $25K `[Notes]` (illustrative) |
 | 4 | Technology Readiness | MEDIUM | Spreadsheets only, per the plot list `[CRM]` (illustrative) |
-| 5 | Growth or Succession | LOW | The licensing record shows the same owner and GM for three years `[Public: state licensing database]` (illustrative) |
+| 5 | Growth or Succession | LOW | Plot sales flat for three years, and no succession plan on the record `[CRM]` (illustrative). The profile's LOW cell, not the MEDIUM cell of a stable account |
 
 **Verdict:** MANUAL REVIEW. One zone is HIGH (3), so GREENLIGHT is not met. No must-have zone is LOW, so DISQUALIFY is not met. The 8-criteria scorecard reads 5 of 8 criteria STRONG or PARTIAL with 2 UNKNOWN. That is recorded in `fit_narrative` and does not set the verdict.
 
-**Risk Flags:** The LOW pre-need answer comes from a form whose author is `[Unknown]`. Confirm it before it moves any decision.
+**Risk Flags:** The inbound form's author is `[Unknown]`. The LOW pre-need answer rests on the CRM record, so the author does not change it, but the BDR confirms the form's source before it moves any decision.
 
 **Opportunity Signals:** The inbound request itself, `[CRM]`, received 2026-10-15.
 
-**Next action:** The BDR confirms who filled in the form, and the pre-need answer, by 2026-10-26 (illustrative), a Monday, five business days after the run date of 2026-10-19. Re-run the verdict if any zone changes.
+**Next action:** The BDR confirms who filled in the form by 2026-10-26 (illustrative), a Monday, five business days after the run date of 2026-10-19. Re-run the verdict if any zone changes.
 
 ```text
 Hand-off (read by 02):
@@ -642,8 +645,8 @@ run_date: 2026-10-19
 verdict: MANUAL REVIEW
 zone_scores: 1 MEDIUM, 2 LOW, 3 HIGH, 4 MEDIUM, 5 LOW
 icp_match: ICP1 Independent Cemetery
-fit_narrative: One cemetery site with 2,900 plots on a spreadsheet (illustrative), and a general manager who signs under $25K (illustrative). One HIGH zone and no must-have zone at LOW, so MANUAL REVIEW. The form's author is [Unknown], which limits how far the LOW pre-need answer can be trusted.
-next_action: The BDR confirms who filled in the form, and the pre-need answer, by 2026-10-26 (illustrative)
+fit_narrative: One cemetery site with 2,900 plots on a spreadsheet (illustrative), and a general manager who signs under $25K (illustrative). One HIGH zone and no must-have zone at LOW, so MANUAL REVIEW. Pre-need is none and plot sales are flat for three years, both on the CRM record (illustrative). The inbound form's author is [Unknown].
+next_action: The BDR confirms who filled in the form by 2026-10-26 (illustrative)
 report_path: none (inline)
 ```
 
@@ -750,6 +753,11 @@ An account pending AE assignment is not ACTIVE. Score it, and say that it is pen
 
 ## Changelog
 
+
+### 2.1.6 (2026-10-26)
+- The ownership-check next action defers to the earlier date that the Trigger Event Outbound schedule sets for that step, and names its source, under the shared next-action rule.
+- Example 1 names the current system as a record fact, so its Zone 4 MEDIUM cell rests on a recorded system.
+- Example 3 cites the CRM record for the pre-need and site-budget facts, and the Zone 5 condition names the record facts that hold it.
 
 ### 2.1.5 (2026-10-26)
 - The Zone 3 row of Example 1 quotes the profile's Zone 3 cell as written, and the board timing is named as the part of the HIGH cell that is not met.

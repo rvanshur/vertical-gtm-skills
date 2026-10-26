@@ -22,7 +22,7 @@ Company
 - Double sales: One double sale in the last 24 months [CRM] (illustrative)
 - Revenue: Not stated in public records. The CRM notes a revenue range of $2 to 4 million a year [CRM] (illustrative), which is a range and not a confirmed figure
 - Location spread: [Unknown]
-- Current system: [Unknown]
+- Current system: a legacy on-premise ledger from Oldgate [CRM] (illustrative)
 - Family board chair: [Unknown]
 - Ownership: Family-owned, with no private equity, ESOP or public owner [Public: company website, about page, 2026] (illustrative)
 
@@ -32,7 +32,7 @@ People And Decision
 - No intake form for pre-need on the website [Public: company website] (illustrative)
 - Social ads for pre-need: not recorded [Unknown]
 - The website shows no plot lookup [Public: company website] (illustrative)
-- The records system is not named [Unknown]
+- Plot records stay on paper maps, not in the Oldgate ledger [CRM] (illustrative)
 - The owner has a dated retirement plan: retirement on 2029-03-31, stated in the owner bio [Public: company website, owner bio, 2026] (illustrative)
 - The general manager recommends and the board approves [Public: company website, board calendar] (illustrative)
 - The board meets within 60 days [Public: company website, board calendar] (illustrative)
