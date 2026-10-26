@@ -3,10 +3,10 @@
 Every name, date and number in this file is invented for the PlotIQ example. Nothing here is a real company.
 
 ## Ask Your Assistant
-"Run Competitive Displacement on Greyfield Memorial Park using skills/12-competitive-displacement/examples/try-it.md"
+"Run Competitive Displacement on Greyfield Memorial Park using skills/12-competitive-displacement/examples/try-it.md" Treat today as 2026-10-19.
 
 ## The Records
-- Run date: 2026-10-19. The user is a BDR (illustrative).
+- Run date: 2026-10-19. User role: BDR, from the CRM user record [CRM] (illustrative).
 - Greyfield Memorial Park is a one-site cemetery with 9,000 plots (profile). It runs a digital map from Stonemark, a direct software incumbent (profile). Its three-person pre-need team takes requests through an intake form on the site (profile).
 - CRM check: TARGET, not yet contacted. No open deal and no AE owner.
 - The account's CRM note names its map vendor [CRM] (illustrative).
@@ -25,4 +25,4 @@ Every name, date and number in this file is invented for the PlotIQ example. Not
 - Incumbent: direct software, Stonemark. Difficulty: Medium, because the renewal test is met (January 2027 is inside 180 days). The rating is directional.
 - Personas: 2 of 5 profile rows. Pre-Need Sales Manager is primary, and Cemetery General Manager is secondary. Both contacts are [Unknown].
 - Sequences: 2 personas, 4 emails each. Pre-Need Sales Manager Email 1 is drafted and Email 3 is on HOLD until a proof point is Verified.
-- Next action: Nadia Brandt finds the Pre-Need Sales Manager's name on the site, reads Email 1, and sends it by 2026-10-23.
+- Next action: Nadia Brandt finds the Pre-Need Sales Manager's name on the site, reviews Email 1, and sends it by 2026-10-23.

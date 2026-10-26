@@ -1,6 +1,6 @@
 ---
 name: gtm-meddpicc-analysis
-version: 2.1.1
+version: 2.1.2
 description: "Scores an active deal across all eight MEDDPICC elements from the CRM record, computes a weighted health score, and recommends ADVANCE, HOLD, DOWNGRADE or DISQUALIFY. The deal's AE and sales manager read the output."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: ["gtm-deal-pulse", "gtm-call-coaching", "gtm-stakeholder-mapping"]
 mutating: read-write
 change_log:
+  - version: 2.1.2
+    date: 2026-10-25
+    summary: "Try-it evidence completed so a strict first run reproduces Example 1. Adds the UNKNOWN rule: an element with no evidence is INSUFFICIENT, is left out of the total and count, and the result reads scored n of 8. Below 6 of 8 there is no overall score. The weighted formula is re-weighted over the scored rows. Resolves the contradiction between the no-evidence scoring and the silence rule, and settles what a score of 5 on Identified Pain requires."
   - version: 2.1.1
     date: 2026-10-25
     summary: "Adds examples/try-it.md so a first run reproduces Example 1."
@@ -83,8 +86,8 @@ Core commitments: **eight-element scorecard with weighted scores**, **overall he
 
 | Output | Where It Lives | Notes |
 |--------|----------------|-------|
-| `meddpicc_scores` | Inline, the scorecard section | Eight rows, one per element, each with its score, its tagged evidence and its primary gap. Followed by the weighted table with its Total row |
-| `health_score` | Inline, under the weighted table | A whole number from 0 to 100, equal to the Total divided by 5 and multiplied by 100, rounded |
+| `meddpicc_scores` | Inline, the scorecard section | Eight rows, one per element, each with its score, its tagged evidence and its primary gap, or INSUFFICIENT with the evidence that would score it. Followed by the weighted table with its Total row |
+| `health_score` | Inline, under the weighted table | A whole number from 0 to 100: the weighted total of the scored elements divided by 5 times the sum of their weights, multiplied by 100, rounded. Shown with "scored n of 8". Withheld when fewer than 6 of 8 elements are scored |
 | `stage_minimum_met` | Inline, the stage line under the health score | Yes or No against the minimum for the deal's stage, with each failed critical element named and its required score |
 | `stage_recommendation` | Inline, the stage section before the actions | One word: ADVANCE, HOLD, DOWNGRADE or DISQUALIFY, with the rationale and the dated action |
 | `risk_patterns` | Inline, the gap analysis | Each pattern flagged from the risk table, with its evidence tag, or the words "none flagged" |
@@ -280,6 +283,8 @@ Score each element against its rubric using the evidence in the record. Tag ever
 | 2 | We think there's pain based on profile, but prospect hasn't confirmed. |
 | 1 | No pain identified. Deal is feature-led or relationship-led. |
 
+A score of 5 needs pains from two or more stakeholders on the record, each stated in that stakeholder's own words, so one stakeholder's pains score at most 4.
+
 #### C. Champion (Weight: 15%)
 The champion status comes first, from the shared champion tests in the Shared Contract: Strong, Developing or None, read from the record as it stands on the run date. The rubric row then follows the status and the evidence the record shows today.
 
@@ -302,7 +307,9 @@ The champion status comes first, from the shared champion tests in the Shared Co
 
 ### Health Score Calculation & Interpretation
 
-**Formula:** For each element, multiply its score (1-5) by its weight written as a decimal (15% is 0.15). Sum all weighted scores. Divide the sum by 5 and multiply by 100. A deal scored 5 on every element gives a sum of 5.00, and 5.00 ÷ 5 × 100 = 100.
+**Formula:** For each scored element, multiply its score (1-5) by its weight written as a decimal (15% is 0.15). Sum those weighted scores. Divide the sum by 5 times the sum of the weights of the scored elements, and multiply by 100, rounded to a whole number. When all eight elements are scored, the weights sum to 1 and this is the sum divided by 5, times 100. A deal scored 5 on every element gives a sum of 5.00, and 5.00 ÷ 5 × 100 = 100.
+
+**The INSUFFICIENT rule.** An element with no evidence in the record is INSUFFICIENT. It carries no score, it is left out of the total and of the count, and the table shows it as INSUFFICIENT beside the evidence that would score it. The report states the count as "scored n of 8". When fewer than 6 of the 8 elements are scored, there is no health score, no stage minimum check and no stage recommendation, and the report lists the evidence that would score the missing elements.
 
 | Health Score | Health | Meaning |
 |-------|--------|---------|
@@ -324,9 +331,9 @@ Stage names come from the client profile's Qualification Stage Gates. Stage 1 Ta
 
 ### Stage Recommendation Rules
 
-Apply the stage minimum check, the gap ranking and the risk patterns first. Then pick one word.
+Apply the stage minimum check, the gap ranking and the risk patterns first. Then pick one word. Below 6 of 8 elements scored, no word is given (the INSUFFICIENT rule in Methodology).
 
-1. **ADVANCE** when the health score meets the next stage's minimum and every critical element for the next stage is at its floor. Reason: the record supports the next stage's exit criteria, so the stage can move.
+1. **ADVANCE** when the health score meets the next stage's minimum and every critical element for the next stage is scored and at its floor. An INSUFFICIENT critical element is not at its floor. Reason: the record supports the next stage's exit criteria, so the stage can move.
 2. **HOLD** when the deal meets its current stage minimum but not the next, or when it misses its current minimum and every failed element has a dated action that can close the gap. The deal stays where it is, and the dated actions go on the record. Reason: a missed minimum with a date in hand is a plan, not a loss.
 3. **DOWNGRADE** when a HOLD's dated action passes without closing the gap. The deal moves back one stage. A deal whose Identified Pain scores 3 or higher never goes back to Stage 2 Discovery, because the pain is already confirmed. Reason: the stage must say what the buyer has actually done, and confirmed pain does not undo.
 4. **DISQUALIFY** when the health score is in the RED band and Identified Pain scores 1, meaning no pain was identified. Reason: a deal with no pain has no reason to buy, and no stage move fixes that.
@@ -381,7 +388,7 @@ Read the Deal Pulse, Call Coaching and Stakeholder Mapping fields by name when t
 
 ### Step 2: Score All 8 MEDDPICC Elements
 
-Score each element against its rubric in {Methodology: MEDDPICC Scoring Rubrics}. Be honest. Add the client context for each element.
+Score each element against its rubric in {Methodology: MEDDPICC Scoring Rubrics}. Be honest. An element with no evidence is INSUFFICIENT, not scored (the INSUFFICIENT rule in Methodology). Add the client context for each element.
 
 **Client context by element:**
 - **Metrics:** look for the numbers in `{Client Profile: Value Propositions}`, such as time saved, cost reduced, compliance rates or volume. Use the team's own metric wording from the MEDDPICC section.
@@ -399,13 +406,13 @@ Score each element against its rubric in {Methodology: MEDDPICC Scoring Rubrics}
 
 ### Step 3: Compute Weighted Deal Health and the Stage Minimum Check
 
-Multiply each score by its weight, sum the results, and divide by 5 then multiply by 100. Round to a whole number. Show the table with every row (Example 1 is the form to follow). Then compare the health score and each critical element to the minimum for the deal's stage.
+Multiply each scored element's score by its weight, sum the results, divide by 5 times the sum of the scored weights, multiply by 100, and round to a whole number (the INSUFFICIENT rule in Methodology). Show the table with every row (Example 1 is the form to follow). An INSUFFICIENT row shows no weighted value and is left out of the Total. State "scored n of 8". If fewer than 6 of 8 are scored, stop here: give no health score and no stage minimum check, and list the evidence that would score the missing elements. Otherwise compare the health score and each critical element to the minimum for the deal's stage.
 
 **Produces:** The weighted table with its Total row, `health_score`, and `stage_minimum_met` (Yes or No, with each failed critical element named and its required score).
 
 ### Step 4: Identify Critical Gaps and Risks
 
-Rank the gaps by severity:
+Rank the gaps by severity. An INSUFFICIENT element is listed first as an evidence gap, with the evidence that would score it:
 1. Any element scoring 1 past Stage 2 Discovery: **critical blocker**.
 2. Economic Buyer or Identified Pain at 2 or lower at any stage: **deal killer if not addressed**.
 3. Champion at 2 or lower past Stage 2 Discovery: **no internal advocate, running on hope**.
@@ -430,7 +437,7 @@ Apply the Stage Recommendation Rules in Methodology to the stage minimum check (
 
 ### Step 7: Deliver the Analysis Inline
 
-Return the analysis in the chat, in this order: the deal summary banner (account, amount, stage, days in stage, AE, close date, health score and its band word), the MEDDPICC scorecard with the weighted table, the stage check, the gap analysis and top three risks, the five actions, the stage recommendation, and the last line `next_action`.
+Return the analysis in the chat, in this order: the deal summary banner (account, amount, stage, days in stage, AE, close date, health score with its "scored n of 8" count and its band word), the MEDDPICC scorecard with the weighted table, the stage check, the gap analysis and top three risks, the five actions, the stage recommendation, and the last line `next_action`.
 
 Write a file only when the user asks for one, named `<account>_gtm-meddpicc-analysis_<date>.md`.
 
@@ -440,7 +447,7 @@ Write a file only when the user asks for one, named `<account>_gtm-meddpicc-anal
 
 ## Epistemic Rules
 
-- **Only score what is evidenced in the record.** No evidence means a low score. Do not inflate. An element with no evidence scores at the lowest row of its rubric and carries `[Unknown]`, never a guess.
+- **Only score what is evidenced in the record.** No evidence means INSUFFICIENT, not a low score. Do not inflate, and do not score an element at the bottom of its rubric to fill a gap. An element with no evidence carries `[Unknown]` and is left out of the total, as the INSUFFICIENT rule in Methodology says.
 - **Tag every fact** with one of the six shared evidence tags. A fact with no tag is removed from the analysis.
 - **Distinguish confirmed from claimed.** A champion the rep claims is selling internally differs from one whose internal activity the record shows. Score the record.
 - **Print n beside every rate.** "4 of 8 elements at 4 or higher" is readable. A rate shown without its count is not.
@@ -453,7 +460,7 @@ Write a file only when the user asks for one, named `<account>_gtm-meddpicc-anal
 ## Hard Rules
 
 1. **Never score a rep's self-assessment.** The rep's confidence is the thing this skill exists to check. Reason: a score built on confidence cannot tell a deal that is progressing from one that is merely liked.
-2. **Score all eight elements.** Reason: a skipped element hides the weakest one, and the weakest element is usually the one that loses the deal.
+2. **Show all eight elements.** Score each element the record evidences, and mark each one it does not as INSUFFICIENT, with the evidence that would score it. Reason: a silently skipped element hides the weakest one, and the weakest element is usually the one that loses the deal.
 3. **Never score on potential.** "They are a great company" is not a MEDDPICC score. Reason: potential does not show a buyer's approval path.
 4. **Never average without weights.** Reason: the weights set the priority. Economic Buyer at 20% outweighs Competition at 5% for a reason.
 5. **Never move a stage back to Stage 2 Discovery when Identified Pain scores 3 or higher.** Reason: the pain is already confirmed, and a return to Discovery tells the team the deal was never real.
@@ -465,10 +472,10 @@ Write a file only when the user asks for one, named `<account>_gtm-meddpicc-anal
 ## Quality Bar
 
 **Done when all are true:**
-- [ ] All 8 elements scored 1-5, each with tagged evidence or an `[Unknown]` tag
+- [ ] All 8 elements shown: each scored 1-5 with tagged evidence, or INSUFFICIENT with the evidence that would score it
 - [ ] Every fact in the analysis carries one of the six shared evidence tags
-- [ ] The weighted table shows every row, and its Total equals the sum of its Weighted cells
-- [ ] `health_score` equals the Total divided by 5 and multiplied by 100, rounded, and its band word matches the health table
+- [ ] The weighted table shows every row, its Total equals the sum of the scored rows' Weighted cells, and "scored n of 8" is stated
+- [ ] `health_score` equals the Total divided by 5 times the sum of the scored weights, multiplied by 100, rounded, with "scored n of 8" beside it, and its band word matches the health table. No score is given below 6 of 8
 - [ ] The stage minimum check names each failed critical element and its required score
 - [ ] The stage recommendation is one of ADVANCE, HOLD, DOWNGRADE or DISQUALIFY, with a reason and a dated action where the rules call for one
 - [ ] The gap analysis ranks the deal-killing elements first
@@ -487,14 +494,14 @@ Write a file only when the user asks for one, named `<account>_gtm-meddpicc-anal
 
 **Input:** "Run MEDDPICC deal analysis for Brackhaven Memorial Gardens."
 
-**Scoring summary:**
+**Scoring summary (scored 8 of 8):**
 - **Metrics: 4 of 5.** Ruth gave the plot count, 11,000 (profile), and the hours her team spends on the trust fund report (`[Call]`, illustrative). The ROI framework was shared, not yet agreed `[Call]`.
 - **Economic Buyer: 4 of 5.** The family board chair is identified by title. Direct access was established on one call `[CRM]`. Budget was discussed, not confirmed `[Call]`.
 - **Decision Criteria: 4 of 5.** Must-haves are known from discovery and the deal maps to them strongly `[Call]`. The pre-need module is a nice-to-have `[Call]`.
 - **Decision Process: 4 of 5.** The committee is mapped: board, GM and Operations Director `[CRM]`. The board meets 2026-11-12 `[CRM]`. The approval sequence is partly confirmed `[Notes]`.
 - **Paper Process: 3 of 5.** Aware that legal and vendor review exists `[Notes]`. The steps and timing are not scoped `[Unknown]`.
-- **Identified Pain: 5 of 5.** One double sale in 24 months `[CRM]` (illustrative), trust fund reporting done by hand `[Call]`, and Ruth put a cost on each in her own words `[Call]` (illustrative).
-- **Champion: 5 of 5.** Ruth Ellery is Strong: four of seven shared champion tests met, each tagged `[Call]`. She is selling internally, shared the board's questions with us, and coached us on Walt Okonkwo's objection to tablets `[Call]`.
+- **Identified Pain: 5 of 5.** One double sale in 24 months `[CRM]` (illustrative), trust fund reporting done by hand `[Call]`, and Ruth put a cost on each in her own words `[Call]` (illustrative). A second stakeholder has her own quantified pain: Walt Okonkwo, Operations Director, says he loses half a day each time a family asks for a plot and the binder is in the wrong room, about two lookups a week (`[Call]`, 2026-09-17, illustrative). Two stakeholders meet the rule for 5.
+- **Champion: 5 of 5.** Ruth Ellery is Strong: four of seven shared champion tests met, each tagged `[Call]`. Offers introductions (she offers to introduce the board chair, 2026-09-26). Commits to next steps with dates (the 2026-11-12 board date, 2026-09-26). Explains the internal politics (she shares the board's questions, 2026-09-19). Defends the solution when we are not in the room (she is selling internally, 2026-10-01). She also coached us on Walt Okonkwo's objection to tablets `[Call]` (illustrative).
 - **Competition: 4 of 5.** Oldgate Ledger Pro is the incumbent, direct software, renewal March 2027 `[CRM]`. Stonemark was evaluated with no preference stated `[Call]`. A strategy exists and is not yet tested with the buyer `[Notes]`.
 
 **Weighted score:**
@@ -510,7 +517,7 @@ Write a file only when the user asks for one, named `<account>_gtm-meddpicc-anal
 | Competition | 5% (0.05) | 4 | 0.20 |
 | **Total** | **100%** | | **4.20** |
 
-**Health:** 4.20 ÷ 5 × 100 = **84, GREEN**.
+**Health:** 4.20 ÷ 5 × 100 = **84, GREEN** (scored 8 of 8).
 
 **Stage check:** The PlotIQ profile's Qualification Stage Gates set the Stage 5 Negotiate minimum at 70 or higher, which overrides the table's default of 65, and it is met at 84. Critical elements: all except Competition are at 3 or higher, and Economic Buyer is at 4 or higher, so met. The Stage 6 Closed-Won and Handoff minimum is 75 or higher and is met on health, but it is not met on the critical elements, because Paper Process is 3 and needs 4 or higher.
 
@@ -530,7 +537,7 @@ Hand-off (read by 10, 11 and 14):
 account: Brackhaven Memorial Gardens (ACTIVE, Stage 5 Negotiate)
 run_date: 2026-09-28
 meddpicc_scores: Metrics 4, Economic Buyer 4, Decision Criteria 4, Decision Process 4, Paper Process 3, Identified Pain 5, Champion 5, Competition 4
-health_score: 84
+health_score: 84 (scored 8 of 8)
 stage_minimum_met: Yes for Stage 5 Negotiate (70 or higher, from the profile's stage gates). No for Stage 6 Closed-Won and Handoff (75 or higher), because Paper Process is 3 and needs 4
 stage_recommendation: HOLD
 risk_patterns: none flagged on the evidence. Economic Buyer identified by title only, name [Unknown]
@@ -544,7 +551,7 @@ report_path: none (inline)
 
 **Input:** "MEDDPICC score Brackhaven again. It's still in Negotiate."
 
-**Scoring summary:**
+**Scoring summary (scored 8 of 8):**
 - **Metrics: 3 of 5.** General pain is quantified `[Call]`, but the ROI numbers have not been updated since the board date moved `[Notes]`.
 - **Economic Buyer: 3 of 5.** The board chair is identified by title, name `[Unknown]`. There has been no direct access since the one call `[CRM]`. We communicate through Ruth only `[Notes]`.
 - **Decision Criteria: 3 of 5.** Some criteria are known `[Call]`. Stonemark is still being evaluated and the criteria it is judged on are not on the record `[Notes]` (illustrative).
@@ -567,7 +574,7 @@ report_path: none (inline)
 | Competition | 5% (0.05) | 3 | 0.15 |
 | **Total** | **100%** | | **2.90** |
 
-**Health:** 2.90 ÷ 5 × 100 = **58, ORANGE**.
+**Health:** 2.90 ÷ 5 × 100 = **58, ORANGE** (scored 8 of 8).
 
 **Stage check:** The PlotIQ profile's Qualification Stage Gates set the Stage 5 Negotiate minimum at 70 or higher, which overrides the table's default of 65, and it is not met at 58. Critical elements failed: Economic Buyer (3, needs 4), Decision Process (2, needs 3) and Champion (2, needs 3).
 
@@ -592,7 +599,7 @@ Hand-off (read by 10, 11 and 14):
 account: Brackhaven Memorial Gardens (ACTIVE, Stage 5 Negotiate)
 run_date: 2026-10-19
 meddpicc_scores: Metrics 3, Economic Buyer 3, Decision Criteria 3, Decision Process 2, Paper Process 3, Identified Pain 4, Champion 2, Competition 3
-health_score: 58
+health_score: 58 (scored 8 of 8)
 stage_minimum_met: No for Stage 5 Negotiate (70 or higher, from the profile's stage gates). Failed critical elements: Economic Buyer (3, needs 4), Decision Process (2, needs 3), Champion (2, needs 3)
 stage_recommendation: HOLD
 risk_patterns: Close date fantasy (two slips, board date unconfirmed), happy ears ("I'll take it to the board" with no date), single-threaded
@@ -617,7 +624,7 @@ Re-run this analysis after every stage date or close date changes, and compare t
 ## Troubleshooting
 
 ### "The weighted score seems wrong"
-**Cause:** Math error in weighting. **Solution:** Verify weights sum to 100% and the formula is `(sum of score × weight) / 5 × 100`. Each element contributes its score (1-5) × its weight as a decimal (15% is 0.15).
+**Cause:** Math error in weighting. **Solution:** Verify the formula is `(sum of score × weight over scored elements) / (5 × sum of scored weights) × 100`, and that an INSUFFICIENT element carries no weight. Each scored element contributes its score (1-5) × its weight as a decimal (15% is 0.15). With all eight scored, the weights sum to 100%.
 
 ### "Rep disagrees with low scores"
 **Cause:** Gap between rep knowledge and CRM evidence. **Solution:** Score based on evidence. Suggest the rep log their intelligence to the CRM so the next run reflects it. Frame it as: "The CRM tells one story. Let's make sure it tells the right one."
@@ -679,6 +686,9 @@ The Business Case & ROI Kit (a paid Guild Pro kit) reads this skill's hand-off b
 
 ## Changelog
 
+
+### 2.1.2 (2026-10-25)
+- Try-it evidence completed so a strict first run reproduces Example 1. An element with no evidence is INSUFFICIENT: it is left out of the total and the count, the result reads "scored n of 8", and below 6 of 8 there is no overall score. The weighted formula is re-weighted over the scored rows, and the formula is updated in the Output Contract, the Methodology, Step 3, the Quality Bar and the Troubleshooting. A score of 5 on Identified Pain needs two or more stakeholders. The examples score all eight elements, so their numbers do not change.
 
 ### 2.1.1 (2026-10-25)
 - Adds examples/try-it.md so a first run reproduces Example 1.

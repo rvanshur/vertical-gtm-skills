@@ -2,12 +2,14 @@
 
 Every name, date and number in this file is invented for the PlotIQ example. Nothing here is a real company.
 
+These records are as of 2026-05-11, before Brackhaven reached Stage 5 Negotiate; the profile's Example Cast shows where the account stands later.
+
 ## Ask Your Assistant
 "Run Meeting Prep on Brackhaven Memorial Gardens using skills/06-meeting-prep/examples/try-it.md"
 
 ## The Records
 
-Run date: 2026-05-11 (illustrative, the day before the Stage 2 call)
+Run date: 2026-05-11 (illustrative, the day before the Stage 2 call). Call date: 2026-05-12 (illustrative)
 Meeting type: Discovery. Thirty minutes (illustrative)
 Attendees on the call: Ruth Ellery and Walt Okonkwo
 
@@ -22,7 +24,7 @@ The Account
 - Incumbent: Oldgate Ledger Pro, logged [CRM]. Renewal in March 2027 [CRM]
 - Second system evaluated: Stonemark mapping, with no preference stated [Call]. Call date: [Unknown]
 - Pre-need manager: Priscilla Dunmore, the end user. She is not on this call [CRM]
-- Economic buyer: [Unknown]. The approval process: [Unknown]
+- Economic buyer, the signer above the GM: [Unknown]. Buyer contact: Ruth Ellery [CRM]. The approval process: [Unknown]
 - Plot loss: not quantified
 - Pre-need activity: [Unknown]
 
@@ -42,4 +44,4 @@ Upstream From Account Snapshot, Run Earlier
 - Question bank: Situation 3, Problem 3, Implication 3, Need-Payoff 2, the top three per phase.
 - Qualification pre-fill: Metrics red. Economic buyer yellow. Decision criteria red. Decision process red. Identified pain yellow. Champion red.
 - Proof for the attendees: Holloway Hills, Status Illustrative, not cited to the prospect.
-- Next action: Owen Pruitt asks Ruth Ellery for the approval body's chair and the meeting date on this call. Date: [Unknown] until agreed.
+- Next action: Owen Pruitt asks Ruth Ellery for the approval body's chair and the meeting date on this call. Date: 2026-05-12 (illustrative, the call itself). The meeting date is [Unknown] until agreed.

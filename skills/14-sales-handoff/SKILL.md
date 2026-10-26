@@ -1,6 +1,6 @@
 ---
 name: gtm-sales-handoff
-version: 2.1.1
+version: 2.1.2
 description: "Post-sale implementation readiness check: scores six dimensions, sets the three dates (kickoff, go-live and Full Adoption Date), names risks with mitigations and quick wins, and writes the handoff the implementation lead plans from"
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: [gtm-meddpicc-analysis]
 mutating: read-write
 change_log:
+  - version: 2.1.2
+    date: 2026-10-25
+    summary: "Try-it evidence completed so a strict first run reproduces Example 1. The Unknown Rule is added: a dimension with no evidence is INSUFFICIENT, the composite re-weights over the scored dimensions, and fewer than five scored dimensions gives no composite. Stakeholder is added to the Risk Categories table, and the example shows the baseline, the stated plan and the agreed date."
   - version: 2.1.1
     date: 2026-10-25
     summary: "Adds examples/try-it.md so a first run reproduces Example 1."
@@ -77,8 +80,8 @@ Every run returns the readiness report in the chat, in the nine sections of Step
 | Output | Where It Lives | Notes |
 |---|---|---|
 | Readiness report | Inline, in the chat | The nine sections of Step 7, in order |
-| `readiness_score` | Inline, the composite line of the scorecard | A whole number from 0 to 100, from the formula in Methodology |
-| `dimension_scores` | Inline, the scorecard | Six scores from 1 to 5, in the order Stakeholder, Workflow, Technical, Data, Resource, Change Management |
+| `readiness_score` | Inline, the composite line of the scorecard | A whole number from 0 to 100, from the formula in Methodology, with its `scored n of 6`. Under the Unknown Rule, a composite with fewer than five scored dimensions is not written |
+| `dimension_scores` | Inline, the scorecard | Six entries, each a score from 1 to 5 or INSUFFICIENT, in the order Stakeholder, Workflow, Technical, Data, Resource, Change Management |
 | `three_dates` | Inline, the three-date plan | Kickoff, go-live and Full Adoption Date, each with its arithmetic shown |
 | `risks` | Inline, the risk section | The top three, each with severity, likelihood and a specific mitigation |
 | `quick_wins` | Inline, the quick win section | A week one item, a month one item and the 90-day criteria |
@@ -239,7 +242,9 @@ Your readiness framework. The dimensions and scoring rules below give a structur
 - **2** = Significant inertia, multiple skeptics during discovery
 - **1** = High resistance, current team sees product as threat, no change champion
 
-**Composite score:** Weighted sum ÷ 5 × 100 = a score from 0 to 100, rounded to a whole number.
+**Composite score:** Weighted sum ÷ 5 × 100 = a score from 0 to 100, rounded to a whole number. Under the Unknown Rule below, the weighted sum runs over the scored dimensions only, and the weights are re-scaled to them: composite = (sum of weight × score, over scored dimensions) ÷ (sum of weights, over scored dimensions) ÷ 5 × 100.
+
+**The Unknown Rule.** A dimension with no evidence is INSUFFICIENT. It carries no value, and it is left out of the composite and the count. The composite is written with its scored count, `scored n of 6`. With five dimensions scored, the composite is given. With fewer than five, there is no composite, and the report lists the evidence that would score each missing dimension. A dimension with some evidence is scored from that evidence, even if the evidence shows a gap. The examples score every dimension, so their composites read `scored 6 of 6`.
 
 | Score | Level | Recommendation |
 |-------|-------|----------------|
@@ -282,6 +287,7 @@ Integration advantages to note: the product takes any standard output, most cust
 | **Data** | Poor quality, missing fields, duplicates | Data quality audit in week one. Cleanup sprint before go-live. Accept manual workarounds at first |
 | **Expectation** | Unrealistic timeline promises, expecting immediate ROI | Align expectations at kickoff. Reference the typical timeline. Set 30, 60 and 90 day milestones |
 | **Vendor transition** | Existing provider contract still active, overlapping services | Map contract end dates. Plan a parallel-run period. Ensure no service gap |
+| **Stakeholder** | No executive sponsor named, no IT lead, or the champion has gone quiet | Name the sponsor and the IT lead before kickoff. Put the sponsor's written confirmation in the kickoff conditions |
 
 ### The Three Dates
 
@@ -416,9 +422,9 @@ Evaluate the customer's technical environment against `{Methodology: Technical A
 
 ### Step 5: Score the Six Readiness Dimensions
 
-Score each dimension from 1 to 5 with the rubric in `{Methodology: 6 Readiness Dimensions}`. Score the evidence, not the claim: a rep's statement that the customer is ready is a claim, and it moves a score only when a record supports it. Then compute the composite with the formula in Methodology and set the readiness level.
+Score each dimension from 1 to 5 with the rubric in `{Methodology: 6 Readiness Dimensions}`, or mark it INSUFFICIENT under the Unknown Rule when it has no evidence. Score the evidence, not the claim: a rep's statement that the customer is ready is a claim, and it moves a score only when a record supports it. Then compute the composite with the formula in Methodology, state its scored count, and set the readiness level.
 
-**Produces:** `dimension_scores` (six, each with its evidence), the weighted table, and `readiness_score` with its level.
+**Produces:** `dimension_scores` (six, each with its evidence or INSUFFICIENT), the weighted table, and `readiness_score` with its scored count and its level.
 
 ### Step 6: Build the Three Dates and the Risk Mitigations
 
@@ -454,7 +460,7 @@ Volume projection, one line.
 | Data | X/5 | | |
 | Resource | X/5 | | |
 | Change Management | X/5 | | |
-| **Composite** | **X/100** | | |
+| **Composite** | **X/100, scored n of 6** | | |
 
 **4. Stakeholder Map**
 
@@ -504,7 +510,7 @@ Volume projection, one line.
 ## Hard Rules
 
 1. **Never issue a handoff without the three dates.** The implementation lead cannot staff a project without kickoff, go-live and the Full Adoption Date.
-2. **Never score a dimension above the evidence.** Under-scoring protects the customer and the team. Over-scoring hands the lead a project that is not ready.
+2. **Never score a dimension above the evidence.** Under-scoring protects the customer and the team. Over-scoring hands the lead a project that is not ready. A dimension with no evidence is INSUFFICIENT, never scored high or low to fill the gap.
 3. **Never fill an Implementation Profile value from an estimate.** A typical duration written without a basis becomes the date the customer is promised.
 4. **Never send anything to the customer and never write to the CRM.** The rep and the implementation lead own those steps, after reading the draft.
 5. **Never end a report without `next_action`, with its owner and a date.** The Wrap-Up close reads that line by name, and a report without it leaves the next step with nobody.
@@ -521,8 +527,8 @@ Volume projection, one line.
 - [ ] At least the Executive Sponsor, the Implementation Champion and the IT Lead are identified, or marked as missing
 - [ ] Workflow baselines are captured with volume and processing time, or marked `[Unknown]`
 - [ ] The technical assessment names the source system and the integration path
-- [ ] All six dimensions are scored, each with its evidence
-- [ ] The composite is computed from the weighted table and its level is stated
+- [ ] Each of the six dimensions is scored with its evidence, or marked INSUFFICIENT with the evidence that would score it, and at least five are scored
+- [ ] The composite is computed from the weighted table over the scored dimensions, its scored count is stated, and its level is stated
 - [ ] Each of the three dates shows its arithmetic, and each adjustment is shown
 - [ ] Every risk has a specific mitigation, not a generic one
 - [ ] Quick wins reference the customer's actual situation
@@ -542,26 +548,52 @@ All three examples use the PlotIQ flagship, Brackhaven Memorial Gardens, and the
 
 **Input:** "Run the readiness check for Brackhaven Memorial Gardens before they sign."
 
-**Process:** Ruth Ellery is the champion (`[Call]`, four of seven shared champion tests met). The family board chair is a role with no name on file (`[Unknown]`) who has joined one call (`[CRM]`). No IT contact is on file (`[Unknown]`). The source is Oldgate Ledger Pro (`[CRM]`), and its ledger export is not yet scoped (`[Unknown]`). Plot records are on paper (`[Call]`). Walt Okonkwo, Operations Director, is skeptical of tablets (`[Call]`). Oldgate's contract renews in March 2027 (`[CRM]`).
+**Process:** Ruth Ellery is the champion (`[Call]`, four of seven shared champion tests met). The family board chair is a role with no name on file (`[Unknown]`) who has joined one call (`[CRM]`). No IT contact is on file (`[Unknown]`). The source is Oldgate Ledger Pro (`[CRM]`), and its ledger export is not yet scoped (`[Unknown]`). Plot records are on paper (`[Call]`). Walt Okonkwo, Operations Director, is skeptical of tablets (`[Call]`). Oldgate's contract renews in March 2027 (`[CRM]`). On the 2026-10-27 call, Ruth agreed that Owen would ask her to name the board chair and confirm the sponsor role in writing by 2026-11-09 (`[Call]`, illustrative).
 
 **Scoring:**
 
 | Dimension | Weight | Score (1 to 5) | Weighted | Evidence |
 |---|---|---|---|---|
 | Stakeholder | 20% | 3 | 0.60 | Ruth Ellery is champion `[Call]`. The board chair is unnamed `[Unknown]` and has joined one call `[CRM]`. No sponsor confirmed in writing |
-| Workflow | 20% | 4 | 0.80 | Lookup and trust report steps mapped `[Call]`. Lookup times not yet timed, so no baseline |
+| Workflow | 20% | 4 | 0.80 | Lookup and trust report steps mapped `[Call]`. Walt's estimate of about two plot lookups a week `[Call, 2026-09-17]` (illustrative), so a partial baseline exists. Lookup times not yet timed |
 | Technical | 20% | 2 | 0.40 | Oldgate named `[CRM]`. No IT contact on file `[Unknown]`. Ledger export unscoped `[Unknown]` |
-| Data | 15% | 3 | 0.45 | Plot records on paper `[Call]`. Deed scans scheduled for weeks 2 to 3 (illustrative) |
-| Resource | 15% | 3 | 0.45 | Eli Marsh assigned `[CRM]`. The March 2027 Oldgate renewal competes for attention `[CRM]` |
+| Data | 15% | 3 | 0.45 | The trust ledger holds both sites' trust numbers in one place `[Notes]` (illustrative). Plot records on paper `[Call]`, with uneven quality and some re-entry by hand during the transition `[Notes]` (illustrative). Deed scans scheduled for weeks 2 to 3 (illustrative) |
+| Resource | 15% | 3 | 0.45 | Eli Marsh assigned `[CRM]`, and shared with another implementation through the end of the year `[CRM]` (illustrative). The March 2027 Oldgate renewal competes for attention `[CRM]` |
 | Change Management | 10% | 3 | 0.30 | Ruth is open to the change `[Call]`. Walt is skeptical of tablets `[Call]` |
 | **Total** | **100%** | | **3.00** | |
 
-**Composite:** 3.00 ÷ 5 × 100 = **60 of 100 (Yellow, ready with conditions)**. The score sits at the bottom of the 60 to 79 band, and Technical is a critical dimension at 2.
+**Composite:** 3.00 ÷ 5 × 100 = **60 of 100, scored 6 of 6 (Yellow, ready with conditions)**. All six dimensions have evidence, so the Unknown Rule does not apply. The score sits at the bottom of the 60 to 79 band, and Technical is a critical dimension at 2.
+
+**Stakeholder Map:**
+
+| Name | Title | Implementation Role | Engagement | Contact |
+|---|---|---|---|---|
+| Ruth Ellery | General Manager | Implementation Champion (also the sales champion) | Active on calls `[Call]` | On file `[CRM]` |
+| Family board chair | Board chair, name `[Unknown]` | Executive Sponsor | Joined one call `[CRM]` | `[Unknown]` |
+| Walt Okonkwo | Operations Director | Power User | Skeptical of tablets `[Call]` | On file `[CRM]` |
+| Priscilla Dunmore | Pre-need manager | Power User, pre-need intake | `[Unknown]` | On file `[CRM]` |
+| `[Unknown]` | No IT contact on file | IT Lead | Not engaged `[Unknown]` | `[Unknown]` |
+| `[Unknown]` | `[Unknown]` | Data Owner | `[Unknown]` | `[Unknown]` |
+| Eli Marsh | Implementation Lead | Implementation owner | Assigned `[CRM]` | Profile |
+
+**Current-State Workflow:** Plot lookups and the trust report are mapped `[Call]`. The trust report is built by hand from the ledger `[Call]`. Walt estimates about two plot lookups a week `[Call, 2026-09-17]` (illustrative). Lookup times have not been timed by the team.
+
+**Technical Environment:**
+
+| Technical Dimension | Rating | Evidence |
+|---|---|---|
+| Source system identified | Yellow | Oldgate Ledger Pro `[CRM]`, in an export format the team does not know yet |
+| Data export capability | Yellow | The vendor confirms a trust ledger export `[Notes]` (illustrative). IT can run it only once an owner is named |
+| Integration readiness | `[Unknown]` | No record of this team doing an integration |
+| Data quality | Yellow | Paper plot records, uneven in quality `[Call]`, `[Notes]` (illustrative) |
+| IT availability | Red | No IT owner on file `[Unknown]` |
+| Security and compliance | `[Unknown]` | No record |
+| Multi-system complexity | Green | One source system `[CRM]` |
 
 **Three dates:**
-- **Kickoff:** Yellow gives a two to four week buffer from this check on 2026-11-02. Three weeks: 2026-11-02 plus 21 days = **2026-11-23** (Monday). The date is proposed, and it holds only if the conditions below are met.
-- **Go-Live:** 2026-11-23 plus 49 days = **2027-01-11** (Monday). The 49 days is the account's plan (illustrative). PlotIQ's typical days are `[RECORD]`, so this is not a benchmark.
-- **Full Adoption Date:** 2026-11-23 plus two months = 2027-01-23, a Saturday. Rolled to Monday, **2027-01-25**. No other adjustment applies: one source system, and the export format is not yet known to the implementation team.
+- **Kickoff:** Yellow gives a two to four week buffer from this check on 2026-11-02. Three weeks: 2026-11-02 plus 21 days = **2026-11-23** (Monday). The IT lead time is added when no IT owner is named, and that value is `[RECORD]`, so this date is provisional until the lead time is recorded. The date is proposed, and it holds only if the conditions below are met.
+- **Go-Live:** 2026-11-23 plus 49 days = **2027-01-11** (Monday). The 49 days is Brackhaven's own implementation plan from Eli Marsh `[Notes]` (illustrative). It is the team's stated plan for this account, not a typical value. PlotIQ's typical days stay `[RECORD]`, so this is not a benchmark.
+- **Full Adoption Date:** 2026-11-23 plus two months = 2027-01-23, a Saturday. Rolled to Monday, **2027-01-25**. No other adjustment applies: one source system, and the export format is not yet known to the implementation team. The date is provisional, because kickoff is provisional.
 
 **Risks (top 3):** Technical (HIGH, likelihood high on current evidence): no IT owner and an unscoped export. Mitigation: Oldgate's support runs a test export on a sample file before kickoff. Stakeholder (HIGH): the board chair is unnamed and the sponsor role is not in writing. Mitigation: Owen Pruitt asks Ruth Ellery for the chair's name and a written sponsor confirmation before the 2026-11-12 board. Adoption (MEDIUM): Walt Okonkwo's skepticism of tablets. Mitigation: the work-order pilot is shown to Walt before kickoff.
 
@@ -569,18 +601,35 @@ All three examples use the PlotIQ flagship, Brackhaven Memorial Gardens, and the
 1. Brackhaven names an IT owner.
 2. Oldgate's support runs a test export on a sample file, and the result is reviewed.
 3. The board chair is named and confirms the sponsor role in writing.
-4. Ruth brings a week of plot lookup times, so the baseline exists.
+4. Ruth brings a week of plot lookup times, so the baseline is complete.
 5. Walt joins the work-order demo.
 
 **Quick wins:** Week one, remove one manual step: replace the binder lookup for the top section with a search, and time it. Month one, run a risk audit of open items: check the open plots at both sites for double-sale risk (the double sale is `[CRM]` and illustrative). Ninety days: lookup times at or below Ruth's baseline, and the trust report built from the system with no hand steps.
 
-**Output:** Composite 60 (Yellow). The handoff is not issued until the check is re-run after signature.
+**Handoff Checklist:**
+
+Sales Team Completes:
+- [ ] Discovery notes and call recordings shared: `[Unknown]`, not confirmed in the records
+- [ ] All stakeholder contacts verified: not yet, the board chair is unnamed
+- [x] Timeline commitments documented: the account plan and the three dates `[Notes]`
+- [ ] Technical requirements noted: not yet, no IT owner
+- [ ] Success criteria agreed with the customer: not yet
+- [ ] Three-date plan communicated: not yet, the dates are provisional
+
+Implementation Team Confirms:
+- [x] Implementation owner assigned: Eli Marsh `[CRM]`
+- [ ] Implementation resources allocated: `[Unknown]`, Eli Marsh is shared
+- [ ] Kickoff meeting scheduled: not yet
+- [ ] Integration requirements reviewed: not yet
+- [ ] Risk mitigation plan acknowledged: not yet
+
+**Output:** Composite 60 (Yellow, scored 6 of 6). The block below is the check before signature. It is issued as the handoff only after the re-run after signature.
 
 ```text
 Hand-off (read by the implementation lead and Wrap-Up):
 account: Brackhaven Memorial Gardens (ACTIVE, Stage 5 Negotiate)
 run_date: 2026-11-02
-readiness_score: 60
+readiness_score: 60, scored 6 of 6
 dimension_scores: Stakeholder 3, Workflow 4, Technical 2, Data 3, Resource 3, Change Management 3
 three_dates: kickoff 2026-11-23 (proposed), go-live 2027-01-11, Full Adoption Date 2027-01-25
 risks: Technical (HIGH), Stakeholder (HIGH), Adoption (MEDIUM)
@@ -705,7 +754,7 @@ report_path: none (inline)
 
 | Symptom | Likely Cause | Response |
 |---|---|---|
-| Discovery was too shallow to score Workflow or Data | The sales notes do not capture the process or the volumes | Score Workflow and Data at 2 or lower, and flag the gap: "Sales discovery did not capture enough process detail for the handoff." Recommend a short follow-up call on the workflow and the volume baseline before kickoff |
+| Discovery was too shallow to score Workflow or Data | The sales notes do not capture the process or the volumes | If the notes hold no evidence for the dimension, mark it INSUFFICIENT under the Unknown Rule. If they show a gap, score the dimension at 2 or lower from that evidence, and flag it: "Sales discovery did not capture enough process detail for the handoff." Recommend a short follow-up call on the workflow and the volume baseline before kickoff |
 | The champion left the company after signing | The champion is gone, and the introductions went with them | Score Stakeholder at 1. The AE identifies a new internal champion before implementation starts, and checks whether the departing champion made introductions. Consider whether the deal is still viable without the champion |
 | The customer wants to start immediately but is not ready | Eagerness ahead of the readiness evidence | Use the score to have an evidence-based conversation: name the specific gap, say what it will cost mid-implementation, and offer the items that clear it first |
 | The AE made timeline promises that do not match the readiness | The promise was made from the sales cycle, not the evidence | Record the promise under the Expectation risk category. The implementation lead resets it at kickoff against the readiness level and the typical timeline |
@@ -761,6 +810,9 @@ The Business Case & ROI Kit (a paid Guild Pro kit) reads this skill's hand-off b
 ---
 
 ## Changelog
+
+### 2.1.2 (2026-10-25)
+- Try-it evidence completed so a strict first run reproduces Example 1. The Unknown Rule is added: a dimension with no evidence is INSUFFICIENT, the composite re-weights over the scored dimensions and reads with its scored count, and fewer than five scored dimensions gives no composite. Stakeholder is added as a Risk Categories row, which the example's top risk now uses. Example 1 shows the stakeholder map, the workflow baseline, the technical rows, the checklist, and the stated plan and agreed date behind its dates.
 
 ### 2.1.1 (2026-10-25)
 - Adds examples/try-it.md so a first run reproduces Example 1.

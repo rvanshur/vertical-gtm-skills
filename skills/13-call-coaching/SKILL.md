@@ -1,7 +1,7 @@
 ---
 name: gtm-call-coaching
 description: "Scores a discovery or demo call against methodology rubrics and returns a coaching report with evidence-graded coaching points, for the rep and the sales manager who reads it"
-version: 2.1.1
+version: 2.1.2
 category: Sales-Methodology
 author: Ryan Vanshur
 license: MIT
@@ -11,6 +11,9 @@ requires:
   skills: ["gtm-meeting-prep", "gtm-deal-pulse"]
 mutating: read-write
 change_log:
+  - version: 2.1.2
+    date: 2026-10-25
+    summary: "Try-it evidence completed so a strict first run reproduces Example 1, and the Unknown Rule added: a category with no evidence is INSUFFICIENT, the total reads scored n of N, and below five scored categories there is no overall score. The example's sections, Top 3 lists and single focus area now match the rubric."
   - version: 2.1.1
     date: 2026-10-25
     summary: "Adds examples/try-it.md so a first run reproduces Example 1."
@@ -78,7 +81,7 @@ Every run returns the coaching report in the chat, in the eight sections under R
 | Output | Where It Lives | Notes |
 |--------|----------------|-------|
 | Coaching report | Inline, in the chat | The eight report sections, in order |
-| `call_score` | Inline, the scorecard Total | Written as `N of M` (discovery: N of 35, demo: N of 40). The same figure as the Total row |
+| `call_score` | Inline, the scorecard Total | Written as `N of M, scored n of 7` (discovery) or `N of M, scored n of 8` (demo), where M is 35 or 40 and n counts the categories with evidence. The same figure as the Total row. Under the Unknown Rule (Step 2), a total with fewer than five scored categories is not written |
 | `category_scores` | Inline, the scorecard | One score from 1 to 5 per category, each with its evidence line |
 | `focus_area` | Inline, the Next Call Game Plan | One skill to practice on the next call, with its exercise. Never a list of five |
 | `coaching_points` | Inline, Top 3 Strengths and Top 3 Improvements | Each point carries a quote with its time, or one of the evidence grades Strong, Moderate or Weak |
@@ -386,11 +389,13 @@ Before pulling anything, read the account's folder under `accounts/` (its earlie
 
 **1c. Pull CRM context:** stage, amount, close date, owner, contacts and their roles, prior touchpoints, and any earlier coaching report. If a Deal Pulse exists, read its fields by name (`health_score`, `risk_level`, `pillar_scores`, `signal_scores`, `next_actions`) for the before and after comparison.
 
-**1d. Check the source.** A transcript with speaker labels supports every category. Notes support the categories their evidence allows. Where the source cannot show talk share or exact language, those are marked Unknown and the report says why. Unknown is never scored as zero.
+**1d. Check the source.** A transcript with speaker labels supports every category. Notes support the categories their evidence allows. Where the source cannot show talk share or exact language, those are marked Unknown and the report says why. Unknown is never scored as zero. A category that cannot be scored without them is INSUFFICIENT under the Unknown Rule in Step 2.
 
 **Produces:** the confirmed input list, the prep fields read or marked missing, and one line on the source quality.
 
 ### Step 2: Score Methodology Execution
+
+**The Unknown Rule.** A category with no evidence is INSUFFICIENT. It carries no value, and it is left out of the total and the count. The total is written `N of M, scored n of 7` (or `scored n of 8` for demo), with N the sum of the scored rows. With five or six categories scored, the total is shown with its scored count and no assessment band is given, because the bands were set for a full call. With fewer than five scored categories there is no overall score, and the report lists the evidence that would score each missing category. Each INSUFFICIENT row says what evidence is missing.
 
 **If `call_type = discovery`** (score 7 categories, out of 35):
 
@@ -563,7 +568,7 @@ Prospect talk time is read against the demo band in The Shared Contract, measure
 | 10 to 17 | Poor (feature touring or monologue) |
 | 8 to 9 | Critical (requires immediate intervention) |
 
-**Produces:** the scorecard table with every category, its score and its evidence line, the Total written as `N of M`, and the question review for a discovery call.
+**Produces:** the scorecard table with every category, its score or INSUFFICIENT and its evidence line, the Total written as `N of M, scored n of 7` (or 8), and the question review for a discovery call.
 
 ### Step 3: Assess MEDDIC Coverage
 
@@ -677,7 +682,7 @@ Mark each key moment with one of seven types. Capture the fields the type requir
 
 - **Every rate carries its n.** "3 of 7 shared tests met", "41 of 60 minutes", "5 of 6 unraised objection lines checked." A bare rate is not written.
 - **One call is one observation.** A habit becomes a pattern only with five cases. This skill grades one call, so a habit seen on this call is reported as an observation with its count, never as a trend.
-- **Silence is not a no.** A question that was not asked is unknown for that dimension, not a negative. A talk share the source cannot measure is Unknown, not zero, and it is left out of the denominator.
+- **Silence is not a no.** A question that was not asked is unknown for that dimension, not a negative. A talk share the source cannot measure is Unknown, not zero. The category it scores is INSUFFICIENT under the Unknown Rule, and it is left out of the total and the count.
 - **"No difference found" is a finding.** A call that scores the same as the rep's last call is reported as such.
 - **Every coaching point is graded.** A quote with its time is Strong. A paraphrase is Moderate. An inference from what did not happen is Weak, and the reasoning is written.
 - **Evidence over optimism.** Score what the record proves, not what the rep believes. Under-scoring protects a deal. Over-scoring kills it.
@@ -687,7 +692,7 @@ Mark each key moment with one of seven types. Capture the fields the type requir
 ## Hard Rules
 
 1. **No coaching point without a quote or a grade.** A point nobody can check is an opinion about the rep, and the rep is entitled to check it.
-2. **No category score without its evidence line.** The total must be recomputable from the rows, or the rep cannot see how it was reached.
+2. **No category score without its evidence line.** The total must be recomputable from the scored rows, or the rep cannot see how it was reached. An INSUFFICIENT row carries no value and is left out of the total and the count, so the total always reads with its scored count.
 3. **Do not score from notes what needs a transcript.** Talk share, listening technique and exact language need the words. Notes cannot show them, so they are marked Unknown.
 4. **Do not restate the shared lists.** The champion tests, the incumbent types and the talk-time bands live once, in The Shared Contract. A second copy drifts, and then two managers grade the same call against two rules.
 5. **Never cite an Illustrative proof point to the prospect.** The profile marks it as invented for an example. The rep would be claiming a result that does not exist.
@@ -704,7 +709,7 @@ Mark each key moment with one of seven types. Capture the fields the type requir
 **Done when all are true:**
 
 - [ ] Every category is scored from 1 to 5, with an evidence line
-- [ ] The Total is written `N of M` and equals the sum of its rows, and `call_score` is the same `N of M`
+- [ ] The Total is written `N of M, scored n of 7` (or 8) and equals the sum of its scored rows, `call_score` is the same figure, and fewer than five scored categories gives no overall score
 - [ ] Discovery: the question review covers all four SPIN phases, each with its quote and time
 - [ ] Every coaching point carries a quote with its time, or one of the three evidence grades
 - [ ] Every fact carries one of the six evidence tags
@@ -727,20 +732,22 @@ All three examples use the PlotIQ example company and its cast. Every call-level
 
 **Input:** "Coach the discovery call for Brackhaven Memorial Gardens. call_type = discovery"
 
-**Scoring:**
+**Call Summary:** Account Brackhaven Memorial Gardens (ACTIVE, Stage 2 Discovery `[CRM]`). Rep Owen Pruitt. Call date 2026-05-12 (illustrative). Call type discovery. Overall score 24 of 35, scored 7 of 7, assessment Good. Deal impact: the Stage 2 to 3 gate is not met, and the call does not move the deal to a demo (see Deal Health Impact below).
+
+**Methodology Scorecard:**
 
 | Category | Score (1 to 5) | Evidence |
 |---|---|---|
-| Pre-Call Preparation | 4 | Opened on the prep sheet's top pain, plot records on paper (`[Notes]`), and named both attendees with their roles. Did not check the double sale on file (`[CRM]`) before asking about it. |
+| Pre-Call Preparation | 4 | Opened on the prep sheet's top pain, plot records on paper (`[Notes]`), and asked about the lookup at 02:10 (`[Call]`). Referred to both attendees by name at 00:40 (`[Call]`). Did not check the double sale on file (`[CRM]`) before asking about it. |
 | SPIN Discovery Quality | 3 | Situation and Problem well executed. Implication started at 19:05 and was cut short. Need-Payoff not reached. Two phases well executed, one started. |
 | Priority Ladder Execution | 3 | Identified the plot lookup and described it, Level 2 (`[Call]`, 14:20). Not quantified: no count and no time. |
 | Active Listening | 4 | Rep talk time 36% (illustrative), inside the discovery band (`[Call]`). Restating and captured language used. One follow-up missing at 21:30, where Ruth described the lookups and Owen moved on. |
 | Value Articulation | 3 | Generic pitch at 25:00 ("it fixes the paper problem," `[Call]`). No proof point used. The double sale was asked about, but not tied to the value. |
-| Next Steps and Momentum | 3 | Owen asked for the approval body's chair and the meeting date at 28:30. Ruth said she would check with the board (`[Call]`). No date set. Vague. |
+| Next Steps and Momentum | 3 | Owen asked for the approval body's chair and the meeting date at 28:30. Ruth said she would check with the board (`[Call]`). No date set on the call. Vague. |
 | Alternatives | 4 | Asked what was tried before. Ruth said they began moving plots into the Oldgate system and stopped (`[Call]`, 17:05). Owen asked why it stopped. Cost not asked. |
-| **Total** | | **24 of 35** |
+| **Total** | | **24 of 35, scored 7 of 7** |
 
-Assessment: Good, in the 24 to 30 band of the restated scale (see Step 2 for the arithmetic).
+Assessment: Good, in the 24 to 30 band of the restated scale (see Step 2 for the arithmetic). All seven categories have evidence, so the Unknown Rule does not apply.
 
 **Question review (discovery):**
 
@@ -751,7 +758,7 @@ Assessment: Good, in the 24 to 30 band of the restated scale (see Step 2 for the
 | Implication | "So that's a problem for the trust report too?" (19:05) | Weak | "If an auditor asked for last year's trust fund records today, how long would the pull take?" |
 | Need-Payoff | None asked | Missing | "What would it mean for your team if a plot answer took 20 seconds instead of 20 minutes?" |
 
-**Pain depth (Step 4).** The phrase "We have files that date back to the 1970s" (09:15, `[Call]`) is on the profile's listen-for list for plot records on paper. The pain reached Level 2 (described) at 14:20. It did not reach Level 3, which is the minimum for a strong business case.
+**Pain Discovery Map:** The plot-records pain, with its depth level. The phrase "We have files that date back to the 1970s" (09:15, `[Call]`) is on the profile's listen-for list for plot records on paper. The pain reached Level 2 (described) at 14:20. It did not reach Level 3, which is the minimum for a strong business case.
 
 **Key Moments:**
 
@@ -762,38 +769,57 @@ Assessment: Good, in the 24 to 30 band of the restated scale (see Step 2 for the
 - **Missed opportunity (28:30):** Ruth: "The board takes these things up." Owen: "Great, thanks." `[Call]`. The question that should have followed: "Who sits on the board, and when does it next meet?"
 - **Red flag, MEDIUM (31:10):** Ruth: "We don't really have an IT person." `[Call]`. Recovery: ask who installs the system and who holds the ledger data, before the next session.
 
-**Coaching Points:**
+**Framework-Specific Coaching:**
+
+**Top 3 Strengths**
 
 1. **Strength, Strong.** At 02:10 Owen asked, "When a family asks for a plot, where do you look first, and how long does that take?" `[Call]`. The question went to the process before the product. Keep it as the opener.
-2. **Quantify the double sale, Strong.** At 14:20 Ruth said, "We sold section F twice last spring." `[Call]`. Owen moved on in the same breath, so the Priority Ladder stopped at Level 2. Practice: "How many plots did that cost you last year, and how long did each lookup take?"
-3. **Benchmark for the tablet objection, Moderate.** At 23:40 Walt raised tablets. Owen's answer is paraphrased in the notes, so the grade is Moderate.
+2. **Owen followed up, Strong.** At 09:15 Ruth said, "We have files that date back to the 1970s." Owen asked, "How far back do they go?" `[Call]`. The follow-up opened the depth of the records.
+3. **Owen asked why the move stopped, Strong.** At 17:05 Ruth said, "We started moving plots into Oldgate and stopped." Owen asked why it stopped `[Call]`. That question is what the Alternatives score rests on.
+
+**Top 3 Improvement Areas**
+
+1. **Quantify the double sale, Strong.** At 14:20 Ruth said, "We sold section F twice last spring." `[Call]`. Owen moved on in the same breath, so the Priority Ladder stopped at Level 2. Practice: "How many plots did that cost you last year, and how long did each lookup take?"
+2. **Benchmark for the tablet objection, Moderate.** At 23:40 Walt raised tablets. Owen's answer is paraphrased in the notes, so the grade is Moderate.
    - **Situation:** Walt's skepticism of tablets, 23:40 (`[Call]`).
    - **Proof point:** "most cemeteries your size carry 50 to 100 plots that are sold on paper and unsold on the map" (Benchmark, deathcare research, 2026-03-27 to 2026-04-01). The Holloway Hills proof point is Illustrative, so it is not cited.
    - **Coaching moment:** Say the benchmark, then ask, "How does that compare with what your crew sees?"
-4. **The board question, Strong.** At 28:30 Ruth said the board takes these things up, and Owen said "Great, thanks" (`[Call]`). The chair's name and the meeting date were both within reach. Ask, "Who sits on the board, and when does it next meet?" The chair is still `[Unknown]` after this call.
-5. **Next step without a date, Weak.** The last two minutes of the transcript contain no date for the next step. Inferred from what did not happen, so the grade is Weak. Practice: set a date before the call ends.
+3. **The board question and the close, Strong, with a Weak part.** At 28:30 Ruth said the board takes these things up, and Owen said "Great, thanks" (`[Call]`). The chair's name and the meeting date were both within reach. Ask, "Who sits on the board, and when does it next meet?" The chair is still `[Unknown]` after this call. The last two minutes of the transcript contain no date for the next step. Inferred from what did not happen, so that part is Weak. Practice: set a date before the call ends.
 
-**Champion status:** Developing. Two of seven shared champion tests met on this call, each tagged: explains the internal politics (28:30, `[Call]`) and asks how to help (33:00, `[Call]`: "What would you need from us to put this in front of the board?"). Ruth's stronger status comes from later calls, not this one.
+**MEDDIC Status:**
+
+| Element | Grade | Evidence |
+|---|---|---|
+| Metrics | PARTIAL | The double sale is named (14:20, `[Call]`), but no count and no cost. The lookup is at Level 2. |
+| Economic Buyer | DEVELOPING | Ruth is named as GM and buyer `[CRM]`. The board chair is named by no one `[Unknown]`. |
+| Decision Criteria | PARTIAL | Ruth asks what the board would need (33:00, `[Call]`). The criteria are not stated. |
+| Decision Process | PARTIAL | The board takes these items up (28:30, `[Call]`). No date and no approval steps. |
+| Identified Pain | SURFACE | Plot records on paper, described at Level 2 (14:20, `[Call]`). |
+| Champion | DEVELOPING | Two of seven shared tests met (below). |
+
+**Champion status:** Developing. Two of seven shared champion tests met on this call, each tagged: shares competitor intelligence (17:05, `[Call]`: "We started moving plots into Oldgate and stopped.") and asks how to help (33:00, `[Call]`: "What would you need from us to put this in front of the board?"). The 28:30 exchange is about process, the board taking the item up, so it is not counted as a test. Ruth's stronger status comes from later calls, not this one.
+
+**Competitive Intel Summary:** Current solution: Oldgate Ledger Pro, direct software (`[CRM]`). Contract: renewal in March 2027 (`[CRM]`). Satisfaction: not stated on this call (`[Unknown]`). The gap: the move into Oldgate began and stopped (17:05, `[Call]`), and the cost of the stop was not asked. The probe that went unasked is what the move cost.
 
 **Deal Health Impact:** The Stage 2 to 3 gate in the profile needs the records problem quantified (plots, hours or dollars) and the GM named as the likely economic buyer. Ruth is named as GM and buyer (`[CRM]`). The problem is not yet quantified, so the gate is not met, and this call does not move the deal to a demo.
 
-**Focus Area for Next Call:** Priority Ladder to Level 3 on the cost of a plot lookup. Get the board chair's name and the meeting date before the session ends.
+**Focus Area for Next Call:** Priority Ladder to Level 3 on the cost of a plot lookup. The chair and the date are success criteria in the game plan, not a second focus.
 
 **Next Call Game Plan:**
 - **Prep:** the plot-lookup count and the minutes per lookup, from the discovery notes.
 - **Questions:** "How many plot requests come in a week, and how long does each one take?" Then the board question.
-- **Success criteria:** a number for lookups per week, minutes per lookup, and the chair's name.
+- **Success criteria:** a number for lookups per week, minutes per lookup, the board chair's name, and the meeting date, set before the session ends.
 
 ```text
 Hand-off (read by 08, 09 and 06):
 account: Brackhaven Memorial Gardens (ACTIVE, Stage 2 Discovery)
 run_date: 2026-05-12 (illustrative)
-call_score: 24 of 35
+call_score: 24 of 35, scored 7 of 7
 category_scores: Pre-Call Preparation 4, SPIN Discovery Quality 3, Priority Ladder Execution 3, Active Listening 4, Value Articulation 3, Next Steps and Momentum 3, Alternatives 4
-focus_area: Priority Ladder to Level 3 on the cost of a plot lookup, with the board chair's name and meeting date
-coaching_points: 1 Strength, Strong (02:10). 2 Quantify the double sale, Strong (14:20). 3 Benchmark for the tablet objection, Moderate (23:40). 4 The board question, Strong (28:30). 5 Next step without a date, Weak (no date in the transcript)
+focus_area: Priority Ladder to Level 3 on the cost of a plot lookup
+coaching_points: Top 3 Strengths: 1 Strength, Strong (02:10). 2 Owen followed up, Strong (09:15). 3 Owen asked why the move stopped, Strong (17:05). Top 3 Improvements: 1 Quantify the double sale, Strong (14:20). 2 Benchmark for the tablet objection, Moderate (23:40). 3 The board question and the close, Strong, with a Weak part (28:30, no date in the transcript)
 key_moments: discovery breakthrough (14:20), buying signal captured (09:15), objection (23:40), competitive intelligence (17:05), missed opportunity (28:30), red flag MEDIUM (31:10)
-champion_status: Developing, two of seven shared tests met on this call (explains the internal politics, asks how to help)
+champion_status: Developing, two of seven shared tests met on this call (shares competitor intelligence, asks how to help)
 next_action: Owen Pruitt books a second discovery session with Ruth Ellery to quantify the lookup cost. Owner: Owen Pruitt. Date: 2026-05-19 (illustrative)
 report_path: none (inline)
 ```
@@ -817,7 +843,7 @@ report_path: none (inline)
 | Value Articulation | 3 | Referred to "other cemeteries" with no figure at 29:00 (`[Call]`). No proof point used. |
 | Next Steps and Momentum | 4 | Booked a second discovery session with Arlen Biggs on a named date, 2026-10-29 (illustrative), with Owen as owner. Other attendees not named. |
 | Alternatives | 3 | Asked about the current process only, the spreadsheet (06:40, `[Call]`). Did not ask whether anything else was tried. |
-| **Total** | | **23 of 35** |
+| **Total** | | **23 of 35, scored 7 of 7** |
 
 Assessment: Needs Improvement, in the 17 to 23 band of the restated scale.
 
@@ -865,7 +891,7 @@ Assessment: Needs Improvement, in the 17 to 23 band of the restated scale.
 Hand-off (read by 08, 09 and 06):
 account: Sable Fork Cemetery (INBOUND)
 run_date: 2026-10-19 (illustrative)
-call_score: 23 of 35
+call_score: 23 of 35, scored 7 of 7
 category_scores: Pre-Call Preparation 3, SPIN Discovery Quality 3, Priority Ladder Execution 3, Active Listening 4, Value Articulation 3, Next Steps and Momentum 4, Alternatives 3
 focus_area: Count the lookups and time them, then ask who else holds the list
 coaching_points: 1 Strength, Strong (06:40). 2 Count the lookups, Strong (18:30). 3 Proof point without a number, Moderate (29:00). 4 Second discovery, not a demo, Strong (40:20). 5 Who else holds the list, Weak (no question in the transcript)
@@ -895,7 +921,7 @@ report_path: none (inline)
 | Pain-to-Workflow Mapping | 2 | Walt's "zero wrong-plot burials" and "find the plot in seconds" pains never came up. Weak grade: inferred from what did not happen. |
 | Prospect Engagement | 3 | Prospect talk time 34% (illustrative), 6 points under the demo band, so 3 on the rubric. Walt asked two questions, both about tablets (`[Call]`). |
 | Resistance Handling | 3 | Walt's tablet objection met with a reassurance and a second feature, not a question (`[Call]`, 23:40). |
-| **Total** | | **19 of 40** |
+| **Total** | | **19 of 40, scored 8 of 8** |
 
 Assessment: Needs Improvement, in the 18 to 25 band.
 
@@ -958,7 +984,7 @@ Assessment: Needs Improvement, in the 18 to 25 band.
 Hand-off (read by 08, 09 and 06):
 account: Brackhaven Memorial Gardens (ACTIVE, Stage 5 Negotiate)
 run_date: 2026-10-19 (illustrative)
-call_score: 19 of 40
+call_score: 19 of 40, scored 8 of 8
 category_scores: Meeting Opening 2, Meeting Closing 2, Teach and Tailor 3, Pain Alignment and Proof 2, Question the Problem 2, Pain-to-Workflow Mapping 2, Prospect Engagement 3, Resistance Handling 3
 focus_area: Build a pain-to-workflow map from the discovery notes, open with Walt's paper work-order pain, and replace reassurance with questions
 coaching_points: 1 Telling not asking, Strong (23:40). 2 Open on the pain, Strong (12:00). 3 Pain-to-workflow map, Weak (absent from the transcript). 4 Question the Problem, Moderate (summarized in notes)
@@ -1046,6 +1072,9 @@ The Business Case & ROI Kit (a paid Guild Pro kit) reads this skill's hand-off b
 ---
 
 ## Changelog
+
+### 2.1.2 (2026-10-25)
+- Try-it evidence completed so a strict first run reproduces Example 1. The Unknown Rule is added: a category with no evidence is INSUFFICIENT and is left out of the total, the total reads `scored n of N`, and fewer than five scored categories gives no overall score. Example 1 now shows the eight report sections, Top 3 Strengths and Top 3 Improvement Areas, and one focus area.
 
 ### 2.1.1 (2026-10-25)
 - Adds examples/try-it.md so a first run reproduces Example 1.

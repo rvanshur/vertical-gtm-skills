@@ -10,13 +10,15 @@ Every name, date and number in this file is invented for the PlotIQ example. Not
 - Brackhaven Memorial Gardens is a two-site combination with 11,000 plots [CRM].
 - Status: ACTIVE at Stage 5 Negotiate since 2026-09-09 [CRM]. Amount: $21,576 a year at list (two sites at the $10,788 list price) [CRM].
 - The family board meets 2026-11-12 [CRM].
+- The account has 60 employees on the account record [CRM] (illustrative), so its revenue band is under $50M [Inferred] (illustrative).
+- Legal review and vendor onboarding are known in outline, with timing not scoped [Unknown].
 - Ruth Ellery has not replied since 2026-10-03, 16 days ago [CRM].
 - The family board chair joined one call, in Stage 4 Proposal [Call]. The chair is not on file by name.
 - Upstream MEDDPICC run on 2026-10-19: 58, ORANGE [CRM].
 - Contacts on file, all [CRM]:
-  - Ruth Ellery, General Manager. Champion, Strong: four of seven shared champion tests met, each tagged [Call]. Influence HIGH. Partially engaged, with the last logged reply on 2026-10-03.
-  - Walt Okonkwo, Operations Director. Skeptic [Call], skeptical of tablets. He controls daily use of the system.
-  - Priscilla Dunmore, pre-need manager. Engaged in the demo [CRM].
+  - Ruth Ellery, General Manager. Champion, Strong: four of seven shared champion tests met, each tagged [Call]: offers introductions (2026-09-26 call), commits to next steps with dates (2026-09-26 call), explains the internal politics (2026-09-19 call), and defends the solution when we are not in the room (2026-10-01 call). Influence HIGH. Partially engaged, with the last logged reply on 2026-10-03.
+  - Walt Okonkwo, Operations Director. Influencer, with a Skeptic position [Call]: skeptical of tablets. He controls daily use of the system.
+  - Priscilla Dunmore, pre-need manager, End User. Engaged in the demo on 2026-10-08 [CRM] (illustrative), with a second logged interaction on 2026-10-14 [CRM] (illustrative): two interactions in the last 30 days.
 - Departments on file: Executive, Operations and Sales [CRM].
 - No IT contact is on file, and nobody at Brackhaven owns IT [Notes].
 - The Oldgate ledger export has no named owner [Unknown].

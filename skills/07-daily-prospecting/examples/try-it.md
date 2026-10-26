@@ -25,6 +25,7 @@ Lowmoor Memorial Gardens
 - Status: LOST. Closed-lost to Oldgate on 2026-01-20 [CRM]
 - Reason logged: "timing" [CRM]
 - Champion Ines Carmody has moved to Quill Hollow Memorial Park
+- Closed-Loss Reactivation (05), run 2026-10-19: verdict MONITOR, reminder set for 2026-12-18 to 2027-01-17 [Notes]
 
 A former Lowmoor contact (name withheld)
 - Opted out after the loss [CRM] (illustrative). The opt-out holds for every dial to this contact
@@ -32,12 +33,14 @@ A former Lowmoor contact (name withheld)
 Corrow Ridge Cemetery
 - Consolidator bought the site on 2026-07-01 [Public: state licensing database]. Profile window: 60 to 120 days
 - One site, 14,000 plots, paper plat maps (illustrative)
+- A deed recorded twice in 2025 [CRM] (illustrative), inside the 24-month test
 - Zone 1 HIGH
 - No contact on file. The task names none
 - Annual state filing and signing limit: [Unknown]
 
 Sable Fork Cemetery
 - INBOUND. Demo request through the website form on Thursday 2026-10-15 [CRM]
+- No reply from PlotIQ is logged on the request [CRM]
 - Who filled in the form: [Unknown]
 - One site, 2,900 plots, plot list in a spreadsheet [CRM] (illustrative)
 - GM Arlen Biggs signs under $25K [CRM]
@@ -47,6 +50,8 @@ Quill Hollow Memorial Park
 - Last touch 2026-09-29 [CRM] (illustrative)
 - Records finding in the last state review [CRM]. Its date: [Unknown]
 - Owner signs under $25K [CRM]
+- The owner signs alone, with no board approval step [CRM] (illustrative)
+- GM change on the state licensing record, 2026-04-25 [Public: state licensing database] (illustrative)
 
 Greyfield Memorial Park
 - Digital map from Stonemark, a direct software incumbent [CRM]

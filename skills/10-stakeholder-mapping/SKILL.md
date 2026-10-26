@@ -1,6 +1,6 @@
 ---
 name: gtm-stakeholder-mapping
-version: 2.1.1
+version: 2.1.2
 description: "Maps the buying committee for one account: classifies every contact by buying role, marks each missing decision-maker as an UNKNOWN ghost node, scores multi-threading on seven weighted dimensions, and returns an engagement plan the AE or BDR reads before the next meeting."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: [gtm-meddpicc-analysis]
 mutating: read-write
 change_log:
+  - version: 2.1.2
+    date: 2026-10-25
+    summary: "Try-it evidence completed so a strict first run reproduces Example 1. Settles four open judgments: a board chair counts as C-level, a Skeptic with an objection is an Influencer and scores Developing on Blocker Mitigation, an end user is engaged when Actively Engaged, and a non-buyer becomes a ghost node only when the record needs that person. Makes the Blocker definitions agree. Names the four champion tests and their dates."
   - version: 2.1.1
     date: 2026-10-25
     summary: "Adds examples/try-it.md so a first run reproduces Example 1."
@@ -224,7 +227,7 @@ A non-buyer cannot approve the purchase, but can slow it, stop it or reshape it.
 Rules for placing a non-buyer:
 - A non-buyer on file is classified as a non-buyer and is never given an Economic Buyer slot.
 - A named, engaged non-buyer counts toward Department Breadth. A named technical reviewer or systems administrator also counts toward Technical Evaluator.
-- A non-buyer the map cannot name is an UNKNOWN ghost node with the role written out, the same as any other missing position.
+- A non-buyer the map cannot name becomes an UNKNOWN ghost node, with the role written out, when the record needs that person: a dated step that needs them, or an open question only they can answer. A function known only in outline, with no dated step or open question, is named as a gap, not a ghost node.
 - The profile's Buying Committee section may add rows for this market. Those rows carry the same hypothesis label.
 
 ### Influence Levels
@@ -271,6 +274,12 @@ Champion status is set from the shared champion tests in the Shared Contract, wh
 | **Economic Buyer Engaged** | 2x | No EB identified | EB identified by name or role, not engaged | EB actively engaged |
 | **End User Validation** | 1x | No end users known | End users identified | End users engaged |
 | **Blocker Mitigation** | 1x | Known blocker, no strategy | Blocker identified, strategy exists | No blockers, or all neutralized |
+
+**The board chair counts as C-level.** The chair of a family-owned operator's board holds the top decision seat, so a board chair counts as a C-level contact for C-Level Access. A chair who is engaged but not named scores 1, and a named chair who is engaged scores 2.
+
+**Skeptics count toward Blocker Mitigation.** A contact with a Skeptic position and a stated objection, with a strategy in place, scores 1 on Blocker Mitigation (Developing), because an objection not yet acted on is the early form of a block. The contact keeps the Influencer role.
+
+**End users engaged** means at least one end user Actively Engaged under the Engagement Status table, with 2 or more logged interactions in the last 30 days.
 
 **The formula.** Score each dimension 0, 1 or 2. Multiply each score by its weight (2x or 1x) to get the weighted score. Add the seven weighted scores for a **raw total from 0 to 20**. Then:
 
@@ -426,10 +435,10 @@ For each contact, assign:
 | **Technical Evaluator** | Assesses integration, security, and technical fit. Can veto | CIO, IT Director, ERP Admin, Security Manager |
 | **Influencer** | Shapes the decision through opinion and expertise. Cannot approve alone | Controller, Department Managers, Regional Managers |
 | **End User** | Will use the product daily. Cares about workflow and ease of use | Analysts, Specialists, Staff |
-| **Blocker** | Opposes or delays the deal. May prefer incumbent | Anyone with stated objections |
+| **Blocker** | Opposes or delays the deal. May prefer incumbent | Anyone who opposes or delays the deal |
 | **Coach** | Internal ally who provides intel about buying process and politics | Any contact who shares "insider" information |
 
-Non-buyers from the Methodology table are placed in the same pass. They take a role label of their own and are never given the Economic Buyer slot.
+Non-buyers from the Methodology table are placed in the same pass. They take a role label of their own and are never given the Economic Buyer slot. A stated objection alone makes a contact an Influencer with a Skeptic position, not a Blocker.
 
 #### Influence Level
 
@@ -628,33 +637,33 @@ The plays come from the profile's Buying Committee section (available plays). A 
 
 ### Example 1: AE Deal Strategy, Brackhaven Memorial Gardens (Stage 5 Negotiate, Board Chair Unnamed)
 
-**Context:** Today is Monday 2026-10-19. Owen Pruitt, Account Executive, owns Brackhaven Memorial Gardens. The deal has been ACTIVE at Stage 5 Negotiate since 2026-09-09 `[CRM]`, a two-site combination with 11,000 plots `[CRM]`. The family board meets 2026-11-12 `[CRM]`. The second Deal Pulse on this date reads High Risk. Ruth Ellery has not replied since 2026-10-03, 16 days ago `[CRM]`. Owner assignment, dates and interaction counts are illustrative where the profile does not supply them. The family board chair has joined one call, in Stage 4 Proposal `[Call]`, and is not on file by name.
+**Context:** Today is Monday 2026-10-19. Owen Pruitt, Account Executive, owns Brackhaven Memorial Gardens. The deal has been ACTIVE at Stage 5 Negotiate since 2026-09-09 `[CRM]`, a two-site combination with 11,000 plots `[CRM]`. The family board meets 2026-11-12 `[CRM]`. The account has 60 employees on the account record `[CRM]` (illustrative), so its revenue band is under $50M (`[Inferred]`, illustrative). The second Deal Pulse on this date reads High Risk. Ruth Ellery has not replied since 2026-10-03, 16 days ago `[CRM]`. Owner assignment, dates and interaction counts are illustrative where the profile does not supply them. The family board chair has joined one call, in Stage 4 Proposal `[Call]`, and is not on file by name.
 
 **Input:** "Build an org map for Brackhaven Memorial Gardens. We're at Negotiate and need to multi-thread before the board meeting."
 
 **Process:** `user_role = AE`. CRM shows an ACTIVE deal at Stage 5 Negotiate, $21,576 a year at list (two sites at the $10,788 list price) `[CRM]`. The Active Deal Guard does not apply, because the user is the AE. The upstream MEDDPICC fields for this account are read by name, and the second MEDDPICC run on 2026-10-19 scored the deal 58 ORANGE `[CRM]`. Three contacts are on file, and three positions are ghost nodes.
 
 Contacts on file, `[CRM]`:
-- Ruth Ellery, General Manager (Executive). Champion, Strong: four of seven shared champion tests met, each tagged `[Call]`. Influence HIGH. Partially engaged, with the last logged reply on 2026-10-03.
+- Ruth Ellery, General Manager (Executive). Champion, Strong: four of seven shared champion tests met, each tagged `[Call]`: offers introductions (2026-09-26 call), commits to next steps with dates (2026-09-26 call), explains the internal politics (2026-09-19 call), and defends the solution when we are not in the room (2026-10-01 call). Influence HIGH. Partially engaged, with the last logged reply on 2026-10-03.
 - Walt Okonkwo, Operations Director (Operations). Influencer with a Skeptic position `[Call]`, skeptical of tablets. Influence MEDIUM, and he controls daily use of the system.
-- Priscilla Dunmore, pre-need manager (Sales). End User, engaged in the demo `[CRM]`.
+- Priscilla Dunmore, pre-need manager (Sales). End User, Actively Engaged: the demo on 2026-10-08 and a second logged interaction on 2026-10-14, two in the last 30 days `[CRM]` (illustrative).
 
 Ghost nodes, written by role only:
 - "UNKNOWN, family board chair" (Executive). Economic Buyer, identified by role. One call in Stage 4 Proposal `[Call]`, and budget not confirmed `[Call]`.
-- "UNKNOWN, systems administrator" (Technology). Technical Evaluator. Nobody at Brackhaven owns IT, and no IT contact is on file `[Notes]`. The Oldgate ledger export has no named owner `[Unknown]`.
-- "UNKNOWN, funeral home owner" (combination side, Persona 4). `[Inferred]` from the ICP2 Combination pattern, which needs a funeral home side to the account. Persona 4 in the profile names this role.
+- "UNKNOWN, systems administrator" (Technology). Technical Evaluator. Nobody at Brackhaven owns IT, and no IT contact is on file `[Notes]`. The Oldgate ledger export has no named owner `[Unknown]`, and only the person who runs the system can say who holds it, an open question only they can answer.
+- "UNKNOWN, funeral home owner" (combination side, Persona 4). `[Inferred]` from the ICP2 Combination pattern, which needs a funeral home side to the account. Persona 4 in the profile names this role. General counsel and procurement are known only in outline, with legal review and vendor onboarding timing not scoped `[Unknown]`, so they are named as gaps, not ghost nodes. The CFO persona applies to groups only, and this account has two sites. The revenue table starts at $50M, so at under $50M it adds no ghost rows.
 
 **Multi-threading score:**
 
 | Dimension | Weight | Score (0 to 2) | Weighted | Why |
 |---|---|---|---|---|
-| C-Level Access | 2x | 1 | 2 | The board chair joined one call `[Call]`, but is not on file by name, so no named C-level contact is engaged. Ruth is a GM |
+| C-Level Access | 2x | 1 | 2 | The board chair joined one call `[Call]`, but is not on file by name, so no named C-level contact is engaged. The board chair counts as C-level (Methodology), engaged but unnamed, so 1. Ruth is a GM |
 | Champion Identified | 2x | 2 | 4 | Ruth Ellery, Strong: four of seven shared champion tests met, each `[Call]` |
 | Department Breadth | 1x | 1 | 1 | Executive, Operations and Sales: 3 departments (the 2 to 3 band) `[CRM]` |
 | Technical Evaluator | 1x | 0 | 0 | No IT contact on file `[Unknown]`. Nobody owns IT `[Notes]` |
 | Economic Buyer Engaged | 2x | 1 | 2 | Identified by role only, one call, budget not confirmed `[Call]` |
-| End User Validation | 1x | 2 | 2 | Priscilla Dunmore engaged and tested the pre-need intake in the demo `[CRM]` |
-| Blocker Mitigation | 1x | 1 | 1 | Walt Okonkwo identified, and a strategy exists (a demo on his own work orders) `[Notes]` |
+| End User Validation | 1x | 2 | 2 | Priscilla Dunmore, Actively Engaged: the demo on 2026-10-08 and a second logged interaction on 2026-10-14, two in the last 30 days `[CRM]` (illustrative) |
+| Blocker Mitigation | 1x | 1 | 1 | Walt Okonkwo, a Skeptic with a stated objection, identified, and a strategy exists (a demo on his own work orders) `[Notes]`. Developing under the Skeptic rule in Methodology |
 | **Total** | | | **12 of 20** | |
 
 Raw total 12 of 20. threading_score = 12 ÷ 2 = **6**, Developing, material gaps. Full C-level credit would give a raw total of 14 and a score of 7. The map withholds that credit because the board chair is not a named contact on file, and one call with an unnamed person is not a relationship the team can plan around.
@@ -797,6 +806,9 @@ report_path: none (inline)
 ---
 
 ## Changelog
+
+### 2.1.2 (2026-10-25)
+- Try-it evidence completed so a strict first run reproduces Example 1. The board chair counts as C-level, a Skeptic with a stated objection is an Influencer who scores Developing on Blocker Mitigation, an end user is engaged when Actively Engaged, and a non-buyer becomes a ghost node only when the record needs that person. The Blocker definitions in the buying roles table and the Methodology now agree. Example 1 names the four champion tests with their call dates and carries the employee count and revenue band. The threading score stays 6.
 
 ### 2.1.1 (2026-10-25)
 - Adds examples/try-it.md so a first run reproduces Example 1.

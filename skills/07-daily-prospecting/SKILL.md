@@ -1,6 +1,6 @@
 ---
 name: gtm-daily-prospecting
-version: 2.1.1
+version: 2.1.2
 description: "Builds the morning dial sheet for a BDR or AE: ranks accounts into Hot, Warm, New and Recycle tiers, removes accounts the BDR guard blocks, and writes a pre-call brief for the top eight, read by the rep at the phone and by the meeting prep skill."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: [gtm-meeting-prep]
 mutating: read-write
 change_log:
+  - version: 2.1.2
+    date: 2026-10-25
+    summary: "Try-it evidence completed so a strict first run reproduces Example 1. Adds the half-of-tests rule for a Fit Grid row, the rule that a role-table Hot never overrides the profile's Hot definition, and the UNKNOWN zone rule. Names the Hot disagreement on Quill Hollow in its brief."
   - version: 2.1.1
     date: 2026-10-25
     summary: "Adds examples/try-it.md so a first run reproduces Example 1. No other change."
@@ -258,7 +261,7 @@ An account pending AE assignment is not ACTIVE. It is worked, and the output say
 ### Fit Scoring: Fit Grid, Zones and Verdict
 
 - **The Fit Grid row decides the fit word.** A Strong, Moderate or Weak grade comes from the profile's Fit Grid row for the account's ICP. The brief quotes the row and the tests it met, with n, for example "2 of 4 Strong tests met".
-- **The row the record meets most decides the grade.** Each Fit Grid row lists its tests. An unknown test is listed beside the grade and is not counted as a no, because a blank field is unknown, not negative.
+- **The row the record meets most decides the grade.** Each Fit Grid row lists its tests. An unknown test is listed beside the grade and is not counted as a no, because a blank field is unknown, not negative. A row carries the grade when at least half of its tests are met with evidence (two of four), and an account that meets no row that far is held at Moderate.
 - **A Weak row is applied only on evidence.** A Weak test that is unknown is not applied. The account is held at Moderate and the unknown is named as the thing to find.
 - **Zones and the verdict come from the profile.** Every account shows its five zone scores beside its verdict, applied through the Verdict Rule as written. MEDIUM never counts as HIGH.
 - **A MANUAL REVIEW account shows its zones and verdict instead of a fit word.** A fit word beside a MANUAL REVIEW verdict reads as a softer answer than the gate allows, so the zone scores carry the reason.
@@ -365,7 +368,7 @@ For each account, in this order:
 1. Name the ICP the account belongs to, from ICP Definitions.
 2. Test the account against the Fit Grid row for that ICP, and count the tests met, with n.
 3. Grade the fit: Strong, Moderate or Weak, using the rule in Methodology. Quote the row used.
-4. Score the five Qualification Zones HIGH, MEDIUM or LOW from observable facts, and apply the Verdict Rule.
+4. Score the five Qualification Zones HIGH, MEDIUM or LOW from observable facts, and apply the Verdict Rule. A zone with no observable fact is shown as UNKNOWN. It is neither HIGH nor LOW, and it counts toward neither.
 5. Flag any disqualifier from Qualification Criteria. An OUT account is removed here and goes to `exclusions`.
 
 A MANUAL REVIEW account shows its zone scores and verdict in place of a fit word. The zone scores are the reason for the verdict, so they go in the queue beside it.
@@ -396,7 +399,7 @@ Rank every remaining account into one of four tiers. The criteria differ by role
 | **New** | AE-sourced prospects with no prior engagement. Strong ICP, no relationship |
 | **Recycle** | Previously closed-lost. Stalled deals with no clear path. Weak ICP, or multiple failures |
 
-**The profile's Hot definition is applied first.** The Daily Prospecting section of the profile states what a Hot account is in checkable facts. The role table fills the tiers that definition leaves open. Where the profile's definition and the role table disagree, the brief says so, and the profile owner decides which one holds. The skill never settles that disagreement silently.
+**The profile's Hot definition is applied first.** The Daily Prospecting section of the profile states what a Hot account is in checkable facts. The role table fills the tiers that definition leaves open. Where the profile's definition and the role table disagree, the brief says so, and the profile owner decides which one holds. The skill never settles that disagreement silently. The role table never moves an account into Hot that the profile's definition does not place there. When it would, the account stays out of Hot and the brief names the disagreement.
 
 **Ordering within a tier.** GREENLIGHT accounts come first, sub-ranked Strong, then Moderate, then Weak. MANUAL REVIEW accounts follow, ranked by the count of HIGH zones. A tier can hold both kinds, and the order shows which account the rep should reach first.
 
@@ -549,9 +552,9 @@ The report is returned inline. A Markdown file is written only when the user ask
 
 Seven accounts remain. Each is scored against the Fit Grid row for its ICP and the five Qualification Zones:
 
-- **Corrow Ridge Cemetery.** Consolidator bought the site on 2026-07-01 (`[Public: state licensing database]`). The window is 60 to 120 days from the profile, open 2026-08-30 to 2026-10-29, so 10 days remain (`[Inferred]`, from 2026-10-29 minus 2026-10-19). Zone 1 HIGH. Hot. Fit Grid ICP1 Strong row, 2 of 4 tests met (14,000 plots, paper plat maps). The annual state filing and the signing limit are `[Unknown]` and are not counted against it.
-- **Sable Fork Cemetery.** INBOUND. Demo request through the website form on Thursday 2026-10-15 (`[CRM]`), four days old. Hot. The profile's Hot definition is "an INBOUND request not yet answered and within 3 business days of arriving." Thursday 2026-10-15 to Monday 2026-10-19 is two business days, so the request meets the definition (`[Inferred]`). MANUAL REVIEW.
-- **Quill Hollow Memorial Park.** GM Ines Carmody moved here from Lowmoor six months ago with an owner growth mandate (`[CRM]`). Last touch 2026-09-29, 20 days ago, now quiet (`[CRM]`, illustrative). Warm. The records finding in the last state review is `[CRM]` with its date `[Unknown]`. Zone 1 is therefore MEDIUM, because the finding's 24-month test cannot be confirmed. GREENLIGHT stands on Zones 3 and 5.
+- **Corrow Ridge Cemetery.** Consolidator bought the site on 2026-07-01 (`[Public: state licensing database]`). The window is 60 to 120 days from the profile, open 2026-08-30 to 2026-10-29, so 10 days remain (`[Inferred]`, from 2026-10-29 minus 2026-10-19). Zone 1 HIGH, on the paper plat maps and a deed recorded twice in 2025 (`[CRM]`, illustrative), which falls inside the 24-month test. Hot. Fit Grid ICP1 Strong row, 2 of 4 tests met (14,000 plots, paper plat maps). The annual state filing and the signing limit are `[Unknown]` and are not counted against it.
+- **Sable Fork Cemetery.** INBOUND. Demo request through the website form on Thursday 2026-10-15 (`[CRM]`), four days old. Hot. The profile's Hot definition is "an INBOUND request not yet answered and within 3 business days of arriving." Thursday 2026-10-15 to Monday 2026-10-19 is two business days, so the request meets the definition (`[Inferred]`). No reply from PlotIQ is logged (`[CRM]`), so the request is not yet answered. MANUAL REVIEW.
+- **Quill Hollow Memorial Park.** GM Ines Carmody moved here from Lowmoor six months ago with an owner growth mandate (`[CRM]`). Last touch 2026-09-29, 20 days ago, now quiet (`[CRM]`, illustrative). Warm. The records finding in the last state review is `[CRM]` with its date `[Unknown]`. Zone 1 is therefore MEDIUM, because the finding's 24-month test cannot be confirmed. Zone 3 is HIGH because the owner signs alone under $25K with no board approval step (`[CRM]`, illustrative). GREENLIGHT stands on Zones 3 and 5. The GM change is dated 2026-04-25 (`[Public: state licensing database]`, illustrative), and the Hot conflict it raises is named in its brief.
 - **Greyfield Memorial Park.** Digital map from Stonemark, a direct software incumbent (`[CRM]`). Pre-need team of three with an intake form on the site (`[Public: company website]`). Fit Grid ICP1 Moderate: 1 of 4 Strong tests met (9,000 plots). The paper-records test is not met, and the Weak row is not applied because the Stonemark signing date is `[Unknown]`. Last touch on the account record 2026-09-24 with no named contact (`[CRM]`, illustrative). Warm. GREENLIGHT with Zones 2 and 3 HIGH.
 - **Saltmarsh Heritage Group.** Owner letter on the company site says all five sites move to one system in 2027 (`[Public: company site, owner letter 2026]`). CFO Hector Ruiz approves budget (`[CRM]`). MANUAL REVIEW because Zone 3 is a must-have at LOW. New.
 - **Tamsin Vale Cemetery.** 4,200 plots and paper plat maps (`[CRM]`). No phone on file. Who signs is `[Unknown]`. MANUAL REVIEW, Zone 1 HIGH only. New.
@@ -578,21 +581,21 @@ Dashboard: 7 accounts on the sheet, 6 to dial and 1 on hold. Tiers: 2 Hot, 2 War
 Zone scores for Corrow Ridge zone 3 is `(illustrative)`, and Corrow Ridge and Quill Hollow zones 2 and 4 are UNKNOWN, as Account Qualification and Account Snapshot score them. The chain file gives only the zones named in it. Greyfield zones 1, 4 and 5 are `(illustrative)` for the same reason, and its zones 2 and 3 come from the cast.
 
 **Brief for #1 (Corrow Ridge Cemetery):**
-- **Why this account:** The site was bought by Harborline Funeral Partners, a 14-site regional consolidator, on 2026-07-01 (`[Public: state licensing database]`). The window is 60 to 120 days, so it is open until 2026-10-29, with 10 days remaining (`[Inferred]`). Zone 1 HIGH (14,000 plots on paper plat maps, `[CRM]`). Zone 5 HIGH (a new owner inside 24 months). Whether Harborline runs its own system is `[Unknown]`, and it is the first question.
+- **Why this account:** The site was bought by Harborline Funeral Partners, a 14-site regional consolidator, on 2026-07-01 (`[Public: state licensing database]`). The window is 60 to 120 days, so it is open until 2026-10-29, with 10 days remaining (`[Inferred]`). Zone 1 HIGH (14,000 plots on paper plat maps, `[CRM]`, and a deed recorded twice in 2025, `[CRM]` (illustrative), inside the 24-month test). Zone 5 HIGH (a new owner inside 24 months). Whether Harborline runs its own system is `[Unknown]`, and it is the first question.
 - **Opener:** "Hi, it's Nadia Brandt with PlotIQ. Teams going through acquisitions typically find their plot records break when they try to standardize. Not sure if that's hit your team yet?" The persona who acts is the acquirer's CFO or controller, with the site GM. No contact is on file, so the first call is to find the GM.
 - **Discovery questions:** (1) "Does Harborline run its own plot system, or will this site move onto theirs?" (2) "When a family asks about a plot, where do you look first, and how long does it take?" (3) "Walk me through last year's trust filing. Who pulled the numbers, and from where?"
 - **Objection prep:** "We already have a provider." Response: "That's good to hear. What's working well, and where are the gaps?"
 - **Call goal:** Learn whether Harborline runs its own plot system, then book discovery with the site GM before the Q1 2027 integration review.
 
 **Brief for #2 (Sable Fork Cemetery):**
-- **Why this account:** A demo request came through the website form on Thursday 2026-10-15, four days ago (`[CRM]`). Who filled the form is `[Unknown]`. Zone 3 HIGH (the GM signs under $25K, `[CRM]`). Zone 1 MEDIUM (a plot list in a spreadsheet). It meets the profile's Hot definition, which is an INBOUND request not yet answered and within 3 business days of arriving. Two business days have passed.
+- **Why this account:** A demo request came through the website form on Thursday 2026-10-15, four days ago (`[CRM]`). Who filled the form is `[Unknown]`. Zone 3 HIGH (the GM signs under $25K, `[CRM]`). Zone 1 MEDIUM (a plot list in a spreadsheet). It meets the profile's Hot definition, which is an INBOUND request not yet answered and within 3 business days of arriving. Two business days have passed. No reply is logged (`[CRM]`), so the request is still unanswered.
 - **Opener:** The buyer's own request is the hook. "Hi, it's Nadia Brandt with PlotIQ. Someone at Sable Fork asked for a demo through our website on Thursday. Was that you, or someone on your team?"
 - **Discovery questions:** (1) "Where does the plot map live today, and when was it last updated?" (2) "When a family asks about a plot, where do you look first, and how long does it take?" (3) "What does a 20-minute lookup cost you, versus 20 seconds?"
 - **Objection prep:** "Send me some info." Response: "Happy to, but I want to send the right thing. Can I ask two quick questions so I don't waste your time with generic material?"
 - **Call goal:** Confirm who requested the demo, then book discovery. No demo until the pain is confirmed on the call.
 
 **Brief for #3 (Quill Hollow Memorial Park):**
-- **Why this account:** GM Ines Carmody moved here from Lowmoor six months ago with an owner growth mandate (`[CRM]`). Zone 3 HIGH (the owner signs under $25K). Zone 5 HIGH (a new GM inside 24 months). Zone 1 MEDIUM, because the records finding in the last state review is `[CRM]` and undated (`[Unknown]`). The finding is never called recent.
+- **Why this account:** GM Ines Carmody moved here from Lowmoor six months ago with an owner growth mandate (`[CRM]`). Zone 3 HIGH (the owner signs under $25K, alone, with no board approval step, `[CRM]`, illustrative). Zone 5 HIGH (a new GM inside 24 months). Zone 1 MEDIUM, because the records finding in the last state review is `[CRM]` and undated (`[Unknown]`). The finding is never called recent. The role table would put Quill Hollow in Hot: its GM change is dated 2026-04-25 (`[Public: state licensing database]`, illustrative), so its 90 to 180 day window stays open until 2026-10-22, three days from today (`[Inferred]`), and the account is a Strong ICP. The profile's Hot definition needs Zone 1 HIGH, and Zone 1 is MEDIUM, so the profile's definition holds and the account stays Warm. The profile owner decides whether the role table should also require Zone 1.
 - **Opener:** "Hi Ines, it's Nadia Brandt with PlotIQ. I'm guessing the records finding from the state review is still on your list. Is that right?"
 - **Discovery questions:** (1) "What did the state review ask for, and what is still open?" (2) "When a family asks about a plot, where do you look first, and how long does it take?" (3) "Walk me through last year's trust filing. Who pulled the numbers, and from where?"
 - **Objection prep:** "We already have a provider." Response: "That's good to hear. What's working well, and where are the gaps?"
@@ -622,7 +625,7 @@ Zone scores for Corrow Ridge zone 3 is `(illustrative)`, and Corrow Ridge and Qu
 - **Call goal:** Find who signs, and find a phone number. Confirm how plot records are kept.
 
 **Brief for #7 (Lowmoor Memorial Gardens, hold):**
-- **Why this account:** Closed-lost to Oldgate on 2026-01-20, reason "timing" (`[CRM]`). The true loss reason sits with Closed-Loss Reactivation (05), which holds the account on MONITOR. The champion, Ines Carmody, has moved to Quill Hollow.
+- **Why this account:** Closed-lost to Oldgate on 2026-01-20, reason "timing" (`[CRM]`). The true loss reason sits with Closed-Loss Reactivation (05), which holds the account on MONITOR. The champion, Ines Carmody, has moved to Quill Hollow. Closed-Loss Reactivation (05) set the account to MONITOR on 2026-10-19, with a reminder for 2026-12-18 to 2027-01-17 (`[Notes]`).
 - **Do not dial.** Route to Closed-Loss Reactivation (05) first. The account reopens only on a reopening event that 05 names.
 
 **Exclusions**
@@ -777,6 +780,9 @@ report_path: none (inline)
 
 ## Changelog
 
+
+### 2.1.2 (2026-10-25)
+- Try-it evidence completed so a strict first run reproduces Example 1. A Fit Grid row now carries its grade at half its tests met, a zone with no fact shows UNKNOWN, and a role-table Hot never overrides the profile's Hot definition. Example 1 gains the dated records that its grades and tiers rest on. No tier, grade, verdict or next action changes.
 
 ### 2.1.1 (2026-10-25)
 - Adds examples/try-it.md so a first run reproduces Example 1. No other change.

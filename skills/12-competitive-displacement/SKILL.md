@@ -1,6 +1,6 @@
 ---
 name: gtm-competitive-displacement
-version: 2.1.1
+version: 2.1.2
 description: "Plans outbound to displace a known incumbent, by classifying the incumbent, rating how hard the switch is, and drafting persona-tailored four-step email sequences for the rep to read and send, so the BDR or AE who works the account knows what to say and what not to say."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: [gtm-competitive-strategy]
 mutating: read-write
 change_log:
+  - version: 2.1.2
+    date: 2026-10-25
+    summary: "Try-it evidence completed so a strict first run reproduces Example 1: an unnamed contact is an Unknown champion, the Example 1 sequence scope is stated, and the next action reads as the rep reviewing and sending."
   - version: 2.1.1
     date: 2026-10-25
     summary: "Adds examples/try-it.md so a first run reproduces Example 1."
@@ -84,7 +87,7 @@ Every run returns its report in the chat. The file is written only when the user
 | `target_personas` | Key Personas | The profile rows used, ranked, each with its title, the count as n of N, and the contact or `[Unknown]` |
 | `sequence` | Below Key Personas | Four emails per persona, drafted and never sent. Under the BDR guard, `none (guard)` |
 | `report_path` | Header of the report | `none (inline)` unless the user asked for a file |
-| `next_action` | Last line of the report | The owner and a date, for example "Nadia Brandt finds the contact's name, then sends Email 1 by 2026-10-23" |
+| `next_action` | Last line of the report | The owner and a date, for example "Nadia Brandt finds the contact's name, then reviews and sends Email 1 by 2026-10-23" |
 | File, on request | `<account>_gtm-competitive-displacement_<date>.md`, saved beside the user's other account notes | Written only when the user asks, in Markdown. The ask is the approval step |
 
 ---
@@ -322,6 +325,8 @@ Rate the account's readiness for displacement. Every cell that is not in the rec
 | Budget cycle alignment | In cycle / Off cycle / `[Unknown]` |
 | Previous evaluation of our product | Yes / No / `[Unknown]` |
 
+A champion is `Partial` only when a named contact shows some champion behavior with a tag. A contact who is not named is `[Unknown]`, never `Partial`.
+
 #### 1e. Rate the Displacement Difficulty
 Run the three tests in Methodology against the contract facts from 1d, and record the rating, the test that set it, and the tag on the contract fact.
 
@@ -433,14 +438,14 @@ Three worked examples on the PlotIQ cast and the chain file. They show a success
 
 **Input:** "Greyfield Memorial Park uses Stonemark. Build displacement sequences."
 
-**Step 0. Role and Status:** User is a BDR (illustrative). CRM check: TARGET, no open deal, no AE owner. The guard does not apply. Sequences are drafted.
+**Step 0. Role and Status:** User role is BDR, from the CRM user record `[CRM]` (illustrative). CRM check: TARGET, no open deal, no AE owner. The guard does not apply. Sequences are drafted.
 
 **Step 1. Identify the Incumbent:** Stonemark, direct software. How we know: the account's CRM note names its map vendor `[CRM]` (illustrative). Confidence: HIGH, because a CRM note confirms the incumbent.
 
 **Step 1d. Displacement Readiness:**
 - Known pain: Yes, specific. The pre-need team wants pre-need and records on one system `[Notes]` (illustrative)
 - Contract status: Expiring within 6 months. Renews January 2027 `[CRM]` (illustrative)
-- Champion: Partial. The pre-need team lead is named nowhere, so the name is `[Unknown]`
+- Champion: `[Unknown]`. The pre-need team lead is named nowhere, so there is no named contact to score
 - Budget cycle: `[Unknown]`
 - Previous evaluation of our product: `[Unknown]`
 
@@ -469,7 +474,7 @@ Gap matrix:
 
 Proof points: Fennick Gardens (212 unsold plots found in 90 days) and Holloway Hills (zero records findings in its first state review). Both are Illustrative, and neither names a displaced vendor (`[Unknown]`). Neither can appear in an email, so the sequence uses the research benchmark in Email 1 instead.
 
-**Step 3. Sequences:** Persona selection: 2 of 5 profile rows, row 2 Pre-Need Sales Manager (primary, the team that feels the intake pain) and row 1 Cemetery General Manager (secondary, the buyer). Both contacts are `[Unknown]`, so the emails use titles. That makes 2 personas and 8 emails.
+**Step 3. Sequences:** Persona selection: 2 of 5 profile rows, row 2 Pre-Need Sales Manager (primary, the team that feels the intake pain) and row 1 Cemetery General Manager (secondary, the buyer). Both contacts are `[Unknown]`, so the emails use titles. That makes 2 personas and 8 emails. The page shows Email 1 and the HOLD on Email 3 for the Pre-Need Sales Manager, and omits the rest of the drafts: Emails 2 and 4 for that persona, and all four for the Cemetery General Manager. Those drafts exist and follow the structure in Methodology, and they are left off this page only for length.
 
 **Pre-Need Sales Manager, Email 1 (Industry Trend). Drafted, not sent.**
 Subject: Pre-need requests from the intake form
@@ -506,7 +511,7 @@ incumbent_type: direct software (Stonemark)
 displacement_difficulty: Medium (renewal inside 180 days, January 2027, test met, directional)
 target_personas: 2 of 5. Row 2 Pre-Need Sales Manager (primary). Row 1 Cemetery General Manager (secondary). Contacts [Unknown]
 sequence: 2 personas x 4 emails. Pre-Need Sales Manager Email 1 drafted. Email 3 on HOLD until the Illustrative proof point is Verified
-next_action: Nadia Brandt finds the Pre-Need Sales Manager's name on the site, reads Email 1, and sends it by 2026-10-23
+next_action: Nadia Brandt finds the Pre-Need Sales Manager's name on the site, reviews Email 1, and sends it by 2026-10-23
 report_path: none (inline)
 
 ---
@@ -654,6 +659,9 @@ report_path: none (inline)
 ---
 
 ## Changelog
+
+### 2.1.2 (2026-10-25)
+- Try-it evidence completed so a strict first run reproduces Example 1. An unnamed contact is an Unknown champion, Example 1 states which drafts are left off the page, and the next action reads as the rep reviewing and sending.
 
 ### 2.1.1 (2026-10-25)
 - Adds examples/try-it.md so a first run reproduces Example 1.
