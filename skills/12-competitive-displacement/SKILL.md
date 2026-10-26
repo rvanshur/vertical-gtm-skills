@@ -1,6 +1,6 @@
 ---
 name: gtm-competitive-displacement
-version: 2.1.6
+version: 2.1.7
 description: "Plans outbound to displace a known incumbent, by classifying the incumbent, rating how hard the switch is, and drafting persona-tailored four-step email sequences for the rep to read and send, so the BDR or AE who works the account knows what to say and what not to say."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: [gtm-competitive-strategy]
 mutating: read-write
 change_log:
+  - version: 2.1.7
+    date: 2026-10-26
+    summary: "Leak scrub and one research rule. A research figure dated more than 90 days before the run date is never used in an email, so Email 1 names no figure unless a source dated within 90 days is on record. The next action is written as owner, action and date, with no example answer. The renewal rule settles a known renewal month with an unknown term, the owner rule settles a CRM name held only as a tag, and the wedge is one sentence with no roadmap figure. Dangling example references are reworded, and the profile labels in the examples carry the evidence tags."
   - version: 2.1.6
     date: 2026-10-26
     summary: "Greyfield's contact status reads the logged touch of 2026-09-24 with no named contact, in place of not yet contacted. Tamsin Vale's second example no longer relies on a buyer call: its incumbent and decision path cite the CRM record, its contract term is recorded as none, and it keeps two personas with eight drafts on hold. Brackhaven's third example cites the dated call row in the Competitive Strategy skill for Oldgate's unsold-plot visibility. The Competitive Strategy citation and the next action rule are unchanged."
@@ -74,7 +77,7 @@ You refuse four things. You do not put a number or a competitive claim into an e
 
 If a required input is missing, ask. Do not guess.
 
-To try the skill without your own data, use `examples/try-it.md`, which holds the inputs for Example 1.
+To try the skill without your own data, use `examples/try-it.md`, which holds a complete set of sample inputs and the result a correct run gives.
 
 | Input | Required | Notes |
 |-------|----------|-------|
@@ -99,14 +102,14 @@ Every run returns its report in the chat. The file is written only when the user
 | `target_personas` | Key Personas | The profile rows used, ranked, each with its title, the count as n of N, and the contact or `[Unknown]` |
 | `sequence` | Below Key Personas | Four emails per persona, drafted and never sent. A page may show fewer. Then it says the other drafts follow the same rules and are left off the page, and names them. Under the BDR guard, `none (guard)` |
 | `report_path` | Header of the report | `none (inline)` unless the user asked for a file |
-| `next_action` | Last line of the report | The owner and a date, for example "Nadia Brandt finds the contact's name, then reviews and sends Email 1 by 2026-10-26" on a 2026-10-19 run. The owner is the BDR or AE of record in the CRM, and a blank owner is written `[Unknown]`, never a name from another account. The date follows the shared contract's next-action rule (five business days after the run date, or an earlier date the CRM or the records already set for that step, named with its source). The step names the action the owner takes, not the result |
+| `next_action` | Last line of the report | The owner, the action and a date, written as "[owner] [action] by [date]", for example "[owner] finds the contact's name, then reviews and sends the first email by [date]". The owner is the BDR or AE of record in the CRM. When the CRM names the owner, that name is written with `[CRM]`. When the owner field is blank, the name is written `[Unknown]` and the role is kept, never a name from another account. The date follows the shared contract's next-action rule (five business days after the run date, or an earlier date the CRM or the records already set for that step, named with its source). The step names the action the owner takes, not the result |
 | File, on request | `<account>_gtm-competitive-displacement_<date>.md`, saved beside the user's other account notes | Written only when the user asks, in Markdown. The ask is the approval step |
 
 ---
 
 ## Context
 
-This skill does not carry client-specific information. It reads the client profile at [`profiles/client-profile.md`](../../profiles/client-profile.md). Throughout this skill, `{Client Profile: X}` means section X of that file. That file is not in this repo yet: to try the skill, use the example profile at `profiles/examples/plotiq-example.md`, and to set up your own company, copy `profiles/client-profile-template.md` to `profiles/client-profile.md`. Until that file exists, read every profile section this skill names from `profiles/examples/plotiq-example.md`.
+This skill does not carry client-specific information. It reads the client profile at [`profiles/client-profile.md`](../../profiles/client-profile.md). Throughout this skill, `{Client Profile: X}` means section X of that file. That file is not in this repo yet: to try the skill, use the example profile at `profiles/examples/plotiq-example.md`, and to set up your own company, copy `profiles/client-profile-template.md` to `profiles/client-profile.md`. Until that file exists, read every profile section this skill names from `profiles/examples/plotiq-example.md`. A company fact the report cites from the profile is tagged `[Notes]`, the team's own written record. An account fact the CRM holds is tagged `[CRM]`.
 
 | Profile section | Used for |
 |---|---|
@@ -226,7 +229,7 @@ Primary persona: a row number from the profile's Buyer Personas table
 Secondary persona: a row number from the profile's Buyer Personas table
 ```
 
-A template keeps the team's tested wedge in front of the rep, so the rep does not invent one in the moment. Positioning is written with its tag, because the buyer will ask where it came from. Each discovery question must be a real question. A statement dressed as a question is rewritten before it is used.
+A template keeps the team's tested wedge in front of the rep, so the rep does not invent one in the moment. Positioning is written with its tag, because the buyer will ask where it came from. Each discovery question must be a real question. A statement dressed as a question is rewritten before it is used. The wedge is one sentence with no roadmap figure in it, because a roadmap figure stays in the report and never reaches the email (Roadmap Figures).
 
 ### Displacement Difficulty
 
@@ -238,7 +241,7 @@ The difficulty scale has three levels. Each level has one test, and each test is
 | Medium | A renewal inside 180 days | Medium |
 | High | A contract term running more than 180 days past today, with an exit fee in the contract | High |
 
-The rating is the highest level whose test is met. When the contract term is unknown, no test can be run, so the rating is High and the output says the term is unknown. An unknown term is not a favorable one, and a plan that assumes an easy switch skips the question that decides it.
+The rating is the highest level whose test is met. When the contract term is unknown, no test can be run, so the rating is High and the output says the term is unknown, unless a renewal month is on record, which fixes the end of the term (Settled Judgments). An unknown term is not a favorable one, and a plan that assumes an easy switch skips the question that decides it.
 
 ### Persona Selection
 
@@ -248,7 +251,7 @@ The profile's Buyer Personas table sets the options. The template row names a pr
 
 | Step | Angle | Purpose |
 |------|-------|---------|
-| **Email 1** | Industry trend, or a sourced benchmark | Give a reason the incumbent's limits cost more now. Do not attack. Create context |
+| **Email 1** | Industry trend, or a sourced benchmark dated within 90 days of the run date | Give a reason the incumbent's limits cost more now. Do not attack. Create context |
 | **Email 2** | Capability gap question | Ask a question the incumbent cannot answer well, and let the buyer find the gap |
 | **Email 3** | Proof point from a comparable switch | Cite a customer result only when its Status is Verified. Otherwise hold the email |
 | **Email 4** | Contract timing | Acknowledge the current vendor. Ask when the contract renews, unless the renewal month is on record, in which case Email 4 confirms it (see Settled Judgments). Frame it as worth 15 minutes before the next renewal |
@@ -272,7 +275,8 @@ The profile's Buyer Personas table sets the options. The template row names a pr
 ### Settled Judgments
 
 - **Wishes the Incumbent Does Not Cover.** A stated wish that the incumbent does not meet, such as pre-need on the same system, counts as known pain with the incumbent, tagged to the source that states it.
-- **Month-Only Renewals.** A renewal known only to its month is tested from the first day of that month.
+- **Month-Only Renewals.** A renewal known only to its month is tested from the first day of that month. That month also fixes the end of the term, so the term is not unknown: the rating follows the three tests, and an exit fee that is not on record does not raise it.
+- **Old Research in Email.** A research figure dated more than 90 days before the run date does not appear in an email, even with its source named. The report keeps it as a research estimate. Email 1 then uses the industry trend without a figure, with its question carrying the point, unless a figure dated within 90 days of the run date is on record.
 - **Email 4 Timing.** When the renewal month is on record, Email 4 confirms it and makes the renewal the reason to look now, as the Contract Renewal Window pattern says. The question in Email 4 is used only when no renewal month is on record.
 - **Best Discovery Question.** A persona's best discovery question is the template question about that persona's own pain. A persona with no such question uses the template's first question.
 - **Roadmap Figures.** A figure from the profile's roadmap, such as weeks to go-live, is PlotIQ's plan and not a sourced number. It appears in the report as the plan and never in an email.
@@ -395,7 +399,7 @@ Pick the persona rows from Methodology, then draft each sequence in the structur
 12. **Coordination note:** the BDR guard result, and who the analysis goes to
 13. **Evidence tags used:** the tags behind the claims in the emails, and any `[Unknown]` that a call must settle
 
-**Produces:** the summary, the hand-off block, and `next_action` with its owner and date. The hand-off block holds the fields Example 1 ends with, under the names used in Integration: account, run_date, incumbent_type, displacement_difficulty, target_personas, sequence, report_path and next_action.
+**Produces:** the summary, the hand-off block, and `next_action` with its owner and date. The hand-off block holds these fields, under the names used in Integration: account, run_date, incumbent_type, displacement_difficulty, target_personas, sequence, report_path and next_action.
 
 ---
 
@@ -403,13 +407,13 @@ Pick the persona rows from Methodology, then draft each sequence in the structur
 
 - **Every count and rate carries its n.** Write "2 of 5 persona rows" and "1 of 2 template personas", never a bare number.
 - **One evidence tag set.** Facts use the six tags from the Shared Contract. A competitive claim may go into an email only when it carries `[CRM]`, `[Call]` or `[Public: source]`. An `[Inferred]` claim feeds discovery questions and hypotheses. An `[Unknown]` claim is a discovery target.
-- **Every number in an email has a named, dated source, or it is removed.** One good example: "Cemeteries of this kind often carry 50 to 100 plots that are sold on paper and unsold on the map (deathcare research, paper-operations note, 2026-04-01, Benchmark)." That sentence stays, because its source is named and dated. The version "Most cemeteries lose a third of their plots to paperwork" has no source, so the figure and the sentence come out, and the email asks the question instead: "How many plots could you sell today if the records were right?"
+- **Every number in an email has a named, dated source, or it is removed.** One good example: "Cemeteries of this kind often carry [figure] plots that are sold on paper and unsold on the map ([named report and date, within 90 days of the run date], Benchmark)." That sentence stays, because its source is named, dated and recent enough to use. The version "Most cemeteries lose a third of their plots to paperwork" has no source, so the figure and the sentence come out, and the email asks the question instead: "How many plots could you sell today if the records were right?"
 - **An illustrative figure never goes into an email.** A figure an example marks (illustrative) is shown in the report and stays out of every email, because Hard Rule 2 accepts only a named, dated source.
 - **Failure patterns need the buyer's own words.** A failure pattern used in outbound traces to a won-away customer who said it, with its tag. A pattern drawn across accounts needs five cases behind it. Fewer than five is an observation, and the report says so in the same sentence.
 - **Silence is not a no.** A blank CRM field is `[Unknown]`. An unknown contract term sets the difficulty to High, and it never sets it to Low.
 - **Never fabricate a competitor weakness.** If the intelligence for an incumbent is thin, say so, and use positioning tagged `[Inferred]` that rests on the category pattern.
 - **Difficulty ratings are directional.** A Low rating means the positioning is favorable. It does not mean the deal is easy.
-- **Research older than 90 days.** A research citation dated more than 90 days before the run date is flagged in its citation as over 90 days old at the run date, and it is used only as a research estimate, never as a benchmark.
+- **Research older than 90 days.** A research citation dated more than 90 days before the run date is flagged in its citation as over 90 days old at the run date, and it is used only as a research estimate, never as a benchmark and never in an email (Old Research in Email, under Settled Judgments).
 
 ### Confidence
 
@@ -459,7 +463,7 @@ Three worked examples on the PlotIQ cast and the chain file. They show a success
 
 ### Example 1: Pre-Need and Records Displacement, Stonemark at Greyfield Memorial Park
 
-**Context:** Greyfield Memorial Park is a one-site cemetery with 9,000 plots (profile). It runs a digital map from Stonemark, a direct software incumbent, and its three-person pre-need team takes requests through an intake form on the site. The Stonemark renewal is January 2027. The account is TARGET, with one touch on 2026-09-24 and no named contact `[CRM]` (illustrative), and its verdict is GREENLIGHT (Zones 2 and 3 HIGH, Zone 1 MEDIUM, because the digital map holds no records or trust reporting). No contact names are on file, so every contact is `[Unknown]` and the sequence uses titles. The BDR guard does not apply, because a TARGET account is not ACTIVE. The profile has no Knowledge Base section, so this run says so once here and works from the profile and the records.
+**Context:** Greyfield Memorial Park is a one-site cemetery with 9,000 plots `[CRM]`. It runs a digital map from Stonemark, a direct software incumbent, and its three-person pre-need team takes requests through an intake form on the site `[Public: Greyfield Memorial Park website]`. The Stonemark renewal is January 2027. The account is TARGET, with one touch on 2026-09-24 and no named contact `[CRM]` (illustrative), and its verdict is GREENLIGHT (Zones 2 and 3 HIGH, Zone 1 MEDIUM, because the digital map holds no records or trust reporting). No contact names are on file, so every contact is `[Unknown]` and the sequence uses titles. The BDR guard does not apply, because a TARGET account is not ACTIVE. The profile has no Knowledge Base section, so this run says so once here and works from the profile and the records.
 
 **Input:** "Greyfield Memorial Park uses Stonemark. Build displacement sequences."
 
@@ -482,7 +486,7 @@ Three worked examples on the PlotIQ cast and the chain file. They show a success
 
 **Step 2. Template Row and Intelligence:** The profile's direct software row for Displacement:
 - **Positioning:** The buyer runs a map that works, but trust reporting and pre-need still run outside it, so staff keep a second system `[Inferred: category pattern for enterprise mapping tools, illustrative]`.
-- **Wedge:** Records, trust compliance and pre-need in one system, live in 6 weeks (profile).
+- **Wedge:** Records, trust compliance and pre-need in one system. The team's roadmap puts go-live at 6 weeks `[Notes]`, which stays in the report and out of the email.
 - **Discovery question 1:** "Where does the plot map live today, and when was it last updated?"
 - **Discovery question 2:** "Which system runs the pre-need side, and who maintains it?"
 - **Discovery question 3:** "When does your map contract renew, and what does the renewal include for support?"
@@ -495,22 +499,22 @@ Gap matrix:
 | Sold and unsold plots on the map | `[Unknown]`. Ask: "Where does the plot map live today, and when was it last updated?" | Plot inventory shows sold and unsold plots | The pre-need team needs to know which plots are free before it sells one |
 | Pre-need leads | `[Unknown]`. Ask: "Which system runs the pre-need side, and who maintains it?" | Pre-Need CRM and Lead Scoring | Leads from the intake form need a named follow-up owner |
 | Records and trust compliance | `[Unknown]`. Ask: "Walk me through last year's trust filing. Who pulled the numbers, and from where?" | Records and Trust Compliance module | The account wants pre-need and records together |
-| Time to live | 90 to 120 days (`[Public: deathcare research project, competitive research note, 2026-03-27]` (research estimate, over 90 days old at the run date)) | 6 weeks (profile) | The January 2027 renewal sets the window |
+| Time to live | 90 to 120 days (`[Public: deathcare research project, competitive research note, 2026-03-27]` (research estimate, over 90 days old at the run date)) | 6 weeks `[Notes]` | The January 2027 renewal sets the window |
 
-Proof points: Fennick Gardens (212 unsold plots found in 90 days) and Holloway Hills (zero records findings in its first state review). Both are Illustrative, and neither names a displaced vendor (`[Unknown]`). Neither can appear in an email, so the sequence uses the research benchmark in Email 1 instead.
+Proof points: Fennick Gardens (212 unsold plots found in 90 days) and Holloway Hills (zero records findings in its first state review). Both are Illustrative, and neither names a displaced vendor (`[Unknown]`). Neither can appear in an email, and the research figure is over 90 days old, so Email 1 names no figure.
 
 **Step 3. Sequences:** Persona selection: 2 of 5 profile rows, row 2 Pre-Need Sales Manager (primary, the team that feels the intake pain) and row 1 Cemetery General Manager (secondary, the buyer). Both contacts are `[Unknown]`, so the emails use titles. That makes 2 personas and 8 emails. The page shows Email 1 and the HOLD on Email 3 for the Pre-Need Sales Manager, and omits the rest of the drafts: Emails 2 and 4 for that persona, and all four for the Cemetery General Manager. Those drafts exist and follow the structure in Methodology, and they are left off this page only for length.
 
-**Pre-Need Sales Manager, Email 1 (Industry Trend). Drafted, not sent.**
+**Pre-Need Sales Manager, Email 1 (Industry Trend, Held Without a Figure). Drafted, not sent.**
 Subject: Pre-need requests from the intake form
 
-Your team takes pre-need requests through the intake form on the site. Independent cemeteries capture pre-need on 20% to 35% of at-need volume, and the largest public operator reaches about 60% (deathcare research, 2026-03-27 to 2026-04-01, Benchmark).
+Your team takes pre-need requests through the intake form on the site.
 
 How do the intake form requests get a first call back today?
 
 Your name
 
-The benchmark carries its source and date in the body, so a buyer who asks where it came from gets an answer. The question at the end is the discovery question from the template, which lets the buyer find the gap.
+The trend figure is held. Its only source, the deathcare research dated 2026-03-27 to 2026-04-01, is over 90 days old at the run date, so it may not appear in an email, and the email names no figure. The question at the end is the discovery question from the template, which lets the buyer find the gap.
 
 **Pre-Need Sales Manager, Email 3 (Proof Point). Status: HOLD.** The only proof point that fits is Illustrative, so Email 3 names no customer result. The profile says the Fennick Gardens case study waits until its numbers cover a full year (January 2027). Email 3 is released only when a proof point is Verified, and Verified also needs the customer's agreement to be named. The earliest date for Fennick Gardens is therefore January 2027, so Email 3 cannot go before then.
 
@@ -537,7 +541,7 @@ The benchmark carries its source and date in the body, so a buyer who asks where
 10. **Contract timing:** January 2027, `[CRM]`. Email 4 confirms it.
 11. **User role:** BDR.
 12. **Coordination note:** none. TARGET accounts are worked.
-13. **Evidence tags used:** `[CRM]` for the incumbent and the renewal, `[Public: deathcare research, 2026-03-27 to 2026-04-01]` for the benchmark, `[Unknown]` for the contacts, the budget cycle and the exit fee. No `[Inferred]` claim is in an email.
+13. **Evidence tags used:** `[CRM]` for the incumbent and the renewal, `[Public: deathcare research, 2026-03-27 to 2026-04-01]` for the held research figure, which is in no email, `[Public: Greyfield Memorial Park website]` for the intake form, `[Unknown]` for the contacts, the budget cycle and the exit fee. No `[Inferred]` claim is in an email.
 
 Not written on this page: Displacement Hooks, Product Against Incumbent, Objection Handling and Call Flow, which no step produces. The wedge in Step 2 carries the hook.
 
@@ -697,6 +701,14 @@ report_path: none (inline)
 ---
 
 ## Changelog
+
+### 2.1.7 (2026-10-26)
+- Leak scrub. The next action rule in the Output Contract is written as owner, action and date, in place of a worked sentence, and the Example 1 record of the verdict and the zone facts is restated as facts with their tags.
+- Settled: a research figure dated more than 90 days before the run date is not used in any email, so Email 1 in the example names no figure and asks the question. The Email 1 row of the sequence structure names the 90-day limit.
+- Settled: a known renewal month with an unknown term is a known term end, so the unknown-term rule does not apply, and an unknown exit fee does not raise the rating.
+- Settled: a CRM owner name is written with its tag, and a blank owner keeps the role.
+- Settled: the wedge is one sentence with no roadmap figure. Dangling example references are reworded, and the profile labels in the example carry the evidence tags of their source.
+- The example's rating, personas, sequence count, hand-off and next action do not change.
 
 ### 2.1.6 (2026-10-26)
 - Greyfield's contact status reads the logged touch of 2026-09-24 with no named contact, in place of not yet contacted.

@@ -2,7 +2,7 @@
 
 Every name, date and number in this file is invented for the PlotIQ example. Nothing here is a real company.
 
-These records are as of 2026-05-04, before Brackhaven reached ACTIVE at Stage 5 Negotiate (2026-09-09); the profile's Example Cast shows where the account stands later.
+These records are as of 2026-05-04.
 
 ## Ask Your Assistant
 "Run Account Qualification on Brackhaven Memorial Gardens using skills/01-account-qualification/examples/try-it.md and the PlotIQ profile at profiles/examples/plotiq-example.md"
@@ -36,7 +36,7 @@ People And Decision
 - The owner has a dated retirement plan: retirement on 2029-03-31, stated in the owner bio [Public: company website, owner bio, 2026] (illustrative)
 - The general manager recommends and the board approves [Public: company website, board calendar] (illustrative)
 - The board meets within 60 days [Public: company website, board calendar] (illustrative)
-- Year one with setup is $26,576 (illustrative), above the $25K board line [Inferred: two sites at list price, plus the one-time setup]
+- Year one with setup, at list price: $26,576 (illustrative) [Inferred: two sites at list price, plus the one-time setup]
 
 ## What You Should Get
 

@@ -1,6 +1,6 @@
 ---
 name: gtm-meeting-prep
-version: 2.1.6
+version: 2.1.7
 description: "Prepares a rep for a discovery or demo call with one prep sheet: the top pain, a question bank for each discovery phase, one proof point per attendee, objection scripts, a minute-by-minute call flow and a follow-up email draft. The rep reads it during the call."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: [gtm-account-snapshot, gtm-research-outbound, gtm-trigger-event-outbound, gtm-closed-loss-reactivation, gtm-daily-prospecting, gtm-deal-pulse, gtm-stakeholder-mapping, gtm-competitive-strategy, gtm-competitive-displacement, gtm-call-coaching]
 mutating: read-write
 change_log:
+  - version: 2.1.7
+    date: 2026-10-26
+    summary: "Round 7 scrub and fix. A discovery phase's question count follows a fixed rule: Need-Payoff writes two questions, and the sheet shows the top three of the other phases. The question ranking rule, the default cell colour for elements without a cell rule, and the Champion colour mapping are now stated. The research target is labelled when its figure has no dated source. The next action asks for the signer above the buyer as the record names that role, not a chair the record does not name. The rule sentences no longer quote a worked record, and the Example pointers are reworded."
   - version: 2.1.6
     date: 2026-10-26
     summary: "Consistency pass against the 2.1.5 audit. The upstream Account Snapshot fields in the first example quote that skill's pain hypotheses and three-email sequence. The Sable Fork, Greyfield and Quill Hollow examples move in time to match the records they read, so each booked call is prepared after its booking, and the Quill Hollow example no longer uses its undated records finding as the hook. The 2.1.5 summary's stray quotation mark is removed so the frontmatter parses."
@@ -86,7 +89,7 @@ You refuse to:
 
 If a required input is missing, ask. Do not guess.
 
-To try the skill without your own data, use `examples/try-it.md`, which holds the inputs for Example 1.
+To try the skill without your own data, use `examples/try-it.md`, which holds a complete set of inputs for a worked run.
 
 | Input | Required | Notes |
 |-------|----------|-------|
@@ -110,7 +113,7 @@ Every run produces one prep sheet with the same sections in the same order. The 
 |--------|----------------|-------|
 | `prep_sheet` | Inline in the reply | One sheet, seven sections, in the order set out in The Prep Sheet Sections below |
 | `top_pain` | Section 2 of the prep sheet (demo: Section 1) | One line, tagged. Discovery: the highest-ranked hypothesis. Demo: the first confirmed pain. Reads "none confirmed" when discovery has not confirmed one |
-| `question_bank` | Section 3 of the prep sheet (demo: Section 4) | Discovery: the top three questions per phase, each with its listen-for phrase. Demo: four questions per module |
+| `question_bank` | Section 3 of the prep sheet (demo: Section 4) | Discovery: the top three questions for each of Situation, Problem and Implication, and the two Need-Payoff questions, each with its listen-for phrase. Demo: four questions per module |
 | `attendees` | Header of the prep sheet | Each attendee's name or `[Unknown]`, title, and buying role as the record names it |
 | `proof_point` | Section 5 of the prep sheet | One proof point per attendee persona, with its Status shown. An Illustrative row is marked "do not cite" |
 | `next_action` | Last line of the prep sheet | The owner and the date. Wrap-Up reads this line |
@@ -430,9 +433,9 @@ Branch by meeting type.
 - **Situation (4 to 6 questions):** process, tools, team, volume. Listen for: manual work against automated work, team size, gaps in the tools.
 - **Problem (4 to 6 questions):** the cost of the current state, one per pain, using the profile's Discovery question column as the anchor.
 - **Implication (3 to 4 questions):** what they have tried, past evaluations, why earlier attempts stopped.
-- **Need-Payoff (2 to 3 questions):** value framing for the weaker hypotheses. A benchmark may appear in the question only with its source and date named.
+- **Need-Payoff (two questions):** value framing for the weaker hypotheses. A benchmark may appear in the question only with its source and date named.
 
-Each question carries its listen-for phrase from the What to Listen For column. A phrase the buyer has said in the record is quoted as theirs. A phrase from the profile is labelled as the profile's, because the buyer has not said it yet. Write each phase's range from the profile's questions first, then from the record and the hypotheses, in that phase's goal. The sheet shows the top three questions per phase. A phase with fewer than three questions shows all of them, so a Need-Payoff of two shows two.
+Each question carries its listen-for phrase from the What to Listen For column. A phrase the buyer has said in the record is quoted as theirs. A phrase from the profile is labelled as the profile's, because the buyer has not said it yet. Write each phase's range from the profile's questions first, then from the record and the hypotheses, in that phase's goal. Rank the questions in a phase by the hypothesis they test, strongest first, and keep the profile's order within a hypothesis. The sheet shows the top three questions for Situation, Problem and Implication, and both Need-Payoff questions. A phase with fewer questions than its count shows the ones it has.
 
 Apply the follow-up ladder rule from the Methodology. For a vague answer, ask for specifics with plain probes: "Walk me through that," "What happens next," "Describe the last time it happened."
 
@@ -442,7 +445,7 @@ Apply the follow-up ladder rule from the Methodology. For a vague answer, ask fo
 
 ### Step 5. Frame the Call
 
-**Discovery: qualification pre-fill.** For each element of the team's qualification framework, mark what is known (green), partly known (yellow) or unknown (red). Each yellow or red cell gets the question that fills it. Identified Pain needs at least one pain quantified, which is the stage 3 depth target. Metrics is green when the record holds a figure for the outcome the solution moves and the buyer has agreed it, yellow when that figure is recorded but not agreed, and red when no such figure is recorded, because account size such as a plot count describes the account and never scores the cell. Economic Buyer is green when the record names the person who signs at this deal's value, yellow when a buyer is named but the signer above that buyer's limit is not confirmed, and red when no buyer is named. Identified Pain is green when one pain is quantified, yellow when a pain is named but not quantified, and red when none is named. An incident count does not quantify a pain: a pain is quantified only when its cost is stated in plots, hours or dollars, as the profile's Stage 2 gate requires, so one double sale in 24 months leaves Identified Pain yellow.
+**Discovery: qualification pre-fill.** For each element of the team's qualification framework, mark what is known (green), partly known (yellow) or unknown (red). Each yellow or red cell gets the question that fills it. Identified Pain needs at least one pain quantified, which is the stage 3 depth target. Metrics is green when the record holds a figure for the outcome the solution moves and the buyer has agreed it, yellow when that figure is recorded but not agreed, and red when no such figure is recorded, because account size such as a plot count describes the account and never scores the cell. Economic Buyer is green when the record names the person who signs at this deal's value, yellow when a buyer is named but the signer above that buyer's limit is not confirmed, and red when no buyer is named. Identified Pain is green when one pain is quantified, yellow when a pain is named but not quantified, and red when none is named. An incident count does not quantify a pain: a pain is quantified only when its cost is stated in plots, hours or dollars, as the profile's Stage 2 gate requires. Champion is green on a Strong result from the shared champion tests, yellow on Developing and red on None. Decision Criteria, Decision Process, Paper Process and Competition have no cell rule of their own, so they take the default: known green, partial yellow, unknown red.
 
 **Demo: pain-to-workflow map and structure.** Map each pain to a workflow, the differentiating feature, and the proof that makes it land, with its Status. Plan the demo as: the opening (three to five minutes), a problem slide built on the three-beat arc, a block for each pain in order of importance, and a recap and close. Check the five demo habits before the sheet is handed back.
 
@@ -477,7 +480,7 @@ A discovery flow for a 30-minute call (illustrative) looks like this:
    - **Benchmark:** context only, with its source and date named. Never "our customer got this."
    - **Illustrative:** never cited to a prospect. On the sheet, the row is marked "do not cite".
 
-   Every attendee gets one proof line, including an attendee whose persona is not yet known. That line says the persona is unknown and that no proof is set until it is confirmed. If the profile has no usable proof for a persona, the sheet says so and gives the research target in its place. The research target is the profile figure whose wording matches the persona's Hook Focus, with its research source named. Persona 1's target is the 50 to 100 plot benchmark, and Persona 3's is the 20 second target. An Illustrative row does not make a persona usable: it is shown marked "do not cite", and the research target is given beside it. The reason: a rep who says "we have no proof for this yet" is more credible than one who reaches for a row that does not exist.
+   Every attendee gets one proof line, including an attendee whose persona is not yet known. That line says the persona is unknown and that no proof is set until it is confirmed. If the profile has no usable proof for a persona, the sheet says so and gives the research target in its place. The research target is the profile figure whose wording matches the persona's Hook Focus, with its research source named. If that figure has no dated source, state it as a target labelled no dated source, and do not present it as a benchmark. An Illustrative row does not make a persona usable: it is shown marked "do not cite", and the research target is given beside it. The reason: a rep who says "we have no proof for this yet" is more credible than one who reaches for a row that does not exist.
 2. **Script two or three Feel-Felt-Found stories:** Feel (validate their concern), Felt (a similar customer felt the same), Found (the outcome, with a metric whose Status allows its use). If no story can carry a Verified or Benchmark result, the Found line uses the Benchmark and says so.
 3. **Prepare typed resistance** (demo): Reactance, Skepticism or Inertia, each with its response from the Methodology.
 4. **Prepare the redirect:** if a buyer asks about something the product does not lead with, acknowledge it and return to the pain they ranked first.
@@ -507,7 +510,7 @@ A discovery flow for a 30-minute call (illustrative) looks like this:
 
 ### Step 10. Assemble the Prep Sheet
 
-Lay out the sheet in the section order from The Prep Sheet Sections. Fill the header with the attendees and `report_path: none (inline)`. End the sheet with `next_action`, which names an owner and a date. The date follows the shared contract's next-action rule. When the next action happens on a call whose date is on record, that call date is used and named as its source, as long as it falls before the five-business-day date. When the Economic Buyer cell is yellow, the next action asks the buyer for the signer above the named buyer, and for the next meeting's date, on the call. Hand the sheet back in the reply. Write a file only if the user asks, using the file option. Run the Quality Bar before handing back.
+Lay out the sheet in the section order from The Prep Sheet Sections. Fill the header with the attendees and `report_path: none (inline)`. End the sheet with `next_action`, which names an owner and a date. The date follows the shared contract's next-action rule. When the next action happens on a call whose date is on record, that call date is used and named as its source, as long as it falls before the five-business-day date. When the Economic Buyer cell is yellow, the next action asks the buyer for the signer above the named buyer, and for the next meeting's date, on the call. Write the signer's title only as the record names it. If the record names no signer, the next action asks for the signer's name, and the title stays `[Unknown]`. Hand the sheet back in the reply. Write a file only if the user asks, using the file option. Run the Quality Bar before handing back.
 
 **Produces:** `prep_sheet` (inline), `top_pain`, `question_bank`, `attendees`, `proof_point`, `next_action` and `report_path`.
 
@@ -633,10 +636,10 @@ account: Brackhaven Memorial Gardens (ACTIVE, Stage 2 Discovery at the time of t
 run_date: 2026-05-11 (illustrative, the day before the Stage 2 call)
 prep_sheet: inline, discovery, seven sections
 top_pain: plot records on paper, with a double sale [CRM] (illustrative)
-question_bank: Situation 3, Problem 3, Implication 3, Need-Payoff 2 (top three per phase)
+question_bank: Situation 3, Problem 3, Implication 3 (top three each), Need-Payoff 2
 attendees: Ruth Ellery, General Manager, buyer. Walt Okonkwo, Operations Director, influencer
 proof_point: Holloway Hills, Status Illustrative, not cited to the prospect
-next_action: Owen Pruitt asks Ruth Ellery for the approval body's chair and the meeting date on this call. Date: 2026-05-12 (illustrative), the call date on record, which is earlier than the five-business-day date of 2026-05-18. The meeting date is [Unknown] until agreed
+next_action: Owen Pruitt asks Ruth Ellery who signs above her, and for the next meeting date, on this call. Date: 2026-05-12 (illustrative), the call date on record, which is earlier than the five-business-day date of 2026-05-18. The meeting date is [Unknown] until agreed
 report_path: none (inline)
 ```
 
@@ -670,7 +673,7 @@ report_path: none (inline)
 - **Situation:** "Where does the plot map live today, and when was it last updated?" "Who looks up a plot when a family calls, and how long does that take?" "Which system runs the funeral side, and who maintains it?"
 - **Problem:** "What does a 20-minute lookup cost you, versus 20 seconds?" Listen for: "Give me a day and I'll find it," a profile phrase not yet heard. "When a family asks about a plot, where do you look first?"
 - **Implication:** "What happened the last time a plot record was wrong?" "What did the last tool you tried do to the office?"
-- **Need-Payoff:** "Independent cemeteries capture pre-need on 20% to 35% of at-need volume. Is pre-need something you sell?" (Benchmark, deathcare research, 2026-03-27 to 2026-04-01.)
+- **Need-Payoff:** "Independent cemeteries capture pre-need on 20% to 35% of at-need volume. Is pre-need something you sell?" (Benchmark, deathcare research, 2026-03-27 to 2026-04-01.) "If pre-need were sold, what would it be worth to the front counter in a year?"
 
 **Step 5.** Qualification pre-fill:
 
@@ -698,7 +701,7 @@ account: Sable Fork Cemetery (INBOUND)
 run_date: 2026-10-19
 prep_sheet: inline, discovery, seven sections, demo held
 top_pain: none confirmed. Working hypothesis: plot lookups on a spreadsheet, [Inferred]
-question_bank: Situation 3, Problem 3, Implication 3 (top three per phase)
+question_bank: Situation 3, Problem 3, Implication 3, Need-Payoff 2
 attendees: Arlen Biggs, General Manager, buyer (signs under $25K). Form filler: [Unknown]
 proof_point: Arlen Biggs, Fennick Gardens, Status Illustrative, do not cite. The prospect hears the Benchmark line only. Form filler, no proof until the persona is confirmed
 next_action: the rep on the Thursday call confirms the form filler and runs discovery, not the demo. Owner: that rep. Date: 2026-10-22, the discovery call booked on 2026-10-19 `[CRM]`, which is earlier than the five-business-day date of 2026-10-26
@@ -736,7 +739,7 @@ Because the record is shallow, the sheet names the missing items and returns the
 
 - "How do pre-need leads move from the intake form to a counselor today?"
 - "How do you check, today, which plots are sold?"
-- Need-Payoff: "Most operators take 24 hours or more to call back a pre-need lead. Is that your experience?" The 24-hour figure is a research target, not a customer result, so the question states it as the research's view.
+- Need-Payoff: "Most operators take 24 hours or more to call back a pre-need lead. Is that your experience?" The 24-hour figure is a research target, not a customer result, so the question states it as the research's view. "If a pre-need lead waited a day, what would that cost the counselor's sale?"
 
 **Missing items, named on the sheet:**
 
@@ -761,7 +764,7 @@ account: Greyfield Memorial Park (ACTIVE, Stage 2 Discovery, AE owner Owen Pruit
 run_date: 2026-11-16
 prep_sheet: not produced as a demo plan. Discovery-first recommendation with two options
 top_pain: none confirmed (0 of 2 needed for a demo)
-question_bank: Problem 2 questions and Need-Payoff 1 question, from Step 4
+question_bank: Problem 2 questions and Need-Payoff 2 questions, from Step 4
 attendees: General Manager, name [Unknown], buyer. Pre-Need Sales Manager, name [Unknown], buying role [Unknown]
 proof_point: General Manager, Holloway Hills, Status Illustrative, do not cite, with the 50 to 100 plot Benchmark as the research target. Pre-need manager, no proof in the profile yet, so the research target stands in
 next_action: the AE confirms discovery or demo with the GM and asks for the pre-need manager's name. Owner: the AE. Date: 2026-11-19, the working day before the Friday meeting on record (2026-11-20), a date the skill's own schedule sets for the confirmation, which is earlier than the five-business-day date of 2026-11-23
@@ -843,7 +846,7 @@ report_path: none (inline)
 
 ### "Discovery was shallow: not enough confirmed pains for a demo"
 - **Likely cause:** Fewer than two pains are confirmed, or none is quantified.
-- **Response:** Name the missing items on the sheet, as Example 3 shows. Send the rep back to the question bank in Step 4. Offer the two options: discovery prep for the meeting, or five to ten minutes of discovery questions in the demo opening. Do not build a demo plan on the shallow record.
+- **Response:** Name the missing items on the sheet, one line each, with the count held against the count needed. Send the rep back to the question bank in Step 4. Offer the two options: discovery prep for the meeting, or five to ten minutes of discovery questions in the demo opening. Do not build a demo plan on the shallow record.
 
 ### "The meeting type is unclear"
 - **Likely cause:** The request could mean either type.
@@ -920,6 +923,14 @@ This skill also reads the kit's hand-off block back as optional context: `case_s
 
 ## Changelog
 
+
+### 2.1.7 (2026-10-26)
+- Need-Payoff writes two questions in every discovery prep, and the sheet shows the top three questions of the other phases. The earlier range of two or three left the count open.
+- A question is ranked by the hypothesis it tests, strongest first, so the top three are fixed.
+- Elements without a cell rule take the grid default. Champion maps Strong to green, Developing to yellow and None to red.
+- A research target whose figure has no dated source is labelled as a target, not as a benchmark.
+- The next action asks for the signer above the buyer as the record names that role, and it does not name a role the record does not hold.
+- The rule sentences no longer quote a worked record. The Example pointers are reworded, and the Examples follow the Need-Payoff count.
 
 ### 2.1.6 (2026-10-26)
 - The upstream Account Snapshot fields in the first example quote that skill's pain hypotheses and its three-email sequence, so the two files read the same values.

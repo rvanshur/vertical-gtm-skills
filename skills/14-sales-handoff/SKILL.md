@@ -1,6 +1,6 @@
 ---
 name: gtm-sales-handoff
-version: 2.1.6
+version: 2.1.7
 description: "Post-sale implementation readiness check: scores six dimensions, sets the three dates (kickoff, go-live and Full Adoption Date), names risks with mitigations and quick wins, and writes the handoff the implementation lead plans from"
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: [gtm-meddpicc-analysis]
 mutating: read-write
 change_log:
+  - version: 2.1.7
+    date: 2026-10-26
+    summary: "Round 7 scrub. Worked arithmetic, worked scores and quoted record phrases are removed from the rules, and each rule states the general test in their place: the Technical cap under constrained IT, the stated-volume partial baseline, the Change Management skeptic, the ranking keys, the composite rounding, the preview and handoff distinction, and a format the team has not yet seen. The example's next action takes the shared rule's date when the record holds no agreed date, and the try-it record states facts only."
   - version: 2.1.6
     date: 2026-10-26
     summary: "The Technical score follows the constrained-IT rule wherever one known source system has no IT owner named, and the Orange rule governs the dates in the example that sits in that band, with no date set and conditional dates anchored on the readiness check date. The IT owner date in the conditions matches the next action. The adoption risk likelihood is High where a record shows the skepticism. The chair decision wording follows the family's vote, and the ready-to-sign statement is labelled a claim, since no dated record holds it. The YAML summary quote is fixed. Call-sourced facts in the examples now carry their call dates, and a call with no date on record is tagged date Unknown."
@@ -70,7 +73,7 @@ You refuse to do three things. You do not score a dimension higher than the evid
 
 If a required input is missing, ask. Do not guess.
 
-To try the skill without your own data, use `examples/try-it.md`, which holds the inputs for Example 1.
+To try the skill without your own data, use `examples/try-it.md`, which holds one complete set of inputs for a worked run.
 
 | Input | Required | Notes |
 |---|---|---|
@@ -87,7 +90,7 @@ To try the skill without your own data, use `examples/try-it.md`, which holds th
 
 ## Output Contract
 
-Every run returns the readiness report in the chat, in the nine sections of Step 7. The readiness card is the seven-section extract of that report (sections 1, 2, 3, 4, 7, 8 and 9, which leaves out the workflow and technical summaries). The card is written only when the user asks for the file, and the report stays inline otherwise.
+Every run returns the readiness report in the chat, in the nine sections of Step 7. The readiness card is the seven-section extract of that report (sections 1, 2, 3, 4, 7, 8 and 9, which leaves out the workflow and technical summaries). The card is written only when the user asks for the file, and the report stays inline otherwise. Before the signature, the run returns the same nine sections with a Preview label at the top, and its hand-off block is marked Preview. A handoff is a run after the signature, and the implementation lead acts only on that. Until then the three dates stay proposed.
 
 | Output | Where It Lives | Notes |
 |---|---|---|
@@ -97,7 +100,7 @@ Every run returns the readiness report in the chat, in the nine sections of Step
 | `three_dates` | Inline, the three-date plan | Kickoff, go-live and Full Adoption Date, each with its arithmetic shown. Before signature, all three are labelled proposed |
 | `risks` | Inline, the risk section | The top three, each with severity, likelihood and a specific mitigation. Severity and likelihood follow the rules under Risk Categories |
 | `quick_wins` | Inline, the quick win section | A week one item, a month one item and the 90-day criteria |
-| `next_action` | Inline, last line of the report | One step, with its owner and the date the shared contract's next-action rule gives (five business days after the run date, or an earlier date the records or the skill's own schedule set for that step, named with its source). It names the action the owner takes, with a verb such as asks, names or confirms, and never the result |
+| `next_action` | Inline, last line of the report | One step, with its owner and the date the shared contract's next-action rule gives (five business days after the run date, or an earlier date the records or the skill's own schedule set for that step, named with its source). It names the action the owner takes, as a verb phrase, and never the result the action is meant to produce |
 | `report_path` | Set only when a file was written | `none (inline)` when the report stayed in the chat |
 | File, on request | `<account>_gtm-sales-handoff_<date>.md`, beside the user's account notes | Written only when the user asks, in Markdown, with the readiness card. The ask is the approval step |
 
@@ -233,7 +236,7 @@ Your readiness framework. The dimensions and scoring rules below give a structur
 - **2** = Source system unclear or multi-system, IT outsourced or constrained, significant data concerns
 - **1** = Source system unknown, no IT engagement, never done integration, major data issues
 
-With one known source system and no IT owner named, IT counts as constrained, so Technical scores 2 even when the source is clear.
+While no IT owner is named, IT counts as constrained, and a constrained IT caps Technical at 2, however clear the source system is.
 
 #### Dimension 4: Data Readiness (Weight: 15%)
 - **5** = All critical data elements available, clean, customer already exports elsewhere
@@ -256,7 +259,9 @@ With one known source system and no IT owner named, IT counts as constrained, so
 - **2** = Significant inertia, multiple skeptics during discovery
 - **1** = High resistance, current team sees product as threat, no change champion
 
-**Composite score:** Weighted sum ÷ 5 × 100 = a score from 0 to 100, rounded to a whole number. Each weight is written as a decimal: 20% is 0.20, 15% is 0.15 and 10% is 0.10. The six decimal weights total 1.00, so the composite stays between 0 and 100. The whole-number weights must never be used as written, because 20, 15 and 10 give a total 100 times too large. Under the Unknown Rule below, the weighted sum runs over the scored dimensions only, and the weights are re-scaled to them: composite = (sum of decimal weight × score, over scored dimensions) ÷ (sum of decimal weights, over scored dimensions) ÷ 5 × 100.
+A named skeptic among the operations lead or the power users holds Change Management at 3, even when leadership is supportive.
+
+**Composite score:** Weighted sum ÷ 5 × 100 = a score from 0 to 100. Round a fractional result half up to a whole number before the level is read, and a whole number on a level's edge takes the level whose range lists it. Each weight is written as a decimal: 20% is 0.20, 15% is 0.15 and 10% is 0.10. The six decimal weights total 1.00, so the composite stays between 0 and 100. The whole-number weights must never be used as written, because 20, 15 and 10 give a total 100 times too large. Under the Unknown Rule below, the weighted sum runs over the scored dimensions only, and the weights are re-scaled to them: composite = (sum of decimal weight × score, over scored dimensions) ÷ (sum of decimal weights, over scored dimensions) ÷ 5 × 100.
 
 **The Unknown Rule.** A dimension with no evidence is INSUFFICIENT. It carries no value, and it is left out of the composite and the count. The composite is written with its scored count, `scored n of 6`. With five dimensions scored, the composite is given. With fewer than five, there is no composite, and the report lists the evidence that would score each missing dimension. A dimension with some evidence is scored from that evidence, even if the evidence shows a gap. The examples score every dimension, so their composites read `scored 6 of 6`.
 
@@ -303,7 +308,7 @@ Integration advantages to note: the product takes any standard output, most cust
 | **Vendor transition** | Existing provider contract still active, overlapping services | Map contract end dates. Plan a parallel-run period. Ensure no service gap |
 | **Stakeholder** | No executive sponsor named, no IT lead, or the champion has gone quiet | Name the sponsor and the IT lead before kickoff. Put the sponsor's written confirmation in the kickoff conditions |
 
-**Ranking the Top Three.** Rank risks by severity, HIGH first. Within a severity, a risk on the lowest-scoring dimension comes first, and a tie goes to the row order of this table.
+**Ranking the Top Three.** Rank risks by severity, HIGH first. Within a severity, a risk on the lower-scoring dimension comes first. Each risk maps to the dimension it belongs to: Technical to Technical, Data to Data, Stakeholder to Stakeholder, Resource to Resource, and Adoption to Change Management. A risk that maps to no scored dimension (Expectation, Vendor transition) ranks after the dimensioned risks of the same severity. Next, a risk with a High likelihood comes before one with a Medium likelihood. A tie after these keys goes to the row order of the Risk Categories table.
 
 **Severity and Likelihood.** Severity is HIGH when the risk leaves no named owner for IT or for the sponsor, or when it is a reason kickoff is held. Severity is MEDIUM when the risk can move a date, but an owner is named and kickoff is not held. Severity is LOW when it moves no date. Likelihood is High when a record shows the risk is already present, Medium when a record shows a signal of it, and Low when no record points at it. Each risk states both.
 
@@ -313,7 +318,7 @@ The signature is the handoff trigger, not one of the three dates. The three date
 
 **Date 1: Kickoff.** The day the implementation lead starts. Set by the readiness level:
 - **Green (80 to 100):** kickoff in the week of the handoff.
-- **Yellow (60 to 79):** kickoff two to four weeks after the readiness check. The check date is the anchor, not the signature. A check on 2026-11-02 with a three-week buffer gives 2026-11-02 plus 21 days. Without a dated reason for another point in the window, use three weeks, as the worked example does. Under Yellow a critical dimension does not hold kickoff by itself. The report lists the conditions that must be met first, and the kickoff date stays proposed until they are.
+- **Yellow (60 to 79):** kickoff two to four weeks after the readiness check. The check date is the anchor, not the signature. Count the buffer forward from the check date, so three weeks is 21 days after it. Without a dated reason for another point in the window, use three weeks. Under Yellow a critical dimension does not hold kickoff by itself. The report lists the conditions that must be met first, and the kickoff date stays proposed until they are.
 - **Orange (40 to 59) or Red (0 to 39):** no kickoff date is set until every critical dimension reaches 3. Any date shown is marked conditional. A conditional date uses the Yellow rule's three-week buffer from the check date, plus the IT lead time when no IT owner is named, and go-live and the Full Adoption Date follow it as usual.
 - **IT lead time:** the profile's IT lead time is added to the kickoff date when no IT owner is yet named. It comes on top of the buffer, so kickoff can fall more than four weeks after the check. It is read on the check date: an IT owner named by then means no lead time is added.
 
@@ -321,7 +326,7 @@ The signature is the handoff trigger, not one of the three dates. The three date
 
 **Date 3: Full Adoption Date.** Kickoff plus the default of two months. The two months are this skill's default, and the profile's Full Adoption months may override them. Then each adjustment from the Implementation Profile is applied and shown as its own line:
 - **Source systems:** each system beyond the first adds the profile's value in weeks.
-- **Export format familiar to the team:** a familiar format subtracts the profile's value in weeks. A new format subtracts nothing.
+- **Export format familiar to the team:** a familiar format subtracts the profile's value in weeks. A format the team has not yet seen in a project counts as new, and a new format subtracts nothing.
 - **Phased rollout:** a subsidiary or business unit on a different system gets its own three-date plan, and its Full Adoption Date is set separately.
 - **Weekend roll:** if the result falls on a Saturday or Sunday, it moves to the next Monday, and the line says so.
 
@@ -431,7 +436,7 @@ Analyze how the customer handles each process today. Pull from the discovery not
 - Current quality or compliance rate, if known
 - Losses attributable to process failures, if disclosed
 
-**Produces:** the workflow summary and the baseline list. A baseline that was never measured is written as `[Unknown]`, not as a zero. A volume the customer stated on a call, tagged with its date, is a partial baseline: it supports a Workflow score of 4, and a score of 5 needs measured baselines.
+**Produces:** the workflow summary and the baseline list. A baseline that was never measured is written as `[Unknown]`, not as a zero. A volume the customer stated on a call is a partial baseline when the call's date is on record. A volume whose call date is Unknown places no fact in time and is not a baseline. The Workflow rubric's baseline lines then decide the score: a partial baseline meets "some baselines available", and a 5 needs measured baselines. A label such as (illustrative) marks a figure as invented for an example, and it does not change whether a stated volume counts.
 
 ### Step 4: Assess Technical Readiness
 
@@ -567,7 +572,7 @@ All three examples use the PlotIQ flagship, Brackhaven Memorial Gardens, and the
 
 **Input:** "Run the readiness check for Brackhaven Memorial Gardens before they sign."
 
-**Process:** Ruth Ellery is the champion. Four of seven shared champion tests are met on the 2026-10-27 call, each tagged `[Call, 2026-10-27]` (illustrative): she explains the internal politics, asks how to help, commits to next steps with dates, and creates urgency inside her company. The family board chair is a role with no name on file (`[Unknown]`) who has joined one call (`[CRM]`). No IT contact is on file (`[Unknown]`). The source is Oldgate Ledger Pro (`[CRM]`), and its ledger export is not yet scoped (`[Unknown]`). Plot records are on paper (`[CRM]`). Walt Okonkwo, Operations Director, is skeptical of tablets (`[Call, 2026-09-21]`). Oldgate's contract renews in March 2027 (`[CRM]`). On the 2026-10-27 call, Ruth agreed that Owen would ask her to name the board chair and confirm the sponsor role in writing by 2026-11-09 (`[Call, 2026-10-27]`, illustrative), which is also five business days after the run date of 2026-11-02.
+**Process:** Ruth Ellery is the champion. Two of seven shared champion tests are visible on the 2026-10-27 call, each tagged `[Call, 2026-10-27]` (illustrative): she explains the internal politics and asks how to help. The family board chair is a role with no name on file (`[Unknown]`) who has joined one call (`[CRM]`). No IT contact is on file (`[Unknown]`). The source is Oldgate Ledger Pro (`[CRM]`), and its ledger export is not yet scoped (`[Unknown]`). Plot records are on paper (`[CRM]`). Walt Okonkwo, Operations Director, is skeptical of tablets (`[Call, 2026-09-21]`). Oldgate's contract renews in March 2027 (`[CRM]`). On the 2026-10-27 call, the board chair's name and a written sponsor confirmation were raised with Ruth (`[Call, 2026-10-27]`, illustrative), and her answer is not recorded. No earlier date is on record, so the next action takes the date the shared rule gives: five business days after the run date of 2026-11-02.
 
 **Scoring:**
 
@@ -832,6 +837,12 @@ The Business Case & ROI Kit (a paid Guild Pro kit) reads this skill's hand-off b
 ---
 
 ## Changelog
+
+### 2.1.7 (2026-10-26)
+- Round 7 scrub. The rules no longer carry a worked date, a worked score or a quoted record phrase. The Technical cap under constrained IT, the Workflow partial baseline, the Change Management skeptic, the ranking keys and the composite rounding each state the general test.
+- The Preview and handoff distinction is written into the Output Contract: a run before the signature is a Preview, and only a run after the signature is a handoff.
+- A format the team has not yet seen counts as new in the Full Adoption Date adjustments.
+- The example's next action takes the shared rule's date when the record holds no agreed date. The try-it record states facts only, and the to-try pointer no longer names an example.
 
 ### 2.1.6 (2026-10-26)
 - The Technical score follows the constrained-IT rule where one known source system has no IT owner named. The Orange rule governs the dates in the example that sits in that band: no date is set, and conditional dates are anchored on the readiness check date.

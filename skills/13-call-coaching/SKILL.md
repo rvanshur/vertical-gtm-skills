@@ -1,7 +1,7 @@
 ---
 name: gtm-call-coaching
 description: "Scores a discovery or demo call against methodology rubrics and returns a coaching report with evidence-graded coaching points, for the rep and the sales manager who reads it"
-version: 2.1.6
+version: 2.1.7
 category: Sales-Methodology
 author: Ryan Vanshur
 license: MIT
@@ -11,6 +11,9 @@ requires:
   skills: ["gtm-meeting-prep", "gtm-deal-pulse"]
 mutating: read-write
 change_log:
+  - version: 2.1.7
+    date: 2026-10-26
+    summary: "Round 7 scrub. Worked counts and quoted phrases are removed from the rules, and the rules state the general test in their place: the focus-area tie-break, the champion test about the buyer's process, and the minute figure in Step 7 and the Epistemic Rules. The Next Steps rubric says what the rep's ask decides between 2 and 3, so one call gets one score. The competitor-intelligence champion test is applied to a named incumbent that the contact describes. A next action takes the shared rule's date when the record holds no agreed date, and the try-it record states facts only."
   - version: 2.1.6
     date: 2026-10-26
     summary: "Consistency pass against the 2.1.5 audit. The Sable Fork example is graded on the discovery call that the BDR booked for the Thursday after the run date, and it is re-dated to match. The demo example is dated to the Stage 3 demo that the record places before the later stages, and its scores are re-checked against the rubric rows, with the band and the total recomputed. The Pre-Call Preparation and Pain Alignment rules are applied as written in both examples."
@@ -75,7 +78,7 @@ Everything company-specific (the pain list, the proof points, the competitive la
 
 If a required input is missing, ask. Do not guess.
 
-To try the skill without your own data, use `examples/try-it.md`, which holds the inputs for Example 1.
+To try the skill without your own data, use `examples/try-it.md`, which holds one complete set of inputs for a worked discovery call.
 
 | Input | Required | Notes |
 |-------|----------|-------|
@@ -474,9 +477,11 @@ The Winning Zone is the part of the call where each capability is tied to a pain
 |-------|----------|
 | 5 | Leadership-based recommendation. Specific actions with owners and dates. Identified next meeting attendees. |
 | 4 | Clear next step with date. Some ownership established. |
-| 3 | Vague ("I'll send info" or "Let's reconnect" without specifics). |
-| 2 | Prospect drove next steps. Rep was passive. |
+| 3 | Vague. The call ends with a next step that has no date or no owner ("I'll send info", "Let's reconnect", or "I'll check" with no date). Also 3 when the rep asked for a date, an owner or attendees and got none. |
+| 2 | Prospect drove next steps. The rep asked for no date, owner or attendees before the call ended, and the prospect set the step or let it drop. |
 | 1 | No next step established. Call ended without forward motion. |
+
+**The rep's ask decides between 2 and 3.** A rep who asked for a date, an owner or attendees, and got none, scores 3. A rep who asked for none of them, and let the prospect set or drop the step, scores 2.
 
 A date that the rep sets by email after the call is not on the call. It counts in the Next Action line of the hand-off, and this score reads only what the call shows.
 
@@ -606,7 +611,7 @@ For each MEDDIC element, assess what was uncovered on this call:
 | Identified Pain | Specific, named, quantified pain? | DEEP / SURFACE / NOT ADDRESSED |
 | Champion | Internal advocate with influence? | STRONG / DEVELOPING / NONE |
 
-**Champion status** is graded with the shared champion tests in The Shared Contract. Count only the tests met on this call, each with its evidence and tag. A contact who was not in the room cannot meet the tests that need the room, and the report says so. A statement about the buyer's process counts as "explains the internal politics" only when it says who decides or how the decision moves. "The board takes these things up" names no one, so it does not count.
+**Champion status** is graded with the shared champion tests in The Shared Contract. Count only the tests met on this call, each with its evidence and tag. A contact who was not in the room cannot meet the tests that need the room, and the report says so. A statement about the buyer's process counts as "explains the internal politics" only when it names who decides or how the decision moves. A statement that names no one does not count. The test "shares competitor intelligence" is met when the contact names a competitor or incumbent and tells the rep something the rep did not already hold from the CRM, such as how it was used, what it cost or why it was dropped.
 
 **Produces:** the six-element coverage grid and the champion status (Strong, Developing or None) with the tests met on this call.
 
@@ -678,7 +683,7 @@ Mark each key moment with one of seven types. Capture the fields the type requir
 
 ### Step 7: Demo Checks (demo calls only)
 
-1. **Pacing by section.** Estimate the minutes spent in each of the five demo elements, and the minutes in off-topic time. Set each against its starting default, or the team's default from the profile. Every minute figure carries its n against the call length (for example, 41 of 60 minutes).
+1. **Pacing by section.** Estimate the minutes spent in each of the five demo elements, and the minutes in off-topic time. Set each against its starting default, or the team's default from the profile. Every minute figure carries its n against the call length, written as "N of L minutes" with the share beside it.
 2. **Per-attendee block.** One block for each person in the room, using the fields under Methodology.
 3. **Technical checklist.** The five lines, each Yes, No or Unknown.
 4. **Return on investment.** Record whether the call ran an ROI section and with whose figures. If the call gave no inputs, say so. Do not fill the formulas with defaults.
@@ -693,7 +698,7 @@ Mark each key moment with one of seven types. Capture the fields the type requir
 
 **Deal Health Impact:** Before and after this call. The key risk. Buying signals to advance. Where the call moves the stage gate in the profile's Qualification Stage Gates, and where it does not.
 
-**Focus Area for Next Call:** One skill only. Prep steps, what to practice, success criteria. Five things at once do not change a habit. The practice exercise covers every cost the focus skill's evidence names, in one exercise, and the focus-area line names each of them. When categories tie for the lowest score, the focus area is the one that gates the next stage in the profile's Qualification Stage Gates, as Priority Ladder does for the Stage 2 to 3 gate, because that gate asks for a quantified problem, which is the Priority Ladder's quantify step.
+**Focus Area for Next Call:** One skill only. Prep steps, what to practice, success criteria. Five things at once do not change a habit. The practice exercise covers every cost the focus skill's evidence names, in one exercise, and the focus-area line names each of them. When categories tie for the lowest score, the focus area is the tied category that matches an exit criterion of the account's next stage in the profile's Qualification Stage Gates, where the next stage is the one after the account's current stage. The focus-area line quotes that exit criterion, so the choice can be checked against the profile.
 
 **Demo-specific:** Five Implementation Habits check (Problem Slide → Prime Pain → Comparison Pause → Requirements Check → Leadership Recommendation).
 
@@ -703,7 +708,7 @@ Mark each key moment with one of seven types. Capture the fields the type requir
 
 ## Epistemic Rules
 
-- **Every rate carries its n.** "3 of 7 shared tests met", "41 of 60 minutes", "5 of 6 unraised objection lines checked." A bare rate is not written.
+- **Every rate carries its n.** "3 of 7 shared tests met", "N of L minutes", "5 of 6 unraised objection lines checked." A bare rate is not written.
 - **One call is one observation.** A habit becomes a pattern only with five cases. This skill grades one call, so a habit seen on this call is reported as an observation with its count, never as a trend.
 - **Silence is not a no.** A question that was not asked is unknown for that dimension, not a negative. A talk share the source cannot measure is Unknown, not zero. The category it scores is INSUFFICIENT under the Unknown Rule, and it is left out of the total and the count.
 - **"No difference found" is a finding.** A call that scores the same as the rep's last call is reported as such.
@@ -843,7 +848,7 @@ focus_area: Priority Ladder to Level 3 on the cost of a plot lookup and of a dou
 coaching_points: Top 3 Strengths: 1 Strength, Strong (02:10). 2 Owen followed up, Strong (09:15). 3 Owen asked why the move stopped, Strong (17:05). Top 3 Improvements: 1 Quantify the double sale, Strong (14:20). 2 Benchmark for the tablet objection, Moderate (23:40). 3 The board question and the close, Strong, with a Weak part (28:30, no date in the transcript)
 key_moments: discovery breakthrough (14:20), buying signal captured (09:15), objection (23:40), competitive intelligence (17:05), missed opportunity (28:30), red flag MEDIUM (31:10)
 champion_status: Developing, two of seven shared tests met on this call (shares competitor intelligence, asks how to help)
-next_action: Owen Pruitt holds the second discovery session with Ruth Ellery on 2026-05-19, agreed by email, and quantifies the lookup cost and the double-sale cost in it. Owner: Owen Pruitt. Date: 2026-05-19 (illustrative)
+next_action: Owen Pruitt holds the second discovery session with Ruth Ellery on 2026-05-19, the five-business-day date from the run date, since the records hold no earlier date, and quantifies the lookup cost and the double-sale cost in it. Owner: Owen Pruitt. Date: 2026-05-19 (illustrative)
 report_path: none (inline)
 ```
 
@@ -1095,6 +1100,13 @@ The Business Case & ROI Kit (a paid Guild Pro kit) reads this skill's hand-off b
 ---
 
 ## Changelog
+
+### 2.1.7 (2026-10-26)
+- Round 7 scrub. The rules no longer carry a worked count, a quoted record phrase or a worked focus answer. Each states the general test: the focus-area tie-break names the exit criterion of the next stage, the champion test about the buyer's process names who decides, and the minute figure is written as "N of L minutes".
+- The Next Steps rubric says what the rep's ask decides between 2 and 3, so the same call gets the same score every time.
+- The competitor-intelligence champion test is applied to a named incumbent the contact describes, and the rule says what the rep already holds from the CRM does not count.
+- The example's next action takes the shared rule's date when the record holds no agreed date. The try-it record states facts only.
+- The to-try pointer names the try-it record's inputs without naming an example.
 
 ### 2.1.6 (2026-10-26)
 - The discovery example's Pre-Call Preparation scores the rep's use of a prep-sheet question, as the rubric's own rule says, and its total and band are recomputed from the rows.

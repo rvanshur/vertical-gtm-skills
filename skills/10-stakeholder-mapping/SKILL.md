@@ -1,6 +1,6 @@
 ---
 name: gtm-stakeholder-mapping
-version: 2.1.6
+version: 2.1.7
 description: "Maps the buying committee for one account: classifies every contact by buying role, marks each missing decision-maker as an UNKNOWN ghost node, scores multi-threading on seven weighted dimensions, and returns an engagement plan the AE or BDR reads before the next meeting."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: [gtm-meddpicc-analysis]
 mutating: read-write
 change_log:
+  - version: 2.1.7
+    date: 2026-10-26
+    summary: "Leak scrub and one ordering rule. The URGENT next action is the first condition that applies: an unaddressed blocker, then an economic buyer who is a ghost node (asked for by name before any introduction), then a named economic buyer not yet engaged, then a champion at risk. The dangling example reference is reworded, the cast's ghost-node name in Hard Rule 1 becomes a role, and the rules settle the Blocker score against the Blocker role, the two tiers of ghost-node sorting, the threading shortcut, and the pre-need department."
   - version: 2.1.6
     date: 2026-10-26
     summary: "Consistency pass across the sales skills. The upstream MEDDPICC reference in the examples is the revised score for the same day, the pre-need walkthrough is described as a walkthrough and not a demo, the IT ownership fact is tagged Unknown, and the CFO budget approval is tagged to the CRM. No threading score, verdict or next action changes. Call-sourced facts in the examples now carry their call dates, and a call with no date on record is tagged date Unknown."
@@ -70,7 +73,7 @@ You refuse to name a person who has not been identified. You refuse to score a c
 
 What this skill needs before it starts. **If a required input is missing, ask. Do not guess.**
 
-To try the skill without your own data, use `examples/try-it.md`, which holds the inputs for Example 1.
+To try the skill without your own data, use `examples/try-it.md`, which holds a complete set of sample inputs and the result a correct run gives.
 
 | Input | Required | Notes |
 |-------|----------|-------|
@@ -106,6 +109,8 @@ Every run produces a **complete stakeholder map with the same eight sections**, 
 **This skill does not contain client-specific information. It points to it.**
 
 > **Load the client profile from [`profiles/client-profile.md`](../../profiles/client-profile.md) before starting.** That single file is shared by all 14 sales skills in this suite. Update it once and every skill inherits the change on its next run. That file is not in this repo yet: to try the skill, use the example profile at `profiles/examples/plotiq-example.md`, and to set up your own company, copy `profiles/client-profile-template.md` to `profiles/client-profile.md`.
+
+A company fact the report cites from the profile is tagged `[Notes]`, the team's own written record. An account fact the CRM holds is tagged `[CRM]`.
 
 Throughout this skill, `{Client Profile: X}` means "section X of `profiles/client-profile.md`". Sections this skill reads:
 
@@ -240,7 +245,7 @@ Rules for placing a non-buyer:
 - A non-buyer on file is classified as a non-buyer and is never given an Economic Buyer slot.
 - A named, engaged non-buyer counts toward Department Breadth. A named technical reviewer or systems administrator also counts toward Technical Evaluator.
 - A non-buyer the map cannot name becomes an UNKNOWN ghost node, with the role written out, when the record needs that person: a dated step that needs them, or an open question the team needs answered about them. A function known only in outline, with no dated step or open question, is named as a gap, not a ghost node.
-- The rule above governs non-buyers from the Non-Buyers table only. A position in the profile's Buyer Personas that the account needs, with no named contact, is a ghost node under Ghost Node Identification, whether or not the record also mentions that function in outline.
+- Sort a function by the table that names it: a Buyer Persona row is a ghost node whenever the account needs that person, and a Non-Buyers row is one only when a dated step or an open question needs them. The rule above governs non-buyers from the Non-Buyers table only. A position in the profile's Buyer Personas that the account needs, with no named contact, is a ghost node under Ghost Node Identification, whether or not the record also mentions that function in outline.
 - The profile's Buying Committee section may add rows for this market. Those rows carry the same hypothesis label.
 
 ### Influence Levels
@@ -294,7 +299,7 @@ Champion status is set from the shared champion tests in the Shared Contract, wh
 
 **The board chair counts as C-level.** The chair of a family-owned operator's board holds the top decision seat, so a board chair counts as a C-level contact for C-Level Access. A chair who is engaged but not named scores 1, and a named chair who is engaged scores 2. A general manager is not a C-level title, so a GM counts toward Department Breadth and not toward C-Level Access.
 
-**Skeptics count toward Blocker Mitigation.** A contact with a Skeptic position and a stated objection, with a strategy in place, scores 1 on Blocker Mitigation (Developing), because an objection not yet acted on is the early form of a block. The contact keeps the Influencer role.
+**Skeptics count toward Blocker Mitigation.** A contact with a Skeptic position and a stated objection, with a strategy in place, scores 1 on Blocker Mitigation (Developing), because an objection not yet acted on is the early form of a block. The contact keeps the Influencer role. This score does not make the contact a Blocker: the Blocker role needs a contact who opposes or delays the deal on the record, and a stated objection alone does not give it.
 
 **End users engaged** means at least one end user Actively Engaged under the Engagement Status table, with 2 or more logged interactions in the last 30 days.
 
@@ -304,7 +309,7 @@ Champion status is set from the shared champion tests in the Shared Contract, wh
 
 **The formula.** Score each dimension 0, 1 or 2. Multiply each score by its weight (2x or 1x) to get the weighted score. Add the seven weighted scores for a **raw total from 0 to 20**. Then:
 
-**threading_score = raw total ÷ (2 × the sum of the scored weights) × 10, rounded half up to a whole number from 0 to 10.** When all seven dimensions are scored, the sum of the weights is 10, so this is the raw total ÷ 2. The formula is the same either way, and only the scored rows enter it.
+**threading_score = raw total ÷ (2 × the sum of the scored weights) × 10, rounded half up to a whole number from 0 to 10.** When all seven dimensions are scored, the sum of the weights is 10, so this is the raw total ÷ 2. The raw total ÷ 2 shortcut gives the same number only with all seven scored, so with any dimension INSUFFICIENT use the full formula, in which only the scored rows enter.
 
 With all seven scored, a raw total of 13 gives 7, a raw total of 14 gives 7, and a raw total of 15 gives 8. Every output shows all seven rows, so the reader can recompute the total.
 
@@ -434,6 +439,7 @@ Pull ALL contacts associated with the account from the CRM, not a filtered subse
 | CIO, CTO, IT, Technology, Systems, Developer, ERP | Technology |
 | COO, Operations, Ops, Supply Chain, Logistics | Operations |
 | VP Sales, Sales Director, Sales Manager, Sales Ops | Sales |
+| Pre-Need, Counselor | Sales |
 | General Counsel, Legal, Compliance Officer | Legal & Compliance |
 | CEO, President, GM, General Manager, Owner | Executive |
 | HR, People, Talent | Human Resources |
@@ -570,7 +576,7 @@ Create a prioritized engagement plan:
 | MEDIUM | Strengthen existing relationship, expand into adjacent department | Next 30 days |
 | LOW | Informational contact, maintain awareness | Ongoing |
 
-Deadlines run from the run date. URGENT actions fall due on the date the shared contract's next-action rule gives (five business days after the run date, or an earlier date the records or the skill's own schedule set for that step, named with its source). HIGH actions fall due 14 days after the run date, and MEDIUM actions 30 days after it. Within one priority, a blocker comes first, then an economic buyer who is not engaged, then a champion at risk.
+Deadlines run from the run date. URGENT actions fall due on the date the shared contract's next-action rule gives (five business days after the run date, or an earlier date the records or the skill's own schedule set for that step, named with its source). HIGH actions fall due 14 days after the run date, and MEDIUM actions 30 days after it. Within one priority, the first action is the first of these conditions that applies. First, an unaddressed blocker. Second, an economic buyer who is a ghost node, where the first action asks for the buyer's name and any date that depends on it before any introduction. Third, an economic buyer who is named but not engaged, where the first action asks for an introduction. Fourth, a champion at risk. A ghost node counts as not engaged, because no named contact exists to engage.
 
 For each recommended action:
 - **Who:** Contact name or ghost node ("UNKNOWN, role")
@@ -627,7 +633,7 @@ The plays come from the profile's Buying Committee section (available plays). A 
 
 ## Hard Rules
 
-1. **Never name a person in a ghost node.** A guessed name is contamination, and it travels into the rep's forecast as a fact. The team is safer with "UNKNOWN, family board chair" and a next action to find the name.
+1. **Never name a person in a ghost node.** A guessed name is contamination, and it travels into the rep's forecast as a fact. The team is safer with "UNKNOWN, [role]" and a next action to find the name.
 2. **Never score a champion outside the shared champion tests.** A friendly contact is not a champion. The status feeds the threading score and the MEDDPICC review, so a loose status inflates both.
 3. **Never assign an Economic Buyer from title alone when no contact is on file.** Title is a hypothesis about budget. Without a named or confirmed role, the slot is a ghost node.
 4. **Never present a non-buyer stance as a fact.** Stances are hypotheses until a conversation confirms them, because a wrong stance sends the rep to solve a problem the buyer does not have.
@@ -831,6 +837,12 @@ report_path: none (inline)
 ---
 
 ## Changelog
+
+### 2.1.7 (2026-10-26)
+- Leak scrub. The Hard Rule that names the ghost node now uses the role in place of the example's role name, and the one dangling example reference is reworded so the input text stands alone.
+- Settled: the URGENT next action follows one ordering rule (an unaddressed blocker, then an economic buyer who is a ghost node and is asked for by name, then a named economic buyer not yet engaged, then a champion at risk), and a ghost node counts as not engaged.
+- Settled: the Blocker Mitigation score does not make a contact a Blocker, the Buyer Persona and Non-Buyers tables give the ghost-node rule for each function, the raw total divided by 2 shortcut holds only with all seven dimensions scored, and a pre-need counselor or manager is in the Sales department.
+- The example's scores, threading score, ghost nodes and next action do not change.
 
 ### 2.1.6 (2026-10-26)
 - Consistency pass across the sales skills. Example 1 cites the revised MEDDPICC score for its run date, and its Priscilla Dunmore interaction on 2026-10-08 is a pre-need walkthrough, not a demo. Her engagement status and End User Validation score are unchanged, because two interactions fall in the last 30 days.

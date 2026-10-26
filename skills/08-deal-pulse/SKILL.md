@@ -1,6 +1,6 @@
 ---
 name: gtm-deal-pulse
-version: 2.1.6
+version: 2.1.7
 description: "Scores one open deal across 16 signals in 4 pillars and produces a 0 to 100 health score, a risk level and named next actions. The AE and the sales manager read it, and the MEDDPICC, Call Coaching and Meeting Prep skills take its fields by name."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: ["gtm-call-coaching"]
 mutating: read-write
 change_log:
+  - version: 2.1.7
+    date: 2026-10-26
+    summary: "Round 7 scrub and fix. The rubric sentences for buyer-contact pain, decision influence, multi-threading and the technical action are written as general rules, with no worked record shape. A technical requirement recorded as unknown scores RED under its row, and INSUFFICIENT is used only when nothing is on record for the signal. Pillar bands are stated as read from the average, not from signal colours. The unrounded health figure has one decimal place. Each RED action has the AE who owns the deal as its owner, and a person asked is named separately. The Best Practices example and the pointer are reworded. No score, verdict, band or risk level changes."
   - version: 2.1.6
     date: 2026-10-26
     summary: "Consistency pass across the sales skills. The close-date moves, the demo date, the Evidence Confidence count, the champion test list and the quantified pain quote are now dated to their records. Example 2 states how a Strong champion status relates to its YELLOW Champion Strength signal, and it reads the pre-need walkthrough as a walkthrough, not a demo. No health score, verdict, band or risk level changes. Call-sourced facts in the examples now carry their call dates, and a call with no date on record is tagged date Unknown."
@@ -72,7 +75,7 @@ You score. You do not set the deal stage (MEDDPICC Analysis does that), and you 
 
 What this skill needs before it starts. **If a required input is missing, ask:** do not guess.
 
-To try the skill without your own data, use `examples/try-it.md`, which holds the inputs for Example 1.
+To try the skill without your own data, use `examples/try-it.md`, which holds a complete set of inputs for a worked run.
 
 | Input | Required | Notes |
 |-------|----------|-------|
@@ -245,7 +248,7 @@ The team's own names for these four, and the full methodology it runs, are in `{
 | YELLOW | Pain is stated generally but not quantified, or only acknowledged by the champion (not validated by economic buyer or multiple stakeholders). |
 | RED | No pain articulated, or pain is vague or aspirational with no business impact stated. We are projecting pain onto the buyer. |
 
-A champion who is also the buyer contact, the persona the profile names as the buyer, speaks for the buyer on this signal, so her own quantified account, with examples, scores GREEN. A champion who is not the buyer contact keeps this signal YELLOW until the buyer or a second stakeholder confirms the pain. A quantified account counts only when it was given within 14 days of the score, the same window Buyer Responsiveness uses.
+A champion who is also the buyer contact, the persona the profile names as the buyer, speaks for the buyer on this signal, so a quantified account from that champion counts as the buyer's own account. A champion who is not the buyer contact keeps this signal YELLOW until the buyer or a second stakeholder confirms the pain. A quantified account counts only when it was given within 14 days of the score, the same window Buyer Responsiveness uses.
 
 #### Signal 2: Compelling Reason to Change
 | Score | Criteria |
@@ -268,7 +271,7 @@ A champion who is also the buyer contact, the persona the profile names as the b
 | YELLOW | Friendly contact who supports us but has limited influence or has not demonstrated internal advocacy. |
 | RED | No champion identified, or primary contact is purely informational or transactional. |
 
-A contact has decision influence when she briefs the economic buyer before the decision and forwards the evidence the buyer decides on. Being liked, or offering one introduction, does not show influence.
+A contact has decision influence when the contact briefs the economic buyer before the decision and forwards the evidence that buyer decides on. A briefing counts only when the record shows it reached the economic buyer, so a briefing to an unnamed role with no record of who received it does not count. Being liked, or offering one introduction, does not show influence.
 
 ### Signal Scoring Rubrics (Why Us Pillar)
 
@@ -287,6 +290,8 @@ Feature requirements count as mapped and validated when the demo covered at leas
 | GREEN | IT or technical stakeholders engaged, system requirements identified, integration scoped, no blockers. |
 | YELLOW | Technical requirements partially understood. IT not yet fully involved. |
 | RED | Technical requirements unknown, IT not engaged, or known blockers exist. |
+
+A technical requirement recorded as unknown is scored RED under this row. INSUFFICIENT is used only when the record holds nothing at all on the signal.
 
 #### Signal 7: Competitive Landscape
 | Score | Criteria |
@@ -348,7 +353,7 @@ An economic buyer with no name cannot score GREEN on this signal, because GREEN 
 #### Signal 14: Multi-Threaded Engagement
 | Score | Criteria |
 |-------|----------|
-| GREEN | Three or more contacts engaged across different roles or departments. Relationships at multiple org levels. GREEN also needs the economic buyer engaged in at least two meetings, so three or more contacts with the economic buyer absent or in one meeting scores YELLOW. |
+| GREEN | Three or more contacts engaged across different roles or departments. Relationships at multiple org levels. GREEN also needs the economic buyer engaged in at least two meetings. Three or more contacts do not make GREEN when the economic buyer is absent or has attended one meeting, and that case scores YELLOW. |
 | YELLOW | Two contacts engaged, concentrated in one department or level. |
 | RED | Single-threaded: only one contact engaged. |
 
@@ -391,7 +396,7 @@ An unnamed economic buyer counts as engaged only when that person has attended a
 
 ### Recommended Actions Framework
 
-For each RED signal, recommend a specific action mapped to the team's methodology:
+For each RED signal, recommend a specific action mapped to the team's methodology. The AE who owns the deal owns every action, and any person asked for information is named separately:
 
 | Red Signal Area | Recommended Action |
 |----------------|-------------------|
@@ -400,7 +405,7 @@ For each RED signal, recommend a specific action mapped to the team's methodolog
 | Strategic Initiative Alignment | Use the rapport method. Ask the champion: "Where does this sit on your company's priority list this year?" Seek executive validation. |
 | Champion Strength | Use the rapport method to develop an internal advocate. Identify who has the most to gain. |
 | Solution Fit | Schedule a tailored demo against specific use cases. Use the Day in the Life walkthrough, not a feature walkthrough. |
-| Technical Readiness | Use the urgency method. Request a technical discovery with IT. Identify the key integration variables. If nobody owns IT, ask who should. The rep asks the champion, and the IT contact stays [Unknown] until she names one. |
+| Technical Readiness | Use the urgency method. Request a technical discovery with IT. Identify the key integration variables. If no one owns IT, the AE asks the champion who should, and the IT contact stays [Unknown] until a name is given. |
 | Competitive Landscape | Run the competitive displacement playbook. Lead with a proof point from the profile whose Status is Verified or Benchmark. |
 | Product Alignment | Build a requirements matrix and validate it feature by feature. Address gaps with a roadmap or a workaround. |
 | Budget Path | Engage the economic buyer directly. Build the ROI or financial justification. Ask: "Who signs the check?" |
@@ -586,13 +591,13 @@ Present the complete report in this order.
 Pillar averages: Why Anything [x], Why Us [x], Why Now [x], Execution [x]
 ```
 
-**Health line:** One line, in this form, with the sum shown:
+**Health line:** One line, in this form, with the sum shown. The unrounded figure is shown to one decimal place:
 
 ```
 Health = [sum] ÷ [n scored] = [unrounded], shown as [rounded] (scored [n] of 16)
 ```
 
-**Pillar bands:** One line naming each pillar's band. A pillar average of 75 or more is GREEN, 26 to 74 is YELLOW and 25 or less is RED. A pillar that reads insufficient has no band.
+**Pillar bands:** One line naming each pillar's band. A pillar average of 75 or more is GREEN, 26 to 74 is YELLOW and 25 or less is RED. A pillar that reads insufficient has no band. A pillar band is read from its average, not from the colours of its signals, so a pillar can read GREEN while holding YELLOW signals.
 
 **Overall Assessment:** Two to three sentences, the top three risks and the top three positive indicators, each with its evidence tag.
 
@@ -864,7 +869,7 @@ report_path: none (inline)
 
 ### Do's
 - **Score on evidence, not intuition.** If the CRM does not hold it, the score does not credit it.
-- **Cite specific dates and interactions.** Write "2026-10-03 call with Ruth," not "recent conversation."
+- **Cite specific dates and interactions.** Write "[date] call with [name]," not "recent conversation."
 - **Use the pillar step.** It catches deals that hide a catastrophic gap behind a healthy average.
 - **Compare to stage-appropriate expectations.** A Discovery deal should not be scored on procurement.
 
@@ -916,6 +921,14 @@ The Business Case & ROI Kit (a paid Guild Pro kit) reads this skill's hand-off b
 ---
 
 ## Changelog
+
+### 2.1.7 (2026-10-26)
+- Four rubric sentences (buyer-contact pain, decision influence, multi-threading and the technical action) are written as general rules, with no worked record shape.
+- A technical requirement recorded as unknown scores RED under its row. INSUFFICIENT is used only when the record holds nothing on the signal.
+- A pillar band is read from its average, not from the colours of its signals.
+- The unrounded health figure has one decimal place.
+- Each RED action is owned by the AE who owns the deal, and a person asked for information is named separately.
+- The Best Practices example carries a placeholder date and name, not a worked one.
 
 ### 2.1.6 (2026-10-26)
 - Consistency pass across the sales skills. Example 1's Evidence Confidence is recounted under the 90-day window, so the discovery call dated before the window is no longer counted. Its demo on Brackhaven's own plot records is dated, and its quantified pain is quoted from the call that holds it.

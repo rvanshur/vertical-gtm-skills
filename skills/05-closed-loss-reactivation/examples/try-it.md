@@ -24,7 +24,7 @@ The Deal
 - Champion: Ines Carmody, General Manager. She was the champion. She moved to Quill Hollow Memorial Park in April 2026, six months ago [Public: state licensing database] (illustrative)
 - Current Lowmoor contact: [Unknown]. No successor is recorded
 - Oldgate renewal date for Lowmoor: [Unknown]
-- Original qualification at the deal: MANUAL REVIEW, with Zone 1 MEDIUM and Zone 3 HIGH (the GM signed under $25K, with a board date inside 60 days) [CRM] (illustrative)
+- Qualification fields on the deal record: verdict MANUAL REVIEW, Zone 1 MEDIUM, Zone 3 HIGH [CRM] (illustrative)
 - Plot records: Paper deeds and binders, and lookups take days [CRM] (illustrative)
 - Signing authority: The GM signs under $25K. Above $25K the board approves, and its next meeting is 2027-01-20 [CRM] (illustrative)
 - Filing status: The state licensing record shows Lowmoor's trust filing as current, with no finding on record [Public: state licensing database] (illustrative)
@@ -36,8 +36,8 @@ Our Product And Market
 
 ## What You Should Get
 
-- Loss classification: Budget / Timing [CRM] (the logged reason is "timing"), with the board date as an [Inferred] sub-reason, and Lost to Competitor [CRM], with Oldgate named as the winner. Champion Left does not apply, because her move came after the loss.
+- Loss classification: Budget / Timing [CRM] (the logged reason is "timing"), with no board-date sub-reason, because the records show no board date that passed before the close, and Lost to Competitor [CRM], with Oldgate named as the winner. Champion Left does not apply, because her move came after the loss.
 - Verdict: MONITOR. Days since close: 272 (nine months, counted to 2026-10-19). Reminder set for 2026-12-18 to 2027-01-17.
 - Reopening events: a new general manager in the licensing record, an audit finding, or a consolidator purchase.
 - Strategy and history opener: held. No contact is named, so 0 emails are written.
-- Next action: The BDR asks the original AE for the loss notes and the deal value by 2026-10-26, five business days after the run date of 2026-10-19.
+- Next action: The BDR asks the original AE for the loss notes and the Oldgate renewal date by 2026-10-26, five business days after the run date of 2026-10-19.

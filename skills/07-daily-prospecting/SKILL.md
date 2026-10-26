@@ -1,6 +1,6 @@
 ---
 name: gtm-daily-prospecting
-version: 2.1.6
+version: 2.1.7
 description: "Builds the morning dial sheet for a BDR or AE: ranks accounts into Hot, Warm, New and Recycle tiers, removes accounts the BDR guard blocks, and writes a pre-call brief for the top eight, read by the rep at the phone and by the meeting prep skill."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: [gtm-meeting-prep]
 mutating: read-write
 change_log:
+  - version: 2.1.7
+    date: 2026-10-26
+    summary: "Round 7 scrub and fix. The zone rules are split into labelled groups with the same decisions: a board condition is met only when the account has no board step, a LOW cell needs the account's own cycle on record, and a cast summary never sets a zone. A trigger inside its window does not make an account Hot without Zone 1 HIGH. A touch on the account record counts for Warm, and Strong ICP for New is read from the Fit Grid. A same-day step is due on the run date. The file example and the exclusion action no longer carry a rep or account name or a date from a worked run, and the example pointer is reworded."
   - version: 2.1.6
     date: 2026-10-26
     summary: "Consistency pass against the 2.1.5 audit. The Brackhaven board-date ask in the AE example follows the shared next-action rule, the Sable Fork reply date cites the profile's Hot definition, and the zone facts behind Sable Fork and Saltmarsh name their records. The Quill Hollow opener no longer uses its undated records finding, and the dial sheet counts prior contact and lists every account on the day's task list. The 2.1.5 summary's stray quotation mark is removed so the frontmatter parses."
@@ -80,7 +83,7 @@ You refuse to:
 
 If a required input is missing, ask. Do not guess.
 
-To try the skill without your own data, use `examples/try-it.md`, which holds the inputs for Example 1. Run it with the example profile at `profiles/examples/plotiq-example.md`.
+To try the skill without your own data, use `examples/try-it.md`, which holds a complete set of inputs for a worked run. Run it with the example profile at `profiles/examples/plotiq-example.md`.
 
 | Input | Required | Notes |
 |-------|----------|-------|
@@ -105,7 +108,7 @@ To try the skill without your own data, use `examples/try-it.md`, which holds th
 | `next_action` | The last line of the report | One step, with its owner and the date the shared contract's next-action rule gives (five business days after the run date, or an earlier date the records or the skill's own schedule set for that step, named with its source). The close reads it |
 | `report_path` | Set only when a file was written, otherwise "none (inline)" | Read by the close |
 | Dial sheet layout | Inline | Six sections: header, priority dial queue, top account briefs, talk track quick reference, discovery question bank, end-of-day tracker |
-| File option | Written only when the user asks, as `<account>_<skill>_<date>.md` | A dial sheet covers many accounts, so the `<account>` slot takes the rep's name, for example `Nadia-Brandt_daily-prospecting_2026-10-19.md` |
+| File option | Written only when the user asks, as `<account>_<skill>_<date>.md` | A dial sheet covers many accounts, so the `<account>` slot takes the rep's name, for example `Rep-Name_daily-prospecting_<date>.md` |
 
 ---
 
@@ -382,7 +385,12 @@ For each account, in this order:
 1. Name the ICP the account belongs to, from ICP Definitions.
 2. Test the account against the Fit Grid row for that ICP, and count the tests met, with n.
 3. Grade the fit: Strong, Moderate or Weak, using the rule in Methodology. Quote the row used.
-4. Score the five Qualification Zones HIGH, MEDIUM or LOW from observable facts, and apply the Verdict Rule. A zone with no observable fact is shown as UNKNOWN. It is neither HIGH nor LOW, and it counts toward neither. A HIGH condition that cannot apply to the account counts as met, so an owner who signs alone, with no board approval step, meets a board condition such as "board meets within 60 days". Where a HIGH cell lists conditions that must all hold, each one needs evidence. Where it offers alternatives, as Zone 5 does, one needs evidence. An UNKNOWN condition keeps the zone off HIGH, and the zone takes the MEDIUM cell when its text is met, with the unknown named as the evidence to find. A digital tool that holds none of the plot records or trust reporting fits poorly, so it scores the MEDIUM legacy cell. A board that approves the spend, with the general manager recommending, scores MEDIUM on the profile's MEDIUM cell, which reads GM recommends and the board approves, or the next board meeting is more than 60 days out. HIGH needs a meeting inside 60 days. A corporate board scores LOW only when its cycle runs six to nine months. An acquisition that changes the owner of record inside 24 months scores Zone 5 HIGH, because the HIGH cell names a new owner. An UNKNOWN zone counts toward neither HIGH nor LOW, so it never blocks GREENLIGHT and never reaches DISQUALIFY. GREENLIGHT is read from the zones that have evidence, and each UNKNOWN zone is named as the evidence still to find.
+4. Score the five Qualification Zones HIGH, MEDIUM or LOW from the record's facts, and apply the Verdict Rule. A cast summary never sets a zone. Read the zone rules in five groups:
+   - **HIGH Cells.** A HIGH condition that cannot apply to the account counts as met. A board condition cannot apply when the account has no board approval step at all, so an owner who signs alone meets it. Where the account has a board step, the board condition is judged on its meeting date, and HIGH needs a meeting inside 60 days. Where a HIGH cell lists conditions that must all hold, each one needs evidence. Where it offers alternatives, as Zone 5 does, one needs evidence.
+   - **MEDIUM Cells.** A digital tool that lacks both the plot records and the trust reporting fits poorly, so it scores the MEDIUM legacy cell. A board that approves the spend, with the general manager recommending, scores the MEDIUM cell, which reads: GM recommends and the board approves, or the next board meeting is more than 60 days out.
+   - **LOW Cells.** A corporate board scores LOW only when the account's own cycle runs six to nine months and is on record. A segment figure in the profile does not set it.
+   - **Acquisitions.** An acquisition that changes the owner of record inside 24 months scores Zone 5 HIGH, because the HIGH cell names a new owner.
+   - **UNKNOWN Zones.** A zone with no observable fact is shown as UNKNOWN, and it counts toward neither HIGH nor LOW. An UNKNOWN condition keeps its zone off HIGH, and the zone takes the MEDIUM cell when that cell's text is met, with the unknown named as the evidence to find. An UNKNOWN zone never blocks GREENLIGHT and never reaches DISQUALIFY. GREENLIGHT is read from the zones that have evidence, and each UNKNOWN zone is named as the evidence still to find.
 5. Flag any disqualifier from Qualification Criteria. An OUT account is removed here and goes to `exclusions`.
 
 A MANUAL REVIEW account shows its zone scores and verdict in place of a fit word. The zone scores are the reason for the verdict, so they go in the queue beside it.
@@ -413,7 +421,7 @@ Rank every remaining account into one of four tiers. The criteria differ by role
 | **New** | AE-sourced prospects with no prior engagement. Strong ICP, no relationship |
 | **Recycle** | Previously closed-lost. Stalled deals with no clear path. Weak ICP, or multiple failures |
 
-**The profile's Hot definition is applied first.** The Daily Prospecting section of the profile states what a Hot account is in checkable facts. The role table fills the tiers that definition leaves open. Where the profile's definition and the role table disagree, the brief says so, and the profile owner decides which one holds. The skill never settles that disagreement silently. The role table never moves an account into Hot that the profile's definition does not place there. When it would, the account stays out of Hot and the brief names the disagreement.
+**The profile's Hot definition is applied first.** The Daily Prospecting section of the profile states what a Hot account is in checkable facts. The role table fills the tiers that definition leaves open. Where the profile's definition and the role table disagree, the brief says so, and the profile owner decides which one holds. The skill never settles that disagreement silently. The role table never moves an account into Hot that the profile's definition does not place there. When it would, the account stays out of Hot and the brief names the disagreement. A trigger inside its window does not make an account Hot on its own, because the profile's definition also needs Zone 1 HIGH or an INBOUND request not yet answered. For Warm, a touch logged on the account record counts as a prior conversation even when no contact is named, and the brief names the missing contact. For New, Strong ICP is read from the Fit Grid row, met on at least half its tests, whatever the account's verdict.
 
 **Ordering within a tier.** GREENLIGHT accounts come first, sub-ranked Strong, then Moderate, then Weak. MANUAL REVIEW accounts follow, ranked by the count of HIGH zones. A tier can hold both kinds, and the order shows which account the rep should reach first. Within a grade, the account that meets more of its tests comes first. A tie on the HIGH count is broken by the nearest closing deadline, meaning the window or business-day limit that runs out first. An account on hold as Recycle takes its verdict from the upstream skill that set the hold, names that skill and its date, and is not re-scored here.
 
@@ -477,7 +485,7 @@ One brief per account from Step 6.
 
 **4. Active Deal Exclusions** (BDR only)
 Accounts removed from the queue, each with the recommended action:
-- "Share today's intel with [AE name]. They own an active deal at [Stage]."
+- "Share the account's intel with [AE name]. They own an active deal at [Stage]."
 - "Ask [AE name] whether they want BDR assist on this account."
 
 Opt-outs and OUT accounts are listed here too, with their reason.
@@ -489,7 +497,7 @@ Accounts that need a sync before the call: sensitive situations, multi-threaded 
 Reminders to log dispositions, create follow-up tasks and add accounts to a sequence in the CRM. The rep does those. The skill does not.
 
 **7. Next Action**
-One line: the next step, its owner and a date. This becomes `next_action`. When the report holds more than one step, the next action is the step due first, and a step due on the run date comes before one due later.
+One line: the next step, its owner and a date. This becomes `next_action`. When the report holds more than one step, the next action is the step due first, and a step due on the run date comes before one due later. A step the record dates to today is due on the run date, so it comes before a step on the five-business-day date.
 
 **Produces:** the full report, inline, with `dial_sheet`, `pre_call_briefs`, `exclusions` and `next_action` named.
 
@@ -570,7 +578,7 @@ Seven accounts remain. Each is scored against the Fit Grid row for its ICP and t
 - **Sable Fork Cemetery.** INBOUND. Demo request through the website form on Thursday 2026-10-15 (`[CRM]`), four days old. Hot. The profile's Hot definition is "an INBOUND request not yet answered and within 3 business days of arriving." Thursday 2026-10-15 to Monday 2026-10-19 is two business days, so the request meets the definition (`[Inferred]`). No reply from PlotIQ is logged (`[CRM]`), so the request is not yet answered. MANUAL REVIEW, with Zone 3 HIGH, because the GM signs alone under $25K with no board approval step (`[CRM]`, illustrative).
 - **Quill Hollow Memorial Park.** GM Ines Carmody moved here from Lowmoor six months ago with an owner growth mandate (`[CRM]`). Last touch 2026-09-29, 20 days ago, now quiet (`[CRM]`, illustrative). Warm. The records finding in the last state review is `[CRM]` with its date `[Unknown]`. Zone 1 is therefore MEDIUM, because the paper plat maps and lookups that take days fit the MEDIUM cell, and the finding's 24-month test cannot be confirmed, so HIGH is not met. Fit Grid ICP1 Strong, 3 of 4 tests met (8,800 plots, paper plat maps, and an owner who signs under $25K). Zone 3 is HIGH because the owner signs under $25K alone, with no board approval step (`[CRM]`, illustrative). GREENLIGHT stands on Zones 3 and 5. The GM change is dated 2026-04-25 (`[Public: state licensing database]`, illustrative), and the Hot conflict it raises is named in its brief.
 - **Greyfield Memorial Park.** Digital map from Stonemark, a direct software incumbent (`[CRM]`). Pre-need team of three with an intake form on the site (`[Public: company website]`). Social ads feed leads into email (`[CRM]`, illustrative), so all three conditions of the Zone 2 HIGH cell are on record. Fit Grid ICP1 Strong, 2 of 4 tests met (9,000 plots, and an owner who signs under $25K alone). The paper-records test is not met, and the annual filing is `[Unknown]`. Last touch on the account record 2026-09-24 with no named contact (`[CRM]`, illustrative). Warm. GREENLIGHT with Zones 2 and 3 HIGH. Zone 3 is HIGH because the owner signs under $25K alone, with no board approval step (`[CRM]`, illustrative). Zone 5 is MEDIUM, one growth project, and Zone 1 is MEDIUM because the Stonemark map holds no records or trust reporting (`[CRM]`, illustrative). Zone 4 is MEDIUM, because Stonemark holds no records or trust reporting and so fits poorly for this work, and the staff email and shared-drive use is `[Unknown]`, so the HIGH cell is not met.
-- **Saltmarsh Heritage Group.** The owner letter on the company site says: "Growth in 2027 means one system for all five sites" (`[Public: company site, owner letter 2026]`). CFO Hector Ruiz approves budget (`[CRM]`). MANUAL REVIEW because Zone 3 is a must-have at LOW. Zone 2 is HIGH, because the counselors, the website intake form and the social ads are all on record. Zone 5 is HIGH, because the owner letter names growth, which is the profile's owner update naming growth. Zones 1 and 4 are MEDIUM, because the plot records are in spreadsheets only (`[Notes]`). New.
+- **Saltmarsh Heritage Group.** The owner letter on the company site says: "Growth in 2027 means one system for all five sites" (`[Public: company site, owner letter 2026]`). CFO Hector Ruiz approves budget (`[CRM]`). GREENLIGHT, with Zone 3 UNKNOWN, because the record holds no cycle length for the CFO gate. Zone 2 is HIGH, because the counselors, the website intake form and the social ads are all on record. Zone 5 is HIGH, because the owner letter names growth, which is the profile's owner update naming growth. Zones 1 and 4 are MEDIUM, because the plot records are in spreadsheets only (`[Notes]`). New.
 - **Tamsin Vale Cemetery.** 4,200 plots and paper plat maps (`[CRM]`). No phone on file. Who signs is `[Unknown]`. MANUAL REVIEW, Zone 1 HIGH only, because the paper plat maps meet two double sales in the last 24 months (`[CRM]`, illustrative). New.
 - **Lowmoor Memorial Gardens.** Closed-lost to Oldgate on 2026-01-20, nine months ago, with the reason logged as "timing" (`[CRM]`). The champion, Ines Carmody, has moved to Quill Hollow. MANUAL REVIEW on re-score. Recycle, on hold. Its verdict is the one Closed-Loss Reactivation (05) recorded, and this skill does not re-score it.
 
@@ -588,7 +596,7 @@ Dashboard: 7 accounts on the sheet, 6 to dial and 1 on hold. Tiers: 2 Hot, 2 War
 | 2 | Hot | Sable Fork Cemetery | Arlen Biggs, General Manager. Requester `[Unknown]` | MANUAL REVIEW. Zones 1 MEDIUM, 2 LOW, 3 HIGH, 4 MEDIUM, 5 LOW | Confirm who filled the website form, then book discovery. No demo yet |
 | 3 | Warm | Quill Hollow Memorial Park | Ines Carmody, General Manager (champion label, Champion Test not yet run) | Strong. GREENLIGHT. Zones 1 MEDIUM, 2 UNKNOWN, 3 HIGH, 4 UNKNOWN, 5 HIGH | Find when the last state review was and what it asked for, then book a 15-minute discovery call |
 | 4 | Warm | Greyfield Memorial Park | No named contact (`[Unknown]`) | Strong. GREENLIGHT. Zones 1 MEDIUM, 2 HIGH, 3 HIGH, 4 MEDIUM, 5 MEDIUM | Find the owner of pre-need intake, and ask who calls back website leads |
-| 5 | New | Saltmarsh Heritage Group | Hector Ruiz, CFO | MANUAL REVIEW. Zones 1 MEDIUM, 2 HIGH, 3 LOW, 4 MEDIUM, 5 HIGH | Ask which system the five sites move to, and when. No email from this dial |
+| 5 | New | Saltmarsh Heritage Group | Hector Ruiz, CFO | GREENLIGHT. Zones 1 MEDIUM, 2 HIGH, 3 UNKNOWN, 4 MEDIUM, 5 HIGH | Ask which system the five sites move to, and when. No email from this dial |
 | 6 | New | Tamsin Vale Cemetery | No name, no phone on file | MANUAL REVIEW. Zones 1 HIGH, 2 LOW, 3 MEDIUM, 4 LOW, 5 MEDIUM | Find who signs, and find a phone number. The first action is a contact search |
 | 7 | Recycle (hold) | Lowmoor Memorial Gardens | Unknown, champion moved | MANUAL REVIEW. Zones as re-scored in Closed-Loss Reactivation (05), not restated here | Do not dial. Closed-Loss Reactivation holds it on MONITOR |
 
@@ -624,7 +632,7 @@ Every zone score in the table rests on a fact in the try-it records, as the zone
 - **Call goal:** Find the owner of pre-need intake, and ask how website leads are called back. The Stonemark renewal is not raised on this dial, because Competitive Displacement (12) holds that case.
 
 **Brief for #5 (Saltmarsh Heritage Group):**
-- **Why this account:** The owner letter on the company site says: "Growth in 2027 means one system for all five sites" (`[Public: company site, owner letter 2026]`). Zone 2 HIGH (pre-need counselors at three funeral homes). Zone 3 LOW, a must-have, because the CFO gate runs 6 to 9 months. Zone 5 HIGH, because the letter names growth. MANUAL REVIEW.
+- **Why this account:** The owner letter on the company site says: "Growth in 2027 means one system for all five sites" (`[Public: company site, owner letter 2026]`). Zone 2 HIGH (pre-need counselors at three funeral homes). Zone 3 UNKNOWN, a must-have, because the CFO approves the budget and the record holds no cycle length. Zone 5 HIGH, because the letter names growth. GREENLIGHT, because two zones are HIGH and no must-have zone is LOW.
 - **Opener:** "Hi Hector, it's Nadia Brandt with PlotIQ. Your owner letter says all five sites move to one system next year." The persona who acts is the CFO.
 - **Discovery questions:** (1) "Which system do the five sites move to, and when?" (2) "Walk me through last year's trust filing. Who pulled the numbers, and from where?" (3) "When a pre-need lead comes in from one of the funeral homes, who calls them back, and when?"
 - **Objection prep:** "Not a priority right now." Response: "Totally fair. Most teams don't change until something forces the issue. Out of curiosity, when was the last time your team had a close call on the records?"
@@ -695,7 +703,7 @@ Dashboard: 8 dials. 3 Hot, 2 Warm, 2 New, 1 Recycle (hold). No exclusions, becau
 | 3 | Hot | Sable Fork Cemetery | Arlen Biggs, General Manager. Requester `[Unknown]` | MANUAL REVIEW. Zones 1 MEDIUM, 2 LOW, 3 HIGH, 4 MEDIUM, 5 LOW | Confirm who requested the demo, then book discovery. No demo yet |
 | 4 | Warm | Quill Hollow Memorial Park | Ines Carmody, General Manager | Strong. GREENLIGHT. Zones 1 MEDIUM, 2 UNKNOWN, 3 HIGH, 4 UNKNOWN, 5 HIGH | Find when the last state review was, then book discovery |
 | 5 | Warm | Greyfield Memorial Park | No named contact (`[Unknown]`). TARGET (pending AE assignment) | Strong. GREENLIGHT. Zones 1 MEDIUM, 2 HIGH, 3 HIGH, 4 MEDIUM, 5 MEDIUM | Find the owner of pre-need intake, and ask who calls back website leads |
-| 6 | New | Saltmarsh Heritage Group | Hector Ruiz, CFO | MANUAL REVIEW. Zones 1 MEDIUM, 2 HIGH, 3 LOW, 4 MEDIUM, 5 HIGH | Ask which system the five sites move to, and when. No email from this dial |
+| 6 | New | Saltmarsh Heritage Group | Hector Ruiz, CFO | GREENLIGHT. Zones 1 MEDIUM, 2 HIGH, 3 UNKNOWN, 4 MEDIUM, 5 HIGH | Ask which system the five sites move to, and when. No email from this dial |
 | 7 | New | Tamsin Vale Cemetery | No name, no phone on file | MANUAL REVIEW. Zones 1 HIGH, 2 LOW, 3 MEDIUM, 4 LOW, 5 MEDIUM | Find who signs, and confirm the paper-map process |
 | 8 | Recycle (hold) | Lowmoor Memorial Gardens | Unknown, champion moved | MANUAL REVIEW. Zones as re-scored in 05 | Do not dial yet. Closed-Loss Reactivation holds it on MONITOR |
 
@@ -800,6 +808,14 @@ report_path: none (inline)
 
 ## Changelog
 
+
+### 2.1.7 (2026-10-26)
+- The zone rules are grouped by cell. The decisions are the same, with three settled: a board condition is met only when the account has no board approval step, a LOW cell needs the account's own cycle on record, and a cast summary never sets a zone.
+- A trigger inside its window does not make an account Hot without Zone 1 HIGH, as the profile's Hot definition requires.
+- Warm counts a touch logged on the account record. New reads Strong ICP from the Fit Grid, whatever the verdict.
+- A step the record dates to today is due on the run date, ahead of a five-business-day date.
+- The Saltmarsh example's Zone 3 is UNKNOWN, because no cycle length is on record, so its verdict is GREENLIGHT and its tier (New) is unchanged.
+- The file example and the exclusion action template carry no worked name or date.
 
 ### 2.1.6 (2026-10-26)
 - The board-date ask in the AE example follows the shared next-action rule: five business days after the run date, with no earlier record date. The dated action that named an earlier date is removed.
