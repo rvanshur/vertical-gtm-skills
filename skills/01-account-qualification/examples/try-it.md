@@ -11,12 +11,13 @@ These records are as of 2026-05-04, before Brackhaven reached ACTIVE at Stage 5 
 
 Run date: 2026-05-04 (illustrative)
 Status at the time of qualification: TARGET (illustrative)
+Open AE deal: none recorded [CRM] (illustrative)
 Role: BDR [CRM] (illustrative)
 
 Company
 - Account: Brackhaven Memorial Gardens
 - Type: Combination, 2 sites
-- Plots: 11,000 plots [CRM] (illustrative)
+- Plots: 11,000 plots on the cemetery side [CRM] (illustrative)
 - Plot records: Paper plot maps [CRM] (illustrative)
 - Double sales: One double sale in the last 24 months [CRM] (illustrative)
 - Revenue: Not stated in public records. The CRM notes a revenue range of $2 to 4 million a year [CRM] (illustrative), which is a range and not a confirmed figure
@@ -29,6 +30,7 @@ People And Decision
 - Pre-need manager and Operations Director are named on the staff page [Public: company website, staff page] (illustrative)
 - Staff use company email, which the staff page shows [Public: company website, staff page] (illustrative)
 - No intake form for pre-need on the website [Public: company website] (illustrative)
+- Social ads for pre-need: not recorded [Unknown]
 - The website shows no plot lookup [Public: company website] (illustrative)
 - The records system is not named [Unknown]
 - The owner has a dated retirement plan: retirement on 2029-03-31, stated in the owner bio [Public: company website, owner bio, 2026] (illustrative)
@@ -42,4 +44,4 @@ People And Decision
 - Zones: 1 HIGH, 2 MEDIUM, 3 MEDIUM, 4 MEDIUM, 5 HIGH.
 - ICP: ICP2 Combination. 7 of 8 criteria are STRONG or PARTIAL.
 - Risk flag: board approval above the $25K line keeps Zone 3 at MEDIUM. It does not change the verdict on its own.
-- Next action: The BDR on the account runs the Account Snapshot by 2026-05-08 (illustrative).
+- Next action: The BDR on the account checks for active AE deals first, then runs Account Snapshot Outbound and books discovery for the AE by 2026-05-08 (illustrative).

@@ -29,13 +29,16 @@ Lowmoor Memorial Gardens
 
 A former Lowmoor contact (name withheld)
 - Opted out on 2026-02-14, after the loss [CRM] (illustrative). The opt-out holds for every dial to this contact
+- The opted-out contact is a different former Lowmoor contact, not Ines Carmody [CRM] (illustrative)
 
 Corrow Ridge Cemetery
 - Consolidator bought the site on 2026-07-01 [Public: state licensing database]. Profile window: 60 to 120 days
+- Owner of record: Harborline Funeral Partners, a new owner since 2026-07-01, inside 24 months [Public: state licensing database]
 - One site, 14,000 plots, paper plat maps (illustrative)
 - A deed recorded twice in 2025 [CRM] (illustrative), inside the 24-month test
 - Zone 1 HIGH
 - No contact on file. The task names none
+- Status: TARGET [CRM] (illustrative)
 - No touch yet [CRM] (illustrative)
 - Signing limit: the GM recommends, and the Harborline board approves above $25K. Its next meeting is 2027-01-12 [CRM] (illustrative)
 - Annual state filing: [Unknown]
@@ -52,6 +55,9 @@ Sable Fork Cemetery
 - Plot sales flat for three years, and no succession plan on the record [CRM] (illustrative)
 
 Quill Hollow Memorial Park
+- Status: TARGET [CRM] (illustrative)
+- One site, 8,800 plots, paper plat maps [CRM] (illustrative)
+- Plot lookups take days: the office checks the plat maps by hand [CRM] (illustrative)
 - GM Ines Carmody moved here from Lowmoor six months ago, with an owner growth mandate [CRM]
 - Last touch 2026-09-29 [CRM] (illustrative)
 - Records finding in the last state review [CRM]. Its date: [Unknown]
@@ -60,9 +66,12 @@ Quill Hollow Memorial Park
 - GM change on the state licensing record, 2026-04-25 [Public: state licensing database] (illustrative)
 
 Greyfield Memorial Park
+- Status: TARGET [CRM] (illustrative)
 - Digital map from Stonemark, a direct software incumbent [CRM]
 - One site, 9,000 plots (illustrative)
 - Pre-need team of three, with an intake form on the site [Public: company website]
+- Pre-need leads from social ads flow into email [CRM] (illustrative)
+- Staff email and shared drive use: [Unknown]
 - Stonemark signing date: [Unknown]
 - Owner signs under $25K alone, with no board approval step [CRM] (illustrative)
 - The Stonemark map holds no records or trust reporting [CRM] (illustrative)
@@ -70,14 +79,19 @@ Greyfield Memorial Park
 - Last touch on the account record 2026-09-24, with no named contact [CRM] (illustrative)
 
 Saltmarsh Heritage Group
+- Status: TARGET [CRM] (illustrative)
 - Owner letter on the company site says all five sites move to one system in 2027 [Public: company site, owner letter 2026]
 - CFO Hector Ruiz approves budget [CRM]
 - Pre-need counselors at three funeral homes [CRM]
+- Pre-need intake form on the company website [Public: company website] (illustrative)
+- Social ads feed leads into email at the three funeral homes [CRM] (illustrative)
+- Plot and pre-need tools are spreadsheets only, with no digital tool tried [CRM] (illustrative)
 - No touch yet
 - Two cemeteries keep plot records on paper binders and spreadsheets, with no digital plot system [CRM] (illustrative)
 - The same owner letter names growth: a pre-need push across the three funeral homes [Public: company site, owner letter 2026] (illustrative)
 
 Tamsin Vale Cemetery
+- Status: TARGET [CRM] (illustrative)
 - 4,200 plots, paper plat maps [CRM]
 - No phone on file
 - Who signs: [Unknown]

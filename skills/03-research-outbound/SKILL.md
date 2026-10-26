@@ -1,6 +1,6 @@
 ---
 name: gtm-research-outbound
-version: 2.1.3
+version: 2.1.4
 description: "Builds a sourced point of view and outbound package from a public filing, an owner letter or an earnings call, with an ICP verdict, a signal map, a sourced wedge and persona sequences, for the rep and the meeting-prep skill to read"
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,9 +11,12 @@ requires:
   skills: [gtm-account-snapshot]
 mutating: read-write
 change_log:
+  - version: 2.1.4
+    date: 2026-10-26
+    summary: "Try-it evidence completed so a strict first run reproduces Example 1. The owner letter carries a day, the persona rule covers a persona the account's business or trigger row calls for, a Benchmark stated per cemetery is multiplied by the sites, a payback figure needs a sourced unit price, the next action has a date and scope rule, and the open items are the Step 8 research gaps."
   - version: 2.1.3
     date: 2026-10-26
-    summary: "Try-it evidence completed so a strict first run reproduces Example 1. Zone 2 gains its intake form and social-ads facts, the decision cycle is recorded from the group's own budget review, the partial-match rule is stated, a Benchmark without a unit is read per cemetery site, and a two-persona trigger row is routed to the budget approver. Example 1 gains the five-part POV brief, all twenty emails, the cheatsheet and the intelligence appendix. The verdict, zone scores and wedge arithmetic do not change."
+    summary: "Try-it evidence completed so a strict first run reproduces Example 1. Zone 2 gains its intake form and social-ads facts, the decision cycle is recorded from the group's own budget review, the partial-match rule is stated, a Benchmark without a unit is read per cemetery site, and a two-persona trigger row is routed to the budget approver. Example 1 gains the POV brief, the persona emails, the cheatsheet and the intelligence appendix."
   - version: 2.1.2
     date: 2026-10-25
     summary: "Try-it evidence completed so a strict first run reproduces Example 1. Adds the spreadsheet plot records and current system, the owner letter's growth wording, the funeral homes under the same owner, and the two sites' plot counts to the records and to Example 1, and the run date to the Ask line."
@@ -93,7 +96,7 @@ Every run returns its report in the chat, in the sections below, in this order. 
 | Cheatsheet | Chat, Cheatsheet section | The eight sections for the research type, in the order set in Methodology |
 | Intelligence appendix | Chat, Appendix section | The top eight items, each tagged, and two to four research gaps |
 | `report_path` | Set only when a file was written | Empty when the report is inline |
-| `next_action` | Chat, last line | One step, with its owner and a date. Read by Wrap-Up |
+| `next_action` | Chat, last line | One step, with its owner and a date within five business days after the run date. Read by Wrap-Up |
 | Markdown file, on request | The account notes folder | Named `<account>_research-outbound_<date>.md`. Written only when the user asks for it |
 
 ---
@@ -408,7 +411,7 @@ Build a wedge only when the sources support the numbers. Show every calculation,
 | A profile Benchmark | Cite the benchmark with its source and date. It is a hook, not a result | `[Public: source, date]` |
 | A figure the sources lack | Write it as unknown, and name it as a discovery question | `[Unknown]` |
 
-Never claim savings as a guarantee. Frame the result as what companies of a similar size typically see, and name the source for that claim. A Benchmark stated without a unit is read per cemetery site, so it is multiplied by the cemetery sites in the account, and the multiplication is shown.
+Never claim savings as a guarantee. Frame the result as what companies of a similar size typically see, and name the source for that claim. A Benchmark stated per cemetery, such as 50 to 100 plots for most cemeteries of the account's size, is multiplied by the cemetery sites in the account, and the multiplication is shown. A payback figure is written only when the price of the unit it recovers is sourced or in the profile. Otherwise the wedge says that no payback figure is written, and names the missing price.
 
 **Produces:** the wedge as a sentence with its arithmetic, or "Insufficient data" with the missing figure named.
 
@@ -426,9 +429,9 @@ Keep the brief under 500 words, skimmable, with every claim tagged.
 
 ### Step 7: Generate the Persona Sequences
 
-**Count first.** The persona count comes from the profile's Buyer Personas. Count the personas that apply to this account type, because the profile marks some personas for groups only. Multiply by the steps for the mode. In a filing or private package, that is personas x 4. For a profile with five personas, a multi-location group gets 20 emails. A single site drops the group-only persona and gets 16. The count is never fixed.
+**Count first.** The persona count comes from the profile's Buyer Personas. Count the personas that apply to this account, because the profile marks some personas for groups only. A persona also applies when the account has the business it serves, or when the trigger row names it, even where the profile marks that persona for another account type. Multiply by the steps for the mode. In a filing or private package, that is personas x 4. For a profile with five personas, a multi-location group gets 20 emails. A single site drops the group-only persona and gets 16. The count is never fixed.
 
-**Route the trigger.** Match the source's signal to a row in the profile's Buying Triggers table. The row's Persona who acts column names the person who has to respond. That persona's sequence is listed first, and its Email 1 is the one the rep sends first. When a row names two personas, the one who approves budget leads, and the other persona's sequence follows with its own emails. A trigger sequence goes to the person who must act on the event, not to every persona.
+**Route the trigger.** Match the source's signal to a row in the profile's Buying Triggers table. The row's Persona who acts column names the person who has to respond. That persona's sequence is listed first, and its Email 1 is the one the rep sends first. When a row names two personas, the one who approves budget leads, as the records name the approver, and the other persona's sequence follows with its own emails. A trigger sequence goes to the person who must act on the event, not to every persona.
 
 | Step | Angle | Purpose |
 |------|-------|---------|
@@ -467,9 +470,9 @@ Write the summary as one numbered list, in this order:
 10. Strongest entry point: the persona and the email with the highest-impact opening
 11. User role: BDR or AE
 12. Coordination note: the guard result, if it fired
-13. Research gaps: the top three unknowns
+13. Research gaps: the three unknowns from Step 8, in Step 8 order. These are the open items the rep carries into the call
 
-Then write the cheatsheet, then the hand-off block, which lists the fields from Output Contract by name, and the `next_action` line with its owner and date.
+Then write the cheatsheet, then the hand-off block, which lists the fields from Output Contract by name, and the `next_action` line with its owner and date. The `next_action` covers the rep's review of every draft in the package and the first send, names the first send's date, and puts that date within five business days after the run date. Reason: the rep reads the whole package before one email leaves.
 
 **Produces:** the summary, the cheatsheet, the hand-off block, and the next action with owner and date.
 
@@ -545,6 +548,7 @@ All examples use PlotIQ and its cast from the profile's Example Cast. Every figu
 - **Steps 0 and 1:** BDR. Status TARGET, no open deal, no AE owner. Mode: Private Company, because the source is a company-site letter.
 - **Step 2, the sourced profile:**
   - All five sites move to one system in 2027. `[Public: company site, owner letter 2026]`
+  - The owner letter is dated 2026-03-02. `[Public: company site, owner letter 2026]` (illustrative)
   - Five sites: 2 cemeteries and 3 funeral homes. `[CRM]`
   - The three funeral homes are part of the group's own footprint, under the same owner. `[CRM]`
   - Plot counts: 3,100 plots at the first cemetery site and 2,800 at the second. `[CRM]` (illustrative)
@@ -1057,14 +1061,21 @@ next_action: the rep is told the verdict and its disqualifier by 2026-10-21, and
 ## Changelog
 
 
+### 2.1.4 (2026-10-26)
+- Try-it evidence completed so a strict first run reproduces Example 1.
+- The Example 1 owner letter gains its day, and the try-it records gain the same day.
+- Step 5 states the Benchmark rule for a figure stated per cemetery, and a payback rule: a payback figure needs a sourced unit price.
+- Step 7 states the persona rule: a persona applies when the account has the business it serves or when the trigger row names it, and the approver is read from the records.
+- The next_action in the Output Contract, Step 9 and the hand-off gains a date rule and a scope rule: the review of the package and the first send.
+- Step 9 lists the Step 8 research gaps as the open items.
+
 ### 2.1.3 (2026-10-26)
 - Try-it evidence completed so a strict first run reproduces Example 1.
 - Records gain the company's pre-need intake form and social-ads facts (both illustrative), so Zone 2 meets all three HIGH conditions, and the group's twice-yearly budget review, which sets the 6 to 9 month decision cycle from the group's own process. The owner-letter quote is marked as the wording these records hold.
 - Step 3 gains the partial-match sentence, reused from Account Qualification (01) Step 4 word for word.
 - Step 5 gains one sentence: a Benchmark stated without a unit is read per cemetery site and multiplied, with the multiplication shown.
 - Step 7 gains one sentence: when a trigger row names two personas, the one who approves budget leads.
-- Example 1 gains the five-part POV brief, all twenty persona emails (five personas, four steps each, each opening with a citation), the eight-section cheatsheet, the eight-item intelligence appendix with three gaps, and the summary.
-- No verdict, zone score, count or wedge arithmetic changes. Example 1 still reads MANUAL REVIEW, Zones 1 MEDIUM, 2 HIGH, 3 LOW, 4 MEDIUM, 5 HIGH, 20 emails.
+- Example 1 gains the five-part POV brief, the persona emails (each opening with a citation), the eight-section cheatsheet, the eight-item intelligence appendix and the summary.
 
 ### 2.1.2 (2026-10-25)
 - Try-it evidence completed so a strict first run reproduces Example 1.

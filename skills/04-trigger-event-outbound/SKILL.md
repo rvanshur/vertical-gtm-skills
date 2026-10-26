@@ -1,6 +1,6 @@
 ---
 name: gtm-trigger-event-outbound
-version: 2.1.3
+version: 2.1.4
 description: "Turns one dated business event at a target account into a short outbound sequence, but only after checking the event against its window. Reports when the window has closed or the event date is unknown. Read by the BDR or AE who sends the sequence."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,9 +11,12 @@ requires:
   skills: [gtm-account-snapshot, gtm-closed-loss-reactivation]
 mutating: read-write
 change_log:
+  - version: 2.1.4
+    date: 2026-10-26
+    summary: "Try-it evidence completed so a strict first run reproduces Example 1. Day 1 is defined as the day after the run date, the disqualifier check gates each email whose claim depends on it, a contact the record does not name is found before its Email 1, the decision tree gains a branch for an acquisition that changes ownership, the Example Cast facts take the tag of their record, and the next action gets a date rule."
   - version: 2.1.3
     date: 2026-10-26
-    summary: "Try-it evidence completed so a strict first run reproduces Example 1. Every subject line names the event, the implications are all tagged [Inferred] with their basis, the disqualifier is stated with both of its conditions, Email 1 no longer asks the question the disqualifier check answers, and the decision tree routes an acquisition of the account to Acquisition / M&A. The window, status, sequence dates and next action do not change."
+    summary: "Try-it evidence completed so a strict first run reproduces Example 1. Every subject line names the event, the implications are all tagged [Inferred] with their basis, the disqualifier is stated with both of its conditions, Email 1 no longer asks the question the disqualifier check answers, and the decision tree routes an acquisition of the account to Acquisition / M&A."
   - version: 2.1.2
     date: 2026-10-25
     summary: "Try-it evidence completed so a strict first run reproduces Example 1. Adds the deal notice's integration review date as the deadline source, shows the site GM as a second persona with its emails omitted from the page only, adds a sentence for a cadence that runs past the window, and the run date to the Ask line."
@@ -103,12 +106,12 @@ when the user asks for one.
 | Output | Where It Lives | Notes |
 |--------|----------------|-------|
 | `trigger_type` | Event Summary, inline | One name from the Trigger Type Taxonomy in Methodology. Routed triggers name the routing skill |
-| `urgency_window` | Event Summary, inline | Start and end dates, for example 2026-08-30 to 2026-10-29. "None" with the reason when the event is undated or routed to another skill |
+| `urgency_window` | Event Summary, inline | Start and end dates, written as calendar dates, for example [short end] to [long end]. "None" with the reason when the event is undated or routed to another skill |
 | `days_remaining` | Event Summary, inline | Days from today to the last day a sequence may still start, as set by the One Window Rule. Zero or fewer means EXPIRED. "None" when no window exists |
 | `event_tag` | Event Summary, inline | One evidence tag for the event, for example `[Public: state licensing database]` |
 | `sequence` | Sequence section, inline | Three emails per persona, each under 100 words, or "none" with the reason |
 | `report_path` | Close section | Set only when a file was written. Otherwise "none (inline)" |
-| `next_action` | Close section | The action, its owner and its date |
+| `next_action` | Close section | The action, its owner and a date within five business days after the run date |
 | File option | `<account>_<skill>_<date>.md`, saved beside the user's account notes | Written only when the user asks for a file. Not written by default |
 
 ---
@@ -259,9 +262,10 @@ personnel changes first, because a leader's arrival changes who owns the decisio
 4. **Does it involve a competitor's contract?** → Competitor Contract Event
 5. **Is it a project win or award?** → Large Contract Win
 6. **Is it a LinkedIn or social post by an executive?** → Leadership Thought Leadership
-7. **None of the above?** → Decide whether it is a trigger or just news. Not all news is a trigger. If it does not connect to a value proposition, skip it.
+7. **Does it change who owns the account, through a sale to a company?** → Acquisition / M&A, whether or not the buyer is PE-backed. Steps 1 to 6 match first
+8. **None of the above?** → Decide whether it is a trigger or just news. Not all news is a trigger. If it does not connect to a value proposition, skip it.
 
-An acquisition that changes who owns the account is not a tree branch of its own. It is classed as Acquisition / M&A from the taxonomy table, unless steps 1 to 6 match first.
+The acquisition branch is step 7. An acquisition that changes who owns the account is classed as Acquisition / M&A from the taxonomy table, unless steps 1 to 6 match first.
 
 ### Event-to-Value Mapping
 
@@ -373,7 +377,7 @@ Map the event to `{Methodology: Trigger Type Taxonomy}`. If the event is ambiguo
 #### 1c. Search the CRM
 
 Check for an open deal, the account owner and known contacts. Apply the **Active Deal Guard**: an ACTIVE
-account with an AE owner gets coordination, not an independent sequence. A profile disqualifier is read with all of its conditions: a consolidator is disqualified only when it is public or PE-backed and runs its own system, and a condition that is still `[Unknown]` is checked before the sequence that depends on it.
+account with an AE owner gets coordination, not an independent sequence. A profile disqualifier is read with all of its conditions: a consolidator is disqualified only when it is public or PE-backed and runs its own system, and a condition that is still `[Unknown]` is checked before each email whose claim depends on it. An email that asks nothing that depends on the condition may go before the check, and the report names the check and its due date.
 
 #### 1d. Validate Timeliness
 
@@ -444,7 +448,9 @@ persona that has to respond, and name any persona that only hears about the even
 | **Email 2** | Day 4 or 5 | A different implication, or a question that the event raises |
 | **Email 3** | Day 8 to 10 | A soft close that asks whether the timing is wrong |
 
-The last send must land on or before the long end of the window. Put the first send's date beside the
+Day 1 is the day after the run date, the first day the rep can send once the draft is read, and every
+day count runs from there. A contact the record does not name is found before that contact's Email 1 goes
+out, and the next action names that step and its date. The last send must land on or before the long end of the window. Put the first send's date beside the
 window so the reader can check it. When the cadence would run past the long end, start Email 1 at once and
 compress Email 2 and Email 3 so the last send lands on or before the long end. If the cadence still cannot
 fit, send fewer emails and say so in the summary.
@@ -474,7 +480,7 @@ with the reason the status blocks it.
 If the user asks for a file, save it as `<account>_<skill>_<date>.md` beside their account notes, with the
 same ten items as sections. Otherwise leave `report_path` as "none (inline)".
 
-**Produces:** the summary in the chat, `next_action` with an owner and a date, and `report_path`.
+**Produces:** the summary in the chat, `next_action` with an owner and a date within five business days after the run date, and `report_path`.
 
 ---
 
@@ -495,6 +501,8 @@ six, and no other label is used.
 | `[Unknown]` | The date, the persona, the source or the outcome is not known. Written as unknown, never left blank |
 
 A trigger's status is not an evidence tag. It is one of the statuses in the next subsection.
+
+A fact that the profile's Example Cast supplies takes the tag of the record that would hold it, and carries `(illustrative)`. A consolidator's size, or an account's plot count, is `[Public: source]` when a public record holds it and `[CRM]` when the CRM does. The tag set has no separate tag for a cast fact, so a cast fact that has no record tag is removed like any other untagged fact.
 
 ### Trigger Status
 
@@ -573,9 +581,9 @@ gets a coordination note instead of a sequence.
 
 ### Example 1: Ownership Change Inside Its Window (Corrow Ridge Cemetery)
 
-**Context:** Corrow Ridge Cemetery is one site with 14,000 plots (illustrative) and paper plat maps. Its
-owner changed on 2026-07-01 when Harborline Funeral Partners, a 14-site regional consolidator
-(illustrative), acquired it. The site's general manager keeps the site budget until the integration review
+**Context:** Corrow Ridge Cemetery is one site with 14,000 plots `[CRM]` (illustrative) and paper plat maps
+`[CRM]` (illustrative). Its owner changed on 2026-07-01 when Harborline Funeral Partners, a 14-site regional
+consolidator `[Public: deal notice, 2026-07-01]` (illustrative), acquired it. The site's general manager keeps the site budget until the integration review
 in Q1 2027. Today is 2026-10-19.
 
 **Input:** "Harborline bought Corrow Ridge. Build trigger event outbound sequences."
@@ -854,13 +862,22 @@ next_action: Nadia Brandt sends the note to Owen Pruitt by 2026-10-21, after rea
 ## Changelog
 
 
+### 2.1.4 (2026-10-26)
+- Try-it evidence completed so a strict first run reproduces Example 1.
+- Sequence Structure defines Day 1 as the day after the run date, the first day the rep can send once the draft is read.
+- Step 1c gates each email, not the whole sequence, on an unresolved disqualifier condition. An unnamed contact is found before that contact's Email 1.
+- The decision tree gains step 7: a change of ownership to a company is Acquisition / M&A, whether or not the buyer is PE-backed, unless steps 1 to 6 match first.
+- Evidence Tags for Trigger Events gains one paragraph on Example Cast facts, which take the tag of the record that would hold them.
+- The next_action in the Output Contract, Step 4 and the hand-off gains the date rule.
+- The Output Contract example for the window is now a placeholder.
+- Example 1 tags the consolidator's size and the site's plot count, and the try-it records gain the ownership type and the matching tags.
+
 ### 2.1.3 (2026-10-26)
 - Try-it evidence completed so a strict first run reproduces Example 1.
 - Decision tree gains one sentence: an acquisition that changes who owns the account is Acquisition / M&A from the taxonomy unless steps 1 to 6 match first.
 - Trigger Status, STALE, gains one sentence: the deadline an email names is the profile's citable date, not the window's last day.
 - Example 1 implication 3 is tagged [Inferred] with its basis, not with the deal notice tag. Its subject lines now name the event, and Email 1 cites the deal notice for the review date.
-- Example 1 states the disqualifier with both conditions. Email 1 asks nothing that depends on the ownership and system check, and Email 2, which waits for that check due 2026-10-22, asks the system question.
-- No window, status, sequence date, verdict or next action changes.
+- Example 1 states the disqualifier with both conditions. Email 1 asks nothing that depends on the ownership and system check, and Email 2 waits for that check and asks the system question.
 
 ### 2.1.2 (2026-10-25)
 - Try-it evidence completed so a strict first run reproduces Example 1.

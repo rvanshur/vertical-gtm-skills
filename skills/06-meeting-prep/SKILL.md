@@ -1,6 +1,6 @@
 ---
 name: gtm-meeting-prep
-version: 2.1.3
+version: 2.1.4
 description: "Prepares a rep for a discovery or demo call with one prep sheet: the top pain, a question bank for each discovery phase, one proof point per attendee, objection scripts, a minute-by-minute call flow and a follow-up email draft. The rep reads it during the call."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: [gtm-account-snapshot, gtm-research-outbound, gtm-trigger-event-outbound, gtm-closed-loss-reactivation, gtm-daily-prospecting, gtm-deal-pulse, gtm-stakeholder-mapping, gtm-competitive-strategy, gtm-competitive-displacement, gtm-call-coaching]
 mutating: read-write
 change_log:
+  - version: 2.1.4
+    date: 2026-10-26
+    summary: "Try-it evidence completed so a strict first run reproduces Example 1. Defines the research target as the profile figure that matches a persona's hook focus, settles the tag order for ranking pains, fills each question phase from the profile first and then the record, reads a meeting with no earlier logged meeting as a first meeting, tags a call of unknown date as notes, and names the next action when the economic buyer cell is yellow. No output changed."
   - version: 2.1.3
     date: 2026-10-26
     summary: "Try-it evidence completed so a strict first run reproduces Example 1. Adds the upstream Account Snapshot fields the sheet reads, names one proof point with its research target for each attendee persona, counts a phase that holds fewer than three questions as the questions it has, and rules that an incident count does not quantify a pain. Points the try-it ask at the example profile."
@@ -382,7 +385,7 @@ Before pulling anything, open the account's folder under `accounts/` in the Know
    - People referenced and the stakeholders they point to.
    - Competitors named.
    - The trigger that started the engagement.
-2. **Identify gaps:** pains named but not quantified, people referenced but not met, a decision process not mapped, budget or timeline unknown, the current solution unclear. Each gap becomes a meeting objective. A blank field is unknown, never a no.
+2. **Identify gaps:** pains named but not quantified, people referenced but not met, a decision process not mapped, budget or timeline unknown, the current solution unclear. Each gap becomes a meeting objective. A blank field is unknown, never a no. A fact from a call whose date is unknown takes `[Notes]`, because the `[Call]` tag needs its date.
 
 **Produces:** the findings list, each item tagged, and the gap list.
 
@@ -398,7 +401,7 @@ Branch by meeting type.
 - **Urgency:** the trigger or deadline, tagged, or `[Unknown]`.
 - **Strength:** the strongest tag on the evidence. A pain the buyer named on a call (`[Call]`) outranks one reasoned from other facts (`[Inferred]`).
 
-Rank the hypotheses by that strength. Lead with the strongest. Use the weakest as negative framing questions, not as statements.
+Rank the hypotheses by that strength, in this tag order: `[Call]`, then `[CRM]`, then `[Notes]`, then `[Public: source]`, then `[Inferred]`. Lead with the strongest. Use the weakest as negative framing questions, not as statements.
 
 **Demo.** List every confirmed pain and rank it by:
 
@@ -423,7 +426,7 @@ Branch by meeting type.
 - **Implication (3 to 4 questions):** what they have tried, past evaluations, why earlier attempts stopped.
 - **Need-Payoff (2 to 3 questions):** value framing for the weaker hypotheses. A benchmark may appear in the question only with its source and date named.
 
-Each question carries its listen-for phrase from the What to Listen For column. A phrase the buyer has said in the record is quoted as theirs. A phrase from the profile is labelled as the profile's, because the buyer has not said it yet. The sheet shows the top three questions per phase. A phase with fewer than three questions shows all of them, so a Need-Payoff of two shows two.
+Each question carries its listen-for phrase from the What to Listen For column. A phrase the buyer has said in the record is quoted as theirs. A phrase from the profile is labelled as the profile's, because the buyer has not said it yet. Write each phase's range from the profile's questions first, then from the record and the hypotheses, in that phase's goal. The sheet shows the top three questions per phase. A phase with fewer than three questions shows all of them, so a Need-Payoff of two shows two.
 
 Apply the follow-up ladder rule from the Methodology. For a vague answer, ask for specifics with plain probes: "Walk me through that," "What happens next," "Describe the last time it happened."
 
@@ -468,7 +471,7 @@ A discovery flow for a 30-minute call (illustrative) looks like this:
    - **Benchmark:** context only, with its source and date named. Never "our customer got this."
    - **Illustrative:** never cited to a prospect. On the sheet, the row is marked "do not cite".
 
-   If the profile has no usable proof for a persona, the sheet says so and gives the research target in its place. An Illustrative row does not make a persona usable: it is shown marked "do not cite", and the research target is given beside it. The reason: a rep who says "we have no proof for this yet" is more credible than one who reaches for a row that does not exist.
+   If the profile has no usable proof for a persona, the sheet says so and gives the research target in its place. The research target is the profile figure whose wording matches the persona's Hook Focus, with its research source named. Persona 1's target is the 50 to 100 plot benchmark, and Persona 3's is the 20 second target. An Illustrative row does not make a persona usable: it is shown marked "do not cite", and the research target is given beside it. The reason: a rep who says "we have no proof for this yet" is more credible than one who reaches for a row that does not exist.
 2. **Script two or three Feel-Felt-Found stories:** Feel (validate their concern), Felt (a similar customer felt the same), Found (the outcome, with a metric whose Status allows its use). If no story can carry a Verified or Benchmark result, the Found line uses the Benchmark and says so.
 3. **Prepare typed resistance** (demo): Reactance, Skepticism or Inertia, each with its response from the Methodology.
 4. **Prepare the redirect:** if a buyer asks about something the product does not lead with, acknowledge it and return to the pain they ranked first.
@@ -478,7 +481,7 @@ A discovery flow for a 30-minute call (illustrative) looks like this:
 
 ### Step 8. Script the Open, the Close and the Follow-Up
 
-1. **The open** follows the Meeting Open and Close part by part, built from the record. A first meeting asks how the buyer's team handles the process. A follow-up names the pain they raised last time. A demo quotes discovery back in the buyer's words: name the attendee, then say the pain as they said it.
+1. **The open** follows the Meeting Open and Close part by part, built from the record. A first meeting, which is one with no earlier logged meeting with the attendees, asks how the buyer's team handles the process. A follow-up names the pain they raised last time. A demo quotes discovery back in the buyer's words: name the attendee, then say the pain as they said it.
 2. **The close:** recap what matters most in the buyer's words, ask who else belongs in the next conversation, propose the next agenda from what was discussed, and agree the next milestone with an owner and a date.
 3. **The objection scripts** from the Methodology, one for each objection the profile lists for the persona.
 4. **The follow-up email draft:** a short note to the attendees, marked DRAFT, not sent. It names the pain in the buyer's words, carries at most one proof point with its Status (Verified or Benchmark only), and states the next step with an owner and a date. The rep reads it and sends it.
@@ -498,7 +501,7 @@ A discovery flow for a 30-minute call (illustrative) looks like this:
 
 ### Step 10. Assemble the Prep Sheet
 
-Lay out the sheet in the section order from The Prep Sheet Sections. Fill the header with the attendees and `report_path: none (inline)`. End the sheet with `next_action`, which names an owner and a date. Hand the sheet back in the reply. Write a file only if the user asks, using the file option. Run the Quality Bar before handing back.
+Lay out the sheet in the section order from The Prep Sheet Sections. Fill the header with the attendees and `report_path: none (inline)`. End the sheet with `next_action`, which names an owner and a date. When the Economic Buyer cell is yellow, the next action asks the buyer for the signer above the named buyer, and for the next meeting's date, on the call. Hand the sheet back in the reply. Write a file only if the user asks, using the file option. Run the Quality Bar before handing back.
 
 **Produces:** `prep_sheet` (inline), `top_pain`, `question_bank`, `attendees`, `proof_point`, `next_action` and `report_path`.
 
@@ -578,7 +581,7 @@ All four examples use PlotIQ and its cast from the profile's Example Cast. Facts
 | Ruth Ellery | General Manager | Buyer `[CRM]` |
 | Walt Okonkwo | Operations Director | Influencer `[CRM]`. Skeptical of tablets `[Notes]` |
 
-**Step 2.** Findings: Ruth named the incumbent, Oldgate Ledger Pro, on the first call, and it was logged `[CRM]`. A second system, Stonemark mapping, was also evaluated, with no preference stated `[Call]`, call date `[Unknown]`. Gaps: the plot loss is not quantified. The economic buyer is not named `[Unknown]`. The approval process is not mapped `[Unknown]`.
+**Step 2.** Findings: Ruth named the incumbent, Oldgate Ledger Pro, and it was logged `[CRM]`. A second system, Stonemark mapping, was also evaluated, with no preference stated `[Notes]`, undated. Gaps: the plot loss is not quantified. The economic buyer is not named `[Unknown]`. The approval process is not mapped `[Unknown]`.
 
 **Step 3.** Pain hypotheses, ranked by the strength of their tags:
 
@@ -909,6 +912,9 @@ This skill also reads the kit's hand-off block back as optional context: `case_s
 
 ## Changelog
 
+
+### 2.1.4 (2026-10-26)
+- Try-it evidence completed so a strict first run reproduces Example 1. Step 3 gives the tag order for ranking pain hypotheses. Step 4 writes each phase's range from the profile first, then the record. Step 7 defines the research target as the profile figure that matches the persona's hook focus. Step 8 reads a meeting with no earlier logged meeting as a first meeting. Step 10 names the signer above the buyer as the next action when the economic buyer cell is yellow. A call of unknown date is tagged as notes. The Example 1 records gain the meeting history line, and the Stonemark tag becomes notes. No output changed.
 
 ### 2.1.3 (2026-10-26)
 - Try-it evidence completed so a strict first run reproduces Example 1. The example reads the upstream contact, pain and sequence fields and names a proof point with its research target for each attendee. Its question bank shows the counts the try-it promises. A phase with fewer than three questions shows all of them, and an incident count does not quantify a pain. The try-it ask names the example profile. No output count, verdict or next action changed. The proof line now names both attendees.

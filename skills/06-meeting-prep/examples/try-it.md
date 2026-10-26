@@ -12,6 +12,7 @@ These records are as of 2026-05-11, before Brackhaven reached Stage 5 Negotiate;
 Run date: 2026-05-11 (illustrative, the day before the Stage 2 call). Call date: 2026-05-12 (illustrative)
 Meeting type: Discovery. Thirty minutes (illustrative)
 Attendees on the call: Ruth Ellery and Walt Okonkwo
+Earlier meetings with Ruth Ellery or Walt Okonkwo: none logged [CRM]
 
 The Account
 - Account: Brackhaven Memorial Gardens
@@ -22,7 +23,7 @@ The Account
 - Status at the time of the call: ACTIVE, Stage 2 Discovery [CRM] (illustrative)
 - AE owner: Owen Pruitt
 - Incumbent: Oldgate Ledger Pro, logged [CRM]. Renewal in March 2027 [CRM]
-- Second system evaluated: Stonemark mapping, with no preference stated [Call]. Call date: [Unknown]
+- Second system evaluated: Stonemark mapping, with no preference stated [Notes], undated (Owen Pruitt's note)
 - Pre-need manager: Priscilla Dunmore, the end user. She is not on this call [CRM]
 - Economic buyer, the signer above the GM: [Unknown]. Buyer contact: Ruth Ellery [CRM]. The approval process: [Unknown]
 - Plot loss: not quantified

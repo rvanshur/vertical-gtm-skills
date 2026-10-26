@@ -33,8 +33,8 @@ Every name, date and number in this file is invented for the PlotIQ example. Not
 - Team quick win examples (illustrative): replace the binder lookup with a timed search, and run a double-sale risk audit of open plots.
 
 ## What You Should Get
-- Composite readiness: 60 of 100, Yellow (ready with conditions).
+- Composite readiness: 60 of 100, scored 6 of 6, Yellow (ready with conditions).
 - Dimension scores: Stakeholder 3, Workflow 4, Technical 2, Data 3, Resource 3, Change Management 3.
-- Three dates: kickoff 2026-12-07 (proposed), go-live 2027-01-25, Full Adoption Date 2027-02-08.
+- Three dates, all proposed before signature: kickoff 2026-12-07 (2026-11-02 plus 21 days is 2026-11-23, then plus the 14-day IT lead time is 2026-12-07), go-live 2027-01-25 (2026-12-07 plus 49 days), Full Adoption Date 2027-02-08 (2026-12-07 plus two months is 2027-02-07, a Sunday, so it rolls to Monday 2027-02-08).
 - Top risks: Technical (HIGH), Stakeholder (HIGH) and Adoption (MEDIUM).
 - Next action: Owen Pruitt asks Ruth Ellery for the board chair's name and written sponsor confirmation by 2026-11-09.
