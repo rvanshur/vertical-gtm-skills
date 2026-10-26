@@ -1,6 +1,6 @@
 ---
 name: gtm-competitive-displacement
-version: 2.1.9
+version: 2.1.10
 description: "Plans outbound to displace a known incumbent, by classifying the incumbent, rating how hard the switch is, and drafting persona-tailored four-step email sequences for the rep to read and send, so the BDR or AE who works the account knows what to say and what not to say."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: [gtm-competitive-strategy]
 mutating: read-write
 change_log:
+  - version: 2.1.10
+    date: 2026-10-26
+    summary: "Round 10 alignment to the shared contract. The INBOUND quiet window moves from 14 days to the shared rule: no reply within five business days after our last message, the same test every other skill uses. An INBOUND account with a DISQUALIFY verdict gets one short decline draft, held for the rep to read, in place of any sequence. The rule sits in Step 0, the Output Contract, Hard Rule 11 and the Quality Bar. No example or try-it promise changes."
   - version: 2.1.9
     date: 2026-10-26
     summary: "INBOUND accounts are answered first. Step 0 adds the INBOUND rule, the Output Contract's sequence row names the reply-first value, Hard Rule 10 bars a cold sequence until the account goes quiet, and the Quality Bar carries the check. Example 1's Step 0 states that the INBOUND rule does not apply to its TARGET account. The examples' sequences, difficulty ratings, tiers and next actions do not change."
@@ -106,7 +109,7 @@ Every run returns its report in the chat. The file is written only when the user
 | `incumbent_type` | Company and Incumbent Snapshot | The type the profile's Competitive Landscape files the incumbent under, with its confidence |
 | `displacement_difficulty` | Company and Incumbent Snapshot | Low, Medium or High, with the test that set it and whether that test was met |
 | `target_personas` | Key Personas | The profile rows used, ranked, each with its title, the count as n of N, and the contact or `[Unknown]` |
-| `sequence` | Below Key Personas | Four emails per persona, drafted and never sent. A page may show fewer. Then it says the other drafts follow the same rules and are left off the page, and names them. Under the BDR guard, `none (guard)`. Under ENGAGED, `none (ENGAGED: reply plan)`, and the reply plan takes the place of the four emails. Under INBOUND, `reply first (INBOUND)`: the reply to the buyer's request takes the place of the four emails until the account goes quiet, and then the four-step sequence follows. |
+| `sequence` | Below Key Personas | Four emails per persona, drafted and never sent. A page may show fewer. Then it says the other drafts follow the same rules and are left off the page, and names them. Under the BDR guard, `none (guard)`. Under ENGAGED, `none (ENGAGED: reply plan)`, and the reply plan takes the place of the four emails. Under INBOUND, `reply first (INBOUND)`: the reply to the buyer's request takes the place of the four emails until the account goes quiet, and then the four-step sequence follows. Under INBOUND with a DISQUALIFY verdict, `decline draft (INBOUND)`: one short decline takes the place of the reply, and no sequence follows. |
 | `report_path` | Header of the report | `none (inline)` unless the user asked for a file |
 | `next_action` | Last line of the report | The owner, the action and a date, written as "[owner] [action] by [date]", for example "[owner] finds the contact's name, then reviews and sends the first email by [date]". The owner is the BDR or AE of record in the CRM. When the CRM names the owner, that name is written with `[CRM]`. When the owner field is blank, the name is written `[Unknown]` and the role is kept, never a name from another account. The date follows the shared contract's next-action rule (five business days after the run date, or an earlier date the CRM or the records already set for that step, named with its source). The step names the action the owner takes, not the result |
 | File, On Request | `<account>_gtm-competitive-displacement_<date>.md`, saved beside the user's other account notes | Written only when the user asks, in Markdown. The ask is the approval step |
@@ -325,7 +328,7 @@ If the user is a BDR and the account is ACTIVE with an AE owner, stop. Produce t
 
 **ENGAGED Accounts:** An ENGAGED account has two-way contact and no open deal, because the account replied or met with us. A cold four-step sequence is wrong for it. The buyer has already answered an outreach, so a first email would make the buyer start over. For an ENGAGED account, Steps 1 and 2 run as written, and Step 3 becomes a reply plan. The reply plan is one drafted reply to the buyer's last message, in the buyer's own words, with the template's best discovery question as its follow-up. The incumbent comes up only when the buyer raises it. The BDR guard does not apply, because no AE deal is open. The reply is written by the rep who holds the thread, or by the owner of record when the CRM does not name the holder. The `sequence` field reads `none (ENGAGED: reply plan)`.
 
-**INBOUND Accounts:** An INBOUND account asked us first, and no deal is open. The buyer's request is the open thread, so the reply comes before any outbound. Steps 1 and 2 run as written. In Step 3, the first output is a reply to the buyer's request, in the buyer's own words. The reply carries the displacement angle as the template's best discovery question, asked as a question about the request, and it never attacks the incumbent. The incumbent comes up only when the buyer raises it. The four-step cold sequence waits. It is drafted only if the account goes quiet, meaning no buyer message for 14 days after our reply (the quiet window the Daily Prospecting skill uses), and then its Email 1 refers to the buyer's earlier request, so it is not a cold first touch. INBOUND stays until a deal opens or the account goes OUT, so the status word does not change when the sequence starts. The BDR guard does not apply, because no deal is open. The `sequence` field reads `reply first (INBOUND)` until the sequence starts.
+**INBOUND Accounts:** An INBOUND account asked us first, and no deal is open. The buyer's request is the open thread, so the reply comes before any outbound. Steps 1 and 2 run as written. In Step 3, the first output is a reply to the buyer's request, in the buyer's own words. The reply carries the displacement angle as the template's best discovery question, asked as a question about the request, and it never attacks the incumbent. The incumbent comes up only when the buyer raises it. The four-step cold sequence waits. It is drafted only if the account goes quiet, as What The Close Reads defines it (no reply within five business days after our last message), and then its Email 1 refers to the buyer's earlier request, so it is not a cold first touch. INBOUND stays until a deal opens or the account goes OUT, so the status word does not change when the sequence starts. The BDR guard does not apply, because no deal is open. The `sequence` field reads `reply first (INBOUND)` until the sequence starts. If the account's verdict is DISQUALIFY, carried from Account Snapshot (02) or Account Qualification (01), the reply becomes one short decline draft, held for the rep to read, and the `sequence` field reads `decline draft (INBOUND)`. No sequence follows.
 
 **Produces:** `user_role` (BDR or AE), the account status word, and the AE owner if there is one.
 
@@ -447,6 +450,7 @@ Confidence applies to the incumbent identification, and it decides whether displ
 8. **Never send, never enroll a contact, never write to the CRM.** Reason: the rep owns the outreach and the record. The Shared Contract states this for every skill, and this skill keeps it in the same words.
 9. **Never draft a cold displacement sequence for an ENGAGED account.** Reason: the buyer has already replied, so a first-touch sequence asks the buyer to start over and ignores the reply.
 10. **Never draft a cold displacement sequence for an INBOUND account before it goes quiet.** Reason: the buyer asked us first, so a cold first email ignores the request and tells the buyer that we did not read it.
+11. **Never draft a sequence for a DISQUALIFY account, and give an INBOUND DISQUALIFY one decline draft instead.** Reason: the buyer asked us first, so the request still gets a courteous answer, but a displacement sequence to an account that cannot buy spends the rep's touch.
 
 ---
 
@@ -466,6 +470,7 @@ Done when all are true:
 - [ ] The role was checked, and the BDR guard was applied where it applies
 - [ ] An ENGAGED account gets a reply plan in place of the four-step sequence, and no cold sequence is drafted for it
 - [ ] An INBOUND account gets a reply to its request first, with the displacement angle in it, and no cold sequence is drafted until the account has gone quiet
+- [ ] A DISQUALIFY on an INBOUND account gets one short decline draft, held for the rep, and no sequence is drafted
 - [ ] The `next_action` line is last, with an owner and a date
 - [ ] No file was written unless the user asked for one
 
@@ -715,6 +720,11 @@ report_path: none (inline)
 ---
 
 ## Changelog
+
+### 2.1.10 (2026-10-26)
+- The INBOUND quiet window is the shared rule in What The Close Reads: no reply within five business days after our last message. The earlier 14-day window in 2.1.9 is removed, so a cold sequence for an INBOUND account waits on the same test as the other skills.
+- An INBOUND account with a DISQUALIFY verdict gets one short decline draft, held for the rep to read, in place of any sequence. Step 0, the Output Contract, Hard Rule 11 and the Quality Bar carry it.
+- No example or try-it promise changes.
 
 ### 2.1.9 (2026-10-26)
 - INBOUND accounts get a reply to their request first, with the displacement angle carried in that reply. A cold four-step sequence follows only if the account goes quiet, meaning no buyer message for 14 days after our reply.

@@ -1,7 +1,7 @@
 ---
 name: gtm-account-snapshot
 description: "One-page account brief for BDRs and AEs: a zone-based verdict, persona-ranked contacts, tagged pain hypotheses, a three-step email draft and call prep, read by the rep before anything is sent."
-version: 2.1.9
+version: 2.1.10
 category: Sales-Methodology
 author: Ryan Vanshur
 license: MIT
@@ -11,6 +11,9 @@ requires:
   skills: [gtm-account-qualification, gtm-competitive-displacement]
 mutating: read-write
 change_log:
+  - version: 2.1.10
+    date: 2026-10-26
+    summary: "Round 10 alignment to the shared contract. Gone quiet is no longer restated here, and Step 5 points to What The Close Reads. Example 5's reply to Ines Carmody is due 2026-10-29, the next business day after its 2026-10-28 run, and the booked call of 2026-11-02 is later, so it sets no earlier date. A DISQUALIFY on an INBOUND account now gets one short decline draft, held for the rep, in Step 5, the Output Contract, Hard Rule 13 and the Quality Bar. Quick Call Prep keeps its no-draft rule except for that decline. No try-it promise, verdict, zone score or pain hypothesis changes."
   - version: 2.1.9
     date: 2026-10-26
     summary: "Round 9 INBOUND rule and ENGAGED example. An INBOUND account, which asked us first with no open deal, gets one reply to its request first, carrying this skill's angle. A cold sequence follows only if the account goes quiet, meaning no reply within five business days after the reply is sent. The rule sits in Step 5, the Call Goal table, the opener, a new INBOUND pattern, Hard Rule 12, the Quality Bar and the Output Contract. New Example 5 shows the ENGAGED path for Quill Hollow Memorial Park on Wednesday 2026-10-28, the day after Ines Carmody replied on 2026-10-27: one ready reply draft, a call goal, and a next action dated 2026-11-02 by the booked call. Example 2 (Sable Fork) is rechecked: its reply went out on 2026-10-19, so the INBOUND reply step is done, and Quick Call Prep still drafts no sequence. Example 1 and the try-it promise are unchanged, so no promise changes."
@@ -110,7 +113,7 @@ Every run returns its report in the chat. The file is written only when the user
 | `zone_scores` | Beside the verdict | One line per zone, 1 to 5, each HIGH, MEDIUM, LOW or UNKNOWN. Carried as handed by Account Qualification (01) when it ran, otherwise scored here with a tag per zone |
 | `contact_priority` | Key Personas | Ranked contacts, each with persona and buying role. Unknown where no contact is found |
 | `pain_hypotheses` | Pain Hypotheses | Ranked by confidence, each one tagged |
-| `sequence` | Below the cheatsheet | Three emails per persona for a cold account, one reply draft for an ENGAGED account, or one reply to the request for an INBOUND account, with a cold sequence only if that account goes quiet. Drafted and never sent. A MANUAL REVIEW set is marked Held. Quick Call Prep mode omits it |
+| `sequence` | Below the cheatsheet | Three emails per persona for a cold account, one reply draft for an ENGAGED account, or one reply to the request for an INBOUND account, with a cold sequence only if that account goes quiet. A DISQUALIFY on an INBOUND account gets one short decline draft in place of the reply. Drafted and never sent. A MANUAL REVIEW set is marked Held. Quick Call Prep mode omits it |
 | `report_path` | Only when a file was written | Set only when the user asks for the file. Wrap-Up reads it |
 | `next_action` | Last line of the summary | Owner and a calendar date set by the shared contract's next-action rule (What the Close Reads: five business days after the run date, or an earlier date the records or the skill's own schedule set for that step), in the form "[owner] sends Email 1 to [contact] by [date]" |
 | File option | `<account>_<skill>_<date>.md`, saved beside the user's other account notes | Written only when the user asks. Markdown only. The ask is the approval step |
@@ -366,13 +369,13 @@ Draft a three-step email sequence for each of the top two or three personas. Wha
 
 - **GREENLIGHT:** a ready sequence. The rep reads it, edits it if needed and sends it.
 - **MANUAL REVIEW:** a held package. Its first line reads "Held: send only after a person clears the verdict", and nothing in it goes out before then.
-- **DISQUALIFY:** no drafts. The report says so.
+- **DISQUALIFY:** no sequence. The report says so. An INBOUND account gets one decline draft, as the INBOUND paragraph below describes.
 
-Quick Call Prep mode drafts none, whatever the verdict.
+Quick Call Prep mode drafts none, whatever the verdict, except the decline draft for an INBOUND DISQUALIFY, which still answers the request.
 
 **ENGAGED accounts** replied or met with us, and no deal is open. They get no cold sequence, because the account is already talking to us, and three cold emails would restart the outreach it has answered. Step 5 drafts one reply to the open thread instead. The reply answers what the account said, cites the date and tag of that message, follows every rule below, and is ready or held by the verdict in the same way. The sequence comes after the pain hypotheses, because each email uses one hypothesis, so the ranked list must exist first.
 
-**INBOUND accounts** asked us first, and no deal is open. The request is answered before any cold touch, so Step 5 drafts one reply to the request instead of a sequence. The reply answers what they asked, carries this skill's angle (the pain hypothesis that ranks first in Step 4, in the words of the request where the request names it), follows every rule below, and is ready or held by the verdict in the same way. A sequence follows only if the account goes quiet, which means no reply within five business days after the reply is sent, counted the way What The Close Reads counts business days. The sequence is then drafted from the same ranked hypotheses, and its Email 1 refers back to the request instead of restarting the outreach. A DISQUALIFY account gets no draft, as the verdict rules say.
+**INBOUND accounts** asked us first, and no deal is open. The request is answered before any cold touch, so Step 5 drafts one reply to the request instead of a sequence. The reply answers what they asked, carries this skill's angle (the pain hypothesis that ranks first in Step 4, in the words of the request where the request names it), follows every rule below, and is ready or held by the verdict in the same way. A sequence follows only if the account goes quiet, as What The Close Reads defines it. The sequence is then drafted from the same ranked hypotheses, and its Email 1 refers back to the request instead of restarting the outreach. A DISQUALIFY account gets no sequence. An INBOUND account with a DISQUALIFY verdict gets one short decline draft instead, in place of the reply: not a fit right now, the reason in one line, and an open door if that reason changes. The rep reads it before anything goes out. It follows the rules for every email below for length and claims, at 100 words or fewer, with no `[Inferred]` or `[Unknown]` fact as a claim.
 
 **Rules For Every Email:**
 - Include a subject line.
@@ -474,6 +477,7 @@ No mode writes a file. A file is written only when the user asks for one, under 
 10. **Never let a held package go out before a person clears the verdict.** Reason: a MANUAL REVIEW account has open gaps, and a draft that reads as ready invites a send before the gaps close.
 11. **Never send a cold three-step sequence to an ENGAGED account.** Reason: the account has already answered, and a cold sequence reads as not listening.
 12. **Never send a cold sequence to an INBOUND account before its request is answered.** Reason: the account asked us first, so a cold sequence ignores the open request. A sequence follows only once the account goes quiet.
+13. **A DISQUALIFY gets no sequence, and an INBOUND DISQUALIFY gets one decline draft.** Reason: the buyer asked us first, so the request still deserves a courteous answer, but a sequence to an account that cannot buy spends a touch the rep needs elsewhere.
 
 ---
 
@@ -489,6 +493,7 @@ Done when all are true:
 - [ ] Every Email 1, and the reply draft for an ENGAGED account or for an INBOUND request, opens with a specific, tagged company fact
 - [ ] A MANUAL REVIEW set is marked Held on its first line, and Quick Call Prep drafts none
 - [ ] An INBOUND account has one reply to its request, carrying the skill's angle, and no cold sequence unless the account has gone quiet
+- [ ] A DISQUALIFY on an INBOUND account has one short decline draft, held for the rep, and no sequence
 - [ ] Every email is 100 words or fewer, and no email uses an `[Inferred]` or `[Unknown]` fact as a claim
 - [ ] Every proof point in an email is in the Proof Points table (profile: Proof Points) and is not Illustrative
 - [ ] The call goal matches the user's role, and no demo is proposed before the pain is confirmed
@@ -896,7 +901,7 @@ Verdict: GREENLIGHT, so the reply is **ready**. It is not held, and the rep stil
 
 **Discovery Question For The Call:** "When a family asks for a sold plot, which record does your team check first?" The next step after this call is another discovery call, not a demo, until the pain is confirmed.
 
-**Step 7: Summary.** BDR. Quill Hollow Memorial Park, ENGAGED, GREENLIGHT, with Zones 3 and 5 HIGH. One contact on file, Ines Carmody, Developing (1 of 7 behaviours). One reply draft, ready, to her reply of 2026-10-27. No cold sequence. Next action: Nadia Brandt sends the reply to Ines Carmody by 2026-11-02. The shared rule gives five business days after the run date, which is 2026-11-04 (Wednesday 2026-10-28 plus five business days). The booked call on 2026-11-02 is an earlier schedule date for this step, so it sets the date, and its source is the booking `[CRM]` (illustrative), as What The Close Reads allows.
+**Step 7: Summary.** BDR. Quill Hollow Memorial Park, ENGAGED, GREENLIGHT, with Zones 3 and 5 HIGH. One contact on file, Ines Carmody, Developing (1 of 7 behaviours). One reply draft, ready, to her reply of 2026-10-27. No cold sequence. Next action: Nadia Brandt sends the reply to Ines Carmody by 2026-10-29. A reply to a buyer's own message is due the next business day after the run date, which is Thursday 2026-10-29 (Wednesday 2026-10-28 plus one business day). The booked call on 2026-11-02 is later, so it sets no earlier date, and the five-business-day default of 2026-11-04 does not apply to this reply.
 
 ```text
 Hand-off (read by 06):
@@ -909,7 +914,7 @@ contact_priority: 1 Ines Carmody (General Manager, champion label, Developing, 1
 pain_hypotheses: 1 Plot visibility (HIGH, Inferred), 2 Records after a state finding (MEDIUM, date Unknown), 3 Plot lookups take minutes (MEDIUM, Inferred)
 sequence: one reply draft to Ines Carmody's reply of 2026-10-27, ready (GREENLIGHT). No cold sequence, because the account is ENGAGED
 report_path: none (inline)
-next_action: Nadia Brandt sends the reply to Ines Carmody by 2026-11-02, the booked call date, which is earlier than 2026-11-04 (five business days after the run date) and sets the date from [CRM]
+next_action: Nadia Brandt sends the reply to Ines Carmody by 2026-10-29, the next business day after the run date (a reply to a buyer's own message, with no earlier record date)
 ```
 
 ---
@@ -1020,6 +1025,17 @@ The Business Case & ROI Kit (a paid Guild Pro kit) reads this skill's hand-off b
 
 ## Changelog
 
+
+### 2.1.10 (2026-10-26)
+- Gone quiet is no longer restated locally. Step 5 points to the shared rule in What The Close Reads.
+- Example 5's reply to Ines Carmody is due 2026-10-29, the next business day after the 2026-10-28 run. The booked call on 2026-11-02 is later, so it sets no earlier date. The Step 7 summary and the hand-off next_action carry the new date.
+- A DISQUALIFY on an INBOUND account gets one short decline draft, held for the rep to read, in Step 5, the Output Contract, Hard Rule 13 and the Quality Bar. Quick Call Prep keeps its no-draft rule except for that decline.
+- No try-it promise, verdict, zone score or pain hypothesis changes.
+
+### 2.1.9 (2026-10-26)
+- INBOUND accounts, which asked us first with no open deal, get one reply to their request first, carrying this skill's angle. A cold sequence follows only if the account goes quiet, meaning no reply within five business days after the reply is sent.
+- The INBOUND rule sits in Step 5, the Call Goal table, the opener rule, a new INBOUND pattern, Hard Rule 12, the Quality Bar and the Output Contract.
+- A new example covers the ENGAGED path, with one reply draft and no cold sequence.
 
 ### 2.1.8 (2026-10-26)
 - Every profile citation is written (profile: Section), naming the real section. Template placeholders and the shared contract are unchanged.
