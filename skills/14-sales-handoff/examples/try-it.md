@@ -39,4 +39,4 @@ Every name, date and number in this file is invented for the PlotIQ example. Not
 - Preview: the signature is expected 2026-11-16, after this check, so the report carries the Preview label at the top and all three dates are labelled proposed.
 - Full Adoption adjustments: Source Systems adds nothing, because Brackhaven has one system. The export format is new to the team, so it subtracts nothing. The Sunday result rolls to Monday.
 - Top risks: Technical (HIGH), Stakeholder (HIGH) and Adoption (MEDIUM).
-- Next action: Owen Pruitt asks Ruth Ellery for the board chair's name and written sponsor confirmation by 2026-11-09, five business days after the run date of 2026-11-02, since no earlier date is on record.
+- Next action: Owen Pruitt asks Ruth Ellery, in one message, to name a Brackhaven IT owner, and to name the family board chair and confirm the sponsor in writing. The date is 2026-11-09, five business days after the run date of 2026-11-02, since no earlier date is on record. The IT owner comes first because Technical is the top-ranked risk. Later steps: the export test with the incumbent's support and the quick wins.

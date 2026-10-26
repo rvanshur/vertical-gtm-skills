@@ -284,7 +284,7 @@ These five signals are the one-glance read a rep sees first. They do not set the
 | Scale (volume) | Site and plot counts, written as numbers, with the Size Band from the Size Bands table (profile: Market Segments): SMB (one site with under 2,000 plots), Mid-Market (one to three sites with 2,000 plots or more in total) or Enterprise (four sites or more) |
 | Team complexity signal | Dedicated team (three or more named people run the account's functions), Small team (one or two named) or Unknown (none named) |
 
-**Primary fit rule.** Primary fit is Yes when every part of the ICP's key indicator is met on a tagged fact. It is Partial when at least one part is met and another part is `[Unknown]`. For example, the plot records are on paper, but the annual state filing is unknown because the state is not recorded. It is No when a part is recorded as absent. An `[Unknown]` part never scores Yes, and it never scores No, because silence is not a no.
+**Primary Fit Rule.** Primary fit is Yes when every part of the ICP's key indicator is met on a tagged fact. It is Partial when at least one part is met and another part is `[Unknown]`. For example, the plot records are on paper, but the annual state filing is unknown because the state is not recorded. It is No when a part is recorded as absent. An `[Unknown]` part never scores Yes, and it never scores No, because silence is not a no.
 
 ### Confidence In Pain Hypotheses
 
@@ -557,9 +557,9 @@ Ines Carmody ranks first. She is the only named contact and runs the site now, a
 
 **Step 4: Pain Hypotheses.**
 
-1. **Plot records on paper, binders or pencil maps.** HIGH confidence. The plot map is on paper `[CRM]`. `[Inferred]`, by reasoning from the record type: a paper map cannot show which plots are sold without a walk of the grounds. Discovery question: "How do you check today which plots are open?" Value prop: plot inventory matched against sold records.
+1. **Plot Records On Paper, Binders Or Pencil Maps.** HIGH confidence. The plot map is on paper `[CRM]`. `[Inferred]`, by reasoning from the record type: a paper map cannot show which plots are sold without a walk of the grounds. Discovery question: "How do you check today which plots are open?" Value prop: plot inventory matched against sold records.
 2. **Trust fund and records reporting by hand (event date unknown).** MEDIUM confidence. `[Inferred]`. The last state review found a records problem `[CRM]`, and its date is `[Unknown]`. The pressure is real, but its timing is not. Because the hypothesis depends on when the finding happened, the undated finding does not count toward the three signals, so size and vertical are the two signals that count, and the hypothesis stays at MEDIUM. The finding is a discovery question only, and no email or call opener uses it. Discovery question: "When was the last state review, and what did it ask you to fix?" Value prop: plot and trust records a state auditor accepts (profile: Value Propositions, Value Proposition 2).
-3. **Plot lookups take minutes to hours.** MEDIUM confidence. `[Inferred]`, by reasoning from the record type and the plot count: a paper map of 8,800 plots makes each lookup a search, which matches Core Pain Point 3 on two signals (profile: Core Pain Points). Discovery question: "When a family asks about a plot, how long does the lookup take?" Value Prop: a plot answer in seconds (profile: Value Propositions, Value Proposition 3).
+3. **Plot Lookups Take Minutes To Hours.** MEDIUM confidence. `[Inferred]`, by reasoning from the record type and the plot count: a paper map of 8,800 plots makes each lookup a search, which matches Core Pain Point 3 on two signals (profile: Core Pain Points). Discovery question: "When a family asks about a plot, how long does the lookup take?" Value Prop: a plot answer in seconds (profile: Value Propositions, Value Proposition 3).
 
 **Step 5: Sequence (Ines Carmody, General Manager).**
 
@@ -661,9 +661,9 @@ Region map: no tier, because the state is not recorded `[Unknown]`.
 
 **Step 4: Pain Hypotheses.**
 
-1. **Plot lookups take minutes to hours.** MEDIUM confidence. `[Inferred]`, by reasoning from the record type: a 2,900-plot list in a spreadsheet is harder to check against sold records than a digital system. Discovery question: "When someone asks for a plot, how long does it take to find it today?"
-2. **Trust fund and records reporting by hand.** LOW confidence. `[Inferred]`. No records owner is named `[Unknown]`, and no record ties the list to a filing. Discovery question: "Who maintains the list today?"
-3. **Pre-need leads go cold.** LOW confidence. `[Inferred]`. The record says pre-need is none `[CRM]`, so there is no follow-up process to repair. Ask only to confirm, and do not lead with it.
+1. **Plot Lookups Take Minutes To Hours.** MEDIUM confidence. `[Inferred]`, by reasoning from the record type: a 2,900-plot list in a spreadsheet is harder to check against sold records than a digital system. Discovery question: "When someone asks for a plot, how long does it take to find it today?"
+2. **Trust Fund And Records Reporting By Hand.** LOW confidence. `[Inferred]`. No records owner is named `[Unknown]`, and no record ties the list to a filing. Discovery question: "Who maintains the list today?"
+3. **Pre-Need Leads Go Cold.** LOW confidence. `[Inferred]`. The record says pre-need is none `[CRM]`, so there is no follow-up process to repair. Ask only to confirm, and do not lead with it.
 
 **Step 6: Call Prep.**
 
@@ -707,7 +707,7 @@ next_action: Owen Pruitt runs the discovery call with Arlen Biggs on 2026-10-22 
 
 | Account | Status And Verdict | Zones That Carry The Verdict | Plots | Top Pain | Next Step | Priority |
 |---------|--------------------|------------------------------|-------|----------|-----------|----------|
-| Corrow Ridge Cemetery | TARGET, GREENLIGHT | Zone 1 HIGH, Zone 5 HIGH (illustrative) | 14,000 | Paper plat maps and a deed recorded twice in 2025 (illustrative) | Trigger Event Outbound (04). The ownership change closed 110 days ago, and 10 days of the window remain | 1 |
+| Corrow Ridge Cemetery | TARGET, GREENLIGHT | Zone 1 HIGH, Zone 5 HIGH (illustrative) | 14,000 | Paper plat maps and a double sale in 2025, one plot sold twice (illustrative) | Trigger Event Outbound (04). The ownership change closed 110 days ago, and 10 days of the window remain | 1 |
 | Greyfield Memorial Park | TARGET, GREENLIGHT | Zone 1 MEDIUM (a digital map, with plot records and trust reporting still outside it), Zone 2 HIGH, Zone 3 HIGH | 9,000 | Pre-need and records wanted together | Competitive Displacement (12). The Stonemark contract renews January 2027 | 2 |
 | Tamsin Vale Cemetery | TARGET, MANUAL REVIEW | Zone 1 HIGH, the only HIGH zone | 4,200 | Paper maps and one binder per section | Hold until the signer is known. Zone 3 is not HIGH | 3 |
 | Lowmoor Memorial Gardens | LOST, re-scored MANUAL REVIEW | Re-scored on fit, zone detail in Closed-Loss Reactivation (05) | 7,500 | Closed-lost to Oldgate on "timing" `[CRM]` | Route to Closed-Loss Reactivation (05). Do not sequence from this table | 4 |
@@ -770,7 +770,7 @@ The family board chair is recorded as a gap, not as a person: no name is on file
 
 **Step 4: Pain Hypotheses.**
 
-1. **Plot records on paper, binders or pencil maps.** HIGH confidence. Paper plot maps at both sites `[CRM]`. `[Inferred]`, by reasoning from the record type: two sites on paper mean two lists, so a sale on one list can be missed on the other. Discovery question: "Which site's plot list do your staff check first?"
+1. **Plot Records On Paper, Binders Or Pencil Maps.** HIGH confidence. Paper plot maps at both sites `[CRM]`. `[Inferred]`, by reasoning from the record type: two sites on paper mean two lists, so a sale on one list can be missed on the other. Discovery question: "Which site's plot list do your staff check first?"
 2. **The Oldgate Renewal In March 2027.** MEDIUM confidence. The renewal date is `[CRM]`. `[Inferred]`, from the contract date: the renewal opens a decision window. Discovery question: "What happens at the Oldgate renewal, and who decides?"
 
 **Step 5: Sequence (Ruth Ellery, General Manager).**
@@ -883,9 +883,9 @@ Ines Carmody ranks first, because she is the only named contact, she replied, an
 
 **Step 4: Pain Hypotheses.** The reply adds no pain fact, so the three hypotheses are Example 1's, ranked by confidence and then by Core Pain Points number (profile: Core Pain Points):
 
-1. **Plot records on paper, binders or pencil maps.** HIGH confidence. Paper plat maps `[CRM]`. `[Inferred]`, reasoned from the record type: a paper map cannot show which plots are sold without a walk of the grounds. Discovery question: "How do you check today which plots are open?" Value prop: plot inventory matched against sold records (profile: Value Propositions).
+1. **Plot Records On Paper, Binders Or Pencil Maps.** HIGH confidence. Paper plat maps `[CRM]`. `[Inferred]`, reasoned from the record type: a paper map cannot show which plots are sold without a walk of the grounds. Discovery question: "How do you check today which plots are open?" Value prop: plot inventory matched against sold records (profile: Value Propositions).
 2. **Trust fund and records reporting by hand (event date unknown).** MEDIUM confidence. `[Inferred]`. The last state review found a records problem `[CRM]`, and its date is `[Unknown]`. The finding is a discovery question only, never the hook. Discovery question: "When was the last state review, and what did it ask you to fix?"
-3. **Plot lookups take minutes to hours.** MEDIUM confidence. `[Inferred]`, reasoned from the record type and the plot count: a paper map of 8,800 plots makes each lookup a search (profile: Core Pain Points, Pain 3). Discovery question: "When a family asks about a plot, how long does the lookup take?"
+3. **Plot Lookups Take Minutes To Hours.** MEDIUM confidence. `[Inferred]`, reasoned from the record type and the plot count: a paper map of 8,800 plots makes each lookup a search (profile: Core Pain Points, Pain 3). Discovery question: "When a family asks about a plot, how long does the lookup take?"
 
 **Step 5: The Reply, Not A Sequence.** Quill Hollow is ENGAGED, so there is no cold sequence. Email 1 is not sent again as a cold touch, and Emails 2 and 3 are not drafted (Hard Rule 11). The one draft replies to her message.
 

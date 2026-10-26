@@ -1,6 +1,6 @@
 ---
 name: gtm-stakeholder-mapping
-version: 2.1.11
+version: 2.1.12
 description: "Maps the buying committee for one account: classifies every contact by buying role, marks each missing decision-maker as an UNKNOWN ghost node, scores multi-threading on seven weighted dimensions, and returns an engagement plan the AE or BDR reads before the next meeting."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: [gtm-meddpicc-analysis]
 mutating: read-write
 change_log:
+  - version: 2.1.12
+    date: 2026-10-26
+    summary: "Round 12. The next-action priority order is written into the Output Contract and Step 7: a reply owed at an ENGAGED or INBOUND account, an unaddressed Blocker, an Economic Buyer who is a ghost node, a named Economic Buyer not engaged, a champion at risk, an entry point, then HIGH and MEDIUM steps by their windows. Asks to the same person that fit in one message travel with the next action. The role-title map governs a contact's role before the typical-titles column. A briefing to the approver counts as demonstrated seniority for HIGH influence. The full-list rule for a 0 is stated on the record. Upstream MEDDPICC fields and the BDR owner are recorded in the try-it. The example scores, threading score and ghost nodes do not change."
   - version: 2.1.11
     date: 2026-10-26
     summary: "Round 11 settlement. A contact that fits two roles takes the role the record evidences, so a Champion needs one shared test met. The Economic Buyer is the person whose approval moves the spend, so a board chair holds the slot where a board approves above a limit. Each ghost node names its source. A dated interaction counts in its window, and Economic Buyer Engaged scores 2 only with two or more dated interactions. The gone-quiet test is not applied, because the skill starts no sequence. The try-it records and Example 1 state facts only, with the champion count, the stance and the seniority label removed and the dates' illustrative marks lifted. Scores, threading score, ghost nodes and next action do not change."
@@ -864,6 +867,15 @@ report_path: none (inline)
 ---
 
 ## Changelog
+
+### 2.1.12 (2026-10-26)
+- Next action. The Output Contract `next_action` row and Step 7 give the priority order. Asks to the same person in one message travel with the next action, and a different person or a later date makes a later step.
+- Champion at risk. Defined as a Strong or Developing champion whose last logged interaction is 14 days or more before the run date.
+- Influence. A briefing to the approver, or setting the date the approving body works to, is demonstrated seniority and places the contact at HIGH.
+- Roles. The profile's role-title map decides a contact's role before the typical-titles column does. A pre-need manager is an End User where the map says so.
+- Funeral home owner. A Buyer Persona row, limited to its scope, is a ghost node when the account is in scope and no named contact is on file. A Non-Buyers row needs a dated step or an open question.
+- Technical Evaluator. A 0 counts when the records state the CRM contact list is full, and the try-it states it.
+- Try-it. Upstream MEDDPICC fields for the same day are recorded, the BDR owner is recorded as unknown, and the promise adds the same-person ask.
 
 ### 2.1.11 (2026-10-26)
 - Two roles. A contact that fits two roles takes the role the record evidences. A Champion needs one shared test met, and the Economic Buyer is the person whose approval moves the spend, so the board chair holds that slot where a board approves above a limit.

@@ -702,7 +702,7 @@ dimension_scores: Stakeholder 3, Workflow 4, Technical 2, Data 3, Resource 3, Ch
 three_dates: all proposed before signature: kickoff 2026-12-07, go-live 2027-01-25, Full Adoption Date 2027-02-08
 risks: Technical (HIGH), Stakeholder (HIGH), Adoption (MEDIUM)
 quick_wins: week one remove one manual step, month one risk audit of open plots, 90 days lookup times at baseline
-next_action: Owen Pruitt asks Ruth Ellery for the board chair's name and written sponsor confirmation by 2026-11-09
+next_action: Owen Pruitt asks Ruth Ellery to name a Brackhaven IT owner, and in the same message to name the family board chair and confirm the sponsor in writing, by 2026-11-09 (five business days after the run date of 2026-11-02, no earlier date on record). Later steps: the export test with the incumbent's support (team step, Owen Pruitt before signature) and the quick wins
 report_path: none (inline)
 ```
 
@@ -752,7 +752,7 @@ dimension_scores: Stakeholder 3, Workflow 4, Technical 2, Data 3, Resource 2, Ch
 three_dates: none set (Orange rule). Conditional, anchored on the check date 2026-11-16: kickoff 2026-12-21, go-live 2027-02-08, Full Adoption Date 2027-02-22
 risks: Technical (HIGH), Stakeholder (HIGH), Resource (MEDIUM)
 quick_wins: week one remove one manual step, month one risk audit of open plots, 90 days lookup times at baseline
-next_action: Eli Marsh asks Ruth Ellery to name a Brackhaven IT owner by 2026-11-23 (five business days after the run date of 2026-11-16)
+next_action: Eli Marsh asks Ruth Ellery to name a Brackhaven IT owner, and in the same message to name the family board chair and confirm the sponsor in writing, by 2026-11-23 (five business days after the run date of 2026-11-16). Later steps: the Resource mitigation, which the same owner takes to its own person
 report_path: none (inline)
 ```
 
@@ -799,7 +799,7 @@ dimension_scores: Stakeholder 2, Workflow 2, Technical 2, Data 2, Resource 2, Ch
 three_dates: none set (Orange rule: no kickoff date until every critical dimension reaches 3, and a check before signature is a preview)
 risks: Technical (HIGH), Resource (HIGH), Stakeholder (HIGH)
 quick_wins: none until the gaps close
-next_action: Owen Pruitt asks Ruth Ellery to confirm the board date by 2026-10-26, five business days after the run date of 2026-10-19
+next_action: Owen Pruitt asks Ruth Ellery to name a Brackhaven IT owner, then to confirm the family board date, and then to name the board chair and confirm the sponsor in writing, in that risk order and in one message, by 2026-10-26 (five business days after the run date of 2026-10-19). Later steps: the quick wins, held until the conditions close
 report_path: none (inline)
 ```
 
@@ -881,6 +881,12 @@ The Business Case & ROI Kit (a paid Guild Pro kit) reads this skill's hand-off b
 ---
 
 ## Changelog
+
+### 2.1.12 (2026-10-26)
+- Next action. The Output Contract row and Step 7 give the order: a reply owed to a buyer, then the ask that mitigates the top-ranked risk needing a buyer-side person, then the next-ranked one, then our team's own steps. Asks of the same kind to the same person on the same date travel in one message, in risk order.
+- Examples. Each example's next action follows that order. Technical is the top-ranked risk in all three, so the IT owner ask leads. The sponsor and board chair ask goes to the same person on the same date and travels with it. Example 3 (the 40 Orange case) changes from the board date alone to the IT owner, the board date and the chair and sponsor, in one message.
+- Dates and scores do not change. The composite, dimension scores, three dates, risks and Preview label are as before.
+- Try-it. The promise names the IT owner ask first and the same-message sponsor ask, with later steps listed.
 
 ### 2.1.11 (2026-10-26)
 - Source Systems. With one system no adjustment applies, and no profile value is needed. A profile value is required only for an adjustment that applies.

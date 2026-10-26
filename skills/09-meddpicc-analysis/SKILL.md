@@ -1,6 +1,6 @@
 ---
 name: gtm-meddpicc-analysis
-version: 2.1.11
+version: 2.1.12
 description: "Scores an active deal across all eight MEDDPICC elements from the CRM record, computes a weighted health score, and recommends ADVANCE, HOLD, DOWNGRADE or DISQUALIFY. The deal's AE and sales manager read the output."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: ["gtm-deal-pulse", "gtm-call-coaching", "gtm-stakeholder-mapping"]
 mutating: read-write
 change_log:
+  - version: 2.1.12
+    date: 2026-10-26
+    summary: "Round 12. Next-action priority order written into the Output Contract and Step 5: a reply owed to a buyer first, then a failed current-stage critical element, then the next-stage blocker, then other gaps. Asks to the same person from the same owner travel with the next action in one message. a different owner or a later date is a later step. Identified Pain 5 and Decision Process 4 are settled by rule (the close date is set against a named deadline when the buyer ties it to the event the close date sits on. row 4 holds on steps known one by one with an unconfirmed set date). Decision Criteria 4 reads 'strong on most' against recorded must-haves. Deal Pulse absence is shown per field. Example 2 check date moves to 2026-10-26, the dated action's deadline. The example scores, verdicts and health do not change."
   - version: 2.1.11
     date: 2026-10-26
     summary: "Round 11 settlement. Identified Pain 5 reads an urgent timeline as a deadline the buyer named that the close date is set against, which makes rows 4 and 5 exclusive. A briefing to the holder of a role named only by role counts for Champion 5. Step 3 uses the profile's gate figure for the stage, and Step 5 dates the first action by the shared rule whatever its gap class. An exit criterion sits with the element whose rubric names its fact. The try-it records state facts only, with the Deal Pulse figure, the champion count and the rubric phrases removed. The example scores, verdicts and next actions do not change."
@@ -725,6 +728,16 @@ The Business Case & ROI Kit (a paid Guild Pro kit) reads this skill's hand-off b
 
 ## Changelog
 
+
+### 2.1.12 (2026-10-26)
+- Next action. The Output Contract `next_action` row and Step 5 give the priority order: a reply owed to a buyer, then a failed current-stage critical element (INSUFFICIENT first), then the next-stage blocker, then other gaps by the Step 4 ranking. Ties go to the lower score, then to table order. Asks to the same person from the same owner travel in the same message. a different owner or a later date makes a later step.
+- Identified Pain. A named deadline counts for the close date when the buyer ties it to the event the close date sits on, such as a board meeting, whether or not the board has confirmed it. The link ends when the close date moves and no buyer ties the new date to the deadline.
+- Decision Process. Row 4 holds when each approval step and its stakeholder are on the record, even with a set date the approver has not confirmed. Row 3 holds when the process is known only in general terms.
+- Decision Criteria. "Strong on most" in row 4 is read against the recorded must-haves. Row 5 still needs the criteria in writing.
+- Metrics. A figure counts as the prospect's when the prospect stated it or the CRM records it as the prospect's.
+- Deal Pulse. An absent upstream output is shown per field: none on record, or the date with each missing field marked unknown. No comparison is made.
+- Example 2. The stage check date is 2026-10-26, the dated action's deadline. The example scores, verdicts and health are unchanged.
+- Try-it. The promise adds the same-person approval ask and states the Deal Pulse record per field.
 
 ### 2.1.11 (2026-10-26)
 - Identified Pain. An urgent timeline is a deadline the buyer named that the close date is set against. Urgency with no named deadline scores 4, so rows 4 and 5 no longer overlap.

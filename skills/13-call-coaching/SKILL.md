@@ -901,7 +901,7 @@ focus_area: Priority Ladder to Level 3 on the cost of a plot lookup and of a dou
 coaching_points: Top 3 Strengths: 1 Strength, Strong (02:10). 2 Owen followed up, Strong (09:15). 3 Owen asked why the move stopped, Strong (17:05). Top 3 Improvements: 1 Quantify the double sale, Strong (14:20). 2 Benchmark for the tablet objection, Moderate (23:40). 3 The board question and the close, Strong, with a Weak part (28:30, no date in the transcript)
 key_moments: discovery breakthrough (14:20), buying signal captured (09:15), objection (23:40), competitive intelligence (17:05), missed opportunity (28:30), red flag MEDIUM (31:10)
 champion_status: Strong, three of seven shared tests met on this call (explains the internal politics at 28:30, asks how to help at 33:00, shares competitor intelligence at 17:05)
-next_action: Owen Pruitt holds the second discovery session with Ruth Ellery on 2026-05-19, the five-business-day date from the run date, since the records hold no earlier date, and quantifies the lookup cost and the double-sale cost in it. Owner: Owen Pruitt. Date: 2026-05-19 (illustrative)
+next_action: Owen Pruitt asks Ruth Ellery for the family board chair's name and the date the board takes up the decision, and asks what date she will check with the board, by 2026-05-19. This is the open exchange from 28:30, owed to the buyer, and the five-business-day date from the run date, since the records hold no earlier date. In the same message Owen proposes the second discovery session, with its date to be agreed. Owner: Owen Pruitt. Person: Ruth Ellery. Date: 2026-05-19. Later step: the focus-area practice, quantifying the lookup cost and the double-sale cost before that session, which is coaching for the rep and not a buyer step.
 report_path: none (inline)
 ```
 
@@ -1153,6 +1153,18 @@ The Business Case & ROI Kit (a paid Guild Pro kit) reads this skill's hand-off b
 ---
 
 ## Changelog
+
+### 2.1.12 (2026-10-26)
+- Next action. The Output Contract row and the Next-Action Priority Order give the order: an open exchange with a buyer from the call, a buyer's commitment left undated, a buyer-facing step with its date on record, a next step the call never set, then the focus-area practice as a later step. Same-buyer asks that fit one message travel with the next action.
+- Run date. The records' date for today governs. Without one, the call date does.
+- Satisfaction. An indirect signal, such as a move that started and stopped, stays Unknown until the buyer states how they feel.
+- Red flags. A risk level is HIGH when the flag blocks a dated step or a gate criterion, MEDIUM when it names a missing role and blocks nothing, LOW otherwise.
+- Implementation. A buyer's statement that they lack a role the change needs counts as raised.
+- Champion. The politics test is met by one clear statement that names who decides or how the decision moves.
+- Question review. Ratings have written criteria: Strong, Adequate, Weak and Missing, each with one test.
+- SPIN. A phase is well executed when the rep asked an open question that serves its purpose and the buyer answered with a specific fact.
+- Pain depth. A pain whose words are not on record is entered provisionally, and the gap is named.
+- Example 1 and the try-it. The next action is the open exchange: the board chair's name and the date the board takes up the decision, asked of Ruth Ellery by 2026-05-19. The second session is proposed in the same message. The focus-area practice is a later step.
 
 ### 2.1.11 (2026-10-26)
 - Focus area. The focus is the lowest-scoring category. A tie goes to the category whose step does the work of the exit criterion from the account's current stage, read from the row that starts at that stage, with the first row for an account that has no stage. Each focus-area line quotes the criterion. Example 1 quotes "Records problem quantified", which the tie-break gives to Priority Ladder. Example 2 is now Priority Ladder, and Example 3 is now Pain Alignment and Proof, the lowest score. Each names one focus area.

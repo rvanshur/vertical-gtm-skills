@@ -14,13 +14,14 @@ Every name, date and number in this file is invented for the PlotIQ example. Not
 - Legal review and vendor onboarding are known in outline, with timing not scoped [Unknown].
 - Ruth Ellery has not replied since 2026-10-03, 16 days ago [CRM].
 - The family board chair joined one call, in Stage 4 Proposal [CRM]. The chair is not on file by name.
-- Upstream MEDDPICC run on 2026-10-19: 71, YELLOW [CRM].
+- Upstream MEDDPICC run on 2026-10-19 (skill 09, Example 2 for the same day) [CRM]: meddpicc_scores Metrics 3, Economic Buyer 4, Decision Criteria 3, Decision Process 2, Paper Process 3, Identified Pain 4, Champion 5, Competition 3. health_score 71 (scored 8 of 8). stage_minimum_met No for Stage 5 Negotiate, with Decision Process at 2 failing its floor of 3. stage_recommendation HOLD, checked 2026-10-26. risk_patterns: close date fantasy and happy ears.
+- BDR owner: none on record for any contact [Unknown].
 - Contacts on file, all [CRM]:
   - Ruth Ellery, General Manager. Champion tests on record, each tagged with its source and date: offers introductions [Call, 2026-09-26]; commits to next steps with dates [Call, 2026-09-26]; explains the internal politics, saying the chair decides after the family's vote [Call, 2026-09-26]; and defends the solution when we are not in the room, having briefed the board chair on the records fix [CRM, 2026-09-25]. She set the 2026-11-12 date the family board is working to [Call, 2026-09-26] (illustrative). Logged interactions: the 2026-09-26 call and her reply on 2026-10-03 [CRM]. Her last logged reply is 2026-10-03.
   - Walt Okonkwo, Operations Director. Skeptical of tablets [Call, 2026-09-21]. He controls daily use of the system. Logged interaction: the 2026-09-21 call [CRM].
   - Priscilla Dunmore, pre-need manager. A pre-need walkthrough on 2026-10-08, which was not a demo [CRM], and a second logged interaction on 2026-10-14 [CRM].
 - Departments On File: Executive, Operations and Sales [CRM].
-- The full contact list holds three names [CRM]. Who owns IT at Brackhaven is [Unknown].
+- The full CRM contact list holds three names and no IT contact [CRM]. Who owns IT at Brackhaven is [Unknown].
 - The Oldgate ledger export has no named owner [Unknown].
 - The family board approves spend above the $25K line (profile: Qualification Zones), and the chair decides after the family's vote [Call, 2026-09-26]. The chair has joined one call, in Stage 4 Proposal [CRM]. Budget not confirmed [Call, 2026-09-26]. The chair's stated concern was cost [Call, date Unknown].
 - Account Type In The CRM: Combination, two sites, with a funeral home side under the same owner [CRM].
@@ -31,4 +32,4 @@ Every name, date and number in this file is invented for the PlotIQ example. Not
 - Champion: Strong (Ruth Ellery, four of seven shared champion tests met).
 - Ghost Nodes: UNKNOWN, family board chair (the economic buyer slot), UNKNOWN, systems administrator and UNKNOWN, funeral home owner.
 - Economic Buyer: a ghost node with one call and no named contact.
-- Next Action: Owen Pruitt asks Ruth Ellery for the board date and the board chair's name by 2026-10-26, five business days after the 2026-10-19 run date.
+- Next Action: Owen Pruitt asks Ruth Ellery for the board chair's name and the board date by 2026-10-26, five business days after the 2026-10-19 run date. In the same message he asks her to broker a second call with the chair, which is an ask to the same person with no separate date. Later steps: the systems administrator and the funeral home owner (HIGH, by 2026-11-02) and the find-the-plot demo (HIGH, by 2026-11-02).

@@ -15,6 +15,15 @@ Every name, date and number in this file is invented for the PlotIQ example. Not
 - Primary contact: Ruth Ellery, General Manager, the buyer contact and the champion [CRM]. Walt Okonkwo is the Operations Director and the skeptic. Priscilla Dunmore is the pre-need manager [CRM].
 - Economic buyer: the family board chair, name [Unknown]. The board chair has joined one call, in Stage 4 [CRM]. Pricing was delivered in Stage 4 [CRM]. The budget is not yet allocated [Notes].
 - Activity: 10 interactions in the last 90 days [CRM] (illustrative), including a demo on 2026-09-17 on Brackhaven's own plot records and two contract calls. Three contacts engaged: Ruth Ellery, Walt Okonkwo and Priscilla Dunmore [CRM]. Most recent interaction: a contract terms call with Ruth on 2026-09-26 [Call, 2026-09-26] (illustrative).
+- Dated items in the 90-day count [CRM] (illustrative):
+  - 2026-09-17: demo with Ruth and Walt, and Walt's call on the double-sale search, and revised terms sent to Ruth
+  - 2026-09-21: Owen's call with Walt
+  - 2026-09-22: Ruth's call request
+  - 2026-09-24: ledger sample from Ruth
+  - 2026-09-25: markup returned, and Ruth's briefing of the board chair
+  - 2026-09-26: contract terms call
+  - The tenth item, the second contract call, has no date on record. Nine of the ten fall in the last 30 days (2026-08-29 to 2026-09-28).
+- Departments: general management (Ruth Ellery), operations (Walt Okonkwo) and pre-need sales (Priscilla Dunmore), 3 of 3 contacts. No finance or board contact is on record [CRM].
 - Responsiveness: Ruth replies within a day [CRM] (illustrative). Ruth started the 2026-09-22 call request [CRM] (illustrative).
 - Meetings: the last two calls covered the same contract terms with the same attendees [CRM]. Ruth attended all four meetings on the calendar: the discovery call (2026-05-12), the demo (2026-09-17) and the two contract calls [CRM] (illustrative).
 - Follow-through, buyer: Ruth sent the trust fund ledger sample on 2026-09-24, before the 2026-09-26 call [Notes] (illustrative). She returned the signed contract-terms markup on 2026-09-25 [Notes] (illustrative).
@@ -36,5 +45,6 @@ Every name, date and number in this file is invented for the PlotIQ example. Not
 - Health 72 (1,150 ÷ 16 = 71.9, shown as 72), scored 16 of 16. Risk: Medium Risk.
 - Pillar averages: Why Anything 87.5, Why Us 62.5, Why Now 62.5, Execution 75.0. No pillar is below 30, so the pillar step does not apply.
 - Scorecard: 8 GREEN, 7 YELLOW and 1 RED. The RED signal is Technical Readiness.
-- Next action: Owen Pruitt asks Ruth Ellery for a technical discovery session on the Oldgate export by 2026-10-02, the Friday Owen proposed in his notes. A proposed date in the record counts as the step's date and is named as proposed. It is earlier than the five-business-day date of 2026-10-05 for a 2026-09-28 run.
+- Next action: Owen Pruitt asks Ruth Ellery, in one message, who runs IT at Brackhaven, books a technical discovery on the Oldgate export for Friday 2026-10-02, and asks for a second call with the board chair. The Friday is the date Owen proposed in his notes, so it is the step's date, named as proposed. It is earlier than the five-business-day date of 2026-10-05 for a 2026-09-28 run. Later step: Owen asks Walt Okonkwo what would make the tablet question a non-issue, by 2026-10-05.
+- Interactions in the last 30 days: at least 9 of 10 (illustrative), from the dated items above.
 - Evidence Confidence: Moderate, 10 interactions in the last 90 days (illustrative). It does not change the score.

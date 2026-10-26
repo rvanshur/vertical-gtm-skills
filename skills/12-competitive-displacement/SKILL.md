@@ -736,6 +736,15 @@ next_action: Nadia Brandt sends this analysis to Owen Pruitt by 2026-10-26
 
 ## Changelog
 
+### 2.1.12 (2026-10-26)
+- Next action. The Output Contract `next_action` row and Step 4 rank the steps: a reply owed to a buyer, a due sequence email, the finding step before the next unsent email (one move with the send when the same owner does both), the first email of a later persona, then AE coordination under the BDR guard. Ties go to the primary persona, then the earliest send date.
+- Counts. A held email is written and counted as held, not as drafted. Greyfield reads 8 written, 2 on hold, 6 drafted, and the try-it promise says so.
+- Renewal aim. Five-business-day spacing wins over the 60 to 90 day aim. The report states Email 4's earliest date and its days before the renewal (53 days for Greyfield if Email 1 goes on 2026-10-26).
+- Email 1. It carries the persona's best discovery question. A logged touch that is not a sequence email is not Email 1.
+- Low test. An absent fact does not meet a test.
+- Persona count. The count is the rows the template names, written n of N.
+- Try-it. The promise states the written, on-hold and drafted counts, and the next action bundles the finding and send, with the later steps listed.
+
 ### 2.1.11 (2026-10-26)
 - Email 1 uses no research figure older than 90 days, and the rule sits under the sequence table where the email is drafted. Email 1 is drafted in full, with its subject line and its question taken from the template.
 - A renewal known only by its month is tested from its first day, stated beside the difficulty tests.
