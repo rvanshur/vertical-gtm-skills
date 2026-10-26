@@ -1,6 +1,6 @@
 ---
 name: gtm-meeting-prep
-version: 2.1.8
+version: 2.1.10
 description: "Prepares a rep for a discovery or demo call with one prep sheet: the top pain, a question bank for each discovery phase, one proof point per attendee, objection scripts, a minute-by-minute call flow and a follow-up email draft. The rep reads it during the call."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: [gtm-account-snapshot, gtm-research-outbound, gtm-trigger-event-outbound, gtm-closed-loss-reactivation, gtm-daily-prospecting, gtm-deal-pulse, gtm-stakeholder-mapping, gtm-competitive-strategy, gtm-competitive-displacement, gtm-call-coaching]
 mutating: read-write
 change_log:
+  - version: 2.1.10
+    date: 2026-10-26
+    summary: "Round 10 champion alignment. Example 4 reads Ines Carmody as Developing, one of seven behaviours met (she commits to next steps with dates, through the call she booked on 2026-10-27), the same reading Account Snapshot (02) Example 5 gives on the shared Champion Tests. The Context and the hand-off say so, and the reply due date under the shared rule is named as 2026-10-29, with the records silent on whether it went out. The rest of Example 4 still follows, so no verdict, question, next action or try-it promise changes."
   - version: 2.1.8
     date: 2026-10-26
     summary: "Profile facts are cited (profile: Section), in place of the older profile forms. ENGAGED is a rule in the open: an account that replied or met with us, with no open deal, is opened on that reply and is not restarted as a cold first meeting. Example 4 (Quill Hollow) is relabelled ENGAGED after Ines Carmody's reply of 2026-10-27, and its open names the reply. Example 2 (Sable Fork) states that a booked call does not make an INBOUND account ENGAGED. No verdict, question or next action changes."
@@ -779,7 +782,7 @@ report_path: none (inline)
 
 ### Example 4: Quick Call Prep for a Champion (Quill Hollow Memorial Park)
 
-**Context:** Ines Carmody, general manager of Quill Hollow Memorial Park, moved here six months ago from Lowmoor Memorial Gardens. She is the champion label, with the Champion Test not yet run `[CRM]`. Ines Carmody replied to Email 1 on 2026-10-27 and booked a call for 2026-11-02 `[CRM]` (illustrative). Quill Hollow is an ENGAGED account, with no open deal: Ines Carmody has replied, and that reply is the basis for this call. It has a GREENLIGHT verdict (illustrative). It has one site, 8,800 plots and paper plat maps `[CRM]`. This prep is written on 2026-11-02, and the discovery call is in 15 minutes.
+**Context:** Ines Carmody, general manager of Quill Hollow Memorial Park, moved here six months ago from Lowmoor Memorial Gardens. She carries the champion label `[CRM]`. Her Champion Test reads Developing, one of seven behaviours met: she commits to next steps with dates, through the call she booked `[CRM]` (illustrative). The other six are not on record, so she is not Strong. Ines Carmody replied to Email 1 on 2026-10-27 and booked a call for 2026-11-02 `[CRM]` (illustrative). Under What The Close Reads her reply was due 2026-10-29, the next business day after the 2026-10-28 run in Account Snapshot (02) Example 5. The records do not say whether it went out, so this prep does not assume it did. Quill Hollow is an ENGAGED account, with no open deal: Ines Carmody has replied, and that reply is the basis for this call. It has a GREENLIGHT verdict (illustrative). It has one site, 8,800 plots and paper plat maps `[CRM]`. This prep is written on 2026-11-02, and the discovery call is in 15 minutes.
 
 **Input:** "Quick call prep for Quill Hollow. Ines is on the call."
 
@@ -816,7 +819,7 @@ run_date: 2026-11-02
 prep_sheet: inline, short form (quick call prep, no file)
 top_pain: unsold plots on paper plat maps, [Inferred]. The records finding is a question, not the hook, because its date is [Unknown] (illustrative)
 question_bank: Situation 1, Problem 1, Implication 1 (three questions, from Step 4)
-attendees: Ines Carmody, General Manager, champion label, Champion Test not yet run [CRM]. The owner signs under $25K
+attendees: Ines Carmody, General Manager, champion label, Champion Test Developing (1 of 7 met: commits to next steps with dates) [CRM]. The owner signs under $25K
 proof_point: Holloway Hills, Status Illustrative, not cited to the prospect
 next_action: the AE asks Ines Carmody when the last state review was and what it asked for. Owner: the AE on the call. Date: 2026-11-02, the call booked on 2026-10-27 `[CRM]`, which is earlier than the five-business-day date of 2026-11-09
 report_path: none (inline)
@@ -929,6 +932,11 @@ This skill also reads the kit's hand-off block back as optional context: `case_s
 
 ## Changelog
 
+
+### 2.1.10 (2026-10-26)
+- Example 4 reads Ines Carmody as Developing, one of seven behaviours met, on the shared Champion Tests. Her booked, dated call is the one behaviour met, and the Context and the hand-off say so, matching Account Snapshot (02) Example 5.
+- Example 4 names the reply due date under the shared rule, 2026-10-29, and says the records do not show whether it went out.
+- No verdict, question, next action or try-it promise changes.
 
 ### 2.1.8 (2026-10-26)
 - Profile facts are cited as (profile: Section), with the profile's own section name, in place of the older profile forms.
