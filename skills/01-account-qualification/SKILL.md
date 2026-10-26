@@ -1,6 +1,6 @@
 ---
 name: gtm-account-qualification
-version: 2.1.6
+version: 2.1.7
 description: "Scores an account against the ICP definitions, 8 weighted criteria and the profile's five qualification zones, and returns a GREENLIGHT, MANUAL REVIEW or DISQUALIFY verdict with every zone shown, for the BDR or AE who decides where to spend time."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: []
 mutating: read-write
 change_log:
+  - version: 2.1.7
+    date: 2026-10-26
+    summary: "Round 7 leak scrub. The rule text no longer points at the examples by number, the ICP2 criteria that need a rule are counted as four, Sub-Vertical Match has a fallback for a profile with no priority list, and the zone rules state how a named staff member, an unknown HIGH condition and an UNKNOWN zone score. The try-it records state facts only."
   - version: 2.1.6
     date: 2026-10-26
     summary: "The next action for an ownership check follows the earlier date a skill's own schedule sets for that step, and names its source. The examples' zone evidence cites the record that holds each fact: the current system, the Zone 2 and Zone 5 facts for the inbound account, and the source tag for the site budget. Example dates are recomputed under the shared rule."
@@ -77,7 +80,7 @@ You refuse four things. You do not give a verdict on an account with a zone unsc
 
 If a required input is missing, ask. Do not guess.
 
-To try the skill without your own data, use `examples/try-it.md`, which holds the inputs for Example 1.
+To try the skill without your own data, use `examples/try-it.md`, which holds the inputs for a full first run on the example profile.
 
 | Input | Required | Notes |
 |-------|----------|-------|
@@ -231,7 +234,7 @@ Your qualification frameworks. The criteria below are the skill's defaults. The 
 
 | # | Criterion | What to Assess |
 |---|-----------|----------------|
-| 1 | Sub-Vertical Match | Which sub-vertical? Check the profile's priority list first |
+| 1 | Sub-Vertical Match | Which sub-vertical? Check the profile's priority list first. When the profile holds no priority list, score the account's type as the CRM records it, with its tag |
 | 2 | Revenue Threshold | Meets your minimum revenue threshold for this ICP |
 | 3 | Multi-Region Operations | Operating across multiple regions increases complexity and need |
 | 4 | Ownership / Growth Profile | PE-backed (highest), ESOP, publicly traded, or actively acquiring |
@@ -354,7 +357,7 @@ Use the criteria table for the ICP from Step 2: `{Methodology: Qualification Cri
 
 Each score carries an evidence tag. Count the criteria scored STRONG or PARTIAL, and write the count as N of 8.
 
-Three ICP2 criteria need a rule the table leaves open. For criterion 2, test the cemetery-side plot count from the CRM against the profile's ICP2 revenue threshold, which the profile states as a plot count. A count at or above the threshold scores STRONG, with the count and its tag named. A revenue range from the CRM that is not confirmed scores PARTIAL when no plot count is recorded, and no revenue figure at all scores UNKNOWN. For criterion 4, a family-owned company with no PE, ESOP, public or acquiring owner scores PARTIAL, not WEAK, and its ownership type must carry a `[Public: source]` tag. For criterion 6, a named role whose title covers the function the product serves scores STRONG, with its source tagged. A named role whose title does not cover that function scores PARTIAL. For criterion 7, a listed buying trigger counts only inside the urgency window that the profile's Buying Triggers table gives it, and a succession signal with no change in leadership yet is not a listed trigger, so it scores PARTIAL.
+Four ICP2 criteria need a rule the table leaves open: criteria 2, 4, 6 and 7. For criterion 2, test the cemetery-side plot count from the CRM against the profile's ICP2 revenue threshold, which the profile states as a plot count. A count at or above the threshold scores STRONG, with the count and its tag named. A revenue range from the CRM that is not confirmed scores PARTIAL when no plot count is recorded, and no revenue figure at all scores UNKNOWN. For criterion 4, a family-owned company with no PE, ESOP, public or acquiring owner scores PARTIAL, not WEAK, and its ownership type must carry a `[Public: source]` tag. For criterion 6, a named role whose title covers the function the product serves scores STRONG, with its source tagged. A named role whose title does not cover that function scores PARTIAL. For criterion 7, a listed buying trigger counts only inside the urgency window that the profile's Buying Triggers table gives it, and a succession signal with no change in leadership yet is not a listed trigger, so it scores PARTIAL.
 
 **Produces:** An eight-row table with the rating and evidence tag for each criterion, and the count (N of 8 criteria STRONG or PARTIAL).
 
@@ -371,7 +374,7 @@ Score each zone in `{Client Profile: Qualification Zones}` as HIGH, MEDIUM, LOW 
 | LOW | Weak or no alignment, with evidence |
 | UNKNOWN | Insufficient data to assess |
 
-MEDIUM never counts as HIGH. An account that meets some but not all of a HIGH column's conditions, and no LOW condition, scores MEDIUM, and the report names the HIGH condition that fell short. A hedged statement such as "may retire" is a possibility, not a met HIGH condition, so the zone is scored on the firm, dated fact that would settle it. A named role counts for a staff condition in a zone's HIGH column when its title covers that condition's function. So a named manager of the function, with none of the zone's other HIGH conditions met, scores MEDIUM, and the report names each HIGH condition that fell short.
+MEDIUM never counts as HIGH. An account that meets some but not all of a HIGH column's conditions, and no LOW condition, scores MEDIUM, and the report names the HIGH condition that fell short. A hedged statement such as "may retire" is a possibility, not a met HIGH condition, so the zone is scored on the firm, dated fact that would settle it. A named role counts for a staff condition in a zone's HIGH column when its title covers that condition's function. So a named manager of the function, with none of the zone's other HIGH conditions met, scores MEDIUM, not LOW, because the named staff member is a fact on record, and the report names each HIGH condition that fell short. A HIGH condition whose fact is `[Unknown]` is not met. It is named as an open fact, and it does not by itself lower the zone to LOW. A zone is UNKNOWN only when none of its three columns holds an observed fact.
 
 A HIGH condition that cannot apply to the account counts as met, so an owner who signs alone, with no board approval step, meets a board condition such as "board meets within 60 days". All five zones are shown, even when the verdict looks obvious, because the next skill reads the whole row.
 
@@ -447,7 +450,7 @@ Return these twelve items inline, in this order.
 9. **Top Risk Flags**
 10. **Account Status:** TARGET, INBOUND, ACTIVE with its stage number, LOST or OUT
 11. **Active Deal?** If yes, the stage, the AE owner and the amount. For a BDR, coordinate with the AE
-12. **Recommended Next Steps:** role-specific, with the `next_action` line last. The `next_action` date follows the shared contract's next-action rule (five business days after the run date, or an earlier date the records or the skill's own schedule set for that step) and is written as a calendar date, so the step can be checked against the run. Reason: a step with no date cannot be checked
+12. **Recommended Next Steps:** role-specific, with the `next_action` line last. The `next_action` date follows the shared contract's next-action rule (What the Close Reads, under The Shared Contract) and is written as a calendar date, so the step can be checked against the run. Reason: a step with no date cannot be checked
 
 **Produces:** `verdict`, `zone_scores`, `icp_match`, `fit_narrative` and `next_action`, all in the twelve-item report.
 
@@ -753,6 +756,13 @@ An account pending AE assignment is not ACTIVE. Score it, and say that it is pen
 
 ## Changelog
 
+
+### 2.1.7 (2026-10-26)
+- The rule text no longer refers to the examples by number. The try-it pointer names a full first run.
+- Sub-Vertical Match states its fallback when the profile holds no priority list. Step 3 counts the four ICP2 criteria that need a rule, as its own paragraph lists them.
+- Step 4 states how a named staff member scores a zone, how an unknown HIGH condition scores, and when a zone is UNKNOWN.
+- The next-action date in the Summary Report points to the shared rule instead of restating it.
+- The try-it records state facts only. The stage note and the board-line comparison are removed.
 
 ### 2.1.6 (2026-10-26)
 - The ownership-check next action defers to the earlier date that the Trigger Event Outbound schedule sets for that step, and names its source, under the shared next-action rule.

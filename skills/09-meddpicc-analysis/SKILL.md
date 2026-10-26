@@ -1,6 +1,6 @@
 ---
 name: gtm-meddpicc-analysis
-version: 2.1.6
+version: 2.1.7
 description: "Scores an active deal across all eight MEDDPICC elements from the CRM record, computes a weighted health score, and recommends ADVANCE, HOLD, DOWNGRADE or DISQUALIFY. The deal's AE and sales manager read the output."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: ["gtm-deal-pulse", "gtm-call-coaching", "gtm-stakeholder-mapping"]
 mutating: read-write
 change_log:
+  - version: 2.1.7
+    date: 2026-10-26
+    summary: "Leak scrub. Rules and the Common Patterns text no longer state a worked health score or a dated stage result, the stage gate rule is written without a figure, and the example's company facts carry the evidence tags of their source in place of profile labels. Dangling example references are reworded. Settles the stage minimum when the profile gives none, the Deal Pulse label and run date, the missing knowledge base note, and the field name of the Deal Pulse score."
   - version: 2.1.6
     date: 2026-10-26
     summary: "Consistency pass across the sales skills. The second run's element scores are recomputed under the rubric on the record of its run date, so its health score and band change, and its stage line, gap actions and next actions follow from the recomputed elements. The close-date moves are dated, the single-threaded flag is removed, and the Walt Okonkwo pain quote is taken from its own call date. The stage return threshold is unchanged. Call-sourced facts in the examples now carry their call dates, and a call with no date on record is tagged date Unknown."
@@ -77,12 +80,12 @@ You refuse to score from a rep's confidence. You refuse to move a stage the reco
 
 What this skill needs before it starts. **If a required input is missing, ask. Do not guess.**
 
-To try the skill without your own data, use `examples/try-it.md`, which holds the inputs for Example 1.
+To try the skill without your own data, use `examples/try-it.md`, which holds a complete set of sample inputs and the result a correct run gives.
 
 | Input | Required | Notes |
 |-------|----------|-------|
 | Account name | Required | Account with an active opportunity |
-| Opportunity amount (ARR or total contract value) | Required | For health benchmarking. Shown with its basis, for example $21,576 a year at list |
+| Opportunity amount (ARR or total contract value) | Required | For health benchmarking. Shown with its basis, for example an annual figure at list price, with any one-time setup fee named apart |
 | Deal stage | Required | Read from the CRM as one of the profile's six stages. Sets the stage-appropriate minimums |
 | CRM access (interaction history, contact data, notes), or the same records pasted | Required | Evidence for element scoring. Without it every element is `[Unknown]` and the report says so |
 | Contact names and titles | Optional | For Economic Buyer and Champion identification. A missing name is written `[Unknown]` |
@@ -115,6 +118,8 @@ Core commitments: **eight-element scorecard with weighted scores**, **overall he
 **This skill does not contain client-specific information. It points to it.**
 
 > **Load the client profile from [`profiles/client-profile.md`](../../profiles/client-profile.md) before starting.** That single file is shared by all 14 sales skills in this suite. Update it once and every skill inherits the change on its next run. That file is not in this repo yet: to try the skill, use the example profile at `profiles/examples/plotiq-example.md`, and to set up your own company, copy `profiles/client-profile-template.md` to `profiles/client-profile.md`.
+
+A company fact the report cites from the profile is tagged `[Notes]`, the team's own written record. An account fact the CRM holds is tagged `[CRM]`.
 
 Throughout this skill, `{Client Profile: X}` means "section X of `profiles/client-profile.md`". Sections this skill reads:
 
@@ -341,7 +346,7 @@ The champion status comes first, from the shared champion tests in the Shared Co
 | Stage 5 Negotiate | 65 or higher | All except Competition at 3 or higher, and Economic Buyer at 4 or higher |
 | Stage 6 Closed-Won and Handoff | 75 or higher | All at 3 or higher, and Economic Buyer and Paper Process at 4 or higher |
 
-Stage names come from the client profile's Qualification Stage Gates. Stage 1 Target has no minimum because no element is scored before a deal is active. If the team overrides these minimums in its MEDDPICC profile section, the override is used, and the report says it was used. Where the profile's Qualification Stage Gates state a different score than this table, the profile's figure is the minimum, because the profile is the only source of company facts and a stage gate is one. The report names the figure it used and shows the table's default beside it. The profile's Qualification Stage Gates are written as the move into a stage, so a gate figure is the minimum for the stage it enters: the profile's 70 for entering Stage 5 Negotiate replaces the table's 65. A profile figure is the minimum on every run, whatever date the profile gives for its decision, and the report names the figure and its source.
+Stage names come from the client profile's Qualification Stage Gates. Stage 1 Target has no minimum because no element is scored before a deal is active. If the team overrides these minimums in its MEDDPICC profile section, the override is used, and the report says it was used. Where the profile's Qualification Stage Gates state a different score than this table, the profile's figure is the minimum, because the profile is the only source of company facts and a stage gate is one. The report names the figure it used and shows the table's default beside it. The profile's Qualification Stage Gates are written as the move into a stage, so a gate figure is the minimum for the stage it enters, and it replaces the table's default for that stage. When the profile states no figure for a stage, the table's default applies, and the report says so. A profile figure is the minimum on every run, whatever date the profile gives for its decision, and the report names the figure and its source.
 
 ### Stage Recommendation Rules
 
@@ -392,7 +397,7 @@ The steps run in this order because each one feeds the next. Scores must cite a 
 
 ### Step 1: Pull Deal Data from CRM
 
-Before pulling anything, read the account's folder under `accounts/` and the competitors under `gtm/` in the knowledge base, when the profile has one. Then offer to read the CRM deal record and, when a call recorder is connected, the deal's calls, and ask before reading either, as set out in The Knowledge Base and Connectors.
+Before pulling anything, read the account's folder under `accounts/` and the competitors under `gtm/` in the knowledge base, when the profile has one, and says so once at the start when it has none. Then offer to read the CRM deal record and, when a call recorder is connected, the deal's calls, and ask before reading either, as set out in The Knowledge Base and Connectors.
 
 Query the CRM for the account. Extract the deal basics (account, amount, stage and days in stage, close date and slip history, owner, supporting team, deal origin), the engagement history (touchpoints, last activity, meeting dates and participants), the contact records (name, title, department, seniority, meeting attendance versus email only), the deal notes (next steps, objections, competitors named, budget and timeline signals) and any prior closed-lost record at this account.
 
@@ -420,7 +425,7 @@ Score each element against its rubric in {Methodology: MEDDPICC Scoring Rubrics}
 
 ### Step 3: Compute Weighted Deal Health and the Stage Minimum Check
 
-Multiply each scored element's score by its weight, sum the results, divide by 5 times the sum of the scored weights, multiply by 100, and round to a whole number (the INSUFFICIENT rule in Methodology). Show the table with every row (Example 1 is the form to follow). An INSUFFICIENT row shows no weighted value and is left out of the Total. State "scored n of 8". If fewer than 6 of 8 are scored, stop here: give no health score and no stage minimum check, and list the evidence that would score the missing elements. Otherwise compare the health score and each critical element to the minimum for the deal's stage.
+Multiply each scored element's score by its weight, sum the results, divide by 5 times the sum of the scored weights, multiply by 100, and round to a whole number (the INSUFFICIENT rule in Methodology). Show the table with every row, with its Element, Weight, Score and Weighted columns. An INSUFFICIENT row shows no weighted value and is left out of the Total. State "scored n of 8". If fewer than 6 of 8 are scored, stop here: give no health score and no stage minimum check, and list the evidence that would score the missing elements. Otherwise compare the health score and each critical element to the minimum for the deal's stage.
 
 **Produces:** The weighted table with its Total row, `health_score`, and `stage_minimum_met` (Yes or No, with each failed critical element named and its required score).
 
@@ -504,17 +509,17 @@ Write a file only when the user asks for one, named `<account>_gtm-meddpicc-anal
 
 ### Example 1: Flagship Deal at Negotiate, First Run (Brackhaven Memorial Gardens, 2026-09-28)
 
-**Context:** Brackhaven Memorial Gardens, a combination of two sites with 11,000 plots (profile). Owen Pruitt is the AE (illustrative assignment). The deal has been ACTIVE at Stage 5 Negotiate since 2026-09-09, so this run is on day 19 in stage. Amount: $21,576 a year at list, which is two sites at the $10,788 list price per site (profile), plus the $5,000 setup once (profile). Close date: the family board meeting on 2026-11-12 (CRM). Champion: GM Ruth Ellery. Economic buyer: the family board chair, name `[Unknown]`, who joined one call in Stage 4 Proposal. The same day's Deal Pulse reads 72, Medium Risk (08). The two instruments score different things, so the two numbers differ. Both are shown with their date.
+**Context:** Brackhaven Memorial Gardens, a combination of two sites with 11,000 plots `[CRM]`. Owen Pruitt is the AE (illustrative assignment). The deal has been ACTIVE at Stage 5 Negotiate since 2026-09-09, so this run is on day 19 in stage. Amount: $21,576 a year at list, which is two sites at the $10,788 list price per site `[Notes]`, plus the $5,000 setup once `[Notes]`. Close date: the family board meeting on 2026-11-12 (CRM). Champion: GM Ruth Ellery. Economic buyer: the family board chair, name `[Unknown]`, who joined one call in Stage 4 Proposal. The same day's Deal Pulse reads 72, Medium Risk (08). The two instruments score different things, so the two numbers differ. Both are shown with their date.
 
 **Input:** "Run MEDDPICC deal analysis for Brackhaven Memorial Gardens."
 
 **Scoring summary (scored 8 of 8):**
-- **Metrics: 4 of 5.** Ruth gave the plot count, 11,000 (profile). Her own current-state number is the trust fund report, which takes her office about 30 hours each year, built by hand from the ledger (`[Call, 2026-09-26]`, illustrative). The ROI framework was shared, not yet agreed `[Call, 2026-09-26]`.
+- **Metrics: 4 of 5.** Ruth gave the plot count, 11,000 `[CRM]`. Her own current-state number is the trust fund report, which takes her office about 30 hours each year, built by hand from the ledger (`[Call, 2026-09-26]`, illustrative). The ROI framework was shared, not yet agreed `[Call, 2026-09-26]`.
 - **Economic Buyer: 4 of 5.** The family board chair is identified by title. Direct access was established on one call `[CRM]`. Budget was discussed, not confirmed `[Call, 2026-09-26]`.
 - **Decision Criteria: 4 of 5.** Must-haves are known from discovery and the deal maps to them strongly `[Call, 2026-05-19]`. The pre-need module is a nice-to-have `[Call, 2026-09-26]`.
 - **Decision Process: 4 of 5.** The committee is mapped: board, GM and Operations Director `[CRM]`. The board meets 2026-11-12 `[CRM]`. The approval sequence is partly confirmed `[Notes]`.
 - **Paper Process: 3 of 5.** Aware that legal and vendor review exists `[Notes]`. The steps and timing are not scoped `[Unknown]`.
-- **Identified Pain: 5 of 5.** Two stakeholders each state a quantified pain in their own words. Ruth Ellery, General Manager, on the 2026-09-26 call: "Each double sale costs my staff about 40 hours to unwind" (`[Call, 2026-09-26]`, illustrative), after one double sale in 24 months `[CRM]` (illustrative). Trust fund reporting is done by hand `[Call, 2026-09-26]`. She named the March 2027 Oldgate renewal as the deadline behind the 2026-11-12 board date `[Call, 2026-09-26]` (illustrative), so the timeline is urgent. Walt Okonkwo, Operations Director, on the 2026-09-17 call: "A double-sale search costs me half a day, and I run about two lookups a week" (`[Call, 2026-09-17]`, illustrative). The pain maps to Zone 1, HIGH on the profile: plot records on paper and one double sale in 24 months (profile). Two stakeholders meet the rule for 5.
+- **Identified Pain: 5 of 5.** Two stakeholders each state a quantified pain in their own words. Ruth Ellery, General Manager, on the 2026-09-26 call: "Each double sale costs my staff about 40 hours to unwind" (`[Call, 2026-09-26]`, illustrative), after one double sale in 24 months `[CRM]` (illustrative). Trust fund reporting is done by hand `[Call, 2026-09-26]`. She named the March 2027 Oldgate renewal as the deadline behind the 2026-11-12 board date `[Call, 2026-09-26]` (illustrative), so the timeline is urgent. Walt Okonkwo, Operations Director, on the 2026-09-17 call: "A double-sale search costs me half a day, and I run about two lookups a week" (`[Call, 2026-09-17]`, illustrative). The pain maps to Zone 1, HIGH: plot records on paper and one double sale in 24 months `[CRM]`, read against the profile's Zone 1 row `[Notes]`. Two stakeholders meet the rule for 5.
 - **Champion: 5 of 5.** Ruth Ellery is Strong: four of seven shared champion tests met, each tagged with its source and date. Offers introductions (she offers to introduce the board chair, `[Call, 2026-09-26]`). Commits to next steps with dates (the 2026-11-12 board date, `[Call, 2026-09-26]`). Explains the internal politics (the chair decides after the family's vote, `[Call, 2026-09-26]`). Defends the solution when we are not in the room (she briefed the board chair on the records fix and forwarded the ledger comparison, `[CRM, 2026-09-25]`, the active selling that row 5 asks for). She also coached us on Walt Okonkwo's objection to tablets `[Call, 2026-09-26]` (illustrative).
 - **Competition: 4 of 5.** Oldgate Ledger Pro is the incumbent, direct software, renewal March 2027 `[CRM]`. Stonemark was evaluated with no preference stated `[Call, 2026-09-26]`. A strategy exists and is not yet tested with the buyer `[Notes]`.
 
@@ -626,11 +631,10 @@ report_path: none (inline)
 
 ### Pattern: The Pulse and the MEDDPICC Disagree
 
-Deal Pulse scores sixteen signals in four pillars, and this skill scores eight elements. A deal can read Yellow on one and ORANGE on the other, and both can be right. Report both with their dates, name the element or signal that drives the gap, and act on the element. Example 1 shows the form on 2026-09-28, where Pulse reads 72 and MEDDPICC reads 84.
-
+Deal Pulse scores sixteen signals in four pillars, and this skill scores eight elements. A deal can read Yellow on one and ORANGE on the other, and both can be right. Report both with their dates, name the element or signal that drives the gap, and act on the element.
 ### Pattern: The Same Deal Re-Scored After a Slip
 
-Re-run this analysis after every stage date or close date changes, and compare the two runs element by element. A deal whose score drops while its stage stays the same is showing the slip in the record. Example 2 is that case on 2026-10-19: the score falls from 84 to 71 and the stage holds, which is the signal for the HOLD rule with a dated action.
+Re-run this analysis after every stage date or close date changes, and compare the two runs element by element. A deal whose score drops while its stage stays the same is showing the slip in the record. When the score falls and the stage holds, that is the signal for the HOLD rule with a dated action.
 
 ---
 
@@ -668,7 +672,7 @@ Re-run this analysis after every stage date or close date changes, and compare t
 
 **Reads from the skills before it, by field name.** A missing field is reported as missing, not rebuilt here.
 
-- **Deal Pulse (08).** Reads `health_score`, `risk_level`, `pillar_scores`, `signal_scores` and `next_actions`. Used to focus the check and to compare the two instruments. Never used as evidence for an element on its own.
+- **Deal Pulse (08).** Reads its `health_score` (called Pulse health in the report, so it is not confused with this skill's `health_score`), `risk_level`, `pillar_scores`, `signal_scores` and `next_actions`, with the run date of the Pulse result. A Pulse result with no run date is shown as date Unknown. Used to focus the check and to compare the two instruments. Never used as evidence for an element on its own.
 - **Call Coaching (13).** Reads `call_score`, `category_scores`, `focus_area`, `coaching_points`, `key_moments` and `champion_status`. A coaching point counts as evidence only with its quote or its grade attached.
 - **Stakeholder Mapping (10).** Reads `threading_score`, `buying_roles`, `ghost_nodes` and `champion_status`. A ghost node counts against the Economic Buyer and Decision Process evidence until someone is named.
 
@@ -699,6 +703,12 @@ The Business Case & ROI Kit (a paid Guild Pro kit) reads this skill's hand-off b
 
 ## Changelog
 
+
+### 2.1.7 (2026-10-26)
+- Leak scrub. The Input Contract, the Context and the Integration text no longer carry the example's amount, and the Common Patterns text no longer states the example's Deal Pulse and MEDDPICC scores or their dates. The stage minimum rule is written for any gate figure, and the table default applies where the profile states none, with the report saying so.
+- Dangling references to the examples are reworded so the rule text stands alone. The Input Contract, Step 3 and Common Patterns no longer point at a numbered example.
+- Settled: the Deal Pulse score is labelled Pulse health in the report and read with its run date, the knowledge base note is said once at the start when no base is present, and a company fact cited from the profile is tagged `[Notes]` while an account fact the CRM holds is tagged `[CRM]`.
+- The examples keep their scores, verdicts, stage recommendation and next action. Only the profile labels and the amount's source changed.
 
 ### 2.1.6 (2026-10-26)
 - Consistency pass across the sales skills. The second run's Economic Buyer and Champion elements are scored by the rubric on the record of the run date, which changes that run's health score and band. Its stage line, gap actions and next actions follow from the recomputed elements.

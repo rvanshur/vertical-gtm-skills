@@ -1,6 +1,6 @@
 ---
 name: gtm-trigger-event-outbound
-version: 2.1.6
+version: 2.1.7
 description: "Turns one dated business event at a target account into a short outbound sequence, but only after checking the event against its window. Reports when the window has closed or the event date is unknown. Read by the BDR or AE who sends the sequence."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: [gtm-account-snapshot, gtm-closed-loss-reactivation]
 mutating: read-write
 change_log:
+  - version: 2.1.7
+    date: 2026-10-26
+    summary: "Round 7 leak scrub. The rule text no longer carries a worked window count or a worked send schedule. The disqualifier check gets a due date and the rule that sets it, weekend send days move to the Friday before, the sequence cadence is one day for each email, every unnamed contact is named in the next action, and days remaining are counted from the run date. The try-it records state facts only, and the promise follows the same rules."
   - version: 2.1.6
     date: 2026-10-26
     summary: "Consistency pass across the sales family. Example 1 Email 1 gives the integration review as Q1 2027, and the exact day stays in the records as illustrative. Example 2 labels Ines Carmody as carrying the champion label, with her Champion Test not yet run, and tags her move to the state licensing database. The Day 1 send date, the check date and the window arithmetic are unchanged."
@@ -91,7 +94,7 @@ same skill serves any vertical without modification.
 
 What this skill needs before it starts. **If a required input is missing, ask. Do not guess.**
 
-To try the skill without your own data, use `examples/try-it.md`, which holds the inputs for Example 1.
+To try the skill without your own data, use `examples/try-it.md`, which holds the inputs for a full first run on the example profile.
 
 | Input | Required | Notes |
 |-------|----------|-------|
@@ -127,8 +130,8 @@ when the user asks for one.
 **This skill does not contain client-specific information. It reads it from the client profile.**
 
 Load the client profile from [`profiles/client-profile.md`](../../profiles/client-profile.md) before
-starting. Throughout this skill, `{Client Profile: X}` means section X of that file. Sections this
-skill reads: That file is not in this repo yet: to try the skill, use the example profile at `profiles/examples/plotiq-example.md`, and to set up your own company, copy `profiles/client-profile-template.md` to `profiles/client-profile.md`.
+starting. Throughout this skill, `{Client Profile: X}` means section X of that file. The sections this
+skill reads are in the table below. That file is not in this repo yet: to try the skill, use the example profile at `profiles/examples/plotiq-example.md`, and to set up your own company, copy `profiles/client-profile-template.md` to `profiles/client-profile.md`.
 
 | Profile section | Used for |
 |-----------------|----------|
@@ -383,7 +386,7 @@ Map the event to `{Methodology: Trigger Type Taxonomy}`. If the event is ambiguo
 #### 1c. Search the CRM
 
 Check for an open deal, the account owner and known contacts. Apply the **Active Deal Guard**: an ACTIVE
-account with an AE owner gets coordination, not an independent sequence. A profile disqualifier is read with all of its conditions: a consolidator is disqualified only when it is public or PE-backed and runs its own system, and a condition that is still `[Unknown]` is checked before each email whose claim depends on it. An email that asks nothing that depends on the condition may go before the check, and the report names the check and its due date.
+account with an AE owner gets coordination, not an independent sequence. A profile disqualifier is read with all of its conditions: a consolidator is disqualified only when it is public or PE-backed and runs its own system. Each condition still `[Unknown]` is checked before the first email whose claim depends on it is sent. The check's due date is the business day before that email's send day, and the report names the check and that date. Emails whose claims do not depend on the condition may go out before the check, so the check is never skipped, only timed.
 
 #### 1d. Validate Timeliness
 
@@ -451,12 +454,13 @@ persona that has to respond, and name any persona that only hears about the even
 | Step | Timing | Angle |
 |------|--------|-------|
 | **Email 1** | Day 1 | The event, its immediate implication, and the product as the answer |
-| **Email 2** | Day 4 or 5 | A different implication, or a question that the event raises |
-| **Email 3** | Day 8 to 10 | A soft close that asks whether the timing is wrong |
+| **Email 2** | Day 4 | A different implication, or a question that the event raises |
+| **Email 3** | Day 8 | A soft close that asks whether the timing is wrong |
+
+A send day that falls on a Saturday or Sunday moves to the Friday before it, so every send stays inside the window.
 
 Day 1 is the day after the run date, the first day the rep can send once the draft is read, and every
-day count runs from there. A contact the record does not name is found before that contact's Email 1 goes
-out, and the next action names that step and its date. The last send must land on or before the long end of the window. Put the first send's date beside the
+day count runs from there. Each contact the record does not name is found no later than the send day of that contact's Email 1. When more than one contact is unnamed, the next action lists every name to be found and the date by which it must be found. The last send must land on or before the long end of the window. Put the first send's date beside the
 window so the reader can check it. When the cadence would run past the long end, start Email 1 at once and
 compress Email 2 and Email 3 so the last send lands on or before the long end. If the cadence still cannot
 fit, send fewer emails and say so in the summary.
@@ -527,8 +531,8 @@ This subsection is the only place the window arithmetic is stated. Every other s
 
 1. The **event date** is the day the event became public, taken from the source. It is not the day you found the event.
 2. The profile's window is a range in days after the event date, for example 60 to 120. The **short end** is the day the window opens. The **long end** is the last day a sequence may still start.
-3. **Days remaining** count down to the long end, which is the last day a sequence may still start. Zero or fewer means EXPIRED. The count runs to the long end because a sequence that starts before it still has time to reach its buyer.
-4. **Share remaining** is days remaining over the window length, which is the long end minus the short end. Print both numbers, for example 10 of 60 window days (17%).
+3. **Days remaining** are counted from the run date to the long end, which is the last day a sequence may still start. Zero or fewer means EXPIRED. The event date is not the start of the count. The count runs to the long end because a sequence that starts before it still has time to reach its buyer.
+4. **Share remaining** is days remaining over the window length, which is the long end minus the short end. Print both numbers in the form N of M window days (P%), where N is the days remaining, M is the window length, and P is the share, rounded to a whole number with a % sign.
 5. A window is never computed from an estimated date. An unknown event date makes the trigger UNVERIFIED, and the skill stops there.
 
 ### Timeliness Rules
@@ -649,7 +653,7 @@ would go.
 > site keeps its plot records on paper plat maps, and a 15-minute look at them would show what the review
 > is likely to ask for. What would the review need from the plot map first? [your name]
 
-**Email 2 (Day 4 or 5, 2026-10-23 to 2026-10-24)**, sent only after the ownership and system check due 2026-10-22
+**Email 2 (Day 4, 2026-10-23)**, sent only after the ownership and system check due 2026-10-22
 
 > **Subject:** Corrow Ridge's plot map before the Harborline review
 >
@@ -657,7 +661,7 @@ would go.
 > keeps Corrow Ridge's plot records: the one the site uses today, or Harborline's? If that is still open,
 > the plot map is the piece to settle first. Would a 15-minute call this week work? [your name]
 
-**Email 3 (Day 8 to 10, 2026-10-27 to 2026-10-29, on or before the long end)**
+**Email 3 (Day 8, 2026-10-27, on or before the long end)**
 
 > **Subject:** Corrow Ridge after the Harborline close: if the timing is wrong
 >
@@ -681,7 +685,7 @@ days_remaining: 10
 event_tag: [Public: state licensing database]
 sequence: six emails, three to the acquirer's CFO or controller (name [Unknown]) and three to the site GM. The GM's three are omitted from this example
 report_path: none (inline)
-next_action: Nadia Brandt finds the acquirer's CFO or controller by 2026-10-20 (Day 1 of the skill's own schedule in Step 3, the earlier date set for this step, because Email 1 cannot go before the name is found), then sends Email 1 after reading the draft
+next_action: Nadia Brandt finds the acquirer's CFO or controller and the site GM by 2026-10-20, the Day 1 send date in Step 3, then sends Email 1 after reading the draft
 
 ---
 
@@ -867,6 +871,13 @@ next_action: Nadia Brandt sends the note to Owen Pruitt by 2026-10-26, after rea
 
 ## Changelog
 
+
+### 2.1.7 (2026-10-26)
+- The disqualifier check has a due date: the business day before the send day of the first email whose claim depends on the unresolved condition. Emails that do not depend on it may go out before the check, and the check is never skipped.
+- Every unnamed contact is found by the send day of its own Email 1, and the next action lists each one.
+- Sequence days are fixed: Email 2 on Day 4, Email 3 on Day 8. A send day on a weekend moves to the Friday before.
+- Days remaining are counted from the run date, and the share is printed as N of M window days (P%).
+- The try-it records no longer state the window rule, and the promise follows the rules above.
 
 ### 2.1.6 (2026-10-26)
 - Example 1 Email 1 names the integration review as Q1 2027, the way the deal notice does. The exact day stays in the records as illustrative, and no email quotes it.

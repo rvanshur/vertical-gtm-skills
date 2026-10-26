@@ -25,7 +25,7 @@ Lowmoor Memorial Gardens
 - Status: LOST. Closed-lost to Oldgate on 2026-01-20 [CRM]
 - Reason logged: "timing" [CRM]
 - Champion Ines Carmody has moved to Quill Hollow Memorial Park
-- Closed-Loss Reactivation (05), run 2026-10-19: verdict MONITOR, reminder set for 2026-12-18 to 2027-01-17 [Notes]
+- Upstream hand-off from Closed-Loss Reactivation (05), run 2026-10-19 [Notes]: reactivation_strategy MONITOR, reminder window 2026-12-18 to 2027-01-17
 
 A former Lowmoor contact (name withheld)
 - Opted out on 2026-02-14, after the loss [CRM] (illustrative). The opt-out holds for every dial to this contact
@@ -33,10 +33,9 @@ A former Lowmoor contact (name withheld)
 
 Corrow Ridge Cemetery
 - Consolidator bought the site on 2026-07-01 [Public: state licensing database]. Profile window: 60 to 120 days
-- Owner of record: Harborline Funeral Partners, a new owner since 2026-07-01, inside 24 months [Public: state licensing database]
+- Owner of record: Harborline Funeral Partners, a new owner since 2026-07-01 [Public: state licensing database]
 - One site, 14,000 plots, paper plat maps (illustrative)
-- A deed recorded twice in 2025 [CRM] (illustrative), inside the 24-month test
-- Zone 1 HIGH
+- A deed recorded twice in 2025 [CRM] (illustrative)
 - No contact on file. The task names none
 - Status: TARGET [CRM] (illustrative)
 - No touch yet [CRM] (illustrative)
@@ -88,7 +87,6 @@ Saltmarsh Heritage Group
 - Plot and pre-need tools are spreadsheets only, with no digital tool tried [Notes] (illustrative)
 - No touch yet
 - Both cemeteries keep plot records in spreadsheets only, with no digital plot system [Notes] (illustrative)
-- Zone 5 evidence: the owner letter names growth, which is the profile's owner update naming growth [Public: company site, owner letter 2026]
 
 Tamsin Vale Cemetery
 - Status: TARGET [CRM] (illustrative)

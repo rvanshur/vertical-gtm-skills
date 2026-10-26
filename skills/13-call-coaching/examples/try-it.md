@@ -13,8 +13,8 @@ These records are as of 2026-05-12, before Brackhaven's deal reached Stage 5 Neg
 - Attendees: Ruth Ellery, General Manager, buyer [CRM]. Walt Okonkwo, Operations Director, influencer [CRM].
 - Prep sheet: the top pain is plot records on paper [Notes]. A double sale is on file in the CRM [CRM].
 - Prep sheet question_bank [Notes] (illustrative): "When a family asks for a plot, where do you look first, and how long does that take?" and "How many plots could you sell today if the records were right?"
-- Prep sheet proof_point [Notes]: the Benchmark that most cemeteries your size carry 50 to 100 plots sold on paper and unsold on the map (deathcare research, 2026-03-27 to 2026-04-01). The Holloway Hills proof point is Illustrative and is not cited.
-- Source: a speaker-labelled transcript, checked end to end for silence and talk share. The excerpts below are the lines the score rests on, each verbatim with its transcript time. No pause after any answer ran past two seconds, so no silence was used [Call, 2026-05-12] (illustrative).
+- Prep sheet proof_point [Notes]: the Benchmark that most cemeteries your size carry 50 to 100 plots sold on paper and unsold on the map (deathcare research, 2026-03-27 to 2026-04-01). The Holloway Hills proof point is Illustrative.
+- Source: a speaker-labelled transcript, checked end to end for silence and talk share. The excerpts below are the lines the score rests on, each verbatim with its transcript time. No pause after any answer ran past two seconds [Call, 2026-05-12] (illustrative).
 - Rep talk time: 36% (illustrative) [Call, 2026-05-12].
 - 00:40, Owen: "Ruth, Walt, thanks for the time." [Call, 2026-05-12]
 - 00:50, Owen: "Today I'd like to agree the agenda: the lookups, the trust report, and what a good second session would look like." [Call, 2026-05-12]
@@ -33,8 +33,8 @@ These records are as of 2026-05-12, before Brackhaven's deal reached Stage 5 Neg
 - 28:30, Owen asked for the chair of the approval body and the meeting date. Ruth: "The board takes these things up." Ruth said she would check with the board. Owen: "Great, thanks." [Call, 2026-05-12]
 - 31:10, Ruth: "We don't really have an IT person." [Call, 2026-05-12]
 - 33:00, Ruth: "What would you need from us to put this in front of the board?" [Call, 2026-05-12]
-- The last two minutes of the transcript contain no date for the next step [Call, 2026-05-12].
-- After the call, on 2026-05-12, Owen emailed Ruth to propose 2026-05-19 for the second session, and Ruth replied that the date works [Notes] (illustrative). The call itself set no date.
+- The last two minutes of the transcript contain no date and no owner for a next step [Call, 2026-05-12].
+- After the call, on 2026-05-12, Owen and Ruth exchanged emails about a second session [Notes] (illustrative). The emails are not in the records, so no agreed date is on record.
 - The board chair's name is [Unknown] after this call.
 - Competitive: Oldgate Ledger Pro, renewal March 2027 [CRM].
 
@@ -43,4 +43,4 @@ These records are as of 2026-05-12, before Brackhaven's deal reached Stage 5 Neg
 - Category scores: Pre-Call Preparation 4, SPIN Discovery Quality 3, Priority Ladder Execution 3, Active Listening 4, Value Articulation 3, Next Steps and Momentum 3, Alternatives 4.
 - Champion status: Developing, with two of seven shared champion tests met on this call.
 - Focus area for the next call: Priority Ladder to Level 3 on the cost of a plot lookup and of a double sale.
-- Next action: Owen Pruitt holds the second discovery session with Ruth Ellery on 2026-05-19, agreed by email, and quantifies the lookup cost and the double-sale cost in it (illustrative).
+- Next action: Owen Pruitt holds the second discovery session with Ruth Ellery on 2026-05-19, the five-business-day date from the run date with no earlier date on record, and quantifies the lookup cost and the double-sale cost in it (illustrative).

@@ -1,7 +1,7 @@
 ---
 name: gtm-account-snapshot
 description: "One-page account brief for BDRs and AEs: a zone-based verdict, persona-ranked contacts, tagged pain hypotheses, a three-step email draft and call prep, read by the rep before anything is sent."
-version: 2.1.6
+version: 2.1.7
 category: Sales-Methodology
 author: Ryan Vanshur
 license: MIT
@@ -11,6 +11,9 @@ requires:
   skills: [gtm-account-qualification, gtm-competitive-displacement]
 mutating: read-write
 change_log:
+  - version: 2.1.7
+    date: 2026-10-26
+    summary: "Round 7 leak scrub. The rule text no longer points at the examples by number. The regulatory signal and Zone 1 are separated by the question each asks, the top personas and the Champion Test are defined where Step 3 applies them, and the pain-hypothesis list follows a rule that shows every HIGH or MEDIUM hypothesis, with at least three. The example and the try-it follow the rule, and the try-it records state facts only."
   - version: 2.1.6
     date: 2026-10-26
     summary: "Consistency pass across the sales family. The GM move is tagged to the state licensing database, not the CRM. Example 1 opens its emails on that dated move, and the undated records finding becomes a discovery question only. Example 2 scores Zone 2 on the recorded no-pre-need fact and Zone 5 on the recorded flat-sales and no-succession facts, with the same LOW scores and MANUAL REVIEW verdict. Example 3 dates the Corrow Ridge first email to the first day of the Corrow Ridge sequence. Example 4 names the BDR as the one who books the first discovery call for the AE, and tags the owner retirement and board check to their public sources."
@@ -77,7 +80,7 @@ You refuse to write a claim you cannot tag. You refuse to score silence as a no.
 
 If a required input is missing, ask. Do not guess.
 
-To try the skill without your own data, use `examples/try-it.md`, which holds the inputs for Example 1.
+To try the skill without your own data, use `examples/try-it.md`, which holds the inputs for a full first run on the example profile.
 
 | Input | Required | Notes |
 |-------|----------|-------|
@@ -242,7 +245,7 @@ A fact that the profile's Example Cast supplies takes the tag of the record that
 
 ### Zone Scores and the Verdict
 
-Score each of the five zones HIGH, MEDIUM or LOW from tagged facts, using the profile's Qualification Zones definitions. Score a zone UNKNOWN when the record is silent. UNKNOWN is a fourth zone value that this skill adds for a zone no source speaks to, on top of the profile's HIGH, MEDIUM and LOW. It is never a guess. UNKNOWN is not LOW, because a blank field may only mean nobody recorded it. A HIGH condition that cannot apply to the account counts as met, so an owner who signs alone, with no board approval step, meets a board condition such as "board meets within 60 days". Zones 1 and 3 are must-haves. A zone that meets some but not all of a HIGH column's conditions, and no LOW condition, scores MEDIUM, as in Account Qualification (01) Step 4, and the report names the HIGH condition that fell short.
+Score each of the five zones HIGH, MEDIUM or LOW from tagged facts, using the profile's Qualification Zones definitions. Score a zone UNKNOWN when the record is silent. UNKNOWN is a fourth zone value that this skill adds for a zone no source speaks to, on top of the profile's HIGH, MEDIUM and LOW. It is never a guess. UNKNOWN is not LOW, because a blank field may only mean nobody recorded it. A HIGH condition that cannot apply to the account counts as met, so an owner who signs alone, with no board approval step, meets a board condition such as "board meets within 60 days". Zones 1 and 3 are must-haves. A zone that meets some but not all of a HIGH column's conditions, and no LOW condition, scores MEDIUM, as in Account Qualification (01) Step 4, and the report names the HIGH condition that fell short. The regulatory signal and Zone 1 ask different questions. The signal asks whether a finding is on the record, at any date. Zone 1 HIGH needs a records finding dated inside the last 24 months, as the profile's Zone 1 HIGH cell states, so an undated finding leaves Zone 1 at MEDIUM and its date is named as an open fact.
 
 Apply the Verdict Rule as written:
 
@@ -333,13 +336,13 @@ Build the company brief, the quick-score signals, the zone scores with the verdi
 
 Map the known CRM contacts to the profile's Buyer Personas. For each persona, record the name or Unknown, the title, the engagement level, the last activity and a priority from 1 to 5.
 
-Rank the contacts by four rules, in order: known contacts with engagement history come before cold ones, persona relevance to the likely pain comes next, recent activity counts above old activity, and prior deal context breaks ties. A champion label in the CRM is recorded as a label, tagged `[CRM]`. The Champion Test in the shared contract decides whether a contact is a champion, and a snapshot does not call a contact Strong on the label alone. When the records hold none of the seven behaviours, the Champion Test is reported as not yet run, not as None, because silence is not a no. None is reported only after a call or note has been checked against the seven. Recommend the top two or three personas to target first, with the reason for each. Name as gaps the top-three personas in the contact priority with no contact on file, and the economic buyer when the record names the buyer but not the person. A persona outside the top three is listed as not targeted, not as a gap.
+Rank the contacts by four rules, in order: known contacts with engagement history come before cold ones, persona relevance to the likely pain comes next, recent activity counts above old activity, and prior deal context breaks ties. A champion label in the CRM is recorded as a label, tagged `[CRM]`. The Champion Test in the shared contract decides whether a contact is a champion, and a snapshot does not call a contact Strong on the label alone. The test is the shared list of seven behaviours: three or more met with evidence is Strong, one or two is Developing, and none is None. When the records hold none of the seven behaviours, the Champion Test is reported as not yet run, not as None, because silence is not a no. None is reported only after a call or note has been checked against the seven. Recommend the top two or three personas to target first, with the reason for each. Rank the applicable personas by who signs first, then by the persona whose pain ranks first in Step 4, then by the influencer. Name as gaps the top-three personas in the contact priority with no contact on file, and the economic buyer when the record names the buyer but not the person. A persona outside the top three is listed as not targeted, not as a gap.
 
 **Produces:** `contact_priority`, a ranked list of contacts with persona and buying role, and the persona gaps.
 
 ### Step 4: Generate Pain Hypotheses
 
-Write three to five pain hypotheses from the profile's Core Pain Points, ranked by how well the account's profile supports each one. For each hypothesis, give:
+Write from three to five pain hypotheses from the profile's Core Pain Points. Show every hypothesis that scores HIGH or MEDIUM, up to five. A LOW hypothesis is shown only to reach three. For each hypothesis, give:
 
 - **Pain point:** the name from the profile's taxonomy, qualified by the dated event when the hypothesis depends on one, such as records after a state finding
 - **Why likely:** the reasoning, with its tag
@@ -347,7 +350,7 @@ Write three to five pain hypotheses from the profile's Core Pain Points, ranked 
 - **Discovery question:** the question that validates it on a call
 - **Value prop:** the profile's value proposition that addresses it, stated as its mechanism
 
-Order the hypotheses by confidence, HIGH first. If every hypothesis is MEDIUM or LOW, say the account needs more research or a discovery call before deeper work.
+Order the hypotheses by confidence, HIGH first, and within a level by the profile's Core Pain Points number. If every hypothesis is MEDIUM or LOW, say the account needs more research or a discovery call before deeper work.
 
 **Produces:** `pain_hypotheses`, ranked, each one tagged, each with its discovery question.
 
@@ -513,7 +516,7 @@ Ines Carmody ranks first because she has engagement history and runs the site no
 
 1. **Plot visibility.** HIGH confidence. The plot map is on paper `[CRM]`. `[Inferred]`, by reasoning from the record type: a paper map cannot show which plots are sold without a walk of the grounds. Discovery question: "How do you check today which plots are open?" Value prop: plot inventory matched against sold records.
 2. **Records after a state finding.** MEDIUM confidence. The last state review found a records problem `[CRM]`, and its date is `[Unknown]`. The pressure is real, but its timing is not. Because the hypothesis depends on when the finding happened, the undated finding does not count toward the three signals, so size and vertical are the two signals that count, and the hypothesis stays at MEDIUM. The finding is a discovery question only, and no email or call opener uses it. Discovery question: "When was the last state review, and what did it ask you to fix?"
-3. **Pre-need follow-up.** LOW confidence. No pre-need activity is recorded `[Unknown]`. Use it as a question, not as a lead.
+3. **Plot lookups take minutes.** MEDIUM confidence. `[Inferred]`, by reasoning from the record type and the plot count: a paper map of 8,800 plots makes each lookup a search, which matches the profile's Core Pain 3 on two signals. Discovery question: "When a family asks about a plot, how long does the lookup take?" Value prop: a plot answer in seconds, the profile's Value Proposition 3.
 
 **Step 5: Sequence (Ines Carmody, General Manager).**
 
@@ -585,7 +588,7 @@ account_status: TARGET
 verdict: GREENLIGHT
 zone_scores: 1 MEDIUM, 2 UNKNOWN, 3 HIGH, 4 UNKNOWN, 5 HIGH (illustrative)
 contact_priority: 1 Ines Carmody (General Manager, champion), 2 Owner, name Unknown (signs under $25K), 3 Pre-need manager, name Unknown
-pain_hypotheses: 1 Plot visibility (HIGH, CRM and Inferred), 2 Records after a state finding (MEDIUM, CRM, date Unknown), 3 Pre-need follow-up (LOW, Unknown)
+pain_hypotheses: 1 Plot visibility (HIGH, CRM and Inferred), 2 Records after a state finding (MEDIUM, CRM, date Unknown), 3 Plot lookups take minutes (MEDIUM, Inferred)
 sequence: three emails to Ines Carmody, with call prep
 report_path: none (inline)
 next_action: Nadia Brandt sends Email 1 to Ines Carmody by 2026-10-26
@@ -896,6 +899,13 @@ The Business Case & ROI Kit (a paid Guild Pro kit) reads this skill's hand-off b
 
 ## Changelog
 
+
+### 2.1.7 (2026-10-26)
+- The rule text no longer refers to the examples by number. The try-it pointer names a full first run.
+- The zone rules separate the regulatory signal from Zone 1. The signal asks whether a finding is on the record at any date. Zone 1 HIGH needs a dated finding inside 24 months.
+- Step 3 names the rule for ranking the top personas, and states the Champion Test list and its thresholds where the step applies it.
+- Step 4 shows every HIGH or MEDIUM pain hypothesis, up to five, and at least three. Example 1 and its try-it follow that rule.
+- The try-it records state facts only. The owner's signing line keeps the fact and drops the rule phrase.
 
 ### 2.1.6 (2026-10-26)
 - The GM move in Examples 1 and the try-it is tagged to the state licensing database, not the CRM.

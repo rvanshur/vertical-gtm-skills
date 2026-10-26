@@ -1,6 +1,6 @@
 ---
 name: gtm-closed-loss-reactivation
-version: 2.1.6
+version: 2.1.7
 description: "Re-engages closed-lost accounts from the CRM history. Checks the recorded loss reason against the evidence, finds what has changed since the deal died, re-scores fit, and returns REACTIVATE, MONITOR or RETIRE with a history-aware opener for the BDR or AE who owns the next step."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: []
 mutating: read-write
 change_log:
+  - version: 2.1.7
+    date: 2026-10-26
+    summary: "Round 7 scrub and fix. The two Example pointers in the rule text are reworded. The board-date sub-reason is written only when the record shows a board date that passed without a decision, and the try-it promise follows that rule. The next step to the original AE asks for the loss notes and the anchor of a held window, not the optional deal value. Four first-run questions are settled in one sentence each: primary category against the competitor play, held contact, which window times contact, and weekend window dates. A departed contact is not written to. The try-it deal record states its qualification fields as recorded fields, not as analysis."
   - version: 2.1.6
     date: 2026-10-26
     summary: "Consistency pass across the sales family. Example 1 states the reason the contact hold is in place: the Oldgate re-entry window cannot be placed because the renewal date is unknown. The secondary contact date follows the shared five-business-day rule, 2026-10-26, instead of 2026-11-02. The GM move is tagged to the state licensing database. The verdict, scores and dates of the examples are unchanged."
@@ -78,7 +81,7 @@ You refuse to:
 
 What this skill needs before it starts. **If a required input is missing, ask. Do not guess.**
 
-To try the skill without your own data, use `examples/try-it.md`, which holds the inputs for Example 1. Run it with the example profile at `profiles/examples/plotiq-example.md`.
+To try the skill without your own data, use `examples/try-it.md`, which holds a complete set of inputs for a worked run. Run it with the example profile at `profiles/examples/plotiq-example.md`.
 
 | Input | Required | Notes |
 |-------|----------|-------|
@@ -303,7 +306,7 @@ Each pain-surfacing question is a draft. Check it against the AE's loss notes be
 - The account is an active deal. Use Deal Pulse (08)
 - A trigger event is the primary angle. Use Trigger Event Outbound (04) first, and reference the loss history as context
 
-An account marked OUT is a special case. It has no loss to classify, so the skill records the disqualifier and returns RETIRE (Example 2).
+An account marked OUT is a special case. It has no loss to classify, so the skill records the disqualifier and returns RETIRE, with no sequence.
 
 **User roles:** BDR, AE
 **Expected time:** 15 to 25 minutes per account
@@ -385,7 +388,7 @@ The CRM comes first because the person who logged it heard the buyer. Inference 
 - Died at Stage 5 Negotiate: likely Price, Budget or Lost to Competitor
 - Last three or more touchpoints unanswered: likely No Decision / Went Dark
 
-When more than one reason applies, classify by the primary reason, the one that ended the deal, and name it first. A second category is named too when the record supports both, with the evidence for each. Note the secondary factors as context. A category takes the `[CRM]` tag when the logged reason maps to it, and any board-date reading stays an `[Inferred]` sub-reason. A winning competitor that the CRM logs in its competitor field is a logged reason for Lost to Competitor, so that category takes the `[CRM]` tag too.
+When more than one reason applies, classify by the primary reason, the one that ended the deal, and name it first. A second category is named too when the record supports both, with the evidence for each. Note the secondary factors as context. A category takes the `[CRM]` tag when the logged reason maps to it. A board-date reading is an `[Inferred]` sub-reason, and it is written only when the record shows a board date that passed without a decision. A future board date alone does not make one. A winning competitor that the CRM logs in its competitor field is a logged reason for Lost to Competitor, so that category takes the `[CRM]` tag too. The primary category is the one the logged reason names, and the strategy follows the competitor play when the CRM logs a winner, as Step 5 sets out.
 
 Two rules settle the order and the timing. When the AE's notes are blank, the category that matches the logged reason is named first, because the CRM comes first, and the second category is named as the one the notes must rule in or out. Champion Left applies only when the champion left before the close date. A move after the close is a new opening for that person, and the account keeps its logged reason.
 
@@ -420,12 +423,12 @@ Use `{Client Profile: Qualification Criteria}` (Buying Triggers) and `{Client Pr
 
 ### Step 4: Re-Qualify Fit and Set the Verdict
 
-Re-score fit against `{Client Profile: ICP Definitions}`. The company may have changed since the original evaluation. Use the profile's verdict words, GREENLIGHT, MANUAL REVIEW or DISQUALIFY, and show what moved against the original score. When the general manager who would recommend has left, the profile's Zone 3 MEDIUM cell still applies, which reads: GM recommends and the board approves, or the next board meeting is more than 60 days out. The board path is the observable fact, and the HIGH cell needs a GM or owner who signs under $25K, which no longer describes the account. A zone with no record is UNKNOWN. It counts toward neither HIGH nor LOW, so it never earns or blocks GREENLIGHT, and each UNKNOWN zone is named as the evidence still to find.
+Re-score fit against `{Client Profile: ICP Definitions}`. The company may have changed since the original evaluation. Use the profile's verdict words, GREENLIGHT, MANUAL REVIEW or DISQUALIFY, and show what moved against the original score. When the general manager who would recommend has left, the profile's Zone 3 MEDIUM cell still applies, which reads: GM recommends and the board approves, or the next board meeting is more than 60 days out. The board path is the observable fact, and the HIGH cell needs a signer under the limit to be on record. A zone with no record is UNKNOWN. It counts toward neither HIGH nor LOW, so it never earns or blocks GREENLIGHT, and each UNKNOWN zone is named as the evidence still to find.
 
 Then set the reactivation verdict:
 
 - **REACTIVATE** when fit is GREENLIGHT and a meaningful change is tagged in Step 3.
-- **MONITOR** when fit is GREENLIGHT or MANUAL REVIEW and no reopening event has fired yet. Set a reminder for 60 to 90 days. The reminder is written as its window, with both dates counted from the run date (60 days and 90 days), so it carries a date when it is written.
+- **MONITOR** when fit is GREENLIGHT or MANUAL REVIEW and no reopening event has fired yet. Set a reminder for 60 to 90 days. The reminder is written as its window, with both dates counted from the run date (60 days and 90 days), so it carries a date when it is written. Window dates are calendar days and are written as counted, even when one falls on a weekend.
 - **RETIRE** when fit is DISQUALIFY, or fit was weak then and has not improved. A profile disqualifier always retires the account, because a disqualifier does not change with the calendar.
 
 The fit words map to the reactivation verdicts as follows: strong fit reads as GREENLIGHT, decent fit as MANUAL REVIEW, and weak fit as DISQUALIFY. The profile's words are used so that a MANUAL REVIEW account cannot read as a green light when it comes back.
@@ -440,7 +443,7 @@ For a deeper re-score, run Account Qualification (01). Its `verdict`, `zone_scor
 
 Select the approach from `{Methodology: Reactivation Strategies by Loss Reason}`, using the classification from Step 2 and the verdict from Step 4. The classification must come first, because the strategy is chosen from the loss reason. When Step 2 names two categories and the CRM logs a winning competitor, the play is the competitor play, because the buyer acted on that category. The contact window is set separately, as the paragraph below requires.
 
-Assess the timing as too soon, right time or overdue. Check it against two windows: the strategy's window for the pain, and the re-entry window in Closed-Loss Intelligence for contact. Where the two disagree, say so and name the one that governs. The profile's entry window governs contact. When Step 2 names two categories, contact waits for the later-opening of their two re-entry windows, so the stricter window governs, and a window whose anchor date is `[Unknown]` cannot be placed and holds contact. A timing window counts from the close date, and a competitor window counts back from the rival's renewal date.
+Assess the timing as too soon, right time or overdue. Check it against two windows: the strategy's window for the pain, and the re-entry window in Closed-Loss Intelligence for contact. Where the two disagree, say so and name the one that governs. The profile's entry window governs contact. The strategy window describes the pain and is never used to time contact. When Step 2 names two categories, contact waits for the later-opening of their two re-entry windows, so the stricter window governs, and a window whose anchor date is `[Unknown]` cannot be placed and holds contact. A timing window counts from the close date, and a competitor window counts back from the rival's renewal date. A held contact is released only when the anchor date is found and the window is then checked again.
 
 **Produces:** `reactivation_strategy`, with the verdict, the approach, the timing assessment and the entry angle. For a MONITOR, the reopening event.
 
@@ -460,6 +463,7 @@ Reactivation differs from cold outreach in three ways:
 - Keep the body to 120 words or fewer. The reader is deciding in a few seconds whether the message is worth an answer.
 - Email 1 references the prior relationship with a specific, checked fact, such as a meeting, a named concern or a date. The buyer remembers that conversation.
 - Use the contact's name from the CRM.
+- A contact named in the CRM is usable only while that person still works at the account. A champion who moved to another company does not reopen the lost account, and a person who has left is not written to as the contact.
 - Each step uses a different angle from the reactivation strategy.
 - Never bash the current solution or the decision. The buyer chose it, and criticism makes them defend the choice.
 - Tone is peer to peer, not salesperson to prospect.
@@ -545,7 +549,7 @@ Present the complete reactivation analysis inline, in this order:
 9. **Coordination Guidance (BDR only):** "Coordinate with the original AE named in Step 0 before sending reactivation outreach."
 10. **Recommended Next Action:** one step, with its owner and date
 
-The owner of the next action is the person who does the step. For a BDR, that is the BDR, who asks the original AE for what the step needs. A step that asks a colleague for an answer is dated by the shared contract's next-action rule (five business days after the run date, or an earlier date the records or the skill's own schedule set for that step).
+The owner of the next action is the person who does the step. For a BDR, that is the BDR, who asks the original AE for what the step needs. A step that asks a colleague for an answer is dated by the shared contract's next-action rule (five business days after the run date, or an earlier date the records or the skill's own schedule set for that step). The request to the original AE asks for the AE loss notes, which settle the category, and for the fact that anchors a held window. An optional fact such as deal value is not requested in that step.
 
 Write a file only when the user asks for one. When they do, the file is the one-page cheatsheet built from this same analysis, in Markdown, named `<account>_gtm-closed-loss-reactivation_<date>.md`, with eight sections in this order: deal history banner, what has changed, reactivation strategy, key contacts, reactivation hooks, discovery questions, objection handling, and call flow. Asking for the file is the approval step.
 
@@ -613,7 +617,7 @@ The examples use the PlotIQ example company and its cast, and they match the sha
 **Step 1: Status and Deal History.** Status is LOST. Close date 2026-01-20 `[CRM]`. Stage lost is 4 Proposal `[CRM]` (illustrative). Days since close is 272, which is nine months, counted to today, 2026-10-19. Deal value is `[Unknown]`. It is optional for the verdict, and the skill asks for it before any price goes into a message. The AE's loss notes are `[Unknown]`, because they are not in the cast. The champion, Ines Carmody, has moved `[Public: state licensing database]`.
 
 **Step 2: Loss Classification.** Two categories fit, and the CRM reason does not settle the question on its own.
-- **Budget / Timing `[CRM]`.** The CRM logs the reason as "timing" `[CRM]`. The profile's loss taxonomy maps "timing" to a board date that has passed, so the board date is the probable sub-reason `[Inferred]`, by the profile's loss taxonomy mapping.
+- **Budget / Timing `[CRM]`.** The CRM logs the reason as "timing" `[CRM]`. The records show no board date that passed before the close, so no board-date sub-reason is written. The next board meeting, 2027-01-20, is in the future.
 - **Lost to Competitor `[CRM]`.** Oldgate is logged as the winning competitor in the CRM's competitor field `[CRM]`.
 - **Champion Left does not apply.** She moved six months ago, after the loss, so her move did not cause it.
 
@@ -647,7 +651,7 @@ The reopening events for Lowmoor are the three the profile lists: a new general 
 The held `history_opener` is: "When we last spoke, you went with Oldgate. Curious how that has been working out, specifically around the area the AE recorded." It is held until a reopening event fires and the AE's notes confirm the area. Its anchor is checked: the Oldgate loss is `[CRM]`, dated 2026-01-20.
 
 **Summary: MONITOR.** Lowmoor Memorial Gardens, with these next actions:
-1. The BDR asks the original AE for the loss notes and the deal value, by 2026-10-26 (five business days after the run date of 2026-10-19, a Monday, and the records set no earlier date for this step).
+1. The BDR asks the original AE for the loss notes and the Oldgate renewal date, by 2026-10-26 (five business days after the run date of 2026-10-19, a Monday, and the records set no earlier date for this step).
 2. The BDR finds the current Lowmoor contact, who is `[Unknown]` today, by 2026-10-26 (the shared rule's five business days after the run date).
 3. The BDR sets the reminder for the window 2026-12-18 to 2027-01-17 to check the reopening events.
 4. Quill Hollow runs as its own account through Account Snapshot (02), not as part of this reactivation.
@@ -656,11 +660,11 @@ The held `history_opener` is: "When we last spoke, you went with Oldgate. Curiou
 Hand-off (read by 04 and 06):
 account: Lowmoor Memorial Gardens (LOST)
 run_date: 2026-10-19
-loss_classification: Budget / Timing [CRM] (logged reason "timing", board date as an [Inferred] sub-reason). Lost to Competitor [CRM] (Oldgate named as winner). Champion Left does not apply
+loss_classification: Budget / Timing [CRM] (logged reason "timing"). No board-date sub-reason, because no board date passed before the close. Lost to Competitor [CRM] (Oldgate named as winner). Champion Left does not apply
 change_assessment: account, Ines Carmody now at Quill Hollow [Public: state licensing database]. product, beta with no paid revenue [CRM]. market, Oldgate renewal date [Unknown]
 reactivation_strategy: MONITOR (Buyer's Remorse play, held until a reopening event fires)
 history_opener: held. Oldgate loss [CRM], dated 2026-01-20. Written when a reopening event fires and the AE's notes confirm the area
-next_action: BDR asks the original AE for the loss notes and the deal value, by 2026-10-26
+next_action: BDR asks the original AE for the loss notes and the Oldgate renewal date, by 2026-10-26
 report_path: none (inline)
 ```
 
@@ -813,6 +817,13 @@ report_path: none (inline)
 
 ## Changelog
 
+
+### 2.1.7 (2026-10-26)
+- The two Example pointers in the rule text are reworded, so the rules read on their own.
+- The board-date sub-reason is written only when the record shows a board date that passed without a decision. The try-it promise follows the rule, which the worked run now reflects.
+- The next step to the original AE asks for the loss notes and for the fact that anchors a held window. Deal value, which sets urgency context only, is no longer the requested fact.
+- Four first-run questions are settled by one rule sentence each: the primary category against the competitor play, the release of a held contact, which window times contact, and weekend window dates.
+- A contact who has left the account is not written to, and a moved champion does not reopen the lost account.
 
 ### 2.1.6 (2026-10-26)
 - Example 1 Step 5 states the reason contact holds: the Oldgate re-entry window cannot be placed, because Oldgate's renewal date for Lowmoor is unknown. The pain window and the Budget / Timing window are open, but the later window governs.
