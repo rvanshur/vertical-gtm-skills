@@ -1,6 +1,6 @@
 ---
 name: gtm-competitive-displacement
-version: 2.1.11
+version: 2.1.12
 description: "Plans outbound to displace a known incumbent, by classifying the incumbent, rating how hard the switch is, and drafting persona-tailored four-step email sequences for the rep to read and send, so the BDR or AE who works the account knows what to say and what not to say."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: [gtm-competitive-strategy]
 mutating: read-write
 change_log:
+  - version: 2.1.12
+    date: 2026-10-26
+    summary: "Round 12 next-action order and acceptance findings. The Output Contract and Step 4 now rank the steps this skill produces: a reply owed to a buyer who wrote to us, then a sequence email whose send date has come, then the finding step that stands before the next unsent email, then the first email of a later persona, then AE coordination under the BDR guard, with ties broken by the primary persona and then the earliest send date. A held email is written and counted as held, not as drafted, so Greyfield reads eight written, two on hold and six drafted, and the try-it promise says so. The five-business-day spacing wins over the 60 to 90 day renewal aim, and the report states how many days before the renewal Email 4 lands (53 days for Greyfield if Email 1 goes on 2026-10-26). A logged touch that is not a sequence email is not Email 1. Email 1 carries the persona's best discovery question. An absent fact does not meet a test. The persona count is the rows the template names. Tamsin Vale's contract status cites the CRM record, its persona count reads 2 of 5 rows, and every hand-off ends with next_action. The ratings, personas, owners, next actions and dates do not change."
   - version: 2.1.11
     date: 2026-10-26
     summary: "Round 11 settlement. Email 1 states a trend with no figure when its research is older than 90 days, and the sequence starts at the rep's send date rather than waiting for a renewal window. A renewal known only by its month is tested from its first day, next to the difficulty tests. A profile example is not a buyer statement, so Known Pain reads Suspected until a buyer or a record states it. Email 1 is drafted in full, with its subject and its question taken from the template. The try-it records state facts only, and the next-action rule names when a contact's name is the task. The rating, personas, sequence count, hand-off and next action do not change."
@@ -112,9 +115,9 @@ Every run returns its report in the chat. The file is written only when the user
 | `incumbent_type` | Company and Incumbent Snapshot | The type the profile's Competitive Landscape files the incumbent under, with its confidence |
 | `displacement_difficulty` | Company and Incumbent Snapshot | Low, Medium or High, with the test that set it and whether that test was met |
 | `target_personas` | Key Personas | The profile rows used, ranked, each with its title, the count as n of N, and the contact or `[Unknown]` |
-| `sequence` | Below Key Personas | Four emails per persona, drafted and never sent. A page may show fewer. Then it says the other drafts follow the same rules and are left off the page, and names them. Under the BDR guard, `none (guard)`. Under ENGAGED, `none (ENGAGED: reply plan)`, and the reply plan takes the place of the four emails. Under INBOUND, `reply first (INBOUND)`: the reply to the buyer's request takes the place of the four emails until the account goes quiet, and then the four-step sequence follows. Under INBOUND with a DISQUALIFY verdict, `decline draft (INBOUND)`: one short decline takes the place of the reply, and no sequence follows. |
+| `sequence` | Below Key Personas | Four emails per persona, written and never sent. A written email is either drafted (ready for the rep to read and send) or on HOLD (it may not go until its condition is met, such as a Verified proof point). A held email is counted as held, never as drafted, and the count reads written, on HOLD and drafted, for example "8 written, 2 on HOLD, 6 drafted". A page may show fewer. Then it says the other drafts follow the same rules and are left off the page, and names them. Under the BDR guard, `none (guard)`. Under ENGAGED, `none (ENGAGED: reply plan)`, and the reply plan takes the place of the four emails. Under INBOUND, `reply first (INBOUND)`: the reply to the buyer's request takes the place of the four emails until the account goes quiet, and then the four-step sequence follows. Under INBOUND with a DISQUALIFY verdict, `decline draft (INBOUND)`: one short decline takes the place of the reply, and no sequence follows. |
 | `report_path` | Header of the report | `none (inline)` unless the user asked for a file |
-| `next_action` | Last line of the report | The owner, the action and a date, written as "[owner] [action] by [date]", for example "[owner] finds the contact's name, then reviews and sends the first email by [date]". The owner is the BDR or AE of record in the CRM. When the CRM names the owner, that name is written with `[CRM]`. When the owner field is blank, the name is written `[Unknown]` and the role is kept, never a name from another account. The date follows the shared contract's next-action rule (five business days after the run date, or an earlier date the CRM or the records already set for that step, named with its source). The step names the action the owner takes, not the result. Where the task is finding a contact's name, the action says so without naming a source, unless the records name one (Contact Names) |
+| `next_action` | Last line of the report | The owner, the action and a date, written as "[owner] [action] by [date]", for example "[owner] finds the contact's name, then reviews and sends the first email by [date]". The owner is the BDR or AE of record in the CRM. When the CRM names the owner, that name is written with `[CRM]`. When the owner field is blank, the name is written `[Unknown]` and the role is kept, never a name from another account. The date follows the shared contract's next-action rule (five business days after the run date, or an earlier date the CRM or the records already set for that step, named with its source). The step names the action the owner takes, not the result. Where the task is finding a contact's name, the action says so without naming a source, unless the records name one (Contact Names). **Priority Order.** When the report holds more than one open step, the next action is the first open step in this order, and every other open step is listed after it on the same line as a later step, starting "Later steps:". (1) A reply owed to a buyer who wrote to us: the ENGAGED reply, the INBOUND reply or the INBOUND decline draft, due the next business day after the run date. Reason: the buyer is waiting on us, and a reply owed loses ground every day. (2) A sequence email already due to a named contact, on the send date the sequence set for it. Reason: the sequence's spacing is set from that date, so a missed send moves every email after it. (3) A finding step that stands between the rep and the next unsent email of a sequence, such as the contact's name. When that email is drafted and the same owner does both, the finding and the send are one move with one date. When that email is on HOLD for a fact the same contact holds, the finding and the ask to that contact that releases the hold are one move with one date, because the ask has no separate date of its own. A hold that no ask to that contact can release, such as a proof point waiting to be Verified, is a later step. Reason: nothing else in the sequence can go until the contact is known. (4) The first email of a later persona's sequence, with its own finding step folded in the same way. Reason: a second persona widens the account, but only after the first thread is moving. (5) AE coordination for an account the BDR guard excludes: the analysis goes to the AE, five business days after the run date. Reason: the AE, not the rep, decides what reaches the buyer, and under the guard it is the only step the run produces. Ties inside one kind go to the primary persona first, then to the earliest send date. One move goes from one owner to one person on one date. An ask to that same person that fits in the same message travels with it. A step for a different person, or with a later date, is a later step and is never folded in |
 | File, On Request | `<account>_gtm-competitive-displacement_<date>.md`, saved beside the user's other account notes | Written only when the user asks, in Markdown. The ask is the approval step |
 
 ---
@@ -253,11 +256,11 @@ The difficulty scale has three levels. Each level has one test, and each test is
 | Medium | A renewal inside 180 days | Medium |
 | High | A contract term running more than 180 days past today, with an exit fee in the contract | High |
 
-The rating is the highest level whose test is met. A renewal known only by its month is tested from the first day of that month (Month-Only Renewals). When the contract term is unknown, no test can be run, so the rating is High and the output says the term is unknown, unless a renewal month is on record, which fixes the end of the term (Settled Judgments). An unknown term is not a favorable one, and a plan that assumes an easy switch skips the question that decides it.
+The rating is the highest level whose test is met. A test is met only by a fact on record. An absent fact does not meet a test, so a tool with no record that the account can cancel it at the next cycle does not meet the Low test, and the Medium and High tests decide the rating. A renewal known only by its month is tested from the first day of that month (Month-Only Renewals). When the contract term is unknown, no test can be run, so the rating is High and the output says the term is unknown, unless a renewal month is on record, which fixes the end of the term (Settled Judgments). An unknown term is not a favorable one, and a plan that assumes an easy switch skips the question that decides it.
 
 ### Persona Selection
 
-The profile's Buyer Personas table sets the options. The template row names a primary and a secondary persona by row number. Use the rows the template names, and write the count as n of N, so the reader sees how many rows the profile holds and how many were used. A persona with no contact on file keeps its title, and its contact is `[Unknown]`.
+The profile's Buyer Personas table sets the options. The template row names a primary and a secondary persona by row number. Use the rows the template names, and only those, and write the count as n of N, where n is the rows the template names and N is the profile's row count, so the reader sees how many rows the profile holds and how many were used. A persona with no contact on file keeps its title, and its contact is `[Unknown]`.
 
 ### Sequence Structure (Per Persona)
 
@@ -268,7 +271,7 @@ The profile's Buyer Personas table sets the options. The template row names a pr
 | **Email 3** | Proof point from a comparable switch | Cite a customer result only when its Status is Verified. Otherwise hold the email |
 | **Email 4** | Contract timing | Acknowledge the current vendor. Ask when the contract renews, unless the renewal month is on record, in which case Email 4 confirms it (see Settled Judgments). Frame it as worth 15 minutes before the next renewal |
 
-Email 1 cites a research figure only when it is dated within 90 days of the run date. Otherwise it states the trend with no figure (Old Research In Email).
+Email 1 cites a research figure only when it is dated within 90 days of the run date. Otherwise it states the trend with no figure (Old Research In Email). Email 1's one question is the persona's best discovery question from the template row (Best Discovery Question), so for Stonemark the Pre-Need Sales Manager (row 2) gets template question 2 and the Cemetery General Manager (row 1) gets template question 1. Email 2 asks the lowest-numbered template question that Email 1 did not use and that is not the renewal question.
 
 ### Rules For Every Email
 
@@ -290,13 +293,14 @@ Email 1 cites a research figure only when it is dated within 90 days of the run 
 
 - **Wishes The Incumbent Does Not Cover.** A stated wish that the incumbent does not meet, such as pre-need on the same system, counts as known pain with the incumbent, tagged to the source that states it.
 - **Month-Only Renewals.** A renewal known only to its month is tested from the first day of that month. That month also fixes the end of the term, so the term is not unknown: the rating follows the three tests, and an exit fee that is not on record does not raise it.
-- **Old Research In Email.** A research figure dated more than 90 days before the run date does not appear in an email, even with its source named. The report keeps it as a research estimate. Email 1 then uses the industry trend without a figure, with its question carrying the point, unless a figure dated within 90 days of the run date is on record.
+- **Old Research In Email.** A research figure dated more than 90 days before the run date does not appear in an email, even with its source named. The report keeps it as a research estimate. Email 1 then uses the industry trend without a figure, with its question carrying the point, unless a figure dated within 90 days of the run date is on record. That question is the persona's best discovery question.
 - **Email 4 Timing.** When the renewal month is on record, Email 4 confirms it and makes the renewal the reason to look now, as the Contract Renewal Window pattern says. The question in Email 4 is used only when no renewal month is on record.
-- **Sequence Start.** The sequence starts at the rep's send date for Email 1. A renewal window never holds it, and the window sets the aim for Email 4.
+- **Sequence Start.** The sequence starts at the rep's send date for Email 1. A renewal window never holds it, and the window sets the aim for Email 4, which is a target and never a send date. A logged touch that is not recorded as a sequence email is not Email 1. The sequence still starts at Email 1 on the rep's send date, and the gone-quiet rule in What The Close Reads is read from that touch: no reply within five business days after it means the account has gone quiet.
 - **Best Discovery Question.** A persona's best discovery question is the template question about that persona's own pain. A persona with no such question uses the template's first question.
 - **Roadmap Figures.** A figure from the profile's roadmap, such as weeks to go-live, is PlotIQ's plan and not a sourced number. It appears in the report as the plan and never in an email.
 - **Contact Names.** A next action names no place to find a contact's name unless the records name one. Until a name is found, the contact is written with its title.
-- **Email Spacing.** The four emails in a sequence are sent at least five business days apart, and Email 3 is sent only after its proof point is Verified.
+- **Email Spacing.** The four emails in a sequence are sent at least five business days apart, and Email 3 is sent only after its proof point is Verified. Each email's earliest date is five business days after the last email actually sent, so an email on HOLD takes no slot and does not hold the emails after it. Once released, a held email goes at least five business days after the last email sent.
+- **Renewal Aim Against Spacing.** When the 60 to 90 day renewal aim (Contract Renewal Window) cannot be met at five business days apart, the spacing wins. The emails are never sent closer together to reach the aim. The report states Email 4's earliest date and how many days before the renewal it lands, counted to the first day of a month-only renewal.
 - **Word Counts.** The report does not print word counts. Each draft is checked against the 120 word limit before it is shown.
 
 ---
@@ -395,12 +399,12 @@ The "Why It Matters for This Account" column connects each gap to the account's 
 
 ### Step 3: Generate The Displacement Sequences
 
-Produce a four-step sequence for each persona the template row names, and for any other profile row that the account's facts support. The count is the number of persona rows used, written as n of N. Skip this step under the BDR guard.
+Produce a four-step sequence for each persona the template row names. The template names the personas, so the count is the rows the template names, written as n of N against the profile's row count (2 of 5 for a template with a primary and a secondary row). Skip this step under the BDR guard.
 
 #### Persona Selection, Then Sequence
 Pick the persona rows from Methodology, then draft each sequence in the structure in Methodology, applying the Rules for Every Email. Check every number and every claim against Epistemic Rules before the email is written, not after.
 
-**Produces:** `target_personas` (ranked, n of N) and `sequence` (four emails per persona, each with its subject line, its angle, and its persona note).
+**Produces:** `target_personas` (ranked, n of N) and `sequence` (four emails per persona, each with its subject line, its angle, its send rule, and its persona note, counted as written, on HOLD and drafted). With a renewal month on record, the sequence also states Email 4's earliest date for the primary persona and how many days before the renewal it lands (Renewal Aim Against Spacing).
 
 ### Step 4: Summary Report
 
@@ -410,7 +414,7 @@ Pick the persona rows from Methodology, then draft each sequence in the structur
 4. **Displacement Readiness:** from Step 1d, with the `[Unknown]` cells counted
 5. **CRM Status:** status word, existing contacts, deal history, owner
 6. **Personas Targeted:** n of N profile rows, and why
-7. **Sequences Generated:** n personas x 4 emails, and which emails are on HOLD
+7. **Sequences Generated:** n personas x 4 emails, counted as written, on HOLD and drafted, and which emails are on HOLD
 8. **Strongest Opening:** the first line with the most specific reason
 9. **Key Displacement Lever:** the single gap the incumbent cannot fill
 10. **Contract Timing:** known or unknown, with its tag. If unknown, Email 4 asks
@@ -418,7 +422,7 @@ Pick the persona rows from Methodology, then draft each sequence in the structur
 12. **Coordination Note:** the BDR guard result, and who the analysis goes to
 13. **Evidence Tags Used:** the tags behind the claims in the emails, and any `[Unknown]` that a call must settle
 
-**Produces:** the summary, the hand-off block, and `next_action` with its owner and date. The hand-off block holds these fields, under the names used in Integration: account, run_date, incumbent_type, displacement_difficulty, target_personas, sequence, report_path and next_action.
+**Produces:** the summary, the hand-off block, and `next_action` with its owner and date. To set `next_action`, list every open step the report holds, rank them by the Priority Order in the Output Contract's `next_action` row (a reply owed, a due sequence email, the finding step before the next unsent email, a later persona's first email, AE coordination under the guard), break ties by the primary persona and then the earliest send date, and write the first as the next action. Fold in every ask to the same person that fits the same message and has no separate date of its own, and the finding step the same owner does before that move. A step for a different person, or one with a later date set by a record or by the sequence's own spacing, is a later step. List every other step after it on the same line, starting "Later steps:". The hand-off block holds these fields, under the names used in Integration: account, run_date, incumbent_type, displacement_difficulty, target_personas, sequence, report_path and next_action.
 
 ---
 
@@ -477,6 +481,9 @@ Done when all are true:
 - [ ] An ENGAGED account gets a reply plan in place of the four-step sequence, and no cold sequence is drafted for it
 - [ ] An INBOUND account gets a reply to its request first, with the displacement angle in it, and no cold sequence is drafted until the account has gone quiet
 - [ ] A DISQUALIFY on an INBOUND account gets one short decline draft, held for the rep, and no sequence is drafted
+- [ ] Every held email is counted as on HOLD, never as drafted, and the written, on HOLD and drafted counts agree everywhere the report states them
+- [ ] Email 4's earliest date and its days before the renewal are stated when the renewal month is on record, and no spacing was shortened to meet the aim
+- [ ] The `next_action` is the first open step in the Output Contract's Priority Order, and every other open step is listed after it as a later step
 - [ ] The `next_action` line is last, with an owner and a date
 - [ ] No file was written unless the user asked for one
 
@@ -492,7 +499,7 @@ Three worked examples on the PlotIQ cast and the chain file. They show a success
 
 **Input:** "Greyfield Memorial Park uses Stonemark. Build displacement sequences."
 
-**Step 0. Role And Status:** User role is BDR, from the CRM user record `[CRM]` (illustrative). CRM check: TARGET, one touch on 2026-09-24 with no named contact and no reply on record `[CRM]` (illustrative), no open deal, no AE owner. The guard does not apply, and neither the ENGAGED rule nor the INBOUND rule applies, because no reply is on record and the account is TARGET, not INBOUND. Sequences are drafted.
+**Step 0. Role And Status:** User role is BDR, from the CRM user record `[CRM]` (illustrative). CRM check: TARGET, one touch on 2026-09-24 with no named contact and no reply on record `[CRM]` (illustrative), no open deal, no AE owner. The guard does not apply, and neither the ENGAGED rule nor the INBOUND rule applies, because no reply is on record and the account is TARGET, not INBOUND. The touch of 2026-09-24 is not recorded as a sequence email, so it is not Email 1 (Sequence Start). No reply came within five business days after it (by 2026-10-01), so the account has gone quiet, and the sequence starts at Email 1 on the rep's send date. Sequences are written.
 
 **Step 1. Identify The Incumbent:** Stonemark, direct software. How we know: the account's CRM note names Stonemark as its map vendor `[CRM]` (illustrative). Confidence: HIGH, because the CRM note names the incumbent.
 
@@ -504,7 +511,7 @@ Three worked examples on the PlotIQ cast and the chain file. They show a success
 - Previous Evaluation Of Our Product: `[Unknown]`
 
 **Step 1E. Displacement Difficulty: Medium.**
-- Low test (no contract term to exit): not met, the account has a contract.
+- Low test (no contract term to exit): not met. Stonemark is a tool with a renewal on record, and no record says the account can cancel it at the next cycle. An absent fact does not meet a test.
 - Medium test (renewal inside 180 days): met. The renewal is January 2027, 74 days from today (2026-10-19) when counted from 1 January, `[CRM]`.
 - High test (term past 180 days with an exit fee): not met on the record. The exit fee is `[Unknown]`.
 - The rating is Medium, the highest test met. All three tests are directional.
@@ -528,7 +535,9 @@ Gap matrix:
 
 Proof points: Fennick Gardens (212 unsold plots found in 90 days) and Holloway Hills (zero records findings in its first state review). Both are Illustrative, and neither names a displaced vendor (`[Unknown]`). Neither can appear in an email, and the research figure is over 90 days old, so Email 1 names no figure.
 
-**Step 3. Sequences:** Persona selection: 2 of 5 profile rows, row 2 Pre-Need Sales Manager (primary, the team that feels the intake pain) and row 1 Cemetery General Manager (secondary, the buyer). Both contacts are `[Unknown]`, so the emails use titles. That makes 2 personas and 8 emails. The page shows Email 1 and the HOLD on Email 3 for the Pre-Need Sales Manager, and omits the rest of the drafts: Emails 2 and 4 for that persona, and all four for the Cemetery General Manager. Those drafts exist and follow the structure in Methodology, and they are left off this page only for length.
+**Step 3. Sequences:** Persona selection: 2 of 5 profile rows, row 2 Pre-Need Sales Manager (primary, the team that feels the intake pain) and row 1 Cemetery General Manager (secondary, the buyer). Both contacts are `[Unknown]`, so the emails use titles. That makes 2 personas and 8 emails written: 2 on HOLD (Email 3 for each persona, because no proof point is Verified) and 6 drafted. The page shows Email 1 and the HOLD on Email 3 for the Pre-Need Sales Manager, and omits the rest: Emails 2 and 4 for that persona (drafted), and for the Cemetery General Manager Emails 1, 2 and 4 (drafted) and Email 3 (on HOLD for the same reason). Those emails exist and follow the structure in Methodology, and they are left off this page only for length.
+
+**Send Dates, Pre-Need Sales Manager:** Email 1 goes on the rep's send date. If it goes on 2026-10-26, Email 2 is due no earlier than 2026-11-02, five business days later. Email 3 is on HOLD and takes no slot, so Email 4 is due no earlier than 2026-11-09, five business days after Email 2 (Email Spacing). That lands 53 days before the renewal, counted to 2027-01-01, short of the 60 to 90 day aim (2026-10-03 to 2026-11-02). The spacing wins, and the emails are not sent closer together to reach the aim (Renewal Aim Against Spacing). The Cemetery General Manager's dates follow from its own Email 1 send date in the same way.
 
 **Pre-Need Sales Manager, Email 1 (Industry Trend, Held Without A Figure). Drafted, not sent.**
 Subject: Pre-need requests from the intake form
@@ -539,7 +548,7 @@ Which system runs the pre-need side, and who maintains it?
 
 Nadia Brandt
 
-The trend is stated with no figure. Its only research source, the deathcare research dated 2026-03-27 to 2026-04-01, is over 90 days old at the run date, so no figure may appear in an email. The question is template question 2, which lets the buyer find the gap.
+The trend is stated with no figure. Its only research source, the deathcare research dated 2026-03-27 to 2026-04-01, is over 90 days old at the run date, so no figure may appear in an email. The question is template question 2, the Pre-Need Sales Manager's best discovery question, which lets the buyer find the gap. Email 2 for this persona asks template question 1, the lowest-numbered question Email 1 did not use that is not the renewal question.
 
 **Pre-Need Sales Manager, Email 3 (Proof Point). Status: HOLD.** The only proof point that fits is Illustrative, so Email 3 names no customer result. The Fennick Gardens case study waits until its numbers cover a full year (January 2027) (profile: Proof Points). Email 3 is released only when a proof point is Verified, and Verified also needs the customer's agreement to be named. The earliest date for Fennick Gardens is therefore January 2027, so Email 3 cannot go before then.
 
@@ -548,7 +557,7 @@ The trend is stated with no figure. Its only research source, the deathcare rese
 - Best Discovery Question: "Which system runs the pre-need side, and who maintains it?" (template question 2)
 - Why Selected: the team that feels the intake pain, and the primary row in the template.
 
-**Per-Persona Lines, Cemetery General Manager (Drafts Left Off The Page):**
+**Per-Persona Lines, Cemetery General Manager (Emails Left Off The Page):**
 - Displacement Angle: one view of sold and unsold plots and the trust record, so the buyer sees the state filing in one place.
 - Best Discovery Question: "Where does the plot map live today, and when was it last updated?" (template question 1)
 - Why Selected: the buyer who signs the contract, and the secondary row in the template.
@@ -560,7 +569,7 @@ The trend is stated with no figure. Its only research source, the deathcare rese
 4. **Readiness:** pre-need and records pain is suspected, with no buyer statement on record, and the champion, budget cycle and prior evaluation are `[Unknown]`.
 5. **CRM Status:** TARGET, one touch on 2026-09-24 with no named contact, no open deal, no AE owner, no contacts on file.
 6. **Personas Targeted:** 2 of 5 profile rows, the two that feel the intake pain and sign the contract.
-7. **Sequences Generated:** 2 personas x 4 emails. Email 1 is shown in full. Email 3 is on HOLD. Emails 2 and 4 follow the structure above.
+7. **Sequences Generated:** 2 personas x 4 emails: 8 written, 2 on HOLD (Email 3 for both personas), 6 drafted. The Pre-Need Sales Manager's Email 1 is shown in full. Emails 2 and 4 for both personas, and the Cemetery General Manager's Email 1, follow the structure above. Email 4 lands no earlier than 2026-11-09 if Email 1 goes on 2026-10-26, 53 days before the renewal.
 8. **Strongest Opening:** "Your team takes pre-need requests through the intake form on the site."
 9. **Key Displacement Lever:** pre-need leads and records on one system.
 10. **Contract Timing:** January 2027, `[CRM]`. Email 4 confirms it.
@@ -576,9 +585,9 @@ run_date: 2026-10-19
 incumbent_type: direct software (Stonemark)
 displacement_difficulty: Medium (renewal inside 180 days, January 2027, test met, directional)
 target_personas: 2 of 5. Row 2 Pre-Need Sales Manager (primary). Row 1 Cemetery General Manager (secondary). Contacts [Unknown]
-sequence: 2 personas x 4 emails. Pre-Need Sales Manager Email 1 drafted. Email 3 on HOLD until the Illustrative proof point is Verified
+sequence: 2 personas x 4 emails, 8 written, 2 on HOLD, 6 drafted. Pre-Need Sales Manager Email 1 shown. Email 3 on HOLD for both personas until a proof point is Verified
 report_path: none (inline)
-next_action: Nadia Brandt finds the Pre-Need Sales Manager's name, reviews Email 1, and sends it by 2026-10-26
+next_action: Nadia Brandt finds the Pre-Need Sales Manager's name, reviews Email 1, and sends it by 2026-10-26. Later steps: Nadia Brandt finds the Cemetery General Manager's name and sends that persona's Email 1. Email 2 to the Pre-Need Sales Manager no earlier than five business days after Email 1 (2026-11-02 if Email 1 goes on 2026-10-26), and Email 4 five business days after that (2026-11-09). Both Email 3s stay on HOLD until a proof point is Verified
 
 ---
 
@@ -608,26 +617,26 @@ next_action: Nadia Brandt finds the Pre-Need Sales Manager's name, reviews Email
 
 **Step 2. Template Row And Intelligence:** The profile's manual process row for Displacement says the wedge is one view of sold and unsold plots with an audit trail, so no one person holds the records (profile: Displacement). Primary persona: row 1, Cemetery General Manager. Secondary persona: row 3, Operations Director, with no contact on file, so its contact is `[Unknown]` and its title is kept. Gap matrix: no single view of sold and unsold plots (one binder per section), no audit trail, and key-person risk. The only proof point is Fennick Gardens, which is Illustrative and cannot be cited.
 
-**Step 3. Sequences:** Persona selection: 2 of 2 template personas. Row 1 Cemetery General Manager is primary, and row 3 Operations Director is secondary, with its title kept and its contact `[Unknown]`. A CFO is not a fit for a single-site account (the CFO row applies to groups, profile: Buyer Personas). That is 2 personas and 8 emails, all on HOLD until the two double sales are in writing. The Cemetery General Manager's Email 1 is shown below. The other seven drafts follow the same rules and are left off this page for length.
+**Step 3. Sequences:** Persona selection: 2 of 5 profile rows, the two rows the template names. Row 1 Cemetery General Manager is primary, and row 3 Operations Director is secondary, with its title kept and its contact `[Unknown]`. A CFO is not a fit for a single-site account (the CFO row applies to groups, profile: Buyer Personas). That is 2 personas and 8 emails written, all 8 on HOLD until the two double sales are in writing, and 0 drafted. The Cemetery General Manager's Email 1 is shown below. The other seven held emails follow the same rules and are left off this page for length.
 
-**Cemetery General Manager, Email 1 (Pain Question). Drafted, held.**
+**Cemetery General Manager, Email 1 (Pain Question). Written, on HOLD.**
 Subject: Plot lookups across one binder per section
 
 Tamsin Vale keeps its plot records in one binder per section. When a family asks about a plot in another section, how long does the lookup take?
 
 Your name
 
-**Step 4. Summary And Recommendation (The Non-Success):** 2 personas, 8 drafts, 0 sent, all on HOLD. Recommendation: hold the sequence. The verdict is MANUAL REVIEW, not GREENLIGHT, so Email 1 would put a double-sales question in front of a buyer before anyone has confirmed the double sales. The next step is to find the Cemetery General Manager's name and phone number, then ask for the two double sales in writing, with plot numbers and dates, and ask who decides. The CRM record places that decision with the board above $25K. Release Email 1 only after both are in hand. Evidence tags: `[CRM]` for the process and the touch record, `[Inferred]` for the displacement case, and `[Unknown]` for the decision maker's name. If the double sales do not hold up, the displacement case is a guess, and it does not go out.
+**Step 4. Summary And Recommendation (The Non-Success):** 2 personas, 8 emails written, all 8 on HOLD, 0 drafted, 0 sent. Recommendation: hold the sequence. The verdict is MANUAL REVIEW, not GREENLIGHT, so Email 1 would put a double-sales question in front of a buyer before anyone has confirmed the double sales. The next action is one move to one person: find the Cemetery General Manager's name and phone number, then call to ask for the two double sales in writing, with plot numbers and dates, and who decides. The ask has no separate date of its own and goes to the same person, so it travels with the finding step (Priority Order, kind 3). The CRM record places that decision with the board above $25K. Release Email 1 only after both are in hand. Later step: the Operations Director's sequence, which is on HOLD for the same reason. Evidence tags: `[CRM]` for the process and the touch record, `[Inferred]` for the displacement case, and `[Unknown]` for the decision maker's name. If the double sales do not hold up, the displacement case is a guess, and it does not go out.
 
 Hand-off (read by 02 and 06):
 account: Tamsin Vale Cemetery (TARGET)
 run_date: 2026-10-19
 incumbent_type: manual process (paper plat maps and one binder per section)
 displacement_difficulty: Low (no contract term to exit, test met, directional)
-target_personas: 2 of 2. Row 1 Cemetery General Manager (primary). Row 3 Operations Director (secondary), contact [Unknown]
-sequence: 2 personas x 4 emails, 8 drafts, 0 sent. All on HOLD until the two double sales are in writing
-next_action: Nadia Brandt finds the Cemetery General Manager's name and phone number by 2026-10-26, five business days after the run date of 2026-10-19
+target_personas: 2 of 5. Row 1 Cemetery General Manager (primary). Row 3 Operations Director (secondary), contact [Unknown]
+sequence: 2 personas x 4 emails, 8 written, 8 on HOLD, 0 drafted, 0 sent. All on HOLD until the two double sales are in writing
 report_path: none (inline)
+next_action: Nadia Brandt finds the Cemetery General Manager's name and phone number, then calls to ask for the two double sales in writing, with plot numbers and dates, and who decides, by 2026-10-26, five business days after the run date of 2026-10-19. Later steps: the Operations Director's sequence stays on HOLD until the double sales are in writing
 
 ---
 
@@ -657,8 +666,8 @@ incumbent_type: direct software (Oldgate Ledger Pro)
 displacement_difficulty: Medium (renewal inside 180 days, March 2027, test met, directional)
 target_personas: none. BDR guard, analysis only
 sequence: none (guard). The AE decides
-next_action: Nadia Brandt sends this analysis to Owen Pruitt by 2026-10-26
 report_path: none (inline)
+next_action: Nadia Brandt sends this analysis to Owen Pruitt by 2026-10-26
 
 ---
 
@@ -678,7 +687,7 @@ report_path: none (inline)
 
 ### Pattern: Contract Renewal Window
 **When:** The contract renewal date is known.
-**Action:** Time the sequence to arrive 60 to 90 days before renewal. Change Email 4 from asking when the contract renews to saying the renewal is the reason to look now.
+**Action:** Aim for Email 4 to arrive 60 to 90 days before renewal. The aim is a target: the five-business-day spacing wins, and the report states how many days before the renewal Email 4 lands (Renewal Aim Against Spacing). Change Email 4 from asking when the contract renews to saying the renewal is the reason to look now.
 
 ---
 

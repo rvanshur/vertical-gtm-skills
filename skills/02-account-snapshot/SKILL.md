@@ -1,7 +1,7 @@
 ---
 name: gtm-account-snapshot
 description: "One-page account brief for BDRs and AEs: a zone-based verdict, persona-ranked contacts, tagged pain hypotheses, a three-step email draft and call prep, read by the rep before anything is sent."
-version: 2.1.11
+version: 2.1.12
 category: Sales-Methodology
 author: Ryan Vanshur
 license: MIT
@@ -11,6 +11,9 @@ requires:
   skills: [gtm-account-qualification, gtm-competitive-displacement]
 mutating: read-write
 change_log:
+  - version: 2.1.12
+    date: 2026-10-26
+    summary: "Round 12 next-action order and acceptance findings. The Output Contract and Step 7 give one priority order for the next action: a reply owed to a buyer who wrote to us comes first, then AE coordination for an ACTIVE account with an AE owner, then the first send of a GREENLIGHT sequence, then a meeting already on the calendar, then the first send of a MANUAL REVIEW package after a person clears it, and last a DISQUALIFY with no reply owed. Ties go to the earlier due date, then the earlier buyer message, then the account name. Step 3 defines an applicable persona and the top three, so Persona 3 is a gap when it has no contact. Step 4 names pain hypotheses from the Core Pain Points taxonomy, with the event qualifier, and every hypothesis carries the Inferred tag. The primary-fit signal is Partial when part of its key indicator is Unknown. The Quill Hollow example and try-it use the taxonomy names and the three persona gaps, the Sable Fork example and the Brackhaven example are re-derived, and the verdicts, zone scores and statuses do not change."
   - version: 2.1.11
     date: 2026-10-26
     summary: "Round 11 settled judgments. The economic buyer is the signer the record names: the owner when the record says the owner signs, even if the GM champions the account. Persona ties are broken by buying role, with a champion ahead of an influencer, once no persona has a HIGH pain. A region with no recorded state reads as no tier yet. The Quill Hollow example and try-it keep their contacts, gaps and verdict, and the board-approval wording is removed from the records, leaving the signing fact. No try-it promise changes."
@@ -115,10 +118,10 @@ Every run returns its report in the chat. The file is written only when the user
 | `verdict` | Beside the zone scores | GREENLIGHT, MANUAL REVIEW or DISQUALIFY, from the Verdict Rule as written |
 | `zone_scores` | Beside the verdict | One line per zone, 1 to 5, each HIGH, MEDIUM, LOW or UNKNOWN. Carried as handed by Account Qualification (01) when it ran, otherwise scored here with a tag per zone |
 | `contact_priority` | Key Personas | Ranked contacts, each with persona and buying role. Unknown where no contact is found |
-| `pain_hypotheses` | Pain Hypotheses | Ranked by confidence, each one tagged |
+| `pain_hypotheses` | Pain Hypotheses | Ranked by confidence, each one tagged `[Inferred]`, named from the Core Pain Points taxonomy, with its event qualifier when it depends on a dated event |
 | `sequence` | Below the cheatsheet | Three emails per persona for a cold account, one reply draft for an ENGAGED account, or one reply to the request for an INBOUND account, with a cold sequence only if that account goes quiet. A DISQUALIFY on an INBOUND account gets one short decline draft in place of the reply. Drafted and never sent. A MANUAL REVIEW set is marked Held. Quick Call Prep mode omits it |
 | `report_path` | Only when a file was written | Set only when the user asks for the file. Wrap-Up reads it |
-| `next_action` | Last line of the summary | Owner and a calendar date set by the shared contract's next-action rule (What the Close Reads: five business days after the run date, or an earlier date the records or the skill's own schedule set for that step), in the form "[owner] sends Email 1 to [contact] by [date]" |
+| `next_action` | Last line of the summary | One step, with one owner, one person and one date, in the form "[owner] sends Email 1 to [contact] by [date]". It is the first step below that applies. Asks to the same person that fit in the same message, with no separate date, travel with it. Only a step for a different person, or one with a later date set by a record or the skill's own schedule, is listed after it as a later step. Priority order: (1) A reply owed to a buyer who wrote to us. This is an ENGAGED reply draft, an INBOUND reply draft, or an INBOUND DISQUALIFY decline draft. Owner is the rep who holds the thread. Due is the next business day after the run date, under What The Close Reads. Reason: the buyer is waiting on us, and a reply owed costs more than any first touch. (2) AE coordination. The account is ACTIVE with an AE owner, so the BDR stops, shares this brief with the AE, and drafts nothing to the buyer. Due is five business days after the run date. Reason: two people writing to one buyer costs the deal. (3) The first send of a GREENLIGHT sequence, Email 1, which is ready. Due is five business days after the run date, unless the records set an earlier date. Reason: the account is qualified and the draft is ready to go. (4) A meeting already on the calendar with the buyer. Owner is the rep who runs it, on the date on record. Reason: the buyer has agreed to a time, and a held package cannot go out until a person clears it. (5) The first send of a MANUAL REVIEW held package, after a person clears the verdict. Due is five business days after the run date. Reason: it cannot go out until it is cleared. (6) A DISQUALIFY with no reply owed. There is no outreach, and the BDR stops work on the account by the run date. Ties inside one step kind: the earlier due date comes first, then the earlier date of the buyer's message, then the account name in alphabetical order. |
 | File option | `<account>_<skill>_<date>.md`, saved beside the user's other account notes | Written only when the user asks. Markdown only. The ask is the approval step |
 
 ---
@@ -281,6 +284,8 @@ These five signals are the one-glance read a rep sees first. They do not set the
 | Scale (volume) | Site and plot counts, written as numbers, with the Size Band from the Size Bands table (profile: Market Segments): SMB (one site with under 2,000 plots), Mid-Market (one to three sites with 2,000 plots or more in total) or Enterprise (four sites or more) |
 | Team complexity signal | Dedicated team (three or more named people run the account's functions), Small team (one or two named) or Unknown (none named) |
 
+**Primary fit rule.** Primary fit is Yes when every part of the ICP's key indicator is met on a tagged fact. It is Partial when at least one part is met and another part is `[Unknown]`. For example, the plot records are on paper, but the annual state filing is unknown because the state is not recorded. It is No when a part is recorded as absent. An `[Unknown]` part never scores Yes, and it never scores No, because silence is not a no.
+
 ### Confidence In Pain Hypotheses
 
 - **HIGH:** the hypothesis matches the profile on three or more signals, such as size, vertical, footprint and CRM history. A signal whose date is `[Unknown]` does not count toward the three when the hypothesis depends on a recent event, and the hypothesis is then scored on its other signals.
@@ -348,7 +353,7 @@ Build the company brief, the quick-score signals, the zone scores with the verdi
 
 Map the known CRM contacts to the Buyer Personas (profile: Buyer Personas). For each persona, record the name or Unknown, the title, the engagement level, the last activity and a priority from 1 to 5.
 
-Rank the contacts by four rules, in order: known contacts with engagement history come before cold ones, persona relevance to the likely pain comes next, recent activity counts above old activity, and prior deal context breaks ties. A champion label in the CRM is recorded as a label, tagged `[CRM]`. The Champion Test in the shared contract decides whether a contact is a champion, and a snapshot does not call a contact Strong on the label alone. The test is the shared list of seven behaviours: three or more met with evidence is Strong, one or two is Developing, and none is None. When the records hold none of the seven behaviours, the Champion Test is reported as not yet run, not as None, because silence is not a no. None is reported only after a call or note has been checked against the seven. Recommend the top two or three personas to target first, with the reason for each. Rank the applicable personas by who signs first, then by the persona whose hook is a HIGH pain in Step 4 (the hook is read from the Buyer Personas table), then by buying role, with a champion ahead of an influencer. Name as gaps the top-three personas in the contact priority with no contact on file, and the economic buyer when the record names who signs but not the person. The signer is the owner when the record says the owner signs, even if the GM is the champion. A GM is the signer only when the record says the GM signs. A persona outside the top three is listed as not targeted, not as a gap.
+Rank the contacts by four rules, in order: known contacts with engagement history come before cold ones, persona relevance to the likely pain comes next, recent activity counts above old activity, and prior deal context breaks ties. A champion label in the CRM is recorded as a label, tagged `[CRM]`. The Champion Test in the shared contract decides whether a contact is a champion, and a snapshot does not call a contact Strong on the label alone. The test is the shared list of seven behaviours: three or more met with evidence is Strong, one or two is Developing, and none is None. When the records hold none of the seven behaviours, the Champion Test is reported as not yet run, not as None, because silence is not a no. None is reported only after a call or note has been checked against the seven. A persona applies when the profile's Buyer Personas row allows it for the account's structure. Persona 4 (funeral home owner) applies only where the account runs a funeral side, Persona 5 (CFO or Controller) applies only to a group, and the other personas apply to every account. Rank the applicable personas by who signs first, then by the persona whose hook is a HIGH pain in Step 4 (the hook is read from the Buyer Personas table), then by buying role, with a champion ahead of an influencer. The top three are the first three applicable personas in that ranking, whether or not a contact is on file. For an independent cemetery, that means Personas 1, 2 and 3. Recommend the top two or three personas to target first, with the reason for each. The persona gaps are the top-three personas with no contact on file, plus the economic buyer when the record names who signs but not the person. The signer is the owner when the record says the owner signs, even if the GM is the champion. A GM is the signer only when the record says the GM signs. A persona outside the top three is listed as not targeted, not as a gap.
 
 **Produces:** `contact_priority`, a ranked list of contacts with persona and buying role, and the persona gaps.
 
@@ -356,8 +361,8 @@ Rank the contacts by four rules, in order: known contacts with engagement histor
 
 Write from three to five pain hypotheses from the Core Pain Points (profile: Core Pain Points). Show every hypothesis that scores HIGH or MEDIUM, up to five. A LOW hypothesis is shown only to reach three. For each hypothesis, give:
 
-- **Pain Point:** the name from the Core Pain Points taxonomy (profile: Core Pain Points), qualified by the dated event when the hypothesis depends on one, such as records after a state finding
-- **Why Likely:** the reasoning, with its tag
+- **Pain Point:** the name exactly as the Core Pain Points taxonomy writes it (profile: Core Pain Points). When the hypothesis depends on a dated event, add the event and its date in brackets, for example "Trust fund and records reporting by hand (state review finding, 2026-03-14)" (date illustrative). When the event's date is `[Unknown]`, add "(event date unknown)" and name the event in Why Likely. A hypothesis that depends on no event carries no qualifier.
+- **Why Likely:** the reasoning, with its tag. Every pain hypothesis carries the `[Inferred]` tag, because it is a reasoned guess from the profile until a call confirms it (Methodology: Evidence Tags For Rapid Research)
 - **Confidence:** HIGH, MEDIUM or LOW, per the confidence rules above
 - **Discovery Question:** the question that validates it on a call
 - **Value Prop:** the value proposition that addresses it (profile: Value Propositions), stated as its mechanism
@@ -442,7 +447,7 @@ For an ENGAGED account, the opener refers to the account's own reply, by its dat
 
 Assemble the eight cheatsheet sections in this order: Company Snapshot, Geographic and Market Exposure, Key Personas, Pain Hypotheses, Discovery Questions, Value Props, Objection Handling and Call Flow.
 
-Close with a summary line in this order: the user's role, the account, the status, the verdict with the zones that carry it, the contacts found and their gaps, the personas targeted, the number of sequence emails, the recommended first action with its owner and the date the shared contract's next-action rule gives (five business days after the run date, or an earlier date the records or the skill's own schedule set for that step) (`next_action`), and the tag count for the report.
+Close with a summary line in this order: the user's role, the account, the status, the verdict with the zones that carry it, the contacts found and their gaps, the personas targeted, the number of sequence emails, the `next_action`, and the tag count for the report. The `next_action` is the first step in the priority order in the Output Contract that applies to this account, with its owner and its date under the shared contract's next-action rule (five business days after the run date, or an earlier date the records or the skill's own schedule set for that step). Asks to the same person that fit in the same message, with no separate date, stay with it. Only a step for a different person, or one with a later date set by a record or the skill's own schedule, is named after it as a later step. The order, not the rep's own preference, decides which step comes first.
 
 **Produces:** the eight-section cheatsheet in the chat, the summary line, and `next_action`.
 
@@ -501,6 +506,8 @@ Done when all are true:
 - [ ] Every proof point in an email is in the Proof Points table (profile: Proof Points) and is not Illustrative
 - [ ] The call goal matches the user's role, and no demo is proposed before the pain is confirmed
 - [ ] Each rate carries its n, and each pattern rests on five cases or is labelled an observation
+- [ ] Every pain hypothesis carries the `[Inferred]` tag and a Core Pain Points name, with its event qualifier when it depends on a dated event
+- [ ] The next action is the first step that applies in the Output Contract's priority order, with one owner, one person and one date
 - [ ] The hand-off block lists every field by name, with its value
 
 ---
@@ -523,7 +530,7 @@ These examples use the PlotIQ example cast, and every fact is tagged as the tag 
 
 Company brief: Quill Hollow Memorial Park. Independent cemetery `[CRM]`. One site, 8,800 plots `[CRM]`. Ownership `[Unknown]`. CRM status TARGET. No active deal.
 
-Quick-score signals: primary fit Yes, 8,800 plots on paper, above the ICP1 Strong line `[CRM]`. Single region `[CRM]`. Regulatory complexity High, because of the records finding `[CRM]`. Scale Mid-Market, one site with 8,800 plots `[CRM]`, which meets the Mid-Market rule of one to three sites with 2,000 plots or more in total. Team complexity: Small team, one named contact (the GM) `[CRM]`, and the owner has no name `[Unknown]`.
+Quick-score signals: primary fit Partial. The plot records are on paper `[CRM]`, which meets part of the ICP1 key indicator, and the annual state filing is `[Unknown]` because the state is not recorded. Single region `[CRM]`. Regulatory complexity High, because of the records finding `[CRM]`. Scale Mid-Market, one site with 8,800 plots `[CRM]`, which meets the Mid-Market rule of one to three sites with 2,000 plots or more in total. Team complexity: Small team, one named contact (the GM) `[CRM]`, and the owner has no name `[Unknown]`.
 
 Zone scores (illustrative), with the verdict:
 
@@ -542,16 +549,17 @@ Region map: no tier, because the state is not recorded `[Unknown]`.
 | Persona | Name | Engagement | Last Activity | Priority |
 |---------|------|-----------|---------------|----------|
 | General Manager, champion | Ines Carmody | Labelled champion at her last site `[CRM]`. No reply to PlotIQ on record `[CRM]`. Champion Test not yet run | Not recorded `[Unknown]` | 1 |
-| Owner, signs under $25K | Unknown, no contact found `[Unknown]` | n/a | n/a | 2 |
-| Pre-need manager | Unknown `[Unknown]` | n/a | n/a | 3 |
+| Pre-Need Sales Manager, champion | Unknown, no contact found `[Unknown]` | n/a | n/a | 2 |
+| Operations Director, influencer | Unknown, no contact found `[Unknown]` | n/a | n/a | 3 |
+| Signer, owner (signs under $25K) | Unknown, no contact found `[Unknown]` | n/a | n/a | Not ranked (signer, not a persona) |
 
-Ines Carmody ranks first because she is the only named contact and runs the site now. Her champion label stays a label until the Champion Test runs. The owner ranks second, because the owner signs. The pre-need manager is the champion persona, and the Operations Director is an influencer. Neither persona's hook is a HIGH pain, so the champion ranks ahead of the influencer.
+Ines Carmody ranks first. She is the only named contact and runs the site now, and Persona 1's hook matches the HIGH pain. No persona signs, because the owner signs, so the signing rule ranks no one. The pre-need manager (Persona 2) and the Operations Director (Persona 3) follow. Neither hook is a HIGH pain, so the champion ranks ahead of the influencer. Both have no contact on file, so both are gaps, and the owner is the economic buyer gap. Her champion label stays a label until the Champion Test runs.
 
 **Step 4: Pain Hypotheses.**
 
-1. **Plot Visibility.** HIGH confidence. The plot map is on paper `[CRM]`. `[Inferred]`, by reasoning from the record type: a paper map cannot show which plots are sold without a walk of the grounds. Discovery question: "How do you check today which plots are open?" Value prop: plot inventory matched against sold records.
-2. **Records After A State Finding.** MEDIUM confidence. The last state review found a records problem `[CRM]`, and its date is `[Unknown]`. The pressure is real, but its timing is not. Because the hypothesis depends on when the finding happened, the undated finding does not count toward the three signals, so size and vertical are the two signals that count, and the hypothesis stays at MEDIUM. The finding is a discovery question only, and no email or call opener uses it. Discovery question: "When was the last state review, and what did it ask you to fix?"
-3. **Plot Lookups Take Minutes.** MEDIUM confidence. `[Inferred]`, by reasoning from the record type and the plot count: a paper map of 8,800 plots makes each lookup a search, which matches Core Pain Point 3 on two signals (profile: Core Pain Points). Discovery question: "When a family asks about a plot, how long does the lookup take?" Value Prop: a plot answer in seconds (profile: Value Propositions, Value Proposition 3).
+1. **Plot records on paper, binders or pencil maps.** HIGH confidence. The plot map is on paper `[CRM]`. `[Inferred]`, by reasoning from the record type: a paper map cannot show which plots are sold without a walk of the grounds. Discovery question: "How do you check today which plots are open?" Value prop: plot inventory matched against sold records.
+2. **Trust fund and records reporting by hand (event date unknown).** MEDIUM confidence. `[Inferred]`. The last state review found a records problem `[CRM]`, and its date is `[Unknown]`. The pressure is real, but its timing is not. Because the hypothesis depends on when the finding happened, the undated finding does not count toward the three signals, so size and vertical are the two signals that count, and the hypothesis stays at MEDIUM. The finding is a discovery question only, and no email or call opener uses it. Discovery question: "When was the last state review, and what did it ask you to fix?" Value prop: plot and trust records a state auditor accepts (profile: Value Propositions, Value Proposition 2).
+3. **Plot lookups take minutes to hours.** MEDIUM confidence. `[Inferred]`, by reasoning from the record type and the plot count: a paper map of 8,800 plots makes each lookup a search, which matches Core Pain Point 3 on two signals (profile: Core Pain Points). Discovery question: "When a family asks about a plot, how long does the lookup take?" Value Prop: a plot answer in seconds (profile: Value Propositions, Value Proposition 3).
 
 **Step 5: Sequence (Ines Carmody, General Manager).**
 
@@ -613,7 +621,7 @@ Voicemail: "Hi Ines, this is Nadia Brandt at PlotIQ, about the plot maps at Quil
 | "Send me an email" | "Happy to. Would the ROI overview or the capability overview be more useful?" |
 | "No budget" | "That makes sense. If I could show you how a similar operator solved the open-plot problem, would 15 minutes be worth it?" |
 
-**Step 7: Summary.** BDR. Quill Hollow Memorial Park, TARGET, GREENLIGHT, with Zones 3 and 5 HIGH. One contact on file, Ines Carmody, first. Owner and pre-need contacts unknown. One persona, three emails. Next action: Nadia Brandt sends Email 1 to Ines Carmody by 2026-10-26 (five business days after the run date of 2026-10-19, a Monday, and the records set no earlier date for this step). Unknown facts to resolve on the call: the records finding date, the owner's name, the state.
+**Step 7: Summary.** BDR. Quill Hollow Memorial Park, TARGET, GREENLIGHT, with Zones 3 and 5 HIGH. One contact on file, Ines Carmody, first. Gaps: the pre-need manager and the Operations Director (Personas 2 and 3, no contact), and the owner, the economic buyer. One persona, three emails. Next action: Nadia Brandt sends Email 1 to Ines Carmody by 2026-10-26 (five business days after the run date of 2026-10-19, a Monday, and the records set no earlier date for this step). Open questions for the call that Email 1 asks for, which stay with Email 1 and are not a separate step: the records finding date, the owner's name and the state.
 
 ```text
 Hand-off (read by 06):
@@ -622,8 +630,8 @@ run_date: 2026-10-19
 account_status: TARGET
 verdict: GREENLIGHT
 zone_scores: 1 MEDIUM, 2 UNKNOWN, 3 HIGH, 4 UNKNOWN, 5 HIGH (illustrative)
-contact_priority: 1 Ines Carmody (General Manager, champion), 2 Owner, name Unknown (signs under $25K), 3 Pre-need manager, name Unknown
-pain_hypotheses: 1 Plot visibility (HIGH, CRM and Inferred), 2 Records after a state finding (MEDIUM, CRM, date Unknown), 3 Plot lookups take minutes (MEDIUM, Inferred)
+contact_priority: 1 Ines Carmody (General Manager, champion), 2 Pre-need manager, name Unknown (gap), 3 Operations Director, name Unknown (gap), signer: owner, name Unknown (economic buyer gap)
+pain_hypotheses: 1 Plot records on paper, binders or pencil maps (HIGH, Inferred), 2 Trust fund and records reporting by hand (event date unknown) (MEDIUM, Inferred), 3 Plot lookups take minutes to hours (MEDIUM, Inferred)
 sequence: three emails to Ines Carmody, with call prep
 report_path: none (inline)
 next_action: Nadia Brandt sends Email 1 to Ines Carmody by 2026-10-26
@@ -643,7 +651,7 @@ next_action: Nadia Brandt sends Email 1 to Ines Carmody by 2026-10-26
 
 **Step 2: Account Snapshot.** Status INBOUND.
 
-Quick-score signals: primary fit Yes, 2,900 plots, above the ICP1 Strong line `[CRM]`. Single site `[CRM]`. Regulatory complexity Unknown, because nobody has asked about a state finding `[Unknown]`. Scale Mid-Market, one site with 2,900 plots `[CRM]`, which meets the Mid-Market rule of one to three sites with 2,000 plots or more in total. Team complexity Small team, one named contact (the GM) `[CRM]`, and no records owner named `[Unknown]`.
+Quick-score signals: primary fit Partial. The plot list is a spreadsheet `[CRM]`, which meets part of the ICP1 key indicator, and the annual state filing is `[Unknown]` because the state is not recorded. Single site `[CRM]`. Regulatory complexity Unknown, because nobody has asked about a state finding `[Unknown]`. Scale Mid-Market, one site with 2,900 plots `[CRM]`, which meets the Mid-Market rule of one to three sites with 2,000 plots or more in total. Team complexity Small team, one named contact (the GM) `[CRM]`, and no records owner named `[Unknown]`.
 
 Zone scores (illustrative): Zone 1 MEDIUM (plot list in a spreadsheet `[CRM]`). Zone 2 LOW (pre-need: none, and the GM sells plots directly `[CRM]`). Zone 3 HIGH (the GM signs under $25K `[CRM]`). Zone 4 MEDIUM (illustrative). Zone 5 LOW (plot sales flat for three years, and no succession plan on the record `[CRM]`, illustrative).
 
@@ -653,9 +661,9 @@ Region map: no tier, because the state is not recorded `[Unknown]`.
 
 **Step 4: Pain Hypotheses.**
 
-1. **Plot Lookups In A Spreadsheet.** MEDIUM confidence. `[Inferred]`, by reasoning from the record type: a 2,900-plot list in a spreadsheet is harder to check against sold records than a digital system. Discovery question: "When someone asks for a plot, how long does it take to find it today?"
-2. **Pre-Need Follow-Up.** LOW confidence. The record says pre-need is none `[CRM]`, so there is no follow-up process to repair. Ask only to confirm, and do not lead with it.
-3. **Single-Person Records Risk.** LOW confidence. No records owner is named `[Unknown]`. Ask who maintains the list.
+1. **Plot lookups take minutes to hours.** MEDIUM confidence. `[Inferred]`, by reasoning from the record type: a 2,900-plot list in a spreadsheet is harder to check against sold records than a digital system. Discovery question: "When someone asks for a plot, how long does it take to find it today?"
+2. **Trust fund and records reporting by hand.** LOW confidence. `[Inferred]`. No records owner is named `[Unknown]`, and no record ties the list to a filing. Discovery question: "Who maintains the list today?"
+3. **Pre-need leads go cold.** LOW confidence. `[Inferred]`. The record says pre-need is none `[CRM]`, so there is no follow-up process to repair. Ask only to confirm, and do not lead with it.
 
 **Step 6: Call Prep.**
 
@@ -671,7 +679,7 @@ Talk track:
 
 Objection prep: "We're happy with the spreadsheet." Rebuttal: "That makes sense. When did you last check the spreadsheet against the plots you have actually sold?"
 
-**Step 7: Summary.** AE. Sable Fork Cemetery, INBOUND, MANUAL REVIEW, with Zone 3 the only HIGH zone. No active deal. Quick call prep delivered. Next action: Owen Pruitt runs the discovery call with Arlen Biggs today, 2026-10-22, the call date the records set for this step, which is earlier than five business days after the run date. Re-score the zones after the call.
+**Step 7: Summary.** AE. Sable Fork Cemetery, INBOUND, MANUAL REVIEW, with Zone 3 the only HIGH zone. No active deal. Quick call prep delivered. The order gives this next action. No reply is owed (the INBOUND reply went on 2026-10-19 `[CRM]`), no account is ACTIVE with an AE owner, and Quick Call Prep drafts no send, so the meeting on the calendar is the first step that applies. Next action: Owen Pruitt runs the discovery call with Arlen Biggs today, 2026-10-22, the call date the records set for this step, which is earlier than five business days after the run date. Later step: re-score the zones after the call.
 
 ```text
 Hand-off (read by 06 and 04):
@@ -681,7 +689,7 @@ account_status: INBOUND
 verdict: MANUAL REVIEW
 zone_scores: 1 MEDIUM, 2 LOW, 3 HIGH, 4 MEDIUM, 5 LOW (illustrative)
 contact_priority: 1 Arlen Biggs (General Manager, signs under $25K), 2 Form filler, name Unknown
-pain_hypotheses: 1 Plot lookups in a spreadsheet (MEDIUM, Inferred), 2 Pre-need follow-up (LOW, CRM: pre-need none), 3 Single-person records risk (LOW, Unknown)
+pain_hypotheses: 1 Plot lookups take minutes to hours (MEDIUM, Inferred), 2 Trust fund and records reporting by hand (LOW, Inferred), 3 Pre-need leads go cold (LOW, Inferred, CRM: pre-need none)
 sequence: none, Quick Call Prep mode. The request reply went on 2026-10-19 `[CRM]`, so no INBOUND reply is outstanding
 report_path: none (inline)
 next_action: Owen Pruitt runs the discovery call with Arlen Biggs on 2026-10-22 (the call date on record)
@@ -717,7 +725,7 @@ contact_priority: Corrow Ridge, the acquirer's CFO or controller and the site GM
 pain_hypotheses: ranked per account in the table, each tagged
 sequence: ready snapshot draft for Corrow Ridge, held package for Tamsin Vale (MANUAL REVIEW), none for Greyfield (Competitive Displacement holds its sequence), Lowmoor or Northvale
 report_path: none (inline)
-next_action: BDR sends the Corrow Ridge Email 1 by 2026-10-20
+next_action: BDR sends the Corrow Ridge Email 1 by 2026-10-20 (the first send of a GREENLIGHT sequence, which ranks first in the order). Tamsin Vale's held package and the other rows are later steps
 ```
 
 ---
@@ -762,7 +770,7 @@ The family board chair is recorded as a gap, not as a person: no name is on file
 
 **Step 4: Pain Hypotheses.**
 
-1. **Plot Records On Paper Across Two Sites.** HIGH confidence. Paper plot maps at both sites `[CRM]`. `[Inferred]`, by reasoning from the record type: two sites on paper mean two lists, so a sale on one list can be missed on the other. Discovery question: "Which site's plot list do your staff check first?"
+1. **Plot records on paper, binders or pencil maps.** HIGH confidence. Paper plot maps at both sites `[CRM]`. `[Inferred]`, by reasoning from the record type: two sites on paper mean two lists, so a sale on one list can be missed on the other. Discovery question: "Which site's plot list do your staff check first?"
 2. **The Oldgate Renewal In March 2027.** MEDIUM confidence. The renewal date is `[CRM]`. `[Inferred]`, from the contract date: the renewal opens a decision window. Discovery question: "What happens at the Oldgate renewal, and who decides?"
 
 **Step 5: Sequence (Ruth Ellery, General Manager).**
@@ -818,7 +826,7 @@ Voicemail: "Hi Ruth, this is Nadia Brandt at PlotIQ, about the two plot maps at 
 | "No budget" | "That makes sense. If I could show you how a similar operator solved the two-list problem, would 15 minutes be worth it?" |
 | "Send me an email" | "Happy to. Would the ROI overview or the capability overview be more useful?" |
 
-**Step 7: Summary.** The summary states the verdict, the two HIGH zones, the three contacts, and the next action: Nadia Brandt, the BDR, books the first discovery call for Owen Pruitt with Ruth Ellery by 2026-05-11 (illustrative), five business days after the run date of 2026-05-04, a Monday, and the records set no earlier date for this step. The board chair is the open question for that call.
+**Step 7: Summary.** The summary states the verdict, the two HIGH zones, the three contacts, and the next action. Email 1 is the first send of a GREENLIGHT sequence, so it ranks first in the order. Nadia Brandt, the BDR, sends Email 1 to Ruth Ellery by 2026-05-11 (illustrative), five business days after the run date of 2026-05-04, a Monday, and the records set no earlier date for this step. Email 1 asks for 15 minutes with Owen Pruitt, so booking the call is the email's ask, not a separate step. The board chair is the open question for that call, and it is a later step.
 
 ```text
 Hand-off (read by 06):
@@ -831,7 +839,7 @@ contact_priority: 1 Ruth Ellery (General Manager, buyer), 2 Walt Okonkwo (Operat
 pain_hypotheses: 1 Plot records on paper across two sites (HIGH, CRM and Inferred), 2 The Oldgate renewal in March 2027 (MEDIUM, CRM and Inferred)
 sequence: three emails to Ruth Ellery, with call prep
 report_path: none (inline)
-next_action: Nadia Brandt books the first discovery call for Owen Pruitt with Ruth Ellery by 2026-05-11 (illustrative)
+next_action: Nadia Brandt sends Email 1 to Ruth Ellery by 2026-05-11, asking for 15 minutes with Owen Pruitt (illustrative)
 ```
 
 ---
@@ -867,16 +875,17 @@ Region map: no tier, because the state is `[Unknown]`.
 | Persona | Name | Engagement | Last Activity | Priority |
 |---------|------|-----------|---------------|----------|
 | General Manager, champion label | Ines Carmody | Replied to Email 1 `[CRM]` (illustrative). Booked a call for 2026-11-02 `[CRM]` (illustrative) | 2026-10-27 `[CRM]` (illustrative) | 1 |
-| Owner, signs under $25K | Unknown, no contact found `[Unknown]` | n/a | n/a | 2 |
-| Pre-need manager | Unknown `[Unknown]` | n/a | n/a | 3 |
+| Pre-Need Sales Manager, champion | Unknown, no contact found `[Unknown]` | n/a | n/a | 2 |
+| Operations Director, influencer | Unknown, no contact found `[Unknown]` | n/a | n/a | 3 |
+| Signer, owner (signs under $25K) | Unknown, no contact found `[Unknown]` | n/a | n/a | Not ranked (signer, not a persona) |
 
 Ines Carmody ranks first, because she is the only named contact, she replied, and she runs the site now. The Champion Test counts seven behaviours. The dated booking is one of them, "commits to next steps with dates" `[CRM]` (illustrative), so one is met, and the status reads **Developing** (one or two met). The other six are not on record, so she is not Strong, and her champion label stays a label.
 
 **Step 4: Pain Hypotheses.** The reply adds no pain fact, so the three hypotheses are Example 1's, ranked by confidence and then by Core Pain Points number (profile: Core Pain Points):
 
-1. **Plot Visibility.** HIGH confidence. Paper plat maps `[CRM]`. `[Inferred]`, reasoned from the record type: a paper map cannot show which plots are sold without a walk of the grounds. Discovery question: "How do you check today which plots are open?" Value prop: plot inventory matched against sold records (profile: Value Propositions).
-2. **Records After A State Finding.** MEDIUM confidence. The last state review found a records problem `[CRM]`, and its date is `[Unknown]`. The finding is a discovery question only, never the hook. Discovery question: "When was the last state review, and what did it ask you to fix?"
-3. **Plot Lookups Take Minutes.** MEDIUM confidence. `[Inferred]`, reasoned from the record type and the plot count: a paper map of 8,800 plots makes each lookup a search (profile: Core Pain Points, Pain 3). Discovery question: "When a family asks about a plot, how long does the lookup take?"
+1. **Plot records on paper, binders or pencil maps.** HIGH confidence. Paper plat maps `[CRM]`. `[Inferred]`, reasoned from the record type: a paper map cannot show which plots are sold without a walk of the grounds. Discovery question: "How do you check today which plots are open?" Value prop: plot inventory matched against sold records (profile: Value Propositions).
+2. **Trust fund and records reporting by hand (event date unknown).** MEDIUM confidence. `[Inferred]`. The last state review found a records problem `[CRM]`, and its date is `[Unknown]`. The finding is a discovery question only, never the hook. Discovery question: "When was the last state review, and what did it ask you to fix?"
+3. **Plot lookups take minutes to hours.** MEDIUM confidence. `[Inferred]`, reasoned from the record type and the plot count: a paper map of 8,800 plots makes each lookup a search (profile: Core Pain Points, Pain 3). Discovery question: "When a family asks about a plot, how long does the lookup take?"
 
 **Step 5: The Reply, Not A Sequence.** Quill Hollow is ENGAGED, so there is no cold sequence. Email 1 is not sent again as a cold touch, and Emails 2 and 3 are not drafted (Hard Rule 11). The one draft replies to her message.
 
@@ -904,7 +913,7 @@ Verdict: GREENLIGHT, so the reply is **ready**. It is not held, and the rep stil
 
 **Discovery Question For The Call:** "When a family asks for a sold plot, which record does your team check first?" The next step after this call is another discovery call, not a demo, until the pain is confirmed.
 
-**Step 7: Summary.** BDR. Quill Hollow Memorial Park, ENGAGED, GREENLIGHT, with Zones 3 and 5 HIGH. One contact on file, Ines Carmody, Developing (1 of 7 behaviours). One reply draft, ready, to her reply of 2026-10-27. No cold sequence. Next action: Nadia Brandt sends the reply to Ines Carmody by 2026-10-29. A reply to a buyer's own message is due the next business day after the run date, which is Thursday 2026-10-29 (Wednesday 2026-10-28 plus one business day). The booked call on 2026-11-02 is later, so it sets no earlier date, and the five-business-day default of 2026-11-04 does not apply to this reply.
+**Step 7: Summary.** BDR. Quill Hollow Memorial Park, ENGAGED, GREENLIGHT, with Zones 3 and 5 HIGH. One contact on file, Ines Carmody, Developing (1 of 7 behaviours). One reply draft, ready, to her reply of 2026-10-27. No cold sequence. Next action: Nadia Brandt sends the reply to Ines Carmody by 2026-10-29. This is the first step in the order, family (1), a reply owed to a buyer. A reply to a buyer's own message is due the next business day after the run date, which is Thursday 2026-10-29 (Wednesday 2026-10-28 plus one business day). The booked call on 2026-11-02 is a different date set by the record, so it is a later step, and the five-business-day default of 2026-11-04 does not apply to this reply.
 
 ```text
 Hand-off (read by 06):
@@ -913,8 +922,8 @@ run_date: 2026-10-28
 account_status: ENGAGED
 verdict: GREENLIGHT
 zone_scores: 1 MEDIUM, 2 UNKNOWN, 3 HIGH, 4 UNKNOWN, 5 HIGH (illustrative)
-contact_priority: 1 Ines Carmody (General Manager, champion label, Developing, 1 of 7 met), 2 Owner, name Unknown (signs under $25K), 3 Pre-need manager, name Unknown
-pain_hypotheses: 1 Plot visibility (HIGH, Inferred), 2 Records after a state finding (MEDIUM, date Unknown), 3 Plot lookups take minutes (MEDIUM, Inferred)
+contact_priority: 1 Ines Carmody (General Manager, champion label, Developing, 1 of 7 met), 2 Pre-need manager, name Unknown (gap), 3 Operations Director, name Unknown (gap), signer: owner, name Unknown (economic buyer gap)
+pain_hypotheses: 1 Plot records on paper, binders or pencil maps (HIGH, Inferred), 2 Trust fund and records reporting by hand (event date unknown) (MEDIUM, Inferred), 3 Plot lookups take minutes to hours (MEDIUM, Inferred)
 sequence: one reply draft to Ines Carmody's reply of 2026-10-27, ready (GREENLIGHT). No cold sequence, because the account is ENGAGED
 report_path: none (inline)
 next_action: Nadia Brandt sends the reply to Ines Carmody by 2026-10-29, the next business day after the run date (a reply to a buyer's own message, with no earlier record date)
@@ -1028,6 +1037,15 @@ The Business Case & ROI Kit (a paid Guild Pro kit) reads this skill's hand-off b
 
 ## Changelog
 
+
+### 2.1.12 (2026-10-26)
+- The Output Contract's next_action row and Step 7 give one priority order for the next action. (1) A reply owed to a buyer who wrote to us. (2) AE coordination for an ACTIVE account with an AE owner. (3) The first send of a GREENLIGHT sequence. (4) A meeting already on the calendar. (5) The first send of a MANUAL REVIEW package, after a person clears it. (6) A DISQUALIFY with no reply owed, with no outreach. A meeting ranks ahead of a held package because a held package cannot go out until it is cleared.
+- Ties inside one step kind go to the earlier due date, then the earlier date of the buyer's message, then the account name. Same-person asks with no separate date stay with the next action, and only a different person or a later record date is listed after it.
+- Step 3 defines an applicable persona and the top three. The top three are the first three applicable personas in the ranking, so Persona 3 is a gap when it has no contact, and the economic buyer is a gap when the signer is unnamed.
+- Step 4 names each pain hypothesis from the Core Pain Points taxonomy. A dated event is added in brackets, and an undated event adds "(event date unknown)". Every pain hypothesis carries the `[Inferred]` tag. The Output Contract and the Quality Bar say so.
+- The Methodology sets the primary-fit rule. Primary fit is Partial when part of the key indicator is Unknown, and it never scores Yes on an Unknown part.
+- Example 1, Example 2, Example 5 and the try-it use the taxonomy names, the three persona gaps and the Partial primary fit where the record leaves a key-indicator part unknown. Example 4 sends Email 1 as its next action, because the first send ranks ahead of the call the email asks for.
+- No verdict, zone score, account status or next action changes, except Example 4, whose next action moves from booking a call to sending Email 1. The try-it promise changes its pain names, its persona gaps and its later-steps wording.
 
 ### 2.1.11 (2026-10-26)
 - Step 3 settles the persona tie. Once no persona has a HIGH pain, a champion ranks ahead of an influencer, so the pre-need manager (champion) comes before the Operations Director (influencer) in Example 1.

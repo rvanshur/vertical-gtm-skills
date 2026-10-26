@@ -35,7 +35,7 @@ Corrow Ridge Cemetery
 - Consolidator bought the site on 2026-07-01 [Public: state licensing database]. Buying Trigger window: 60 to 120 days (profile: Qualification Criteria)
 - Owner of record: Harborline Funeral Partners, a new owner since 2026-07-01 [Public: state licensing database]
 - One site, 14,000 plots, paper plat maps (illustrative)
-- A deed recorded twice in 2025 [CRM] (illustrative)
+- A double sale in 2025: one plot sold twice [CRM] (illustrative)
 - No contact on file. The task names none
 - Status: TARGET [CRM] (illustrative)
 - No touch yet [CRM] (illustrative)
@@ -107,5 +107,5 @@ Tamsin Vale Cemetery
 - Exclusions: 3 (Brackhaven Memorial Gardens by the BDR guard, Northvale Memorial Holdings as OUT, and one opted-out contact at Lowmoor).
 - Priority dial queue, top three: 1 Corrow Ridge Cemetery (Hot, GREENLIGHT). 2 Sable Fork Cemetery (Hot, MANUAL REVIEW). 3 Quill Hollow Memorial Park (Warm, GREENLIGHT).
 - Lowmoor Memorial Gardens is on hold as Recycle. Closed-Loss Reactivation holds it on MONITOR.
-- Next action: Nadia Brandt dials Corrow Ridge Cemetery by 2026-10-19, the Hot dial due on the run date. Second, Nadia shares today's Brackhaven intel with Owen Pruitt by 2026-10-19, the same date, which ranks after the Hot dial.
+- Next action: Nadia Brandt replies to the Sable Fork demo request by 2026-10-20, the next business day after the run date, and asks who sent the form. A reply owed to a buyer ranks first in the order. Also under her name today: the Corrow Ridge dial and the Brackhaven intel share to Owen Pruitt, each due 2026-10-19 on its task record.
 - Report path: none (inline).

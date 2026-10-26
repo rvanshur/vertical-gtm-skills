@@ -1,6 +1,6 @@
 ---
 name: gtm-account-qualification
-version: 2.1.11
+version: 2.1.12
 description: "Scores an account against the ICP definitions, 8 weighted criteria and the profile's five qualification zones, and returns a GREENLIGHT, MANUAL REVIEW or DISQUALIFY verdict with every zone shown, for the BDR or AE who decides where to spend time."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,7 +11,9 @@ requires:
   skills: []
 mutating: read-write
 change_log:
-  - version: 2.1.11
+  - version: 2.1.12
+    date: 2026-10-26
+    summary: "Round 12 next-action order and acceptance findings. Output Contract and Step 6 item 12 now carry one priority order for the next action: a reply owed to a buyer who wrote to us, then AE coordination for an ACTIVE account, then the verdict's step. Ties, owners and later steps are stated. The account status is read from the record dated on the run date, and a later-dated profile status does not apply to an earlier run. ICP2 criteria 1, 3 and 8 gain rating rules, and criterion 3 and 8 apply to the ICP1 table too. A year-only date is placed in a look-back window only when the whole year falls inside it. A digital tool counts as tried when the account has used it, and the Fit Grid cell the records cannot decide is written Unknown without moving its row. Step 6 item 9 lists every risk flag that applies, with Approval Above Signing Line named. Every worked example and the try-it next action are re-derived under the order. The try-it promise changes its owner, its single move and its risk flag line only."
     date: 2026-10-26
     summary: "Round 11 settled judgments. Criteria 5 and 6 of ICP2 gain counting rules, so the 7 of 8 count does not depend on a judgment. A zone with only a named staff condition met scores MEDIUM, and the rule says why. The count does not gate the verdict, and MANUAL REVIEW covers every account that meets neither GREENLIGHT nor DISQUALIFY. The try-it records gain a tag, a dated double sale, the Oldgate licence date and the pricing facts, and the signing amount is derived in the rule. Promises are unchanged: GREENLIGHT, zones 1 HIGH, 2 MEDIUM, 3 MEDIUM, 4 MEDIUM, 5 HIGH, and 7 of 8."
   - version: 2.1.8
@@ -110,7 +112,7 @@ Every run returns the verdict and the zone scores in the chat. It writes a file 
 | `icp_match` | Inline, the ICP line of the report | The ICP name (profile: ICP Definitions), such as `ICP2 Combination`, or `No Fit` with the disqualifier named |
 | `fit_narrative` | Inline, the ICP and Fit Grid lines | Two or three sentences that say why, each fact tagged |
 | `report_path` | Set only when a file was written | `none (inline)` when the report stayed in the chat |
-| `next_action` | Inline, last line of the report | One step, with its owner (BDR or AE) and the date the shared contract's next-action rule gives (What the Close Reads: five business days after the run date, or an earlier date the records or the skill's own schedule set for that step) |
+| `next_action` | Inline, last line of the report | One step, with its owner (BDR or AE) and the date the shared contract's next-action rule gives (What the Close Reads: five business days after the run date, or an earlier date the records or the skill's own schedule set for that step). The step is the first one that applies in this order: 1) a reply owed to a buyer who wrote to us, 2) AE coordination for an ACTIVE account with an AE owner, 3) the verdict's step (GREENLIGHT, MANUAL REVIEW or DISQUALIFY). Ties and the later steps are set in Step 6 item 12 |
 | File, on request | `<account>_gtm-account-qualification_<date>.md`, beside the user's account notes | Written only when the user asks, in Markdown. The ask is the approval step |
 
 ---
@@ -321,6 +323,8 @@ Pull everything available: the account record, existing contacts, deal history, 
 | Current Solution | `[CRM]` or `[Call]` or `[Notes]` |
 | Account Status | One of the six status words: TARGET, ENGAGED, INBOUND, ACTIVE with its stage number, LOST or OUT |
 
+**Status By Run Date.** A status is valid on the date of its record. The status that governs a run is the one on the record dated the run date or the latest record dated on or before it. A status dated after the run date, including one in the profile's example cast that records a later deal, does not apply to an earlier run, and the run says so in one line. A profile status counts only where no dated record exists, and then its profile citation is written. Reason: a later deal turns a TARGET account into an ACTIVE one, and an earlier run must not be scored as if the deal already existed.
+
 #### 1C. Industry Code Validation
 
 Check the account's codes against the target codes in `{Client Profile: ICP Definitions}`. Score the result as CONFIRMED Match, Adjacent or No Match, with the code and its source.
@@ -347,7 +351,7 @@ Compare the facts from Step 1 against the Fit Grid row for each ICP in `{Client 
 
 Assign the market segment from `{Client Profile: Market Segments}`, and the Size Band the account falls in from the Size Bands table in the same section.
 
-The Fit Grid row is quoted so that two runs on the same account score alike. Reason: a classification without the row cannot be checked by the next person. A row is recorded at the level that the ICP definition's Key indicator meets, and each other cell of the row is quoted with the level it meets. A Strong row with one Moderate cell is recorded as Strong, with that cell named.
+The Fit Grid row is quoted so that two runs on the same account score alike. Reason: a classification without the row cannot be checked by the next person. A row is recorded at the level that the ICP definition's Key indicator meets, and each other cell of the row is quoted with the level it meets. A Strong row with one Moderate cell is recorded as Strong, with that cell named. A cell counts as met only when a record shows it. A cell the records show as contrary is written Not Met. A cell the records cannot decide is written Unknown, and it is named as an open fact with the observation that would settle it. A fact that is related but does not decide the cell, such as a board that approves a purchase when the question is who signs for each side, leaves the cell Unknown. Neither an Unknown cell nor a Not Met cell moves the row, because the row is recorded at the level its key indicator meets.
 
 **Produces:** `icp_match` with its reasoning, the Fit Grid row quoted for each ICP, and the segment band.
 
@@ -363,7 +367,9 @@ Use the criteria table for the ICP from Step 2: `{Methodology: Qualification Cri
 
 Each score carries an evidence tag. Count the criteria scored STRONG or PARTIAL, and write the count as N of 8. The count feeds `icp_match` and `fit_narrative`, and it does not gate the verdict (Step 6).
 
-Five ICP2 criteria need a rule the table leaves open: criteria 2, 4, 5, 6 and 7. For criterion 2, test the cemetery-side plot count from the CRM against the ICP2 revenue threshold (profile: ICP Definitions), which that section states as a plot count. A count at or above the threshold scores STRONG, with the count and its tag named. A revenue range from the CRM that is not confirmed scores PARTIAL when no plot count is recorded, and no revenue figure at all scores UNKNOWN. For criterion 4, a family-owned company with no PE, ESOP, public or acquiring owner scores PARTIAL, not WEAK, and its ownership type must carry a `[Public: source]` tag. For criterion 5, count the complexity signals on record: more than one site, a second sales or service process that must be matched to the same plot records (profile: ICP Definitions), and a legacy system under a licence with a renewal date. Two or more signals score STRONG, one scores PARTIAL, and none scores UNKNOWN. For criterion 6, a named role whose title covers a function that a Product Module serves (profile: Product Modules) scores STRONG, with its source tagged. A named role whose title covers no module function scores PARTIAL, and no named role scores UNKNOWN. For criterion 7, a listed buying trigger counts only inside the urgency window that the profile's Buying Triggers table gives it, and a succession signal with no change in leadership yet is not a listed trigger, so it scores PARTIAL.
+Criteria 2, 4, 5, 6 and 7 of ICP2 need a rule the table leaves open. For criterion 2, test the cemetery-side plot count from the CRM against the ICP2 revenue threshold (profile: ICP Definitions), which that section states as a plot count. A count at or above the threshold scores STRONG, with the count and its tag named. A revenue range from the CRM that is not confirmed scores PARTIAL when no plot count is recorded, and no revenue figure at all scores UNKNOWN. For criterion 4, a family-owned company with no PE, ESOP, public or acquiring owner scores PARTIAL, not WEAK, and its ownership type must carry a `[Public: source]` tag. For criterion 5, count the complexity signals on record: more than one site, a second sales or service process that must be matched to the same plot records (profile: ICP Definitions), and a legacy system under a licence with a renewal date. Two or more signals score STRONG, one scores PARTIAL, and none scores UNKNOWN. For criterion 6, a named role whose title covers a function that a Product Module serves (profile: Product Modules) scores STRONG, with its source tagged. A named role whose title covers no module function scores PARTIAL, and no named role scores UNKNOWN. For criterion 7, a listed buying trigger counts only inside the urgency window that the profile's Buying Triggers table gives it, and a succession signal with no change in leadership yet is not a listed trigger, so it scores PARTIAL.
+
+Criteria 1, 3 and 8 need rules as well. Criteria 3 and 8 use the same rule in the ICP1 table, where the names match. For ICP2 criterion 1 (Sub-Vertical Match), read the account's recorded type against the sub-vertical that the ICP definition's Key Indicator names (profile: ICP Definitions). A recorded type that is that sub-vertical scores STRONG, with its CRM tag. A type the definition names only as a neighbour scores PARTIAL. A type the definition excludes scores WEAK. No recorded type scores UNKNOWN. A Rank line in the profile sets the order of work, and it is not a rating, so it does not set this score. For criterion 3 (Multi-Region Operations), read the state of each site. Sites in two or more states score STRONG. Two or more sites all in one state score PARTIAL. One site scores WEAK. Two or more sites where the state of any one site is not recorded score UNKNOWN, because a site count alone does not settle the spread. For criterion 8 (Current Solution Gap), read where the plot records live. Plot records kept on paper, in spreadsheets, or in a system that does not hold them score STRONG, with the gap named. A system that holds most of the records, with a gap named, scores PARTIAL. A full plot system with no named gap scores WEAK. No recorded current solution scores UNKNOWN.
 
 **Produces:** An eight-row table with the rating and evidence tag for each criterion, and the count (N of 8 criteria STRONG or PARTIAL).
 
@@ -381,6 +387,8 @@ Score each zone in `{Client Profile: Qualification Zones}` as HIGH, MEDIUM, LOW 
 | UNKNOWN | Insufficient data to assess |
 
 MEDIUM never counts as HIGH. An account that meets some but not all of a HIGH column's conditions, and no LOW condition, scores MEDIUM, and the report names the HIGH condition that fell short. A hedged statement such as "may retire" is a possibility, not a met HIGH condition, so the zone is scored on the firm, dated fact that would settle it. A named role counts for a staff condition in a zone's HIGH column when its title covers that condition's function. So a named manager of the function, with none of the zone's other HIGH conditions met, scores MEDIUM, not LOW, because LOW needs a LOW condition on record, and the report names each HIGH condition that fell short. A HIGH condition whose fact is `[Unknown]` is not met. It is named as an open fact, and it does not by itself lower the zone to LOW. A zone is UNKNOWN only when none of its three columns holds an observed fact.
+
+Two facts need their own rules. A date given only as a year is placed in a look-back window only when the whole year falls inside it. A year counts as whole inside a window only when the window opens on or before 1 January of that year and closes on or after 31 December of it. A 24-month window for a run dated 2026-05-04 opens 2024-05-04 and holds all of 2025. When the window's start or end falls inside the given year, the event is undated for that window, the zone cannot score HIGH on it, and the year is named as an open fact. A digital tool counts as tried when the account has used it for its own business records, now or in the past, and a legacy on-premise system in use counts. A tool that was only quoted or demonstrated does not. The Zone 4 HIGH column is met only when each condition it lists is met, so a legacy system that counts as tried does not lift the zone while a listed condition such as a shared drive is still not on record, and the partial-match rule gives MEDIUM.
 
 A HIGH condition that cannot apply to the account counts as met, so an owner who signs alone, with no board approval step, meets a board condition such as "board meets within 60 days". When a zone asks whether the signing limit is under $25K, the year-one cost is the per-site list price times the sites, plus the one-time setup (profile: Product Modules), tagged `[Inferred]` with its arithmetic. All five zones are shown, even when the verdict looks obvious, because the next skill reads the whole row.
 
@@ -453,10 +461,17 @@ Return these twelve items inline, in this order.
 6. **Verdict:** GREENLIGHT, MANUAL REVIEW or DISQUALIFY
 7. **Open Facts:** each `[Unknown]` or `[Inferred]` fact that could change the verdict, with the fact that would settle it. Reason: confidence is carried by the tags on each fact, so a separate confidence word would say it twice
 8. **Top Opportunity Signals**
-9. **Top Risk Flags**
+9. **Risk Flags:** every flag from Step 5 that applies to the account, each with its evidence tag, whether or not it changes the verdict. Name Approval Above Signing Line whenever the decision zone's signing test fails, and name Competitor Lock-In and Incomplete Data whenever their conditions are on record. A flag that applies is never left out because another flag already explains the zone
 10. **Account Status:** TARGET, ENGAGED, INBOUND, ACTIVE with its stage number, LOST or OUT. ENGAGED changes the next step, not the verdict
 11. **Active Deal?** If yes, the stage, the AE owner and the amount. For a BDR, coordinate with the AE
-12. **Recommended Next Steps:** role-specific, with the `next_action` line last. The `next_action` date follows the shared contract's next-action rule (What the Close Reads, under The Shared Contract) and is written as a calendar date, so the step can be checked against the run. Reason: a step with no date cannot be checked
+12. **Recommended Next Steps:** role-specific. Write the next action as one move by one owner to one person on one date, and end the report with it as the `next_action` line, which is the report's last line. Above that line, list as a later step each other open step that has a different person as its owner, or a later date set by a record or by this skill's own schedule. A same-person ask with no separate date travels in the same message as the next action and is not split out. Never fold a later step into the next action. Name the owner from the record: write a person's name only when a record names that person for this account. Otherwise write the role with "name not on record", and name the missing name as an open fact in item 7. The `next_action` date follows the shared contract's next-action rule (What the Close Reads, under The Shared Contract) and is written as a calendar date. Reason: a step with no date or no named owner cannot be checked.
+
+   The next action is the first step that applies in this order. The order puts first the step that serves the rep best:
+   1. **Buyer Reply Owed.** An INBOUND account whose request is unanswered, an ENGAGED account whose buyer's last message is unanswered, or the courteous decline draft for a disqualified INBOUND request. Due the next business day after the run date, as What The Close Reads sets it. Reason: the buyer is waiting for an answer that the account's plan cannot replace.
+   2. **AE Coordination.** An ACTIVE account with an AE owner. The BDR stops working the account and sends the AE the verdict and the zone scores. Due on the shared five-business-day date. Reason: two people writing to one buyer costs the deal. For an AE user the account is the AE's own, so this step does not apply.
+   3. **Verdict Step.** The step the verdict names. GREENLIGHT: the BDR runs Account Snapshot Outbound and books AE discovery, or the AE identifies personas and starts outbound. MANUAL REVIEW: the owner researches the open fact that would settle the verdict. DISQUALIFY: the rep logs the disqualifier and its source. A run holds one verdict, so these three never compete within one run. A GREENLIGHT that rests on a risk flag naming a check that must clear before outbound makes that check the next action, and the outbound step becomes a later step. Reason: the verdict is the decision the run exists to make, and it waits on the steps owed to people.
+
+   Ties: within one step kind, the earlier due date goes first. On equal dates, the step that settles a verdict-changing open fact goes first. If still tied, the step listed first in item 7 goes first. The same order is named in the `next_action` row of the Output Contract.
 
 **Produces:** `verdict`, `zone_scores`, `icp_match`, `fit_narrative` and `next_action`, all in the twelve-item report.
 
@@ -508,42 +523,42 @@ Four worked examples, all on the PlotIQ cast and the chain file. They show a mix
 
 ### Example 1: GREENLIGHT, The Flagship Account At Qualification (Brackhaven Memorial Gardens)
 
-**Context:** Qualified on 2026-05-04, while Brackhaven was TARGET with no open AE deal recorded `[CRM]` (illustrative). Combination, 2 sites, 11,000 plots, paper plot maps, and one double sale recorded in 2025, inside 24 months of the run date `[CRM]` (illustrative). The current system is a legacy on-premise ledger from Oldgate `[CRM]` (illustrative), and the family board chair's name is `[Unknown]`. The company is family-owned `[Public: company website, about page, 2026]` (illustrative), and its owner's bio gives a retirement date of 2029-03-31 `[Public: company website, owner bio, 2026]` (illustrative).
+**Context:** Qualified on 2026-05-04, while Brackhaven was TARGET with no open AE deal recorded `[CRM]` (illustrative). Combination, 2 sites, 11,000 plots, paper plot maps, and one double sale recorded in 2025, inside 24 months of the run date `[CRM]` (illustrative). The current system is a legacy on-premise ledger from Oldgate `[CRM]` (illustrative), and the family board chair's name is `[Unknown]`. The company is family-owned `[Public: company website, about page, 2026]` (illustrative), and its owner's bio gives a retirement date of 2029-03-31 `[Public: company website, owner bio, 2026]` (illustrative). The profile's example cast records a later ACTIVE status at Stage 5 from 2026-09-09. That status is dated after this run, so it does not apply here, and the run says so in one line (Step 1B).
 
 **Input:** "Qualify Brackhaven Memorial Gardens for fit."
 
-**Process:** Step 0 reads the user's role as BDR `[CRM]` (illustrative). Step 2 classifies the account as ICP2 Combination. The Fit Grid row (profile: Fit Grid) is Strong on "cemetery side on paper". It is Moderate on "owner and GM both sign", because a family board signs. Two sites at the per-site list price, plus the one-time setup, give a year-one cost of $26,576 (illustrative): 2 x $10,788, plus $5,000 (profile: Product Modules). That is above the $25K board line. Step 3 scores the criteria below. Step 4 scores the zones below, using the zone rule (profile: Qualification Zones).
+**Process:** Step 0 reads the user's role as BDR `[CRM]` (illustrative). Step 2 classifies the account as ICP2 Combination. The Fit Grid row (profile: Fit Grid) is Strong, because the cemetery side is on paper and that cell is met. The "one owner signs for both" cell is Unknown: the records show the board approves, which does not say who signs for each side, so the cell is named as an open fact and the row stays Strong (Step 2). Two sites at the per-site list price, plus the one-time setup, give a year-one cost of $26,576 (illustrative): 2 x $10,788, plus $5,000 (profile: Product Modules). That is above the $25K board line. Step 3 scores the criteria below. Step 4 scores the zones below, using the zone rule (profile: Qualification Zones).
 
 **Criteria (ICP2), 7 Of 8 STRONG Or PARTIAL:**
 
 | # | Criterion | Rating | Evidence |
 |---|-----------|--------|----------|
-| 1 | Sub-Vertical Match | STRONG | Combination of a cemetery and a funeral home, 2 sites `[CRM]` (illustrative) |
+| 1 | Sub-Vertical Match | STRONG | The recorded type, Combination, is the ICP2 Key Indicator (profile: ICP Definitions) `[CRM]` (illustrative) |
 | 2 | Revenue Threshold | STRONG | 11,000 plots on the cemetery side `[CRM]` (illustrative), above the ICP2 threshold of about 2,000 plots (profile: ICP Definitions). The CRM also notes a revenue range of $2 to 4 million a year `[CRM]` (illustrative), which is a range and not a confirmed figure |
-| 3 | Multi-Region Operations | UNKNOWN | Location spread not checked `[Unknown]` |
+| 3 | Multi-Region Operations | UNKNOWN | Two sites, and the state of each is not recorded `[Unknown]`, so the spread cannot be scored (Step 3) |
 | 4 | Ownership / Growth Profile | PARTIAL | Family-owned, not PE-backed `[Public: company website, about page, 2026]` (illustrative). The owner's bio gives a retirement date within 3 years, a succession signal `[Public: company website, owner bio, 2026]` (illustrative) |
 | 5 | Transaction Complexity | STRONG | Three signals on record: two sites `[CRM]` (illustrative), pre-need leads that must be matched to plots (profile: ICP Definitions), and a legacy Oldgate licence that renews in March 2027 `[CRM]` (illustrative) |
 | 6 | Relevant Department Exists | STRONG | A pre-need manager, named on the staff page, covers the Pre-Need CRM module (profile: Product Modules) `[Public: company website, staff page]` (illustrative) |
 | 7 | Buying Trigger Present | PARTIAL | The succession signal above, with no dated trigger yet `[Inferred]` |
-| 8 | Current Solution Gap | STRONG | Paper plot maps and one double sale in 24 months `[CRM]` (illustrative) |
+| 8 | Current Solution Gap | STRONG | Plot records on paper maps, which the Oldgate ledger does not hold `[CRM]` (illustrative), so the gap is named (Step 3) |
 
 **Zones:**
 
 | # | Zone | Rating | Evidence |
 |---|------|--------|----------|
-| 1 | Records and Inventory Pain (must-have) | HIGH | Paper plot maps, and a double sale recorded in 2025, inside 24 months `[CRM]` (illustrative) |
+| 1 | Records and Inventory Pain (must-have) | HIGH | Paper plot maps, and a double sale recorded in 2025. The date is a year only, and all of 2025 falls inside the 24-month window that opens 2024-05-04 (Step 4) `[CRM]` (illustrative) |
 | 2 | Pre-Need Sales Motion | MEDIUM | A pre-need manager exists, and there is no intake form on the site `[Public: company website]` (illustrative). Social ads are not recorded `[Unknown]` |
 | 3 | Ownership and Decision Speed (must-have) | MEDIUM | The GM recommends and the board approves, which is the MEDIUM cell as written (profile: Qualification Zones), so the zone is MEDIUM. The board meets within 60 days `[Public: company website, board calendar]` (illustrative), which meets the HIGH timing test, but the signing test fails, because year one, $26,576 (illustrative, two sites at list price), is above the $25K line (profile: Qualification Zones) |
-| 4 | Technology Readiness | MEDIUM | Staff use company email, which the staff page shows `[Public: company website, staff page]` (illustrative). The website shows no plot lookup. The Oldgate ledger does not hold plot records, which stay on paper maps `[CRM]` (illustrative), so the system fits poorly. Its licence renews in March 2027 `[CRM]` (illustrative), so it is not under contract to 2028, which is the LOW condition. The facts sit between the HIGH and MEDIUM columns with no LOW condition, so MEDIUM under the partial-match rule in Step 4 (illustrative) |
+| 4 | Technology Readiness | MEDIUM | Staff use company email, which the staff page shows `[Public: company website, staff page]` (illustrative). The website shows no plot lookup. The Oldgate legacy ledger is a digital tool the account has used, so "has tried a digital tool" is met. The website shows no plot lookup, and the shared drive is not recorded, so the HIGH column is not fully met. The ledger does not hold plot records, which stay on paper maps `[CRM]` (illustrative), so the MEDIUM condition "legacy system that fits poorly" is met. Its licence renews in March 2027 `[CRM]` (illustrative), so the LOW condition of an enterprise system under contract to 2028 is not met. No LOW condition is met, so the zone is MEDIUM under the partial-match rule in Step 4 (illustrative) |
 | 5 | Growth or Succession | HIGH | The owner's bio gives a retirement date of 2029-03-31, inside 3 years of the run date `[Public: company website, owner bio, 2026]` (illustrative) |
 
 **Verdict:** GREENLIGHT. Two zones are HIGH (1 and 5), and no must-have zone is LOW. Seven of eight criteria are STRONG or PARTIAL, which is recorded in `icp_match` and `fit_narrative`. No disqualifier applies.
 
-**Risk Flags:** Board approval above the $25K line. It slows the decision (Zone 3 stays MEDIUM), and it does not change the verdict on its own.
+**Risk Flags:** (1) Approval Above Signing Line: year one, $26,576 (illustrative), is above the $25K board line, so Zone 3 stays MEDIUM, and the flag does not change the verdict on its own. (2) Competitor Lock-In: the Oldgate licence renews in March 2027 `[CRM]` (illustrative), and Oldgate is a multi-year license with annual maintenance (research estimate, profile: Closed-Loss Intelligence). (3) Incomplete Data: the revenue is a range that is not confirmed `[CRM]` (illustrative), and the location spread is `[Unknown]`.
 
 **Opportunity Signals:** Records pain with a double sale `[CRM]` (illustrative), and a succession window of about 3 years (illustrative).
 
-**Next Action:** The BDR on the account checks for active AE deals first, then runs Account Snapshot Outbound and books discovery for the AE by 2026-05-11 (illustrative), a Monday. That date is five business days after the run date of 2026-05-04, a Monday, and the records set no earlier date for this step.
+**Next Action:** BDR (name not on record) runs Account Snapshot Outbound (02) for Brackhaven Memorial Gardens and books discovery for the AE by 2026-05-11 (illustrative), a Monday. The records show no open AE deal `[CRM]`, so the step is not held, and no reply is owed because the account has not written to us. That date is five business days after the run date of 2026-05-04, a Monday, and the records set no earlier date for this step.
 
 ```text
 Hand-off (read by 02):
@@ -553,7 +568,7 @@ verdict: GREENLIGHT
 zone_scores: 1 HIGH, 2 MEDIUM, 3 MEDIUM, 4 MEDIUM, 5 HIGH
 icp_match: ICP2 Combination
 fit_narrative: Two sites on paper plot maps, with one double sale in 24 months `[CRM]` (illustrative). Zones 1 and 5 are HIGH and no must-have zone is LOW. The board's signing line keeps Zone 3 at MEDIUM. Illustrative throughout.
-next_action: The BDR on the account checks for active AE deals first, then runs Account Snapshot Outbound and books discovery for the AE by 2026-05-11 (illustrative)
+next_action: BDR (name not on record) runs Account Snapshot Outbound and books discovery for the AE by 2026-05-11 (illustrative)
 report_path: none (inline)
 ```
 
@@ -594,7 +609,7 @@ report_path: none (inline)
 
 **Opportunity Signals:** The acquisition is a consolidator trigger. Its window runs from 2026-08-30 to 2026-10-29, which is 60 to 120 days after the 2026-07-01 close (profile: Qualification Criteria) `[Public: state licensing database]`. On 2026-10-19 there are 10 days left in the window.
 
-**Next Action:** The BDR confirms Harborline's ownership type and system by 2026-10-22 (illustrative), a Thursday. The five-business-day date from the run date of 2026-10-19 (a Monday) is 2026-10-26, but Trigger Event Outbound (04, Step 1c) sets this check due by 2026-10-22, and the shared rule uses the earlier date its source names, so a sequence can start before the window closes on 2026-10-29.
+**Next Action:** BDR (name not on record) confirms Harborline's ownership type and system by 2026-10-22 (illustrative), a Thursday. This check is the verdict step's first move, because the GREENLIGHT rests on a disqualifier that the risk flag says must clear before any outbound. The five-business-day date from the run date of 2026-10-19 (a Monday) is 2026-10-26, but Trigger Event Outbound (04, Step 1c) sets this check due by 2026-10-22, and the shared rule uses the earlier date its source names, so a sequence can start before the window closes on 2026-10-29. The same owner then runs Account Snapshot Outbound (02) for Corrow Ridge only after the check clears, as the GREENLIGHT step.
 
 ```text
 Hand-off (read by 02):
@@ -604,7 +619,7 @@ verdict: GREENLIGHT
 zone_scores: 1 HIGH, 2 UNKNOWN, 3 MEDIUM, 4 UNKNOWN, 5 HIGH
 icp_match: ICP1 Independent Cemetery (at site level, after the acquisition)
 fit_narrative: One cemetery site with 14,000 plots on paper plat maps (illustrative) and a new owner inside 24 months. Zones 1 and 5 are HIGH and no must-have zone is LOW. Harborline's type and system are [Unknown] and are checked first.
-next_action: The BDR confirms Harborline's ownership type and system by 2026-10-22 (illustrative), the earlier date set by Trigger Event Outbound (04, Step 1c)
+next_action: BDR (name not on record) confirms Harborline's ownership type and system by 2026-10-22 (illustrative), the earlier date set by Trigger Event Outbound (04, Step 1c)
 report_path: none (inline)
 ```
 
@@ -645,7 +660,7 @@ report_path: none (inline)
 
 **Opportunity Signals:** The inbound request itself, `[CRM]`, received 2026-10-15.
 
-**Next Action:** The BDR confirms who filled in the form by 2026-10-26 (illustrative), a Monday, five business days after the run date of 2026-10-19. Re-run the verdict if any zone changes.
+**Next Action:** BDR (name not on record) replies to the Sable Fork demo request and asks in the same message who filled in the website form, what their role is, and who maintains the plot list, by 2026-10-20 (illustrative), a Tuesday. The account wrote to us, so the reply is owed. It is due the next business day after the run date of 2026-10-19, which replaces the five-day default, and it comes first because a reply owed to a buyer ranks above the verdict step. The answers settle the two UNKNOWN criteria and the open form-author fact, and the verdict is re-run only if a zone changes.
 
 ```text
 Hand-off (read by 02):
@@ -655,7 +670,7 @@ verdict: MANUAL REVIEW
 zone_scores: 1 MEDIUM, 2 LOW, 3 HIGH, 4 MEDIUM, 5 LOW
 icp_match: ICP1 Independent Cemetery
 fit_narrative: One cemetery site with 2,900 plots on a spreadsheet (illustrative), and a general manager who signs under $25K (illustrative). One HIGH zone and no must-have zone at LOW, so MANUAL REVIEW. Pre-need is none and plot sales are flat for three years, both on the CRM record (illustrative). The inbound form's author is [Unknown].
-next_action: The BDR confirms who filled in the form by 2026-10-26 (illustrative)
+next_action: BDR (name not on record) replies to the demo request and asks who filled in the form, by 2026-10-20 (illustrative)
 report_path: none (inline)
 ```
 
@@ -681,7 +696,7 @@ report_path: none (inline)
 
 **Risk Flags:** No Fit Indicator. It points at the disqualifier clause, which is the reason for the verdict.
 
-**Next Action:** No outbound. The BDR logs the disqualifier and its filing source in the CRM by 2026-10-26 (illustrative), a Monday, five business days after the run date of 2026-10-19, so no rep re-qualifies the account from scratch. The rep does the logging, not this skill.
+**Next Action:** No outbound. BDR (name not on record) logs the disqualifier and its filing source in the CRM by 2026-10-26 (illustrative), a Monday, five business days after the run date of 2026-10-19, so no rep re-qualifies the account from scratch. The rep does the logging, not this skill.
 
 ```text
 Hand-off (read by 02):
@@ -691,7 +706,7 @@ verdict: DISQUALIFY
 zone_scores: 1 UNKNOWN, 2 UNKNOWN, 3 UNKNOWN, 4 LOW, 5 UNKNOWN
 icp_match: No Fit, ICP3 Multi-Location Group disqualifier (public consolidator running its own system)
 fit_narrative: About 240 funeral homes and 90 cemeteries, running its own in-house system `[Public: annual filing]`. The disqualifier applies (profile: Qualification Criteria), so the zones are not weighed. Status OUT, not LOST.
-next_action: The BDR logs the disqualifier and its filing source in the CRM by 2026-10-26 (illustrative)
+next_action: BDR (name not on record) logs the disqualifier and its filing source in the CRM by 2026-10-26 (illustrative)
 report_path: none (inline)
 ```
 
@@ -770,6 +785,17 @@ An account pending AE assignment is not ACTIVE. Score it, and say that it is pen
 
 ## Changelog
 
+
+### 2.1.12 (2026-10-26)
+- Output Contract and Step 6 item 12 state one next-action priority order: a reply owed to a buyer who wrote to us, then AE coordination for an ACTIVE account with an AE owner, then the verdict's step. The order gives its reasons, the tie rule, and the rule that a same-person ask with no separate date travels with the next action.
+- Step 6 item 12 names the owner from the record. A role is written with "name not on record" and the missing name is an open fact.
+- Step 1B states that the status on the record dated the run date governs, and a later-dated profile status does not apply to an earlier run.
+- ICP2 criteria 1 (Sub-Vertical Match), 3 and 8 gain rating rules. Criteria 3 and 8 apply to the ICP1 table too.
+- Step 2 states how a Fit Grid cell is written when the records cannot decide it (Unknown), and that it does not move the row.
+- Step 4 states the year-only date rule and the digital-tool rule for Zone 4.
+- Step 6 item 9 lists every risk flag that applies, with Approval Above Signing Line named.
+- Example 1 re-cites the criterion 1, 3 and 8 evidence, the Zone 4 digital-tool reasoning, and the three risk flags. Examples 1 to 4 re-derive their next actions. Example 2 makes the Corrow Ridge check the GREENLIGHT's first move. Example 3 makes the Sable Fork reply, which is owed to a buyer, the next action. Their verdicts, zones and counts are unchanged.
+- The try-it promise changes its owner, its single move and its risk flag list. Its verdict, zones and count are unchanged.
 
 ### 2.1.11 (2026-10-26)
 - Criterion 5 of ICP2 (Transaction Complexity) has a counting rule: complexity signals on record decide STRONG, PARTIAL or UNKNOWN, so the count does not rest on a judgment about "complex". Criterion 6 (Relevant Department Exists) reads a named role by whether its title covers a Product Module's function. Step 3 names both rules with criteria 2, 4 and 7.

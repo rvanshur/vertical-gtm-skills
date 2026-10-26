@@ -1,6 +1,6 @@
 ---
 name: gtm-sales-handoff
-version: 2.1.11
+version: 2.1.12
 description: "Post-sale implementation readiness check: scores six dimensions, sets the three dates (kickoff, go-live and Full Adoption Date), names risks with mitigations and quick wins, and writes the handoff the implementation lead plans from"
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: [gtm-meddpicc-analysis]
 mutating: read-write
 change_log:
+  - version: 2.1.12
+    date: 2026-10-26
+    summary: "Round 12. The next action now follows a written priority order: a reply owed to a buyer first, then the ask that mitigates the highest-ranked risk needing a buyer-side person, then the next-ranked one, then steps for our own team or a third party. Asks to the same person that they can answer from what they know travel in one message. Under it, Example 1 and the try-it ask Ruth Ellery for the IT lead as well as the chair and the written sponsor, Example 2 adds the chair and the sponsor to the IT owner ask, and Example 3 asks for the IT contact, the board date and the chair in one message. Rules now settle who counts as introduced for Stakeholder, how far a partial baseline lifts Workflow, why no IT owner holds Technical at 2, the unit of the volume projection, a skeptic's severity, the week-one quick win, and an answer that was never recorded. Example 3 is titled Orange, its Stakeholder score moves from 2 to 3 under the introduced rule, and its composite moves from 40 to 44, still Orange. Example 1 and the try-it scores, level, dates and risks do not change."
   - version: 2.1.11
     date: 2026-10-26
     summary: "Round 11 settlement. An adjustment that does not apply, such as a single source system, needs no profile value. A vendor's confirmation of an export is not the team's familiarity with it. Kickoff is stated as one formula: the check date, plus the buffer, plus the IT lead time when no IT owner is named. The composite line states the decimal weights. Risks rank by four keys in a numbered list, and the Preview label is set beside the three dates. The try-it record and Example 1 state the adjustments and the Preview label, and Example 1 tags plot records to the call that holds them. The dates, scores, risks and next action do not change."
@@ -108,7 +111,7 @@ Every run returns the readiness report in the chat, in the nine sections of Step
 | `three_dates` | Inline, the three-date plan | Kickoff, go-live and Full Adoption Date, each with its arithmetic shown. Before signature, all three are labelled proposed |
 | `risks` | Inline, the risk section | The top three, each with severity, likelihood and a specific mitigation. Severity and likelihood follow the rules under Risk Categories |
 | `quick_wins` | Inline, the quick win section | A week one item, a month one item and the 90-day criteria |
-| `next_action` | Inline, last line of the report | One step, with its owner and the date the shared contract's next-action rule gives (five business days after the run date, or an earlier date the records or the skill's own schedule set for that step, named with its source). It names the action the owner takes, as a verb phrase, and never the result the action is meant to produce |
+| `next_action` | Inline, last line of the report | One move by one owner to one person on one date, chosen by this priority order (full text in Step 7, Choosing The Next Action): (1) a reply owed to a buyer who wrote to us, when the record holds one, because a buyer waiting on us is the delay that costs trust first, (2) the ask that mitigates the highest-ranked risk whose mitigation needs a buyer-side person, because only the buyer can clear it and the kickoff conditions wait on it, (3) the ask for the next-ranked risk of that kind, (4) steps for our own team or a third party (a test export, a quick win, a risk audit), always listed after the buyer-side steps, because the team can do them without waiting on anyone. Ties break on the risk ranking keys (severity, dimension score, likelihood, row order). Asks to the same person on the same date that they can answer from what they already know travel in one message, in risk order. Every other open step is listed after it as a later step. The date is the one the shared contract's next-action rule gives (five business days after the run date, or an earlier date the records or the skill's own schedule set for that step, named with its source), and a later dated event, such as a board meeting or the expected signature, does not move it. It names the action the owner takes, as a verb phrase, and never the result the action is meant to produce |
 | `report_path` | Set only when a file was written | `none (inline)` when the report stayed in the chat |
 | File, on request | `<account>_gtm-sales-handoff_<date>.md`, beside the user's account notes | Written only when the user asks, in Markdown, with the readiness card. The ask is the approval step |
 
@@ -230,12 +233,16 @@ Your readiness framework. The dimensions and scoring rules below give a structur
 - **2** = Only sales champion engaged, no other stakeholders introduced
 - **1** = No clear implementation owner on customer side
 
+A named buyer-side person from a function other than the champion's, who took part in a call whose date is on record, counts as introduced. Once one is on record, the 2 line does not apply, and the 3 line reads on the sponsor. A contact who is only on file in the CRM, with no dated call, is not yet introduced.
+
 #### Dimension 2: Workflow Readiness (Weight: 20%)
 - **5** = Workflows fully documented, volume baselines established, success criteria defined
 - **4** = Mostly understood, some baselines available
 - **3** = General understanding, specific steps and volumes not well documented
 - **2** = Limited discovery notes, pain exists but process not mapped
 - **1** = No workflow documentation, shallow discovery
+
+A partial baseline, a volume the customer stated on a call whose date is on record (Step 3), counts as "some baselines available". It lifts Workflow only as far as the mapping allows, because the 4 line also needs the steps mostly understood. With no measured baseline, or with no success criteria defined, Workflow stays below 5.
 
 #### Dimension 3: Technical Readiness (Weight: 20%)
 - **5** = Source system identified and familiar, IT available and engaged, export confirmed, clean data
@@ -244,7 +251,7 @@ Your readiness framework. The dimensions and scoring rules below give a structur
 - **2** = Source system unclear or multi-system, IT outsourced or constrained, significant data concerns
 - **1** = Source system unknown, no IT engagement, never done integration, major data issues
 
-While no IT owner is named, IT counts as constrained, and a constrained IT caps Technical at 2, however clear the source system is.
+While no IT owner is named, IT counts as constrained, and a constrained IT caps Technical at 2, however clear the source system is. "No IT owner named" meets the constrained condition by itself, even with one named source system. It does not lower Technical to 1, because the 1 line also needs the source system unknown.
 
 #### Dimension 4: Data Readiness (Weight: 15%)
 - **5** = All critical data elements available, clean, customer already exports elsewhere
@@ -308,7 +315,7 @@ Integration advantages to note: the product takes any standard output, most cust
 ### Risk Categories
 | Category | Common Risks | Mitigation Strategy |
 |----------|-------------|-------------------|
-| **Technical** | Integration delays, unfamiliar format, IT bandwidth | Fallback: manual upload during setup. Request an IT timeline at kickoff. Engage engineering early for unfamiliar systems |
+| **Technical** | Integration delays, unfamiliar format, IT bandwidth | Ask the buyer to name an IT owner before kickoff when none is named. Fallback: manual upload during setup. Request an IT timeline at kickoff. Engage engineering early for unfamiliar systems |
 | **Adoption** | Team resistance, "we've always done it this way" | Champion-led change management. Identify two or three power users for a pilot. Show quick wins in week one |
 | **Resource** | Key person on leave, competing projects, seasonal constraints | Build a timeline buffer. Identify backup contacts. Set availability commitments at kickoff |
 | **Data** | Poor quality, missing fields, duplicates | Data quality audit in week one. Cleanup sprint before go-live. Accept manual workarounds at first |
@@ -323,6 +330,8 @@ Integration advantages to note: the product takes any standard output, most cust
 4. Row order: a tie on all three keys goes to the row order of the Risk Categories table.
 
 **Severity And Likelihood.** Severity is HIGH when the risk leaves no named owner for IT or for the sponsor, or when it is a reason kickoff is held. Severity is MEDIUM when the risk can move a date, but an owner is named and kickoff is not held. Severity is LOW when it moves no date. Likelihood is High when a record shows the risk is already present, Medium when a record shows a signal of it, and Low when no record points at it. Each risk states both.
+
+The same severity test applies to every other risk, a named skeptic included. A skeptic's resistance can move a dated step, such as the pilot or go-live. It is MEDIUM while a named owner, such as the champion, manages it, and HIGH when no one owns it.
 
 ### The Three Dates
 
@@ -344,18 +353,20 @@ The signature is the handoff trigger, not one of the three dates. The three date
 
 When the profile holds no value for an adjustment that applies, the adjustment is written as `[RECORD]` and the Full Adoption Date is stated as provisional.
 
-**Volume Projection:** "Expect to take on [number] units per month for this customer," with the number taken from the customer's own figures and tagged.
+**Volume Projection:** "Expect about [number] [units] per [period] for this customer," with the number, the unit and the period taken from the customer's own figures and tagged. The monthly conversion sits beside it with its arithmetic: a weekly figure is times 52 divided by 12, rounded half up to a whole number and written "about". When the customer's unit is not the product's own unit, the line names the unit the customer used. With no figure from the customer, the line is written `[Unknown]`.
 
 ### Quick Win Types
 
-This is a starting catalog of four. Pick two or three. Each one must be something the customer can see working in week one or month one. The Implementation Profile can add the team's own types.
+This is a starting catalog of four. Pick two or three. Each one must be something the customer can see working in week one or month one. The Implementation Profile can add the team's own types. When the profile's team types are `[RECORD]`, these four are the whole catalog, and the report says so.
 
-| Type | What It Is | Generic Example |
-|------|-----------|-----------------|
-| **Automate the highest-volume segment** | Move the most frequent repeat task for one segment into the product | Route the most common request type through the system for the top five accounts in week one |
-| **Enable self-service for top customers** | Give the most active customers direct access to the status they check most often | Let the most active customers see their own item status without a call to the team |
-| **Run a risk audit of open items** | Review open items for the errors or deadlines that carry the most risk | Check all open items against the deadline list and flag any item due in the next 30 days |
-| **Remove one manual step** | Find the single manual step that costs the most team hours and remove or automate it | Replace a manual copy from a spreadsheet with a direct import from the source system |
+| Type | What It Is | Generic Example | Dimension It Addresses |
+|------|-----------|-----------------|------------------------|
+| **Automate the highest-volume segment** | Move the most frequent repeat task for one segment into the product | Route the most common request type through the system for the top five accounts in week one | Workflow |
+| **Enable self-service for top customers** | Give the most active customers direct access to the status they check most often | Let the most active customers see their own item status without a call to the team | Change Management |
+| **Run a risk audit of open items** | Review open items for the errors or deadlines that carry the most risk | Check all open items against the deadline list and flag any item due in the next 30 days | Data |
+| **Remove one manual step** | Find the single manual step that costs the most team hours and remove or automate it | Replace a manual copy from a spreadsheet with a direct import from the source system | Technical, when the step removed is a manual copy from the source system. Workflow otherwise |
+
+**Choosing The Week-One Quick Win.** The week-one type is the one that addresses the dimension of the top-ranked risk, aimed at that risk. When no type addresses that dimension (Stakeholder and Resource have none), the week-one type is the one the team can run without the buyer: Run a risk audit of open items, on the records the team already holds. The month-one item is a different type, matched to the customer's situation.
 
 ---
 
@@ -530,7 +541,22 @@ Volume projection, one line.
 - [ ] Integration requirements reviewed
 - [ ] Risk mitigation plan acknowledged
 
-**Produces:** the nine-section report, with `next_action` as its last line, carrying its owner and date. `report_path` is set to `none (inline)`.
+**Choosing The Next Action.** The report usually holds several open steps: the mitigations of the top three risks, the conditions before kickoff, and the quick wins. The next action is the first step in this order, which puts the step that serves the rep best first:
+
+1. **A reply owed to a buyer who wrote to us,** when the record holds a buyer's message with no reply. It comes first because a buyer waiting on us is the delay that costs trust first, and the shared rule makes it due the next business day. A question we asked that has no recorded answer is not a reply owed. It is an open condition, and its ask is repeated where the order below places it.
+2. **The ask that mitigates the highest-ranked risk whose mitigation needs a buyer-side person,** ranked by the four keys under Ranking The Top Three. Only the buyer can clear these risks, and the conditions before kickoff wait on them.
+3. **The ask that mitigates the next-ranked risk of that kind,** and so on down the top three.
+4. **Steps for our own team or a third party,** such as a test export with the incumbent's support, a quick win, a risk audit or an entry on the project plan. They always come after the buyer-side steps, because the team can do them without waiting on anyone.
+
+The rest of the rule:
+- **The Person.** The ask goes to the buyer-side person the mitigation names. When the mitigation needs someone the buyer has not yet named, such as an IT lead or a sponsor, the ask goes to the contact who can name them: the champion, unless the record names another.
+- **Bundling.** Asks of kinds 2 and 3 that go to the same person on the same date travel in one message, in risk order. An ask fits that message when the person can answer it from what they already know, such as naming a person or confirming a role in writing. An ask that needs days of work first, such as timing a week of lookups or running an export, has a later date and is a later step.
+- **Ties.** The risk ranking keys (severity, dimension score, likelihood, row order) already separate every pair of risks, so the order needs no other tie-break.
+- **The Owner.** The AE owns the next action before the signature. From the signature on, the implementation lead who takes the handoff owns it.
+- **The Date.** The shared contract's next-action rule sets it. A later dated event in the records, such as a board meeting or the expected signature, does not move it.
+- **Later Steps.** Every other open step is ranked after the next action and listed in the report under Later Steps, each with its owner and the person it goes to, and none is folded into it. The `next_action` line stays the last line of the report.
+
+**Produces:** the nine-section report, with `next_action` as its last line, carrying its owner, its person and its date, with the later steps listed above it. `report_path` is set to `none (inline)`.
 
 ---
 

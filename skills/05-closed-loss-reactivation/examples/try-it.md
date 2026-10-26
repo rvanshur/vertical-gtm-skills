@@ -40,4 +40,4 @@ Our Product And Market
 - Verdict: MONITOR. Days since close: 272 (nine months, counted to 2026-10-19). Reminder set for 2026-12-18 to 2027-01-17.
 - Reopening events: a new general manager in the licensing record, an audit finding, or a consolidator purchase.
 - Strategy: the Buyer's Remorse play, selected (Lost to competitor, 6 to 12 months from close). Contact and history opener: held, because no contact is named and the Oldgate window cannot be placed. 0 emails are written.
-- Next action: The BDR asks the original AE for the loss notes and the Oldgate renewal date by 2026-10-26, five business days after the run date of 2026-10-19.
+- Next action: The BDR asks the original AE for the loss notes, the Oldgate renewal date and the current Lowmoor contact, in one message, by 2026-10-26, five business days after the run date of 2026-10-19.

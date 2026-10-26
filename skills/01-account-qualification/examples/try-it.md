@@ -45,5 +45,5 @@ People And Decision
 - Verdict: GREENLIGHT. Two zones are HIGH (1 and 5), and no must-have zone is LOW.
 - Zones: 1 HIGH, 2 MEDIUM, 3 MEDIUM, 4 MEDIUM, 5 HIGH.
 - ICP: ICP2 Combination. 7 of 8 criteria are STRONG or PARTIAL.
-- Risk flag: board approval above the $25K line (profile: Qualification Zones) keeps Zone 3 at MEDIUM. It does not change the verdict on its own.
-- Next action: The BDR on the account checks for active AE deals first, then runs Account Snapshot Outbound and books discovery for the AE by 2026-05-11 (illustrative).
+- Risk flags: Approval Above Signing Line (board approval above the $25K line, profile: Qualification Zones) keeps Zone 3 at MEDIUM and does not change the verdict on its own. Competitor Lock-In (the Oldgate licence renews March 2027). Incomplete Data (the revenue range is unconfirmed, and the location spread is unknown).
+- Next action: BDR (name not on record) runs Account Snapshot Outbound and books discovery for the AE by 2026-05-11 (illustrative). The records show no open AE deal, so the step is not held.

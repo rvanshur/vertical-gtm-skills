@@ -35,6 +35,6 @@ People
 - Status: TARGET, no open deal. No reply from the contact is on record, so the account is not ENGAGED. Verdict: GREENLIGHT, with Zones 3 and 5 HIGH. The sequence is a ready draft, not a held one, because the verdict is GREENLIGHT.
 - Zones: 1 MEDIUM, 2 UNKNOWN, 3 HIGH, 4 UNKNOWN, 5 HIGH. No must-have zone is LOW.
 - Risk level: Regulatory complexity High, because of the records finding [CRM] (illustrative). Region tier: none, because the state is [Unknown].
-- Contacts: Ines Carmody first (General Manager, champion label [CRM]). Champion Test not yet run. The owner and the pre-need manager are gaps, both Unknown.
-- Pain hypotheses: Plot visibility (HIGH, Inferred), Records after a state finding (MEDIUM, date Unknown), Plot lookups take minutes (MEDIUM, Inferred).
-- Next action: Nadia Brandt sends Email 1 to Ines Carmody by 2026-10-26, five business days after the run date of 2026-10-19. The unknowns to resolve on the call are the records finding date, the owner's name and the state.
+- Contacts: Ines Carmody first (General Manager, champion label [CRM]). Champion Test not yet run. The pre-need manager and the Operations Director are gaps, and the owner, who signs under $25K, is the economic buyer gap. All three are Unknown.
+- Pain hypotheses: Plot records on paper, binders or pencil maps (HIGH, Inferred), Trust fund and records reporting by hand (event date unknown) (MEDIUM, Inferred), Plot lookups take minutes to hours (MEDIUM, Inferred).
+- Next action: Nadia Brandt sends Email 1 to Ines Carmody by 2026-10-26, five business days after the run date of 2026-10-19. The open questions for the call that Email 1 asks for are the records finding date, the owner's name and the state, and they stay with Email 1 rather than being separate steps.

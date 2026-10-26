@@ -105,7 +105,7 @@ Every run produces a **complete stakeholder map with the same eight sections**, 
 | `ghost_nodes` | Inline, in the hand-off block | Each expected position with no named contact, written "UNKNOWN, role" |
 | `champion_status` | Inline, in the hand-off block | Strong, Developing or None, with the shared champion tests met and the call date for each |
 | `report_path` | Inline, in the hand-off block | `none (inline)` unless a file was written |
-| `next_action` | Inline, in the hand-off block | The first action, with its owner and the date the shared contract's next-action rule gives (five business days after the run date, or an earlier date the records or the skill's own schedule set for that step, named with its source) |
+| `next_action` | Inline, in the hand-off block | The first step under the Next-Action Priority Order in Step 7, best for the rep first: (1) a reply owed to a contact at an ENGAGED or INBOUND account who wrote to us, (2) an unaddressed Blocker, (3) an Economic Buyer who is a ghost node, asked for by name and any date that depends on the buyer before any introduction, (4) a named Economic Buyer not engaged, asked for an introduction, (5) a champion at risk, followed up, (6) an entry point on an account with no two-way contact, (7) HIGH steps by their 14-day date, (8) MEDIUM steps by their 30-day date. Ties break by the earlier date, then the step that closes a threading row scored 0. One move, one owner, one person, one date, with asks to that person that fit in the same message bundled, and every step for a different person or a later date listed after it as a later step. The date is the shared contract's (the next business day for a reply owed, otherwise five business days after the run date, or an earlier date the records or the skill's own schedule set for that step, named with its source) |
 | Markdown File (On Request Only) | Written only when the user asks, named `<account>_stakeholder-mapping_<date>.md` | Saved beside the user's other account notes. Never written by default |
 
 ---
@@ -229,10 +229,10 @@ Your playbook for stakeholder mapping. The seven buying roles, the non-buyer tab
 |------|-----------|------------------|-----------|
 | **Economic Buyer** | Can approve budget and sign contracts | HIGH | Budget authority, P&L responsibility, signature authority |
 | **Champion** | Actively advocates internally, sells when you're not in room | HIGH | Shares insider info, coaches on politics, enables other introductions |
-| **Technical Evaluator** | Assesses integration, security and technical fit. Can veto | HIGH | Tests architecture, asks integration questions, flags blockers |
+| **Technical Evaluator** | Assesses integration, security and technical fit. Can veto | HIGH | Tests architecture, asks integration questions, flags technical risks |
 | **Influencer** | Shapes decision through opinion and expertise. Cannot approve alone | MEDIUM | Submits analysis, participates in meetings, frames requirements |
 | **End User** | Will use product daily. Cares about workflow and ease | MEDIUM | Daily pain points, process feedback, adoption risk signals |
-| **Blocker** | Opposes or delays deal. May prefer incumbent | MEDIUM | Raises objections, advocates for status quo, flags concerns |
+| **Blocker** | A contact the record shows acting against the deal. May prefer incumbent | MEDIUM | Delays or stops a step on the record, argues for the status quo, works for the incumbent. A stated objection alone makes a Skeptic, not a Blocker |
 | **Coach** | Internal ally who provides intel about buying process and politics | LOW-MEDIUM | Shares confidential process details, warns of threats, accelerates timelines |
 
 ### Non-Buyers Who Still Shape The Deal
@@ -248,10 +248,10 @@ A non-buyer cannot approve the purchase, but can slow it, stop it or reshape it.
 | **Procurement** | Runs the vendor process, the forms and the price comparison | Often neutral and process-driven. Hypothesis: compares against the incumbent on price and terms |
 
 Rules for placing a non-buyer:
-- A non-buyer on file is classified as a non-buyer and is never given an Economic Buyer slot.
+- A non-buyer on file keeps exactly one of the seven buying roles, and the non-buyer row name is recorded beside it (for example, "Influencer, operations head"). A non-buyer is never given an Economic Buyer slot.
 - A named, engaged non-buyer counts toward Department Breadth. A named technical reviewer or systems administrator also counts toward Technical Evaluator.
 - A non-buyer the map cannot name becomes an UNKNOWN ghost node, with the role written out, when the record needs that person: a dated step that needs them, or an open question the team needs answered about them. A function known only in outline, with no dated step or open question, is named as a gap, not a ghost node.
-- Sort a function by the table that names it: a Buyer Persona row is a ghost node whenever the account needs that person, and a Non-Buyers row is one only when a dated step or an open question needs them. The rule above governs non-buyers from the Non-Buyers table only. A position in the profile's Buyer Personas that the account needs, with no named contact, is a ghost node under Ghost Node Identification, whether or not the record also mentions that function in outline.
+- Sort a function by the table that names it, because "needs" means a different thing in each. A Buyer Persona row, limited by its profile scope, is needed when the account falls in that scope: it is a ghost node when the account is in scope and no named contact on file holds that persona, with no dated step required. A Non-Buyers row is needed only when a dated step or an open question needs that person. The rule above governs non-buyers from the Non-Buyers table only. A Buyer Persona row in scope with no named contact is a ghost node under Ghost Node Identification, whether or not the record also mentions that function in outline.
 - The profile's Buying Committee section may add rows for this market. Those rows carry the same hypothesis label.
 
 ### Influence Levels
@@ -263,7 +263,7 @@ Rules for placing a non-buyer:
 | LOW | Manager/IC, end user, referred to by others, minimal participation |
 | UNKNOWN | No notes, no meetings, contact added from list |
 
-One HIGH criterion is enough: demonstrated seniority in meetings places a contact at HIGH without a C-level title or confirmed budget authority.
+One HIGH criterion is enough: demonstrated seniority in meetings places a contact at HIGH without a C-level title or confirmed budget authority. Demonstrated seniority means the record shows the contact briefing or moving the approving body (the board, the owner or the economic buyer), for example by setting a date the approving body works to, or holding decision authority. A briefing to the approver counts as demonstrated seniority, because it shows the contact carrying the deal to the person who decides. Attending meetings or asking detailed questions alone is MEDIUM.
 
 ### Engagement Status
 
@@ -273,7 +273,7 @@ One HIGH criterion is enough: demonstrated seniority in meetings places a contac
 | Partially Engaged | 1 interaction in last 30 days, or 2+ in last 90 days |
 | Disengaged/Cold | No interaction in 90+ days |
 | Never Contacted | On file but no recorded outreach |
-| Active Blocker | Has expressed opposition in notes/calls |
+| Active Blocker | The record shows the contact acting against the deal, as the Blocker role defines it. A stated objection alone is not this status |
 
 A logged interaction with no date is not counted in the 30-day or 90-day window, and the status reads `[Unknown]` until its date is on the record. A dated interaction on the record counts in its window.
 
@@ -301,17 +301,17 @@ Champion status is set from the shared champion tests in the Shared Contract, wh
 | **Technical Evaluator** | 1x | No IT contact | IT contact, not engaged | IT engaged/supportive |
 | **Economic Buyer Engaged** | 2x | No EB identified | EB identified by name or role, not engaged | EB actively engaged |
 | **End User Validation** | 1x | No end users known | End users identified | End users engaged |
-| **Blocker Mitigation** | 1x | Known blocker, no strategy | Blocker identified, strategy exists | No blockers, or all neutralized |
+| **Blocker Mitigation** | 1x | Known Blocker or Skeptic, no strategy | Blocker or Skeptic identified, strategy exists | No Blocker or Skeptic, or all neutralized |
 
 **The Board Chair Counts As C-Level.** The chair of a family-owned operator's board holds the top decision seat, so a board chair counts as a C-level contact for C-Level Access. A chair who is engaged but not named scores 1, and a named chair who is engaged scores 2. A general manager is not a C-level title, so a GM counts toward Department Breadth and not toward C-Level Access.
 
-**Skeptics Count Toward Blocker Mitigation.** A contact with a Skeptic position and a stated objection, with a strategy in place, scores 1 on Blocker Mitigation (Developing), because an objection not yet acted on is the early form of a block. The contact keeps the Influencer role. This score does not make the contact a Blocker: the Blocker role needs a contact who opposes or delays the deal on the record, and a stated objection alone does not give it.
+**Skeptics Count Toward Blocker Mitigation.** A contact with a Skeptic position and a stated objection, with a strategy in place, scores 1 on Blocker Mitigation (Developing), because an objection not yet acted on is the early form of a block. The contact keeps the buying role the record evidences (Influencer, when no other role is evidenced). This score does not make the contact a Blocker. The Blocker role needs a contact the record shows acting against the deal, and a stated objection alone does not give it, as the profile's Buying Committee role-title map also says.
 
 **End Users Engaged** means at least one end user Actively Engaged under the Engagement Status table, with 2 or more logged interactions in the last 30 days.
 
 **Economic Buyer Engaged** scores 2 only when the buyer has two or more dated interactions in the last 30 days, whether or not the buyer is named. An economic buyer with one call, or with a call whose date is unknown, scores 1.
 
-**Absence Scores Only From A Read Record.** A 0 on a dimension counts only when the rubric's own 0 describes the full contact list (for example, no IT contact on the list). A Blocker Mitigation score of 2 needs notes that were read and show no blocker or a neutralized one. A contact not yet contacted has no notes to read, so the blocker check is INSUFFICIENT, not 2.
+**Absence Scores Only From A Read Record.** A 0 on a dimension counts only when the rubric's own 0 describes the full contact list (for example, no IT contact on the list). A Blocker Mitigation score of 2 needs notes that were read and show no blocker or a neutralized one. A contact not yet contacted has no notes to read, so the Blocker check is INSUFFICIENT, not 2. When the records state that the contacts given are the full CRM contact list and no IT contact is on it, Technical Evaluator scores 0, not INSUFFICIENT, because the rubric's 0 describes that full list.
 
 **The INSUFFICIENT Rule.** A dimension with no evidence in the record is INSUFFICIENT. It carries no score and is left out of the raw total and of the weight. The result reads "scored n of 7". Below 5 of 7 scored dimensions there is no threading score, and the report lists the evidence that would score the missing dimensions.
 
@@ -334,7 +334,7 @@ Classify influential contacts on two axes: **Influence (Y-axis: high to low)** ร
 
 **Quadrants:**
 - **Top-Right (High Influence + Support):** Leverage. Your champion, enabler.
-- **Top-Left (High Influence + Opposition):** Neutralize. The blocker with power.
+- **Top-Left (High Influence + Opposition):** Neutralize. A Blocker with power, a HIGH influence contact the record shows acting against the deal.
 - **Bottom-Right (Low Influence + Support):** Keep Informed. Friendly contact.
 - **Bottom-Left (Low Influence + Opposition):** Monitor. Low threat, watch.
 
@@ -342,7 +342,7 @@ Only a HIGH influence contact takes a quadrant. A MEDIUM contact sits on the cen
 
 ### Ghost Node Identification
 
-Expected positions that SHOULD exist but have no named contact on file. Use the profile's Buyer Personas first, because they name the expected roles for the market. A persona whose profile row limits it to a scope (the CFO or Controller row, for groups only) is expected only within that scope. Use the revenue table for accounts above a threshold.
+Expected positions that SHOULD exist but have no named contact on file. Use the profile's Buyer Personas first, because they name the expected roles for the market. A persona whose profile row limits it to a scope (the CFO or Controller row, for groups only, or the Funeral Home Owner row, for combinations) is expected only within that scope. A Buyer Persona row is a ghost node when the account falls in its scope and no named contact on file holds that persona. No dated step or open question is needed for a persona row, unlike a Non-Buyers row. Use the revenue table for accounts above a threshold.
 
 | Revenue Threshold | Typical Expected Roles |
 |-------------------|-----|
@@ -415,7 +415,7 @@ Query the CRM for the account record:
 
 **Active Deal Guard:** If `user_role = BDR` and an active AE deal exists, add coordination guidance: "Active deal owned by [AE name] at [Stage]. Share this org map with the AE (do not prospect independently)."
 
-**ENGAGED Accounts:** An ENGAGED account has two-way contact and no open deal, so the Active Deal Guard does not apply to it. The map is still built. The contacts who replied are already in conversation, so the engagement plan keeps that thread and does not open a new first-touch outreach to them. The first action answers their last message through the thread's owner, as named in the CRM, or `[Unknown]` when the record is blank. A new contact is introduced through that thread. Account status ENGAGED is not the contact Engagement Status in Methodology, and the two are never mixed.
+**ENGAGED Accounts:** An ENGAGED account has two-way contact and no open deal, so the Active Deal Guard does not apply to it. The map is still built. The contacts who replied are already in conversation, so the engagement plan keeps that thread and does not open a new first-touch outreach to them. When their last message has no answer from us, the first action answers it through the thread's owner, as named in the CRM, or `[Unknown]` when the record is blank (Step 7, priority 1). A new contact is introduced through that thread. Account status ENGAGED is not the contact Engagement Status in Methodology, and the two are never mixed.
 
 **Upstream Read.** If the MEDDPICC analysis (`gtm-meddpicc-analysis`) has run on this account, read its fields by name: `meddpicc_scores` (the Champion and Economic Buyer elements, to check against this map), `health_score`, `stage_minimum_met`, `stage_recommendation` and `risk_patterns`. A field that is absent is reported as missing and is not rebuilt here.
 
@@ -474,10 +474,12 @@ For each contact, assign:
 | **Technical Evaluator** | Assesses integration, security, and technical fit. Can veto | CIO, IT Director, ERP Admin, Security Manager |
 | **Influencer** | Shapes the decision through opinion and expertise. Cannot approve alone | Controller, Department Managers, Regional Managers |
 | **End User** | Will use the product daily. Cares about workflow and ease of use | Analysts, Specialists, Staff |
-| **Blocker** | Opposes or delays the deal. May prefer incumbent | Anyone who opposes or delays the deal |
+| **Blocker** | A contact the record shows acting against the deal. May prefer incumbent | Anyone the record shows delaying or stopping the deal, or working for the incumbent |
 | **Coach** | Internal ally who provides intel about buying process and politics | Any contact who shares "insider" information |
 
-Non-buyers from the Methodology table are placed in the same pass. They take a role label of their own and are never given the Economic Buyer slot. A stated objection alone makes a contact an Influencer with a Skeptic position, not a Blocker.
+**The Profile's Role-Title Map Governs.** When the profile's Buying Committee role-title map names a role for a title at this kind of account, that map decides the role. The Typical Titles column above is the fallback, used only when the map names none. A pre-need manager is an End User where the map says so, even though "Department Managers" appears under Influencer above.
+
+Non-buyers from the Methodology table are placed in the same pass. A non-buyer keeps exactly one of the seven buying roles, and the non-buyer row name is recorded beside it, never in place of it (for example, "Influencer, operations head"). A non-buyer is never given the Economic Buyer slot. A stated objection alone gives a contact a Skeptic position (Step 6) beside the buying role the record evidences, which is Influencer when no other role is evidenced. It never gives the Blocker role, which needs the record to show the contact acting against the deal.
 
 When a contact fits two roles, the record decides. A Champion needs at least one shared test met, so a contact with none takes the other role that fits. The Economic Buyer is the person whose approval the record shows moves the spend. Where a board approves above a set limit, the board chair holds that slot, and a general manager who recommends to the board takes the role the evidence shows instead.
 
@@ -485,7 +487,7 @@ When a contact fits two roles, the record decides. A Champion needs at least one
 
 | Level | Evidence |
 |-------|-------|
-| HIGH | C-level title, budget authority, demonstrated in notes |
+| HIGH | C-level title, confirmed budget authority, or demonstrated seniority: the record shows the contact briefing or moving the approving body, or holding decision authority (Methodology: Influence Levels) |
 | MEDIUM | Director/VP, participates in demos, asks detailed questions |
 | LOW | Manager/IC, end user, referred to by others |
 | UNKNOWN | No notes, no meetings, contact added from list |
@@ -512,7 +514,7 @@ Build a hierarchical tree from the classified contacts:
 4. **Flag Confirmed Vs. Inferred Relationships:**
    - **Confirmed:** CRM explicitly shows relationship, or notes reference it
    - **Inferred:** Based on title hierarchy and department, tagged `[Inferred]` with the method named
-5. **Identify Ghost Nodes:** Positions that SHOULD exist based on the profile's Buyer Personas and the revenue table, with no named contact on file. Write each one as "UNKNOWN, role". Tag the reason it exists, and name its source: a Buyer Persona row, the revenue table, or a Non-Buyers row that a dated step or an open question needs.
+5. **Identify Ghost Nodes:** Positions that SHOULD exist based on the profile's Buyer Personas and the revenue table, with no named contact on file. Write each one as "UNKNOWN, role". Tag the reason it exists, and name its source: a Buyer Persona row whose profile scope the account falls in, the revenue table, or a Non-Buyers row that a dated step or an open question needs.
 6. **Check the ghost nodes against the Economic Buyer and the Technical Evaluator.** If either slot is empty, say so in the coverage gaps.
 
 Present as a department-grouped table showing:
@@ -561,8 +563,8 @@ For each contact with MEDIUM or HIGH influence, classify:
 | **Strong Supporter** | Actively advocates |
 | **Supporter** | Positive, willing to help |
 | **Neutral** | No clear position |
-| **Skeptic** | Has concerns, not yet opposed |
-| **Opponent** | Actively resists or prefers incumbent |
+| **Skeptic** | Has a stated objection or concern, and the record does not show them acting against the deal |
+| **Opponent** | The record shows them acting against the deal or working for the incumbent. This is the Blocker role |
 
 **Key Dynamics To Identify:**
 1. **Alliances:** Contacts who work closely together with shared positive sentiment.
@@ -583,12 +585,25 @@ Create a prioritized engagement plan:
 
 | Priority | Criteria | Action Window |
 |----------|---------|---------------|
-| URGENT | Blocker unaddressed, EB not engaged, Champion at risk | Five business days after the run date, or the earlier record date |
+| URGENT | Blocker unaddressed, EB not engaged, Champion at risk, no entry point on an account with no two-way contact | Five business days after the run date, or the earlier record date |
 | HIGH | Missing buying role, key department uncontacted, critical ghost node | Next 2 weeks |
 | MEDIUM | Strengthen existing relationship, expand into adjacent department | Next 30 days |
 | LOW | Informational contact, maintain awareness | Ongoing |
 
-Deadlines run from the run date. URGENT actions fall due on the date the shared contract's next-action rule gives (five business days after the run date, or an earlier date the records or the skill's own schedule set for that step, named with its source). HIGH actions fall due 14 days after the run date, and MEDIUM actions 30 days after it. Within one priority, the first action is the first of these conditions that applies. First, an unaddressed blocker. Second, an economic buyer who is a ghost node, where the first action asks for the buyer's name and any date that depends on it before any introduction. Third, an economic buyer who is named but not engaged, where the first action asks for an introduction. Fourth, a champion at risk. A ghost node counts as not engaged, because no named contact exists to engage. This skill starts no follow-up sequence, so the gone-quiet test in the shared contract is not applied here, and a missing date for our last message does not block an action. For an ENGAGED account, the first URGENT action is a reply to the contact's last message that asks for the next dated step, and it comes before any introduction request.
+Deadlines run from the run date. URGENT actions fall due on the date the shared contract's next-action rule gives (five business days after the run date, or an earlier date the records or the skill's own schedule set for that step, named with its source). HIGH actions fall due 14 days after the run date, and MEDIUM actions 30 days after it. A critical ghost node is one in the Economic Buyer or Technical Evaluator slot, the two slots Step 4 checks. A ghost node in any other slot, such as a Buyer Persona row with no named contact, is a MEDIUM step that expands into an adjacent department. A ghost node counts as not engaged, because no named contact exists to engage. This skill starts no follow-up sequence, so the gone-quiet test in the shared contract is not applied here, and a missing date for our last message does not block an action.
+
+**Next-Action Priority Order.** When the plan holds more than one open step, the next action is the first kind of step below that applies. The order puts first the step whose delay costs the rep the most.
+
+1. **A Reply Owed.** A contact at an ENGAGED or INBOUND account wrote to us and has no answer. The next action replies through the thread's owner and asks for the next dated step, due the next business day under the shared contract. It comes before any introduction request. A buyer waiting on us is the one step only we can lose.
+2. **An Unaddressed Blocker.** A contact the record shows acting against the deal, with no strategy in place. The next action sets that strategy with the contact who can address it. A Blocker can end the deal while every other step is being worked.
+3. **An Economic Buyer Who Is A Ghost Node.** The next action asks a contact in two-way contact with us for the buyer's name and any date that depends on the buyer, with the name asked first and before any introduction. Nothing with the buyer can be planned until the name is on the record.
+4. **A Named Economic Buyer Who Is Not Engaged.** The next action asks a contact in two-way contact with us for an introduction. The buyer's approval moves the spend, so the buyer comes before the champion's upkeep.
+5. **A Champion At Risk.** A contact whose champion status is Strong or Developing and whose last logged interaction is 14 days or more before the run date. The next action follows up with the champion. The champion carries the deal inside the account, and silence is the first sign of losing that.
+6. **An Entry Point.** No contact at the account is in two-way contact with us (a TARGET account), so kinds 3 to 5 have nobody to ask and do not apply. The next action is research that names one contact for the persona the plan reaches first. A map with one name cannot be worked until a second name exists.
+7. **A HIGH Step,** due 14 days after the run date.
+8. **A MEDIUM Step,** due 30 days after the run date.
+
+Kinds 2 to 6 are URGENT and fall due on the shared contract's date. Ties: when two steps of the same kind remain, the earlier due date comes first. On the same date, the step that closes a threading row scored 0 comes before one that raises a row scored 1, and after that the order the plan lists them. The shared next-action rule applies to the result: one move, by one owner, to one person, on one date. Asks to that same person that fit in the same message travel with it, even when they come from a later kind, so a follow-up to the champion and the request for the buyer's name, both sent to the champion, are one next action. Only a step for a different person, or one with a later date set by a record or by this skill's own schedule (the 14-day and 30-day windows), is listed after the next action as a later step, and it is never folded in.
 
 For each recommended action:
 - **Who:** Contact name or ghost node ("UNKNOWN, role")
@@ -621,7 +636,7 @@ The plays come from the profile's Buying Committee section (available plays). A 
 | Multi-Threading Score | [X/10 (Rating), scored n of 7, raw total N of the scored maximum] |
 | Champion Status | [Strong, Developing or None (Name, N of 7 shared tests met)] |
 | Economic Buyer Status | [Engaged / Identified / Unknown (Name or "UNKNOWN, role")] |
-| Blocker Status | [None / Identified (Name + mitigation)] |
+| Blocker Status | [None / Identified (Name + mitigation)]. A Skeptic is named here as a Skeptic with the mitigation, and the status stays None unless the record shows a contact acting against the deal |
 | Top 3 Gaps | [Specific gaps] |
 | Recommended Next Action | [#1 priority from engagement strategy, with owner and date] |
 | User Role | [BDR / AE] |
@@ -684,17 +699,17 @@ The plays come from the profile's Buying Committee section (available plays). A 
 
 **Input:** "Build an org map for Brackhaven Memorial Gardens. We're at Negotiate and need to multi-thread before the board meeting."
 
-**Process:** `user_role = AE`. CRM shows an ACTIVE deal at Stage 5 Negotiate, $21,576 a year at list (two sites at the $10,788 list price) `[CRM]`. The Active Deal Guard does not apply, because the user is the AE. The upstream MEDDPICC fields for this account are read by name, and the second MEDDPICC run on 2026-10-19 scored the deal 71 YELLOW `[CRM]`. Three contacts are on file, and three positions are ghost nodes.
+**Process:** `user_role = AE`. CRM shows an ACTIVE deal at Stage 5 Negotiate, $21,576 a year at list (two sites at the $10,788 list price) `[CRM]`. The Active Deal Guard does not apply, because the user is the AE. The upstream MEDDPICC fields for this account are read by name from the second MEDDPICC run on 2026-10-19 `[CRM]`: `meddpicc_scores` Metrics 3, Economic Buyer 4, Decision Criteria 3, Decision Process 2, Paper Process 3, Identified Pain 4, Champion 5, Competition 3. `health_score` 71, YELLOW (scored 8 of 8). `stage_minimum_met` No for Stage 5 Negotiate, Decision Process 2 and needs 3. `stage_recommendation` HOLD. `risk_patterns` close date fantasy and happy ears. The Champion element (5) agrees with the Strong status below, and the Economic Buyer element (4, identified by title, name unknown) agrees with the ghost node. Neither risk pattern names a stakeholder, so no ghost node is added from them. Three contacts are on file, the full CRM contact list `[CRM]`, and three positions are ghost nodes. BDR owner: none on record for any of the three contacts `[Unknown]`.
 
 Contacts on file, `[CRM]`:
-- Ruth Ellery, General Manager (Executive). Champion, Strong: four of seven shared champion tests met, each tagged with its source and date: offers introductions `[Call, 2026-09-26]`, commits to next steps with dates `[Call, 2026-09-26]`, explains the internal politics, saying the chair decides after the family's vote `[Call, 2026-09-26]`, and defends the solution when we are not in the room, having briefed the board chair on the records fix `[CRM, 2026-09-25]`. Influence HIGH, from demonstrated seniority in meetings: she set the 2026-11-12 date the family board is working to `[Call, 2026-09-26]` (illustrative). Actively Engaged: two logged interactions in the last 30 days, the 2026-09-26 call and her reply on 2026-10-03. Her last logged reply is 2026-10-03.
-- Walt Okonkwo, Operations Director (Operations). Influencer with a Skeptic position `[Call, 2026-09-21]`, skeptical of tablets. Influence MEDIUM, and he controls daily use of the system. Partially Engaged: one logged interaction in the last 30 days, the 2026-09-21 call.
-- Priscilla Dunmore, pre-need manager (Sales). End User, Influence LOW, Actively Engaged: a pre-need walkthrough on 2026-10-08, which was not a demo, and a second logged interaction on 2026-10-14, two in the last 30 days `[CRM]`.
+- Ruth Ellery, General Manager (Executive, Persona 1). Champion, Strong: four of seven shared champion tests met, each tagged with its source and date: offers introductions `[Call, 2026-09-26]`, commits to next steps with dates `[Call, 2026-09-26]`, explains the internal politics, saying the chair decides after the family's vote `[Call, 2026-09-26]`, and defends the solution when we are not in the room, having briefed the board chair on the records fix `[CRM, 2026-09-25]`. Influence HIGH, from demonstrated seniority: the record shows her moving the approving body, since she briefed the board chair `[CRM, 2026-09-25]` and set the 2026-11-12 date the family board is working to `[Call, 2026-09-26]` (illustrative). Actively Engaged: two logged interactions in the last 30 days, the 2026-09-26 call and her reply on 2026-10-03. Her last logged reply is 2026-10-03, 16 days before the run date, so she is a champion at risk (Step 7).
+- Walt Okonkwo, Operations Director (Operations, Persona 3). Influencer, from the profile's role-title map, with the non-buyer row operations head recorded beside it (profile: Buying Committee). Skeptic position `[Call, 2026-09-21]`, skeptical of tablets. The record does not show him acting against the deal, so he is not a Blocker. Influence MEDIUM, and he controls daily use of the system. Partially Engaged: one logged interaction in the last 30 days, the 2026-09-21 call.
+- Priscilla Dunmore, pre-need manager (Sales, Persona 2). End User, from the profile's role-title map, which names the pre-need manager End User (profile: Buying Committee). Influence LOW, Actively Engaged: a pre-need walkthrough on 2026-10-08, which was not a demo, and a second logged interaction on 2026-10-14, two in the last 30 days `[CRM]`.
 
 Ghost nodes, written by role only:
 - "UNKNOWN, family board chair" (Executive). Economic Buyer, identified by role. One call in Stage 4 Proposal `[CRM]`, and budget not confirmed `[Call, 2026-09-26]`.
 - "UNKNOWN, systems administrator" (Technology). Technical Evaluator. Nobody at Brackhaven owns IT, and no IT contact is on file `[Unknown]`. The Oldgate ledger export has no named owner `[Unknown]`, and only the person who runs the system can say who holds it, an open question only they can answer.
-- "UNKNOWN, funeral home owner" (combination side, Persona 4). `[Inferred]` from the ICP2 Combination pattern, which needs a funeral home side to the account. Persona 4 (profile: Buyer Personas) names this role, and the combination side needs it, because the pre-need leads run through it (Next Actions below). General counsel and procurement are known only in outline, with legal review and vendor onboarding timing not scoped `[Unknown]` and no open question on the record, so they are named as gaps, not ghost nodes. The CFO persona applies to groups only, and this account has two sites. The revenue table starts at $50M, so at under $50M it adds no ghost rows.
+- "UNKNOWN, funeral home owner" (combination side, Persona 4). Persona 4 (profile: Buyer Personas) is limited to combinations, Brackhaven is a combination with a funeral home side under the same owner `[CRM]`, and no contact on file holds that persona, so the slot is a ghost node under the Buyer Persona rule, with no dated step needed. The profile's Ghost Patterns name the same slot for combination operators (profile: Buying Committee). Personas 1 to 3 are held by Ruth, Priscilla and Walt. General counsel and procurement are known only in outline, with legal review and vendor onboarding timing not scoped `[Unknown]` and no open question on the record, so they are named as gaps, not ghost nodes. The CFO persona applies to groups only, and this account has two sites. The revenue table starts at $50M, so at under $50M it adds no ghost rows.
 
 **Multi-Threading Score:**
 
@@ -703,7 +718,7 @@ Ghost nodes, written by role only:
 | C-Level Access | 2x | 1 | 2 | The board chair joined one call, in Stage 4 Proposal `[CRM]`, but is not on file by name, so no named C-level contact is engaged. The board chair counts as C-level (Methodology), engaged but unnamed, so 1. Ruth is a GM, not a C-level title, so she counts toward Department Breadth only |
 | Champion Identified | 2x | 2 | 4 | Ruth Ellery, Strong: four of seven shared champion tests met, each tagged with its source and date |
 | Department Breadth | 1x | 1 | 1 | Executive, Operations and Sales: 3 departments (the 2 to 3 band) `[CRM]` |
-| Technical Evaluator | 1x | 0 | 0 | No IT contact on file `[Unknown]`. Nobody owns IT `[Unknown]` |
+| Technical Evaluator | 1x | 0 | 0 | No IT contact on the full CRM contact list `[CRM]`, so the rubric's 0 describes the full list and the row is 0, not INSUFFICIENT. Nobody owns IT `[Unknown]` |
 | Economic Buyer Engaged | 2x | 1 | 2 | Identified by role only, one call in Stage 4 Proposal `[CRM]`, budget not confirmed `[Call, 2026-09-26]` |
 | End User Validation | 1x | 2 | 2 | Priscilla Dunmore, Actively Engaged: a pre-need walkthrough on 2026-10-08, which was not a demo, and a second logged interaction on 2026-10-14, two in the last 30 days `[CRM]` |
 | Blocker Mitigation | 1x | 1 | 1 | Walt Okonkwo, a Skeptic with a stated objection, identified, and a strategy exists (a demo on his own work orders) (profile: Buying Committee). Developing under the Skeptic rule in Methodology |
@@ -714,22 +729,22 @@ Raw total 12 of 20, scored 7 of 7. threading_score = 12 รท 2 = **6**, Developing
 **Political Landscape:** Ruth is top-right (leverage), with Influence HIGH and support Strong `[CRM]`. The "UNKNOWN, family board chair" is HIGH influence, so it sits at the top of the map, on the centre line of support: interested in cost and not yet a supporter, a Skeptic `[Call, date Unknown]`. The chair takes no quadrant until the chair is named. Walt sits on the centre line, not in a quadrant, because his influence is MEDIUM and only HIGH influence takes a quadrant. He is a Skeptic with concerns and no opposition yet `[Call, 2026-09-21]`, and his daily use decides whether the system survives. Priscilla is LOW influence, so she is not placed on the map, and her support is `[Unknown]` until a conversation shows it.
 
 **Output:** Engagement strategy:
-- URGENT, five business days after the run date of 2026-10-19 (2026-10-26): Owen asks Ruth Ellery for the board date and the board chair's name by 2026-10-26, and asks her to broker a second call with the chair. Why: the economic buyer is unnamed and has been on one call, and the champion has not replied since 2026-10-03 `[CRM]`. How: a short note through Ruth, not a cold message to the chair. Messaging: price and the board line only, year one $26,576 with the $5,000 setup against the $25K line (profile: Product Modules). No customer result is cited, because the proof points are Illustrative.
-- HIGH, by 2026-11-02: ask Ruth who keeps the Oldgate system running and who holds the ledger export. Who: "UNKNOWN, systems administrator". Why: the Technical Evaluator score is 0, and nobody owns IT. How: Ruth or Walt names one person, and the technical discovery runs before the readiness check on 2026-11-02. Messaging: the export question, not a product claim.
-- HIGH, by 2026-11-02: a find-the-plot demo on Walt's own work orders. This is the strategy that keeps the blocker neutralized. Message: "Find the plot in seconds," the Operations Director hook (profile: Buyer Personas).
-- MEDIUM, by 2026-11-18: ask Ruth who the funeral home owner is, since the combination's pre-need leads run through that side. Who: "UNKNOWN, funeral home owner".
+- Next action, URGENT, five business days after the run date of 2026-10-19 (2026-10-26), with no earlier record date for this step: Owen asks Ruth Ellery for the board chair's name and the board date by 2026-10-26, and in the same message asks her to broker a second call with the chair. Order: no reply is owed (the account is ACTIVE), and no contact is a Blocker, so kind 3 applies first, an economic buyer who is a ghost node, with the name asked first. The same message is the follow-up kind 5 calls for, because Ruth is a champion at risk (Strong, last logged interaction 16 days before the run date). The brokered call is an ask to the same person with no separate date, so it travels in the message after the name. Why: the economic buyer is unnamed and has been on one call, and the champion has not replied since 2026-10-03 `[CRM]`. How: a short note through Ruth, not a cold message to the chair. Messaging: price and the board line only, year one $26,576 with the $5,000 setup against the $25K line (profile: Product Modules). No customer result is cited, because the proof points are Illustrative.
+- Later step, HIGH, by 2026-11-02 (a later date set by this skill's 14-day window, so it is not folded into the next action): ask Ruth who keeps the Oldgate system running and who holds the ledger export. Who: "UNKNOWN, systems administrator", a critical ghost node in the Technical Evaluator slot. It comes before the demo below on the same date, because it closes a threading row scored 0. Why: the Technical Evaluator score is 0, and nobody owns IT. How: Ruth or Walt names one person, and the technical discovery runs before the readiness check on 2026-11-02. Messaging: the export question, not a product claim.
+- Later step, HIGH, by 2026-11-02: a find-the-plot demo on Walt's own work orders. This is the strategy that keeps the Skeptic's stated objection from turning into a block. Message: "Find the plot in seconds," the Operations Director hook (profile: Buyer Personas).
+- Later step, MEDIUM, by 2026-11-18: ask Ruth who the funeral home owner is, since the combination's pre-need leads run through that side. Who: "UNKNOWN, funeral home owner", a Buyer Persona ghost node outside the Economic Buyer and Technical Evaluator slots, so MEDIUM.
 
-Summary: Champion, Strong (Ruth Ellery, four of seven shared tests met). Economic Buyer, a ghost node with one call and no named contact. Blocker, identified with a mitigation plan (Walt Okonkwo). Top gaps: no named board chair, no IT owner, champion silent 16 days `[CRM]`.
+Summary: Champion, Strong (Ruth Ellery, four of seven shared tests met). Economic Buyer, a ghost node with one call and no named contact. Blocker, None on the record. Walt Okonkwo is a Skeptic with a stated objection and a mitigation plan, scored 1 on Blocker Mitigation. Top gaps: no named board chair, no IT owner, champion silent 16 days `[CRM]`.
 
 ```text
 Hand-off (read by 09 and 06):
 account: Brackhaven Memorial Gardens (ACTIVE, Stage 5 Negotiate)
 run_date: 2026-10-19
 threading_score: 6 (scored 7 of 7)
-buying_roles: Champion Ruth Ellery (Strong), Economic Buyer UNKNOWN, family board chair (identified by role, one call), Technical Evaluator UNKNOWN, systems administrator, Influencer Walt Okonkwo (Skeptic), End User Priscilla Dunmore
+buying_roles: Champion Ruth Ellery (Strong), Economic Buyer UNKNOWN, family board chair (identified by role, one call), Technical Evaluator UNKNOWN, systems administrator, Influencer Walt Okonkwo (Skeptic, non-buyer row operations head), End User Priscilla Dunmore
 ghost_nodes: UNKNOWN, family board chair, UNKNOWN, systems administrator, UNKNOWN, funeral home owner
 champion_status: Strong (Ruth Ellery, four of seven shared champion tests met: offers introductions 2026-09-26 [Call, 2026-09-26], commits to next steps with dates 2026-09-26 [Call, 2026-09-26], explains the internal politics 2026-09-26 [Call, 2026-09-26], defends the solution when we are not in the room 2026-09-25 [CRM])
-next_action: Owen Pruitt asks Ruth Ellery for the board date and the board chair's name by 2026-10-26, five business days after the run date of 2026-10-19
+next_action: Owen Pruitt asks Ruth Ellery for the board date and the board chair's name by 2026-10-26, five business days after the run date of 2026-10-19, in one message that also asks her to broker a second call with the chair and is the follow-up on her silence since 2026-10-03
 report_path: none (inline)
 ```
 
@@ -839,7 +854,7 @@ report_path: none (inline)
 
 **Related Skills, Without A Field Hand-Off:**
 - `gtm-account-snapshot`: run first on thin accounts for broader intelligence, then map what it finds.
-- `gtm-competitive-strategy`: a contact who is loyal to the incumbent (Blocker role) belongs in that skill's competitive work.
+- `gtm-competitive-strategy`: a contact loyal to the incumbent belongs in that skill's competitive work. The contact is a Skeptic, and a Blocker only when the record shows them acting against the deal.
 - `gtm-call-coaching`: after a call, update the map with the stakeholder intelligence the call produced.
 
 ### Chains
