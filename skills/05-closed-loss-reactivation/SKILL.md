@@ -667,9 +667,9 @@ The held `history_opener` is: "When we last spoke, you went with Oldgate. Curiou
 
 **Summary: MONITOR.** Lowmoor Memorial Gardens.
 
-**Next action:** The BDR asks the original AE, Owen Pruitt, for the loss notes, the Oldgate renewal date, and the name of the current Lowmoor contact, in one message, by 2026-10-26 (five business days after the run date of 2026-10-19, a Monday, and the records set no earlier date for this step). A held outreach waits on this answer, so it is priority 3 in the Output Contract's order, and no higher-ranked step is open in this report.
+**Next Action:** The BDR asks the original AE, Owen Pruitt, for the loss notes, the Oldgate renewal date, and the name of the current Lowmoor contact, in one message, by 2026-10-26 (five business days after the run date of 2026-10-19, a Monday, and the records set no earlier date for this step). A held outreach waits on this answer, so it is priority 3 in the Output Contract's order, and no higher-ranked step is open in this report.
 
-**Later steps:**
+**Later Steps:**
 1. The current Lowmoor contact is asked of Owen in the next action, so it travels with that ask and has no separate step. If Owen does not name anyone, the BDR's search for the contact becomes the next action, by the shared five-business-day rule.
 2. The BDR sets the reminder for the window 2026-12-18 to 2027-01-17 to check the reopening events.
 3. Quill Hollow is a separate account. Its routing is the Track A step in Example 3, and it is not a step in this report.

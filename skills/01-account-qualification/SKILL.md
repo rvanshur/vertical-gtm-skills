@@ -574,7 +574,7 @@ report_path: none (inline)
 
 ### Example 2: GREENLIGHT On An Ownership Change (Corrow Ridge Cemetery)
 
-**Context:** One cemetery site, 14,000 plots on paper plat maps, and a deed recorded twice in 2025 (illustrative). Acquired on 2026-07-01 by Harborline Funeral Partners, a 14-site regional consolidator `[Public: state licensing database]`. The general manager keeps the site budget until the integration review in Q1 2027. Status: TARGET.
+**Context:** One cemetery site, 14,000 plots on paper plat maps, and a double sale in 2025, one plot sold twice (illustrative). Acquired on 2026-07-01 by Harborline Funeral Partners, a 14-site regional consolidator `[Public: state licensing database]`. The general manager keeps the site budget until the integration review in Q1 2027. Status: TARGET.
 
 **Input:** "Qualify Corrow Ridge Cemetery for fit."
 
@@ -591,7 +591,7 @@ report_path: none (inline)
 | 5 | Relevant Department Exists | PARTIAL | The GM holds the budget. No records staff is named `[Unknown]` |
 | 6 | Revenue / Scale | PARTIAL | Above the 2,000-plot Strong line (profile: Fit Grid). Revenue not stated `[Unknown]` |
 | 7 | Technology Readiness | UNKNOWN | Whether the site's own system is kept is `[Unknown]`, and it is the first question |
-| 8 | Current Solution Gap | STRONG | Paper plat maps and a deed recorded twice in 2025 (illustrative) `[CRM]` |
+| 8 | Current Solution Gap | STRONG | Paper plat maps and a double sale in 2025, one plot sold twice (illustrative) `[CRM]` |
 
 **Zones:**
 
@@ -609,7 +609,7 @@ report_path: none (inline)
 
 **Opportunity Signals:** The acquisition is a consolidator trigger. Its window runs from 2026-08-30 to 2026-10-29, which is 60 to 120 days after the 2026-07-01 close (profile: Qualification Criteria) `[Public: state licensing database]`. On 2026-10-19 there are 10 days left in the window.
 
-**Next Action:** BDR (name not on record) confirms Harborline's ownership type and system by 2026-10-22 (illustrative), a Thursday. This check is the verdict step's first move, because the GREENLIGHT rests on a disqualifier that the risk flag says must clear before any outbound. The five-business-day date from the run date of 2026-10-19 (a Monday) is 2026-10-26, but Trigger Event Outbound (04, Step 1c) sets this check due by 2026-10-22, and the shared rule uses the earlier date its source names, so a sequence can start before the window closes on 2026-10-29. The same owner then runs Account Snapshot Outbound (02) for Corrow Ridge only after the check clears, as the GREENLIGHT step.
+**Next Action:** BDR (name not on record) confirms Harborline's ownership type and system by 2026-10-22 (illustrative), a Thursday. This check is the verdict step's first move, because the GREENLIGHT rests on a disqualifier that the risk flag says must clear before any outbound. The five-business-day date from the run date of 2026-10-19 (a Monday) is 2026-10-26, but Trigger Event Outbound (04, Step 1c) sets this check due by 2026-10-22, and the shared rule uses the earlier date its source names, so a sequence can start before the window closes on 2026-10-29. Later step: the same owner runs Account Snapshot Outbound (02) for Corrow Ridge once the check clears, as the GREENLIGHT step. It waits on the check, so it is not part of the next action.
 
 ```text
 Hand-off (read by 02):
