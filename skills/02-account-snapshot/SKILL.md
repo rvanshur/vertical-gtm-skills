@@ -248,9 +248,9 @@ A fact that the Example Cast supplies (profile: Example Cast) takes the tag of t
 
 ### Speed Versus Depth
 
-1. **CRM first.** Check the CRM before web research. It is the record a manager can check, and it is faster.
-2. **Five-minute research ceiling.** If research runs past five minutes, stop and work with what you have. The rest becomes discovery questions.
-3. **Unknown is acceptable.** An `[Unknown]` tag with a discovery question beats a fabricated fact.
+1. **CRM First.** Check the CRM before web research. It is the record a manager can check, and it is faster.
+2. **Five-Minute Research Ceiling.** If research runs past five minutes, stop and work with what you have. The rest becomes discovery questions.
+3. **Unknown Is Acceptable.** An `[Unknown]` tag with a discovery question beats a fabricated fact.
 
 ### Zone Scores And The Verdict
 
@@ -323,9 +323,9 @@ Read the role from the CRM when it is recorded. If it is not clear, ask: "Are yo
 
 Run the CRM search first, then the research, because the CRM is the record a manager can check. Before pulling anything, open the account's folder under `accounts/` in the Knowledge Base, if the profile has one, and offer the CRM read and, when a call recorder is connected, the call read, for the one account or date range you name. Nothing is read from the CRM or the call recorder until you say yes.
 
-**1a. Search the CRM.** Pull the account record (name, industry, headquarters, website, owner, status), deal history with stages and amounts, every contact with title and last activity, engagement history with dates, and any notes or summaries reps wrote. Note the BDR owner and the account owner.
+**1A. Search The CRM.** Pull the account record (name, industry, headquarters, website, owner, status), deal history with stages and amounts, every contact with title and last activity, engagement history with dates, and any notes or summaries reps wrote. Note the BDR owner and the account owner.
 
-**1b. Research the company.** Build a quick profile from public sources: what the company does, its size signals, its footprint, its ownership, and recent news such as acquisitions, expansions and leadership changes. Tag every fact. Where a fact cannot be found, tag it `[Unknown]` and write the discovery question that would fill it.
+**1B. Research The Company.** Build a quick profile from public sources: what the company does, its size signals, its footprint, its ownership, and recent news such as acquisitions, expansions and leadership changes. Tag every fact. Where a fact cannot be found, tag it `[Unknown]` and write the discovery question that would fill it.
 
 **Produces:** a list of tagged facts from the CRM and from public sources, and the list of Unknown facts that become discovery questions.
 
@@ -333,11 +333,11 @@ Run the CRM search first, then the research, because the CRM is the record a man
 
 Build the company brief, the quick-score signals, the zone scores with the verdict, and the region map, in that order. The zones come before any sequence, because the verdict decides whether a sequence is written at all.
 
-**Company brief (5 to 8 bullets):** Company (full name and headquarters), Segment (profile: ICP Definitions), Vertical, Size (with its tag), Footprint (regions, locations, key markets), Ownership, CRM Status (TARGET, ENGAGED, INBOUND, ACTIVE with its stage name (profile: Qualification Stage Gates), LOST or OUT), Current owner and BDR owner, and Coordination Required. Coordination is "Yes, coordinate with [AE name]" when the user is a BDR and an AE holds an open deal.
+**Company Brief (5 to 8 bullets):** Company (full name and headquarters), Segment (profile: ICP Definitions), Vertical, Size (with its tag), Footprint (regions, locations, key markets), Ownership, CRM Status (TARGET, ENGAGED, INBOUND, ACTIVE with its stage name (profile: Qualification Stage Gates), LOST or OUT), Current owner and BDR owner, and Coordination Required. Coordination is "Yes, coordinate with [AE name]" when the user is a BDR and an AE holds an open deal.
 
 **Zone Scores And Verdict:** Score the five zones with Step 2's rules, show each zone's score with its tag, and state the verdict from the Verdict Rule. Each verdict names the zones that carry it.
 
-**Region map:** Map the account's state to its tier (profile: Outbound Voice), with the tier's source. Name the cost of a missed rule in that tier.
+**Region Map:** Map the account's state to its tier (profile: Outbound Voice), with the tier's source. Name the cost of a missed rule in that tier.
 
 **Produces:** the company brief, the five zone scores with their tags, the verdict, the account status, and the region tier (or an explicit "no tier yet").
 
@@ -353,7 +353,7 @@ Rank the contacts by four rules, in order: known contacts with engagement histor
 
 Write from three to five pain hypotheses from the Core Pain Points (profile: Core Pain Points). Show every hypothesis that scores HIGH or MEDIUM, up to five. A LOW hypothesis is shown only to reach three. For each hypothesis, give:
 
-- **Pain point:** the name from the Core Pain Points taxonomy (profile: Core Pain Points), qualified by the dated event when the hypothesis depends on one, such as records after a state finding
+- **Pain Point:** the name from the Core Pain Points taxonomy (profile: Core Pain Points), qualified by the dated event when the hypothesis depends on one, such as records after a state finding
 - **Why Likely:** the reasoning, with its tag
 - **Confidence:** HIGH, MEDIUM or LOW, per the confidence rules above
 - **Discovery Question:** the question that validates it on a call
@@ -373,9 +373,9 @@ Draft a three-step email sequence for each of the top two or three personas. Wha
 
 Quick Call Prep mode drafts none, whatever the verdict, except the decline draft for an INBOUND DISQUALIFY, which still answers the request.
 
-**ENGAGED accounts** replied or met with us, and no deal is open. They get no cold sequence, because the account is already talking to us, and three cold emails would restart the outreach it has answered. Step 5 drafts one reply to the open thread instead. The reply answers what the account said, cites the date and tag of that message, follows every rule below, and is ready or held by the verdict in the same way. The sequence comes after the pain hypotheses, because each email uses one hypothesis, so the ranked list must exist first.
+**ENGAGED Accounts** replied or met with us, and no deal is open. They get no cold sequence, because the account is already talking to us, and three cold emails would restart the outreach it has answered. Step 5 drafts one reply to the open thread instead. The reply answers what the account said, cites the date and tag of that message, follows every rule below, and is ready or held by the verdict in the same way. The sequence comes after the pain hypotheses, because each email uses one hypothesis, so the ranked list must exist first.
 
-**INBOUND accounts** asked us first, and no deal is open. The request is answered before any cold touch, so Step 5 drafts one reply to the request instead of a sequence. The reply answers what they asked, carries this skill's angle (the pain hypothesis that ranks first in Step 4, in the words of the request where the request names it), follows every rule below, and is ready or held by the verdict in the same way. A sequence follows only if the account goes quiet, as What The Close Reads defines it. The sequence is then drafted from the same ranked hypotheses, and its Email 1 refers back to the request instead of restarting the outreach. A DISQUALIFY account gets no sequence. An INBOUND account with a DISQUALIFY verdict gets one short decline draft instead, in place of the reply: not a fit right now, the reason in one line, and an open door if that reason changes. The rep reads it before anything goes out. It follows the rules for every email below for length and claims, at 100 words or fewer, with no `[Inferred]` or `[Unknown]` fact as a claim.
+**INBOUND Accounts** asked us first, and no deal is open. The request is answered before any cold touch, so Step 5 drafts one reply to the request instead of a sequence. The reply answers what they asked, carries this skill's angle (the pain hypothesis that ranks first in Step 4, in the words of the request where the request names it), follows every rule below, and is ready or held by the verdict in the same way. A sequence follows only if the account goes quiet, as What The Close Reads defines it. The sequence is then drafted from the same ranked hypotheses, and its Email 1 refers back to the request instead of restarting the outreach. A DISQUALIFY account gets no sequence. An INBOUND account with a DISQUALIFY verdict gets one short decline draft instead, in place of the reply: not a fit right now, the reason in one line, and an open door if that reason changes. The rep reads it before anything goes out. It follows the rules for every email below for length and claims, at 100 words or fewer, with no `[Inferred]` or `[Unknown]` fact as a claim.
 
 **Rules For Every Email:**
 - Include a subject line.
@@ -419,7 +419,7 @@ Account Snapshots use three steps, not four, because this is volume outreach.
 
 For an ENGAGED account, the opener refers to the account's own reply, by its date and tag, and not to a cold reason. For an INBOUND account, the opener refers to the request, by its date and tag, and not to a cold reason.
 
-**Talk track:** a pain validation question, an impact question, a one-sentence product bridge, and an ask for 15 minutes.
+**Talk Track:** a pain validation question, an impact question, a one-sentence product bridge, and an ask for 15 minutes.
 
 **Voicemail (Under 30 Seconds):** name and company, one specific statement, and the call to action "I'll send a quick email with details."
 
@@ -457,8 +457,8 @@ No mode writes a file. A file is written only when the user asks for one, under 
 
 ## Epistemic Rules
 
-- **Print n beside every rate.** "4 of 7 criteria" is readable. "57%" alone is not, because the reader cannot tell whether it rests on four cases or four hundred.
-- **Five cases before a pattern.** A pattern across accounts needs at least five cases. Fewer cases are an observation, and the summary says so in the same sentence.
+- **Print N Beside Every Rate.** "4 of 7 criteria" is readable. "57%" alone is not, because the reader cannot tell whether it rests on four cases or four hundred.
+- **Five Cases Before A Pattern.** A pattern across accounts needs at least five cases. Fewer cases are an observation, and the summary says so in the same sentence.
 - **Silence Is Not A No.** A blank CRM field is Unknown, and it counts in no denominator. Scoring it as a no invents a finding out of missing data.
 
 ---
@@ -468,12 +468,12 @@ No mode writes a file. A file is written only when the user asks for one, under 
 1. **Never cite an Illustrative proof point, and never use a proof point the profile does not list.** A prospect who asks for the source of an Illustrative result gets nothing, and the rep loses the buyer's trust in the first email.
 2. **Never use an `[Inferred]` or `[Unknown]` fact as the claim in an email.** A guess written as a claim is something the rep must defend on the call, so it goes in as a question.
 3. **Never score silence as a no, and never score UNKNOWN as LOW.** A blank field may mean nobody recorded it, and a LOW score moves the verdict.
-4. **Never override the Verdict Rule.** MEDIUM never counts as HIGH, because the next skill reads these zones, and a score that rounds up changes its verdict.
+4. **Never Override The Verdict Rule.** MEDIUM never counts as HIGH, because the next skill reads these zones, and a score that rounds up changes its verdict.
 5. **Never work an ACTIVE account with an AE owner unless that AE has said yes.** Two people writing to one buyer costs the deal, and the buyer sees the duplicate.
 6. **Never propose a demo as the next step while the pain is unconfirmed.** A demo asks the buyer for time before there is a reason to give it.
 7. **Never send an email, enroll a contact or write to the CRM.** The rep reads the draft and sends it, because the rep owns the relationship and the record.
 8. **Never write an outcome number without its source or its Illustrative mark.** An unsourced figure in an email becomes the first question the buyer asks.
-9. **Never use a tag outside the six.** A manager checks the report by tag, and a seventh label cannot be checked.
+9. **Never Use A Tag Outside The Six.** A manager checks the report by tag, and a seventh label cannot be checked.
 10. **Never let a held package go out before a person clears the verdict.** Reason: a MANUAL REVIEW account has open gaps, and a draft that reads as ready invites a send before the gaps close.
 11. **Never send a cold three-step sequence to an ENGAGED account.** Reason: the account has already answered, and a cold sequence reads as not listening.
 12. **Never send a cold sequence to an INBOUND account before its request is answered.** Reason: the account asked us first, so a cold sequence ignores the open request. A sequence follows only once the account goes quiet.
@@ -546,9 +546,9 @@ Ines Carmody ranks first because she is the only named contact and runs the site
 
 **Step 4: Pain Hypotheses.**
 
-1. **Plot visibility.** HIGH confidence. The plot map is on paper `[CRM]`. `[Inferred]`, by reasoning from the record type: a paper map cannot show which plots are sold without a walk of the grounds. Discovery question: "How do you check today which plots are open?" Value prop: plot inventory matched against sold records.
-2. **Records after a state finding.** MEDIUM confidence. The last state review found a records problem `[CRM]`, and its date is `[Unknown]`. The pressure is real, but its timing is not. Because the hypothesis depends on when the finding happened, the undated finding does not count toward the three signals, so size and vertical are the two signals that count, and the hypothesis stays at MEDIUM. The finding is a discovery question only, and no email or call opener uses it. Discovery question: "When was the last state review, and what did it ask you to fix?"
-3. **Plot lookups take minutes.** MEDIUM confidence. `[Inferred]`, by reasoning from the record type and the plot count: a paper map of 8,800 plots makes each lookup a search, which matches Core Pain Point 3 on two signals (profile: Core Pain Points). Discovery question: "When a family asks about a plot, how long does the lookup take?" Value Prop: a plot answer in seconds (profile: Value Propositions, Value Proposition 3).
+1. **Plot Visibility.** HIGH confidence. The plot map is on paper `[CRM]`. `[Inferred]`, by reasoning from the record type: a paper map cannot show which plots are sold without a walk of the grounds. Discovery question: "How do you check today which plots are open?" Value prop: plot inventory matched against sold records.
+2. **Records After A State Finding.** MEDIUM confidence. The last state review found a records problem `[CRM]`, and its date is `[Unknown]`. The pressure is real, but its timing is not. Because the hypothesis depends on when the finding happened, the undated finding does not count toward the three signals, so size and vertical are the two signals that count, and the hypothesis stays at MEDIUM. The finding is a discovery question only, and no email or call opener uses it. Discovery question: "When was the last state review, and what did it ask you to fix?"
+3. **Plot Lookups Take Minutes.** MEDIUM confidence. `[Inferred]`, by reasoning from the record type and the plot count: a paper map of 8,800 plots makes each lookup a search, which matches Core Pain Point 3 on two signals (profile: Core Pain Points). Discovery question: "When a family asks about a plot, how long does the lookup take?" Value Prop: a plot answer in seconds (profile: Value Propositions, Value Proposition 3).
 
 **Step 5: Sequence (Ines Carmody, General Manager).**
 
@@ -650,9 +650,9 @@ Region map: no tier, because the state is not recorded `[Unknown]`.
 
 **Step 4: Pain Hypotheses.**
 
-1. **Plot lookups in a spreadsheet.** MEDIUM confidence. `[Inferred]`, by reasoning from the record type: a 2,900-plot list in a spreadsheet is harder to check against sold records than a digital system. Discovery question: "When someone asks for a plot, how long does it take to find it today?"
-2. **Pre-need follow-up.** LOW confidence. The record says pre-need is none `[CRM]`, so there is no follow-up process to repair. Ask only to confirm, and do not lead with it.
-3. **Single-person records risk.** LOW confidence. No records owner is named `[Unknown]`. Ask who maintains the list.
+1. **Plot Lookups In A Spreadsheet.** MEDIUM confidence. `[Inferred]`, by reasoning from the record type: a 2,900-plot list in a spreadsheet is harder to check against sold records than a digital system. Discovery question: "When someone asks for a plot, how long does it take to find it today?"
+2. **Pre-Need Follow-Up.** LOW confidence. The record says pre-need is none `[CRM]`, so there is no follow-up process to repair. Ask only to confirm, and do not lead with it.
+3. **Single-Person Records Risk.** LOW confidence. No records owner is named `[Unknown]`. Ask who maintains the list.
 
 **Step 6: Call Prep.**
 
@@ -694,7 +694,7 @@ next_action: Owen Pruitt runs the discovery call with Arlen Biggs on 2026-10-22 
 
 **Batch Mode.** Steps 1 to 4 for each account, then this ranked table. Zone scores are illustrative. The table shows the zones that carry each verdict.
 
-| Account | Status and Verdict | Zones That Carry The Verdict | Plots | Top Pain | Next Step | Priority |
+| Account | Status And Verdict | Zones That Carry The Verdict | Plots | Top Pain | Next Step | Priority |
 |---------|--------------------|------------------------------|-------|----------|-----------|----------|
 | Corrow Ridge Cemetery | TARGET, GREENLIGHT | Zone 1 HIGH, Zone 5 HIGH (illustrative) | 14,000 | Paper plat maps and a deed recorded twice in 2025 (illustrative) | Trigger Event Outbound (04). The ownership change closed 110 days ago, and 10 days of the window remain | 1 |
 | Greyfield Memorial Park | TARGET, GREENLIGHT | Zone 1 MEDIUM (a digital map, with plot records and trust reporting still outside it), Zone 2 HIGH, Zone 3 HIGH | 9,000 | Pre-need and records wanted together | Competitive Displacement (12). The Stonemark contract renews January 2027 | 2 |
@@ -759,8 +759,8 @@ The family board chair is recorded as a gap, not as a person: no name is on file
 
 **Step 4: Pain Hypotheses.**
 
-1. **Plot records on paper across two sites.** HIGH confidence. Paper plot maps at both sites `[CRM]`. `[Inferred]`, by reasoning from the record type: two sites on paper mean two lists, so a sale on one list can be missed on the other. Discovery question: "Which site's plot list do your staff check first?"
-2. **The Oldgate renewal in March 2027.** MEDIUM confidence. The renewal date is `[CRM]`. `[Inferred]`, from the contract date: the renewal opens a decision window. Discovery question: "What happens at the Oldgate renewal, and who decides?"
+1. **Plot Records On Paper Across Two Sites.** HIGH confidence. Paper plot maps at both sites `[CRM]`. `[Inferred]`, by reasoning from the record type: two sites on paper mean two lists, so a sale on one list can be missed on the other. Discovery question: "Which site's plot list do your staff check first?"
+2. **The Oldgate Renewal In March 2027.** MEDIUM confidence. The renewal date is `[CRM]`. `[Inferred]`, from the contract date: the renewal opens a decision window. Discovery question: "What happens at the Oldgate renewal, and who decides?"
 
 **Step 5: Sequence (Ruth Ellery, General Manager).**
 
@@ -871,9 +871,9 @@ Ines Carmody ranks first, because she is the only named contact, she replied, an
 
 **Step 4: Pain Hypotheses.** The reply adds no pain fact, so the three hypotheses are Example 1's, ranked by confidence and then by Core Pain Points number (profile: Core Pain Points):
 
-1. **Plot visibility.** HIGH confidence. Paper plat maps `[CRM]`. `[Inferred]`, reasoned from the record type: a paper map cannot show which plots are sold without a walk of the grounds. Discovery question: "How do you check today which plots are open?" Value prop: plot inventory matched against sold records (profile: Value Propositions).
-2. **Records after a state finding.** MEDIUM confidence. The last state review found a records problem `[CRM]`, and its date is `[Unknown]`. The finding is a discovery question only, never the hook. Discovery question: "When was the last state review, and what did it ask you to fix?"
-3. **Plot lookups take minutes.** MEDIUM confidence. `[Inferred]`, reasoned from the record type and the plot count: a paper map of 8,800 plots makes each lookup a search (profile: Core Pain Points, Pain 3). Discovery question: "When a family asks about a plot, how long does the lookup take?"
+1. **Plot Visibility.** HIGH confidence. Paper plat maps `[CRM]`. `[Inferred]`, reasoned from the record type: a paper map cannot show which plots are sold without a walk of the grounds. Discovery question: "How do you check today which plots are open?" Value prop: plot inventory matched against sold records (profile: Value Propositions).
+2. **Records After A State Finding.** MEDIUM confidence. The last state review found a records problem `[CRM]`, and its date is `[Unknown]`. The finding is a discovery question only, never the hook. Discovery question: "When was the last state review, and what did it ask you to fix?"
+3. **Plot Lookups Take Minutes.** MEDIUM confidence. `[Inferred]`, reasoned from the record type and the plot count: a paper map of 8,800 plots makes each lookup a search (profile: Core Pain Points, Pain 3). Discovery question: "When a family asks about a plot, how long does the lookup take?"
 
 **Step 5: The Reply, Not A Sequence.** Quill Hollow is ENGAGED, so there is no cold sequence. Email 1 is not sent again as a cold touch, and Emails 2 and 3 are not drafted (Hard Rule 11). The one draft replies to her message.
 
@@ -953,7 +953,7 @@ next_action: Nadia Brandt sends the reply to Ines Carmody by 2026-10-29, the nex
 
 ## Troubleshooting
 
-### "No CRM data available"
+### "No CRM Data Available"
 **Likely Cause:** The CRM record is missing, or the rep has no access.
 **Response:** Proceed with public research only. Write "No existing CRM record" in the output. Tag every fact `[Public: source]`, `[Inferred]` or `[Unknown]`. Recommend CRM enrichment as the first action.
 
@@ -961,7 +961,7 @@ next_action: Nadia Brandt sends the reply to Ines Carmody by 2026-10-29, the nex
 **Likely Cause:** The CRM holds no contacts for those personas.
 **Response:** Look for likely contacts through public sources. Write each persona gap as "Unknown, no contact found." Make contact discovery the first action. Personalize emails by title until a name is found.
 
-### "The company spans more than one segment"
+### "The Company Spans More Than One Segment"
 **Likely Cause:** A company with a secondary division.
 **Response:** Classify the account by its primary business, and score the zones on that segment. Note the secondary division as an opportunity, not as a second verdict.
 
@@ -985,12 +985,12 @@ next_action: Nadia Brandt sends the reply to Ines Carmody by 2026-10-29, the nex
 
 ## Best Practices
 
-- **Prioritize speed.** This skill is built for volume prospecting. Past ten minutes on one account, switch to Research Outbound (03).
-- **Use the CRM first.** It is the record a manager can check, and it is faster than web research alone.
-- **Match proof points to the segment.** A prospect in one vertical does not care about a result from another.
-- **Tag every fact.** The six tags are the only labels, and a reader checks the report by tag.
-- **Rank pain hypotheses by confidence.** HIGH-confidence hypotheses lead the outreach.
-- **Name the persona gaps.** Knowing who is unknown is as useful as knowing who exists.
+- **Prioritize Speed.** This skill is built for volume prospecting. Past ten minutes on one account, switch to Research Outbound (03).
+- **Use The CRM First.** It is the record a manager can check, and it is faster than web research alone.
+- **Match Proof Points To The Segment.** A prospect in one vertical does not care about a result from another.
+- **Tag Every Fact.** The six tags are the only labels, and a reader checks the report by tag.
+- **Rank Pain Hypotheses By Confidence.** HIGH-confidence hypotheses lead the outreach.
+- **Name The Persona Gaps.** Knowing who is unknown is as useful as knowing who exists.
 
 ---
 

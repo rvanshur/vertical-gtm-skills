@@ -61,7 +61,7 @@ Start with question 1.
 
 ## What You Should Expect To Happen
 
-**Question 4 stalls** on champion inflation, where every friendly contact is recorded as a
+**Question 4 Stalls** on champion inflation, where every friendly contact is recorded as a
 champion until the deal needs one. **Question 2 stalls** when the metric lives in your deck
 but has never been heard back from a customer's mouth, which means no deal has ever truly had
 the M.

@@ -62,9 +62,9 @@ Start with question 1.
 
 ---
 
-## What You Should Expect to Happen
+## What You Should Expect To Happen
 
-**Question 2 stalls** most often, and it is the expensive one. A wedge number with no proof point
+**Question 2 Stalls** most often, and it is the expensive one. A wedge number with no proof point
 behind it turns the whole package into confident fiction, and a proof point marked Illustrative
 cannot appear in an email at all. **Question 4 stalls** when the team has only ever researched public
 companies, and the private-company sources for the vertical were never mapped.
@@ -93,7 +93,7 @@ a fact you add here reaches all three skills on their next run.
 
 ---
 
-## About the Emails
+## About The Emails
 
 The number of emails is set by your profile, not by this skill. Each persona in your Buyer Personas
 table gets one sequence, and each sequence has four emails. If your motion runs on three personas,

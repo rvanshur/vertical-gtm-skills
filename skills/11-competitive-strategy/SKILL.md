@@ -43,7 +43,7 @@ change_log:
     summary: "Reads the Context OS base and offers read-only connectors through the shared contract's new Knowledge Base and Connectors section, with a Chains subsection."
   - version: 2.0.0
     date: 2026-10-20
-    summary: "Moved to the Sales 2.0 standard. The incumbent is filed under one of the seven shared incumbent types, failure patterns and trends are read from the profile's Competitive Patterns and Trends section with their counts and dated sources, and each proof point carries a Status that decides where it may appear. The three old evidence grades become the six shared tags, the two Epistemic Rules sections become one, jurisdiction deadlines must cite their rule and the date checked, and the HTML and PDF card options are removed. The Stonemark example is rebuilt on the chain fact that no buyer preference has been stated, and every example ends with a hand-off block."
+    summary: "Moved to the Sales 2.0 standard. The incumbent is filed under one of the seven shared incumbent types, failure patterns and trends are read from the profile's Competitive Patterns And Trends section with their counts and dated sources, and each proof point carries a Status that decides where it may appear. The three old evidence grades become the six shared tags, the two Epistemic Rules sections become one, jurisdiction deadlines must cite their rule and the date checked, and the HTML and PDF card options are removed. The Stonemark example is rebuilt on the chain fact that no buyer preference has been stated, and every example ends with a hand-off block."
   - version: 1.3.0
     date: 2026-10-13
     summary: "Examples re-cast on the PlotIQ example company, with a non-success example added and the example arithmetic corrected."
@@ -97,7 +97,7 @@ To try the skill without your own data, use `examples/try-it.md`, which holds on
 
 **Status Rule For A Battlecard.** This skill builds a battlecard only for an open deal, which is ACTIVE. Each status returns one outcome, and the Output Contract lists the fields of each one:
 - **ACTIVE:** the battlecard, in its eight sections. If the incumbent is unknown, the run stops before Step 2 and returns the discovery questions instead (Common Patterns, Unknown Incumbent).
-- **TARGET, ENGAGED and INBOUND:** the no-deal note, in the form shown below. None of these has an open deal, so the note sets no stage, owner or close date. TARGET has no two-way contact yet, ENGAGED has two-way contact with no open deal, and INBOUND has asked us first with no open deal.
+- **TARGET, ENGAGED And INBOUND:** the no-deal note, in the form shown below. None of these has an open deal, so the note sets no stage, owner or close date. TARGET has no two-way contact yet, ENGAGED has two-way contact with no open deal, and INBOUND has asked us first with no open deal.
 - **LOST:** routed to Closed-Loss Reactivation (05). No battlecard and no note.
 - **OUT:** stops. No battlecard and no note.
 
@@ -151,12 +151,12 @@ Every run returns one outcome, chosen by the account's status in the Status Rule
 
 This skill does not carry client-specific information. It reads the client profile at [`profiles/client-profile.md`](../../profiles/client-profile.md). Throughout this skill, `{Client Profile: X}` means section X of that file. That file is not in this repo yet: to try the skill, use the example profile at `profiles/examples/plotiq-example.md`, and to set up your own company, copy `profiles/client-profile-template.md` to `profiles/client-profile.md`.
 
-| Profile section | Used for |
+| Profile Section | Used For |
 |---|---|
 | Company | Account framing and vertical context |
 | Buyer Personas | Persona-specific positioning and objection handling |
 | Competitive Landscape | The competitor rows (type, pitch, advantage, weakness, pain reported after 6 to 12 months and the proof that answers it) and the Competitive Discovery Questions |
-| Competitive Patterns and Trends | Failure patterns, each with its cases counted and source, the trend rows, each with its dated source, the Status of each proof point, and any jurisdiction deadline. Written by the interview in CUSTOMIZE.md |
+| Competitive Patterns And Trends | Failure patterns, each with its cases counted and source, the trend rows, each with its dated source, the Status of each proof point, and any jurisdiction deadline. Written by the interview in CUSTOMIZE.md |
 | Value Propositions | Differentiation matrix and positioning statements |
 | Proof Points | Displacement stories, each with its Status |
 | Qualification Criteria | Buying triggers and disqualifiers |
@@ -267,9 +267,9 @@ Every competitor or incumbent is filed under one of the seven incumbent types in
 
 ### Failure Patterns And The Template Row
 
-A failure pattern is a recurring reason that customers of one incumbent type end up unhappy. The profile's Competitive Patterns and Trends section holds them. Each row carries three things: the pattern, the number of cases behind it with their source, and the discovery question that tests the pattern on this buyer.
+A failure pattern is a recurring reason that customers of one incumbent type end up unhappy. The profile's Competitive Patterns And Trends section holds them. Each row carries three things: the pattern, the number of cases behind it with their source, and the discovery question that tests the pattern on this buyer.
 
-| Pattern | Cases counted and source | Discovery question |
+| Pattern | Cases Counted And Source | Discovery Question |
 |---------|--------------------------|--------------------|
 | _____ | _____ cases (5 needed to call it a pattern), and the source | _____ |
 | _____ | _____ cases (5 needed to call it a pattern), and the source | _____ |
@@ -280,7 +280,7 @@ The rows are left blank for your own deals. A row with fewer than five cases is 
 
 A trend is a dated shift in the market that changes what an incumbent's customers will feel. Each row names the trend, its dated source, and what it means for that incumbent's customers. A number appears in a trend row only when its source is named and dated. A trend with no source is removed.
 
-| Trend | Dated source | What it means for the incumbent's customers |
+| Trend | Dated Source | What It Means For The Incumbent's Customers |
 |-------|--------------|---------------------------------------------|
 | _____ | _____, with its date | _____ |
 
@@ -296,10 +296,10 @@ When a competitive claim depends on a deadline set by a state or federal rule, t
 
 A rival is a competitor the buyer evaluates alongside the incumbent. The incumbent stays the one scored for threat, so the rival is recorded beside it, in four parts, and it is never scored.
 
-1. **What the buyer said about the rival.** Each statement is tagged with its source and date, for example `[Call, 2026-09-26]`. A call with no date on record is `[Call, date Unknown]`. An evaluation with nothing else said about it is recorded as the evaluation alone, and the buyer's preference is `[Unknown]` until the buyer states one.
+1. **What The Buyer Said About The Rival.** Each statement is tagged with its source and date, for example `[Call, 2026-09-26]`. A call with no date on record is `[Call, date Unknown]`. An evaluation with nothing else said about it is recorded as the evaluation alone, and the buyer's preference is `[Unknown]` until the buyer states one.
 2. **Where the rival stands on the job the buyer stated.** The job is the one Step 2c names for the incumbent. On that job the rival is Stronger, Weaker or `[Unknown]`. Stronger and Weaker follow one rule: a tagged record must show the rival on the job, either a buyer statement with its call and date, or a profile research claim tagged as one with its source and date. Without one, the read is `[Unknown]`, so nothing unrecorded is said about the rival, which is Hard Rule 2 in practice. A pain the buyer raised but did not name as the reason to look is marked as a second pain, not as the job.
-3. **The landmines it sets.** What the buyer may do with the rival, such as comparing monthly figures or judging on one feature. Each landmine has a mitigation that describes what the buyer gets, and it never criticizes the rival (Hard Rule 2).
-4. **The questions that test it.** At most three, each with what it exposes and what each answer leads to, labelled as added for that rival. Each question is genuine. A claim phrased as a question is removed.
+3. **The Landmines It Sets.** What the buyer may do with the rival, such as comparing monthly figures or judging on one feature. Each landmine has a mitigation that describes what the buyer gets, and it never criticizes the rival (Hard Rule 2).
+4. **The Questions That Test It.** At most three, each with what it exposes and what each answer leads to, labelled as added for that rival. Each question is genuine. A claim phrased as a question is removed.
 
 Three rules hold across all four parts. A rival fact never enters the five factors, the average or the calibration clauses. No buyer criterion is claimed unless the buyer stated it, with its call and date. A rival with no buyer statement beyond the evaluation is recorded as evaluated, and its buyer-said parts stay `[Unknown]`: the buyer's preference, the criteria the buyer named, and the rival's position on the job. Its landmines (part 3) and test questions (part 4) still come from the profile's Competitive Landscape or from dated research, and each one says which source it came from, labelled as drawn for this rival and not stated by the buyer. The battlecard claims no advantage over that rival. If the buyer later signs with the rival, the next run files the rival as the incumbent under the incumbent rubric.
 
@@ -316,7 +316,7 @@ Three rules hold across all four parts. A rival fact never enters the five facto
 **Don't Use When:**
 - You need prospecting outbound against an incumbent (use Competitive Displacement (12))
 - You do not yet know what the buyer uses, because discovery has not happened (use Meeting Prep (06))
-- You need generic competitive intelligence across the market (keep the profile's Competitive Patterns and Trends section current instead)
+- You need generic competitive intelligence across the market (keep the profile's Competitive Patterns And Trends section current instead)
 
 **User Roles:** AE (primary)
 **Expected Time:** 20 to 30 minutes per account
@@ -329,7 +329,7 @@ Three rules hold across all four parts. A rival fact never enters the five facto
 
 Before pulling anything, read the account's folder under `accounts/` and the competitors under `gtm/` in the knowledge base, when the profile has one. Then offer to read the CRM deal and contact records, and ask before reading them, as set out in The Knowledge Base and Connectors.
 
-#### 1a. Search The CRM
+#### 1A. Search The CRM
 
 Pull everything available:
 - The account record: name, headquarters, segment, sites
@@ -339,16 +339,16 @@ Pull everything available:
 - Notes: competitive context, incumbent mentions, switching barriers
 - Deal health signals: the Deal Pulse "Why Us" pillar when one exists, and the MEDDPICC output from Step 2
 
-**No open deal.** For a TARGET, ENGAGED or INBOUND account, the deal lines (stage, amount, close date, owner) are written `[Unknown]` with the no-deal note from the Status Rule, and the rest of this step reads the account, its contacts and its interaction history.
+**No Open Deal.** For a TARGET, ENGAGED or INBOUND account, the deal lines (stage, amount, close date, owner) are written `[Unknown]` with the no-deal note from the Status Rule, and the rest of this step reads the account, its contacts and its interaction history.
 
-#### 1b. Identify The Incumbent
+#### 1B. Identify The Incumbent
 
 From the CRM, the interaction history and the discovery notes:
-- **Current solution:** what they use today, and how it was identified, each with its tag
-- **Contract status:** active (since when), expiring (when), month-to-month or unknown. A renewal date held in the CRM is tagged `[CRM]`
-- **Satisfaction level:** frustrated, neutral, satisfied or unknown
-- **Switching barriers:** contract terms, data lock-in, process dependency, politics
-- **Internal champion for the incumbent:** is someone an advocate for the current tool
+- **Current Solution:** what they use today, and how it was identified, each with its tag
+- **Contract Status:** active (since when), expiring (when), month-to-month or unknown. A renewal date held in the CRM is tagged `[CRM]`
+- **Satisfaction Level:** frustrated, neutral, satisfied or unknown
+- **Switching Barriers:** contract terms, data lock-in, process dependency, politics
+- **Internal Champion For The Incumbent:** is someone an advocate for the current tool
 
 For an ACTIVE account, if the incumbent is unknown, the run stops after this step. It flags the incumbent as the critical discovery gap and returns the discovery questions that identify it (Common Patterns, Unknown Incumbent). Steps 2 to 6 do not run until the incumbent is named.
 
@@ -356,19 +356,19 @@ For an ACTIVE account, if the incumbent is unknown, the run stops after this ste
 
 ### Step 2: Profile The Incumbent
 
-#### 2a. Classify The Incumbent
+#### 2A. Classify The Incumbent
 
 Map the incumbent to one of the seven incumbent types in the Shared Contract, using `{Client Profile: Competitive Landscape}`. Record the competitor row it matches.
 
-#### 2b. Load The Competitor's Failure Patterns And Trends
+#### 2B. Load The Competitor's Failure Patterns And Trends
 
-From `{Client Profile: Competitive Landscape}` and `{Client Profile: Competitive Patterns and Trends}`, load:
+From `{Client Profile: Competitive Landscape}` and `{Client Profile: Competitive Patterns And Trends}`, load:
 - The failure patterns for this type, each with its cases counted and its source. A pattern under five cases is labelled an observation.
 - The trend rows that bear on this incumbent's customers, each with its dated source.
 - The gap-exposing discovery questions from the competitor row.
 - The proof points that match the scenario, each with its Status.
 
-#### 2c. Assess The Competitive Threat Level
+#### 2C. Assess The Competitive Threat Level
 
 Using the calibration in Epistemic Rules, score the five factors. LOW is 1, MEDIUM is 2 and HIGH is 3.
 
@@ -394,7 +394,7 @@ Every factor row scores Unknown as MEDIUM. A factor scores LOW or HIGH only when
 
 **Produces:** `incumbent_type` and `threat_level`, with the five factors and the average shown, and each failure pattern labelled as a pattern or an observation. The classification comes before the threat score because the threat factors depend on which type the incumbent is.
 
-#### 2d. Profile The Rival (Only When One Is Evaluated)
+#### 2D. Profile The Rival (Only When One Is Evaluated)
 
 Read the rival's row in `{Client Profile: Competitive Landscape}` and file it under one of the seven incumbent types. Then record the four parts of the Rival Method (see Methodology), each tagged: what the buyer said about the rival, where the rival stands on the job the buyer stated, the landmines it sets, and the questions that test it. This step runs after Step 2c, so the threat level is set from the incumbent alone before any rival fact is read.
 
@@ -402,7 +402,7 @@ Read the rival's row in `{Client Profile: Competitive Landscape}` and file it un
 
 ### Step 3: Build The Positioning Strategy
 
-#### 3a. Qualification Zone Alignment
+#### 3A. Qualification Zone Alignment
 
 Rank `{Client Profile: Qualification Zones}` by relevance to this deal:
 
@@ -413,7 +413,7 @@ Rank `{Client Profile: Qualification Zones}` by relevance to this deal:
 
 Each zone takes the cell its recorded facts match in full, as the profile's Qualification Zones write it. A zone whose facts match no cell in full is UNKNOWN, and the battlecard names the fact still to find. A zone scored UNKNOWN neither earns nor blocks a verdict.
 
-#### 3b. Competitive Gap Matrix
+#### 3B. Competitive Gap Matrix
 
 Build a capability comparison for this deal only, against the identified incumbent:
 
@@ -423,7 +423,7 @@ Build a capability comparison for this deal only, against the identified incumbe
 
 Include only capabilities that matter to this buyer, not a generic feature matrix. A row whose claim is `[Unknown]` is a discovery question, not a gap. Each row ties to a pain the buyer stated on a dated call, or to a criterion the buyer named on a dated call. A cost row qualifies only on a cost the buyer stated as a pain. A price comparison is written in the cell with its basis, and when the basis is `[Unknown]` the cell says not like for like, and the comparison is never the gap's proof. A failure pattern under five cases may fill the incumbent cell of a row only when that cell says observation, and the row still needs the buyer's stated pain.
 
-#### 3c. Identify Positioning Landmines
+#### 3C. Identify Positioning Landmines
 
 | Landmine | Risk | Mitigation |
 |----------|------|-----------|
@@ -438,17 +438,17 @@ When a rival is evaluated, its landmines from Step 2d are rows of this table, ma
 
 ### Step 4: Create The Displacement Playbook
 
-#### 4a. Discovery Questions
+#### 4A. Discovery Questions
 
 Provide five or six questions. Draw them from the incumbent's Competitive Discovery Questions and its row in the profile's Displacement section. When those give fewer than five, add questions from the profile's Core Pain Points, labelled as such. Each question exposes a gap without attacking the incumbent. For each question:
 - **Question:** the exact words to ask
-- **What it exposes:** the gap or limitation it surfaces
-- **If they confirm the gap:** how to pivot to the product's strength
-- **If they deny the gap:** how to probe deeper, or move on gracefully
+- **What It Exposes:** the gap or limitation it surfaces
+- **If They Confirm The Gap:** how to pivot to the product's strength
+- **If They Deny The Gap:** how to probe deeper, or move on gracefully
 
 When a rival is evaluated, its test questions from Step 2d form a separate list in this section, labelled as added for that rival. They do not count toward the five or six questions above.
 
-#### 4b. Objection Handling
+#### 4B. Objection Handling
 
 **Universal Objections (Any Incumbent):**
 
@@ -462,7 +462,7 @@ When a rival is evaluated, its test questions from Step 2d form a separate list 
 
 **Objections Keyed To The Situation.** The incumbent types are in the Shared Contract, so these rows are keyed to what the buyer says, not to the type:
 
-| If the Buyer Says | Likely Objection | Response |
+| If The Buyer Says | Likely Objection | Response |
 |-------------------|-----------------|----------|
 | The incumbent is integrated with the systems they already run | "We're integrated" | "Many customers keep [their ecosystem] for [its job] and use us for [our job]. The two are complementary." |
 | The buyer has spent years and money on the incumbent | "We've invested too much to switch" | "Reference customers who moved off a long-standing system describe the switch as a planned project. Ask us for the reference, once it is Verified." |
@@ -470,7 +470,7 @@ When a rival is evaluated, its test questions from Step 2d form a separate list 
 | A spreadsheet or paper process runs the job | "It works fine for us" | "It often does, until it doesn't. What happens if the person who keeps it is out for two weeks?" |
 | Nothing owns the job today | "We don't need a program" | "That is a bet worth counting. What is exposed if the job goes wrong, and what would it cost to find out after the fact?" |
 
-#### 4c. Displacement Talk Tracks
+#### 4C. Displacement Talk Tracks
 
 Write three or four talk tracks in this form: "When [prospect situation], [product] [specific capability]. For example, [Verified customer and metric]."
 
@@ -481,7 +481,7 @@ Each talk track must:
 - Be readable aloud in under 20 seconds
 - Keep sources on the line under the talk track, never inside the spoken line
 
-#### 4d. Match Proof Points
+#### 4D. Match Proof Points
 
 | Proof Point | Status | Why It Matches This Deal | How To Use It |
 |------------|--------|------------------------|---------------|
@@ -528,15 +528,15 @@ Build a checklist for this competitive scenario. The checklist below is the full
 
 1. **Account:** name, status, deal stage, amount, owner
 2. **Incumbent:** the current solution, its incumbent type, and its tag
-3. **Competitive threat level:** HIGH, MEDIUM or LOW, with the factor scores and the average. A rival evaluated alongside is named beside it and is not scored
-4. **Primary positioning:** the zone that is strongest for this deal
-5. **Top three competitive gaps to exploit:** the gaps the incumbent cannot close, each meeting the Step 3b test, a pain the buyer stated on a dated call or a criterion the buyer named on a dated call. A gap is a matrix row that meets that test. A claimed win also needs the board's written criteria. When no gap yet meets that test, name the top three candidates as gaps to test, and say that none is claimed
-6. **Positioning landmines:** where the conversation could go badly, with mitigations
-7. **Displacement proof point:** the most relevant Verified proof point, or a note that none exists, with its Status shown
-8. **Critical discovery gap:** what is still unknown about the buyer's current solution
-9. **Win strategy summary:** two or three sentences on how to win this deal competitively
-10. **Risk assessment:** where the competitor could win, stated honestly
-11. **Recommended next steps:** specific actions with a timeline. The next action is the open discovery gap from item 8, asked of the buyer, and it is dated by the shared contract's next-action rule (five business days after the run date, or an earlier date the records or the skill's own schedule set for that step)
+3. **Competitive Threat Level:** HIGH, MEDIUM or LOW, with the factor scores and the average. A rival evaluated alongside is named beside it and is not scored
+4. **Primary Positioning:** the zone that is strongest for this deal
+5. **Top Three Competitive Gaps To Exploit:** the gaps the incumbent cannot close, each meeting the Step 3b test, a pain the buyer stated on a dated call or a criterion the buyer named on a dated call. A gap is a matrix row that meets that test. A claimed win also needs the board's written criteria. When no gap yet meets that test, name the top three candidates as gaps to test, and say that none is claimed
+6. **Positioning Landmines:** where the conversation could go badly, with mitigations
+7. **Displacement Proof Point:** the most relevant Verified proof point, or a note that none exists, with its Status shown
+8. **Critical Discovery Gap:** what is still unknown about the buyer's current solution
+9. **Win Strategy Summary:** two or three sentences on how to win this deal competitively
+10. **Risk Assessment:** where the competitor could win, stated honestly
+11. **Recommended Next Steps:** specific actions with a timeline. The next action is the open discovery gap from item 8, asked of the buyer, and it is dated by the shared contract's next-action rule (five business days after the run date, or an earlier date the records or the skill's own schedule set for that step)
 
 **Produces:** The battlecard in its eight sections, with `battlecard`, `incumbent_type`, `threat_level`, `next_action` and `report_path`. The summary comes last because it draws on every step above it.
 
@@ -550,21 +550,21 @@ This skill has one mode. The default is the battlecard for one open deal.
 
 ## Epistemic Rules
 
-- **Every rate carries its n.** Write "2 of 5 cases", never a bare rate.
-- **Five cases before a pattern.** A failure pattern needs five cases with a named source behind it. Fewer than five is an observation, and the battlecard says so in the same sentence.
+- **Every Rate Carries Its N.** Write "2 of 5 cases", never a bare rate.
+- **Five Cases Before A Pattern.** A failure pattern needs five cases with a named source behind it. Fewer than five is an observation, and the battlecard says so in the same sentence.
 - **Silence Is Not A No.** A blank CRM field or an unanswered question is `[Unknown]`. It is counted in no denominator and is never read as a negative about the incumbent.
-- **An undated call is not a dated fact.** A call whose date is not on record is tagged `[Call, date Unknown]`, and it does not place a satisfaction, need or contract fact in time until the date is on the record.
-- **"No difference found" is a finding.** If the buyer's criteria do not separate the incumbent from the rival, the battlecard says the deal is open on those criteria. It does not invent a winning gap.
+- **An Undated Call Is Not A Dated Fact.** A call whose date is not on record is tagged `[Call, date Unknown]`, and it does not place a satisfaction, need or contract fact in time until the date is on the record.
+- **"No Difference Found" Is A Finding.** If the buyer's criteria do not separate the incumbent from the rival, the battlecard says the deal is open on those criteria. It does not invent a winning gap.
 - **Every fact carries an evidence tag or a profile citation.** The six tags are `[CRM]`, `[Call]`, `[Notes]`, `[Public: source]`, `[Inferred]` and `[Unknown]`. A fact from the profile is cited `(profile: Section)` and needs no tag. A fact with neither is removed. Verified is a proof point Status, never a tag.
-- **Only Verified proof reaches a talk track.** The Status rule in Methodology decides this, however good the story is.
-- **A benchmark needs a named, dated source.** Otherwise it is removed.
-- **Research older than 90 days.** A research citation dated more than 90 days before the run date is flagged in its citation as over 90 days old at the run date, and it is used only as a research estimate, never as a benchmark.
+- **Only Verified Proof Reaches A Talk Track.** The Status rule in Methodology decides this, however good the story is.
+- **A Benchmark Needs A Named, Dated Source.** Otherwise it is removed.
+- **Research Older Than 90 Days.** A research citation dated more than 90 days before the run date is flagged in its citation as over 90 days old at the run date, and it is used only as a research estimate, never as a benchmark.
 - **A jurisdiction deadline cites its rule and the date checked.** Otherwise it is not written.
-- **An inferred claim is a hypothesis.** A claim tagged `[Inferred]` is tested on the buyer before it is used. It never appears as fact in a talk track.
-- **Discovery questions are genuine.** If the AE already knows the answer, the question is a setup. Rewrite it as a positioning statement.
-- **Objection scripts show their status.** Each script is marked Field-tested or Test and refine. A script not yet tested with a buyer is never presented as tested, and a team with no customers yet starts every script at Test and refine.
-- **A research estimate is not a benchmark.** A figure the profile calls a research estimate is labelled as one in a talk track, with its source and date. A Benchmark is only a published figure with its source and date, as Methodology defines it.
-- **Risk assessments are honest.** If the rival has a real advantage, the battlecard names it and the criterion it wins on.
+- **An Inferred Claim Is A Hypothesis.** A claim tagged `[Inferred]` is tested on the buyer before it is used. It never appears as fact in a talk track.
+- **Discovery Questions Are Genuine.** If the AE already knows the answer, the question is a setup. Rewrite it as a positioning statement.
+- **Objection Scripts Show Their Status.** Each script is marked Field-tested or Test and refine. A script not yet tested with a buyer is never presented as tested, and a team with no customers yet starts every script at Test and refine.
+- **A Research Estimate Is Not A Benchmark.** A figure the profile calls a research estimate is labelled as one in a talk track, with its source and date. A Benchmark is only a published figure with its source and date, as Methodology defines it.
+- **Risk Assessments Are Honest.** If the rival has a real advantage, the battlecard names it and the criterion it wins on.
 - **A rival is recorded beside the incumbent, never scored.** The Rival Method states what the buyer said, tagged, and the threat level is the incumbent's alone.
 
 ### Competitive Threat Assessment Calibration
@@ -575,21 +575,21 @@ This skill has one mode. The default is the battlecard for one open deal.
 
 The calibration catches a threat the average hides, and it does so without counting a fact twice. A HIGH clause raises the level one band (LOW to MEDIUM, or MEDIUM to HIGH) only when a recorded fact meets it, and that fact is one no factor row already scored. A LOW clause never lowers the level. A MEDIUM clause has no effect. An Unknown fact never meets a clause. The reason is that the five factor rows already carry the facts they score, so a clause that restated one of them would count the same fact twice, while a fact no row scores is a threat the average cannot see.
 
-**Facts a factor row already scored:** any fact that sets one of the five rows: the satisfaction level, the contract status, the switching barriers, the internal champion, or the product advantage. A clause that restates one of those facts, in any words, does not raise the level. Of the five HIGH clauses, four restate a row (satisfied, the contract more than six months from renewal, no switching-cost concern, Broad advantage). The entrenchment clause is the only one that names a fact no row scores, so it is the only HIGH clause that can raise the level, and only when a recorded fact shows the incumbent in place for 2 years or more. "Actively" in the LOW clause means the buyer acts on the frustration, shown by an open deal with us `[CRM]` or by a dated buyer action against the incumbent, and a rival's evaluation does not count. A raise moves one band at most, and the level never passes HIGH.
+**Facts A Factor Row Already Scored:** any fact that sets one of the five rows: the satisfaction level, the contract status, the switching barriers, the internal champion, or the product advantage. A clause that restates one of those facts, in any words, does not raise the level. Of the five HIGH clauses, four restate a row (satisfied, the contract more than six months from renewal, no switching-cost concern, Broad advantage). The entrenchment clause is the only one that names a fact no row scores, so it is the only HIGH clause that can raise the level, and only when a recorded fact shows the incumbent in place for 2 years or more. "Actively" in the LOW clause means the buyer acts on the frustration, shown by an open deal with us `[CRM]` or by a dated buyer action against the incumbent, and a rival's evaluation does not count. A raise moves one band at most, and the level never passes HIGH.
 
 ---
 
 ## Hard Rules
 
 1. **Only a Verified proof point goes into a talk track, a battlecard line the rep reads aloud, or an email.** Reason: a prospect can ask for the customer and the number, and an Illustrative row fails that check in front of the buyer.
-2. **Never trash a competitor.** Reason: it implies parity, and it makes the buyer defend the incumbent. Describe what the buyer can do with your product instead.
+2. **Never Trash A Competitor.** Reason: it implies parity, and it makes the buyer defend the incumbent. Describe what the buyer can do with your product instead.
 3. **A failure pattern needs five cases with a named source.** Reason: fewer cases is a coincidence that looks like a pattern, and a rep who repeats it is repeating a coincidence.
 4. **No unsourced number in a talk track, an email or a battlecard line.** Reason: any figure without a named, dated source becomes folklore the moment a buyer asks where it came from.
 5. **A jurisdiction deadline cites its rule and the date checked.** Reason: a deadline without a cited rule cannot be checked, and a wrong one can cost the deal its timing.
 6. **Every incumbent is filed under one of the seven incumbent types, or the run stops at the Unknown Incumbent discovery questions.** Reason: a battlecard that cannot be compared with the others cannot be reviewed, and a type that is avoided hides the classification error.
 7. **Never state a preference the buyer has not stated.** Reason: an assumed preference writes the battlecard for a buyer who did not say it, and the gap matrix then argues against the wrong case.
 8. **Never send, never write to the CRM and never enroll a contact.** Reason: the AE owns the outreach and the record, and the rep reads every draft first.
-9. **A rival never changes the incumbent's threat score.** Reason: the score measures how firmly the incumbent holds the account. A score that moved with a rival would depend on a company the buyer may never choose, and the rep would argue against the wrong competitor.
+9. **A Rival Never Changes The Incumbent's Threat Score.** Reason: the score measures how firmly the incumbent holds the account. A score that moved with a rival would depend on a company the buyer may never choose, and the rep would argue against the wrong competitor.
 10. **No buyer criteria are claimed unless the buyer stated them, and a silent rival is Unknown.** Reason: a criterion the rep assumes becomes the test the win plan runs, and the team then chases a standard the buyer never set.
 
 ---
@@ -650,9 +650,9 @@ Three worked examples, all on the PlotIQ cast and the chain file. The first is t
 - Contract status: renewal in March 2027 `[CRM]`
 - Switching barriers: moderate, by the Step 2c rule. The records move by hand from two sites, one per site, and no early contract exit holds them. The trust numbers leave Oldgate as one yearly file, and the plot records stay in binders at two sites `[Call, 2026-05-19] (illustrative)`. The records must move by hand `[Inferred: from the binder records]`, and the scope of the export is `[Unknown]`
 - Internal champion for the incumbent: none. Ruth says nobody on staff is attached to Oldgate `[Call, 2026-05-19] (illustrative)`
-- Failure pattern check: "Maintenance is charged every year, and the grounds crew stays on paper work orders" is a legacy on-premise pattern `(profile: Competitive Patterns and Trends)`, a research pattern (illustrative). The PlotIQ record holds 0 of 5 cases counted on record, so it is an observation only, and the battlecard does not call it a pattern
+- Failure pattern check: "Maintenance is charged every year, and the grounds crew stays on paper work orders" is a legacy on-premise pattern `(profile: Competitive Patterns And Trends)`, a research pattern (illustrative). The PlotIQ record holds 0 of 5 cases counted on record, so it is an observation only, and the battlecard does not call it a pattern
 
-**Step 2c: Threat Assessment:**
+**Step 2C: Threat Assessment:**
 
 | Factor | Assessment | Threat |
 |--------|-----------|--------|
@@ -676,15 +676,15 @@ Three worked examples, all on the PlotIQ cast and the chain file. The first is t
 
 Result: no HIGH clause raises the level, so the threat stays LOW at the average of 1.4. The main risk is inertia: Walt's paper process has no one pushing for change, so a LOW threat does not make the deal safe.
 
-**Step 2d: Rival Record, Stonemark (Evaluated, Not Scored):**
-1. **What the buyer said:** Stonemark was evaluated `[Call, 2026-09-26]`. The record does not say who raised it `[Unknown]`. No buyer preference is on record `[Unknown]`, and no criterion for comparing the two tools is on record `[Unknown]`. No dated record after 2026-09-26 confirms or ends the evaluation `[Unknown]`.
-2. **Position on the job:** Unknown. The job is Ruth's answer to which plots are sold and which are open `[Call, 2026-05-19]` (illustrative). Stonemark's pitch claims "The best mapping in the category" `[Public: Deathcare research project, competitive research note, 2026-03-27]` (research claim, over 90 days old at the run date). Whether its map shows sold or unsold plots is `[Unknown]`. Stonemark is not read as Stronger or Weaker, because no tagged record shows either on the job.
+**Step 2D: Rival Record, Stonemark (Evaluated, Not Scored):**
+1. **What The Buyer Said:** Stonemark was evaluated `[Call, 2026-09-26]`. The record does not say who raised it `[Unknown]`. No buyer preference is on record `[Unknown]`, and no criterion for comparing the two tools is on record `[Unknown]`. No dated record after 2026-09-26 confirms or ends the evaluation `[Unknown]`.
+2. **Position On The Job:** Unknown. The job is Ruth's answer to which plots are sold and which are open `[Call, 2026-05-19]` (illustrative). Stonemark's pitch claims "The best mapping in the category" `[Public: Deathcare research project, competitive research note, 2026-03-27]` (research claim, over 90 days old at the run date). Whether its map shows sold or unsold plots is `[Unknown]`. Stonemark is not read as Stronger or Weaker, because no tagged record shows either on the job.
 3. **Landmines:** three rows in Step 3c, drawn from the research claim and the profile, and marked as rival rows.
-4. **Test questions:** three in Step 4a, drawn from the profile and the research, and labelled as added for this rival. None is stated by the buyer.
+4. **Test Questions:** three in Step 4a, drawn from the profile and the research, and labelled as added for this rival. None is stated by the buyer.
 
 Classification: direct software `(profile: Competitive Landscape)` `[Inferred: row match]`. Research estimates, with the same citation and the over 90 days old flag: about $1,500 to $2,500 a month, with basis `[Unknown]`, and 90 to 120 days to go live. Failure pattern: 0 of 5 cases counted on record, observation only. The threat level is not changed by this record, and Stonemark is named beside LOW with no score.
 
-**Step 3a: Qualification Zone Alignment:**
+**Step 3A: Qualification Zone Alignment:**
 
 | # | Zone | Relevance To This Deal | Positioning Strategy |
 |---|------|------------------------|----------------------|
@@ -696,7 +696,7 @@ Classification: direct software `(profile: Competitive Landscape)` `[Inferred: r
 
 Verdict: GREENLIGHT. Zones 1 and 5 are HIGH, and no must-have zone is LOW `(profile: Qualification Zones, Verdict Rule)`. Zone 2 is UNKNOWN, which neither earns nor blocks GREENLIGHT.
 
-**Step 3b: Gap Matrix:** Four rows, each tied to a pain Ruth stated on a dated call.
+**Step 3B: Gap Matrix:** Four rows, each tied to a pain Ruth stated on a dated call.
 
 | Capability | Oldgate Ledger Pro | PlotIQ | Why It Matters For Brackhaven |
 |-----------|---------|--------|----------------------|
@@ -705,7 +705,7 @@ Verdict: GREENLIGHT. Zones 1 and 5 are HIGH, and no must-have zone is LOW `(prof
 | Cost | Research range of $10,000 to $50,000 upfront, plus maintenance at 20% a year `[Public: Deathcare research project, competitive research note, 2026-03-27] (research estimate, over 90 days old at the run date)`. Oldgate's basis for Brackhaven is `[Unknown]`, so the comparison is not like for like | $899 a month per site, plus $5,000 setup once `(profile: Product Modules)`. Year one at list for two sites is $26,576 with setup `(profile: Product Modules, arithmetic)`, above the $25K board line | Ruth: "Every year we pay Oldgate maintenance on top of the license, and it still doesn't tell us what's left" `[Call, 2026-05-19] (illustrative)`. The cost pain is hers. The figures are not compared as like for like until Oldgate's basis for Brackhaven is known |
 | Time to live | 120 to 180 days `[Public: Deathcare research project, competitive research note, 2026-03-27] (research estimate, over 90 days old at the run date)` | Six-week target, go-live in week 6 of the roadmap, with no completed deal yet `(profile: Value Propositions)` | Ruth: "If the new system isn't running by then, we pay Oldgate for another year" `[Call, 2026-05-19] (illustrative)`. The March 2027 renewal is the date the go-live has to meet |
 
-**Step 3c: Positioning Landmines:**
+**Step 3C: Positioning Landmines:**
 
 | Landmine | Risk | Mitigation |
 |----------|------|-----------|
@@ -715,7 +715,7 @@ Verdict: GREENLIGHT. Zones 1 and 5 are HIGH, and no must-have zone is LOW `(prof
 | (Rival Row) Monthly figures set side by side | The board compares $899 per site with a Stonemark monthly figure whose basis is `[Unknown]` | Ask for Stonemark's basis (per site or per plot) and its setup before any comparison. PlotIQ's $5,000 setup is once per deal `(profile: Product Modules)` |
 | (Rival Row) The rep criticizes Stonemark | The buyer defends the rival, and the criteria conversation stalls | The board gets both tools tested against the criteria Ruth writes down, with the sold and unsold view on Brackhaven's own records. Hard Rule 2 applies |
 
-**Step 4a: Discovery Questions:** Questions 1 to 3 are the profile's Competitive Discovery Questions `(profile: Competitive Landscape)`, the same three the Oldgate row in the Displacement section holds. Questions 4 and 5 are the profile's Core Pain Points questions for Pain 1 and Pain 2 `(profile: Core Pain Points)`. They are used because the incumbent's rows give only three questions, and Ruth named both pains on the 2026-05-19 call `[Call, 2026-05-19] (illustrative)`.
+**Step 4A: Discovery Questions:** Questions 1 to 3 are the profile's Competitive Discovery Questions `(profile: Competitive Landscape)`, the same three the Oldgate row in the Displacement section holds. Questions 4 and 5 are the profile's Core Pain Points questions for Pain 1 and Pain 2 `(profile: Core Pain Points)`. They are used because the incumbent's rows give only three questions, and Ruth named both pains on the 2026-05-19 call `[Call, 2026-05-19] (illustrative)`.
 
 1. "Where does the plot map live today, and when was it last updated?" Exposes: how old the plot map is, and whether sales can see it. If confirmed (a binder, years old): pivot to Plot Inventory Digitization, which runs in weeks 2 to 3. If denied (a current digital map exists): probe whether it shows sold and unsold plots.
 2. "Which system runs the funeral side, and who maintains it?" Exposes: a second system and a key-person dependency. If confirmed: pivot to the combined records view. If denied: ask how pre-need leads are tracked today.
@@ -728,7 +728,7 @@ Verdict: GREENLIGHT. Zones 1 and 5 are HIGH, and no must-have zone is LOW `(prof
 2. "Did the Stonemark evaluation cover the trust numbers? Who checks those numbers against the state filing?" Exposes: whether trust reporting is in the rival's scope, and who owns it. If the rival covers it: note the scope and its date. If it was not discussed: ask how the trust file is built today.
 3. "What would the board need to see before it chooses between the two tools?" Exposes: whether the criteria exist. If the board names them: write them in Ruth's words with the call date, and test both tools against them. If it does not: say so in the win plan, and claim no win over the rival.
 
-**Step 4b: Objection Handling (Keyed To This Buyer):**
+**Step 4B: Objection Handling (Keyed To This Buyer):**
 
 | Objection | Response Framework | Script | Status |
 |-----------|-------------------|--------|--------|
@@ -736,7 +736,7 @@ Verdict: GREENLIGHT. Zones 1 and 5 are HIGH, and no must-have zone is LOW `(prof
 | "Switching cost is too high" | Quantify the cost of staying | "What does staying cost each year? Put a number on unsold plots for twelve months, from your own records, and we can compare." | Test and refine |
 | "Oldgate has deep accounting" | Name the strength, then the job it does not do | "Oldgate is strong on accounting. Our trust records are built for what a state auditor reads, and we can show you the output next to your current ledger." | Test and refine |
 
-**Step 4c: Displacement Talk Tracks:** Three talk tracks, each readable aloud in under 20 seconds. No Verified proof point fits this scenario, so none of them has an example clause. The rep shows the capability in the demo instead. Each source sits on the line under its talk track.
+**Step 4C: Displacement Talk Tracks:** Three talk tracks, each readable aloud in under 20 seconds. No Verified proof point fits this scenario, so none of them has an example clause. The rep shows the capability in the demo instead. Each source sits on the line under its talk track.
 
 1. "When a family asks about a plot and the answer is in a binder, PlotIQ shows sold and unsold plots on one map. Our target is a plot answer in 20 seconds, and we can show the timing on your own plot records in the demo."
    Source: 20-second target, profile: Value Propositions, no customer proof yet.
@@ -745,7 +745,7 @@ Verdict: GREENLIGHT. Zones 1 and 5 are HIGH, and no must-have zone is LOW `(prof
 3. "When the renewal is in March, the decision has to finish before it. Our target is six weeks to go live, and a legacy system has been reported at 120 to 180 days, a research estimate. We can plan the evaluation to finish before March 2027."
    Source: six-week target (profile: Value Propositions), no completed deal yet. 120 to 180 days: Deathcare research project, competitive research note, 2026-03-27 (research estimate, over 90 days old at the run date).
 
-**Step 4d: Match Proof Points:**
+**Step 4D: Match Proof Points:**
 
 | Proof Point | Status | Why It Matches This Deal | How To Use It |
 |------------|--------|------------------------|---------------|
@@ -779,15 +779,15 @@ Risk: the "deep accounting" argument lands with the board chair, and the mitigat
 **Step 6: Competitive Strategy Summary:**
 1. **Account:** Brackhaven Memorial Gardens, ACTIVE, Stage 5 Negotiate, owner Owen Pruitt, $21,576 a year at list `[CRM]`
 2. **Incumbent:** Oldgate Ledger Pro, direct software `[Inferred: row match]` for the type and `[CRM]` for the name
-3. **Competitive threat level:** LOW. Factor scores 1, 1, 2, 1 and 2, a sum of 7 and an average of 1.4. Stonemark is named beside it as an evaluated rival, with no score (Step 2d)
-4. **Primary positioning:** Zone 1, Records and Inventory Pain, HIGH, with Zone 5 HIGH
-5. **Top three competitive gaps to exploit:** (a) Unsold-plot visibility, the job Ruth named as her reason to look, which Oldgate does not show `[Call, 2026-05-19] (illustrative)`. (b) Trust numbers an auditor reads, Ruth's stated pain on the same call `[Call, 2026-05-19] (illustrative)`. (c) Time to live against the March 2027 renewal, from Ruth's timing statement on the same call `[Call, 2026-05-19] (illustrative)`, set against the research estimate of 120 to 180 days for Oldgate (Deathcare research project, competitive research note, 2026-03-27, over 90 days old at the run date) and the six-week target `(profile: Value Propositions)`. Each gap meets the Step 3b test, a pain the buyer stated on a dated call. None is claimed as a win, because the board has not written its criteria `[Unknown]`
-6. **Positioning landmines:** see Step 3c, rival rows included
-7. **Displacement proof point:** none is Verified. Fennick Gardens is the closest match on unsold plots, and it is Illustrative, so it is marked do not cite
-8. **Critical discovery gap:** the exact Oldgate renewal day and the trust-file export scope, both `[Unknown]`
-9. **Win strategy summary:** have Ruth answer her question, which plots are sold and which are open, from her own records, and use her count of plots with no recorded sale to test the answer. Then show the sold and unsold view on Brackhaven's own records. Confirm the renewal day and the trust-file scope before the proposal
-10. **Risk assessment:** Oldgate's accounting depth could land with the board chair, and the paper process could stay the default, because nobody on staff is attached to a change `[Call, 2026-05-19] (illustrative)`. A LOW threat means the incumbent holds weakly. It does not mean the board has chosen
-11. **Recommended next steps:** Owen Pruitt asks Ruth Ellery for the exact Oldgate renewal day and the trust-file export scope, by 2026-10-26, five business days after the run date. That is the open gap in item 8
+3. **Competitive Threat Level:** LOW. Factor scores 1, 1, 2, 1 and 2, a sum of 7 and an average of 1.4. Stonemark is named beside it as an evaluated rival, with no score (Step 2d)
+4. **Primary Positioning:** Zone 1, Records and Inventory Pain, HIGH, with Zone 5 HIGH
+5. **Top Three Competitive Gaps To Exploit:** (a) Unsold-plot visibility, the job Ruth named as her reason to look, which Oldgate does not show `[Call, 2026-05-19] (illustrative)`. (b) Trust numbers an auditor reads, Ruth's stated pain on the same call `[Call, 2026-05-19] (illustrative)`. (c) Time to live against the March 2027 renewal, from Ruth's timing statement on the same call `[Call, 2026-05-19] (illustrative)`, set against the research estimate of 120 to 180 days for Oldgate (Deathcare research project, competitive research note, 2026-03-27, over 90 days old at the run date) and the six-week target `(profile: Value Propositions)`. Each gap meets the Step 3b test, a pain the buyer stated on a dated call. None is claimed as a win, because the board has not written its criteria `[Unknown]`
+6. **Positioning Landmines:** see Step 3c, rival rows included
+7. **Displacement Proof Point:** none is Verified. Fennick Gardens is the closest match on unsold plots, and it is Illustrative, so it is marked do not cite
+8. **Critical Discovery Gap:** the exact Oldgate renewal day and the trust-file export scope, both `[Unknown]`
+9. **Win Strategy Summary:** have Ruth answer her question, which plots are sold and which are open, from her own records, and use her count of plots with no recorded sale to test the answer. Then show the sold and unsold view on Brackhaven's own records. Confirm the renewal day and the trust-file scope before the proposal
+10. **Risk Assessment:** Oldgate's accounting depth could land with the board chair, and the paper process could stay the default, because nobody on staff is attached to a change `[Call, 2026-05-19] (illustrative)`. A LOW threat means the incumbent holds weakly. It does not mean the board has chosen
+11. **Recommended Next Steps:** Owen Pruitt asks Ruth Ellery for the exact Oldgate renewal day and the trust-file export scope, by 2026-10-26, five business days after the run date. That is the open gap in item 8
 
 **Output:** Full eight-section battlecard, with the rival record in section 1 and the rival rows in section 3. Threat level LOW at an average of 1.4. The strongest competitive lever is unsold-plot visibility, and records a state auditor accepts, both to be shown on Brackhaven's own counts once Ruth provides them. The honest risk is Oldgate's accounting depth, and the chance that the paper process stays the default.
 
@@ -826,7 +826,7 @@ report_path: none (inline)
 - CRM notes, which are not dated calls: pre-need leads from social ads flow into email `[CRM] (illustrative)`. The Stonemark map holds no records or trust reporting `[CRM] (illustrative)`. The account wants pre-need and records together `[CRM] (illustrative)`. The owner signs under $25K alone, with no board approval step `[CRM] (illustrative)`. The last touch was 2026-09-24, with no named contact `[CRM] (illustrative)`.
 - Not on record: staff email and shared-drive use `[Unknown]`. The Stonemark signing date `[Unknown]`. The exact renewal day `[Unknown]`.
 
-**Step 1b: Incumbent Identification:**
+**Step 1B: Incumbent Identification:**
 - Current solution: Stonemark's digital plot map, named in the CRM note `[CRM] (illustrative)`. Confidence is high, because the note names the vendor.
 - Contract status: expiring. The renewal is January 2027 `[CRM] (illustrative)`.
 - Satisfaction: `[Unknown]`. No dated buyer statement on satisfaction is on record.
@@ -837,7 +837,7 @@ report_path: none (inline)
 - Classification: direct software, the Stonemark row in `(profile: Competitive Landscape)` `[Inferred: row match]`. Stonemark is the incumbent on this account, so the incumbent rubric applies to it as written.
 - Their pitch: "The best mapping in the category" `[Public: Deathcare research project, competitive research note, 2026-03-27] (research estimate, over 90 days old at the run date)`.
 - Research estimates, with the same citation and the same flag: about $1,500 to $2,500 a month, 90 to 120 days to go live, a three-year term for its customers, and no AI. The basis of the monthly figure is `[Unknown]`, because the profile does not say whether it is per site or per plot.
-- Failure pattern check: the enterprise-mapping pattern says trust reporting and pre-need run outside the map. The profile holds 0 of 5 cases counted on record `(profile: Competitive Patterns and Trends)`, so it is an observation only, and this battlecard does not call it a pattern. The CRM note that the map holds no records or trust reporting is one fact on this account, not a pattern.
+- Failure pattern check: the enterprise-mapping pattern says trust reporting and pre-need run outside the map. The profile holds 0 of 5 cases counted on record `(profile: Competitive Patterns And Trends)`, so it is an observation only, and this battlecard does not call it a pattern. The CRM note that the map holds no records or trust reporting is one fact on this account, not a pattern.
 - No rival is evaluated on this account, so Step 2d is skipped, and the hand-off says `rival_record: none evaluated`.
 
 **Step 2c: Threat Assessment (Incumbent Rubric, Applied To Stonemark):**
@@ -874,7 +874,7 @@ No row qualifies yet. The rule needs each row tied to a pain the buyer stated on
 
 | Capability | Stonemark | PlotIQ | Why It Matters For This Buyer | Status |
 |-----------|-----------|--------|-------------------------------|--------|
-| Pre-need leads reach a named owner | `[Unknown]` on the map. The enterprise-mapping pattern leaves pre-need outside the map, an observation only, 0 of 5 cases counted on record `(profile: Competitive Patterns and Trends)` | Pre-Need CRM and Lead Scoring captures web and social leads and assigns follow-up `(profile: Product Modules)` | The pain is a CRM note `[CRM] (illustrative)`, not a buyer statement. Question 4 tests it | Held |
+| Pre-need leads reach a named owner | `[Unknown]` on the map. The enterprise-mapping pattern leaves pre-need outside the map, an observation only, 0 of 5 cases counted on record `(profile: Competitive Patterns And Trends)` | Pre-Need CRM and Lead Scoring captures web and social leads and assigns follow-up `(profile: Product Modules)` | The pain is a CRM note `[CRM] (illustrative)`, not a buyer statement. Question 4 tests it | Held |
 | Plot records and trust reporting | The map holds no records or trust reporting `[CRM] (illustrative)` | Records and Trust Compliance, which needs a trust fund ledger export `(profile: Product Modules)` | The gap is on record, but the buyer has not said it matters. Question 5 tests it | Held |
 | Time to live | 90 to 120 days `[Public: Deathcare research project, competitive research note, 2026-03-27] (research estimate, over 90 days old at the run date)` | Six-week target, go-live in week 6, with no completed deal yet `(profile: Value Propositions)` | No buyer statement ties it to a criterion. It is a date to test against the January 2027 renewal | Held |
 | Cost | About $1,500 to $2,500 a month, basis `[Unknown]` `[Public: Deathcare research project, competitive research note, 2026-03-27] (research estimate, over 90 days old at the run date)` | $899 a month per site, plus $5,000 setup once `(profile: Product Modules)` | The buyer has stated no cost pain, and the basis is not like for like | Held |
@@ -883,7 +883,7 @@ No row qualifies yet. The rule needs each row tied to a pain the buyer stated on
 
 **Section 3: Winning Zone Strategy And Landmines**
 
-**Step 3a: Qualification Zone Alignment:**
+**Step 3A: Qualification Zone Alignment:**
 
 | # | Zone | Relevance To This Deal | Positioning Strategy |
 |---|------|------------------------|----------------------|
@@ -895,7 +895,7 @@ No row qualifies yet. The rule needs each row tied to a pain the buyer stated on
 
 Verdict: GREENLIGHT. Zones 2 and 3 are HIGH, and no must-have zone is LOW `(profile: Qualification Zones, Verdict Rule)`. Zone 4 is UNKNOWN, which neither earns nor blocks GREENLIGHT.
 
-**Step 3c: Positioning Landmines:**
+**Step 3C: Positioning Landmines:**
 
 | Landmine | Risk | Mitigation |
 |----------|------|-----------|
@@ -988,15 +988,15 @@ No Verified row exists, so no talk track or email names a customer. The demo sho
 **Step 6: Competitive Strategy Summary:**
 1. **Account:** Greyfield Memorial Park, ACTIVE, Stage 2 Discovery, owner Owen Pruitt `[CRM] (illustrative)`. One-site list price $10,788 a year `(profile: Product Modules)`
 2. **Incumbent:** Stonemark, direct software `[Inferred: row match]` for the type, `(profile: Competitive Landscape)`. Its digital map is in place `[CRM] (illustrative)`
-3. **Competitive threat level:** MEDIUM. Factor scores 2, 1, 2, 2 and 2, a sum of 9 and an average of 1.8. No rival is evaluated
-4. **Primary positioning:** Zone 2, Pre-Need Sales Motion, HIGH, with Zone 3 HIGH
-5. **Top three competitive gaps to test, not claim:** (a) pre-need leads and their call-back owner. (b) Records and trust reporting, which the map does not hold `[CRM] (illustrative)`. (c) Time to live against the January 2027 renewal, a research estimate (Deathcare research project, competitive research note, 2026-03-27, over 90 days old at the run date). No gap is tied to a dated buyer statement yet, so none is claimed
-6. **Positioning landmines:** see Section 3
-7. **Displacement proof point:** none is Verified. Holloway Hills and Fennick Gardens are Illustrative and are not cited
-8. **Critical discovery gap:** the buyer's confirmed pain, and the Stonemark renewal day and scope. The 2026-11-09 call confirmed no pain
-9. **Win strategy summary:** get the buyer's pain and criteria in their own words before the demo. Then show the pre-need call back and the records beside the map. If the criteria name only the map, say so and reassess the deal
-10. **Risk assessment:** Stonemark could win if the buyer decides on the map alone, because the map is its real strength. Stonemark renews in January 2027, so the buyer may renew by default if the decision stalls. Until the buyer states a criterion, the battlecard cannot claim a win over Stonemark
-11. **Recommended next step:** Owen Pruitt asks the buyer for the open discovery gap by 2026-11-20, the demo date, before the demo
+3. **Competitive Threat Level:** MEDIUM. Factor scores 2, 1, 2, 2 and 2, a sum of 9 and an average of 1.8. No rival is evaluated
+4. **Primary Positioning:** Zone 2, Pre-Need Sales Motion, HIGH, with Zone 3 HIGH
+5. **Top Three Competitive Gaps To Test, Not Claim:** (a) pre-need leads and their call-back owner. (b) Records and trust reporting, which the map does not hold `[CRM] (illustrative)`. (c) Time to live against the January 2027 renewal, a research estimate (Deathcare research project, competitive research note, 2026-03-27, over 90 days old at the run date). No gap is tied to a dated buyer statement yet, so none is claimed
+6. **Positioning Landmines:** see Section 3
+7. **Displacement Proof Point:** none is Verified. Holloway Hills and Fennick Gardens are Illustrative and are not cited
+8. **Critical Discovery Gap:** the buyer's confirmed pain, and the Stonemark renewal day and scope. The 2026-11-09 call confirmed no pain
+9. **Win Strategy Summary:** get the buyer's pain and criteria in their own words before the demo. Then show the pre-need call back and the records beside the map. If the criteria name only the map, say so and reassess the deal
+10. **Risk Assessment:** Stonemark could win if the buyer decides on the map alone, because the map is its real strength. Stonemark renews in January 2027, so the buyer may renew by default if the decision stalls. Until the buyer states a criterion, the battlecard cannot claim a win over Stonemark
+11. **Recommended Next Step:** Owen Pruitt asks the buyer for the open discovery gap by 2026-11-20, the demo date, before the demo
 
 **Output:** Full eight-section battlecard, threat MEDIUM at an average of 1.8. No gap row qualifies yet, so the win strategy is to get the buyer's confirmed pain and criteria before the demo, then test the pre-need call back and the records against them.
 
@@ -1037,7 +1037,7 @@ report_path: none (inline)
 - The buyer-said parts are Unknown: the preference, the criteria, and the position on the job. The battlecard claims no advantage over Stonemark.
 - The landmines and test questions are still useful to the rep, because they come from the profile and the dated research. Each one says so, and none is presented as something the buyer said.
 - Stonemark's research estimates are about $1,500 to $2,500 a month, with basis `[Unknown]`, and 90 to 120 days to go live `[Public: Deathcare research project, competitive research note, 2026-03-27] (research estimate, over 90 days old at the run date)`. They are compared as not like for like, and they are not read as Stronger or Weaker.
-- Failure pattern: 0 of 5 cases counted on record, observation only `(profile: Competitive Patterns and Trends)`.
+- Failure pattern: 0 of 5 cases counted on record, observation only `(profile: Competitive Patterns And Trends)`.
 - The threat level is not changed. Stonemark is named beside LOW with no score.
 
 ```text
@@ -1102,13 +1102,13 @@ report_path: none (inline)
 ## Best Practices
 
 ### Do's
-- **Respond positively to competitor mentions.** The budget is already allocated, and no new capital outlay is needed.
-- **Lead with enablement, not criticism.** "Here is what becomes possible" lands better than "here is what is broken."
-- **Use competitor-specific discovery questions.** Genuine curiosity exposes gaps better than accusations.
-- **Include an honest risk assessment.** Naming where the competitor could win is what makes the rest of the battlecard credible.
+- **Respond Positively To Competitor Mentions.** The budget is already allocated, and no new capital outlay is needed.
+- **Lead With Enablement, Not Criticism.** "Here is what becomes possible" lands better than "here is what is broken."
+- **Use Competitor-Specific Discovery Questions.** Genuine curiosity exposes gaps better than accusations.
+- **Include An Honest Risk Assessment.** Naming where the competitor could win is what makes the rest of the battlecard credible.
 - **Match proof points to the scenario, with their Status shown.** Displacement stories go to displacement deals, and only Verified ones are spoken.
-- **Prepare for landmines.** Knowing where the conversation could go badly is worth more than perfect positioning.
-- **Tag every claim.** A reader should see where each fact came from without asking.
+- **Prepare For Landmines.** Knowing where the conversation could go badly is worth more than perfect positioning.
+- **Tag Every Claim.** A reader should see where each fact came from without asking.
 
 ---
 
@@ -1219,7 +1219,7 @@ report_path: none (inline)
 ### 2.0.0 (2026-10-20)
 - Moved to the Sales 2.0 standard: Overview with Core Principle, Why This Skill Exists, Role, Input and Output Contracts, Context with the Shared Contract, Core Workflow with a Produces line per step, one Epistemic Rules section, Hard Rules with reasons, Quality Bar, and Integration with named hand-off fields.
 - The incumbent is filed under the seven shared incumbent types, which the Shared Contract holds and this skill refers to without restating.
-- Failure patterns, trends and jurisdiction deadlines are read from the profile's Competitive Patterns and Trends section. Each carries its cases counted, its dated source, or its rule and the date checked.
+- Failure patterns, trends and jurisdiction deadlines are read from the profile's Competitive Patterns And Trends section. Each carries its cases counted, its dated source, or its rule and the date checked.
 - Proof points carry a Status. Only Verified proof reaches a talk track, a battlecard line the rep reads aloud, or an email.
 - The three old evidence grades are replaced by the six shared tags, and the two Epistemic Rules sections are merged into one.
 - The HTML and PDF card options and the threat colour codes are removed. The file option is Markdown, written only when asked.

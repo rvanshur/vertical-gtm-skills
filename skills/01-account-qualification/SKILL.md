@@ -286,7 +286,7 @@ Seven stages, run in order. The order is fixed for a reason. The facts come firs
 
 Determine whether the user is a BDR or an AE, because that changes the recommended next steps in the verdict.
 
-**From the CRM:** Check the user's role or profile. If it is unclear, check whether the user appears as BDR Owner (contacts) or Account Owner (pipeline deals).
+**From The CRM:** Check the user's role or profile. If it is unclear, check whether the user appears as BDR Owner (contacts) or Account Owner (pipeline deals).
 
 **Fallback:** Ask: "Are you a BDR or an AE?"
 
@@ -298,11 +298,11 @@ Determine whether the user is a BDR or an AE, because that changes the recommend
 
 Every later step reads these facts. A fact gathered after scoring cannot move a score that was already set, so the research comes first and is complete before Step 2. Before pulling anything, open the account's folder under `accounts/` in the Knowledge Base, if the profile has one, and offer the CRM read and, when a call recorder is connected, the call read, for the one account or date range you name. Nothing is read from the CRM or the call recorder until you say yes.
 
-#### 1a. Search The CRM
+#### 1A. Search The CRM
 
 Pull everything available: the account record, existing contacts, deal history, engagement history and any previous qualification notes.
 
-#### 1b. Research The Company Profile
+#### 1B. Research The Company Profile
 
 | Field | Where It Comes From |
 |-------|---------------------|
@@ -318,15 +318,15 @@ Pull everything available: the account record, existing contacts, deal history, 
 | Current Solution | `[CRM]` or `[Call]` or `[Notes]` |
 | Account Status | One of the six status words: TARGET, ENGAGED, INBOUND, ACTIVE with its stage number, LOST or OUT |
 
-#### 1c. Industry Code Validation
+#### 1C. Industry Code Validation
 
 Check the account's codes against the target codes in `{Client Profile: ICP Definitions}`. Score the result as CONFIRMED Match, Adjacent or No Match, with the code and its source.
 
-#### 1d. Transaction Evidence Research
+#### 1D. Transaction Evidence Research
 
 Search for evidence of the activities your product serves, in public records, on the company website or in the CRM. Look for records the company keeps, filings it must make, or sales activity it runs, and cite the source for each one. This evidence confirms the company operates inside the client's target market.
 
-#### 1e. Revenue Estimation
+#### 1E. Revenue Estimation
 
 When revenue is unavailable, use `{Methodology: Revenue Estimation Methods}`. Name the method in the tag.
 
@@ -334,7 +334,7 @@ When revenue is unavailable, use `{Methodology: Revenue Estimation Methods}`. Na
 
 ---
 
-### Step 2: Classify ICP Type and Segment
+### Step 2: Classify ICP Type And Segment
 
 Compare the facts from Step 1 against the Fit Grid row for each ICP in `{Client Profile: Fit Grid}`. Note the row that matched (Strong, Moderate or Weak) for each ICP. Then classify the account against `{Client Profile: ICP Definitions}`:
 - **ICP1** (core market match)
@@ -385,7 +385,7 @@ A HIGH condition that cannot apply to the account counts as met, so an owner who
 
 ---
 
-### Step 5: Flag Risks and Opportunities
+### Step 5: Flag Risks And Opportunities
 
 **Risk Flags** (each cites its evidence and tag):
 
@@ -461,20 +461,20 @@ Return these twelve items inline, in this order.
 
 ## Epistemic Rules
 
-- **Every count carries its n.** Write "6 of 8 criteria" and "2 of 5 zones", never a bare total or a bare rate.
+- **Every Count Carries Its N.** Write "6 of 8 criteria" and "2 of 5 zones", never a bare total or a bare rate.
 - **Silence Is Not A No.** A blank field is `[Unknown]`. UNKNOWN never counts as WEAK, so an absence of evidence cannot disqualify an account on its own.
-- **UNKNOWN is a fourth zone value.** A zone with no evidence is written UNKNOWN in the zone table and in `zone_scores`, and it is never weighed as HIGH or LOW.
-- **Five cases before a pattern.** When a batch shows a pattern across accounts, such as paper-record accounts scoring higher, it needs five accounts behind it. Fewer than five is an observation, and the report says so in the same sentence.
-- **"No difference found" is a finding.** If two segments in a batch score alike, the report says so, rather than writing a segment rule the data does not support.
-- **The same facts give the same verdict.** The zones are read from the profile in the same way on every run, so a re-run on unchanged facts returns the same verdict.
+- **UNKNOWN Is A Fourth Zone Value.** A zone with no evidence is written UNKNOWN in the zone table and in `zone_scores`, and it is never weighed as HIGH or LOW.
+- **Five Cases Before A Pattern.** When a batch shows a pattern across accounts, such as paper-record accounts scoring higher, it needs five accounts behind it. Fewer than five is an observation, and the report says so in the same sentence.
+- **"No Difference Found" Is A Finding.** If two segments in a batch score alike, the report says so, rather than writing a segment rule the data does not support.
+- **The Same Facts Give The Same Verdict.** The zones are read from the profile in the same way on every run, so a re-run on unchanged facts returns the same verdict.
 
 ---
 
 ## Hard Rules
 
-1. **Never give a verdict with a zone unscored.** Reason: the verdict is read from the zones, so an unscored zone is a must-have check nobody made. If no evidence exists, score the zone UNKNOWN and name the fact that would settle it.
-2. **MEDIUM never counts as HIGH.** Reason: the Verdict Rule counts HIGH only. Reading a MEDIUM as HIGH lets a near-fit account reach GREENLIGHT.
-3. **Apply the Verdict Rule as written** (profile: Qualification Zones). Do not set a threshold of this skill's own in its place. Reason: the profile is where the team's definition lives, and a second definition in the skill would drift from it.
+1. **Never Give A Verdict With A Zone Unscored.** Reason: the verdict is read from the zones, so an unscored zone is a must-have check nobody made. If no evidence exists, score the zone UNKNOWN and name the fact that would settle it.
+2. **MEDIUM Never Counts As HIGH.** Reason: the Verdict Rule counts HIGH only. Reading a MEDIUM as HIGH lets a near-fit account reach GREENLIGHT.
+3. **Apply The Verdict Rule As Written** (profile: Qualification Zones). Do not set a threshold of this skill's own in its place. Reason: the profile is where the team's definition lives, and a second definition in the skill would drift from it.
 4. **Never qualify on the name alone or on a rep's say-so.** Reason: a well-known name carries no fit evidence, and a rep's belief is a claim until a record backs it.
 5. **Every fact carries one of the six evidence tags, or it is removed.** Reason: the next skill reads the tags to decide what it may use in an email or a call.
 6. **Never state a revenue estimate without naming its method and tagging it.** Reason: an unlabeled estimate becomes a fact the first time someone quotes it.
@@ -511,7 +511,7 @@ Four worked examples, all on the PlotIQ cast and the chain file. They show a mix
 
 **Process:** Step 0 reads the user's role as BDR `[CRM]` (illustrative). Step 2 classifies the account as ICP2 Combination. The Fit Grid row (profile: Fit Grid) is Strong on "cemetery side on paper". It is Moderate on "owner and GM both sign", because a family board signs. The year-one cost with setup is $26,576 (illustrative), which is above the $25K board line. Step 3 scores the criteria below. Step 4 scores the zones below, using the zone rule (profile: Qualification Zones).
 
-**Criteria (ICP2), 7 of 8 STRONG or PARTIAL:**
+**Criteria (ICP2), 7 Of 8 STRONG Or PARTIAL:**
 
 | # | Criterion | Rating | Evidence |
 |---|-----------|--------|----------|
@@ -562,7 +562,7 @@ report_path: none (inline)
 
 **Process:** The site still runs as one cemetery, so ICP1 holds at site level. The acquisition is a buying trigger, not a change of fit. Step 3 scores the criteria below. The Fit Grid row (profile: Fit Grid) is Strong on plot count and paper records.
 
-**Criteria (ICP1), 6 of 8 STRONG or PARTIAL:**
+**Criteria (ICP1), 6 Of 8 STRONG Or PARTIAL:**
 
 | # | Criterion | Rating | Evidence |
 |---|-----------|--------|----------|
@@ -735,11 +735,11 @@ An account pending AE assignment is not ACTIVE. Score it, and say that it is pen
 ## Best Practices
 
 ### Do's
-- **Label every fact** with one of the six tags. A reader should see where each fact came from without asking.
-- **Use every revenue method you have** and say which one produced the figure.
-- **Check for active AE deals** before recommending BDR outbound. Reason: a second contact on an open deal costs it.
-- **Show all five zones** beside the verdict, every time. Reason: the next skill reads why the verdict landed where it did.
-- **Name the open facts** that could change the verdict, and the fact that would settle each one.
+- **Label Every Fact** with one of the six tags. A reader should see where each fact came from without asking.
+- **Use Every Revenue Method You Have** and say which one produced the figure.
+- **Check For Active AE Deals** before recommending BDR outbound. Reason: a second contact on an open deal costs it.
+- **Show All Five Zones** beside the verdict, every time. Reason: the next skill reads why the verdict landed where it did.
+- **Name The Open Facts** that could change the verdict, and the fact that would settle each one.
 
 ---
 

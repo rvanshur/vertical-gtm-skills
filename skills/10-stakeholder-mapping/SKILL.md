@@ -300,17 +300,17 @@ Champion status is set from the shared champion tests in the Shared Contract, wh
 | **End User Validation** | 1x | No end users known | End users identified | End users engaged |
 | **Blocker Mitigation** | 1x | Known blocker, no strategy | Blocker identified, strategy exists | No blockers, or all neutralized |
 
-**The board chair counts as C-level.** The chair of a family-owned operator's board holds the top decision seat, so a board chair counts as a C-level contact for C-Level Access. A chair who is engaged but not named scores 1, and a named chair who is engaged scores 2. A general manager is not a C-level title, so a GM counts toward Department Breadth and not toward C-Level Access.
+**The Board Chair Counts As C-Level.** The chair of a family-owned operator's board holds the top decision seat, so a board chair counts as a C-level contact for C-Level Access. A chair who is engaged but not named scores 1, and a named chair who is engaged scores 2. A general manager is not a C-level title, so a GM counts toward Department Breadth and not toward C-Level Access.
 
-**Skeptics count toward Blocker Mitigation.** A contact with a Skeptic position and a stated objection, with a strategy in place, scores 1 on Blocker Mitigation (Developing), because an objection not yet acted on is the early form of a block. The contact keeps the Influencer role. This score does not make the contact a Blocker: the Blocker role needs a contact who opposes or delays the deal on the record, and a stated objection alone does not give it.
+**Skeptics Count Toward Blocker Mitigation.** A contact with a Skeptic position and a stated objection, with a strategy in place, scores 1 on Blocker Mitigation (Developing), because an objection not yet acted on is the early form of a block. The contact keeps the Influencer role. This score does not make the contact a Blocker: the Blocker role needs a contact who opposes or delays the deal on the record, and a stated objection alone does not give it.
 
-**End users engaged** means at least one end user Actively Engaged under the Engagement Status table, with 2 or more logged interactions in the last 30 days.
+**End Users Engaged** means at least one end user Actively Engaged under the Engagement Status table, with 2 or more logged interactions in the last 30 days.
 
-**Absence scores only from a read record.** A 0 on a dimension counts only when the rubric's own 0 describes the full contact list (for example, no IT contact on the list). A Blocker Mitigation score of 2 needs notes that were read and show no blocker or a neutralized one. A contact not yet contacted has no notes to read, so the blocker check is INSUFFICIENT, not 2.
+**Absence Scores Only From A Read Record.** A 0 on a dimension counts only when the rubric's own 0 describes the full contact list (for example, no IT contact on the list). A Blocker Mitigation score of 2 needs notes that were read and show no blocker or a neutralized one. A contact not yet contacted has no notes to read, so the blocker check is INSUFFICIENT, not 2.
 
-**The INSUFFICIENT rule.** A dimension with no evidence in the record is INSUFFICIENT. It carries no score and is left out of the raw total and of the weight. The result reads "scored n of 7". Below 5 of 7 scored dimensions there is no threading score, and the report lists the evidence that would score the missing dimensions.
+**The INSUFFICIENT Rule.** A dimension with no evidence in the record is INSUFFICIENT. It carries no score and is left out of the raw total and of the weight. The result reads "scored n of 7". Below 5 of 7 scored dimensions there is no threading score, and the report lists the evidence that would score the missing dimensions.
 
-**The formula.** Score each dimension 0, 1 or 2. Multiply each score by its weight (2x or 1x) to get the weighted score. Add the seven weighted scores for a **raw total from 0 to 20**. Then:
+**The Formula.** Score each dimension 0, 1 or 2. Multiply each score by its weight (2x or 1x) to get the weighted score. Add the seven weighted scores for a **raw total from 0 to 20**. Then:
 
 **threading_score = raw total ÷ (2 × the sum of the scored weights) × 10, rounded half up to a whole number from 0 to 10.** When all seven dimensions are scored, the sum of the weights is 10, so this is the raw total ÷ 2. The raw total ÷ 2 shortcut gives the same number only with all seven scored, so with any dimension INSUFFICIENT use the full formula, in which only the scored rows enter.
 
@@ -412,7 +412,7 @@ Query the CRM for the account record:
 
 **ENGAGED Accounts:** An ENGAGED account has two-way contact and no open deal, so the Active Deal Guard does not apply to it. The map is still built. The contacts who replied are already in conversation, so the engagement plan keeps that thread and does not open a new first-touch outreach to them. The first action answers their last message through the thread's owner, as named in the CRM, or `[Unknown]` when the record is blank. A new contact is introduced through that thread. Account status ENGAGED is not the contact Engagement Status in Methodology, and the two are never mixed.
 
-**Upstream read.** If the MEDDPICC analysis (`gtm-meddpicc-analysis`) has run on this account, read its fields by name: `meddpicc_scores` (the Champion and Economic Buyer elements, to check against this map), `health_score`, `stage_minimum_met`, `stage_recommendation` and `risk_patterns`. A field that is absent is reported as missing and is not rebuilt here.
+**Upstream Read.** If the MEDDPICC analysis (`gtm-meddpicc-analysis`) has run on this account, read its fields by name: `meddpicc_scores` (the Champion and Economic Buyer elements, to check against this map), `health_score`, `stage_minimum_met`, `stage_recommendation` and `risk_patterns`. A field that is absent is reported as missing and is not rebuilt here.
 
 **Produces:** the account record, the Active Deal Guard result, and the upstream MEDDPICC fields read by name (or each one reported missing).
 
@@ -626,24 +626,24 @@ The plays come from the profile's Buying Committee section (available plays). A 
 
 ## Epistemic Rules
 
-- **n beside every rate.** "Four of seven shared tests met" and "two of eight contacts engaged", never a bare rate.
-- **Five cases before a pattern.** One account showing the board chair joins late is an observation. Report a pattern across accounts only when five or more accounts show it.
+- **N Beside Every Rate.** "Four of seven shared tests met" and "two of eight contacts engaged", never a bare rate.
+- **Five Cases Before A Pattern.** One account showing the board chair joins late is an observation. Report a pattern across accounts only when five or more accounts show it.
 - **Silence Is Not A No.** A contact with no logged interaction is unknown, not absent from the org. A reply not logged is `[Unknown]`, not "no reply".
-- **"No difference found" is a finding.** If the threading benchmark shows wins and losses with the same coverage, say so. It means the stakeholder playbook is not yet proven for this market.
-- **Every non-buyer stance is a hypothesis.** A stance is a fact only when a named conversation confirms it, and the call date is shown.
-- **A ghost node is never a name.** It is "UNKNOWN, role", with the reason it exists.
-- **Champion status comes from the shared champion tests** in the Shared Contract, with each test met tagged and dated. A friendly contact is not a champion.
+- **"No Difference Found" Is A Finding.** If the threading benchmark shows wins and losses with the same coverage, say so. It means the stakeholder playbook is not yet proven for this market.
+- **Every Non-Buyer Stance Is A Hypothesis.** A stance is a fact only when a named conversation confirms it, and the call date is shown.
+- **A Ghost Node Is Never A Name.** It is "UNKNOWN, role", with the reason it exists.
+- **Champion Status Comes From The Shared Champion Tests** in the Shared Contract, with each test met tagged and dated. A friendly contact is not a champion.
 
 ---
 
 ## Hard Rules
 
-1. **Never name a person in a ghost node.** A guessed name is contamination, and it travels into the rep's forecast as a fact. The team is safer with "UNKNOWN, [role]" and a next action to find the name.
+1. **Never Name A Person In A Ghost Node.** A guessed name is contamination, and it travels into the rep's forecast as a fact. The team is safer with "UNKNOWN, [role]" and a next action to find the name.
 2. **Never score a champion outside the shared champion tests.** A friendly contact is not a champion. The status feeds the threading score and the MEDDPICC review, so a loose status inflates both.
 3. **Never assign an Economic Buyer from title alone when no contact is on file.** Title is a hypothesis about budget. Without a named or confirmed role, the slot is a ghost node.
-4. **Never present a non-buyer stance as a fact.** Stances are hypotheses until a conversation confirms them, because a wrong stance sends the rep to solve a problem the buyer does not have.
-5. **Never count an engagement that is not logged.** The engagement score drives the threading score, so an unlogged conversation would move the number on memory alone.
-6. **Never leave a contact out of the inventory.** Missing positions are gaps, and a filtered list hides the pattern the map exists to show.
+4. **Never Present A Non-Buyer Stance As A Fact.** Stances are hypotheses until a conversation confirms them, because a wrong stance sends the rep to solve a problem the buyer does not have.
+5. **Never Count An Engagement That Is Not Logged.** The engagement score drives the threading score, so an unlogged conversation would move the number on memory alone.
+6. **Never Leave A Contact Out Of The Inventory.** Missing positions are gaps, and a filtered list hides the pattern the map exists to show.
 7. **Never send an email or write to the CRM.** The rep reads every draft and sends it. This keeps one person accountable for what a buyer receives.
 8. **Never show the threading score without its seven rows.** The reader must be able to recompute the total, or the score is an opinion. An INSUFFICIENT row is shown as INSUFFICIENT, with the count "scored n of 7", and never filled with a 0 or a 2 to close the gap.
 

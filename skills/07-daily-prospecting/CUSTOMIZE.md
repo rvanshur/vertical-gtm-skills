@@ -58,11 +58,11 @@ Start with question 1.
 
 ---
 
-## What You Should Expect to Happen
+## What You Should Expect To Happen
 
-**Question 5 stalls** the most and matters the most. Every tiering rule inherits the honesty of the field it reads. If "last activity date" is right for only half the reps, the tier assignments are coin flips with labels on them. Fix the two fields that matter most before customizing anything else.
+**Question 5 Stalls** the most and matters the most. Every tiering rule inherits the honesty of the field it reads. If "last activity date" is right for only half the reps, the tier assignments are coin flips with labels on them. Fix the two fields that matter most before customizing anything else.
 
-**Question 1 stalls second.** A Hot definition that a system cannot check is a feeling. Ask for the window in days and the signal in fields. The profile's Hot definition is the one the skill applies first, so a vague answer here moves the whole sheet.
+**Question 1 Stalls Second.** A Hot definition that a system cannot check is a feeling. Ask for the window in days and the signal in fields. The profile's Hot definition is the one the skill applies first, so a vague answer here moves the whole sheet.
 
 Both stalls point at the same missing thing: a **context layer**. The skill is a procedure. A procedure needs to know who you sell to, what has worked and what has already gone wrong. That is what `profiles/client-profile.md` is for. Build it once and every skill in the suite inherits it.
 

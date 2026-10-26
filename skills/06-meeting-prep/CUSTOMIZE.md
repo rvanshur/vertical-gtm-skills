@@ -47,13 +47,13 @@ Start with question 1.
 
 ---
 
-## What You Should Expect to Happen
+## What You Should Expect To Happen
 
-**Question 2 stalls** when the pains only exist in marketing language. "Operational inefficiency" has never been said by a buyer on a discovery call, so there is no sentence to listen for.
+**Question 2 Stalls** when the pains only exist in marketing language. "Operational inefficiency" has never been said by a buyer on a discovery call, so there is no sentence to listen for.
 
-**Question 3 stalls** when the team has no proof for a persona. The skill then says so on the sheet and uses a research target, instead of inventing a story. A stall here is useful: it shows where the team needs its first Verified proof.
+**Question 3 Stalls** when the team has no proof for a persona. The skill then says so on the sheet and uses a research target, instead of inventing a story. A stall here is useful: it shows where the team needs its first Verified proof.
 
-**Question 4 stalls** when there is no agreed teach. Every rep improvises a reframe, which is how demos turn into feature tours.
+**Question 4 Stalls** when there is no agreed teach. Every rep improvises a reframe, which is how demos turn into feature tours.
 
 All three point at the same missing thing: a profile that holds what your team knows. Build the section once, and the skill inherits it on every run.
 
@@ -79,6 +79,6 @@ The skill also reads four sections that other interviews or your own edits write
 
 ---
 
-## Keep It to One Page
+## Keep It To One Page
 
 The sheet is read in the two minutes before the call connects. Anything cut from the page should move to the Deal Pulse (08) or Stakeholder Mapping (10) notes, not to a second page. The reason is the reader's time: a second page is not read on the call.

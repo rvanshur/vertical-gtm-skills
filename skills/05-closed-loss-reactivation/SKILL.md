@@ -125,7 +125,7 @@ Every run returns the reactivation analysis inline, in the order of Step 8. The 
 
 Throughout this skill, `{Client Profile: X}` means "section X of `profiles/client-profile.md`". Sections this skill reads:
 
-| Profile section | Used for |
+| Profile Section | Used For |
 |---|---|
 | ICP Definitions | Re-scoring fit after the loss (Step 4) |
 | Qualification Criteria | Buying Triggers, to check for market changes since the loss (Step 3). Disqualifiers, for the RETIRE path (Step 4) |
@@ -245,9 +245,9 @@ Your playbook for loss classification, what's-changed assessment, and loss-reaso
 
 Each pain-surfacing question is a draft. Check it against the AE's loss notes before the call. A question about a reason the buyer never raised reads as a script, and it costs the trust the reactivation depends on.
 
-### Reactivation Strategies by Loss Reason
+### Reactivation Strategies By Loss Reason
 
-**1. Lost to Competitor → Buyer's Remorse Play**
+**1. Lost To Competitor → Buyer's Remorse Play**
 - **Timing:** 6 to 12 months (let them experience limitations)
 - **Angle:** Don't bash the competitor. Ask how it's going. Surface pain naturally.
 - **Opener:** "When we last spoke, you went with [competitor]. Curious how that's been working out, specifically around [area of strength]."
@@ -269,12 +269,12 @@ Each pain-surfacing question is a draft. Check it against the AE's loss notes be
 
 **5. Champion Left → Follow the Champion or Find the Replacement**
 - **Timing:** Immediately on discovery
-- **Track A: Follow the champion.** A warm lead at their new company
-- **Track B: Find the replacement.** The new person inherits the same pain
+- **Track A: Follow The Champion.** A warm lead at their new company
+- **Track B: Find The Replacement.** The new person inherits the same pain
 - **Opener A:** "Congrats on the new role. Imagine you're dealing with similar challenges there."
 - **Opener B:** "[Champion name] and I were working on [pain area]. Not sure where that landed."
 
-**6. Internal Solution → Wait for the Cracks**
+**6. Internal Solution → Wait For The Cracks**
 - **Timing:** 12 to 18 months (internal solutions take time to fail)
 - **Angle:** Ask questions that surface limitations. Don't declare failure.
 - **Opener:** "Your team was building an internal process. Curious how that's scaled. Most teams find it works until [complexity trigger]."
@@ -298,13 +298,13 @@ Each pain-surfacing question is a draft. Check it against the AE's loss notes be
 
 ## Quick Reference
 
-**Use this skill when:**
+**Use This Skill When:**
 - Re-engaging a LOST account that closed in the last 3 to 18 months
 - Deciding whether a closed-lost account is worth re-approaching
 - A trigger event occurs at a former prospect (new leadership, acquisition, competitor pain)
 - Building a reactivation campaign across multiple closed-lost accounts
 
-**Don't use when:**
+**Don't Use When:**
 - The account is net-new. Use Account Snapshot (02) or Research Outbound (03)
 - The account is an active deal. Use Deal Pulse (08)
 - The account replied or met with us after the close and no deal is open (ENGAGED). Use Account Snapshot (02) on the reply
@@ -312,8 +312,8 @@ Each pain-surfacing question is a draft. Check it against the AE's loss notes be
 
 An account marked OUT is a special case. It has no loss to classify, so the skill records the disqualifier and returns RETIRE, with no sequence.
 
-**User roles:** BDR, AE
-**Expected time:** 15 to 25 minutes per account
+**User Roles:** BDR, AE
+**Expected Time:** 15 to 25 minutes per account
 
 ---
 
@@ -325,7 +325,7 @@ Run the steps in order. Step 1 pulls the record and checks the status. Step 2 cl
 
 Determine whether the user is a BDR or an AE.
 
-**From the CRM:** Check the user's role or profile.
+**From The CRM:** Check the user's role or profile.
 **Fallback:** Ask, "Are you a BDR or an AE?" Do not write coordination guidance until the answer is known.
 
 **BDR Coordination Rule:** Always surface the original AE who owned the closed-lost deal. A BDR coordinates with the original AE before re-engaging, because the AE knows why the deal ended, what was promised and what the buyer disliked. The AE may decide that re-engagement is wrong.
@@ -334,7 +334,7 @@ Determine whether the user is a BDR or an AE.
 
 ---
 
-### Step 1: Confirm Status and Pull the Closed-Lost Deal History
+### Step 1: Confirm Status And Pull The Closed-Lost Deal History
 
 Before pulling anything, open the lost account's folder under `accounts/` in the Knowledge Base, if the profile has one, and offer the CRM read and, when a call recorder is connected, the call read, for the one closed-lost deal or date range you name. Nothing is read from the CRM or the call recorder until you say yes.
 
@@ -343,14 +343,14 @@ Check the status first. It is one of the five status words in the Shared Contrac
 - **LOST:** run the full workflow.
 - **ACTIVE:** stop. Name the AE owner and give the BDR guard as the reason. Write no opener.
 - **OUT:** skip to Step 4. There is no loss to classify, so the disqualifier on file is the reason.
-- **TARGET or INBOUND:** this skill does not apply. Use Account Snapshot (02).
+- **TARGET Or INBOUND:** this skill does not apply. Use Account Snapshot (02).
 - **ENGAGED:** the account replied or met with us after the close, and no deal is open. Steps 2 to 4 still run, because the rep needs the loss history and the fit re-score, but no cold reactivation is written. Steps 5 to 7 are skipped, and the account goes to Account Snapshot (02), which works the buyer's own reply. A buyer who has already written back should be answered on that message, not sent a reactivation sequence.
 
 Checking the status first stops the skill from classifying a loss that never happened, and from writing to an account that two people are already working.
 
 Then query the CRM for the account's closed-lost opportunity and extract:
 
-**Deal basics:**
+**Deal Basics:**
 - Account name, industry and sub-industry
 - Original opportunity value (ARR)
 - Stage the deal died at, by its stage number and name from the profile
@@ -358,19 +358,19 @@ Then query the CRM for the account's closed-lost opportunity and extract:
 - AE who owned the deal, BDR who sourced it
 - Deal origin (inbound, outbound, referral, event)
 
-**Loss context:**
+**Loss Context:**
 - Closed-lost reason, if logged
 - Loss notes from the AE
 - Last activity before the deal died
 - Whether a demo was delivered, pricing shared or a proposal sent
 
-**Contact history:**
+**Contact History:**
 - All contacts engaged during the deal
 - Champion and economic buyer, if identified
 - Meeting history with dates, types, participants and key learnings
 - Last conversation topics and outcome
 
-**Prior intelligence:**
+**Prior Intelligence:**
 - Pain points identified during discovery
 - Current-state process described by the prospect
 - Competitors or incumbent tools mentioned
@@ -381,13 +381,13 @@ Then query the CRM for the account's closed-lost opportunity and extract:
 
 ---
 
-### Step 2: Classify the Loss Reason
+### Step 2: Classify The Loss Reason
 
 Categorize using `{Methodology: Loss Reason Taxonomy}`. Use the CRM loss reason if it is logged, and tag it `[CRM]`. If it is blank, infer the reason from the deal history and engagement patterns, and tag the result `[Inferred]` with the method named.
 
 The CRM comes first because the person who logged it heard the buyer. Inference comes second, and it is always tagged as inference.
 
-**Inference signals:**
+**Inference Signals:**
 - Last stage, last activity type and time between activities
 - Died at Stage 2 Discovery: likely No Decision or Not a Fit
 - Died at Stage 5 Negotiate: likely Price, Budget or Lost to Competitor
@@ -405,7 +405,7 @@ Two rules settle the order and the timing. When the AE's notes are blank, the ca
 
 Search for changes since the deal closed that create a new opening. Tag every change. A blank means unknown, not unchanged.
 
-#### Changes at the Account
+#### Changes At The Account
 - New funding, M&A or PE acquisition
 - Geographic expansion into new regions
 - Revenue growth or contraction
@@ -416,17 +416,17 @@ Search for changes since the deal closed that create a new opening. Tag every ch
 
 Tag each change with where it was seen. A change found in a public record is `[Public: source]`.
 
-#### Changes at Your Company
+#### Changes At Your Company
 Use `{Methodology: Product Changes Reference}` (new customer wins in their vertical, new features, new integrations, displacement proof points). Pre-revenue or beta status is a fact about the company, and it is tagged. A customer win is cited only when its proof point is Verified in Proof Points, because a Benchmark or Illustrative row is not a customer result.
 
-#### Changes in the Market
+#### Changes In The Market
 Use `{Client Profile: Qualification Criteria}` (Buying Triggers) and `{Client Profile: Industry Context}`. Use sourced facts only. An unsourced market claim is dropped, not kept as a hunch.
 
 **Produces:** `change_assessment` (tagged). It covers at least two of the three dimensions (account, product, market). A dimension where nothing was found is written as `[Unknown]`, never as "no change", because silence is not a no.
 
 ---
 
-### Step 4: Re-Qualify Fit and Set the Verdict
+### Step 4: Re-Qualify Fit And Set The Verdict
 
 Re-score fit against `{Client Profile: ICP Definitions}`. The company may have changed since the original evaluation. Use the profile's verdict words, GREENLIGHT, MANUAL REVIEW or DISQUALIFY, and show what moved against the original score. When the general manager who would recommend has left, the profile's Zone 3 MEDIUM cell still applies, which reads: GM recommends and the board approves, or the next board meeting is more than 60 days out. The board path is the observable fact, and the HIGH cell needs a signer under the limit to be on record. A zone with no record is UNKNOWN. It counts toward neither HIGH nor LOW, so it never earns or blocks GREENLIGHT, and each UNKNOWN zone is named as the evidence still to find.
 
@@ -444,7 +444,7 @@ For a deeper re-score, run Account Qualification (01). Its `verdict`, `zone_scor
 
 ---
 
-### Step 5: Select the Reactivation Strategy
+### Step 5: Select The Reactivation Strategy
 
 Select the approach from `{Methodology: Reactivation Strategies by Loss Reason}`, using the classification from Step 2 and the verdict from Step 4. The classification must come first, because the strategy is chosen from the loss reason. When Step 2 names two categories and the CRM logs a winning competitor, the play is the competitor play, because the buyer acted on that category. The contact window is set separately, as the paragraph below requires.
 
@@ -459,11 +459,11 @@ Assess the timing as too soon, right time or overdue. Check it against two windo
 Write a four-step email sequence for each of the top two or three personas in `{Client Profile: Buyer Personas}`. Each sequence needs a contact with a name from the CRM or the notes. Without a name, write no sequence and say why, because Email 1 cannot reference the relationship without one. The persona count comes from (profile: Buyer Personas), so the total is personas times four. An ENGAGED account gets no sequence (Step 1), because its buyer has already answered.
 
 Reactivation differs from cold outreach in three ways:
-1. **Acknowledge the history.** Never pretend the prior deal did not happen.
-2. **Lead with what has changed.** New information justifies the re-approach.
-3. **Lower the ask.** Aim for a conversation, not a demo.
+1. **Acknowledge The History.** Never pretend the prior deal did not happen.
+2. **Lead With What Has Changed.** New information justifies the re-approach.
+3. **Lower The Ask.** Aim for a conversation, not a demo.
 
-#### Rules for Reactivation Emails
+#### Rules For Reactivation Emails
 - Include a subject line. Never "Following up" or "Checking in", because they announce a bump with no news.
 - Keep the body to 120 words or fewer. The reader is deciding in a few seconds whether the message is worth an answer.
 - Email 1 references the prior relationship with a specific, checked fact, such as a meeting, a named concern or a date. The buyer remembers that conversation.
@@ -482,14 +482,14 @@ Reactivation differs from cold outreach in three ways:
 | **Email 3: Peer Comparison** | Similar company that made the same decision | Social proof matching their loss scenario |
 | **Email 4: Direct Ask** | Transparent, low-pressure ask | "I think there's a conversation worth having. If not, no hard feelings." |
 
-#### Matching Proof to the Loss Scenario
+#### Matching Proof To The Loss Scenario
 For a buyer who chose a rival, use the two right-hand columns of Competitive Landscape:
-- **"Pain reported after 6 to 12 months"** says what buyers of that rival report a year in. Use it for the angle only with its source.
-- **"Proof that answers it"** names the proof row that answers that pain. Use it only if that row's Status is Verified.
+- **"Pain Reported After 6 To 12 Months"** says what buyers of that rival report a year in. Use it for the angle only with its source.
+- **"Proof That Answers It"** names the proof row that answers that pain. Use it only if that row's Status is Verified.
 
 If the rival's row has no sourced pain, leave the proof blank and say so. Then choose the type of proof from this table, and use only Verified rows from the profile:
 
-| Loss Scenario | Proof Type to Look For | Why It Works |
+| Loss Scenario | Proof Type To Look For | Why It Works |
 |--------------|-----------------|-------------|
 | Lost to competitor | A customer who displaced that competitor | The prospect sees their own decision reflected |
 | No decision (inertia) | A customer showing the cost of waiting | Quantifies the delay |
@@ -541,7 +541,7 @@ Use the pain-surfacing question from the Loss Reason Taxonomy for the loss categ
 
 ---
 
-### Step 8: Deliver the Analysis
+### Step 8: Deliver The Analysis
 
 Present the complete reactivation analysis inline, in this order:
 
@@ -566,33 +566,33 @@ Write a file only when the user asks for one. When they do, the file is the one-
 
 ## Epistemic Rules
 
-- **Every rate carries its n.** Write "3 of 7 contacts engaged", never "43%". This holds for batch counts too.
-- **Five cases before a pattern.** One account with the same CRM reason is an account. Five or more accounts sharing a reason, checked against their notes, can support a claim about the pattern. Fewer is an observation, and it is labelled as one.
+- **Every Rate Carries Its N.** Write "3 of 7 contacts engaged", never "43%". This holds for batch counts too.
+- **Five Cases Before A Pattern.** One account with the same CRM reason is an account. Five or more accounts sharing a reason, checked against their notes, can support a claim about the pattern. Fewer is an observation, and it is labelled as one.
 - **Silence Is Not A No.** A blank CRM field, a missing loss note or an empty renewal date is `[Unknown]`, and it is left out of any count. Writing it as "no" invents a trend.
-- **"No difference found" is a finding.** If a batch shows no difference in re-engagement between timing losses and competitor losses, report it. Do not write a timing playbook the data does not support.
-- **Every fact carries a tag.** A fact with no tag is removed. The tag set is the one in the Shared Contract.
-- **A claim about the past must be checkable.** Any "when we last spoke" line needs a dated record in the CRM, a call or the AE's notes.
+- **"No Difference Found" Is A Finding.** If a batch shows no difference in re-engagement between timing losses and competitor losses, report it. Do not write a timing playbook the data does not support.
+- **Every Fact Carries A Tag.** A fact with no tag is removed. The tag set is the one in the Shared Contract.
+- **A Claim About The Past Must Be Checkable.** Any "when we last spoke" line needs a dated record in the CRM, a call or the AE's notes.
 
 ---
 
 ## Hard Rules
 
 1. **Never write to an ACTIVE account with an AE owner unless that AE says yes.** Two people writing to one buyer costs the deal, and the buyer usually cannot tell which rep is which.
-2. **Never reactivate on the CRM loss reason alone.** The field is written at the moment the deal is given up, so it records the rep's view of the loss. Checking it against the notes is the test of the claim.
+2. **Never Reactivate On The CRM Loss Reason Alone.** The field is written at the moment the deal is given up, so it records the rep's view of the loss. Checking it against the notes is the test of the claim.
 3. **Never write a sentence that says the prior deal did not happen.** The buyer remembers the last conversation, and a reactivation that ignores it reads as pestering.
-4. **Never bash the competitor or the buyer's decision.** The buyer chose it and may still be happy with it. Criticism makes them defend the choice.
+4. **Never Bash The Competitor Or The Buyer's Decision.** The buyer chose it and may still be happy with it. Criticism makes them defend the choice.
 5. **Never cite a proof point that is not Verified in an email, talk track or opener a prospect hears.** Illustrative rows are invented for examples, and citing one is a false claim. A Benchmark is context, not a customer result.
 6. **Never write a history opener from history you have not checked.** A wrong "when we last spoke" ends the reactivation and damages the account for the next rep.
-7. **Never write an email without a named contact.** Email 1 must use the name and the prior relationship. A message to an unnamed contact cannot do either.
-8. **Never reactivate an OUT account.** A disqualifier is a fact about the company, such as the system it runs or its structure. A new deal does not change it, so only a change to the disqualifier itself reopens the account.
+7. **Never Write An Email Without A Named Contact.** Email 1 must use the name and the prior relationship. A message to an unnamed contact cannot do either.
+8. **Never Reactivate An OUT Account.** A disqualifier is a fact about the company, such as the system it runs or its structure. A new deal does not change it, so only a change to the disqualifier itself reopens the account.
 9. **Never send, enroll a contact or write to the CRM.** The rep reads every draft before anything leaves, because a draft that has been read is the only safe one.
-10. **Never call a blank field a no.** A blank is unknown, and it is excluded from every denominator.
+10. **Never Call A Blank Field A No.** A blank is unknown, and it is excluded from every denominator.
 
 ---
 
 ## Quality Bar
 
-**Done when all are true:**
+**Done When All Are True:**
 
 - [ ] The status was read first. The account is LOST, or it is OUT and was returned as RETIRE with its disqualifier recorded
 - [ ] An ENGAGED account was routed to Account Snapshot (02) on its reply, with no reactivation sequence or opener written
@@ -614,7 +614,7 @@ Write a file only when the user asks for one. When they do, the file is the one-
 
 The examples use the PlotIQ example company and its cast, and they match the shared chain. Every fact carries a tag. Every figure is in the profile, cited to a named source, or marked `(illustrative)`. The three examples show a MONITOR, a RETIRE, and a champion move that routes to a new account.
 
-### Example 1: The Loss Reason Is a Claim, MONITOR (Lowmoor Memorial Gardens)
+### Example 1: The Loss Reason Is A Claim, MONITOR (Lowmoor Memorial Gardens)
 
 **Context:** Lowmoor Memorial Gardens is one site with 7,500 plots (profile: Example Cast). It closed-lost to Oldgate Ledger Pro on 2026-01-20. The CRM reason is "timing" `[CRM]`. The general manager, Ines Carmody, was the champion. She moved to Quill Hollow Memorial Park in April 2026, six months ago `[Public: state licensing database]`.
 
@@ -622,12 +622,12 @@ The examples use the PlotIQ example company and its cast, and they match the sha
 
 **Step 0: Role Detection.** The user is a BDR. The original AE is Owen Pruitt `[CRM]` (illustrative), the AE owner on the closed-lost opportunity. The coordination guidance names him, and the BDR coordinates with him before any outreach.
 
-**Step 1: Status and Deal History.** Status is LOST. Close date 2026-01-20 `[CRM]`. Stage lost is 4 Proposal `[CRM]` (illustrative). Days since close is 272, which is nine months, counted to today, 2026-10-19. Deal value is `[Unknown]`. It is optional for the verdict, and the skill asks for it before any price goes into a message. The AE's loss notes are `[Unknown]`, because they are not in the cast. The champion, Ines Carmody, has moved `[Public: state licensing database]`.
+**Step 1: Status And Deal History.** Status is LOST. Close date 2026-01-20 `[CRM]`. Stage lost is 4 Proposal `[CRM]` (illustrative). Days since close is 272, which is nine months, counted to today, 2026-10-19. Deal value is `[Unknown]`. It is optional for the verdict, and the skill asks for it before any price goes into a message. The AE's loss notes are `[Unknown]`, because they are not in the cast. The champion, Ines Carmody, has moved `[Public: state licensing database]`.
 
 **Step 2: Loss Classification.** Two categories fit, and the CRM reason does not settle the question on its own.
 - **Budget / Timing `[CRM]`.** The CRM logs the reason as "timing" `[CRM]`. The records show no board date that passed before the close, so no board-date sub-reason is written. The next board meeting, 2027-01-20, is in the future.
-- **Lost to Competitor `[CRM]`.** Oldgate is logged as the winning competitor in the CRM's competitor field `[CRM]`.
-- **Champion Left does not apply.** She moved six months ago, after the loss, so her move did not cause it.
+- **Lost To Competitor `[CRM]`.** Oldgate is logged as the winning competitor in the CRM's competitor field `[CRM]`.
+- **Champion Left Does Not Apply.** She moved six months ago, after the loss, so her move did not cause it.
 
 The AE's loss notes decide between the two categories. That question goes to the AE in Step 8.
 
@@ -640,7 +640,7 @@ The AE's loss notes decide between the two categories. That question goes to the
 
 **Step 4: Re-Qualification.** The re-score is set against the original qualification on the deal record, zone by zone. Only the zones the records speak to are scored, and the rest are `[Unknown]`.
 
-| Zone | At the Deal `[CRM]` (illustrative) | Now | What Moved |
+| Zone | At The Deal `[CRM]` (illustrative) | Now | What Moved |
 |------|-----------------------------------|-----|------------|
 | 1 Records and Inventory Pain | MEDIUM | MEDIUM | Nothing. Paper deeds and lookups that take days `[CRM]` (illustrative). The trust filing is current with no finding on record `[Public: state licensing database]` (illustrative), so the HIGH test is not met |
 | 3 Ownership and Decision Speed (must-have) | HIGH | MEDIUM | The GM who signed has left. Above $25K the board approves, and its next meeting is 2027-01-20, 93 days after the run date, so the next board meeting is more than 60 days out `[CRM]` (illustrative). With the GM gone, the board path carries the MEDIUM cell in (profile: Qualification Zones) |
@@ -676,7 +676,7 @@ next_action: BDR asks the original AE for the loss notes and the Oldgate renewal
 report_path: none (inline)
 ```
 
-### Example 2: Re-Qualification Retires the Account (Northvale Memorial Holdings)
+### Example 2: Re-Qualification Retires The Account (Northvale Memorial Holdings)
 
 **Context:** Northvale Memorial Holdings is a public consolidator with about 240 funeral homes and 90 cemeteries (profile: Example Cast). It runs its own in-house system `[Public: annual filing]`. The example cast marks it OUT (profile: Example Cast). OUT means disqualified, which is a different status from LOST. The cast holds no closed-lost record for Northvale, so there is no deal to pull and no loss to classify.
 
@@ -708,7 +708,7 @@ next_action: the rep logs the disqualifier in the CRM, by 2026-10-26
 report_path: none (inline)
 ```
 
-### Example 3: The Champion Moves to an ICP Account (Ines Carmody, Lowmoor to Quill Hollow)
+### Example 3: The Champion Moves To An ICP Account (Ines Carmody, Lowmoor to Quill Hollow)
 
 **Context:** Ines Carmody, Lowmoor's champion, now runs Quill Hollow Memorial Park. Quill Hollow is a TARGET account with a GREENLIGHT verdict. Its status and verdict come from (profile: Example Cast) (illustrative). No reply from Quill Hollow is on record on the run date of 2026-10-19, so it stays TARGET. It has 8,800 plots on paper plat maps, and its owner signs under $25K.
 
@@ -716,11 +716,11 @@ report_path: none (inline)
 
 **Step 2: Loss Classification.** Unchanged from Example 1. The champion's move came after the loss, so the loss reason is not Champion Left. Her move is a new opening, not the cause of the loss.
 
-**Step 4: Verdict for Lowmoor.** MONITOR, unchanged. Quill Hollow is a separate account, scored on its own zones.
+**Step 4: Verdict For Lowmoor.** MONITOR, unchanged. Quill Hollow is a separate account, scored on its own zones.
 
 **Step 5: Strategy.** The Champion Follow pattern applies, because the champion now runs a GREENLIGHT account `[Public: state licensing database]`. Two tracks run in parallel:
-- **Track A: follow Ines Carmody to Quill Hollow.** This is a new-account play, so route it to Account Snapshot (02) as a new account. Reference Lowmoor only if she raises it.
-- **Track B: find the current Lowmoor contact.** This stays in this skill, on MONITOR, until the open items in Example 1 close.
+- **Track A: Follow Ines Carmody To Quill Hollow.** This is a new-account play, so route it to Account Snapshot (02) as a new account. Reference Lowmoor only if she raises it.
+- **Track B: Find The Current Lowmoor Contact.** This stays in this skill, on MONITOR, until the open items in Example 1 close.
 
 Track A has priority, because she already knows the product from the evaluation, and her new account fits the ICP.
 
@@ -758,39 +758,39 @@ report_path: none (inline)
 
 ## Troubleshooting
 
-### No Loss Reason Recorded in the CRM
+### No Loss Reason Recorded In The CRM
 - **Symptom:** The CRM loss field is blank.
-- **Likely cause:** The field was never filled in. Blank means unknown, not no.
+- **Likely Cause:** The field was never filled in. Blank means unknown, not no.
 - **Response:** Infer from the behavioral signals (last stage reached, last activity type, time between activities). Tag the result `[Inferred]` and name the method. Died at Stage 2 Discovery with several unanswered follow-ups suggests Went Dark. Died at Stage 5 Negotiate suggests Price, Budget or Lost to Competitor. State the evidence behind each.
 
 ### Deal Closed More Than 18 Months Ago
 - **Symptom:** The close date is older than 18 months.
-- **Likely cause:** The account may have changed significantly.
+- **Likely Cause:** The account may have changed significantly.
 - **Response:** Run a fresh ICP re-score in Step 4. Without a meaningful change, classify as MONITOR or RETIRE rather than forcing a stale reactivation.
 
 ### Multiple Loss Reasons Apply
 - **Symptom:** The notes point to more than one reason.
-- **Likely cause:** More than one factor contributed to the loss.
+- **Likely Cause:** More than one factor contributed to the loss.
 - **Response:** Classify by the primary reason, the one that ended the deal. Note the secondary factors as context. Build the sequences on the primary, and use the secondary in the discovery questions.
 
-### Champion Moved to a Non-ICP Company
+### Champion Moved To A Non-ICP Company
 - **Symptom:** The champion's new company does not fit the ICP.
-- **Likely cause:** The champion's move fails the fit test.
+- **Likely Cause:** The champion's move fails the fit test.
 - **Response:** Track A is not viable. Focus entirely on Track B, which finds a replacement at the original account. Note the champion's new company in case the ICP changes.
 
 ### Account Is OUT, Not LOST
 - **Symptom:** The user asks to reactivate an account the CRM marks OUT, and no closed-lost record exists.
-- **Likely cause:** A disqualifier, not a loss.
+- **Likely Cause:** A disqualifier, not a loss.
 - **Response:** Skip the loss classification. Return RETIRE with the disqualifier, and recommend the CRM entry that records it.
 
 ### Renewal Date Is Unknown
 - **Symptom:** The timing of a rival's renewal cannot be placed.
-- **Likely cause:** The renewal date is `[Unknown]` in the CRM and the notes.
+- **Likely Cause:** The renewal date is `[Unknown]` in the CRM and the notes.
 - **Response:** Say that the entry window cannot be placed, name the date that is needed, and hold the sequence. Do not estimate the renewal.
 
 ### The Only Matching Proof Is Illustrative
 - **Symptom:** The proof row that matches the loss is Illustrative.
-- **Likely cause:** The row is an example, not a customer result.
+- **Likely Cause:** The row is an example, not a customer result.
 - **Response:** Use the sourced pain pattern, or a Benchmark labelled as research with its source and date. Write no customer figure into anything a prospect reads.
 
 ---
@@ -798,24 +798,24 @@ report_path: none (inline)
 ## Best Practices
 
 ### Do's
-- **Acknowledge the history.** Email 1 references the prior relationship with a specific, checked fact, because the buyer remembers it.
-- **Lead with what has changed.** New information justifies the re-approach. Without it, the outreach is pestering.
-- **Lower the ask.** Aim for a conversation about what has changed, not a restarted evaluation.
-- **Match proof to the loss scenario.** A competitor loss takes the displacement proof, with the Competitive Landscape row as the guide.
-- **Coordinate BDRs with the original AE.** The AE has context the BDR does not.
-- **Set the reminder before leaving the account.** A MONITOR is a dated reminder, so it needs a date when it is written.
+- **Acknowledge The History.** Email 1 references the prior relationship with a specific, checked fact, because the buyer remembers it.
+- **Lead With What Has Changed.** New information justifies the re-approach. Without it, the outreach is pestering.
+- **Lower The Ask.** Aim for a conversation about what has changed, not a restarted evaluation.
+- **Match Proof To The Loss Scenario.** A competitor loss takes the displacement proof, with the Competitive Landscape row as the guide.
+- **Coordinate BDRs With The Original AE.** The AE has context the BDR does not.
+- **Set The Reminder Before Leaving The Account.** A MONITOR is a dated reminder, so it needs a date when it is written.
 
 ---
 
 ## Integration With Other Skills
 
-- **Reads from:** the CRM record for the account and its owner, and the profile sections in the Context table. No upstream sales skill hands this skill a field.
-- **Hands to Trigger Event Outbound (04):** `loss_classification`, `change_assessment` (tagged), `reactivation_strategy` (REACTIVATE, MONITOR or RETIRE) and `history_opener`. When a trigger fires at a closed-lost account, 04 keeps the trigger's own window for timing and reads these fields as context.
-- **Hands to Meeting Prep (06):** the same four fields. 06 uses `loss_classification` and `history_opener` on the prep sheet, and `change_assessment` for the talking points.
-- **Reads from Account Qualification (01):** for a deeper fit re-score in Step 4. Its `verdict`, `zone_scores`, `icp_match` and `fit_narrative` replace the quick re-score.
-- **Works with Competitive Displacement (12):** when the loss is to a rival and the verdict is REACTIVATE, run 12 and combine its positioning with the reactivation angle. Skill 12 has its own hand-off to 02 and 06, and this skill does not read its fields.
-- **Hands to Deal Pulse (08):** once reactivation opens a new opportunity, Deal Pulse takes over health monitoring. If the prior deal was scored in MEDDPICC (09), its `meddpicc_scores` show the gaps that the reactivation should address.
-- **Hands to Wrap-Up:** the close reads `reactivation_strategy` as the verdict, `report_path` when a file was written, and `next_action` with its owner and date.
+- **Reads From:** the CRM record for the account and its owner, and the profile sections in the Context table. No upstream sales skill hands this skill a field.
+- **Hands To Trigger Event Outbound (04):** `loss_classification`, `change_assessment` (tagged), `reactivation_strategy` (REACTIVATE, MONITOR or RETIRE) and `history_opener`. When a trigger fires at a closed-lost account, 04 keeps the trigger's own window for timing and reads these fields as context.
+- **Hands To Meeting Prep (06):** the same four fields. 06 uses `loss_classification` and `history_opener` on the prep sheet, and `change_assessment` for the talking points.
+- **Reads From Account Qualification (01):** for a deeper fit re-score in Step 4. Its `verdict`, `zone_scores`, `icp_match` and `fit_narrative` replace the quick re-score.
+- **Works With Competitive Displacement (12):** when the loss is to a rival and the verdict is REACTIVATE, run 12 and combine its positioning with the reactivation angle. Skill 12 has its own hand-off to 02 and 06, and this skill does not read its fields.
+- **Hands To Deal Pulse (08):** once reactivation opens a new opportunity, Deal Pulse takes over health monitoring. If the prior deal was scored in MEDDPICC (09), its `meddpicc_scores` show the gaps that the reactivation should address.
+- **Hands To Wrap-Up:** the close reads `reactivation_strategy` as the verdict, `report_path` when a file was written, and `next_action` with its owner and date.
 
 ### Chains
 

@@ -44,13 +44,13 @@ Start with question 1.
 
 ---
 
-## What You Should Expect to Happen
+## What You Should Expect To Happen
 
-**Question 1 stalls** when nobody kept the winning emails. Performance lives in anecdote, not in a swipe file, and the reference email is the single most useful thing the skill can learn.
+**Question 1 Stalls** when nobody kept the winning emails. Performance lives in anecdote, not in a swipe file, and the reference email is the single most useful thing the skill can learn.
 
-**Question 2 stalls** when research habits were inherited from a horizontal playbook and nobody has mapped what your vertical exposes publicly. A source with no stated lag is a source the skill cannot weigh.
+**Question 2 Stalls** when research habits were inherited from a horizontal playbook and nobody has mapped what your vertical exposes publicly. A source with no stated lag is a source the skill cannot weigh.
 
-**Question 4 stalls** when the team ranks regions by feel. The region map only works when each tier names its rule and its source, because the skill ranks accounts by that cost.
+**Question 4 Stalls** when the team ranks regions by feel. The region map only works when each tier names its rule and its source, because the skill ranks accounts by that cost.
 
 All three stalls point at the same missing thing: a context layer. The skill is a procedure, and a procedure needs to know who you sell to, what has worked, and where a missed rule costs the most. That is what the profile is for. Build it once, and every skill in the suite inherits it.
 
@@ -70,6 +70,6 @@ Add this section to `profiles/client-profile.md` once. The interview above write
 
 ---
 
-## If the One-Pager Grows
+## If The One-Pager Grows
 
 The cheatsheet is one page because a BDR reads it between dials. Anything that pushes it to two pages belongs in Research Outbound (03), which is the deep version of this skill.

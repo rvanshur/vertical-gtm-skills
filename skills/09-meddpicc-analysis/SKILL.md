@@ -331,7 +331,7 @@ The champion status comes first, from the shared champion tests in the Shared Co
 
 **Formula:** For each scored element, multiply its score (1-5) by its weight written as a decimal (15% is 0.15). Sum those weighted scores. Divide the sum by 5 times the sum of the weights of the scored elements, and multiply by 100, rounded to a whole number. When all eight elements are scored, the weights sum to 1 and this is the sum divided by 5, times 100. A deal scored 5 on every element gives a sum of 5.00, and 5.00 ÷ 5 × 100 = 100.
 
-**The INSUFFICIENT rule.** An element with no evidence in the record is INSUFFICIENT. It carries no score, it is left out of the total and of the count, and the table shows it as INSUFFICIENT beside the evidence that would score it. The report states the count as "scored n of 8". When fewer than 6 of the 8 elements are scored, there is no health score, no stage minimum check and no stage recommendation, and the report lists the evidence that would score the missing elements.
+**The INSUFFICIENT Rule.** An element with no evidence in the record is INSUFFICIENT. It carries no score, it is left out of the total and of the count, and the table shows it as INSUFFICIENT beside the evidence that would score it. The report states the count as "scored n of 8". When fewer than 6 of the 8 elements are scored, there is no health score, no stage minimum check and no stage recommendation, and the report lists the evidence that would score the missing elements.
 
 | Health Score | Health | Meaning |
 |-------|--------|---------|
@@ -471,25 +471,25 @@ Write a file only when the user asks for one, named `<account>_gtm-meddpicc-anal
 
 ## Epistemic Rules
 
-- **Only score what is evidenced in the record.** No evidence means INSUFFICIENT, not a low score. Do not inflate, and do not score an element at the bottom of its rubric to fill a gap. An element with no evidence carries `[Unknown]` and is left out of the total, as the INSUFFICIENT rule in Methodology says.
-- **Tag every fact** with one of the six shared evidence tags. A fact with no tag is removed from the analysis.
-- **Distinguish confirmed from claimed.** A champion the rep claims is selling internally differs from one whose internal activity the record shows. Score the record.
-- **Print n beside every rate.** "4 of 8 elements at 4 or higher" is readable. A rate shown without its count is not.
+- **Only Score What Is Evidenced In The Record.** No evidence means INSUFFICIENT, not a low score. Do not inflate, and do not score an element at the bottom of its rubric to fill a gap. An element with no evidence carries `[Unknown]` and is left out of the total, as the INSUFFICIENT rule in Methodology says.
+- **Tag Every Fact** with one of the six shared evidence tags. A fact with no tag is removed from the analysis.
+- **Distinguish Confirmed From Claimed.** A champion the rep claims is selling internally differs from one whose internal activity the record shows. Score the record.
+- **Print N Beside Every Rate.** "4 of 8 elements at 4 or higher" is readable. A rate shown without its count is not.
 - **Silence Is Not A No.** A blank CRM field is unknown, counted in no denominator, and written as `[Unknown]`. It is not scored as a refusal.
-- **Five cases before a pattern.** One deal shows an observation. A gap that repeats across deals needs five cases before it is named as a pattern.
-- **"No difference found" is a finding.** When Deal Pulse and this analysis disagree, both are reported with their dates. The difference is shown, not smoothed over.
+- **Five Cases Before A Pattern.** One deal shows an observation. A gap that repeats across deals needs five cases before it is named as a pattern.
+- **"No Difference Found" Is A Finding.** When Deal Pulse and this analysis disagree, both are reported with their dates. The difference is shown, not smoothed over.
 
 ---
 
 ## Hard Rules
 
-1. **Never score a rep's self-assessment.** The rep's confidence is the thing this skill exists to check. Reason: a score built on confidence cannot tell a deal that is progressing from one that is merely liked.
-2. **Show all eight elements.** Score each element the record evidences, and mark each one it does not as INSUFFICIENT, with the evidence that would score it. Reason: a silently skipped element hides the weakest one, and the weakest element is usually the one that loses the deal.
-3. **Never score on potential.** "They are a great company" is not a MEDDPICC score. Reason: potential does not show a buyer's approval path.
-4. **Never average without weights.** Reason: the weights set the priority. Economic Buyer at 20% outweighs Competition at 5% for a reason.
+1. **Never Score A Rep's Self-Assessment.** The rep's confidence is the thing this skill exists to check. Reason: a score built on confidence cannot tell a deal that is progressing from one that is merely liked.
+2. **Show All Eight Elements.** Score each element the record evidences, and mark each one it does not as INSUFFICIENT, with the evidence that would score it. Reason: a silently skipped element hides the weakest one, and the weakest element is usually the one that loses the deal.
+3. **Never Score On Potential.** "They are a great company" is not a MEDDPICC score. Reason: potential does not show a buyer's approval path.
+4. **Never Average Without Weights.** Reason: the weights set the priority. Economic Buyer at 20% outweighs Competition at 5% for a reason.
 5. **Never move a stage back to Stage 2 Discovery when Identified Pain scores 3 or higher.** Reason: the pain is already confirmed, and a return to Discovery tells the team the deal was never real.
 6. **Never return a stage recommendation without the stage minimum check.** Reason: the stage word is only as good as the minimum and critical-element check that produced it.
-7. **Never send, enroll, or write to the CRM.** Reason: the rep reads the analysis first, and the rep is accountable for what the buyer receives.
+7. **Never Send, Enroll, Or Write To The CRM.** Reason: the rep reads the analysis first, and the rep is accountable for what the buyer receives.
 
 ---
 
@@ -519,14 +519,14 @@ Write a file only when the user asks for one, named `<account>_gtm-meddpicc-anal
 **Input:** "Run MEDDPICC deal analysis for Brackhaven Memorial Gardens."
 
 **Scoring Summary (Scored 8 Of 8):**
-- **Metrics: 4 of 5.** Ruth gave the plot count, 11,000 `[CRM]`. Her own current-state number is the trust fund report, which takes her office about 30 hours each year, built by hand from the ledger (`[Call, 2026-09-26]`, illustrative). The ROI framework was shared, not yet agreed `[Call, 2026-09-26]`.
-- **Economic Buyer: 4 of 5.** The family board chair is identified by title. Direct access was established on one call `[CRM]`. Budget was discussed, not confirmed `[Call, 2026-09-26]`.
-- **Decision Criteria: 4 of 5.** Must-haves are known from discovery and the deal maps to them strongly `[Call, 2026-05-19]`. The pre-need module is a nice-to-have `[Call, 2026-09-26]`.
-- **Decision Process: 4 of 5.** The committee is mapped: board, GM and Operations Director `[CRM]`. The family board meeting is set for 2026-11-12 in the CRM `[CRM]`. That is the date Ruth is working to, and the board itself has not formally confirmed it `[Call, 2026-09-26]`. The approval sequence is partly confirmed `[Notes]`.
-- **Paper Process: 3 of 5.** Aware that legal and vendor review exists (profile: MEDDPICC). The steps and timing are not scoped `[Unknown]`.
-- **Identified Pain: 5 of 5.** Two stakeholders each state a quantified pain in their own words. Ruth Ellery, General Manager, on the 2026-09-26 call: "Each double sale costs my staff about 40 hours to unwind" (`[Call, 2026-09-26]`, illustrative), after one double sale in 24 months `[CRM]` (illustrative). Trust fund reporting is done by hand `[Call, 2026-09-26]`. She named the March 2027 Oldgate renewal as the deadline behind the 2026-11-12 board date `[Call, 2026-09-26]` (illustrative), so the timeline is urgent. Walt Okonkwo, Operations Director, on the 2026-09-17 call: "A double-sale search costs me half a day, and I run about two lookups a week" (`[Call, 2026-09-17]`, illustrative). The pain maps to Zone 1, HIGH: plot records on paper and one double sale in 24 months `[CRM]`, read against the Zone 1 row (profile: Qualification Zones). Two stakeholders meet the rule for 5.
-- **Champion: 5 of 5.** Ruth Ellery is Strong: four of seven shared champion tests met, each tagged with its source and date. Offers introductions (she offers to introduce the board chair, `[Call, 2026-09-26]`). Commits to next steps with dates (the 2026-11-12 board date, `[Call, 2026-09-26]`). Explains the internal politics (the chair decides after the family's vote, `[Call, 2026-09-26]`). Defends the solution when we are not in the room (she briefed the board chair on the records fix and forwarded the ledger comparison, `[CRM, 2026-09-25]`, the active selling that row 5 asks for). She also coached us on Walt Okonkwo's objection to tablets `[Call, 2026-09-26]` (illustrative).
-- **Competition: 4 of 5.** Oldgate Ledger Pro is the incumbent, direct software, renewal March 2027 `[CRM]`. Stonemark was evaluated with no preference stated `[Call, 2026-09-26]`. A strategy exists and is not yet tested with the buyer `[Notes]`.
+- **Metrics: 4 Of 5.** Ruth gave the plot count, 11,000 `[CRM]`. Her own current-state number is the trust fund report, which takes her office about 30 hours each year, built by hand from the ledger (`[Call, 2026-09-26]`, illustrative). The ROI framework was shared, not yet agreed `[Call, 2026-09-26]`.
+- **Economic Buyer: 4 Of 5.** The family board chair is identified by title. Direct access was established on one call `[CRM]`. Budget was discussed, not confirmed `[Call, 2026-09-26]`.
+- **Decision Criteria: 4 Of 5.** Must-haves are known from discovery and the deal maps to them strongly `[Call, 2026-05-19]`. The pre-need module is a nice-to-have `[Call, 2026-09-26]`.
+- **Decision Process: 4 Of 5.** The committee is mapped: board, GM and Operations Director `[CRM]`. The family board meeting is set for 2026-11-12 in the CRM `[CRM]`. That is the date Ruth is working to, and the board itself has not formally confirmed it `[Call, 2026-09-26]`. The approval sequence is partly confirmed `[Notes]`.
+- **Paper Process: 3 Of 5.** Aware that legal and vendor review exists (profile: MEDDPICC). The steps and timing are not scoped `[Unknown]`.
+- **Identified Pain: 5 Of 5.** Two stakeholders each state a quantified pain in their own words. Ruth Ellery, General Manager, on the 2026-09-26 call: "Each double sale costs my staff about 40 hours to unwind" (`[Call, 2026-09-26]`, illustrative), after one double sale in 24 months `[CRM]` (illustrative). Trust fund reporting is done by hand `[Call, 2026-09-26]`. She named the March 2027 Oldgate renewal as the deadline behind the 2026-11-12 board date `[Call, 2026-09-26]` (illustrative), so the timeline is urgent. Walt Okonkwo, Operations Director, on the 2026-09-17 call: "A double-sale search costs me half a day, and I run about two lookups a week" (`[Call, 2026-09-17]`, illustrative). The pain maps to Zone 1, HIGH: plot records on paper and one double sale in 24 months `[CRM]`, read against the Zone 1 row (profile: Qualification Zones). Two stakeholders meet the rule for 5.
+- **Champion: 5 Of 5.** Ruth Ellery is Strong: four of seven shared champion tests met, each tagged with its source and date. Offers introductions (she offers to introduce the board chair, `[Call, 2026-09-26]`). Commits to next steps with dates (the 2026-11-12 board date, `[Call, 2026-09-26]`). Explains the internal politics (the chair decides after the family's vote, `[Call, 2026-09-26]`). Defends the solution when we are not in the room (she briefed the board chair on the records fix and forwarded the ledger comparison, `[CRM, 2026-09-25]`, the active selling that row 5 asks for). She also coached us on Walt Okonkwo's objection to tablets `[Call, 2026-09-26]` (illustrative).
+- **Competition: 4 Of 5.** Oldgate Ledger Pro is the incumbent, direct software, renewal March 2027 `[CRM]`. Stonemark was evaluated with no preference stated `[Call, 2026-09-26]`. A strategy exists and is not yet tested with the buyer `[Notes]`.
 
 **Weighted Score:**
 | Element | Weight | Score | Weighted (Score × Weight) |
@@ -576,14 +576,14 @@ report_path: none (inline)
 **Input:** "MEDDPICC score Brackhaven again. It's still in Negotiate."
 
 **Scoring Summary (Scored 8 Of 8):**
-- **Metrics: 3 of 5.** General pain is quantified `[Call, 2026-09-26]`, but the ROI numbers have not been updated since the board date moved `[Notes]`.
-- **Economic Buyer: 4 of 5.** The board chair is identified by title, name `[Unknown]`, and had direct access on one call `[CRM]`. The Step 2 rule scores a buyer identified by title with direct access on one call at 4, even with the name unknown. There has been no direct access since that call, and we communicate through Ruth only `[Notes]`. The budget is not confirmed, so the score is not 5.
-- **Decision Criteria: 3 of 5.** Some criteria are known `[Call, 2026-09-26]`. Stonemark is still being evaluated and the criteria it is judged on are not on the record `[Notes]` (illustrative).
-- **Decision Process: 2 of 5.** Ruth said "I'll take it to the board" with no date and no approval sequence `[Notes]`.
-- **Paper Process: 3 of 5.** Aware that legal and vendor steps exist, details unclear (profile: MEDDPICC).
-- **Identified Pain: 4 of 5.** The primary pain is clear and partly quantified `[Call, 2026-09-26]`. Walt Okonkwo's quantified account from the 2026-09-17 call is also on record `[Call, 2026-09-17]` (illustrative). The score stays at 4, not 5, because the urgency is not tied to a confirmed date: the March 2027 Oldgate renewal is the deadline behind the board date `[CRM]`, but the board has not confirmed 2026-11-12 and the deal has not tied its own date to it.
-- **Champion: 5 of 5.** Champion status is Strong on the 2026-10-19 record, with four of seven shared champion tests on record, each dated: introductions, dated next steps and internal politics on 2026-09-26 `[Call, 2026-09-26]`, and defending the solution when we are not in the room on 2026-09-25 `[CRM, 2026-09-25]`. The 2026-09-25 briefing of the board chair is the active selling that row 5 asks for. Ruth has been silent for 16 days `[CRM]`, and silence is not a no, so the status and the row are read from the tests on record, and the score is 5, not 4.
-- **Competition: 3 of 5.** Stonemark is still in the evaluation with no preference stated `[Call, 2026-09-26]`, and no written position against it is on the record `[Notes]` (illustrative).
+- **Metrics: 3 Of 5.** General pain is quantified `[Call, 2026-09-26]`, but the ROI numbers have not been updated since the board date moved `[Notes]`.
+- **Economic Buyer: 4 Of 5.** The board chair is identified by title, name `[Unknown]`, and had direct access on one call `[CRM]`. The Step 2 rule scores a buyer identified by title with direct access on one call at 4, even with the name unknown. There has been no direct access since that call, and we communicate through Ruth only `[Notes]`. The budget is not confirmed, so the score is not 5.
+- **Decision Criteria: 3 Of 5.** Some criteria are known `[Call, 2026-09-26]`. Stonemark is still being evaluated and the criteria it is judged on are not on the record `[Notes]` (illustrative).
+- **Decision Process: 2 Of 5.** Ruth said "I'll take it to the board" with no date and no approval sequence `[Notes]`.
+- **Paper Process: 3 Of 5.** Aware that legal and vendor steps exist, details unclear (profile: MEDDPICC).
+- **Identified Pain: 4 Of 5.** The primary pain is clear and partly quantified `[Call, 2026-09-26]`. Walt Okonkwo's quantified account from the 2026-09-17 call is also on record `[Call, 2026-09-17]` (illustrative). The score stays at 4, not 5, because the urgency is not tied to a confirmed date: the March 2027 Oldgate renewal is the deadline behind the board date `[CRM]`, but the board has not confirmed 2026-11-12 and the deal has not tied its own date to it.
+- **Champion: 5 Of 5.** Champion status is Strong on the 2026-10-19 record, with four of seven shared champion tests on record, each dated: introductions, dated next steps and internal politics on 2026-09-26 `[Call, 2026-09-26]`, and defending the solution when we are not in the room on 2026-09-25 `[CRM, 2026-09-25]`. The 2026-09-25 briefing of the board chair is the active selling that row 5 asks for. Ruth has been silent for 16 days `[CRM]`, and silence is not a no, so the status and the row are read from the tests on record, and the score is 5, not 4.
+- **Competition: 3 Of 5.** Stonemark is still in the evaluation with no preference stated `[Call, 2026-09-26]`, and no written position against it is on the record `[Notes]` (illustrative).
 
 **Weighted Score:**
 | Element | Weight | Score | Weighted (Score × Weight) |
@@ -665,11 +665,11 @@ Re-run this analysis after every stage date or close date changes, and compare t
 ## Best Practices
 
 ### Do's
-- **Use the weighting system.** Economic Buyer at 20% is weighted highest for a reason.
-- **Flag risk patterns.** "Happy ears" and "zombie deal" are the most common pipeline killers.
-- **Connect coaching to specific frameworks.** Name the step from the team's own sales methodology, not generic advice.
-- **Compare health to stage minimums.** A deal at Stage 6 Closed-Won and Handoff with health below 75 needs attention.
-- **Show both instruments when they disagree.** The two dates are the explanation.
+- **Use The Weighting System.** Economic Buyer at 20% is weighted highest for a reason.
+- **Flag Risk Patterns.** "Happy ears" and "zombie deal" are the most common pipeline killers.
+- **Connect Coaching To Specific Frameworks.** Name the step from the team's own sales methodology, not generic advice.
+- **Compare Health To Stage Minimums.** A deal at Stage 6 Closed-Won and Handoff with health below 75 needs attention.
+- **Show Both Instruments When They Disagree.** The two dates are the explanation.
 
 ---
 
@@ -687,7 +687,7 @@ Re-run this analysis after every stage date or close date changes, and compare t
 - **Competitive Strategy (11).** Reads `meddpicc_scores` for the Competition element, with `stage_recommendation` and `risk_patterns` for context.
 - **Sales Handoff (14).** Reads `meddpicc_scores`, `stage_minimum_met` and `stage_recommendation` to check the deal is ready to move to Stage 6 Closed-Won and Handoff.
 
-**Hands to the close.** Wrap-Up reads `report_path` when a file was written, the `health_score` as the score, and `next_action` with its owner and date.
+**Hands To The Close.** Wrap-Up reads `report_path` when a file was written, the `health_score` as the score, and `next_action` with its owner and date.
 
 **Related Skills:** Call Coaching (13) after a call, to see whether the new intel changes any element score. Meeting Prep (06) uses the gaps to set the meeting's target, for example "this meeting should target Economic Buyer access and Decision Process mapping."
 

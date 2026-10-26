@@ -47,9 +47,9 @@ Start with question 1.
 
 ---
 
-## What You Should Expect to Happen
+## What You Should Expect To Happen
 
-**Question 2 stalls** when trigger-driven wins were never tagged in the CRM, so nobody can say which
+**Question 2 Stalls** when trigger-driven wins were never tagged in the CRM, so nobody can say which
 events produce pipeline and which only produce activity. **Question 6 is skipped** more often than it
 stalls, and one ambulance-chasing email costs more goodwill in a tight vertical than a quarter of
 good ones earn.
@@ -76,7 +76,7 @@ Proof Points, which other interviews and sections write.
 
 ---
 
-## If You Want to Stretch a Window
+## If You Want To Stretch A Window
 
 Windows shrink. They do not stretch. When a sequence underperforms, the instinct is to widen the
 window and send anyway. The event is the permission to write. An expired event is a cold email

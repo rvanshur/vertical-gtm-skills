@@ -129,7 +129,7 @@ To try the skill without your own data, use `examples/try-it.md`, which holds a 
 
 Throughout this skill, `{Profile: X}` means "section X of `profiles/client-profile.md`". Sections this skill reads:
 
-| Profile section | Used for |
+| Profile Section | Used For |
 |---|---|
 | Fit Grid (Sales-Layer Sections) | The Strong, Moderate and Weak rows per ICP that Step 4 scores against. The row used is quoted |
 | ICP Definitions | The ICP names the Fit Grid rows belong to, and the segment each account sits in |
@@ -276,31 +276,31 @@ A hook is used only when its claim has a source. A hook that says "most teams" n
 
 The responses ask for the buyer's own number instead of supplying one. A customer figure that the company has not verified cannot be said on a call.
 
-### BDR Active Deal Filter and the Pending Assignment Case
+### BDR Active Deal Filter And The Pending Assignment Case
 
 The BDR guard is the rule from the Shared Contract, applied to every task before any brief is built. An account that is ACTIVE with an AE owner is removed from a BDR's queue unless that AE has said yes. The filter runs first so that no brief is written for an account the rep must not call.
 
 An account pending AE assignment is not ACTIVE. It is worked, and the output says it is pending. The status line reads "TARGET (pending AE assignment)", so the rep knows the account has no owner yet and the owner may change before the call.
 
-### Fit Scoring: Fit Grid, Zones and Verdict
+### Fit Scoring: Fit Grid, Zones And Verdict
 
-- **The Fit Grid row decides the fit word.** A Strong, Moderate or Weak grade comes from the profile's Fit Grid row for the account's ICP. The brief quotes the row and the tests it met, with n, for example "2 of 4 Strong tests met".
+- **The Fit Grid Row Decides The Fit Word.** A Strong, Moderate or Weak grade comes from the profile's Fit Grid row for the account's ICP. The brief quotes the row and the tests it met, with n, for example "2 of 4 Strong tests met".
 - **The row the record meets most decides the grade.** Each Fit Grid row lists its tests. An unknown test is listed beside the grade and is not counted as a no, because a blank field is unknown, not negative. A row carries the grade when at least half of its tests are met with evidence (two of four), and an account that meets no row that far is held at Moderate.
-- **A Weak row is applied only on evidence.** A Weak test that is unknown is not applied. The account is held at Moderate and the unknown is named as the thing to find.
-- **Zones and the verdict come from the profile.** Every account shows its five zone scores beside its verdict, applied through the Verdict Rule as written. MEDIUM never counts as HIGH.
+- **A Weak Row Is Applied Only On Evidence.** A Weak test that is unknown is not applied. The account is held at Moderate and the unknown is named as the thing to find.
+- **Zones And The Verdict Come From The Profile.** Every account shows its five zone scores beside its verdict, applied through the Verdict Rule as written. MEDIUM never counts as HIGH.
 - **A MANUAL REVIEW account shows its zones and verdict instead of a fit word.** A fit word beside a MANUAL REVIEW verdict reads as a softer answer than the gate allows, so the zone scores carry the reason.
 
 ---
 
 ## Quick Reference
 
-**Use this skill when:**
+**Use This Skill When:**
 - Starting a prospecting block (morning prep)
 - A BDR needs a prioritized dial list with per-account briefs
 - An AE needs to organize outbound calls for the day
 - A rep asks "Who should I call today?"
 
-**Don't use when:**
+**Don't Use When:**
 - Deep account research on a single account is needed (use `gtm-account-snapshot`)
 - A scheduled meeting is being prepared (use `gtm-meeting-prep`)
 - Outbound email sequences are being built (use `gtm-account-snapshot` or `gtm-competitive-displacement`)
@@ -325,7 +325,7 @@ The role is set before the tasks are pulled, because the same task list yields a
 
 ---
 
-### Step 1: Pull Today's Tasks and Apply the BDR Guard
+### Step 1: Pull Today's Tasks And Apply The BDR Guard
 
 Before pulling anything, offer the CRM read for the one rep's task list and, when a call recorder is connected, the call read for the date range you name. Nothing is read from the CRM or the call recorder until you say yes. The account folders under `accounts/` in the Knowledge Base, if the profile has one, are opened in Step 2, and only for accounts that survive the guard.
 
@@ -337,7 +337,7 @@ Query the CRM for every task that is:
 
 For each task, record the contact name and title, the account name, the task subject and notes, the sequence name and step number if one exists, and whether the task is a first touch or a follow-up.
 
-**BDR guard (when `user_role` is BDR):**
+**BDR Guard (when `user_role` is BDR):**
 1. For each account on the task list, check for an active AE-owned deal.
 2. If an active deal exists, remove the account from the BDR's queue and add it to `exclusions`. Record the account, its stage, its AE owner and its amount.
 3. A task flagged "BDR Assist" or "AE-requested" stays in the queue as a coordination dial. The exclusion is lifted only for that task, and the AE's yes is named.
@@ -371,23 +371,23 @@ Status is read from the record's status line when the record holds one. The prof
 
 ---
 
-### Step 3: Gather Contact and Engagement History
+### Step 3: Gather Contact And Engagement History
 
 For each contact, query the CRM for name, title, department, phone, email, emails sent, opened and replied, calls made, connected and voicemailed, the last email and its subject, the last call and its disposition, active or completed sequences, bounces and unsubscribes.
 
 A blank phone number is unknown, not a no. The brief names the gap, and the call goal changes to find the number.
 
-**Opt-outs:** a contact who has opted out is removed from every dial and recorded in `exclusions` with the date of the opt-out. The opt-out holds even when the account stays on the list.
+**Opt-Outs:** a contact who has opted out is removed from every dial and recorded in `exclusions` with the date of the opt-out. The opt-out holds even when the account stays on the list.
 
 **Prior Conversations:** if call or meeting transcripts exist, list the call date, type, duration and participants, the pain points named (mapped to Core Pain Points), the incumbent tools mentioned, objections raised, and the last open follow-up.
 
-**Multi-threading:** list the other engaged contacts at the same account, so the brief can name a second person if the first is unavailable.
+**Multi-Threading:** list the other engaged contacts at the same account, so the brief can name a second person if the first is unavailable.
 
 **Produces:** a contact list per account, with the gaps named, and the opt-out list.
 
 ---
 
-### Step 4: Score Fit and Zones
+### Step 4: Score Fit And Zones
 
 For each account, in this order:
 
@@ -410,7 +410,7 @@ A MANUAL REVIEW account shows its zone scores and verdict in place of a fit word
 
 ---
 
-### Step 5: Prioritize and Rank Dials
+### Step 5: Prioritize And Rank Dials
 
 Rank every remaining account into one of four tiers. The criteria differ by role.
 
@@ -430,11 +430,11 @@ Rank every remaining account into one of four tiers. The criteria differ by role
 | **New** | AE-sourced prospects with no prior engagement. Strong ICP, no relationship |
 | **Recycle** | Previously closed-lost. Stalled deals with no clear path. Weak ICP, or multiple failures |
 
-**The profile's Hot definition is applied first.** The Daily Prospecting section of the profile states what a Hot account is in checkable facts. The role table fills the tiers that definition leaves open. Where the profile's definition and the role table disagree, the brief says so, and the profile owner decides which one holds. The skill never settles that disagreement silently. The role table never moves an account into Hot that the profile's definition does not place there. When it would, the account stays out of Hot and the brief names the disagreement. A trigger inside its window does not make an account Hot on its own, because the profile's definition also needs Zone 1 HIGH or an INBOUND request not yet answered. For Warm, a touch logged on the account record counts as a prior conversation even when no contact is named, and the brief names the missing contact. For New, Strong ICP is read from the Fit Grid row, met on at least half its tests, whatever the account's verdict.
+**The Profile's Hot Definition Is Applied First.** The Daily Prospecting section of the profile states what a Hot account is in checkable facts. The role table fills the tiers that definition leaves open. Where the profile's definition and the role table disagree, the brief says so, and the profile owner decides which one holds. The skill never settles that disagreement silently. The role table never moves an account into Hot that the profile's definition does not place there. When it would, the account stays out of Hot and the brief names the disagreement. A trigger inside its window does not make an account Hot on its own, because the profile's definition also needs Zone 1 HIGH or an INBOUND request not yet answered. For Warm, a touch logged on the account record counts as a prior conversation even when no contact is named, and the brief names the missing contact. For New, Strong ICP is read from the Fit Grid row, met on at least half its tests, whatever the account's verdict.
 
-**Ordering within a tier.** GREENLIGHT accounts come first, sub-ranked Strong, then Moderate, then Weak. MANUAL REVIEW accounts follow, ranked by the count of HIGH zones. A tier can hold both kinds, and the order shows which account the rep should reach first. Within a grade, the account that meets more of its tests comes first. A tie on the HIGH count is broken by the nearest closing deadline, meaning the window or business-day limit that runs out first. An account on hold as Recycle takes its verdict from the upstream skill that set the hold, names that skill and its date, and is not re-scored here.
+**Ordering Within A Tier.** GREENLIGHT accounts come first, sub-ranked Strong, then Moderate, then Weak. MANUAL REVIEW accounts follow, ranked by the count of HIGH zones. A tier can hold both kinds, and the order shows which account the rep should reach first. Within a grade, the account that meets more of its tests comes first. A tie on the HIGH count is broken by the nearest closing deadline, meaning the window or business-day limit that runs out first. An account on hold as Recycle takes its verdict from the upstream skill that set the hold, names that skill and its date, and is not re-scored here.
 
-**ENGAGED accounts.** An account with status ENGAGED (the account replied or met with us, and no deal is open) is never placed in New, because New is for accounts with no prior engagement. An ENGAGED account whose last two-way contact is 14 to 30 days old is Warm, on the stale-conversation row. Stale is this skill's own measure of how old the last two-way exchange is, and it sets the tier only. The shared term gone quiet, which What The Close Reads defines as no reply within five business days after our last message, decides only when a follow-up sequence starts, and it never sets a tier. An ENGAGED account whose buyer wrote or called and is still waiting for an answer is Warm too, and its brief leads with that message and its date, because a buyer who has already answered should not get a cold New dial. Hot still follows the Hot definition in (profile: Daily Prospecting), so an unanswered reply does not make an account Hot by itself. An ENGAGED account has no open deal, so the BDR guard does not remove it from the queue.
+**ENGAGED Accounts.** An account with status ENGAGED (the account replied or met with us, and no deal is open) is never placed in New, because New is for accounts with no prior engagement. An ENGAGED account whose last two-way contact is 14 to 30 days old is Warm, on the stale-conversation row. Stale is this skill's own measure of how old the last two-way exchange is, and it sets the tier only. The shared term gone quiet, which What The Close Reads defines as no reply within five business days after our last message, decides only when a follow-up sequence starts, and it never sets a tier. An ENGAGED account whose buyer wrote or called and is still waiting for an answer is Warm too, and its brief leads with that message and its date, because a buyer who has already answered should not get a cold New dial. Hot still follows the Hot definition in (profile: Daily Prospecting), so an unanswered reply does not make an account Hot by itself. An ENGAGED account has no open deal, so the BDR guard does not remove it from the queue.
 
 **Produces:** `dial_sheet` tiers, with the tier reason beside each account.
 
@@ -488,7 +488,7 @@ Based on the stage and the history. Use a response from Common Objections.
 - Strongest opportunity today, and why
 
 **2. Priority Dial Queue**
-| # | Tier | Account | Contact | Fit or Verdict, and Zones | Call Goal |
+| # | Tier | Account | Contact | Fit Or Verdict, And Zones | Call Goal |
 |---|------|---------|---------|---------------------------|-----------|
 
 **3. Top Account Briefs** (top eight)
@@ -504,7 +504,7 @@ Opt-outs and OUT accounts are listed here too, with their reason.
 **5. AE Coordination Notes** (BDR only)
 Accounts that need a sync before the call: sensitive situations, multi-threaded accounts, and BDR Assist flags.
 
-**6. End-of-Day Tracking Prompts**
+**6. End-Of-Day Tracking Prompts**
 Reminders to log dispositions, create follow-up tasks and add accounts to a sequence in the CRM. The rep does those. The skill does not.
 
 **7. Next Action**
@@ -514,7 +514,7 @@ One line: the next step, its owner and a date. This becomes `next_action`. When 
 
 ---
 
-### Step 8: Write the File, Only When Asked
+### Step 8: Write The File, Only When Asked
 
 The report is returned inline. A Markdown file is written only when the user asks for one, because the user's request is the approval step. The file is named `<account>_<skill>_<date>.md` as the Output Contract says.
 
@@ -524,18 +524,18 @@ The report is returned inline. A Markdown file is written only when the user ask
 
 ## Modes
 
-- **Full report (default).** Runs Steps 0 to 7. Produces all six dial-sheet sections.
+- **Full Report (default).** Runs Steps 0 to 7. Produces all six dial-sheet sections.
 - **Abbreviated.** For a rep who says "just give me my top five." Runs Steps 0 to 6 for the five highest dials, and returns one condensed brief per dial: opener, one question and the call goal. The BDR guard and the exclusions still run in full, because the guard is not optional in a short run.
 
 ---
 
 ## Epistemic Rules
 
-- **Print n beside every rate.** "2 of 7 accounts" tells the rep how much a number rests on. A bare rate hides the denominator.
-- **Five cases before a pattern.** A trend such as "the Warm tier is filling up" needs five accounts behind it. Below five, report the count as an observation and say so.
+- **Print N Beside Every Rate.** "2 of 7 accounts" tells the rep how much a number rests on. A bare rate hides the denominator.
+- **Five Cases Before A Pattern.** A trend such as "the Warm tier is filling up" needs five accounts behind it. Below five, report the count as an observation and say so.
 - **Silence Is Not A No.** A blank field is unknown. It is counted in no denominator, and the brief names it as a gap to find.
-- **"No difference found" is a finding.** A tier that is empty this morning is reported as empty, with the reason, and is not filled to look complete.
-- **Every fact carries one of the six tags.** `[CRM]`, `[Call]`, `[Notes]`, `[Public: source]`, `[Inferred]` or `[Unknown]`. An inferred tier or fit names the method beside the tag.
+- **"No Difference Found" Is A Finding.** A tier that is empty this morning is reported as empty, with the reason, and is not filled to look complete.
+- **Every Fact Carries One Of The Six Tags.** `[CRM]`, `[Call]`, `[Notes]`, `[Public: source]`, `[Inferred]` or `[Unknown]`. An inferred tier or fit names the method beside the tag.
 - **A date the record does not hold is `[Unknown]`.** An undated finding is never called recent.
 
 ---
@@ -544,12 +544,12 @@ The report is returned inline. A Markdown file is written only when the user ask
 
 - **Never place a dial on an account the BDR guard blocks.** Two people writing to one buyer costs the deal, and the AE finds out from the buyer.
 - **Never cite an Illustrative or Benchmark proof point as a customer result.** A figure the buyer repeats back becomes a claim the company cannot defend. Benchmark figures are cited as research, with their source and date.
-- **Never call a trigger recent without its date.** A rep who says "recent" to a buyer who knows the date loses the call. An undated trigger has no window, so it does not start a sequence.
+- **Never Call A Trigger Recent Without Its Date.** A rep who says "recent" to a buyer who knows the date loses the call. An undated trigger has no window, so it does not start a sequence.
 - **Never let a MANUAL REVIEW verdict read as a GREENLIGHT.** A fit word beside a gate hides the reason. The zones beside the verdict show it.
-- **Never write a pending account as ACTIVE.** Pending means the owner may still change, and the rep must know that before calling.
-- **Never call an opted-out contact.** The opt-out is the buyer's instruction, and it holds across every account the contact touches.
-- **Never generate a figure to fill a gap.** An invented number in an opener is a claim the rep must defend on the call. Gaps are named, and the call goal becomes finding the figure.
-- **Never send, enroll or write to the CRM.** The rep reads the draft and acts. The skill's job ends at the draft.
+- **Never Write A Pending Account As ACTIVE.** Pending means the owner may still change, and the rep must know that before calling.
+- **Never Call An Opted-Out Contact.** The opt-out is the buyer's instruction, and it holds across every account the contact touches.
+- **Never Generate A Figure To Fill A Gap.** An invented number in an opener is a claim the rep must defend on the call. Gaps are named, and the call goal becomes finding the figure.
+- **Never Send, Enroll Or Write To The CRM.** The rep reads the draft and acts. The skill's job ends at the draft.
 - **Never spell a verdict other than GREENLIGHT, MANUAL REVIEW or DISQUALIFY.** The shared words are how every skill in the suite reads the same verdict.
 
 ---
@@ -602,7 +602,7 @@ Dashboard: 7 accounts on the sheet, 6 to dial and 1 on hold. Tiers: 2 Hot, 2 War
 
 **Priority Dial Queue**
 
-| # | Tier | Account | Contact | Fit or Verdict, and Zones | Call Goal |
+| # | Tier | Account | Contact | Fit Or Verdict, And Zones | Call Goal |
 |---|------|---------|---------|---------------------------|-----------|
 | 1 | Hot | Corrow Ridge Cemetery | No contact on file. The task names none | Strong. GREENLIGHT. Zones 1 HIGH, 2 UNKNOWN, 3 MEDIUM, 4 UNKNOWN, 5 HIGH | Learn whether Harborline runs its own plot system, then book discovery with the site GM before the Q1 2027 integration review |
 | 2 | Hot | Sable Fork Cemetery | Arlen Biggs, General Manager. Requester `[Unknown]` | MANUAL REVIEW. Zones 1 MEDIUM, 2 LOW, 3 HIGH, 4 MEDIUM, 5 LOW | Confirm who filled the website form, then book discovery. No demo yet |
@@ -652,7 +652,7 @@ Every zone score in the table rests on a fact in the try-it records, as the zone
 
 **Brief For #6 (Tamsin Vale Cemetery):**
 - **Why This Account:** 4,200 plots on paper plat maps, with one binder per section and two double sales in two years (`[CRM]`, illustrative). Zone 1 HIGH is the only HIGH zone. Who signs is `[Unknown]`. MANUAL REVIEW.
-- **No phone on file and no named contact.** This is the missing-data case. The rep does not dial until a number is found. The first action is a contact search, and the opener below is for whoever answers.
+- **No Phone On File And No Named Contact.** This is the missing-data case. The rep does not dial until a number is found. The first action is a contact search, and the opener below is for whoever answers.
 - **Opener:** "Hi, it's Nadia Brandt with PlotIQ. Who signs for the cemetery's plot and trust records?"
 - **Discovery Questions:** (1) "How do you keep the plot records, and who maintains them?" (2) "When a family asks about a plot, where do you look first, and how long does it take?" (3) "What does a 20-minute lookup cost you, versus 20 seconds?"
 - **Objection Prep:** "We handle it internally." Response: "Makes sense. The question is whether the time your team spends on lookups is the best use of their expertise. Roughly how many hours a month does that take?"
@@ -660,11 +660,11 @@ Every zone score in the table rests on a fact in the try-it records, as the zone
 
 **Brief For #7 (Lowmoor Memorial Gardens, hold):**
 - **Why This Account:** Closed-lost to Oldgate on 2026-01-20, reason "timing" (`[CRM]`). The true loss reason sits with Closed-Loss Reactivation (05), which holds the account on MONITOR. The champion, Ines Carmody, has moved to Quill Hollow. Closed-Loss Reactivation (05) set the account to MONITOR on 2026-10-19, with a reminder for 2026-12-18 to 2027-01-17 (`[Notes]`).
-- **Do not dial.** Route to Closed-Loss Reactivation (05) first. The account reopens only on a reopening event that 05 names.
+- **Do Not Dial.** Route to Closed-Loss Reactivation (05) first. The account reopens only on a reopening event that 05 names.
 
 **Exclusions**
 
-| Account or contact | Reason | Action |
+| Account Or Contact | Reason | Action |
 |---|---|---|
 | Brackhaven Memorial Gardens | BDR guard. ACTIVE, Stage 5 Negotiate, AE Owen Pruitt. No yes from Owen on file (`[CRM]`) | Share today's intel with Owen Pruitt. Ask whether he wants BDR assist |
 | Northvale Memorial Holdings | OUT. Public consolidator running its own in-house system (`[Public: annual filing]`). DISQUALIFY | Remove from the sheet. No dial, no sequence. OUT is not LOST, so it is not a reactivation |
@@ -672,7 +672,7 @@ Every zone score in the table rests on a fact in the try-it records, as the zone
 
 **AE Coordination (BDR only):** Brackhaven needs a sync with Owen Pruitt before anyone calls Ruth Ellery again. The family board meeting on 2026-11-12, not formally confirmed `[CRM]`, is part of the next step Owen owns.
 
-**End-of-day prompts:** Log the disposition for each dial. Create the follow-up tasks. Add accounts to a sequence in the CRM only after reading the draft.
+**End-Of-Day Prompts:** Log the disposition for each dial. Create the follow-up tasks. Add accounts to a sequence in the CRM only after reading the draft.
 
 **Next Action:** Nadia Brandt shares today's Brackhaven intel with Owen Pruitt by 2026-10-19. The date is the due date of the Brackhaven task on record, which is the run date and earlier than the five-business-day date of 2026-10-26. It is due first, ahead of the Sable Fork reply that closes 2026-10-20. That close comes from the Hot definition in (profile: Daily Prospecting): an INBOUND request is answered within 3 business days of arriving, and Thursday 2026-10-15 plus three business days is Tuesday 2026-10-20.
 
@@ -708,7 +708,7 @@ report_path: none (inline)
 
 Dashboard: 8 dials. 3 Hot, 2 Warm, 2 New, 1 Recycle (hold). No exclusions, because the AE view applies no guard. Strongest opportunity: Brackhaven. It sits at Stage 5, with the family board meeting on 2026-11-12, not formally confirmed `[CRM]`, and the Oldgate renewal in March 2027 gives the next call its reason to move. The call should close the board date, not restart discovery.
 
-| # | Tier | Account | Contact | Fit or Verdict, and Zones | Call Goal |
+| # | Tier | Account | Contact | Fit Or Verdict, And Zones | Call Goal |
 |---|------|---------|---------|---------------------------|-----------|
 | 1 | Hot | Brackhaven Memorial Gardens | Ruth Ellery, General Manager (champion) | Strong. GREENLIGHT. Zones 1 HIGH, 2 MEDIUM, 3 MEDIUM, 4 MEDIUM, 5 HIGH | Get the board date from Ruth Ellery by 2026-10-26. Hold at Stage 5 |
 | 2 | Hot | Corrow Ridge Cemetery | No contact on file | Strong. GREENLIGHT. Zones 1 HIGH, 2 UNKNOWN, 3 MEDIUM, 4 UNKNOWN, 5 HIGH | Learn whether Harborline runs its own plot system, then book discovery with the site GM |
@@ -779,7 +779,7 @@ Dashboard: 5 accounts on the sheet, 4 to dial and 1 on hold. Tiers: 1 Hot, 1 War
 
 **Priority Dial Queue**
 
-| # | Tier | Account | Contact | Fit or Verdict, and Zones | Call Goal |
+| # | Tier | Account | Contact | Fit Or Verdict, And Zones | Call Goal |
 |---|------|---------|---------|---------------------------|-----------|
 | 1 | Hot | Corrow Ridge Cemetery | No contact on file. The task names none | Strong. GREENLIGHT. Zones 1 HIGH, 2 UNKNOWN, 3 MEDIUM, 4 UNKNOWN, 5 HIGH | Learn whether Harborline runs its own plot system, then book discovery with the site GM by 2026-10-29 |
 | 2 | Warm | Quill Hollow Memorial Park | Ines Carmody, General Manager (champion Developing, 1 of 7 met: commits to next steps with dates). ENGAGED, buyer message waiting | Strong. GREENLIGHT. Zones 1 MEDIUM, 2 UNKNOWN, 3 HIGH, 4 UNKNOWN, 5 HIGH | Answer her 2026-10-27 message by 2026-10-29, the next business day after this run, and before the 2026-11-02 call. Then validate the pain, and identify the economic buyer |
@@ -810,7 +810,7 @@ Dashboard: 5 accounts on the sheet, 4 to dial and 1 on hold. Tiers: 1 Hot, 1 War
 
 **Exclusions**
 
-| Account or contact | Reason | Action |
+| Account Or Contact | Reason | Action |
 |---|---|---|
 | Brackhaven Memorial Gardens | BDR guard. ACTIVE, Stage 5 Negotiate, AE Owen Pruitt. No yes from Owen on file (`[CRM]`) | Share today's intel with Owen Pruitt. Ask whether he wants BDR assist |
 | Northvale Memorial Holdings | OUT. Public consolidator running its own in-house system (`[Public: annual filing]`). DISQUALIFY | Remove from the sheet. No dial, no sequence |
@@ -841,7 +841,7 @@ report_path: none (inline)
 **When:** The rep has zero open tasks for the date.
 **Approach:** Check for overdue tasks from the past three days. Check for accounts with recent inbound signals that warrant proactive outreach. If nothing is found, recommend running `gtm-account-snapshot` on the target accounts to build a new prospecting list. Say that the list is empty, and why.
 
-### Pattern: BDR with Heavy AE Overlap
+### Pattern: BDR With Heavy AE Overlap
 **When:** More than half of the BDR's tasks sit on accounts with active AE deals. Name the count, for example "5 of 8 tasks".
 **Approach:** Generate the exclusions table with clear AE coordination guidance. Recommend that the BDR discuss territory alignment with their manager, because a queue that mostly belongs to AEs is a routing question before it is a prospecting one. Show the filtered queue with its adjusted tier priorities.
 
@@ -872,21 +872,21 @@ report_path: none (inline)
 ## Best Practices
 
 ### Do's
-- **Run this every morning.** The sheet is useful only when it is current at the start of the block.
-- **Start with the Hot tier.** These accounts have the most evidence behind them. The one exception is a reply owed to a buyer who wrote to us, which comes before any outbound step due the same day (Step 7).
-- **Personalize every opener.** Each hook refers to a fact about the account, not a generic phrase.
-- **Log outcomes immediately.** End-of-day tracking is useful only when the dispositions are logged.
-- **Read the zones beside the verdict.** A MANUAL REVIEW dial is a conversation to prepare for, not a dial to skip.
+- **Run This Every Morning.** The sheet is useful only when it is current at the start of the block.
+- **Start With The Hot Tier.** These accounts have the most evidence behind them. The one exception is a reply owed to a buyer who wrote to us, which comes before any outbound step due the same day (Step 7).
+- **Personalize Every Opener.** Each hook refers to a fact about the account, not a generic phrase.
+- **Log Outcomes Immediately.** End-of-day tracking is useful only when the dispositions are logged.
+- **Read The Zones Beside The Verdict.** A MANUAL REVIEW dial is a conversation to prepare for, not a dial to skip.
 
 ---
 
 ## Integration With Other Skills
 
-**Reads from Meeting Prep (06), by name.** When a prep sheet exists for an account, this skill reads `prep_sheet`, `top_pain`, `question_bank`, `attendees` (with their buying role) and `proof_point`. The top pain replaces a generic question in the brief, the attendees add contacts to the account, and the proof point is shown with its Status, so an Illustrative figure is never cited.
+**Reads From Meeting Prep (06), By Name.** When a prep sheet exists for an account, this skill reads `prep_sheet`, `top_pain`, `question_bank`, `attendees` (with their buying role) and `proof_point`. The top pain replaces a generic question in the brief, the attendees add contacts to the account, and the proof point is shown with its Status, so an Illustrative figure is never cited.
 
-**Hands to Meeting Prep (06), by name.** `dial_sheet` (tiers Hot, Warm, New and Recycle), `pre_call_briefs` (the top eight) and `exclusions` (each with its reason). Meeting Prep turns a dial that becomes a meeting into a prep sheet, and that sheet comes back to this skill the next morning as `prep_sheet`. The loop is what keeps each day's list informed by the last day's calls.
+**Hands To Meeting Prep (06), By Name.** `dial_sheet` (tiers Hot, Warm, New and Recycle), `pre_call_briefs` (the top eight) and `exclusions` (each with its reason). Meeting Prep turns a dial that becomes a meeting into a prep sheet, and that sheet comes back to this skill the next morning as `prep_sheet`. The loop is what keeps each day's list informed by the last day's calls.
 
-**Reads from the close, by name.** `next_action` is written by this skill and read by the close (Wrap-Up). `report_path` is set only when a file was written, and the close reads it the same way.
+**Reads From The Close, By Name.** `next_action` is written by this skill and read by the close (Wrap-Up). `report_path` is set only when a file was written, and the close reads it the same way.
 
 **Other Skills:**
 - `gtm-account-snapshot` (02): deeper research on an account surfaced in the dial queue, such as an INBOUND request.

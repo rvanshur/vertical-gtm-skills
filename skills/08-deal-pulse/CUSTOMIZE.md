@@ -45,9 +45,9 @@ Start with question 1.
 
 ---
 
-## What You Should Expect to Happen
+## What You Should Expect To Happen
 
-**Question 3 stalls** when the team has never separated evidence from optimism. Everything a rep says gets recorded as fact. **Question 6 stalls** when lost deals get autopsied by anecdote, so nobody knows which signals actually predicted anything.
+**Question 3 Stalls** when the team has never separated evidence from optimism. Everything a rep says gets recorded as fact. **Question 6 stalls** when lost deals get autopsied by anecdote, so nobody knows which signals actually predicted anything.
 
 Both kinds of stall point at the same missing thing: a context layer. The skill is a procedure, and a procedure needs to know who you sell to, what has worked and what has already gone wrong. That is what `profiles/client-profile.md` is for. Build it once and every skill in the suite inherits it.
 
@@ -69,6 +69,6 @@ Add this section to `profiles/client-profile.md` once. Leave a name blank to hav
 
 ---
 
-## Before You Re-Weight the Pillars
+## Before You Re-Weight The Pillars
 
 Score ten real deals with the stock weights first. Re-weighting from intuition reproduces the intuition the scorer exists to check. After ten deals you will have actual disagreements between score and outcome, and re-weight from those.
