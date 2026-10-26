@@ -357,7 +357,7 @@ Score each zone in `{Client Profile: Qualification Zones}` as HIGH, MEDIUM, LOW 
 | LOW | Weak or no alignment, with evidence |
 | UNKNOWN | Insufficient data to assess |
 
-MEDIUM never counts as HIGH. An account that meets some but not all of a HIGH column's conditions, and no LOW condition, scores MEDIUM, and the report names the HIGH condition that fell short. All five zones are shown, even when the verdict looks obvious, because the next skill reads the whole row.
+MEDIUM never counts as HIGH. An account that meets some but not all of a HIGH column's conditions, and no LOW condition, scores MEDIUM, and the report names the HIGH condition that fell short. A HIGH condition that cannot apply to the account counts as met, so an owner who signs alone, with no board approval step, meets a board condition such as "board meets within 60 days". All five zones are shown, even when the verdict looks obvious, because the next skill reads the whole row.
 
 **Produces:** Five zone scores, each with its evidence tag, the must-have zones marked, and the count (N of 5 zones HIGH or MEDIUM).
 

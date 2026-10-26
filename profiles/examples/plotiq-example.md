@@ -410,13 +410,13 @@ PlotIQ has no won-away customers yet. Every figure below is illustrative or a re
 
 ## Implementation Profile
 
-PlotIQ has no won deals yet, so the timing values are `[RECORD]`. The skill's default and the illustrative Brackhaven plan are shown beside them, and neither is a benchmark.
+PlotIQ has no won deals yet. The two timing values below that carry numbers are illustrative planning values for the example, not measurements. The rest stay `[RECORD]`, and none of them is a benchmark.
 
-- **Typical days, kickoff to go-live:** [RECORD]. Illustrative only: Brackhaven's own plan is 49 days (kickoff 2026-11-23 to go-live 2027-01-11, illustrative). PlotIQ has no completed deals to set a typical value.
+- **Typical days, kickoff to go-live:** 49 (illustrative). A planning value for the example, set from the six-week roadmap plus one week of buffer. PlotIQ has no completed deals to measure a real one.
 - **How data moves:** Paper plot maps and deed scans are digitized and matched to records (Plot Inventory Digitization, profile). The trust fund ledger arrives as a standard export (Records and Trust Compliance, profile). Deed scans are heavy and fall in weeks 2 to 3 (profile).
 - **Source systems per customer:** [RECORD]. Brackhaven has one source system (Oldgate Ledger Pro, `[CRM]`, illustrative as a timing input). The weeks each extra system adds are not yet set.
 - **Export format familiarity:** [RECORD]. Brackhaven's export is confirmed by the vendor but has not been tested by the implementation team (`[Notes]`, illustrative). The weeks saved when the format is familiar are not yet set.
-- **IT lead time:** [RECORD]. Brackhaven has no IT owner on file (`[Unknown]`), so no lead time has been measured.
+- **IT lead time:** 14 days (illustrative). A planning value for the example, added to kickoff when no IT owner is named. It has not been measured on a real deal.
 - **Full adoption months:** 2 (the skill default). PlotIQ has not yet set its own value.
 - **Team quick win types:** [RECORD]. The four types in the skill apply. Week-one examples are added after the first handoff. Brackhaven's are illustrative: replace the binder lookup with a timed search, and run a double-sale risk audit of open plots.
 

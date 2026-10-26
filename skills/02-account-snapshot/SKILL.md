@@ -228,7 +228,7 @@ Pain hypotheses carry the `[Inferred]` tag, because they are educated guesses fr
 
 ### Zone Scores and the Verdict
 
-Score each of the five zones HIGH, MEDIUM or LOW from tagged facts, using the profile's Qualification Zones definitions. Score a zone UNKNOWN when the record is silent. UNKNOWN is a fourth zone value that this skill adds for a zone no source speaks to, on top of the profile's HIGH, MEDIUM and LOW. It is never a guess. UNKNOWN is not LOW, because a blank field may only mean nobody recorded it. Zones 1 and 3 are must-haves.
+Score each of the five zones HIGH, MEDIUM or LOW from tagged facts, using the profile's Qualification Zones definitions. Score a zone UNKNOWN when the record is silent. UNKNOWN is a fourth zone value that this skill adds for a zone no source speaks to, on top of the profile's HIGH, MEDIUM and LOW. It is never a guess. UNKNOWN is not LOW, because a blank field may only mean nobody recorded it. A HIGH condition that cannot apply to the account counts as met, so an owner who signs alone, with no board approval step, meets a board condition such as "board meets within 60 days". Zones 1 and 3 are must-haves.
 
 Apply the Verdict Rule as written:
 
