@@ -167,7 +167,7 @@ Every fact in a report carries one tag naming where it came from:
 | Tag | Meaning |
 |---|---|
 | `[CRM]` | A field or note in the CRM |
-| `[Call]` | Said on a recorded or transcribed call, with the call date |
+| `[Call]` | Said on a recorded or transcribed call, with the call date. A call whose date is not on record is written `[Call, date Unknown]`, and it places no fact in time |
 | `[Notes]` | A rep's or AE's written notes |
 | `[Public: source]` | A public document, page or filing, with the source named |
 | `[Inferred]` | Reasoned from other facts, with the reasoning shown and the method named |
@@ -207,7 +207,7 @@ Rep talk time as a share of the call, by call type: discovery 30% to 40%, demo 5
 
 #### What the Close Reads
 
-Wrap-Up reads by name the **report path** when a file was written, the **verdict** or **score** the session produced, and the **next action** with its owner and date. Ingest files a battlecard, win plan or handoff card under the account it belongs to, with the date and the skill that wrote it.
+Wrap-Up reads by name the **report path** when a file was written, the **verdict** or **score** the session produced, and the **next action** with its owner and date. The next action is due five business days (Monday to Friday) after the run date, written as one calendar date, unless the records already set an earlier date for that step, in which case that date is used and its source is named. Ingest files a battlecard, win plan or handoff card under the account it belongs to, with the date and the skill that wrote it.
 
 #### Guild Disciplines, Restated
 
