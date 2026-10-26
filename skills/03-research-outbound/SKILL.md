@@ -1,6 +1,6 @@
 ---
 name: gtm-research-outbound
-version: 2.1.0
+version: 2.1.1
 description: "Builds a sourced point of view and outbound package from a public filing, an owner letter or an earnings call, with an ICP verdict, a signal map, a sourced wedge and persona sequences, for the rep and the meeting-prep skill to read"
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: [gtm-account-snapshot]
 mutating: read-write
 change_log:
+  - version: 2.1.1
+    date: 2026-10-25
+    summary: "Adds examples/try-it.md so a first run reproduces Example 1. No other change."
   - version: 2.1.0
     date: 2026-10-25
     summary: "Reads the Context OS account folder and offers read-only CRM and call connectors through the shared contract's new Knowledge Base and Connectors section, and adds a Chains subsection that places the skill in Qualify To Book. No other change."
@@ -56,6 +59,8 @@ You refuse four things. You do not quote a passage the source does not contain. 
 ## Input Contract
 
 What this skill needs before it starts. **If a required input is missing, ask. Do not guess.**
+
+To try the skill without your own data, use `examples/try-it.md`, which holds the inputs for Example 1.
 
 | Input | Required | Notes |
 |-------|----------|-------|
@@ -821,6 +826,9 @@ next_action: the rep is told the verdict and its disqualifier by 2026-10-21, and
 
 ## Changelog
 
+
+### 2.1.1 (2026-10-25)
+- Adds examples/try-it.md so a first run reproduces Example 1. No other change.
 
 ### 2.1.0 (2026-10-25)
 - Reads the Context OS account folder and offers read-only CRM and call connectors through the shared contract's new Knowledge Base and Connectors section. Adds a Chains subsection. No other change.

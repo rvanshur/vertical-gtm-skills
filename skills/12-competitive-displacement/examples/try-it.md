@@ -1,0 +1,28 @@
+# Try It: Competitive Displacement On Greyfield Memorial Park (Invented Example)
+
+Every name, date and number in this file is invented for the PlotIQ example. Nothing here is a real company.
+
+## Ask Your Assistant
+"Run Competitive Displacement on Greyfield Memorial Park using skills/12-competitive-displacement/examples/try-it.md"
+
+## The Records
+- Run date: 2026-10-19. The user is a BDR (illustrative).
+- Greyfield Memorial Park is a one-site cemetery with 9,000 plots (profile). It runs a digital map from Stonemark, a direct software incumbent (profile). Its three-person pre-need team takes requests through an intake form on the site (profile).
+- CRM check: TARGET, not yet contacted. No open deal and no AE owner.
+- The account's CRM note names its map vendor [CRM] (illustrative).
+- Stonemark renewal: January 2027 [CRM] (illustrative).
+- Known pain: the pre-need team wants pre-need and records on one system [Notes] (illustrative).
+- Champion: the pre-need team lead is named nowhere, so the name is [Unknown]. Budget cycle: [Unknown]. Previous evaluation of our product: [Unknown].
+- Contacts: none on file. Every contact is [Unknown], so the sequence uses titles.
+- Account Qualification (01) verdict: GREENLIGHT. Zones 2 and 3 HIGH, and Zone 1 MEDIUM, because the digital map holds no records or trust reporting (profile).
+- Stonemark time to live: 90 to 120 days [Public: competitive research estimate, 2026-03-27].
+- PlotIQ time to live: 6 weeks (profile).
+- Benchmark: independents capture pre-need on 20% to 35% of at-need volume, and the largest public operator about 60% (deathcare research, 2026-03-27 to 2026-04-01, Benchmark).
+- Proof points: Fennick Gardens (212 unsold plots found in 90 days) and Holloway Hills (zero records findings in its first state review) are both Illustrative and name no displaced vendor (profile).
+- The Fennick Gardens case study waits until its numbers cover a full year, January 2027 (profile).
+
+## What You Should Get
+- Incumbent: direct software, Stonemark. Difficulty: Medium, because the renewal test is met (January 2027 is inside 180 days). The rating is directional.
+- Personas: 2 of 5 profile rows. Pre-Need Sales Manager is primary, and Cemetery General Manager is secondary. Both contacts are [Unknown].
+- Sequences: 2 personas, 4 emails each. Pre-Need Sales Manager Email 1 is drafted and Email 3 is on HOLD until a proof point is Verified.
+- Next action: Nadia Brandt finds the Pre-Need Sales Manager's name on the site, reads Email 1, and sends it by 2026-10-23.

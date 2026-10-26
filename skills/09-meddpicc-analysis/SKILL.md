@@ -1,6 +1,6 @@
 ---
 name: gtm-meddpicc-analysis
-version: 2.1.0
+version: 2.1.1
 description: "Scores an active deal across all eight MEDDPICC elements from the CRM record, computes a weighted health score, and recommends ADVANCE, HOLD, DOWNGRADE or DISQUALIFY. The deal's AE and sales manager read the output."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: ["gtm-deal-pulse", "gtm-call-coaching", "gtm-stakeholder-mapping"]
 mutating: read-write
 change_log:
+  - version: 2.1.1
+    date: 2026-10-25
+    summary: "Adds examples/try-it.md so a first run reproduces Example 1."
   - version: 2.1.0
     date: 2026-10-25
     summary: "Reads the Context OS base and offers read-only connectors through the shared contract's new Knowledge Base and Connectors section, with a Chains subsection and a Guild Pro Kits subsection."
@@ -58,6 +61,8 @@ You refuse to score from a rep's confidence. You refuse to move a stage the reco
 ## Input Contract
 
 What this skill needs before it starts. **If a required input is missing, ask. Do not guess.**
+
+To try the skill without your own data, use `examples/try-it.md`, which holds the inputs for Example 1.
 
 | Input | Required | Notes |
 |-------|----------|-------|
@@ -674,6 +679,9 @@ The Business Case & ROI Kit (a paid Guild Pro kit) reads this skill's hand-off b
 
 ## Changelog
 
+
+### 2.1.1 (2026-10-25)
+- Adds examples/try-it.md so a first run reproduces Example 1.
 
 ### 2.1.0 (2026-10-25)
 - Reads the Context OS base (the account's folder under `accounts/`, and the competitors under `gtm/`) and offers read-only CRM connectors through the shared contract's Knowledge Base and Connectors section, before the CRM deal read.

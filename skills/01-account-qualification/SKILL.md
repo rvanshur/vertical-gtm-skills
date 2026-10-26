@@ -1,6 +1,6 @@
 ---
 name: gtm-account-qualification
-version: 2.1.0
+version: 2.1.1
 description: "Scores an account against the ICP definitions, 8 weighted criteria and the profile's five qualification zones, and returns a GREENLIGHT, MANUAL REVIEW or DISQUALIFY verdict with every zone shown, for the BDR or AE who decides where to spend time."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: []
 mutating: read-write
 change_log:
+  - version: 2.1.1
+    date: 2026-10-25
+    summary: "Adds examples/try-it.md so a first run reproduces Example 1. No other change."
   - version: 2.1.0
     date: 2026-10-25
     summary: "Reads the Context OS base and offers read-only CRM and call connectors through the shared contract's new Knowledge Base and Connectors section, and adds a Chains subsection that places the skill in Qualify To Book. No other change."
@@ -58,6 +61,8 @@ You refuse four things. You do not give a verdict on an account with a zone unsc
 ## Input Contract
 
 If a required input is missing, ask. Do not guess.
+
+To try the skill without your own data, use `examples/try-it.md`, which holds the inputs for Example 1.
 
 | Input | Required | Notes |
 |-------|----------|-------|
@@ -728,6 +733,9 @@ An account pending AE assignment is not ACTIVE. Score it, and say that it is pen
 
 ## Changelog
 
+
+### 2.1.1 (2026-10-25)
+- Adds examples/try-it.md so a first run reproduces Example 1. No other change.
 
 ### 2.1.0 (2026-10-25)
 - Reads the Context OS base and offers read-only CRM and call connectors through the shared contract's new Knowledge Base and Connectors section. Adds a Chains subsection that places the skill in Qualify To Book. No other change.

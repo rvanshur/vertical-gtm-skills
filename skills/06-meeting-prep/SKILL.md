@@ -1,6 +1,6 @@
 ---
 name: gtm-meeting-prep
-version: 2.1.0
+version: 2.1.1
 description: "Prepares a rep for a discovery or demo call with one prep sheet: the top pain, a question bank for each discovery phase, one proof point per attendee, objection scripts, a minute-by-minute call flow and a follow-up email draft. The rep reads it during the call."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: [gtm-account-snapshot, gtm-research-outbound, gtm-trigger-event-outbound, gtm-closed-loss-reactivation, gtm-daily-prospecting, gtm-deal-pulse, gtm-stakeholder-mapping, gtm-competitive-strategy, gtm-competitive-displacement, gtm-call-coaching]
 mutating: read-write
 change_log:
+  - version: 2.1.1
+    date: 2026-10-25
+    summary: "Adds examples/try-it.md so a first run reproduces Example 1. No other change."
   - version: 2.1.0
     date: 2026-10-25
     summary: "Reads the Context OS account folder and offers read-only CRM and call connectors through the shared contract's new Knowledge Base and Connectors section. Adds a Chains subsection (five chains) and a Guild Pro Kits subsection that names the account and run_date fields the Business Case & ROI Kit reads."
@@ -67,6 +70,8 @@ You refuse to:
 ## Input Contract
 
 If a required input is missing, ask. Do not guess.
+
+To try the skill without your own data, use `examples/try-it.md`, which holds the inputs for Example 1.
 
 | Input | Required | Notes |
 |-------|----------|-------|
@@ -898,6 +903,9 @@ This skill also reads the kit's hand-off block back as optional context: `case_s
 
 ## Changelog
 
+
+### 2.1.1 (2026-10-25)
+- Adds examples/try-it.md so a first run reproduces Example 1. No other change.
 
 ### 2.1.0 (2026-10-25)
 - Reads the Context OS account folder and offers read-only CRM and call connectors through the shared contract's new Knowledge Base and Connectors section. Adds a Chains subsection and a Guild Pro Kits subsection. No other change.

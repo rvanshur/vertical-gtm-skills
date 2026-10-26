@@ -1,6 +1,6 @@
 ---
 name: gtm-sales-handoff
-version: 2.1.0
+version: 2.1.1
 description: "Post-sale implementation readiness check: scores six dimensions, sets the three dates (kickoff, go-live and Full Adoption Date), names risks with mitigations and quick wins, and writes the handoff the implementation lead plans from"
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: [gtm-meddpicc-analysis]
 mutating: read-write
 change_log:
+  - version: 2.1.1
+    date: 2026-10-25
+    summary: "Adds examples/try-it.md so a first run reproduces Example 1."
   - version: 2.1.0
     date: 2026-10-25
     summary: "Reads the Context OS base and offers read-only connectors through the shared contract's new Knowledge Base and Connectors section, with a Chains subsection and a Guild Pro Kits subsection."
@@ -51,6 +54,8 @@ You refuse to do three things. You do not score a dimension higher than the evid
 ## Input Contract
 
 If a required input is missing, ask. Do not guess.
+
+To try the skill without your own data, use `examples/try-it.md`, which holds the inputs for Example 1.
 
 | Input | Required | Notes |
 |---|---|---|
@@ -756,6 +761,9 @@ The Business Case & ROI Kit (a paid Guild Pro kit) reads this skill's hand-off b
 ---
 
 ## Changelog
+
+### 2.1.1 (2026-10-25)
+- Adds examples/try-it.md so a first run reproduces Example 1.
 
 ### 2.1.0 (2026-10-25)
 - Reads the Context OS base (the account's folder under `accounts/`) and offers read-only CRM connectors through the shared contract's Knowledge Base and Connectors section, before the CRM read.

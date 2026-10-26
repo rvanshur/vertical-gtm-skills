@@ -1,6 +1,6 @@
 ---
 name: gtm-trigger-event-outbound
-version: 2.1.0
+version: 2.1.1
 description: "Turns one dated business event at a target account into a short outbound sequence, but only after checking the event against its window. Reports when the window has closed or the event date is unknown. Read by the BDR or AE who sends the sequence."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: [gtm-account-snapshot, gtm-closed-loss-reactivation]
 mutating: read-write
 change_log:
+  - version: 2.1.1
+    date: 2026-10-25
+    summary: "Adds examples/try-it.md so a first run reproduces Example 1. No other change."
   - version: 2.1.0
     date: 2026-10-25
     summary: "Reads the Context OS account folder and offers read-only CRM and call connectors through the shared contract's new Knowledge Base and Connectors section, and adds a Chains subsection that places the skill in Win Back and Qualify To Book. No other change."
@@ -72,6 +75,8 @@ same skill serves any vertical without modification.
 ## Input Contract
 
 What this skill needs before it starts. **If a required input is missing, ask. Do not guess.**
+
+To try the skill without your own data, use `examples/try-it.md`, which holds the inputs for Example 1.
 
 | Input | Required | Notes |
 |-------|----------|-------|
@@ -835,6 +840,9 @@ next_action: Nadia Brandt sends the note to Owen Pruitt by 2026-10-21, after rea
 
 ## Changelog
 
+
+### 2.1.1 (2026-10-25)
+- Adds examples/try-it.md so a first run reproduces Example 1. No other change.
 
 ### 2.1.0 (2026-10-25)
 - Reads the Context OS account folder and offers read-only CRM and call connectors through the shared contract's new Knowledge Base and Connectors section. Adds a Chains subsection. No other change.

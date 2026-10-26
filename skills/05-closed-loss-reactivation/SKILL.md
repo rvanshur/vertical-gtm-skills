@@ -1,6 +1,6 @@
 ---
 name: gtm-closed-loss-reactivation
-version: 2.1.0
+version: 2.1.1
 description: "Re-engages closed-lost accounts from the CRM history. Checks the recorded loss reason against the evidence, finds what has changed since the deal died, re-scores fit, and returns REACTIVATE, MONITOR or RETIRE with a history-aware opener for the BDR or AE who owns the next step."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: []
 mutating: read-write
 change_log:
+  - version: 2.1.1
+    date: 2026-10-25
+    summary: "Adds examples/try-it.md so a first run reproduces Example 1. No other change."
   - version: 2.1.0
     date: 2026-10-25
     summary: "Reads the Context OS account folder and offers read-only CRM and call connectors through the shared contract's new Knowledge Base and Connectors section, and adds a Chains subsection that places the skill in Win Back. No other change."
@@ -59,6 +62,8 @@ You refuse to:
 ## Input Contract
 
 What this skill needs before it starts. **If a required input is missing, ask. Do not guess.**
+
+To try the skill without your own data, use `examples/try-it.md`, which holds the inputs for Example 1.
 
 | Input | Required | Notes |
 |-------|----------|-------|
@@ -781,6 +786,9 @@ report_path: none (inline)
 
 ## Changelog
 
+
+### 2.1.1 (2026-10-25)
+- Adds examples/try-it.md so a first run reproduces Example 1. No other change.
 
 ### 2.1.0 (2026-10-25)
 - Reads the Context OS account folder and offers read-only CRM and call connectors through the shared contract's new Knowledge Base and Connectors section. Adds a Chains subsection. No other change.

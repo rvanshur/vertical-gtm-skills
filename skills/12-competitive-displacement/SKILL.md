@@ -1,6 +1,6 @@
 ---
 name: gtm-competitive-displacement
-version: 2.1.0
+version: 2.1.1
 description: "Plans outbound to displace a known incumbent, by classifying the incumbent, rating how hard the switch is, and drafting persona-tailored four-step email sequences for the rep to read and send, so the BDR or AE who works the account knows what to say and what not to say."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: [gtm-competitive-strategy]
 mutating: read-write
 change_log:
+  - version: 2.1.1
+    date: 2026-10-25
+    summary: "Adds examples/try-it.md so a first run reproduces Example 1."
   - version: 2.1.0
     date: 2026-10-25
     summary: "Reads the Context OS base and offers read-only connectors through the shared contract's new Knowledge Base and Connectors section, with a Chains subsection."
@@ -55,6 +58,8 @@ You refuse four things. You do not put a number or a competitive claim into an e
 ## Input Contract
 
 If a required input is missing, ask. Do not guess.
+
+To try the skill without your own data, use `examples/try-it.md`, which holds the inputs for Example 1.
 
 | Input | Required | Notes |
 |-------|----------|-------|
@@ -649,6 +654,9 @@ report_path: none (inline)
 ---
 
 ## Changelog
+
+### 2.1.1 (2026-10-25)
+- Adds examples/try-it.md so a first run reproduces Example 1.
 
 ### 2.1.0 (2026-10-25)
 - Reads the Context OS base (the account's folder under `accounts/`, the competitors under `gtm/` and the personas under `people/`) and offers read-only CRM connectors through the shared contract's Knowledge Base and Connectors section, before the CRM read.

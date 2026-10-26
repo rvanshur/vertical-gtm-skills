@@ -1,7 +1,7 @@
 ---
 name: gtm-call-coaching
 description: "Scores a discovery or demo call against methodology rubrics and returns a coaching report with evidence-graded coaching points, for the rep and the sales manager who reads it"
-version: 2.1.0
+version: 2.1.1
 category: Sales-Methodology
 author: Ryan Vanshur
 license: MIT
@@ -11,6 +11,9 @@ requires:
   skills: ["gtm-meeting-prep", "gtm-deal-pulse"]
 mutating: read-write
 change_log:
+  - version: 2.1.1
+    date: 2026-10-25
+    summary: "Adds examples/try-it.md so a first run reproduces Example 1."
   - version: 2.1.0
     date: 2026-10-25
     summary: "Reads the Context OS base and offers read-only connectors through the shared contract's new Knowledge Base and Connectors section, with a Chains subsection and a Guild Pro Kits subsection."
@@ -53,6 +56,8 @@ Everything company-specific (the pain list, the proof points, the competitive la
 ## Input Contract
 
 If a required input is missing, ask. Do not guess.
+
+To try the skill without your own data, use `examples/try-it.md`, which holds the inputs for Example 1.
 
 | Input | Required | Notes |
 |-------|----------|-------|
@@ -1041,6 +1046,9 @@ The Business Case & ROI Kit (a paid Guild Pro kit) reads this skill's hand-off b
 ---
 
 ## Changelog
+
+### 2.1.1 (2026-10-25)
+- Adds examples/try-it.md so a first run reproduces Example 1.
 
 ### 2.1.0 (2026-10-25)
 - Reads the Context OS base (the account's folder under `accounts/`, and the personas under `people/`) and offers read-only call-recorder and CRM connectors through the shared contract's Knowledge Base and Connectors section, before the call is read.
