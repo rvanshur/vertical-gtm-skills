@@ -3,7 +3,7 @@
 Every name, date and number in this file is invented for the PlotIQ example. Nothing here is a real company.
 
 ## Ask Your Assistant
-"Run Stakeholder Mapping on Brackhaven Memorial Gardens using skills/10-stakeholder-mapping/examples/try-it.md"
+"Run Stakeholder Mapping on Brackhaven Memorial Gardens using skills/10-stakeholder-mapping/examples/try-it.md and the PlotIQ profile at profiles/examples/plotiq-example.md"
 
 ## The Records
 - Run date: 2026-10-19 (a Monday). The user is the AE, Owen Pruitt, Account Executive, who owns the account (illustrative assignment).
@@ -16,11 +16,11 @@ Every name, date and number in this file is invented for the PlotIQ example. Not
 - The family board chair joined one call, in Stage 4 Proposal [Call]. The chair is not on file by name.
 - Upstream MEDDPICC run on 2026-10-19: 58, ORANGE [CRM].
 - Contacts on file, all [CRM]:
-  - Ruth Ellery, General Manager. Champion, Strong: four of seven shared champion tests met, each tagged [Call]: offers introductions (2026-09-26 call), commits to next steps with dates (2026-09-26 call), explains the internal politics (2026-09-19 call), and defends the solution when we are not in the room (2026-10-01 call). Influence HIGH. Partially engaged, with the last logged reply on 2026-10-03.
+  - Ruth Ellery, General Manager. Champion, Strong: four of seven shared champion tests met, each tagged [Call]: offers introductions (2026-09-26 call), commits to next steps with dates (2026-09-26 call), explains the internal politics (2026-09-19 call), and defends the solution when we are not in the room (2026-10-01 call). Influence HIGH. Influence HIGH, from demonstrated seniority in meetings: she set the 2026-11-12 board date that the family board will sit on (2026-09-26 call) (illustrative). Partially engaged, with the last logged reply on 2026-10-03.
   - Walt Okonkwo, Operations Director. Influencer, with a Skeptic position [Call]: skeptical of tablets. He controls daily use of the system.
-  - Priscilla Dunmore, pre-need manager, End User. Engaged in the demo on 2026-10-08 [CRM] (illustrative), with a second logged interaction on 2026-10-14 [CRM] (illustrative): two interactions in the last 30 days.
+  - Priscilla Dunmore, pre-need manager, End User, Influence LOW. Engaged in the demo on 2026-10-08 [CRM] (illustrative), with a second logged interaction on 2026-10-14 [CRM] (illustrative): two interactions in the last 30 days.
 - Departments on file: Executive, Operations and Sales [CRM].
-- No IT contact is on file, and nobody at Brackhaven owns IT [Notes].
+- No IT contact is on the full contact list [CRM], and nobody at Brackhaven owns IT [Notes].
 - The Oldgate ledger export has no named owner [Unknown].
 - The family board chair is the economic buyer, identified by role. One call in Stage 4 Proposal [Call]. Budget not confirmed [Call]. The chair is interested in cost and is not yet a supporter [Call].
 - Combination side: Persona 4 in the profile names the funeral home owner, the role the combination's pre-need leads run through.

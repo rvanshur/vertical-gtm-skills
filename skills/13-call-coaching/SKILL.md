@@ -1,16 +1,19 @@
 ---
 name: gtm-call-coaching
 description: "Scores a discovery or demo call against methodology rubrics and returns a coaching report with evidence-graded coaching points, for the rep and the sales manager who reads it"
-version: 2.1.2
+version: 2.1.3
 category: Sales-Methodology
 author: Ryan Vanshur
 license: MIT
-updated: 2026-10-25
+updated: 2026-10-26
 tags: [call-coaching, discovery-coaching, demo-coaching, sales-methodology, call-scoring, coaching-scorecard]
 requires:
   skills: ["gtm-meeting-prep", "gtm-deal-pulse"]
 mutating: read-write
 change_log:
+  - version: 2.1.3
+    date: 2026-10-26
+    summary: "Try-it evidence completed so a strict first run reproduces Example 1: Pre-Call Preparation, Active Listening and Alternatives have their evidence on the record, and one sentence each settles the partial-markers case, the Winning Zone, the post-call date, the champion test about process, the focus-area tie-break and the before read of Deal Health Impact. The try-it notes that its records predate the account's later stage."
   - version: 2.1.2
     date: 2026-10-25
     summary: "Try-it evidence completed so a strict first run reproduces Example 1, and the Unknown Rule added: a category with no evidence is INSUFFICIENT, the total reads scored n of N, and below five scored categories there is no overall score. The example's sections, Top 3 lists and single focus area now match the rubric."
@@ -108,7 +111,7 @@ Every run returns the coaching report in the chat, in the eight sections under R
 
 **This skill does not contain client-specific information. It points to it.**
 
-> **Load the client profile from [`profiles/client-profile.md`](../../profiles/client-profile.md) before starting.** That single file is shared by all 14 skills in this suite. Update it once and every skill inherits the change on its next run.
+> **Load the client profile from [`profiles/client-profile.md`](../../profiles/client-profile.md) before starting.** That single file is shared by all 14 skills in this suite. Update it once and every skill inherits the change on its next run. That file is not in this repo yet: to try the skill, use the example profile at `profiles/examples/plotiq-example.md`, and to set up your own company, copy `profiles/client-profile-template.md` to `profiles/client-profile.md`.
 
 Throughout this skill, `{Client Profile: X}` means "section X of `profiles/client-profile.md`". Sections this skill reads:
 
@@ -397,6 +400,8 @@ Before pulling anything, read the account's folder under `accounts/` (its earlie
 
 **The Unknown Rule.** A category with no evidence is INSUFFICIENT. It carries no value, and it is left out of the total and the count. The total is written `N of M, scored n of 7` (or `scored n of 8` for demo), with N the sum of the scored rows. With five or six categories scored, the total is shown with its scored count and no assessment band is given, because the bands were set for a full call. With fewer than five scored categories there is no overall score, and the report lists the evidence that would score each missing category. Each INSUFFICIENT row says what evidence is missing.
 
+**Partial Markers.** A score is the highest line whose every marker the record shows. Where the record shows some markers of a line but not all, the score is the line below it.
+
 **If `call_type = discovery`** (score 7 categories, out of 35):
 
 If the profile's Call Coaching section renames the categories, the report uses the team's names. The rubric and the weights do not change.
@@ -448,6 +453,8 @@ Rep talk time is read against the discovery band in The Shared Contract. "Points
 | 2 | Feature list without pain connection. Talked about irrelevant capabilities. |
 | 1 | No value articulation or pitched features without discovery. |
 
+The Winning Zone is the part of the call where each capability is tied to a pain the prospect named in their own words. A value claim with no named pain sits outside it.
+
 #### Category 6: Next Steps and Momentum (1-5)
 | Score | Evidence |
 |-------|----------|
@@ -456,6 +463,8 @@ Rep talk time is read against the discovery band in The Shared Contract. "Points
 | 3 | Vague ("I'll send info" or "Let's reconnect" without specifics). |
 | 2 | Prospect drove next steps. Rep was passive. |
 | 1 | No next step established. Call ended without forward motion. |
+
+A date that the rep sets by email after the call is not on the call. It counts in the Next Action line of the hand-off, and this score reads only what the call shows.
 
 #### Category 7: Alternatives (1-5)
 | Score | Evidence |
@@ -583,7 +592,7 @@ For each MEDDIC element, assess what was uncovered on this call:
 | Identified Pain | Specific, named, quantified pain? | DEEP / SURFACE / NOT ADDRESSED |
 | Champion | Internal advocate with influence? | STRONG / DEVELOPING / NONE |
 
-**Champion status** is graded with the shared champion tests in The Shared Contract. Count only the tests met on this call, each with its evidence and tag. A contact who was not in the room cannot meet the tests that need the room, and the report says so.
+**Champion status** is graded with the shared champion tests in The Shared Contract. Count only the tests met on this call, each with its evidence and tag. A contact who was not in the room cannot meet the tests that need the room, and the report says so. A statement about the buyer's process counts as "explains the internal politics" only when it says who decides or how the decision moves. "The board takes these things up" names no one, so it does not count.
 
 **Produces:** the six-element coverage grid and the champion status (Strong, Developing or None) with the tests met on this call.
 
@@ -670,7 +679,7 @@ Mark each key moment with one of seven types. Capture the fields the type requir
 
 **Deal Health Impact:** Before and after this call. The key risk. Buying signals to advance. Where the call moves the stage gate in the profile's Qualification Stage Gates, and where it does not.
 
-**Focus Area for Next Call:** One skill only. Prep steps, what to practice, success criteria. Five things at once do not change a habit.
+**Focus Area for Next Call:** One skill only. Prep steps, what to practice, success criteria. Five things at once do not change a habit. When categories tie for the lowest score, the focus area is the one that gates the next stage in the profile's Qualification Stage Gates, as Priority Ladder does for the Stage 2 to 3 gate.
 
 **Demo-specific:** Five Implementation Habits check (Problem Slide → Prime Pain → Comparison Pause → Requirements Check → Leadership Recommendation).
 
@@ -738,10 +747,10 @@ All three examples use the PlotIQ example company and its cast. Every call-level
 
 | Category | Score (1 to 5) | Evidence |
 |---|---|---|
-| Pre-Call Preparation | 4 | Opened on the prep sheet's top pain, plot records on paper (`[Notes]`), and asked about the lookup at 02:10 (`[Call]`). Referred to both attendees by name at 00:40 (`[Call]`). Did not check the double sale on file (`[CRM]`) before asking about it. |
+| Pre-Call Preparation | 4 | Opened on the prep sheet's top pain, plot records on paper (`[Notes]`), and asked about the lookup at 02:10 (`[Call]`). Referred to both attendees by name at 00:40 (`[Call]`), set the agenda at 00:50 (`[Call]`), and named each attendee's title at 01:10 (`[Call]`). Did not check the double sale on file (`[CRM]`) before asking about it. |
 | SPIN Discovery Quality | 3 | Situation and Problem well executed. Implication started at 19:05 and was cut short. Need-Payoff not reached. Two phases well executed, one started. |
 | Priority Ladder Execution | 3 | Identified the plot lookup and described it, Level 2 (`[Call]`, 14:20). Not quantified: no count and no time. |
-| Active Listening | 4 | Rep talk time 36% (illustrative), inside the discovery band (`[Call]`). Restating and captured language used. One follow-up missing at 21:30, where Ruth described the lookups and Owen moved on. |
+| Active Listening | 4 | Rep talk time 36% (illustrative), inside the discovery band (`[Call]`). Restated the files at 16:40 and clarified at 09:15 (`[Call]`). No silence used, so one listening technique is missing. One follow-up missing at 21:30, where Ruth described the lookups and Owen moved on. |
 | Value Articulation | 3 | Generic pitch at 25:00 ("it fixes the paper problem," `[Call]`). No proof point used. The double sale was asked about, but not tied to the value. |
 | Next Steps and Momentum | 3 | Owen asked for the approval body's chair and the meeting date at 28:30. Ruth said she would check with the board (`[Call]`). No date set on the call. Vague. |
 | Alternatives | 4 | Asked what was tried before. Ruth said they began moving plots into the Oldgate system and stopped (`[Call]`, 17:05). Owen asked why it stopped. Cost not asked. |
@@ -801,7 +810,7 @@ Assessment: Good, in the 24 to 30 band of the restated scale (see Step 2 for the
 
 **Competitive Intel Summary:** Current solution: Oldgate Ledger Pro, direct software (`[CRM]`). Contract: renewal in March 2027 (`[CRM]`). Satisfaction: not stated on this call (`[Unknown]`). The gap: the move into Oldgate began and stopped (17:05, `[Call]`), and the cost of the stop was not asked. The probe that went unasked is what the move cost.
 
-**Deal Health Impact:** The Stage 2 to 3 gate in the profile needs the records problem quantified (plots, hours or dollars) and the GM named as the likely economic buyer. Ruth is named as GM and buyer (`[CRM]`). The problem is not yet quantified, so the gate is not met, and this call does not move the deal to a demo.
+**Deal Health Impact:** Before this call: `[Unknown]`, because no Deal Pulse (08) exists for this account in the records. After this call: the Stage 2 to 3 gate in the profile needs the records problem quantified (plots, hours or dollars) and the GM named as the likely economic buyer. Ruth is named as GM and buyer (`[CRM]`). The problem is not yet quantified, so the gate is not met, and this call does not move the deal to a demo.
 
 **Focus Area for Next Call:** Priority Ladder to Level 3 on the cost of a plot lookup. The chair and the date are success criteria in the game plan, not a second focus.
 
@@ -1072,6 +1081,9 @@ The Business Case & ROI Kit (a paid Guild Pro kit) reads this skill's hand-off b
 ---
 
 ## Changelog
+
+### 2.1.3 (2026-10-26)
+- Try-it evidence completed so a strict first run reproduces Example 1. The records now carry the agenda, the titles, a restatement and the alternatives question, so Pre-Call Preparation scores 4 on its three markers and Active Listening and Alternatives score on what was said. Five sentences settle the open judgments: the partial-markers rule, the Winning Zone, the post-call date, the champion test about process, and the focus-area tie-break. Deal Health Impact states its before read, and the try-it notes that its records predate the account's later stage.
 
 ### 2.1.2 (2026-10-25)
 - Try-it evidence completed so a strict first run reproduces Example 1. The Unknown Rule is added: a category with no evidence is INSUFFICIENT and is left out of the total, the total reads `scored n of N`, and fewer than five scored categories gives no overall score. Example 1 now shows the eight report sections, Top 3 Strengths and Top 3 Improvement Areas, and one focus area.

@@ -1,16 +1,19 @@
 ---
 name: gtm-stakeholder-mapping
-version: 2.1.2
+version: 2.1.3
 description: "Maps the buying committee for one account: classifies every contact by buying role, marks each missing decision-maker as an UNKNOWN ghost node, scores multi-threading on seven weighted dimensions, and returns an engagement plan the AE or BDR reads before the next meeting."
 category: Sales-Methodology
 author: Ryan Vanshur
 license: MIT
-updated: 2026-10-25
+updated: 2026-10-26
 tags: [stakeholder-mapping, org-map, org-chart, multi-threading, buying-committee, influence-map, contact-mapping, deal-strategy, ghost-nodes, non-buyers]
 requires:
   skills: [gtm-meddpicc-analysis]
 mutating: read-write
 change_log:
+  - version: 2.1.3
+    date: 2026-10-26
+    summary: "Try-it evidence completed so a strict first run reproduces Example 1 with every rule holding. Adds the UNKNOWN rule: a dimension with no evidence is INSUFFICIENT and the threading score re-weights over the scored rows, shown as scored n of 7, with no score below 5 of 7. Settles the political quadrant placement (HIGH influence only takes a quadrant), a general manager as not C-level, the ghost-node open-question test, and the hand-off's champion test dates. Example 2's Blocker Mitigation is INSUFFICIENT, so its threading score changes from 3 to 2."
   - version: 2.1.2
     date: 2026-10-25
     summary: "Try-it evidence completed so a strict first run reproduces Example 1. Settles four open judgments: a board chair counts as C-level, a Skeptic with an objection is an Influencer and scores Developing on Blocker Mitigation, an end user is engaged when Actively Engaged, and a non-buyer becomes a ghost node only when the record needs that person. Makes the Blocker definitions agree. Names the four champion tests and their dates."
@@ -79,7 +82,7 @@ Every run produces a **complete stakeholder map with the same eight sections**, 
 | Output | Where It Lives | Notes |
 |--------|---------------|-------|
 | Stakeholder map (eight sections) | Inline, in the chat | Account Snapshot, Stakeholder Hierarchy, Buying Committee Matrix, Multi-Threading Scorecard, Engagement Status Heat Map, Political Landscape, Coverage Gaps and Risks, Priority Actions |
-| `threading_score` | Inline, in the hand-off block | Whole number from 0 to 10, with the seven dimension rows shown beside it |
+| `threading_score` | Inline, in the hand-off block | Whole number from 0 to 10, with the seven dimension rows shown beside it and the count "scored n of 7". Withheld below 5 of 7 scored dimensions |
 | `buying_roles` | Inline, in the hand-off block | Each contact with exactly one buying role, plus each ghost node's role |
 | `ghost_nodes` | Inline, in the hand-off block | Each expected position with no named contact, written "UNKNOWN, role" |
 | `champion_status` | Inline, in the hand-off block | Strong, Developing or None, with the shared champion tests met and the call date for each |
@@ -93,7 +96,7 @@ Every run produces a **complete stakeholder map with the same eight sections**, 
 
 **This skill does not contain client-specific information. It points to it.**
 
-> **Load the client profile from [`profiles/client-profile.md`](../../profiles/client-profile.md) before starting.** That single file is shared by all 14 sales skills in this suite. Update it once and every skill inherits the change on its next run.
+> **Load the client profile from [`profiles/client-profile.md`](../../profiles/client-profile.md) before starting.** That single file is shared by all 14 sales skills in this suite. Update it once and every skill inherits the change on its next run. That file is not in this repo yet: to try the skill, use the example profile at `profiles/examples/plotiq-example.md`, and to set up your own company, copy `profiles/client-profile-template.md` to `profiles/client-profile.md`.
 
 Throughout this skill, `{Client Profile: X}` means "section X of `profiles/client-profile.md`". Sections this skill reads:
 
@@ -227,7 +230,7 @@ A non-buyer cannot approve the purchase, but can slow it, stop it or reshape it.
 Rules for placing a non-buyer:
 - A non-buyer on file is classified as a non-buyer and is never given an Economic Buyer slot.
 - A named, engaged non-buyer counts toward Department Breadth. A named technical reviewer or systems administrator also counts toward Technical Evaluator.
-- A non-buyer the map cannot name becomes an UNKNOWN ghost node, with the role written out, when the record needs that person: a dated step that needs them, or an open question only they can answer. A function known only in outline, with no dated step or open question, is named as a gap, not a ghost node.
+- A non-buyer the map cannot name becomes an UNKNOWN ghost node, with the role written out, when the record needs that person: a dated step that needs them, or an open question the team needs answered about them. A function known only in outline, with no dated step or open question, is named as a gap, not a ghost node.
 - The profile's Buying Committee section may add rows for this market. Those rows carry the same hypothesis label.
 
 ### Influence Levels
@@ -275,17 +278,21 @@ Champion status is set from the shared champion tests in the Shared Contract, wh
 | **End User Validation** | 1x | No end users known | End users identified | End users engaged |
 | **Blocker Mitigation** | 1x | Known blocker, no strategy | Blocker identified, strategy exists | No blockers, or all neutralized |
 
-**The board chair counts as C-level.** The chair of a family-owned operator's board holds the top decision seat, so a board chair counts as a C-level contact for C-Level Access. A chair who is engaged but not named scores 1, and a named chair who is engaged scores 2.
+**The board chair counts as C-level.** The chair of a family-owned operator's board holds the top decision seat, so a board chair counts as a C-level contact for C-Level Access. A chair who is engaged but not named scores 1, and a named chair who is engaged scores 2. A general manager is not a C-level title, so a GM counts toward Department Breadth and not toward C-Level Access.
 
 **Skeptics count toward Blocker Mitigation.** A contact with a Skeptic position and a stated objection, with a strategy in place, scores 1 on Blocker Mitigation (Developing), because an objection not yet acted on is the early form of a block. The contact keeps the Influencer role.
 
 **End users engaged** means at least one end user Actively Engaged under the Engagement Status table, with 2 or more logged interactions in the last 30 days.
 
+**Absence scores only from a read record.** A 0 on a dimension counts only when the rubric's own 0 describes the full contact list (for example, no IT contact on the list). A Blocker Mitigation score of 2 needs notes that were read and show no blocker or a neutralized one. A contact not yet contacted has no notes to read, so the blocker check is INSUFFICIENT, not 2.
+
+**The INSUFFICIENT rule.** A dimension with no evidence in the record is INSUFFICIENT. It carries no score and is left out of the raw total and of the weight. The result reads "scored n of 7". Below 5 of 7 scored dimensions there is no threading score, and the report lists the evidence that would score the missing dimensions.
+
 **The formula.** Score each dimension 0, 1 or 2. Multiply each score by its weight (2x or 1x) to get the weighted score. Add the seven weighted scores for a **raw total from 0 to 20**. Then:
 
-**threading_score = raw total ÷ 2, rounded half up to a whole number from 0 to 10.**
+**threading_score = raw total ÷ (2 × the sum of the scored weights) × 10, rounded half up to a whole number from 0 to 10.** When all seven dimensions are scored, the sum of the weights is 10, so this is the raw total ÷ 2. The formula is the same either way, and only the scored rows enter it.
 
-A raw total of 13 gives 7, a raw total of 14 gives 7, and a raw total of 15 gives 8. Every output shows all seven rows, so the reader can recompute the total.
+With all seven scored, a raw total of 13 gives 7, a raw total of 14 gives 7, and a raw total of 15 gives 8. Every output shows all seven rows, so the reader can recompute the total.
 
 Interpretation of the threading score:
 - 9-10 = Excellent coverage
@@ -303,6 +310,8 @@ Classify influential contacts on two axes: **Influence (Y-axis: high to low)** �
 - **Top-Left (High Influence + Opposition):** Neutralize. The blocker with power.
 - **Bottom-Right (Low Influence + Support):** Keep Informed. Friendly contact.
 - **Bottom-Left (Low Influence + Opposition):** Monitor. Low threat, watch.
+
+Only a HIGH influence contact takes a quadrant. A MEDIUM contact sits on the centre line of the Influence axis and is placed by position, and a LOW contact is not placed on the map. On the Support axis, a Supporter or Strong Supporter takes the right, an Opponent takes the left, and a Neutral or Skeptic sits on the centre line, because a Skeptic has concerns and is not yet opposed.
 
 ### Ghost Node Identification
 
@@ -489,7 +498,7 @@ Present as a department-grouped table showing:
 
 Score each of the seven dimensions 0, 1 or 2 from the Methodology table, using the evidence from Steps 2 to 4. Multiply by its weight, and show all seven rows.
 
-**Calculation:** Sum the weighted scores for a raw total from 0 to 20. Then threading_score = raw total ÷ 2, rounded half up to a whole number from 0 to 10. State the raw total and the threading score in one line beneath the table.
+**Calculation:** Sum the weighted scores of the scored dimensions. Then threading_score = raw total ÷ (2 × the sum of the scored weights) × 10, rounded half up to a whole number from 0 to 10. With all seven scored this is the raw total ÷ 2. An INSUFFICIENT dimension shows no weighted value and is left out of both the raw total and the weights. State "scored n of 7", the raw total with its maximum (2 × the scored weights) and the threading score in one line beneath the table.
 
 | Score | Rating | Meaning |
 |-------|--------|---------|
@@ -575,7 +584,7 @@ The plays come from the profile's Buying Committee section (available plays). A 
 | Total Contacts on File | [Count] |
 | Contacts Classified | [Count with buying roles assigned] |
 | Ghost Nodes Identified | [Count, each written "UNKNOWN, role"] |
-| Multi-Threading Score | [X/10 (Rating), raw total N of 20] |
+| Multi-Threading Score | [X/10 (Rating), scored n of 7, raw total N of the scored maximum] |
 | Champion Status | [Strong, Developing or None (Name, N of 7 shared tests met)] |
 | Economic Buyer Status | [Engaged / Identified / Unknown (Name or "UNKNOWN, role")] |
 | Blocker Status | [None / Identified (Name + mitigation)] |
@@ -609,7 +618,7 @@ The plays come from the profile's Buying Committee section (available plays). A 
 5. **Never count an engagement that is not logged.** The engagement score drives the threading score, so an unlogged conversation would move the number on memory alone.
 6. **Never leave a contact out of the inventory.** Missing positions are gaps, and a filtered list hides the pattern the map exists to show.
 7. **Never send an email or write to the CRM.** The rep reads every draft and sends it. This keeps one person accountable for what a buyer receives.
-8. **Never show the threading score without its seven rows.** The reader must be able to recompute the total, or the score is an opinion.
+8. **Never show the threading score without its seven rows.** The reader must be able to recompute the total, or the score is an opinion. An INSUFFICIENT row is shown as INSUFFICIENT, with the count "scored n of 7", and never filled with a 0 or a 2 to close the gap.
 
 ---
 
@@ -622,7 +631,7 @@ The plays come from the profile's Buying Committee section (available plays). A 
 - [ ] Each non-buyer placed on the map is labelled a non-buyer, and each stance is labelled a hypothesis
 - [ ] Every ghost node is written "UNKNOWN, role", with the reason it exists and its tag
 - [ ] The hierarchy shows confirmed vs. inferred relationships
-- [ ] The threading score shows all seven rows, the raw total and the threading score (raw total ÷ 2, rounded half up)
+- [ ] The threading score shows all seven rows, "scored n of 7", the raw total over the scored rows and the threading score (raw total ÷ (2 × the scored weights) × 10, rounded half up), and no score is given below 5 of 7
 - [ ] Champion status is Strong, Developing or None, set from the shared champion tests with each test met tagged and dated
 - [ ] The political landscape is sourced from evidence, and an empty position is `[Unknown]`
 - [ ] The engagement strategy is prioritized by urgency, with who, what and why for each action
@@ -644,31 +653,31 @@ The plays come from the profile's Buying Committee section (available plays). A 
 **Process:** `user_role = AE`. CRM shows an ACTIVE deal at Stage 5 Negotiate, $21,576 a year at list (two sites at the $10,788 list price) `[CRM]`. The Active Deal Guard does not apply, because the user is the AE. The upstream MEDDPICC fields for this account are read by name, and the second MEDDPICC run on 2026-10-19 scored the deal 58 ORANGE `[CRM]`. Three contacts are on file, and three positions are ghost nodes.
 
 Contacts on file, `[CRM]`:
-- Ruth Ellery, General Manager (Executive). Champion, Strong: four of seven shared champion tests met, each tagged `[Call]`: offers introductions (2026-09-26 call), commits to next steps with dates (2026-09-26 call), explains the internal politics (2026-09-19 call), and defends the solution when we are not in the room (2026-10-01 call). Influence HIGH. Partially engaged, with the last logged reply on 2026-10-03.
+- Ruth Ellery, General Manager (Executive). Champion, Strong: four of seven shared champion tests met, each tagged `[Call]`: offers introductions (2026-09-26 call), commits to next steps with dates (2026-09-26 call), explains the internal politics (2026-09-19 call), and defends the solution when we are not in the room (2026-10-01 call). Influence HIGH, from demonstrated seniority in meetings: she set the 2026-11-12 board date that the family board will sit on (2026-09-26 call) (illustrative). Partially engaged, with the last logged reply on 2026-10-03.
 - Walt Okonkwo, Operations Director (Operations). Influencer with a Skeptic position `[Call]`, skeptical of tablets. Influence MEDIUM, and he controls daily use of the system.
-- Priscilla Dunmore, pre-need manager (Sales). End User, Actively Engaged: the demo on 2026-10-08 and a second logged interaction on 2026-10-14, two in the last 30 days `[CRM]` (illustrative).
+- Priscilla Dunmore, pre-need manager (Sales). End User, Influence LOW, Actively Engaged: the demo on 2026-10-08 and a second logged interaction on 2026-10-14, two in the last 30 days `[CRM]` (illustrative).
 
 Ghost nodes, written by role only:
 - "UNKNOWN, family board chair" (Executive). Economic Buyer, identified by role. One call in Stage 4 Proposal `[Call]`, and budget not confirmed `[Call]`.
 - "UNKNOWN, systems administrator" (Technology). Technical Evaluator. Nobody at Brackhaven owns IT, and no IT contact is on file `[Notes]`. The Oldgate ledger export has no named owner `[Unknown]`, and only the person who runs the system can say who holds it, an open question only they can answer.
-- "UNKNOWN, funeral home owner" (combination side, Persona 4). `[Inferred]` from the ICP2 Combination pattern, which needs a funeral home side to the account. Persona 4 in the profile names this role. General counsel and procurement are known only in outline, with legal review and vendor onboarding timing not scoped `[Unknown]`, so they are named as gaps, not ghost nodes. The CFO persona applies to groups only, and this account has two sites. The revenue table starts at $50M, so at under $50M it adds no ghost rows.
+- "UNKNOWN, funeral home owner" (combination side, Persona 4). `[Inferred]` from the ICP2 Combination pattern, which needs a funeral home side to the account. Persona 4 in the profile names this role, and the record needs it because the team has an open question about it (the pre-need leads run through that side, Next Actions below). General counsel and procurement are known only in outline, with legal review and vendor onboarding timing not scoped `[Unknown]` and no open question on the record, so they are named as gaps, not ghost nodes. The CFO persona applies to groups only, and this account has two sites. The revenue table starts at $50M, so at under $50M it adds no ghost rows.
 
 **Multi-threading score:**
 
 | Dimension | Weight | Score (0 to 2) | Weighted | Why |
 |---|---|---|---|---|
-| C-Level Access | 2x | 1 | 2 | The board chair joined one call `[Call]`, but is not on file by name, so no named C-level contact is engaged. The board chair counts as C-level (Methodology), engaged but unnamed, so 1. Ruth is a GM |
+| C-Level Access | 2x | 1 | 2 | The board chair joined one call `[Call]`, but is not on file by name, so no named C-level contact is engaged. The board chair counts as C-level (Methodology), engaged but unnamed, so 1. Ruth is a GM, not a C-level title, so she counts toward Department Breadth only |
 | Champion Identified | 2x | 2 | 4 | Ruth Ellery, Strong: four of seven shared champion tests met, each `[Call]` |
 | Department Breadth | 1x | 1 | 1 | Executive, Operations and Sales: 3 departments (the 2 to 3 band) `[CRM]` |
 | Technical Evaluator | 1x | 0 | 0 | No IT contact on file `[Unknown]`. Nobody owns IT `[Notes]` |
 | Economic Buyer Engaged | 2x | 1 | 2 | Identified by role only, one call, budget not confirmed `[Call]` |
 | End User Validation | 1x | 2 | 2 | Priscilla Dunmore, Actively Engaged: the demo on 2026-10-08 and a second logged interaction on 2026-10-14, two in the last 30 days `[CRM]` (illustrative) |
 | Blocker Mitigation | 1x | 1 | 1 | Walt Okonkwo, a Skeptic with a stated objection, identified, and a strategy exists (a demo on his own work orders) `[Notes]`. Developing under the Skeptic rule in Methodology |
-| **Total** | | | **12 of 20** | |
+| **Total** | | | **12 of 20** (scored 7 of 7) | |
 
-Raw total 12 of 20. threading_score = 12 ÷ 2 = **6**, Developing, material gaps. Full C-level credit would give a raw total of 14 and a score of 7. The map withholds that credit because the board chair is not a named contact on file, and one call with an unnamed person is not a relationship the team can plan around.
+Raw total 12 of 20, scored 7 of 7. threading_score = 12 ÷ 2 = **6**, Developing, material gaps. Full C-level credit would give a raw total of 14 and a score of 7. The map withholds that credit because the board chair is not a named contact on file, and one call with an unnamed person is not a relationship the team can plan around.
 
-**Political landscape:** Ruth is top-right (leverage), with Influence HIGH and support Strong `[CRM]`. The "UNKNOWN, family board chair" is top-right by influence, with support Neutral `[Call]`, interested in cost and not yet a supporter. Walt is top-left (neutralize), a skeptic whose daily use decides whether the system survives `[Call]`. Priscilla is bottom-right (keep informed).
+**Political landscape:** Ruth is top-right (leverage), with Influence HIGH and support Strong `[CRM]`. The "UNKNOWN, family board chair" is HIGH influence, so it sits at the top of the map, on the centre line of support: interested in cost and not yet a supporter, a Skeptic `[Call]`. The chair takes no quadrant until the chair is named. Walt sits on the centre line, not in a quadrant, because his influence is MEDIUM and only HIGH influence takes a quadrant. He is a Skeptic with concerns and no opposition yet `[Call]`, and his daily use decides whether the system survives. Priscilla is LOW influence, so she is not placed on the map, and her support is `[Unknown]` until a conversation shows it.
 
 **Output:** Engagement strategy:
 - URGENT, this week: Owen asks Ruth Ellery for the board date and the board chair's name by 2026-10-23, and asks her to broker a second call with the chair. Why: the economic buyer is unnamed and has been on one call, and the champion has not replied since 2026-10-03 `[CRM]`. How: a short note through Ruth, not a cold message to the chair. Messaging: price and the board line only, year one $26,576 with the $5,000 setup against the $25K line (`profile pricing`). No customer result is cited, because the proof points are Illustrative.
@@ -682,10 +691,10 @@ Summary: Champion, Strong (Ruth Ellery, four of seven shared tests met). Economi
 Hand-off (read by 09 and 06):
 account: Brackhaven Memorial Gardens (ACTIVE, Stage 5 Negotiate)
 run_date: 2026-10-19
-threading_score: 6
+threading_score: 6 (scored 7 of 7)
 buying_roles: Champion Ruth Ellery (Strong), Economic Buyer UNKNOWN, family board chair (identified by role, one call), Technical Evaluator UNKNOWN, systems administrator, Influencer Walt Okonkwo (Skeptic), End User Priscilla Dunmore
 ghost_nodes: UNKNOWN, family board chair, UNKNOWN, systems administrator, UNKNOWN, funeral home owner
-champion_status: Strong (Ruth Ellery, four of seven shared champion tests met, each [Call])
+champion_status: Strong (Ruth Ellery, four of seven shared champion tests met: offers introductions 2026-09-26 [Call], commits to next steps with dates 2026-09-26 [Call], explains the internal politics 2026-09-19 [Call], defends the solution when we are not in the room 2026-10-01 [Call])
 next_action: Owen Pruitt asks Ruth Ellery for the board date and the board chair's name by 2026-10-23
 report_path: none (inline)
 ```
@@ -712,27 +721,27 @@ Ghost nodes, from the profile's Buyer Personas. The revenue table does not apply
 | C-Level Access | 2x | 1 | 2 | CFO on file `[CRM]`, no engagement |
 | Champion Identified | 2x | 0 | 0 | No champion. Status None, and no contact has met a shared test |
 | Department Breadth | 1x | 0 | 0 | Finance only, 1 department `[CRM]` |
-| Technical Evaluator | 1x | 0 | 0 | No IT contact `[Unknown]` |
+| Technical Evaluator | 1x | 0 | 0 | No IT contact on the full contact list `[CRM]` |
 | Economic Buyer Engaged | 2x | 1 | 2 | CFO identified as the budget approver, not engaged `[Notes]` |
 | End User Validation | 1x | 0 | 0 | No end users known `[Unknown]` |
-| Blocker Mitigation | 1x | 2 | 2 | No blocker identified. Provisional: with one contact known, the absence of a blocker is not yet evidence `[Unknown]` |
-| **Total** | | | **6 of 20** | |
+| Blocker Mitigation | 1x | INSUFFICIENT | none | No blocker is shown, but the one contact has not been contacted, so there are no notes to read `[CRM]`. Left out of the total |
+| **Total** | | | **4 of 18** (scored 6 of 7) | |
 
-Raw total 6 of 20. threading_score = 6 ÷ 2 = **3**, Weak, narrow coverage. The Blocker score is the one that flatters this map, and it is marked provisional for that reason.
+Raw total 4 of 18, scored 6 of 7. threading_score = 4 ÷ (2 × 9) × 10 = 2.2, rounded to **2**, Critical, almost no contacts. The Blocker row is left out rather than scored, so the map does not look better than the one contact it holds.
 
-**Output:** Coverage is weak and single-threaded. The only known decision-maker is the CFO, and nobody else has been identified. A cold message to the CFO with the 2027 claim would be a single-threaded bet. The engagement plan is research only, with no outreach yet:
+**Output:** Coverage is critical and single-threaded. The only known decision-maker is the CFO, and nobody else has been identified. A cold message to the CFO with the 2027 claim would be a single-threaded bet. The engagement plan is research only, with no outreach yet:
 - Find the pre-need sales manager or pre-need counselor at one of the three funeral homes through LinkedIn research. This is the person who feels the lead follow-up pain daily. Next action: the BDR completes this research by 2026-10-23.
 - Find the cemetery general manager for the two cemeteries (Persona 1).
 - Keep the CFO as the economic buyer to reach once a second contact confirms the timeline. Use the owner letter as the shared hook, not as an assertion about what the family has decided.
 - Re-score after the first two contacts. If the score does not move, the plan is wrong and needs rework.
 
-Summary: Champion, None. Economic Buyer, identified and not engaged (CFO). Blocker, none identified (provisional). Top gaps: single-threaded, no operations or pre-need contact, cemetery side unknown.
+Summary: Champion, None. Economic Buyer, identified and not engaged (CFO). Blocker, not yet checked (INSUFFICIENT). Top gaps: single-threaded, no operations or pre-need contact, cemetery side unknown.
 
 ```text
 Hand-off (read by 09 and 06):
 account: Saltmarsh Heritage Group (TARGET)
 run_date: 2026-10-19
-threading_score: 3
+threading_score: 2 (scored 6 of 7)
 buying_roles: Economic Buyer Hector Ruiz (CFO, not engaged), all other roles UNKNOWN
 ghost_nodes: UNKNOWN, owner, UNKNOWN, cemetery general manager, UNKNOWN, pre-need sales manager, UNKNOWN, funeral home owner, UNKNOWN, operations director
 champion_status: None (no contact has met any shared champion test)
@@ -806,6 +815,14 @@ report_path: none (inline)
 ---
 
 ## Changelog
+
+### 2.1.3 (2026-10-26)
+- Try-it evidence completed so a strict first run reproduces Example 1. The try-it records now carry Ruth's seniority in meetings (she set the 2026-11-12 board date) and Priscilla's LOW influence, and Example 1 shows the same facts. The hand-off's champion tests carry their dates.
+- The UNKNOWN rule is added. A dimension with no evidence is INSUFFICIENT, the threading score re-weights over the scored rows (raw total ÷ (2 × the scored weights) × 10), the result reads "scored n of 7", and no score is given below 5 of 7. The Output Contract, the Methodology, Step 5, the Step 8 summary, the Quality Bar and Hard Rule 8 are updated.
+- Quadrants: only HIGH influence takes a quadrant, a MEDIUM contact sits on the centre line and is placed by position, and a LOW contact is not placed. A Neutral or Skeptic sits on the centre line of support. Walt and the board chair are placed by that rule, and Priscilla is not placed.
+- A general manager is not a C-level title. The ghost-node test is an open question the team needs answered about the non-buyer. The funeral home owner qualifies, and General Counsel and Procurement stay gaps.
+- Example 2's Blocker Mitigation is INSUFFICIENT, because the one contact has not been contacted and there are no notes to read. Its threading score moves from 3 to 2 (raw 4 of 18, scored 6 of 7). This is the only output change.
+- The examples' Example 1 scores, the 6 threading score and the next action do not change.
 
 ### 2.1.2 (2026-10-25)
 - Try-it evidence completed so a strict first run reproduces Example 1. The board chair counts as C-level, a Skeptic with a stated objection is an Influencer who scores Developing on Blocker Mitigation, an end user is engaged when Actively Engaged, and a non-buyer becomes a ghost node only when the record needs that person. The Blocker definitions in the buying roles table and the Methodology now agree. Example 1 names the four champion tests with their call dates and carries the employee count and revenue band. The threading score stays 6.

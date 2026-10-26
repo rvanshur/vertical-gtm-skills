@@ -1,16 +1,19 @@
 ---
 name: gtm-deal-pulse
-version: 2.1.2
+version: 2.1.3
 description: "Scores one open deal across 16 signals in 4 pillars and produces a 0 to 100 health score, a risk level and named next actions. The AE and the sales manager read it, and the MEDDPICC, Call Coaching and Meeting Prep skills take its fields by name."
 category: Sales-Methodology
 author: Ryan Vanshur
 license: MIT
-updated: 2026-10-25
+updated: 2026-10-26
 tags: [deal-scoring, pipeline-health, signal-scorecard, opportunity-assessment, sales-methodology]
 requires:
   skills: ["gtm-call-coaching"]
 mutating: read-write
 change_log:
+  - version: 2.1.3
+    date: 2026-10-26
+    summary: "Try-it evidence completed so a strict first run reproduces Example 1. Records now show the dated commitments, meeting attendance and champion tests that GREEN Signals 4, 13 and 15 rest on, so health stays 72 and 8 GREEN. Example 1 names the champion tests and adds the header, the Overall Assessment and an evidence line for each YELLOW. Three rubric sentences settle the boundaries Example 1 decided. Example 2 dates are made consistent with Example 1. No score, verdict, band or risk level changes."
   - version: 2.1.2
     date: 2026-10-25
     summary: "Try-it evidence completed so a strict first run reproduces Example 1. Pain Clarity, Product Alignment and Timeline Alignment gain the facts their GREEN rubrics need, Strategic Initiative and Multi-Threaded Engagement each gain one rubric sentence, Example 1 adds Evidence Confidence, and the Recommended Actions Framework names a method for Strategic Initiative and Technical Readiness. No score, verdict or risk level changes."
@@ -95,7 +98,7 @@ Core commitments: **a 16-signal scorecard across 4 pillars**, **a health score f
 
 **This skill does not contain client-specific information. It points to it.**
 
-> **Load the client profile from [`profiles/client-profile.md`](../../profiles/client-profile.md) before starting.** That single file is shared by all 14 skills in this suite. Update it once and every skill inherits the change on its next run.
+> **Load the client profile from [`profiles/client-profile.md`](../../profiles/client-profile.md) before starting.** That single file is shared by all 14 skills in this suite. Update it once and every skill inherits the change on its next run. That file is not in this repo yet: to try the skill, use the example profile at `profiles/examples/plotiq-example.md`, and to set up your own company, copy `profiles/client-profile-template.md` to `profiles/client-profile.md`.
 
 Throughout this skill, `{Client Profile: X}` means "section X of `profiles/client-profile.md`". Sections this skill reads:
 
@@ -263,6 +266,8 @@ The team's own names for these four, and the full methodology it runs, are in `{
 | YELLOW | General fit acknowledged but specific use case mapping incomplete. |
 | RED | Significant gaps between buyer needs and capabilities, or fit has not been validated at all. |
 
+Feature requirements count as mapped and validated when the demo covered at least 80% of them and the buyer confirmed the fit, the same line Signal 8 uses.
+
 #### Signal 6: Technical Readiness
 | Score | Criteria |
 |-------|----------|
@@ -307,6 +312,8 @@ The team's own names for these four, and the full methodology it runs, are in `{
 | YELLOW | General timeline discussed but not tied to a specific internal event. Close date is rep-estimated. |
 | RED | No timeline pressure. Close date pushed two or more times, or arbitrary. |
 
+A close date is buyer-validated when the buyer names it on a call, even before the buyer's approval body confirms it.
+
 #### Signal 12: Procurement Awareness
 | Score | Criteria |
 |-------|----------|
@@ -336,6 +343,8 @@ The team's own names for these four, and the full methodology it runs, are in `{
 | GREEN | Both buyer and rep consistently deliver on agreed next steps. Commitments completed before the next meeting. |
 | YELLOW | Some follow-through but occasional missed commitments on either side. |
 | RED | Pattern of missed commitments. "Happy ears" risk. |
+
+A commitment is a dated next step that the person agreed to, on a call or in writing. An offer with no agreed date, such as a meeting that is only proposed, does not count.
 
 #### Signal 16: Meeting Progression
 | Score | Criteria |
@@ -572,7 +581,7 @@ Health = [sum] ÷ [n scored] = [unrounded], shown as [rounded] (scored [n] of 16
 
 **Recommended Actions:** Numbered. Each RED signal gets its specific action and the method it uses. Each YELLOW signal gets the evidence needed to move it.
 
-**Evidence Confidence:** Name the intelligence quality: "Strong" (more than 10 recent interactions), "Moderate" (5 to 10), "Limited" (fewer than 5), or "Stale" (most recent interaction more than 30 days ago). Give the count with it.
+**Evidence Confidence:** Name the intelligence quality: "Strong" (more than 10 recent interactions), "Moderate" (5 to 10), "Limited" (fewer than 5), or "Stale" (most recent interaction more than 30 days ago). Give the count with it. A figure the record marks (illustrative) counts as the record states it, and the line repeats the marking.
 
 **Hand-off block:** The block in the Examples section, in the same fields, so 09, 13 and 06 can read it by name.
 
@@ -634,11 +643,17 @@ All figures are from the PlotIQ profile and the PlotIQ chain file, or marked `(i
 
 1. **Pull deal data.** Stage 5 Negotiate since 2026-09-09, 19 days in stage `[CRM]`. Amount $21,576 a year at list `[CRM]`. Close date 2026-11-12 with no change on record `[CRM]`. Primary contact Ruth Ellery, General Manager `[CRM]`.
 2. **Pull activity.** 11 interactions in the last 90 days `[CRM]` (illustrative): a discovery call, a demo on Brackhaven's own plot records and two contract calls. Three contacts engaged: Ruth Ellery, Walt Okonkwo and Priscilla Dunmore, pre-need manager `[CRM]`. Most recent interaction: a contract terms call with Ruth on 2026-09-26 `[Call]` (illustrative).
-3. **Score Why Anything, pillar average 87.5.** Pain Clarity is GREEN. The one double sale in the last 24 months is a note in the CRM `[CRM]` (illustrative), and Ruth describes the paper plot records as the reason it happened `[Call]`. Ruth puts the staff time to unwind one double sale at about 40 hours `[Call]` (illustrative), a time impact. Reason to Change is GREEN. Ruth named the March 2027 Oldgate renewal as the deadline `[Call]`, and the renewal date is in the CRM `[CRM]`. Strategic Initiative is YELLOW. Ruth's stated goal for the cemetery side is one system for plot records before the owner retires `[Call]` (illustrative), a departmental goal. The owner's retirement within three years is not a company priority the board has confirmed `[Unknown]`. Champion Strength is GREEN. Ruth meets four of the shared champion tests, four of seven, each tagged `[Call]`, and she offered to introduce the board chair `[Call]`. (100 + 100 + 50 + 100) ÷ 4 = 87.5.
+3. **Score Why Anything, pillar average 87.5.** Pain Clarity is GREEN. The one double sale in the last 24 months is a note in the CRM `[CRM]` (illustrative), and Ruth describes the paper plot records as the reason it happened `[Call]`. Ruth puts the staff time to unwind one double sale at about 40 hours `[Call]` (illustrative), a time impact. Reason to Change is GREEN. Ruth named the March 2027 Oldgate renewal as the deadline `[Call]`, and the renewal date is in the CRM `[CRM]`. Strategic Initiative is YELLOW. Ruth's stated goal for the cemetery side is one system for plot records before the owner retires `[Call]` (illustrative), a departmental goal. The owner's retirement within three years is not a company priority the board has confirmed `[Unknown]`. Champion Strength is GREEN. Ruth meets four of the shared champion tests, four of seven, each tagged `[Call]`: she offers introductions to the board chair, explains the internal politics, shares competitor intelligence, and commits to next steps with dates. The CRM note of 2026-09-25 records that she briefed the board chair on the records fix and forwarded the ledger comparison `[CRM]` (illustrative), which is the confirmed internal selling the GREEN rubric needs. (100 + 100 + 50 + 100) ÷ 4 = 87.5.
 4. **Score Why Us, pillar average 62.5.** Solution Fit is GREEN. Ruth confirmed the records fix answers her double-sale problem `[Call]`. Technical Readiness is RED. No IT contact is on file and nobody at Brackhaven owns IT `[Unknown]`, and the Oldgate ledger export is unscoped `[Unknown]`. Owen proposed Friday 2026-10-02 for a technical discovery on the export `[Notes]` (illustrative). Competitive Landscape is YELLOW. Stonemark mapping was also evaluated, and no preference has been stated `[Call]`. Product Alignment is GREEN. The CRM note lists 12 requirements, and the demo covered 10 of them, or 83% `[CRM]` (illustrative). The demo ran on Brackhaven's own plot records `[CRM]`. (100 + 0 + 50 + 100) ÷ 4 = 62.5.
 5. **Score Why Now, pillar average 62.5.** Budget Path is YELLOW. The family board chair is the economic buyer, but the chair's name is `[Unknown]`, pricing was delivered in Stage 4 `[CRM]`, and the budget is not yet allocated `[Notes]`. Decision Process is YELLOW. The board chair has joined one call `[CRM]`, and the approval steps after the board are not mapped `[Unknown]`. Timeline Alignment is GREEN. The March 2027 renewal is a confirmed internal deadline `[Call]`, and the close date of 2026-11-12 sits ahead of it `[CRM]`. Ruth confirmed 2026-11-12 as the date she is working to on the 2026-09-26 call `[Call]` (illustrative), so the close date is buyer-validated. The board itself has not formally confirmed it, so this is the closest call in the pulse. It holds at GREEN because the close date is buyer-validated and the deadline it answers to is confirmed. Procurement Awareness is YELLOW. Legal review and vendor onboarding are known in outline `[Call]`, and their timing is not scoped `[Unknown]`. (50 + 50 + 100 + 50) ÷ 4 = 62.5.
-6. **Score Execution, pillar average 75.0.** Buyer Responsiveness is GREEN. Ruth replies within a day `[CRM]` (illustrative). Multi-Threaded Engagement is YELLOW. Three contacts are engaged `[CRM]`, but the board chair has joined only one call and no second meeting is booked `[CRM]`. Follow-Through is GREEN. Ruth sent the trust fund ledger sample she promised `[Notes]` (illustrative). Meeting Progression is YELLOW. The last two calls covered the same contract terms with the same attendees `[CRM]`. (100 + 50 + 100 + 50) ÷ 4 = 75.0.
+6. **Score Execution, pillar average 75.0.** Buyer Responsiveness is GREEN. Ruth replies within a day, started the 2026-09-22 call request, and attended all four meetings on the calendar `[CRM]` (illustrative). Multi-Threaded Engagement is YELLOW. Three contacts are engaged `[CRM]`, but the board chair has joined only one call and no second meeting is booked `[CRM]`. Follow-Through is GREEN. Both sides kept their dated commitments before the next meeting. Ruth sent the trust fund ledger sample on 2026-09-24 and returned the markup on 2026-09-25 `[Notes]` (illustrative). Owen sent the revised terms on 2026-09-17 and called Walt on 2026-09-21 `[CRM]` (illustrative). Meeting Progression is YELLOW. The last two calls covered the same contract terms with the same attendees `[CRM]`. (100 + 50 + 100 + 50) ÷ 4 = 75.0.
 7. **Health.** There are 8 GREEN, 7 YELLOW and 1 RED. The sum is 800 + 350 + 0 = 1,150. Health = 1,150 ÷ 16 = 71.9, shown as 72. A score of 72 falls in the 46 to 84 band, so the risk is **Medium Risk**. The lowest pillar average is 62.5, which is not below 30, so the pillar step does not apply.
+
+**Scored:** 2026-09-28 | **Health:** 72 of 100, scored 16 of 16 | **Risk:** Medium Risk
+
+**Opportunity:** Stage 5 Negotiate | **Amount:** $21,576 | **Close:** 2026-11-12 | **Owner:** Owen Pruitt
+
+**Primary Contact:** Ruth Ellery, General Manager | **Days in Stage:** 19
 
 | Pillar | Signal | Colour | Score |
 |---|---|---|---|
@@ -666,11 +681,23 @@ Health = 1,150 ÷ 16 = 71.9, shown as 72 (scored 16 of 16)
 
 Pillar bands: Why Anything GREEN, Why Us YELLOW, Why Now YELLOW, Execution GREEN
 
+**Overall Assessment:** The top three risks are Technical Readiness (RED, nobody owns IT `[Unknown]`), the economic buyer's name (`[Unknown]`) and the procurement timing (`[Unknown]`). The top three positives are the renewal deadline (the March 2027 Oldgate renewal `[Call]`, with its date in the CRM `[CRM]`), the buyer-validated close date (`[Call]`, 2026-11-12) and the confirmed fit (Ruth confirmed the records fix answers her double-sale problem `[Call]`).
+
 **Output:** Medium Risk at a health of 72, with one RED signal (Technical Readiness) and seven YELLOW signals, each with the evidence that would move it. Recommended actions:
 
 1. Technical Readiness (RED, urgency method): Owen asks Ruth who runs IT at Brackhaven, if anyone, and books a technical discovery on the Oldgate export by 2026-10-02.
 2. Multi-Threaded Engagement (YELLOW): Owen asks Ruth for a second call with the board chair, so the economic buyer is on the record.
 3. Competitive Landscape (YELLOW): Owen asks Walt what would make the tablet question a non-issue, since his concern is how the team uses it, not the product `[Call]` (illustrative).
+
+Evidence That Would Move Each YELLOW Signal To GREEN:
+
+- Strategic Initiative Alignment: a director-level or board statement that the records fix is a company priority.
+- Competitive Landscape: a stated buyer preference between Stonemark and PlotIQ.
+- Budget Path Identified: the budget allocated in writing, with the board chair named.
+- Decision Process Clarity: the approval steps after the board mapped and confirmed by Ruth on a call.
+- Procurement Awareness: the legal review and vendor onboarding dates scoped on a call.
+- Multi-Threaded Engagement: the board chair in a second meeting, so the economic buyer is engaged in two meetings.
+- Meeting Progression: a next meeting booked with a new attendee and an agenda that advances the decision.
 
 **Evidence Confidence:** Strong, 11 interactions in the last 90 days `[CRM]` (illustrative). The count is above 10, and the most recent interaction, on 2026-09-26, is within 30 days, so the record is not Stale. This does not change the score.
 
@@ -702,7 +729,7 @@ report_path: none (inline)
 3. **Score Why Anything, pillar average 62.5.** Pain Clarity is YELLOW. Ruth still names the problem `[Call]`, but the economic buyer has not validated it `[Unknown]`. Reason to Change is GREEN. The March 2027 renewal is still a dated trigger `[CRM]`. Strategic Initiative is YELLOW, unchanged from the first pulse `[Unknown]`. Champion Strength is YELLOW. Ruth has shown no internal advocacy since the board meeting moved `[Notes]` (illustrative). (50 + 100 + 50 + 50) ÷ 4 = 62.5.
 4. **Score Why Us, pillar average 37.5.** Solution Fit is YELLOW. The use case is confirmed by Ruth `[Call]`, but the mapping for Walt's concerns is not finished `[Notes]`. Technical Readiness is RED. IT is not engaged and nobody at Brackhaven owns the Oldgate data question `[Unknown]`, which is a known blocker. Competitive Landscape is YELLOW. Stonemark is still in the evaluation, and no preference has been stated `[Call]`. Product Alignment is YELLOW. Walt's tablet question is open `[Call]`. (50 + 0 + 50 + 50) ÷ 4 = 37.5.
 5. **Score Why Now, pillar average 37.5.** Budget Path is YELLOW. The board has not allocated the budget `[Notes]`. Decision Process is YELLOW. The board chair has joined one call, in Stage 4 `[CRM]`, and no second meeting is booked. Timeline Alignment is RED. The close date has been pushed three times `[CRM]` (illustrative), and the board date is not confirmed. Procurement Awareness is YELLOW. The steps are known, but their details are unclear `[Unknown]`. (50 + 50 + 0 + 50) ÷ 4 = 37.5.
-6. **Score Execution, pillar average 12.5.** Buyer Responsiveness is RED. Ruth has been silent for 16 days `[CRM]`, which is more than two weeks, and the buyer-initiated contact is past 14 days. Multi-Threaded Engagement is YELLOW. Three contacts are on record, but only two are active `[CRM]`. Follow-Through is RED. Ruth agreed to send the trust ledger sample by a date and it did not arrive `[Notes]` (illustrative). Meeting Progression is RED. The last meeting was 33 days ago and no next meeting is booked `[CRM]` (illustrative). (0 + 50 + 0 + 0) ÷ 4 = 12.5.
+6. **Score Execution, pillar average 12.5.** Buyer Responsiveness is RED. Ruth has been silent for 16 days `[CRM]`, which is more than two weeks, and the buyer-initiated contact is past 14 days. Multi-Threaded Engagement is YELLOW. Three contacts are on record, but only two are active `[CRM]`. Follow-Through is RED. Ruth agreed to send the Oldgate export sample by 2026-10-09, and it did not arrive `[Notes]` (illustrative). Meeting Progression is RED. The last meeting was the 2026-09-26 call, 23 days ago, and no next meeting is booked `[CRM]` (illustrative). (0 + 50 + 0 + 0) ÷ 4 = 12.5.
 7. **Health.** There is 1 GREEN, 10 YELLOW and 5 RED. The sum is 100 + 500 + 0 = 600. Health = 600 ÷ 16 = 37.5, shown as 38. The score falls in the 0 to 45 band, so the risk is **High Risk**. The pillar step applies because Why Us is at 37.5 (not below 30) and Execution is at 12.5 (below 30). The step would raise the risk by one level, but the deal is already at High Risk, so the rating does not change.
 
 | Pillar | Signal | Colour | Score |
@@ -857,6 +884,11 @@ The Business Case & ROI Kit (a paid Guild Pro kit) reads this skill's hand-off b
 ---
 
 ## Changelog
+
+### 2.1.3 (2026-10-26)
+- Try-it evidence completed so a strict first run reproduces Example 1. The try-it records carry the dated commitments, the meeting attendance and the four named champion tests that Signals 4, 13 and 15 grade GREEN on, so health stays 72 with 8 GREEN, 7 YELLOW and 1 RED.
+- Rubric: one sentence each on Signal 5 (validated requirements), Signal 11 (buyer-validated close date) and Signal 15 (what counts as a commitment). Each settles a boundary Example 1 already decided.
+- Example 1 gains the report header, the Overall Assessment and an evidence line for each of its seven YELLOW signals. Example 2 dates are made consistent with Example 1. No score, verdict, band or risk level changes.
 
 ### 2.1.2 (2026-10-25)
 - Try-it evidence completed so a strict first run reproduces Example 1.

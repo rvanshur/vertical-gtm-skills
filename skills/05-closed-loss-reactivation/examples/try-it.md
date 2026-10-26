@@ -3,7 +3,7 @@
 Every name, date and number in this file is invented for the PlotIQ example. Nothing here is a real company.
 
 ## Ask Your Assistant
-"Run Closed-Loss Reactivation Outbound on Lowmoor Memorial Gardens using skills/05-closed-loss-reactivation/examples/try-it.md. Treat today as 2026-10-19."
+"Run Closed-Loss Reactivation Outbound on Lowmoor Memorial Gardens using skills/05-closed-loss-reactivation/examples/try-it.md and the PlotIQ profile at profiles/examples/plotiq-example.md. Treat today as 2026-10-19."
 
 ## The Records
 
@@ -15,11 +15,12 @@ The Deal
 - Footprint: One site, 7,500 plots
 - Status: LOST [CRM]
 - Close date: 2026-01-20 [CRM]
+- Stage lost: 4 Proposal [CRM] (illustrative)
 - CRM loss reason: "timing" [CRM]
-- Winner: Oldgate Ledger Pro, named as the winner [CRM]
+- Winner: Oldgate Ledger Pro, logged as the winning competitor in the CRM's competitor field [CRM]
 - Deal value: [Unknown]
 - AE loss notes: [Unknown]
-- Original AE: [Unknown]
+- Original AE: Owen Pruitt, the AE owner on the closed-lost opportunity [CRM] (illustrative)
 - Champion: Ines Carmody, General Manager. She was the champion. She moved to Quill Hollow Memorial Park in April 2026, six months ago (illustrative)
 - Current Lowmoor contact: [Unknown]. No successor is recorded
 - Oldgate renewal date for Lowmoor: [Unknown]

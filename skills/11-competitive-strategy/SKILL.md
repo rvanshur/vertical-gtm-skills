@@ -1,16 +1,19 @@
 ---
 name: gtm-competitive-strategy
-version: 2.1.2
+version: 2.1.3
 description: "Builds a deal-specific competitive strategy for one open opportunity: the incumbent filed under a shared type, a gap matrix, a displacement playbook and a win plan with a battlecard. The AE who owns the deal runs it, and the sales manager reviews the output."
 category: Sales-Methodology
 author: Ryan Vanshur
 license: MIT
-updated: 2026-10-25
+updated: 2026-10-26
 tags: [competitive-strategy, battlecard, competitive-analysis, win-plan, competitive-positioning, incumbent-classification, compete]
 requires:
   skills: [gtm-meddpicc-analysis]
 mutating: read-write
 change_log:
+  - version: 2.1.3
+    date: 2026-10-26
+    summary: "Try-it evidence completed so a strict first run reproduces Example 1. Settles the product-advantage call (Niche against Broad) by the buyer's stated reason to look, and the switching-barrier levels, in one sentence each. Objection scripts are Test and refine until a buyer has tested them, and a research estimate is not labelled a Benchmark. The win plan states that it shows live items, and Example 1 adds the no-Verified-proof item. Try-it asks name the profile path."
   - version: 2.1.2
     date: 2026-10-25
     summary: "Try-it evidence completed so a strict first run reproduces Example 1: dated records for the incumbent, a contract-status rule, the product-advantage levels defined, the calibration clauses named, staged win plan, and talk tracks and objections added to Example 1."
@@ -93,7 +96,7 @@ Every run returns the battlecard in the chat, in its eight sections. It writes a
 
 ## Context
 
-This skill does not carry client-specific information. It reads the client profile at [`profiles/client-profile.md`](../../profiles/client-profile.md). Throughout this skill, `{Client Profile: X}` means section X of that file.
+This skill does not carry client-specific information. It reads the client profile at [`profiles/client-profile.md`](../../profiles/client-profile.md). Throughout this skill, `{Client Profile: X}` means section X of that file. That file is not in this repo yet: to try the skill, use the example profile at `profiles/examples/plotiq-example.md`, and to set up your own company, copy `profiles/client-profile-template.md` to `profiles/client-profile.md`.
 
 | Profile section | Used for |
 |---|---|
@@ -309,7 +312,9 @@ Using the calibration in Epistemic Rules, score the five factors. LOW is 1, MEDI
 
 **Contract Status:** Expiring means a renewal within six months (LOW). Active means more than six months to renewal (HIGH). Month-to-month is LOW, and Unknown is MEDIUM.
 
-**Product Advantage:** None means the incumbent holds no advantage over your product in the job the buyer named as the reason to look. Niche means its advantage sits in an adjacent job. Broad means its advantage sits in the job the buyer named.
+**Product Advantage:** None means the incumbent holds no advantage over your product in the job the buyer named as the reason to look. Niche means its advantage sits in an adjacent job. Broad means its advantage sits in the job the buyer named. The job the buyer named is the reason the buyer gives, in the buyer's own words, for looking, so for Brackhaven it is the unsold-plot count, and Oldgate's accounting depth is Niche because it sits in the job next to it.
+
+**Switching Barriers:** Minimal means little or nothing has to move by hand. Moderate means the record has to move by hand from a bounded set of places, one per site, and no contract term holds it. Significant means it has to move across several systems or sites, or an early exit from a contract holds it in place.
 
 **Overall Threat Level:** Average the five scores and round to the nearest level. Show the average and the sum. Then apply the calibration. The calibration can raise the level above the average only when one of its clauses is met with a recorded fact. An Unknown fact does not raise the level. The battlecard names each clause it checked and says which one applied, if any.
 
@@ -363,10 +368,10 @@ Provide five or six questions drawn from the competitor row and the failure patt
 
 | Objection | Response Framework | Script | Status |
 |-----------|-------------------|--------|--------|
-| "We already use [the incumbent]" | Positive frame, then discovery | "That's good. It means you already understand the value. What's working well, and what would you change?" | Field-tested |
-| "Switching cost is too high" | Quantify the cost of staying | "What does staying cost each year? Put a number on [metric] for twelve months, from your own records, and we can compare." | Field-tested |
+| "We already use [the incumbent]" | Positive frame, then discovery | "That's good. It means you already understand the value. What's working well, and what would you change?" | Test and refine |
+| "Switching cost is too high" | Quantify the cost of staying | "What does staying cost each year? Put a number on [metric] for twelve months, from your own records, and we can compare." | Test and refine |
 | "We'll build it ourselves" | Core versus context | "That makes sense for what sets you apart. Is [your domain] where you want to spend your team's time?" | Test and refine |
-| "Send me information" | Bridge to a meeting | "Happy to. Which would help most: the benchmarks, or the overview for your situation?" | Field-tested |
+| "Send me information" | Bridge to a meeting | "Happy to. Which would help most: the benchmarks, or the overview for your situation?" | Test and refine |
 | "The timing isn't right" | Cost of waiting | "What does one more month of [pain] cost you? Use your own count, and tell me where the number came from." | Test and refine |
 
 **Objections keyed to the situation.** The incumbent types are in the Shared Contract, so these rows are keyed to what the buyer says, not to the type:
@@ -399,30 +404,30 @@ Each talk track must:
 
 ### Step 5: Build the Win Plan
 
-Build a checklist for this competitive scenario:
+Build a checklist for this competitive scenario. The checklist below is the full list. A battlecard shows, under each stage, the items this deal's record makes live, and it says "Live Items" in the stage heading, so the reader knows the rest of the list still applies at that stage.
 
-**Pre-meeting:**
+**Pre-Meeting:**
 - [ ] Review the gap matrix
 - [ ] Prepare three gap-exposing discovery questions
 - [ ] Know the two best Verified proof points cold, or know that none exists
 - [ ] Prepare a mitigation for each landmine
 - [ ] Review the objection handling for this incumbent type
 
-**During discovery:**
+**During Discovery:**
 - [ ] Ask the gap-exposing questions with genuine curiosity, not as an interrogation
 - [ ] Listen for pain signals about the incumbent: frustration, workarounds, complaints
 - [ ] Confirm the contract status and the renewal date with the buyer, rather than assuming it
 - [ ] Ask the buyer to state the criteria the decision will use, in their own words, before any demo
 - [ ] Note the exact words the buyer uses for the pain, and mirror them back
 
-**During demo:**
+**During Demo:**
 - [ ] Lead with the capabilities that address the stated gaps, not a feature tour
 - [ ] Show Verified proof from comparable customers only
 - [ ] Demonstrate the workflow the incumbent does poorly
 - [ ] Address the known objections before they are raised
 - [ ] End with "How does this compare to your current experience?"
 
-**Post-meeting:**
+**Post-Meeting:**
 - [ ] Send a follow-up that uses the buyer's own words for the pain
 - [ ] Include the most relevant Verified proof point, if the customer gave permission
 - [ ] Propose the next step with a dated timeline
@@ -467,7 +472,8 @@ This skill has one mode. The default is the battlecard for one open deal.
 - **A jurisdiction deadline cites its rule and the date checked.** Otherwise it is not written.
 - **An inferred claim is a hypothesis.** A claim tagged `[Inferred]` is tested on the buyer before it is used. It never appears as fact in a talk track.
 - **Discovery questions are genuine.** If the AE already knows the answer, the question is a setup. Rewrite it as a positioning statement.
-- **Objection scripts show their status.** Each script is marked Field-tested or Test and refine. A script not yet tested with a buyer is never presented as tested.
+- **Objection scripts show their status.** Each script is marked Field-tested or Test and refine. A script not yet tested with a buyer is never presented as tested, and a team with no customers yet starts every script at Test and refine.
+- **A research estimate is not a benchmark.** A figure the profile calls a research estimate is labelled as one in a talk track, with its source and date. A Benchmark is only a published figure with its source and date, as Methodology defines it.
 - **Risk assessments are honest.** If the rival has a real advantage, the battlecard names it and the criterion it wins on.
 
 ### Competitive Threat Assessment Calibration
@@ -523,7 +529,7 @@ Two worked examples, both on the PlotIQ cast and the chain file. The first is th
 - Account: Brackhaven Memorial Gardens, combination, 2 sites, 11,000 plots, paper plot maps `[CRM]` (illustrative)
 - Deal: Stage 5 Negotiate, $21,576 a year at list, owned by Owen Pruitt, 40 days in stage `[CRM]`
 - Contacts: Ruth Ellery, GM, champion `[Call]`. Walt Okonkwo, Operations Director, skeptical of tablets `[Call]`. Priscilla Dunmore, pre-need manager `[CRM]`. Family board chair, the economic buyer, on one call `[CRM]`, name `[Unknown]`
-- Discovery note (illustrative quote): Ruth: "We can't tell which plots are sold without going to the binder." `[Call]` (illustrative)
+- Reason to look, in Ruth's words on the 2026-06-16 discovery call (illustrative quote): "We can't tell which plots are sold without going to the binder." `[Call, 2026-06-16]` (illustrative). The unsold-plot count is the job she named.
 - Incumbent: Oldgate Ledger Pro `[CRM]`. Ruth named it on the first call, and the call was logged
 - Discovery call, 2026-06-16 (illustrative), Ruth on the incumbent `[Call]`:
   - "Nobody here is attached to Oldgate. It's just what we've always had." (illustrative)
@@ -536,7 +542,7 @@ Two worked examples, both on the PlotIQ cast and the chain file. The first is th
 - Their pitch: "Mature, deep accounting." Research weaknesses: $10,000 to $50,000 upfront, plus maintenance at 20% a year, poor mobile, and no AI `[Public: deathcare research, 2026-03-27]`. Not yet checked with this buyer, so these are discovery targets
 - Satisfaction: Neutral. Ruth tolerates it, and Walt works from paper `[Call]` (illustrative)
 - Contract status: renewal in March 2027 `[CRM]`
-- Switching barriers: moderate. The trust numbers leave Oldgate as one yearly file, and the plot records stay in binders at two sites `[Call, 2026-06-16] (illustrative)`. The records must move by hand `[Inferred: from the binder records]`, and the scope of the export is `[Unknown]`
+- Switching barriers: moderate, by the Step 2c rule (the records move by hand from two sites, one per site, and no early contract exit holds them). The trust numbers leave Oldgate as one yearly file, and the plot records stay in binders at two sites `[Call, 2026-06-16] (illustrative)`. The records must move by hand `[Inferred: from the binder records]`, and the scope of the export is `[Unknown]`
 - Internal champion for the incumbent: none. Ruth says nobody on staff is attached to Oldgate `[Call, 2026-06-16] (illustrative)`
 - Failure pattern check: "Maintenance is charged every year, and the grounds crew stays on paper work orders" is a legacy on-premise pattern from the research. The PlotIQ record holds [RECORD] of 5 cases, so until five are counted it is an observation only, and the battlecard does not call it a pattern
 
@@ -548,7 +554,7 @@ Two worked examples, both on the PlotIQ cast and the chain file. The first is th
 | Contract | Expiring: renewal in March 2027, under six months away | LOW |
 | Switching barriers | Moderate (the trust file, and two sites of binders to move by hand) | MEDIUM |
 | Internal champion for incumbent | None | LOW |
-| Incumbent product advantage | Niche (accounting depth, an adjacent job to plot records) | MEDIUM |
+| Incumbent product advantage | Niche (accounting depth, an adjacent job to plot records, and the job named is the unsold-plot count, Ruth, 2026-06-16) | MEDIUM |
 
 **Overall: MEDIUM threat.** The five scores are 2, 1, 2, 1 and 2, a sum of 8, so the average is 8 ÷ 5 = 1.6 on the 1 (LOW) to 3 (HIGH) scale, which rounds to MEDIUM. The calibration does not raise it. Each HIGH clause was checked. The prospect is Neutral, not satisfied. Entrenched for 2 years or more is `[Unknown]`, so it does not count. The contract is under six months from renewal. The switching barriers are a real concern, so the no-concern clause is not met. The advantage is Niche, not Broad. The average stands at MEDIUM. The main risk is inertia: Walt's paper process has no one pushing for change.
 
@@ -581,15 +587,15 @@ Two worked examples, both on the PlotIQ cast and the chain file. The first is th
 
 | Objection | Response Framework | Script | Status |
 |-----------|-------------------|--------|--------|
-| "We already use Oldgate" | Positive frame, then discovery | "That's good. It means you already understand the value. What's working well, and what would you change?" | Field-tested |
-| "Switching cost is too high" | Quantify the cost of staying | "What does staying cost each year? Put a number on unsold plots for twelve months, from your own records, and we can compare." | Field-tested |
+| "We already use Oldgate" | Positive frame, then discovery | "That's good. It means you already understand the value. What's working well, and what would you change?" | Test and refine |
+| "Switching cost is too high" | Quantify the cost of staying | "What does staying cost each year? Put a number on unsold plots for twelve months, from your own records, and we can compare." | Test and refine |
 | "Oldgate has deep accounting" | Name the strength, then the job it does not do | "Oldgate is strong on accounting. Our trust records are built for what a state auditor reads, and we can show you the output next to your current ledger." | Test and refine |
 
 **Step 4c: Displacement Talk Tracks:** Three talk tracks, each readable aloud in under 20 seconds. No Verified proof point fits this scenario, so none of them has an example clause. The rep shows the capability in the demo instead.
 
 1. "When a family asks about a plot and the answer is in a binder, PlotIQ shows sold and unsold plots on one map, so the answer takes seconds. We can show that on your own plot records in the demo."
 2. "When the state asks for the trust numbers and they come out of the ledger one year at a time, PlotIQ's Records and Trust Compliance module keeps the trust record beside the plots. We can show the output next to your state filing format."
-3. "When the renewal is six months away, the decision has to finish before it. PlotIQ goes live in six weeks, and a legacy system runs 120 to 180 days (Benchmark, deathcare research, 2026-03-27). We can plan the evaluation to finish before March 2027."
+3. "When the renewal is six months away, the decision has to finish before it. PlotIQ goes live in six weeks, and a legacy system runs 120 to 180 days (research estimate, deathcare research, 2026-03-27). We can plan the evaluation to finish before March 2027."
 
 **Step 4d: Match Proof Points:**
 
@@ -600,9 +606,10 @@ Two worked examples, both on the PlotIQ cast and the chain file. The first is th
 
 The battlecard names the capability, and the demo shows it on Brackhaven's own counts. No Verified row exists yet, so no talk track or email names a customer.
 
-**Step 5: Win Plan:**
+**Step 5: Win Plan (Live Items):** The items the record makes live at each stage, with the rest of the Step 5 checklist still applying.
 
-**Pre-Meeting**
+**Pre-Meeting (Live Items)**
+- [ ] Know that no Verified proof point exists, so the demo shows the capability on Brackhaven's own counts and no customer is named. Owner: Owen Pruitt. Date: before the next meeting, `[Unknown]` until it is set
 - [ ] Ask Ruth to pull the count of plots with no recorded sale, and to bring her own number. Do not estimate it. Owner: Owen Pruitt. Date: `[Unknown]` until Ruth agrees
 - [ ] Confirm the Oldgate renewal notice date with Ruth. Do not assume it. Owner: Owen Pruitt. Date: 2026-10-23 (the next action)
 - [ ] Prepare a mitigation for each landmine in Step 3c. Owner: Owen Pruitt. Date: before the next meeting, `[Unknown]` until it is set
@@ -789,6 +796,13 @@ report_path: none (inline)
 ---
 
 ## Changelog
+
+### 2.1.3 (2026-10-26)
+- Try-it evidence completed so a strict first run reproduces Example 1. The try-it records and Example 1 date the buyer's reason to look (Ruth, 2026-06-16), which settles Niche for Oldgate: the job named is the unsold-plot count, and accounting depth sits in the job next to it. Step 2c states that sentence and the switching-barrier levels.
+- Objection scripts are Test and refine until a buyer has tested them. The universal rows and Example 1's two Field-tested rows are relabelled, because PlotIQ has no customers yet. The status rule and a research-estimate rule are added to Epistemic Rules.
+- The talk track's 120 to 180 day figure is a research estimate, as the profile calls it, not a Benchmark.
+- The win plan shows live items under each stage, says so in its heading, and Example 1 adds the no-Verified-proof item. The stage headings are capitalized.
+- The examples' threat levels, scores, verdicts and next actions do not change.
 
 ### 2.1.2 (2026-10-25)
 - Try-it evidence completed so a strict first run reproduces Example 1. The contract-status row, the product-advantage levels and the calibration clauses are stated as rules, and Example 1 names each clause it checked.

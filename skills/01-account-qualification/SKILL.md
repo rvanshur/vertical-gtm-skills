@@ -1,16 +1,19 @@
 ---
 name: gtm-account-qualification
-version: 2.1.2
+version: 2.1.3
 description: "Scores an account against the ICP definitions, 8 weighted criteria and the profile's five qualification zones, and returns a GREENLIGHT, MANUAL REVIEW or DISQUALIFY verdict with every zone shown, for the BDR or AE who decides where to spend time."
 category: Sales-Methodology
 author: Ryan Vanshur
 license: MIT
-updated: 2026-10-25
+updated: 2026-10-26
 tags: [account-qualification, icp-scoring, pre-qualification, account-fit, prospecting, lead-scoring, qualification-zones]
 requires:
   skills: []
 mutating: read-write
 change_log:
+  - version: 2.1.3
+    date: 2026-10-26
+    summary: "Try-it evidence completed so a strict first run reproduces Example 1. The owner's hedged retirement line becomes a dated retirement plan, ownership type is added from a public source, and Step 3 and Step 4 gain rules for ICP2 criteria 2, 4 and 7 and for hedged statements. The Example 1 scores, verdict and next action do not change."
   - version: 2.1.2
     date: 2026-10-25
     summary: "Try-it evidence completed so a strict first run reproduces Example 1. Revenue Threshold is evidenced by a CRM revenue range, which is a Step 1e method. Step 4 states a partial-match rule for zones, and Step 6 states that a Moderate Fit Grid cell does not block GREENLIGHT. The Example 1 scores, verdict and next action do not change."
@@ -96,7 +99,7 @@ Every run returns the verdict and the zone scores in the chat. It writes a file 
 
 ## Context
 
-This skill does not carry client-specific information. It reads the client profile at [`profiles/client-profile.md`](../../profiles/client-profile.md). Throughout this skill, `{Client Profile: X}` means section X of that file.
+This skill does not carry client-specific information. It reads the client profile at [`profiles/client-profile.md`](../../profiles/client-profile.md). Throughout this skill, `{Client Profile: X}` means section X of that file. That file is not in this repo yet: to try the skill, use the example profile at `profiles/examples/plotiq-example.md`, and to set up your own company, copy `profiles/client-profile-template.md` to `profiles/client-profile.md`.
 
 | Profile section | Used for |
 |---|---|
@@ -342,6 +345,8 @@ Use the criteria table for the ICP from Step 2: `{Methodology: Qualification Cri
 
 Each score carries an evidence tag. Count the criteria scored STRONG or PARTIAL, and write the count as N of 8.
 
+Three ICP2 criteria need a rule the table leaves open. For criterion 2, a revenue range from the CRM that is not confirmed scores PARTIAL, and no revenue figure at all scores UNKNOWN, because the profile gives no ICP2 revenue threshold to test against. For criterion 4, a family-owned company with no PE, ESOP, public or acquiring owner scores PARTIAL, not WEAK, and its ownership type must carry a `[Public: source]` tag. For criterion 7, a listed buying trigger counts only inside the urgency window that the profile's Buying Triggers table gives it, and a succession signal with no change in leadership yet is not a listed trigger, so it scores PARTIAL.
+
 **Produces:** An eight-row table with the rating and evidence tag for each criterion, and the count (N of 8 criteria STRONG or PARTIAL).
 
 ---
@@ -357,7 +362,9 @@ Score each zone in `{Client Profile: Qualification Zones}` as HIGH, MEDIUM, LOW 
 | LOW | Weak or no alignment, with evidence |
 | UNKNOWN | Insufficient data to assess |
 
-MEDIUM never counts as HIGH. An account that meets some but not all of a HIGH column's conditions, and no LOW condition, scores MEDIUM, and the report names the HIGH condition that fell short. A HIGH condition that cannot apply to the account counts as met, so an owner who signs alone, with no board approval step, meets a board condition such as "board meets within 60 days". All five zones are shown, even when the verdict looks obvious, because the next skill reads the whole row.
+MEDIUM never counts as HIGH. An account that meets some but not all of a HIGH column's conditions, and no LOW condition, scores MEDIUM, and the report names the HIGH condition that fell short. A hedged statement such as "may retire" is a possibility, not a met HIGH condition, so the zone is scored on the firm, dated fact that would settle it.
+
+A HIGH condition that cannot apply to the account counts as met, so an owner who signs alone, with no board approval step, meets a board condition such as "board meets within 60 days". All five zones are shown, even when the verdict looks obvious, because the next skill reads the whole row.
 
 **Produces:** Five zone scores, each with its evidence tag, the must-have zones marked, and the count (N of 5 zones HIGH or MEDIUM).
 
@@ -482,7 +489,7 @@ Four worked examples, all on the PlotIQ cast and the chain file. They show a mix
 
 ### Example 1: GREENLIGHT, the Flagship Account at Qualification (Brackhaven Memorial Gardens)
 
-**Context:** Qualified on 2026-05-04, while Brackhaven was TARGET (illustrative). Combination, 2 sites, 11,000 plots, paper plot maps, and one double sale in the last 24 months `[CRM]` (illustrative). Before the first call, the current system is `[Unknown]`, and the family board chair's name is `[Unknown]`.
+**Context:** Qualified on 2026-05-04, while Brackhaven was TARGET (illustrative). Combination, 2 sites, 11,000 plots, paper plot maps, and one double sale in the last 24 months `[CRM]` (illustrative). Before the first call, the current system is `[Unknown]`, and the family board chair's name is `[Unknown]`. The company is family-owned `[Public: company website, about page, 2026]` (illustrative), and its owner's bio gives a retirement date of 2029-03-31 `[Public: company website, owner bio, 2026]` (illustrative).
 
 **Input:** "Qualify Brackhaven Memorial Gardens for fit."
 
@@ -495,7 +502,7 @@ Four worked examples, all on the PlotIQ cast and the chain file. They show a mix
 | 1 | Sub-Vertical Match | STRONG | Combination of a cemetery and a funeral home, 2 sites `[CRM]` (illustrative) |
 | 2 | Revenue Threshold | PARTIAL | Revenue not stated in public records. The CRM notes a revenue range of $2 to 4 million a year `[CRM]` (illustrative), which is a range and not a confirmed figure |
 | 3 | Multi-Region Operations | UNKNOWN | Location spread not checked `[Unknown]` |
-| 4 | Ownership / Growth Profile | PARTIAL | Family-owned, not PE-backed. The owner may retire within 3 years, a succession signal `[Public: company website, owner bio, 2026]` (illustrative) |
+| 4 | Ownership / Growth Profile | PARTIAL | Family-owned, not PE-backed `[Public: company website, about page, 2026]` (illustrative). The owner's bio gives a retirement date within 3 years, a succession signal `[Public: company website, owner bio, 2026]` (illustrative) |
 | 5 | Transaction Complexity | STRONG | Plot records on paper, pre-need sales, two sites `[CRM]` (illustrative) |
 | 6 | Relevant Department Exists | STRONG | A pre-need manager and an Operations Director `[Public: company website, staff page]` (illustrative) |
 | 7 | Buying Trigger Present | PARTIAL | The succession signal above, with no dated trigger yet `[Inferred]` |
@@ -509,7 +516,7 @@ Four worked examples, all on the PlotIQ cast and the chain file. They show a mix
 | 2 | Pre-Need Sales Motion | MEDIUM | A pre-need manager exists, and there is no intake form on the site `[Public: company website]` (illustrative) |
 | 3 | Ownership and Decision Speed (must-have) | MEDIUM | The GM recommends and the board approves. The board meets within 60 days, which meets the HIGH timing test. The signing test fails, because year one is above the $25K line, so the zone is MEDIUM `[Public: company website, board calendar]` (illustrative) |
 | 4 | Technology Readiness | MEDIUM | Staff use company email, which the staff page shows `[Public: company website, staff page]` (illustrative). The website shows no plot lookup, and the records system is not named `[Unknown]`. The facts sit between the HIGH and MEDIUM columns with no LOW condition, so MEDIUM under the partial-match rule in Step 4 (illustrative) |
-| 5 | Growth or Succession | HIGH | The owner retires within 3 years `[Public: company website, owner bio, 2026]` (illustrative) |
+| 5 | Growth or Succession | HIGH | The owner's bio gives a retirement date of 2029-03-31, inside 3 years of the run date `[Public: company website, owner bio, 2026]` (illustrative) |
 
 **Verdict:** GREENLIGHT. Two zones are HIGH (1 and 5), and no must-have zone is LOW. Seven of eight criteria are STRONG or PARTIAL, which is recorded in `icp_match` and `fit_narrative`. No disqualifier applies.
 
@@ -736,6 +743,13 @@ An account pending AE assignment is not ACTIVE. Score it, and say that it is pen
 
 ## Changelog
 
+
+### 2.1.3 (2026-10-26)
+- Try-it evidence completed so a strict first run reproduces Example 1.
+- Step 3 gains one paragraph settling ICP2 criteria 2, 4 and 7: the CRM revenue range rule, the family-owned rule and the dated-trigger rule.
+- Step 4 gains one sentence: a hedged statement such as "may retire" is not a met HIGH condition. The partial-match paragraph is split from the Zone 3 sentence, with no wording changed.
+- Example 1 gains an ownership fact (family-owned, public source) and a dated retirement plan (2029-03-31, owner bio). Its Zone 5 row and criterion 4 row cite them. The owner's hedged line in the try-it records is replaced by the dated plan.
+- No score, verdict, zone rating, count or next action changes. Example 1 still reads 7 of 8 criteria, Zones 1 HIGH, 2 MEDIUM, 3 MEDIUM, 4 MEDIUM, 5 HIGH, GREENLIGHT.
 
 ### 2.1.2 (2026-10-25)
 - Try-it evidence completed so a strict first run reproduces Example 1.
