@@ -1,6 +1,6 @@
 ---
 name: gtm-competitive-strategy
-version: 2.1.0
+version: 2.1.1
 description: "Builds a deal-specific competitive strategy for one open opportunity: the incumbent filed under a shared type, a gap matrix, a displacement playbook and a win plan with a battlecard. The AE who owns the deal runs it, and the sales manager reviews the output."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: [gtm-meddpicc-analysis]
 mutating: read-write
 change_log:
+  - version: 2.1.1
+    date: 2026-10-25
+    summary: "Adds examples/try-it.md so a first run reproduces Example 1."
   - version: 2.1.0
     date: 2026-10-25
     summary: "Reads the Context OS base and offers read-only connectors through the shared contract's new Knowledge Base and Connectors section, with a Chains subsection."
@@ -53,6 +56,8 @@ You refuse four things. You do not put a proof point that is not Verified into a
 ## Input Contract
 
 If a required input is missing, ask. Do not guess.
+
+To try the skill without your own data, use `examples/try-it.md`, which holds the inputs for Example 1.
 
 | Input | Required | Notes |
 |-------|----------|-------|
@@ -736,6 +741,9 @@ report_path: none (inline)
 ---
 
 ## Changelog
+
+### 2.1.1 (2026-10-25)
+- Adds examples/try-it.md so a first run reproduces Example 1.
 
 ### 2.1.0 (2026-10-25)
 - Reads the Context OS base (the account's folder under `accounts/`, and the competitors under `gtm/`) and offers read-only CRM connectors through the shared contract's Knowledge Base and Connectors section, before the CRM read.

@@ -1,6 +1,6 @@
 ---
 name: gtm-deal-pulse
-version: 2.1.0
+version: 2.1.1
 description: "Scores one open deal across 16 signals in 4 pillars and produces a 0 to 100 health score, a risk level and named next actions. The AE and the sales manager read it, and the MEDDPICC, Call Coaching and Meeting Prep skills take its fields by name."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: ["gtm-call-coaching"]
 mutating: read-write
 change_log:
+  - version: 2.1.1
+    date: 2026-10-25
+    summary: "Adds examples/try-it.md so a first run reproduces Example 1. Unknown signals are left out of the health math: a signal with no evidence is scored INSUFFICIENT and counted in neither the sum nor the count, and the health score is shown only when 12 or more of the 16 signals are scored."
   - version: 2.1.0
     date: 2026-10-25
     summary: "Reads the Context OS base and offers read-only connectors through the shared contract's new Knowledge Base and Connectors section, with a Chains subsection and a Guild Pro Kits subsection."
@@ -54,6 +57,8 @@ You score. You do not set the deal stage (MEDDPICC Analysis does that), and you 
 
 What this skill needs before it starts. **If a required input is missing, ask:** do not guess.
 
+To try the skill without your own data, use `examples/try-it.md`, which holds the inputs for Example 1.
+
 | Input | Required | Notes |
 |-------|----------|-------|
 | Account name with an open opportunity | Required | The deal must be ACTIVE with its stage number. For a prospect with no opportunity, use Account Qualification (01) |
@@ -72,11 +77,11 @@ Core commitments: **a 16-signal scorecard across 4 pillars**, **a health score f
 
 | Output | Where It Lives | Notes |
 |--------|----------------|-------|
-| `health_score` | Header and Health line of the report, and the hand-off block | A whole number from 0 to 100: the sum of the sixteen values ÷ 16, rounded half up |
-| `risk_level` | Header of the report, and the hand-off block | Low Risk, Medium Risk or High Risk, after the pillar step |
-| `pillar_scores` | Pillar averages line of the report, and the hand-off block | Four values, one decimal place: Why Anything, Why Us, Why Now, Execution |
-| `signal_scores` | Score column of the scorecard, and the hand-off block | Sixteen values, each 100 (GREEN), 50 (YELLOW) or 0 (RED), in signal order |
-| `next_actions` | Recommended Actions section, and the hand-off block | One numbered action for each RED signal, and the evidence needed for each YELLOW |
+| `health_score` | Header and Health line of the report, and the hand-off block | A whole number from 0 to 100: the sum of the scored values ÷ the number of signals scored, rounded half up, shown with "scored n of 16". With fewer than 12 signals scored there is no health score, and the report reads "Not scored: n of 16 signals have evidence" |
+| `risk_level` | Header of the report, and the hand-off block | Low Risk, Medium Risk or High Risk, after the pillar step. Not set when fewer than 12 signals are scored |
+| `pillar_scores` | Pillar averages line of the report, and the hand-off block | Four values, one decimal place: Why Anything, Why Us, Why Now, Execution. A pillar with fewer than 2 scored signals reads insufficient |
+| `signal_scores` | Score column of the scorecard, and the hand-off block | Sixteen entries in signal order: 100 (GREEN), 50 (YELLOW), 0 (RED), or INSUFFICIENT, which has no value and is left out of the sum and the count |
+| `next_actions` | Recommended Actions section, and the hand-off block | One numbered action for each RED signal, the evidence needed for each YELLOW, and the evidence that would score each INSUFFICIENT signal |
 | `next_action` | Last line of the report | The owner and the date. Wrap-Up reads this line |
 | `report_path` | Hand-off block | `none (inline)` unless a file was written |
 | File option | Written only when the user asks | Named `<account>_<skill>_<date>.md`, saved beside the user's other account notes. Never written by default |
@@ -338,10 +343,12 @@ The team's own names for these four, and the full methodology it runs, are in `{
 
 ### Health Score Calculation
 
-**Numeric mapping:** GREEN = 100, YELLOW = 50, RED = 0
+**Numeric mapping:** GREEN = 100, YELLOW = 50, RED = 0. A signal with no evidence is INSUFFICIENT and has no numeric value.
 
-1. **Health score** = the sum of all 16 signal values ÷ 16, rounded half up to a whole number
-2. **Pillar averages** = the average of each pillar's 4 signal values, shown to one decimal place
+1. **Unknown signals are left out.** An INSUFFICIENT signal is left out of both the sum and the count. It is never scored 0, because 0 would record a finding that the thing is absent.
+2. **Health score** = the sum of the scored signal values ÷ the number of signals scored, rounded half up to a whole number, shown with its count as "scored n of 16". Example: 14 signals scored with a sum of 1,000 gives 1,000 ÷ 14 = 71.4, shown as 71, scored 14 of 16.
+3. **Minimum to score.** With fewer than 12 of the 16 signals scored, there is no health score and no risk level. The report says "Not scored: n of 16 signals have evidence" and lists the evidence that would score the missing signals.
+4. **Pillar averages** = the average of each pillar's scored signal values, shown to one decimal place. A pillar with fewer than 2 scored signals reads "insufficient" and has no average.
 
 ### Risk Level Assignment
 
@@ -351,7 +358,7 @@ The team's own names for these four, and the full methodology it runs, are in `{
 | 46 to 84 | Medium Risk |
 | 0 to 45 | High Risk |
 
-**Pillar weakness step.** If one or more pillar averages is below 30, the risk level rises one step (Low Risk to Medium Risk, or Medium Risk to High Risk). The step is taken once, however many pillars are below 30, and High Risk stays High Risk. A pillar average of exactly 30 does not trigger it. The step exists to catch a deal that looks healthy overall but has a catastrophic weakness in one pillar.
+**Pillar weakness step.** If one or more pillar averages is below 30, the risk level rises one step (Low Risk to Medium Risk, or Medium Risk to High Risk). The step is taken once, however many pillars are below 30, and High Risk stays High Risk. A pillar average of exactly 30 does not trigger it. A pillar that reads insufficient is not compared with 30. The step exists to catch a deal that looks healthy overall but has a catastrophic weakness in one pillar.
 
 ### Recommended Actions Framework
 
@@ -505,12 +512,14 @@ Score the 4 signals in the Execution pillar using the rubrics in `{Methodology: 
 
 Using `{Methodology: Health Score Calculation}` and `{Methodology: Risk Level Assignment}`:
 
-1. Assign the numeric value to each of the 16 signals: GREEN = 100, YELLOW = 50, RED = 0
-2. Calculate the health score as the sum of the 16 values ÷ 16, rounded half up
-3. Calculate each pillar average as the mean of its 4 values
-4. Read the risk level from the health band, then apply the pillar weakness step once if any pillar average is below 30
-5. For each RED signal, take the action from `{Methodology: Recommended Actions Framework}` and name the method it uses
-6. For each YELLOW signal, state the evidence needed to move it to GREEN
+1. Assign the numeric value to each signal: GREEN = 100, YELLOW = 50, RED = 0. A signal with no evidence is INSUFFICIENT and has no value
+2. Count the scored signals. If fewer than 12 of the 16 are scored, set no health score and no risk level, report "Not scored: n of 16 signals have evidence", and go on to steps 6 to 8
+3. If 12 or more are scored, calculate the health score as the sum of the scored values ÷ the number scored, rounded half up, and show it with "scored n of 16"
+4. Calculate each pillar average as the mean of its scored values. A pillar with fewer than 2 scored signals reads insufficient
+5. If 12 or more are scored, read the risk level from the health band, then apply the pillar weakness step once if any scored pillar average is below 30
+6. For each RED signal, take the action from `{Methodology: Recommended Actions Framework}` and name the method it uses
+7. For each YELLOW signal, state the evidence needed to move it to GREEN
+8. For each INSUFFICIENT signal, state the evidence that would score it
 
 The risk step is applied after the health band, never before, so the band is always read from the honest score.
 
@@ -527,12 +536,12 @@ Present the complete report in this order.
 ```
 # Deal Pulse Report: [Account Name]
 
-**Scored:** [date] | **Health:** [score] of 100 | **Risk:** [risk level]
+**Scored:** [date] | **Health:** [score] of 100, scored [n] of 16 | **Risk:** [risk level, or Not scored]
 **Opportunity:** [stage number and name] | **Amount:** $[amount] | **Close:** [date] | **Owner:** [rep]
 **Primary Contact:** [name, title] | **Deal Age:** [N days] | **Days in Stage:** [N]
 ```
 
-**Scorecard:** One table with a row for each of the 16 signals, in pillar order:
+**Scorecard:** One table with a row for each of the 16 signals, in pillar order. An INSUFFICIENT signal shows INSUFFICIENT in Colour and a dash in Score. The Total row sums the scored values and states the count beside it:
 
 ```
 | Pillar | Signal | Colour | Score |
@@ -542,7 +551,7 @@ Present the complete report in this order.
 | **Total** | | | **[sum]** |
 ```
 
-**Pillar averages line:** One line, in this form:
+**Pillar averages line:** One line, in this form. A pillar that reads insufficient shows the word insufficient in place of its average:
 
 ```
 Pillar averages: Why Anything [x], Why Us [x], Why Now [x], Execution [x]
@@ -551,10 +560,10 @@ Pillar averages: Why Anything [x], Why Us [x], Why Now [x], Execution [x]
 **Health line:** One line, in this form, with the sum shown:
 
 ```
-Health = [sum] ÷ 16 = [unrounded], shown as [rounded]
+Health = [sum] ÷ [n scored] = [unrounded], shown as [rounded] (scored [n] of 16)
 ```
 
-**Pillar bands:** One line naming each pillar's band. A pillar average of 75 or more is GREEN, 26 to 74 is YELLOW and 25 or less is RED.
+**Pillar bands:** One line naming each pillar's band. A pillar average of 75 or more is GREEN, 26 to 74 is YELLOW and 25 or less is RED. A pillar that reads insufficient has no band.
 
 **Overall Assessment:** Two to three sentences, the top three risks and the top three positive indicators, each with its evidence tag.
 
@@ -571,7 +580,7 @@ Health = [sum] ÷ 16 = [unrounded], shown as [rounded]
 ## Epistemic Rules
 
 - **Score the record, not the rep.** Evidence comes from the CRM, call transcripts, emails and notes. Each fact carries one of the six shared tags, and a fact with no tag is removed.
-- **Silence is not a no.** An empty field is written as `[Unknown]` and named in the justification. A signal with no evidence at all reads "Insufficient data to score" in its justification, so the reader sees a gap and not a finding that the thing is absent.
+- **Silence is not a no.** An empty field is written as `[Unknown]` and named in the justification. A signal with no evidence at all is scored INSUFFICIENT: it has no value, it is left out of both the sum and the count, and its justification reads "Insufficient data to score", so the reader sees a gap and not a finding that the thing is absent.
 - **Claimed is not confirmed.** What the rep says on a call is `[Call]` with its date. The same point visible in the CRM activity is `[CRM]`. A signal that the rubric grades on confirmed behaviour needs the second.
 - **Every rate carries its n.** "16 of 16 signals scored" and "4 of 7 champion tests met", never a rate without its count.
 
@@ -595,10 +604,10 @@ These rules are never broken. Each one has its reason.
 
 **Done when all are true:**
 
-- [ ] All 16 signals are scored, each on its own rubric. None is combined or weighted
+- [ ] Each of the 16 signals is scored GREEN, YELLOW, RED or INSUFFICIENT on its own rubric. None is combined or weighted
 - [ ] Every justification cites its evidence with one of the six shared tags
-- [ ] The scorecard has 16 signal rows, and its Total row equals the sum of the Score column
-- [ ] The health score is the sum ÷ 16, rounded half up, and the same figure appears in the header, the Health line and the hand-off block
+- [ ] The scorecard has 16 signal rows, and its Total row equals the sum of the scored values, with the count of scored signals beside it
+- [ ] The health score is the sum of the scored values ÷ the number scored, rounded half up, shown with its count, and the same figure appears in the header, the Health line and the hand-off block. With fewer than 12 scored there is no health score
 - [ ] The pillar averages line matches the four pillar averages in the scorecard
 - [ ] The risk level comes from the health band, and the pillar step is applied at most once
 - [ ] Every RED signal has a named action from the Recommended Actions Framework
@@ -650,7 +659,7 @@ All figures are from the PlotIQ profile and the PlotIQ chain file, or marked `(i
 
 Pillar averages: Why Anything 87.5, Why Us 62.5, Why Now 62.5, Execution 75.0
 
-Health = 1,150 ÷ 16 = 71.9, shown as 72
+Health = 1,150 ÷ 16 = 71.9, shown as 72 (scored 16 of 16)
 
 Pillar bands: Why Anything GREEN, Why Us YELLOW, Why Now YELLOW, Execution GREEN
 
@@ -713,7 +722,7 @@ report_path: none (inline)
 
 Pillar averages: Why Anything 62.5, Why Us 37.5, Why Now 37.5, Execution 12.5
 
-Health = 600 ÷ 16 = 37.5, shown as 38
+Health = 600 ÷ 16 = 37.5, shown as 38 (scored 16 of 16)
 
 Pillar bands: Why Anything YELLOW, Why Us YELLOW, Why Now YELLOW, Execution RED
 
@@ -759,7 +768,7 @@ report_path: none (inline)
 
 **Approach:**
 - Score what the record can evidence
-- Score each data-sparse signal on its rubric, with the justification "Insufficient data to score (no [type] available)"
+- Mark each data-sparse signal INSUFFICIENT, with the justification "Insufficient data to score (no [type] available)" and the evidence that would score it. If fewer than 12 of 16 signals are scored, the report sets no health score (see Health Score Calculation)
 - Add a "Data Enrichment Priority" list naming the information that would change each score
 - Name the intelligence quality as "Limited" or "Stale"
 
@@ -843,6 +852,10 @@ The Business Case & ROI Kit (a paid Guild Pro kit) reads this skill's hand-off b
 ---
 
 ## Changelog
+
+### 2.1.1 (2026-10-25)
+- Adds examples/try-it.md so a first run reproduces Example 1.
+- Unknown signals are left out of the health math. A signal with no evidence is scored INSUFFICIENT, with no value, and counted in neither the sum nor the count. The health score is shown only when 12 or more of the 16 signals are scored, with its count beside it. Updated in the Output Contract, Health Score Calculation, Step 7, the report template, the Epistemic Rules, the Quality Bar and Data Sufficiency Fallback. Examples 1 and 2 score all 16 signals, so their numbers do not change. "Scored 16 of 16" is added to their Health lines.
 
 ### 2.1.0 (2026-10-25)
 - Reads the Context OS base (the account's folder under `accounts/`) and offers read-only CRM connectors through the shared contract's Knowledge Base and Connectors section, before the CRM deal read.

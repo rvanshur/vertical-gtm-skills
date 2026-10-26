@@ -1,6 +1,6 @@
 ---
 name: gtm-daily-prospecting
-version: 2.1.0
+version: 2.1.1
 description: "Builds the morning dial sheet for a BDR or AE: ranks accounts into Hot, Warm, New and Recycle tiers, removes accounts the BDR guard blocks, and writes a pre-call brief for the top eight, read by the rep at the phone and by the meeting prep skill."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: [gtm-meeting-prep]
 mutating: read-write
 change_log:
+  - version: 2.1.1
+    date: 2026-10-25
+    summary: "Adds examples/try-it.md so a first run reproduces Example 1. No other change."
   - version: 2.1.0
     date: 2026-10-25
     summary: "Reads the Context OS account folders for the accounts that pass the guard and offers read-only CRM and call connectors through the shared contract's new Knowledge Base and Connectors section, and adds a Chains subsection that places the skill in Daily Pipeline. No other change."
@@ -61,6 +64,8 @@ You refuse to:
 ## Input Contract
 
 If a required input is missing, ask. Do not guess.
+
+To try the skill without your own data, use `examples/try-it.md`, which holds the inputs for Example 1.
 
 | Input | Required | Notes |
 |-------|----------|-------|
@@ -772,6 +777,9 @@ report_path: none (inline)
 
 ## Changelog
 
+
+### 2.1.1 (2026-10-25)
+- Adds examples/try-it.md so a first run reproduces Example 1. No other change.
 
 ### 2.1.0 (2026-10-25)
 - Reads the Context OS account folders for the accounts that pass the BDR guard, and offers read-only CRM and call connectors through the shared contract's new Knowledge Base and Connectors section. Adds a Chains subsection. No other change.
