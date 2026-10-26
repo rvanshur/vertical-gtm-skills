@@ -38,12 +38,14 @@ Not used as the lead line: "AI-powered cemetery management." Article 51 tested i
 ### ICP2: Cemetery and Funeral Home Combination (Rank 2)
 
 - **Key indicator:** One owner runs a cemetery and a funeral home on one or two sites, and the cemetery side keeps paper plot records
+- **Revenue threshold:** About 2,000 plots or more on the cemetery side, so found plots can cover the $10,788 yearly subscription for each site (illustrative threshold)
 - **Typical titles:** General Manager (cemetery side), Owner (funeral side)
 - **Why they buy:** Pre-need leads come from the funeral side and must be matched to real plots
 
 ### ICP3: Multi-Location Group (Rank 3, Expansion)
 
 - **Key indicator:** Four to ten sites under one ownership, with a CFO or controller who approves budget
+- **Revenue threshold:** About 2,000 plots or more per cemetery site on average, so found plots can cover the per-site subscription across the group (illustrative threshold)
 - **Why they buy:** Reporting across sites takes weeks, and trust fund rules differ by state
 - **Cycle:** 6 to 9 months with a CFO gate (research)
 
@@ -54,6 +56,14 @@ Not used as the lead line: "AI-powered cemetery management." Article 51 tested i
 | Independent cemetery | 1 to 2 | $10,788 a year at list plus $5,000 setup. 90 to 150 day cycle |
 | Combination | 1 to 3 | Priced per site. Owner and GM both sign off |
 | Multi-location group | 4 to 10 | 6 to 9 month cycle with a CFO gate |
+
+**Size Bands:** used wherever a skill writes an account's scale. Each band is observable from the site count and the plot count (illustrative bands, set from the segments above).
+
+| Band | Rule |
+|------|------|
+| SMB | One site with under 2,000 plots |
+| Mid-Market | One to three sites with 2,000 plots or more in total |
+| Enterprise | Four sites or more, the multi-location group range |
 
 ### Archetype Check (Discovery 2.0 Questions)
 
@@ -423,6 +433,7 @@ PlotIQ has no won deals yet. The two timing values below that carry numbers are 
 ## Sources
 
 - **Market and regulatory facts:** Deathcare research project, industry landscape, regulatory landscape and cremation trends notes (2026-03-27 to 2026-04-01). Includes the $20.8B funeral service market (2025), 29,015 U.S. funeral homes (2026), $139.2M cemetery management software market (2025), 61.9% cremation rate (2024), federal Funeral Rule penalties up to $53,088 per violation, California's annual trust filing (due May 1) and New York's annual CPA audit (due December 31).
+- **Competitive research:** Deathcare research project, competitive research note (2026-03-27). Competitor pricing, contract terms, implementation times (90 to 120 days for Stonemark Enterprise, 120 to 180 days for Oldgate Ledger Pro) and the weaknesses buyers report. Every figure from it is a research estimate, cited with this name and date. It is over 90 days old, so it is refreshed before publishing (Quick Validation Checklist).
 - **Pain language:** Forum posts and software review sites, mined in the research (2026-04-01).
 - **PlotIQ facts and open bets:** Guild article 51 and its Discovery 2.0 revision (2026-10-12). Competitor figures are research estimates, and competitor names are invented.
 
