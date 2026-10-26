@@ -13,7 +13,7 @@ mutating: read-write
 change_log:
   - version: 2.1.5
     date: 2026-10-26
-    summary: "The next action follows the family's one deadline rule: five business days after the run date, or an earlier date the records set for that step. The skill's own within-five-days wording is replaced by a pointer to that rule, and the example next actions carry the recomputed dates. An UNKNOWN zone is stated with the Verdict Rule's wording, neither HIGH nor LOW, and the flagship example's next action gains its date."
+    summary: "The Zone 3 sentence of Example 4 quotes the profile's Zone 3 cell as written. "The next action follows the family's one deadline rule: five business days after the run date, or an earlier date the records or the skill's own schedule set for that step. The skill's own within-five-days wording is replaced by a pointer to that rule, and the example next actions carry the recomputed dates. An UNKNOWN zone is stated with the Verdict Rule's wording, neither HIGH nor LOW, and the flagship example's next action gains its date."
   - version: 2.1.4
     date: 2026-10-26
     summary: "Try-it evidence completed so a strict first run reproduces Example 1. The GM move is tagged as a CRM fact, Example Cast facts take the tag of their record, scale uses the profile's Size Bands, the gap and champion rules are settled, an undated signal does not count toward a timing hypothesis, a sequence is drafted only for GREENLIGHT, and the next action gets a date rule."
@@ -100,7 +100,7 @@ Every run returns its report in the chat. The file is written only when the user
 | `pain_hypotheses` | Pain Hypotheses | Ranked by confidence, each one tagged |
 | `sequence` | Below the cheatsheet | Three emails per persona, drafted and never sent. Quick Call Prep mode omits it |
 | `report_path` | Only when a file was written | Set only when the user asks for the file. Wrap-Up reads it |
-| `next_action` | Last line of the summary | Owner and a calendar date set by the shared contract's next-action rule (What the Close Reads: five business days after the run date, or an earlier date the records set for that step), in the form "[owner] sends Email 1 to [contact] by [date]" |
+| `next_action` | Last line of the summary | Owner and a calendar date set by the shared contract's next-action rule (What the Close Reads: five business days after the run date, or an earlier date the records or the skill's own schedule set for that step), in the form "[owner] sends Email 1 to [contact] by [date]" |
 | File option | `<account>_<skill>_<date>.md`, saved beside the user's other account notes | Written only when the user asks. Markdown only. The ask is the approval step |
 
 ---
@@ -198,7 +198,7 @@ Rep talk time as a share of the call, by call type: discovery 30% to 40%, demo 5
 
 #### What the Close Reads
 
-Wrap-Up reads by name the **report path** when a file was written, the **verdict** or **score** the session produced, and the **next action** with its owner and date. The next action is due five business days (Monday to Friday) after the run date, written as one calendar date, unless the records already set an earlier date for that step, in which case that date is used and its source is named. Ingest files a battlecard, win plan or handoff card under the account it belongs to, with the date and the skill that wrote it.
+Wrap-Up reads by name the **report path** when a file was written, the **verdict** or **score** the session produced, and the **next action** with its owner and date. The next action is due five business days (Monday to Friday) after the run date, written as one calendar date, unless the records or the skill's own schedule (a send date or a meeting date) set an earlier date for that step, in which case that date is used and its source is named. Ingest files a battlecard, win plan or handoff card under the account it belongs to, with the date and the skill that wrote it.
 
 #### Guild Disciplines, Restated
 
@@ -408,7 +408,7 @@ Account Snapshots use three steps, not four, because this is volume outreach.
 
 Assemble the eight cheatsheet sections in this order: Company Snapshot, Geographic and Market Exposure, Key Personas, Pain Hypotheses, Discovery Questions, Value Props, Objection Handling and Call Flow.
 
-Close with a summary line in this order: the user's role, the account, the status, the verdict with the zones that carry it, the contacts found and their gaps, the personas targeted, the number of sequence emails, the recommended first action with its owner and the date the shared contract's next-action rule gives (five business days after the run date, or an earlier date the records set for that step) (`next_action`), and the tag count for the report.
+Close with a summary line in this order: the user's role, the account, the status, the verdict with the zones that carry it, the contacts found and their gaps, the personas targeted, the number of sequence emails, the recommended first action with its owner and the date the shared contract's next-action rule gives (five business days after the run date, or an earlier date the records or the skill's own schedule set for that step) (`next_action`), and the tag count for the report.
 
 **Produces:** the eight-section cheatsheet in the chat, the summary line, and `next_action`.
 
@@ -696,7 +696,7 @@ Zone scores (illustrative), with the verdict:
 
 - Zone 1, Records and Inventory Pain: HIGH. Paper plot maps at two sites `[CRM]`, and a double sale in the last 24 months `[CRM]` (illustrative).
 - Zone 2, Pre-Need Sales Motion: MEDIUM. A pre-need manager runs the pre-need side `[Notes]` (illustrative). The intake form is `[Unknown]`, so the HIGH test is not met.
-- Zone 3, Ownership and Decision Speed: MEDIUM. The GM recommends, and the family board approves and meets within 60 days `[Notes]` (illustrative).
+- Zone 3, Ownership and Decision Speed: MEDIUM. The GM recommends and the family board approves, which is the profile's MEDIUM cell as written. The board also meets within 60 days `[Notes]` (illustrative).
 - Zone 4, Technology Readiness: MEDIUM. A legacy system from Oldgate `[CRM]`.
 - Zone 5, Growth or Succession: HIGH. The owner retires within three years `[Notes]` (illustrative).
 
@@ -890,7 +890,8 @@ The Business Case & ROI Kit (a paid Guild Pro kit) reads this skill's hand-off b
 
 
 ### 2.1.5 (2026-10-26)
-- The next action follows the family's one deadline rule (five business days after the run date, or an earlier date the records set for that step). The Output Contract and Step 7 point to that rule, and each example next action carries its date under it.
+- The Zone 3 sentence of Example 4 quotes the profile's Zone 3 cell as written.
+- The next action follows the family's one deadline rule (five business days after the run date, or an earlier date the records or the skill's own schedule set for that step). The Output Contract and Step 7 point to that rule, and each example next action carries its date under it.
 - The UNKNOWN zone sentence beside a GREENLIGHT uses the profile's Verdict Rule wording: neither HIGH nor LOW, never earns or blocks GREENLIGHT.
 - The flagship example's hand-off run date matches its own context line, and its next action gains a date.
 

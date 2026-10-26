@@ -31,7 +31,7 @@ The Deal
 
 Our Product And Market
 - PlotIQ is in beta, with two beta cemeteries and no paid revenue [CRM]
-- Oldgate weak points: upfront cost, weak mobile support and no AI [Public: deathcare research, competitive research note, 2026-03-27] (competitor estimates)
+- Oldgate weak points: upfront cost, weak mobile support and no AI [Public: deathcare research, competitive research note, 2026-03-27] (competitor estimates, research estimate over 90 days old at the run date)
 - Ines Carmody now runs Quill Hollow Memorial Park [Public: state licensing database]
 
 ## What You Should Get

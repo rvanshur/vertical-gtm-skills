@@ -21,14 +21,14 @@ Every name, date and number in this file is invented for the PlotIQ example. Not
   - Cost, in Ruth's words on the same call: "Every year we pay Oldgate maintenance on top of the license, and it still doesn't tell us what's left." [Call, 2026-06-16] (illustrative).
   - Timing, in Ruth's words on the same call: "The renewal is in March. If the new system isn't running by then, we pay Oldgate for another year." [Call, 2026-06-16] (illustrative).
 - Satisfaction with the incumbent: Neutral. Ruth tolerates it, and Walt works from paper [Call, 2026-06-16] (illustrative).
-- Incumbent pitch and research: "Mature, deep accounting." Research weaknesses: $10,000 to $50,000 upfront, plus maintenance at 20% a year, poor mobile, and no AI [Public: Deathcare research project, competitive research note, 2026-03-27].
+- Incumbent pitch and research: "Mature, deep accounting." Research weaknesses: $10,000 to $50,000 upfront, plus maintenance at 20% a year, poor mobile, and no AI [Public: Deathcare research project, competitive research note, 2026-03-27] (research estimate, over 90 days old at the run date).
 - Incumbent unsold-plot visibility: Oldgate shows sold records only, not what is left [Call, 2026-06-16] (illustrative).
 - Legacy on-premise pattern: "Maintenance is charged every year, and the grounds crew stays on paper work orders." Cases counted on the PlotIQ record: [RECORD] of 5, an observation only until five cases (profile).
 - Stonemark was also evaluated [Call, 2026-09-26].
 - PlotIQ capabilities: Mobile field app [Public: PlotIQ product modules]. Plot inventory digitization shows unsold plots [Public: PlotIQ product modules]. Records and Trust Compliance module [Public: PlotIQ product modules].
 - PlotIQ price: $899 a month per site, plus $5,000 setup once [Public: PlotIQ price list].
-- Time to live: the incumbent at 120 to 180 days [Public: Deathcare research project, competitive research note, 2026-03-27]. PlotIQ at 6 weeks [Public: PlotIQ profile].
-- Trust records: the incumbent's "deep accounting" is its pitch [Public: Deathcare research project, competitive research note, 2026-03-27].
+- Time to live: the incumbent at 120 to 180 days [Public: Deathcare research project, competitive research note, 2026-03-27] (research estimate, over 90 days old at the run date). PlotIQ at 6 weeks [Public: PlotIQ profile].
+- Trust records: the incumbent's "deep accounting" is its pitch [Public: Deathcare research project, competitive research note, 2026-03-27] (research estimate, over 90 days old at the run date).
 
 ## What You Should Get
 - Incumbent: direct software, Oldgate Ledger Pro [CRM].

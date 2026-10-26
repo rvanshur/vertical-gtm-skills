@@ -13,7 +13,7 @@ mutating: read-write
 change_log:
   - version: 2.1.5
     date: 2026-10-26
-    summary: "The next action follows the family's one deadline rule: five business days after the run date, or an earlier date the CRM or the records set for that step, named with its source. The skill's own four-business-day rule is replaced by a pointer to that rule, and the example next actions carry the recomputed dates."
+    summary: "The competitive research citation is flagged as over 90 days old at the run date, and an Epistemic Rule states the flag. "The next action follows the family's one deadline rule: five business days after the run date, or an earlier date the CRM or the records set for that step, named with its source. The skill's own four-business-day rule is replaced by a pointer to that rule, and the example next actions carry the recomputed dates."
   - version: 2.1.4
     date: 2026-10-26
     summary: "Try-it fixes from the blind retest: the Output Contract names the parts the steps produce and the four the steps do not produce, the next action takes a date rule and an action verb, the Context names the example profile for a first run, a CRM note confirms the incumbent only when its text names it, the hand-off block is defined, the competitive research is cited by its Sources name, and the Methodology settles the open judgments (Settled Judgments) and bars illustrative figures from emails."
@@ -190,7 +190,7 @@ Rep talk time as a share of the call, by call type: discovery 30% to 40%, demo 5
 
 #### What the Close Reads
 
-Wrap-Up reads by name the **report path** when a file was written, the **verdict** or **score** the session produced, and the **next action** with its owner and date. The next action is due five business days (Monday to Friday) after the run date, written as one calendar date, unless the records already set an earlier date for that step, in which case that date is used and its source is named. Ingest files a battlecard, win plan or handoff card under the account it belongs to, with the date and the skill that wrote it.
+Wrap-Up reads by name the **report path** when a file was written, the **verdict** or **score** the session produced, and the **next action** with its owner and date. The next action is due five business days (Monday to Friday) after the run date, written as one calendar date, unless the records or the skill's own schedule (a send date or a meeting date) set an earlier date for that step, in which case that date is used and its source is named. Ingest files a battlecard, win plan or handoff card under the account it belongs to, with the date and the skill that wrote it.
 
 #### Guild Disciplines, Restated
 
@@ -406,6 +406,7 @@ Pick the persona rows from Methodology, then draft each sequence in the structur
 - **Silence is not a no.** A blank CRM field is `[Unknown]`. An unknown contract term sets the difficulty to High, and it never sets it to Low.
 - **Never fabricate a competitor weakness.** If the intelligence for an incumbent is thin, say so, and use positioning tagged `[Inferred]` that rests on the category pattern.
 - **Difficulty ratings are directional.** A Low rating means the positioning is favorable. It does not mean the deal is easy.
+- **Research older than 90 days.** A research citation dated more than 90 days before the run date is flagged in its citation as over 90 days old at the run date, and it is used only as a research estimate, never as a benchmark.
 
 ### Confidence
 
@@ -491,7 +492,7 @@ Gap matrix:
 | Sold and unsold plots on the map | `[Unknown]`. Ask: "Where does the plot map live today, and when was it last updated?" | Plot inventory shows sold and unsold plots | The pre-need team needs to know which plots are free before it sells one |
 | Pre-need leads | `[Unknown]`. Ask: "Which system runs the pre-need side, and who maintains it?" | Pre-Need CRM and Lead Scoring | Leads from the intake form need a named follow-up owner |
 | Records and trust compliance | `[Unknown]`. Ask: "Walk me through last year's trust filing. Who pulled the numbers, and from where?" | Records and Trust Compliance module | The account wants pre-need and records together |
-| Time to live | 90 to 120 days (`[Public: deathcare research project, competitive research note, 2026-03-27]`, a research estimate) | 6 weeks (profile) | The January 2027 renewal sets the window |
+| Time to live | 90 to 120 days (`[Public: deathcare research project, competitive research note, 2026-03-27]` (research estimate, over 90 days old at the run date)) | 6 weeks (profile) | The January 2027 renewal sets the window |
 
 Proof points: Fennick Gardens (212 unsold plots found in 90 days) and Holloway Hills (zero records findings in its first state review). Both are Illustrative, and neither names a displaced vendor (`[Unknown]`). Neither can appear in an email, so the sequence uses the research benchmark in Email 1 instead.
 
@@ -694,6 +695,7 @@ report_path: none (inline)
 ## Changelog
 
 ### 2.1.5 (2026-10-26)
+- The competitive research citation is flagged as research estimate, over 90 days old at the run date, and an Epistemic Rule states the flag.
 - The next action follows the family's one deadline rule. The Output Contract points to that rule in place of the skill's own four-business-day wording.
 - The examples' next actions carry the dates the rule gives. No sequence or difficulty rating changes.
 

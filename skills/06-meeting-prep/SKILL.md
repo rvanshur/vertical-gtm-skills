@@ -13,7 +13,7 @@ mutating: read-write
 change_log:
   - version: 2.1.5
     date: 2026-10-26
-    summary: "Per-attendee proof is one line for every attendee, including an attendee whose persona is not yet known. A fact from a call whose date is unknown takes the shared Call tag with its date unknown, in place of the notes tag. The next action follows the family's one deadline rule, and a next action that happens on a call the record dates uses that call date and names it as the source. The examples' next actions carry those dates."
+    summary: "Meeting-driven next action dates name whether the records or the skill's own schedule set them. "Per-attendee proof is one line for every attendee, including an attendee whose persona is not yet known. A fact from a call whose date is unknown takes the shared Call tag with its date unknown, in place of the notes tag. The next action follows the family's one deadline rule, and a next action that happens on a call the record dates uses that call date and names it as the source. The examples' next actions carry those dates."
   - version: 2.1.4
     date: 2026-10-26
     summary: "Try-it evidence completed so a strict first run reproduces Example 1. Defines the research target as the profile figure that matches a persona's hook focus, settles the tag order for ranking pains, fills each question phase from the profile first and then the record, reads a meeting with no earlier logged meeting as a first meeting, tags a call of unknown date as notes, and names the next action when the economic buyer cell is yellow. No output changed."
@@ -232,7 +232,7 @@ Rep talk time as a share of the call, by call type: discovery 30% to 40%, demo 5
 
 #### What the Close Reads
 
-Wrap-Up reads by name the **report path** when a file was written, the **verdict** or **score** the session produced, and the **next action** with its owner and date. The next action is due five business days (Monday to Friday) after the run date, written as one calendar date, unless the records already set an earlier date for that step, in which case that date is used and its source is named. Ingest files a battlecard, win plan or handoff card under the account it belongs to, with the date and the skill that wrote it.
+Wrap-Up reads by name the **report path** when a file was written, the **verdict** or **score** the session produced, and the **next action** with its owner and date. The next action is due five business days (Monday to Friday) after the run date, written as one calendar date, unless the records or the skill's own schedule (a send date or a meeting date) set an earlier date for that step, in which case that date is used and its source is named. Ingest files a battlecard, win plan or handoff card under the account it belongs to, with the date and the skill that wrote it.
 
 #### Guild Disciplines, Restated
 
@@ -698,7 +698,7 @@ top_pain: none confirmed. Working hypothesis: plot lookups on a spreadsheet, [In
 question_bank: Situation 3, Problem 3, Implication 3 (top three per phase)
 attendees: Arlen Biggs, General Manager, buyer (signs under $25K). Form filler: [Unknown]
 proof_point: Arlen Biggs, Fennick Gardens, Status Illustrative, do not cite. The prospect hears the Benchmark line only. Form filler, no proof until the persona is confirmed
-next_action: the rep on the Thursday call confirms the form filler and runs discovery, not the demo. Owner: that rep. Date: 2026-10-22, the Thursday call named in the request, which is earlier than the five-business-day date of 2026-10-26
+next_action: the rep on the Thursday call confirms the form filler and runs discovery, not the demo. Owner: that rep. Date: 2026-10-22, the Thursday call the records name in the request, which is earlier than the five-business-day date of 2026-10-26
 report_path: none (inline)
 ```
 
@@ -761,7 +761,7 @@ top_pain: none confirmed (0 of 2 needed for a demo)
 question_bank: Problem 2 questions and Need-Payoff 1 question, from Step 4
 attendees: General Manager, name [Unknown], buyer. Pre-Need Sales Manager, name [Unknown], buying role [Unknown]
 proof_point: General Manager, Holloway Hills, Status Illustrative, do not cite, with the 50 to 100 plot Benchmark as the research target. Pre-need manager, no proof in the profile yet, so the research target stands in
-next_action: the AE confirms discovery or demo with the GM and asks for the pre-need manager's name. Owner: the AE. Date: 2026-10-22, the last working day before the Friday meeting on record (2026-10-23), which is earlier than the five-business-day date of 2026-10-26
+next_action: the AE confirms discovery or demo with the GM and asks for the pre-need manager's name. Owner: the AE. Date: 2026-10-22, the working day before the Friday meeting on record (2026-10-23), a date the skill's own schedule sets for the confirmation, which is earlier than the five-business-day date of 2026-10-26
 report_path: none (inline)
 ```
 
@@ -919,6 +919,7 @@ This skill also reads the kit's hand-off block back as optional context: `case_s
 
 
 ### 2.1.5 (2026-10-26)
+- Meeting-driven next action dates name whether the records or the skill's own schedule set them.
 - Every attendee has one proof line, including an attendee whose persona is unknown. The Greyfield and Sable Fork examples show a line for each attendee.
 - An undated call fact takes the shared Call tag with its date unknown, in place of the notes tag.
 - The next action follows the family's one deadline rule. Where the next action happens on a dated call, that call date is used and named as the source, and each example names its source.

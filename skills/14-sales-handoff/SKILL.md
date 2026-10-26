@@ -13,7 +13,7 @@ mutating: read-write
 change_log:
   - version: 2.1.5
     date: 2026-10-26
-    summary: "The next action follows the family's one deadline rule: five business days after the run date, or an earlier date the records set for that step, named with its source. The skill's own next-action dates are recomputed under that rule, and the IT-owner condition and its risk mitigation move with the next action so the three agree. The Output Contract points to the rule."
+    summary: "The invented CRM dated-action context line of the third run is removed, its next action carries the shared rule's date, and the CUSTOMIZE interview asks for the IT lead time in days. "The next action follows the family's one deadline rule: five business days after the run date, or an earlier date the records or the skill's own schedule set for that step, named with its source. The skill's own next-action dates are recomputed under that rule, and the IT-owner condition and its risk mitigation move with the next action so the three agree. The Output Contract points to the rule."
   - version: 2.1.4
     date: 2026-10-26
     summary: "Try-it fixes from the blind retest: the composite formula reads each weight as a decimal, the Yellow kickoff window is the buffer before any IT lead time, a Yellow report with a critical dimension states its conditions, all three dates are labelled proposed before signature, severity and likelihood follow stated rules and every top risk states both, a check before signature is a preview, the next action names the action the owner takes, and the worked examples show the date arithmetic and each risk's likelihood."
@@ -94,7 +94,7 @@ Every run returns the readiness report in the chat, in the nine sections of Step
 | `three_dates` | Inline, the three-date plan | Kickoff, go-live and Full Adoption Date, each with its arithmetic shown. Before signature, all three are labelled proposed |
 | `risks` | Inline, the risk section | The top three, each with severity, likelihood and a specific mitigation. Severity and likelihood follow the rules under Risk Categories |
 | `quick_wins` | Inline, the quick win section | A week one item, a month one item and the 90-day criteria |
-| `next_action` | Inline, last line of the report | One step, with its owner and the date the shared contract's next-action rule gives (five business days after the run date, or an earlier date the records set for that step, named with its source). It names the action the owner takes, with a verb such as asks, names or confirms, and never the result |
+| `next_action` | Inline, last line of the report | One step, with its owner and the date the shared contract's next-action rule gives (five business days after the run date, or an earlier date the records or the skill's own schedule set for that step, named with its source). It names the action the owner takes, with a verb such as asks, names or confirms, and never the result |
 | `report_path` | Set only when a file was written | `none (inline)` when the report stayed in the chat |
 | File, on request | `<account>_gtm-sales-handoff_<date>.md`, beside the user's account notes | Written only when the user asks, in Markdown, with the readiness card. The ask is the approval step |
 
@@ -191,7 +191,7 @@ Rep talk time as a share of the call, by call type: discovery 30% to 40%, demo 5
 
 #### What the Close Reads
 
-Wrap-Up reads by name the **report path** when a file was written, the **verdict** or **score** the session produced, and the **next action** with its owner and date. The next action is due five business days (Monday to Friday) after the run date, written as one calendar date, unless the records already set an earlier date for that step, in which case that date is used and its source is named. Ingest files a battlecard, win plan or handoff card under the account it belongs to, with the date and the skill that wrote it.
+Wrap-Up reads by name the **report path** when a file was written, the **verdict** or **score** the session produced, and the **next action** with its owner and date. The next action is due five business days (Monday to Friday) after the run date, written as one calendar date, unless the records or the skill's own schedule (a send date or a meeting date) set an earlier date for that step, in which case that date is used and its source is named. Ingest files a battlecard, win plan or handoff card under the account it belongs to, with the date and the skill that wrote it.
 
 #### Guild Disciplines, Restated
 
@@ -677,7 +677,7 @@ report_path: none (inline)
 **Composite:** 2.85 ÷ 5 × 100 = **57 of 100 (Orange, at risk)**. Technical is a critical dimension at 2, so the Orange rule holds kickoff.
 
 **Three dates:**
-- **Kickoff:** The base is 2026-11-23, one week after signature, as this example sets it. The 14-day IT lead time (illustrative) is added because no IT owner is named at this check: 2026-11-23 plus 14 days = **2026-12-07** (Monday). It is held until Technical reaches 3 by Friday 2026-12-04, which needs conditions 1 and 2 below. If it does not, kickoff moves to the first date the conditions clear. If that is Monday 2026-11-30, the lead time is added again: 2026-11-30 plus 14 days = **2026-12-14** (Monday), and the other two dates move with it. Go-live is then 2026-12-14 plus 49 days = **2027-02-01**, and the Full Adoption Date is 2026-12-14 plus two months = 2027-02-14, a Sunday, rolled to **2027-02-15**.
+- **Kickoff:** The base is 2026-11-23, one week after signature, as this example sets it. The 14-day IT lead time (illustrative) is added because no IT owner is named at this check: 2026-11-23 plus 14 days = **2026-12-07** (Monday). It is held until Technical reaches 3 by Friday 2026-12-04, which needs conditions 1 and 2 below. If it does not, kickoff moves to the first date the conditions clear. If that is Monday **2026-12-14**, kickoff is that day. The lead time is not added again, because it was read once, on the check date, and the other two dates move with kickoff. Go-live is then 2026-12-14 plus 49 days = **2027-02-01**, and the Full Adoption Date is 2026-12-14 plus two months = 2027-02-14, a Sunday, rolled to **2027-02-15**.
 - **If kickoff holds on 2026-12-07:** go-live **2027-01-25** (49 days, illustrative), and the Full Adoption Date **2027-02-08** (2027-02-07 is a Sunday, rolled to Monday).
 
 **Risks (top 3):** Technical (HIGH, likelihood High): no IT owner and no one briefed on the migration. Mitigation: Eli Marsh asks Ruth Ellery to name an IT owner by 2026-11-23, five business days after the run date of 2026-11-16, and Oldgate's support briefs that owner on the export. Stakeholder (HIGH, likelihood High): the sponsor is not named. Mitigation: the board chair's name and written sponsor confirmation are a condition of kickoff. Resource (MEDIUM, likelihood Medium): the migration and the renewal compete. Mitigation: the renewal date goes on the project plan with a parallel-run window before March 2027.
@@ -705,7 +705,7 @@ report_path: none (inline)
 
 ### Example 3: Red Readiness on 2026-10-19, Ruth Says They Are Ready
 
-**Context:** Brackhaven is at Stage 5 Negotiate (`[CRM]`), with the family board on 2026-11-12. Ruth Ellery has not replied since 2026-10-03, which is 16 days (`[CRM]`). The CRM holds a dated action due 2026-10-23 for Owen to get the board date from Ruth (`[CRM]`, illustrative), the action the 09 HOLD requires. Ruth has said the customer is "ready to sign." The board date has not been confirmed by anyone since then (`[Unknown]`). The 09 rule applies: a HOLD at Stage 5 with a dated action, and a DOWNGRADE to Stage 4 Proposal if the board date is not confirmed by 2026-11-02. This is the non-success case: the readiness check runs as a preview, and no handoff is issued.
+**Context:** Brackhaven is at Stage 5 Negotiate (`[CRM]`), with the family board on 2026-11-12. Ruth Ellery has not replied since 2026-10-03, which is 16 days (`[CRM]`). Ruth has said the customer is "ready to sign." The board date has not been confirmed by anyone since then (`[Unknown]`). The 09 rule applies: a HOLD at Stage 5 with a dated action, and a DOWNGRADE to Stage 4 Proposal if the board date is not confirmed by 2026-11-02. This is the non-success case: the readiness check runs as a preview, and no handoff is issued.
 
 **Input:** "Run readiness for Brackhaven Memorial Gardens. Ruth says they're ready to sign."
 
@@ -730,7 +730,7 @@ report_path: none (inline)
 **Risks (top 3, ranked by the rule under Risk Categories):** Technical (HIGH, likelihood High, dimension 1), Resource (HIGH, likelihood High, dimension 2), Stakeholder (HIGH, likelihood High, dimension 2). Resource ranks above Stakeholder because both sit on a dimension scored 2 and Resource comes first in the table. Adoption is MEDIUM and ranks fourth, because Walt is an influencer (`[CRM]`) and the economic buyer is not in the room.
 
 **Recommendation:** Do not proceed to kickoff. Sales re-engages first, in this order:
-1. Owen Pruitt asks Ruth Ellery to confirm the board date by 2026-10-23, the dated action the 09 HOLD requires.
+1. Owen Pruitt asks Ruth Ellery to confirm the board date by 2026-10-26, five business days after the run date of 2026-10-19, the date the 09 HOLD's dated action falls on.
 2. Brackhaven names an IT contact, and Oldgate's support tests the export on a sample file.
 3. Ruth names a second contact, since she is the only one who has responded.
 4. Plot lookups are timed, to set the volume baseline.
@@ -746,7 +746,7 @@ dimension_scores: Stakeholder 2, Workflow 2, Technical 1, Data 2, Resource 2, Ch
 three_dates: none set (no handoff issued, board date not confirmed)
 risks: Technical (HIGH), Resource (HIGH), Stakeholder (HIGH)
 quick_wins: none until the gaps close
-next_action: Owen Pruitt asks Ruth Ellery to confirm the board date by 2026-10-23 (the CRM's dated action, earlier than the five-business-day date of 2026-10-26)
+next_action: Owen Pruitt asks Ruth Ellery to confirm the board date by 2026-10-26, five business days after the run date of 2026-10-19
 report_path: none (inline)
 ```
 
@@ -830,6 +830,8 @@ The Business Case & ROI Kit (a paid Guild Pro kit) reads this skill's hand-off b
 ## Changelog
 
 ### 2.1.5 (2026-10-26)
+- The invented CRM dated-action context line of the third run is removed, and its next action and the IT-owner dates in the second run carry the shared rule's dates.
+- The CUSTOMIZE interview asks for the IT lead time in days, the unit the profile and the skill use.
 - The next action follows the family's one deadline rule. The Output Contract points to that rule, and each example names the record behind an earlier date.
 - The IT-owner condition and its risk mitigation in Example 2 move with the recomputed next action, so the three dates and the conditions still agree.
 - The three dates, their arithmetic and the Yellow and Orange rules are unchanged.

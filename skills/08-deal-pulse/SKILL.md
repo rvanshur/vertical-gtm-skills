@@ -13,7 +13,7 @@ mutating: read-write
 change_log:
   - version: 2.1.5
     date: 2026-10-26
-    summary: "The next action follows the family's one deadline rule: five business days after the run date, or an earlier date the records set for that step, which is named with its source. The Output Contract points to that rule, and each example names the record behind its next action date. No score, verdict, band or risk level changes."
+    summary: "The example's invented CRM dated-action context line is removed, and its next actions carry the shared rule's date. "The next action follows the family's one deadline rule: five business days after the run date, or an earlier date the records or the skill's own schedule set for that step, which is named with its source. The Output Contract points to that rule, and each example names the record behind its next action date. No score, verdict, band or risk level changes."
   - version: 2.1.4
     date: 2026-10-26
     summary: "Try-it evidence completed so a strict first run reproduces Example 1. Settles the champion who is also the buyer contact for Signal 1, the decision influence a champion needs for Signal 4, the rule for an unnamed economic buyer on Signals 9 and 14, and the owner of the IT question on Technical Readiness. The hand-off block is written out in the Output Contract instead of pointing at the examples. Example 1 gains a second stakeholder on pain. No score, verdict, band or risk level changes."
@@ -94,7 +94,7 @@ Core commitments: **a 16-signal scorecard across 4 pillars**, **a health score f
 | `pillar_scores` | Pillar averages line of the report, and the hand-off block | Four values, one decimal place: Why Anything, Why Us, Why Now, Execution. A pillar with fewer than 2 scored signals reads insufficient |
 | `signal_scores` | Score column of the scorecard, and the hand-off block | Sixteen entries in signal order: 100 (GREEN), 50 (YELLOW), 0 (RED), or INSUFFICIENT, which has no value and is left out of the sum and the count |
 | `next_actions` | Recommended Actions section, and the hand-off block | One numbered action for each RED signal, the evidence needed for each YELLOW, and the evidence that would score each INSUFFICIENT signal |
-| `next_action` | Last line of the report | The owner and the date the shared contract's next-action rule gives (five business days after the run date, or an earlier date the records set for that step, named with its source). Wrap-Up reads this line |
+| `next_action` | Last line of the report | The owner and the date the shared contract's next-action rule gives (five business days after the run date, or an earlier date the records or the skill's own schedule set for that step, named with its source). Wrap-Up reads this line |
 | `report_path` | Hand-off block | `none (inline)` unless a file was written |
 | File option | Written only when the user asks | Named `<account>_<skill>_<date>.md`, saved beside the user's other account notes. Never written by default |
 
@@ -195,7 +195,7 @@ Rep talk time as a share of the call, by call type: discovery 30% to 40%, demo 5
 
 #### What the Close Reads
 
-Wrap-Up reads by name the **report path** when a file was written, the **verdict** or **score** the session produced, and the **next action** with its owner and date. The next action is due five business days (Monday to Friday) after the run date, written as one calendar date, unless the records already set an earlier date for that step, in which case that date is used and its source is named. Ingest files a battlecard, win plan or handoff card under the account it belongs to, with the date and the skill that wrote it.
+Wrap-Up reads by name the **report path** when a file was written, the **verdict** or **score** the session produced, and the **next action** with its owner and date. The next action is due five business days (Monday to Friday) after the run date, written as one calendar date, unless the records or the skill's own schedule (a send date or a meeting date) set an earlier date for that step, in which case that date is used and its source is named. Ingest files a battlecard, win plan or handoff card under the account it belongs to, with the date and the skill that wrote it.
 
 #### Guild Disciplines, Restated
 
@@ -747,7 +747,7 @@ report_path: none (inline)
 
 ### Example 2: Second Pulse, High Risk (Brackhaven Memorial Gardens, 2026-10-19)
 
-**Context:** Brackhaven again, on 2026-10-19, three weeks after Example 1. The deal is still ACTIVE at Stage 5 Negotiate, now on day 40 in stage `[CRM]`. Ruth Ellery has not replied since 2026-10-03, which is 16 days `[CRM]`. The CRM holds a dated action due 2026-10-23 for Owen to get the board date from Ruth `[CRM]` (illustrative). The board meeting is still set for 2026-11-12, but the board has not confirmed the date `[Notes]`. This is the non-success case: a deal that looked close and is now stalling in Stage 5. The same day's MEDDPICC scores 58 (ORANGE), a different instrument on the same deal, so the two numbers are not meant to match. Compared with the first pulse, health falls 34 points, from 72 to 38.
+**Context:** Brackhaven again, on 2026-10-19, three weeks after Example 1. The deal is still ACTIVE at Stage 5 Negotiate, now on day 40 in stage `[CRM]`. Ruth Ellery has not replied since 2026-10-03, which is 16 days `[CRM]`. The board meeting is still set for 2026-11-12, but the board has not confirmed the date `[Notes]`. This is the non-success case: a deal that looked close and is now stalling in Stage 5. The same day's MEDDPICC scores 58 (ORANGE), a different instrument on the same deal, so the two numbers are not meant to match. Compared with the first pulse, health falls 34 points, from 72 to 38.
 
 **Input:** "Run the deal pulse for Brackhaven again and compare it to last time."
 
@@ -789,11 +789,11 @@ Pillar bands: Why Anything YELLOW, Why Us YELLOW, Why Now YELLOW, Execution RED
 
 **Output:** High Risk at a health of 38, down from 72 on 2026-09-28. Ruth's silence, the unconfirmed board date and the three close date pushes are the top risks, and the only GREEN signal is the renewal deadline.
 
-The stage rule the team uses after a second slip, which 09 applies to the same evidence: HOLD at Stage 5 Negotiate with a dated action, which is Owen asking Ruth for the board date by 2026-10-23. If the board date is not confirmed by 2026-11-02, DOWNGRADE to Stage 4 Proposal. Never back to Stage 2 Discovery, because the pain is confirmed.
+The stage rule the team uses after a second slip, which 09 applies to the same evidence: HOLD at Stage 5 Negotiate with a dated action, which is Owen asking Ruth for the board date by 2026-10-26, five business days after the run date of 2026-10-19. If the board date is not confirmed by 2026-11-02, DOWNGRADE to Stage 4 Proposal. Never back to Stage 2 Discovery, because the pain is confirmed.
 
 Recommended actions:
 
-1. Buyer Responsiveness (RED, momentum method): Owen asks Ruth for the board date by 2026-10-23. A breakup email is drafted for Owen to send, framed around the March 2027 renewal, because the 16 days of silence are past the 14 day line.
+1. Buyer Responsiveness (RED, momentum method): Owen asks Ruth for the board date by 2026-10-26. A breakup email is drafted for Owen to send, framed around the March 2027 renewal, because the 16 days of silence are past the 14 day line.
 2. Technical Readiness (RED, Urgency method): Owen asks Ruth who, if anyone, owns IT and the Oldgate data question, and books a technical discovery. Nobody at Brackhaven owns it on the record, so the first answer may be no one.
 3. Timeline Alignment (RED): Lena Vasquez, Sales Manager, joins the next call, so the board date is set with a manager present.
 4. Competitive Landscape (YELLOW): keep the Stonemark comparison ready and ask Walt what he would need to see before he states a preference. No proof point with Verified or Benchmark status exists in the profile yet, so the team cites none to Walt.
@@ -806,8 +806,8 @@ health_score: 38
 risk_level: High Risk
 pillar_scores: Why Anything 62.5, Why Us 37.5, Why Now 37.5, Execution 12.5
 signal_scores: Pain 50, Reason 100, Strategic 50, Champion 50, Fit 50, Technical 0, Competitive 50, Product 50, Budget 50, Decision 50, Timeline 0, Procurement 50, Responsiveness 0, Multi-Threading 50, Follow-Through 0, Progression 0
-next_actions: 1. Owen Pruitt asks Ruth Ellery for the board date by 2026-10-23, and the stage HOLDs at Stage 5 Negotiate. 2. Owen Pruitt drafts a breakup email framed around the March 2027 renewal. 3. Owen Pruitt asks Ruth Ellery who owns IT and books a technical discovery. 4. Lena Vasquez joins the next call. 5. Keep the Stonemark comparison ready for Walt Okonkwo.
-next_action: Owen Pruitt asks Ruth Ellery for the family board date by 2026-10-23 (the dated action the CRM holds, earlier than the five-business-day date of 2026-10-26), and the board date decides between HOLD and DOWNGRADE to Stage 4 Proposal on 2026-11-02
+next_actions: 1. Owen Pruitt asks Ruth Ellery for the board date by 2026-10-26, and the stage HOLDs at Stage 5 Negotiate. 2. Owen Pruitt drafts a breakup email framed around the March 2027 renewal. 3. Owen Pruitt asks Ruth Ellery who owns IT and books a technical discovery. 4. Lena Vasquez joins the next call. 5. Keep the Stonemark comparison ready for Walt Okonkwo.
+next_action: Owen Pruitt asks Ruth Ellery for the family board date by 2026-10-26, five business days after the run date of 2026-10-19 (no earlier record or schedule date), and the board date decides between HOLD and DOWNGRADE to Stage 4 Proposal on 2026-11-02
 report_path: none (inline)
 ```
 
@@ -915,6 +915,7 @@ The Business Case & ROI Kit (a paid Guild Pro kit) reads this skill's hand-off b
 ## Changelog
 
 ### 2.1.5 (2026-10-26)
+- The invented CRM dated-action context line in the second pulse is removed, and its next actions carry the shared rule's date.
 - The next action follows the family's one deadline rule. The Output Contract points to that rule, and each example names the record (a proposed date in the notes or a dated CRM action) when that record sets an earlier date.
 - No score, verdict, band or risk level changes.
 
