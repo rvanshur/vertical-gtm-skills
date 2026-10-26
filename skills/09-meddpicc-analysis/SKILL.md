@@ -218,13 +218,13 @@ Wrap-Up reads by name the **report path** when a file was written, the **verdict
 
 #### Guild Disciplines, Restated
 
-1. **Evidence over optimism.** Score what the record proves, not what the rep believes. Under-scoring protects a deal. Over-scoring kills it.
-2. **Silence is not a no.** An empty field is unknown and is counted in no denominator.
-3. **One cast, one story.** Every example uses the profile's example company and its cast. An example never presents an invented number as a real result.
-4. **The profile is upstream.** Strategy skills write it. Sales skills read it. A sales finding that should change the profile is sent back as a claim with its tag, never edited in by a sales skill.
-5. **Published numbers only.** A figure from a published Guild article may be cited to it. Any other figure in an example is marked illustrative.
-6. **Names as roles** in anything shared. No vendor, tool or model names in a free skill beyond the platform line. The CRM is "the CRM".
-7. **Draft, never send.** A rep reads before anything leaves.
+1. **Evidence Over Optimism.** Score what the record proves, not what the rep believes. Under-scoring protects a deal. Over-scoring kills it.
+2. **Silence Is Not A No.** An empty field is unknown and is counted in no denominator.
+3. **One Cast, One Story.** Every example uses the profile's example company and its cast. An example never presents an invented number as a real result.
+4. **The Profile Is Upstream.** Strategy skills write it. Sales skills read it. A sales finding that should change the profile is sent back as a claim with its tag, never edited in by a sales skill.
+5. **Published Numbers Only.** A figure from a published Guild article may be cited to it. Any other figure in an example is marked illustrative.
+6. **Names As Roles** in anything shared. No vendor, tool or model names in a free skill beyond the platform line. The CRM is "the CRM".
+7. **Draft, Never Send.** A rep reads before anything leaves.
 
 ---
 
@@ -475,7 +475,7 @@ Write a file only when the user asks for one, named `<account>_gtm-meddpicc-anal
 - **Tag every fact** with one of the six shared evidence tags. A fact with no tag is removed from the analysis.
 - **Distinguish confirmed from claimed.** A champion the rep claims is selling internally differs from one whose internal activity the record shows. Score the record.
 - **Print n beside every rate.** "4 of 8 elements at 4 or higher" is readable. A rate shown without its count is not.
-- **Silence is not a no.** A blank CRM field is unknown, counted in no denominator, and written as `[Unknown]`. It is not scored as a refusal.
+- **Silence Is Not A No.** A blank CRM field is unknown, counted in no denominator, and written as `[Unknown]`. It is not scored as a refusal.
 - **Five cases before a pattern.** One deal shows an observation. A gap that repeats across deals needs five cases before it is named as a pattern.
 - **"No difference found" is a finding.** When Deal Pulse and this analysis disagree, both are reported with their dates. The difference is shown, not smoothed over.
 

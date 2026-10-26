@@ -206,13 +206,13 @@ Wrap-Up reads by name the **report path** when a file was written, the **verdict
 
 #### Guild Disciplines, Restated
 
-1. **Evidence over optimism.** Score what the record proves, not what the rep believes. Under-scoring protects a deal. Over-scoring kills it.
-2. **Silence is not a no.** An empty field is unknown and is counted in no denominator.
-3. **One cast, one story.** Every example uses the profile's example company and its cast. An example never presents an invented number as a real result.
-4. **The profile is upstream.** Strategy skills write it. Sales skills read it. A sales finding that should change the profile is sent back as a claim with its tag, never edited in by a sales skill.
-5. **Published numbers only.** A figure from a published Guild article may be cited to it. Any other figure in an example is marked illustrative.
-6. **Names as roles** in anything shared. No vendor, tool or model names in a free skill beyond the platform line. The CRM is "the CRM".
-7. **Draft, never send.** A rep reads before anything leaves.
+1. **Evidence Over Optimism.** Score what the record proves, not what the rep believes. Under-scoring protects a deal. Over-scoring kills it.
+2. **Silence Is Not A No.** An empty field is unknown and is counted in no denominator.
+3. **One Cast, One Story.** Every example uses the profile's example company and its cast. An example never presents an invented number as a real result.
+4. **The Profile Is Upstream.** Strategy skills write it. Sales skills read it. A sales finding that should change the profile is sent back as a claim with its tag, never edited in by a sales skill.
+5. **Published Numbers Only.** A figure from a published Guild article may be cited to it. Any other figure in an example is marked illustrative.
+6. **Names As Roles** in anything shared. No vendor, tool or model names in a free skill beyond the platform line. The CRM is "the CRM".
+7. **Draft, Never Send.** A rep reads before anything leaves.
 
 ---
 
@@ -628,7 +628,7 @@ The plays come from the profile's Buying Committee section (available plays). A 
 
 - **n beside every rate.** "Four of seven shared tests met" and "two of eight contacts engaged", never a bare rate.
 - **Five cases before a pattern.** One account showing the board chair joins late is an observation. Report a pattern across accounts only when five or more accounts show it.
-- **Silence is not a no.** A contact with no logged interaction is unknown, not absent from the org. A reply not logged is `[Unknown]`, not "no reply".
+- **Silence Is Not A No.** A contact with no logged interaction is unknown, not absent from the org. A reply not logged is `[Unknown]`, not "no reply".
 - **"No difference found" is a finding.** If the threading benchmark shows wins and losses with the same coverage, say so. It means the stakeholder playbook is not yet proven for this market.
 - **Every non-buyer stance is a hypothesis.** A stance is a fact only when a named conversation confirms it, and the call date is shown.
 - **A ghost node is never a name.** It is "UNKNOWN, role", with the reason it exists.
