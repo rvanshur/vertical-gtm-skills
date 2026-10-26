@@ -1,16 +1,19 @@
 ---
 name: gtm-trigger-event-outbound
-version: 2.0.1
+version: 2.1.0
 description: "Turns one dated business event at a target account into a short outbound sequence, but only after checking the event against its window. Reports when the window has closed or the event date is unknown. Read by the BDR or AE who sends the sequence."
 category: Sales-Methodology
 author: Ryan Vanshur
 license: MIT
-updated: 2026-10-20
+updated: 2026-10-25
 tags: [trigger-event, acquisition, leadership-change, compliance-finding, urgency-window, outbound-sequence, event-driven-prospecting]
 requires:
   skills: [gtm-account-snapshot, gtm-closed-loss-reactivation]
 mutating: read-write
 change_log:
+  - version: 2.1.0
+    date: 2026-10-25
+    summary: "Reads the Context OS account folder and offers read-only CRM and call connectors through the shared contract's new Knowledge Base and Connectors section, and adds a Chains subsection that places the skill in Win Back and Qualify To Book. No other change."
   - version: 2.0.1
     date: 2026-10-20
     summary: "Every hand-off block carries a run_date line after its account line, so two instruments on one deal are compared by date (found by the wave two hand-off tests). No other change."
@@ -116,6 +119,7 @@ skill reads:
 | Proof Points | The one proof point each email may use, with its Status |
 | Value Propositions | The event-to-value connection |
 | Company | Framing |
+| Knowledge Base | The Location field of the base, and the base items this skill opens: the account's folder under `accounts/` (notes, calls, decisions, and any earlier event on the account), read in Step 1 before the window check |
 
 `{Methodology: X}` means subsection X of the **Methodology** section below.
 
@@ -130,6 +134,12 @@ Everything in this section is used identically by the 14 sales skills (01 to 14)
 #### The Profile Is the Only Source of Company Facts
 
 Every company fact (ICPs, personas, pains, value propositions, proof points, competitors, triggers, zones, stage names, methodology) comes from `profiles/client-profile.md`. A skill reads the sections its Context table names and nothing else. A skill never carries a company fact of its own. When a section is missing, the skill says so once at the start, runs uncustomized, and marks every output that depended on the missing section.
+
+#### The Knowledge Base and Connectors
+
+When the profile has a `## Knowledge Base` section, which Context OS Setup writes, the skill reads its `Location` field and opens only the base items its Context table names: account folders under `accounts/`, competitors, plays and pricing under `gtm/`, personas under `people/`. Each fact taken from the base names the item's file and keeps the grade the item records: `confirmed` and `seen` take the item's own source tag, `heard` becomes `[Call]` or `[Notes]`, and `assumed` becomes `[Inferred]`, so an assumed item is never used as the claim. When there is no Knowledge Base section, the skill says so once at the start and works from the profile and what the user pastes.
+
+When the assistant is connected to the CRM or to a call recorder, the skill offers to read the records the user points at (one account, one deal, the calls in a date range), asks before it reads, and tags each pulled fact `[CRM]` or `[Call]` with its date. It reads only. It never searches records nobody named and never writes back. Without a connector, pasting the same records works the same way.
 
 #### Account Status, Five Words
 
@@ -330,6 +340,8 @@ ask: "Are you a BDR or an AE?"
 **Produces:** the user's role (BDR or AE) and the path that applies: full sequences or coordination only.
 
 ### Step 1: Identify and Classify the Trigger Event
+
+Before pulling anything, open the account's folder under `accounts/` in the Knowledge Base, if the profile has one, and offer the CRM read and, when a call recorder is connected, the call read, for the one account or date range you name. Nothing is read from the CRM or the call recorder until you say yes.
 
 #### 1a. Confirm Inputs
 
@@ -814,10 +826,18 @@ next_action: Nadia Brandt sends the note to Owen Pruitt by 2026-10-21, after rea
 - **`gtm-daily-prospecting`** (07) can surface a trigger during the daily routine.
 - **Wrap-Up** reads `report_path` when a file was written, the trigger status, and `next_action` with its owner and date.
 
+### Chains
+
+- **Win Back:** Closed-Loss Reactivation (05), then Trigger Event Outbound (04, this skill) on a dated event at a lost account, then Meeting Prep (06). This skill adds the window check, so a trigger that has closed is not sent.
+- **Qualify To Book:** Account Qualification (01), Account Snapshot (02), Research Outbound (03) or Trigger Event Outbound (04, this skill), then Meeting Prep (06). This skill sends the time-sensitive sequence when a dated event opens a window.
+
 ---
 
 ## Changelog
 
+
+### 2.1.0 (2026-10-25)
+- Reads the Context OS account folder and offers read-only CRM and call connectors through the shared contract's new Knowledge Base and Connectors section. Adds a Chains subsection. No other change.
 
 ### 2.0.1 (2026-10-20)
 

@@ -1,16 +1,19 @@
 ---
 name: gtm-account-qualification
-version: 2.0.1
+version: 2.1.0
 description: "Scores an account against the ICP definitions, 8 weighted criteria and the profile's five qualification zones, and returns a GREENLIGHT, MANUAL REVIEW or DISQUALIFY verdict with every zone shown, for the BDR or AE who decides where to spend time."
 category: Sales-Methodology
 author: Ryan Vanshur
 license: MIT
-updated: 2026-10-20
+updated: 2026-10-25
 tags: [account-qualification, icp-scoring, pre-qualification, account-fit, prospecting, lead-scoring, qualification-zones]
 requires:
   skills: []
 mutating: read-write
 change_log:
+  - version: 2.1.0
+    date: 2026-10-25
+    summary: "Reads the Context OS base and offers read-only CRM and call connectors through the shared contract's new Knowledge Base and Connectors section, and adds a Chains subsection that places the skill in Qualify To Book. No other change."
   - version: 2.0.1
     date: 2026-10-20
     summary: "Every hand-off block carries a run_date line after its account line, so two instruments on one deal are compared by date (found by the wave two hand-off tests). No other change."
@@ -95,8 +98,9 @@ This skill does not carry client-specific information. It reads the client profi
 | Qualification Zones | The five zones scored in Step 4, the must-have flags, and the Verdict Rule applied in Step 6 |
 | Competitive Landscape | Competitor lock-in risk flags in Step 5 |
 | Fit Grid | The observable Strong, Moderate and Weak facts for each ICP, used in Step 2, and the revenue estimation values used in Step 1e. Also read by Daily Prospecting (07) |
+| Knowledge Base | The Location field of the base, and the base items this skill opens: the account's folder under `accounts/` (notes, calls, decisions for that account) |
 
-If any section in this table is missing, the skill says so once at the start, runs uncustomized on the defaults in Methodology, and marks every output that depended on the missing section. The Fit Grid is the section most often missing, and `CUSTOMIZE.md` writes it.
+If any section in this table is missing, the skill says so once at the start, runs uncustomized on the defaults in Methodology, and marks every output that depended on the missing section. The Fit Grid is the section most often missing, and `CUSTOMIZE.md` writes it. The Knowledge Base row is the exception: a missing base is handled by the shared contract below, not as a missing section.
 
 ### The Shared Contract
 
@@ -105,6 +109,12 @@ Everything in this section is used identically by the 14 sales skills (01 to 14)
 #### The Profile Is the Only Source of Company Facts
 
 Every company fact (ICPs, personas, pains, value propositions, proof points, competitors, triggers, zones, stage names, methodology) comes from `profiles/client-profile.md`. A skill reads the sections its Context table names and nothing else. A skill never carries a company fact of its own. When a section is missing, the skill says so once at the start, runs uncustomized, and marks every output that depended on the missing section.
+
+#### The Knowledge Base and Connectors
+
+When the profile has a `## Knowledge Base` section, which Context OS Setup writes, the skill reads its `Location` field and opens only the base items its Context table names: account folders under `accounts/`, competitors, plays and pricing under `gtm/`, personas under `people/`. Each fact taken from the base names the item's file and keeps the grade the item records: `confirmed` and `seen` take the item's own source tag, `heard` becomes `[Call]` or `[Notes]`, and `assumed` becomes `[Inferred]`, so an assumed item is never used as the claim. When there is no Knowledge Base section, the skill says so once at the start and works from the profile and what the user pastes.
+
+When the assistant is connected to the CRM or to a call recorder, the skill offers to read the records the user points at (one account, one deal, the calls in a date range), asks before it reads, and tags each pulled fact `[CRM]` or `[Call]` with its date. It reads only. It never searches records nobody named and never writes back. Without a connector, pasting the same records works the same way.
 
 #### Account Status, Five Words
 
@@ -260,7 +270,7 @@ Determine whether the user is a BDR or an AE, because that changes the recommend
 
 ### Step 1: Gather Account Intelligence
 
-Every later step reads these facts. A fact gathered after scoring cannot move a score that was already set, so the research comes first and is complete before Step 2.
+Every later step reads these facts. A fact gathered after scoring cannot move a score that was already set, so the research comes first and is complete before Step 2. Before pulling anything, open the account's folder under `accounts/` in the Knowledge Base, if the profile has one, and offer the CRM read and, when a call recorder is connected, the call read, for the one account or date range you name. Nothing is read from the CRM or the call recorder until you say yes.
 
 #### 1a. Search the CRM
 
@@ -710,10 +720,17 @@ An account pending AE assignment is not ACTIVE. Score it, and say that it is pen
 - Once an opportunity exists, Deal Pulse (08) replaces qualification with deal health monitoring.
 - When an incumbent is named, Competitive Displacement (12) builds targeted sequences.
 
+### Chains
+
+- **Qualify To Book:** Account Qualification (01, this skill, first), then Account Snapshot (02), Research Outbound (03) or Trigger Event Outbound (04), then Meeting Prep (06). This skill adds the verdict and the five zone scores that every later skill reads.
+
 ---
 
 ## Changelog
 
+
+### 2.1.0 (2026-10-25)
+- Reads the Context OS base and offers read-only CRM and call connectors through the shared contract's new Knowledge Base and Connectors section. Adds a Chains subsection that places the skill in Qualify To Book. No other change.
 
 ### 2.0.1 (2026-10-20)
 

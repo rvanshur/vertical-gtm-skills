@@ -1,16 +1,19 @@
 ---
 name: gtm-deal-pulse
-version: 2.0.0
+version: 2.1.0
 description: "Scores one open deal across 16 signals in 4 pillars and produces a 0 to 100 health score, a risk level and named next actions. The AE and the sales manager read it, and the MEDDPICC, Call Coaching and Meeting Prep skills take its fields by name."
 category: Sales-Methodology
 author: Ryan Vanshur
 license: MIT
-updated: 2026-10-20
+updated: 2026-10-25
 tags: [deal-scoring, pipeline-health, signal-scorecard, opportunity-assessment, sales-methodology]
 requires:
   skills: ["gtm-call-coaching"]
 mutating: read-write
 change_log:
+  - version: 2.1.0
+    date: 2026-10-25
+    summary: "Reads the Context OS base and offers read-only connectors through the shared contract's new Knowledge Base and Connectors section, with a Chains subsection and a Guild Pro Kits subsection."
   - version: 2.0.0
     date: 2026-10-20
     summary: "Moved to the Sales 2.0 standard. Added the Named Methods subsection, the precise pillar-weakness step, the hand-off fields to 09, 13 and 06 and the six evidence tags. Examples aligned to the PlotIQ chain file. Emoji replaced by the words GREEN, YELLOW and RED."
@@ -54,7 +57,7 @@ What this skill needs before it starts. **If a required input is missing, ask:**
 | Input | Required | Notes |
 |-------|----------|-------|
 | Account name with an open opportunity | Required | The deal must be ACTIVE with its stage number. For a prospect with no opportunity, use Account Qualification (01) |
-| CRM access (interaction history, notes and activity) | Required | The evidence every signal is scored from |
+| CRM access (interaction history, notes and activity), or the same records pasted | Required | The evidence every signal is scored from |
 | Opportunity stage, deal amount, close date and primary contact | Required | Read from the CRM. If the CRM is silent on one, ask the user rather than guess |
 | Days in current stage | Optional | Used for stalled-deal detection. Calculated from the stage change date when the CRM has it |
 | Call notes and emails | Optional | Extra evidence, tagged `[Call]` with the call date, or `[Notes]` |
@@ -98,8 +101,9 @@ Throughout this skill, `{Client Profile: X}` means "section X of `profiles/clien
 | Qualification Criteria | Winning Zone mapping for the Strategic Initiative signal |
 | Sales Methodology | The stage names and gates, and the team's own methods |
 | Deal Health | The team's names for the four methods (rapport, momentum, urgency and Day in the Life), used in the Recommended Actions |
+| Knowledge Base | The Location field of the base, and the base items this skill opens: the account's folder under `accounts/` (notes, calls and decisions for that account) |
 
-If any section in this table is missing, the skill says so once at the start, runs uncustomized on the plain method names in Methodology, and marks every output that depended on the missing section.
+If any section in this table is missing, the skill says so once at the start, runs uncustomized on the plain method names in Methodology, and marks every output that depended on the missing section. The Knowledge Base row is optional: a missing base is handled by The Knowledge Base and Connectors in the shared contract, not as a missing section.
 
 ### The Shared Contract
 
@@ -108,6 +112,12 @@ Everything in this section is used identically by the 14 sales skills (01 to 14)
 #### The Profile Is the Only Source of Company Facts
 
 Every company fact (ICPs, personas, pains, value propositions, proof points, competitors, triggers, zones, stage names, methodology) comes from `profiles/client-profile.md`. A skill reads the sections its Context table names and nothing else. A skill never carries a company fact of its own. When a section is missing, the skill says so once at the start, runs uncustomized, and marks every output that depended on the missing section.
+
+#### The Knowledge Base and Connectors
+
+When the profile has a `## Knowledge Base` section, which Context OS Setup writes, the skill reads its `Location` field and opens only the base items its Context table names: account folders under `accounts/`, competitors, plays and pricing under `gtm/`, personas under `people/`. Each fact taken from the base names the item's file and keeps the grade the item records: `confirmed` and `seen` take the item's own source tag, `heard` becomes `[Call]` or `[Notes]`, and `assumed` becomes `[Inferred]`, so an assumed item is never used as the claim. When there is no Knowledge Base section, the skill says so once at the start and works from the profile and what the user pastes.
+
+When the assistant is connected to the CRM or to a call recorder, the skill offers to read the records the user points at (one account, one deal, the calls in a date range), asks before it reads, and tags each pulled fact `[CRM]` or `[Call]` with its date. It reads only. It never searches records nobody named and never writes back. Without a connector, pasting the same records works the same way.
 
 #### Account Status, Five Words
 
@@ -391,6 +401,8 @@ For each RED signal, recommend a specific action mapped to the team's methodolog
 
 ### Step 1: Pull Deal Data
 
+Before pulling anything, read the account's folder under `accounts/` in the knowledge base, when the profile has one, for its notes, calls and decisions. Then offer to read the CRM deal record and, when a call recorder is connected, the deal's calls, and ask before reading either, as set out in The Knowledge Base and Connectors.
+
 Query the CRM for the account's current opportunity data:
 
 - **Opportunity name, stage, amount, close date and owner**
@@ -419,7 +431,7 @@ If the close date has been pushed more than twice, flag it as a pattern for scor
 
 ### Step 2: Pull Activity and Interaction History
 
-Query the CRM for all available interaction intelligence:
+Once you say yes, query the CRM for the interaction history of the deal you named:
 
 - **Call transcripts:** recorded calls with key quotes and topics
 - **Email threads:** sequences, direct exchanges and reply patterns
@@ -804,6 +816,20 @@ report_path: none (inline)
 - **Call Coaching:** After a call, run Call Coaching to score how well the method was executed, then re-Pulse the deal to see whether the signals moved.
 - **Competitive Strategy:** When Competitive Landscape scores RED, run Competitive Strategy to build a displacement plan.
 
+### Chains
+
+- **Work The Deal:** Meeting Prep (06), Call Coaching (13), **Deal Pulse (08)**, MEDDPICC Analysis (09), Stakeholder Mapping (10). This skill adds the sixteen-signal health read, which the element-by-element scoring builds on.
+
+### Guild Pro Kits (Optional)
+
+The Business Case & ROI Kit (a paid Guild Pro kit) reads this skill's hand-off block by field name. This skill is free and works without any kit. This skill also reads the kit's hand-off block back as optional context (`case_status`, `hard_value`, `payback_months_hard`, `open_bets` and `next_action`), and it never presents an ASSUMPTION line from the kit as a buyer fact. The fields the kit reads from this skill:
+
+- `account`
+- `run_date`
+- `health_score`
+- `risk_level`
+- `next_action` (the stage check, and the context for the Budget Path signal)
+
 ### Workflow Example
 
 ```
@@ -817,6 +843,11 @@ report_path: none (inline)
 ---
 
 ## Changelog
+
+### 2.1.0 (2026-10-25)
+- Reads the Context OS base (the account's folder under `accounts/`) and offers read-only CRM connectors through the shared contract's Knowledge Base and Connectors section, before the CRM deal read.
+- Adds a Chains subsection placing the skill in the Work The Deal chain.
+- Adds a Guild Pro Kits subsection naming the hand-off fields the Business Case & ROI Kit reads, and the kit's fields this skill reads back.
 
 ### 2.0.0 (2026-10-20)
 - Moved to the Sales 2.0 standard: Overview with Core Principle, Why This Skill Exists, Role, Input and Output Contracts, Context with the Shared Contract, a Produces line on every workflow step, Epistemic Rules, Hard Rules with reasons, a Quality Bar, and Integration with the hand-off fields named on both sides.

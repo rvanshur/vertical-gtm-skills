@@ -1,16 +1,19 @@
 ---
 name: gtm-research-outbound
-version: 2.0.1
+version: 2.1.0
 description: "Builds a sourced point of view and outbound package from a public filing, an owner letter or an earnings call, with an ICP verdict, a signal map, a sourced wedge and persona sequences, for the rep and the meeting-prep skill to read"
 category: Sales-Methodology
 author: Ryan Vanshur
 license: MIT
-updated: 2026-10-20
+updated: 2026-10-25
 tags: [research-outbound, 10k-analysis, earnings-call, private-company, pov-brief, enterprise-prospecting, persona-sequences]
 requires:
   skills: [gtm-account-snapshot]
 mutating: read-write
 change_log:
+  - version: 2.1.0
+    date: 2026-10-25
+    summary: "Reads the Context OS account folder and offers read-only CRM and call connectors through the shared contract's new Knowledge Base and Connectors section, and adds a Chains subsection that places the skill in Qualify To Book. No other change."
   - version: 2.0.1
     date: 2026-10-20
     summary: "Every hand-off block carries a run_date line after its account line, so two instruments on one deal are compared by date (found by the wave two hand-off tests). No other change."
@@ -100,6 +103,7 @@ Read the profile, `profiles/client-profile.md`, which is written from `profiles/
 | Value Propositions | Connecting each signal to a product capability |
 | Proof Points | Which proof point may be named, by its Status: Verified, Benchmark or Illustrative |
 | Competitive Landscape | Incumbent and objection context |
+| Knowledge Base | The Location field of the base, and the base items this skill opens: the account's folder under `accounts/` (notes, calls, decisions for that account), read in Step 1 as tagged facts |
 
 `{Profile: X}` means section X of the profile. `{Methodology: X}` means subsection X of the Methodology section below.
 
@@ -112,6 +116,12 @@ Everything in this section is used identically by the 14 sales skills (01 to 14)
 #### The Profile Is the Only Source of Company Facts
 
 Every company fact (ICPs, personas, pains, value propositions, proof points, competitors, triggers, zones, stage names, methodology) comes from `profiles/client-profile.md`. A skill reads the sections its Context table names and nothing else. A skill never carries a company fact of its own. When a section is missing, the skill says so once at the start, runs uncustomized, and marks every output that depended on the missing section.
+
+#### The Knowledge Base and Connectors
+
+When the profile has a `## Knowledge Base` section, which Context OS Setup writes, the skill reads its `Location` field and opens only the base items its Context table names: account folders under `accounts/`, competitors, plays and pricing under `gtm/`, personas under `people/`. Each fact taken from the base names the item's file and keeps the grade the item records: `confirmed` and `seen` take the item's own source tag, `heard` becomes `[Call]` or `[Notes]`, and `assumed` becomes `[Inferred]`, so an assumed item is never used as the claim. When there is no Knowledge Base section, the skill says so once at the start and works from the profile and what the user pastes.
+
+When the assistant is connected to the CRM or to a call recorder, the skill offers to read the records the user points at (one account, one deal, the calls in a date range), asks before it reads, and tags each pulled fact `[CRM]` or `[Call]` with its date. It reads only. It never searches records nobody named and never writes back. Without a connector, pasting the same records works the same way.
 
 #### Account Status, Five Words
 
@@ -278,6 +288,8 @@ Role-aware framing:
 **Produces:** `user_role` (BDR or AE), and the one question asked if the CRM was silent.
 
 ### Step 1: Gather the Inputs and Check the CRM
+
+Before pulling anything, open the account's folder under `accounts/` in the Knowledge Base, if the profile has one, and offer the CRM read and, when a call recorder is connected, the call read, for the one account or date range you name. Nothing is read from the CRM or the call recorder until you say yes.
 
 #### 1a. Confirm the Inputs by Source
 
@@ -801,10 +813,17 @@ next_action: the rep is told the verdict and its disqualifier by 2026-10-21, and
 - **Shared profile section:** Trigger Event Outbound (04) and Closed-Loss Reactivation (05) read the same Industry Context section. This skill hands them no fields.
 - **Routes to:** `gtm-competitive-displacement` (12) when a specific incumbent is named in the source, `gtm-trigger-event-outbound` (04) when the source carries a dated event, and `gtm-deal-pulse` (08) once an opportunity exists.
 
+### Chains
+
+- **Qualify To Book:** Account Qualification (01), Account Snapshot (02), then Research Outbound (03, this skill) or Trigger Event Outbound (04), then Meeting Prep (06). This skill adds the sourced point of view, the signal map and the wedge for enterprise accounts, where the depth is worth the time.
+
 ---
 
 ## Changelog
 
+
+### 2.1.0 (2026-10-25)
+- Reads the Context OS account folder and offers read-only CRM and call connectors through the shared contract's new Knowledge Base and Connectors section. Adds a Chains subsection. No other change.
 
 ### 2.0.1 (2026-10-20)
 

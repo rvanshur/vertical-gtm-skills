@@ -1,16 +1,19 @@
 ---
 name: gtm-meeting-prep
-version: 2.0.1
+version: 2.1.0
 description: "Prepares a rep for a discovery or demo call with one prep sheet: the top pain, a question bank for each discovery phase, one proof point per attendee, objection scripts, a minute-by-minute call flow and a follow-up email draft. The rep reads it during the call."
 category: Sales-Methodology
 author: Ryan Vanshur
 license: MIT
-updated: 2026-10-20
+updated: 2026-10-25
 tags: [meeting-prep, discovery-prep, demo-prep, call-prep, discovery-questions, meeting-scripts, objection-handling, meddpicc]
 requires:
   skills: [gtm-account-snapshot, gtm-research-outbound, gtm-trigger-event-outbound, gtm-closed-loss-reactivation, gtm-daily-prospecting, gtm-deal-pulse, gtm-stakeholder-mapping, gtm-competitive-strategy, gtm-competitive-displacement, gtm-call-coaching]
 mutating: read-write
 change_log:
+  - version: 2.1.0
+    date: 2026-10-25
+    summary: "Reads the Context OS account folder and offers read-only CRM and call connectors through the shared contract's new Knowledge Base and Connectors section. Adds a Chains subsection (five chains) and a Guild Pro Kits subsection that names the account and run_date fields the Business Case & ROI Kit reads."
   - version: 2.0.1
     date: 2026-10-20
     summary: "Every hand-off block carries a run_date line after its account line, so two instruments on one deal are compared by date (found by the wave two hand-off tests). No other change."
@@ -133,6 +136,7 @@ This skill carries no company facts of its own. It reads them from the profile, 
 | Qualification Stage Gates | Stage names, used by number and name as written |
 | Sales Methodology | The team's framework names and any talk-time override |
 | Meeting Prep | The team's discovery vocabulary, the persona-proof map and the demo reframe. This is the sales-layer section this skill writes and reads |
+| Knowledge Base | The Location field of the base, and the base items this skill opens: the account's folder under `accounts/` (notes, calls, decisions and prior meeting history for that account), read in Step 2 as the interaction history |
 
 If the Meeting Prep section is missing, the skill runs uncustomized. It says so once at the start, and it marks every output that depended on that section as generic: the vocabulary, the persona-proof map and the demo reframe. A missing Discovery question cell is written as a question built from the pain's What to Listen For phrase, and marked `[Inferred]`.
 
@@ -145,6 +149,12 @@ Everything in this section is used identically by the 14 sales skills (01 to 14)
 #### The Profile Is the Only Source of Company Facts
 
 Every company fact (ICPs, personas, pains, value propositions, proof points, competitors, triggers, zones, stage names, methodology) comes from `profiles/client-profile.md`. A skill reads the sections its Context table names and nothing else. A skill never carries a company fact of its own. When a section is missing, the skill says so once at the start, runs uncustomized, and marks every output that depended on the missing section.
+
+#### The Knowledge Base and Connectors
+
+When the profile has a `## Knowledge Base` section, which Context OS Setup writes, the skill reads its `Location` field and opens only the base items its Context table names: account folders under `accounts/`, competitors, plays and pricing under `gtm/`, personas under `people/`. Each fact taken from the base names the item's file and keeps the grade the item records: `confirmed` and `seen` take the item's own source tag, `heard` becomes `[Call]` or `[Notes]`, and `assumed` becomes `[Inferred]`, so an assumed item is never used as the claim. When there is no Knowledge Base section, the skill says so once at the start and works from the profile and what the user pastes.
+
+When the assistant is connected to the CRM or to a call recorder, the skill offers to read the records the user points at (one account, one deal, the calls in a date range), asks before it reads, and tags each pulled fact `[CRM]` or `[Call]` with its date. It reads only. It never searches records nobody named and never writes back. Without a connector, pasting the same records works the same way.
 
 #### Account Status, Five Words
 
@@ -342,6 +352,8 @@ If the type is unclear, ask: "Is this a discovery call or a demo?"
 **Produces:** `meeting_type`, and the prerequisite result (pass, or the missing items named).
 
 ### Step 1. Gather Intelligence
+
+Before pulling anything, open the account's folder under `accounts/` in the Knowledge Base, if the profile has one, and offer the CRM read and, when a call recorder is connected, the call read, for the one account or date range you name. Nothing is read from the CRM or the call recorder until you say yes.
 
 1. **Confirm inputs:** account name, meeting type, attendees with titles, call date and length, other team members attending.
 2. **Read the profile sections** named in Context. Take the stage names from Qualification Stage Gates.
@@ -865,10 +877,30 @@ report_path: none (inline)
 
 **Related skills to run after the call:** Call Coaching (13) to grade the call, and Deal Pulse (08) to update the deal health with what the call showed.
 
+### Chains
+
+- **Qualify To Book:** Account Qualification (01), Account Snapshot (02), Research Outbound (03) or Trigger Event Outbound (04), then Meeting Prep (06, this skill, last). This skill turns the booked first call into the prep sheet the rep reads during the call.
+- **Daily Pipeline:** Daily Prospecting (07), then Meeting Prep (06, this skill). This skill builds the sheet for a call that the daily dial sheet booked.
+- **Win Back:** Closed-Loss Reactivation (05), Trigger Event Outbound (04), then Meeting Prep (06, this skill). This skill uses the reactivation history opener only once its reopening event has fired.
+- **Work The Deal:** Meeting Prep (06, this skill, first), Call Coaching (13), Deal Pulse (08), MEDDPICC Analysis (09), Stakeholder Mapping (10). This skill sets the question bank and the top pain that Call Coaching grades the call against.
+- **Beat The Incumbent:** Competitive Strategy (11), Competitive Displacement (12), then Meeting Prep (06, this skill). This skill turns the incumbent's probes into questions for the call.
+
+### Guild Pro Kits (Optional)
+
+The Business Case & ROI Kit (a paid Guild Pro kit) reads this skill's hand-off block by field name. This skill is free and works without any kit. The kit reads these two fields as context for its proposal talk track:
+
+- `account`
+- `run_date`
+
+This skill also reads the kit's hand-off block back as optional context: `case_status`, `hard_value`, `payback_months_hard`, `open_bets` and `next_action`. Anything taken from the kit that is marked ASSUMPTION is never presented on the sheet as a buyer fact.
+
 ---
 
 ## Changelog
 
+
+### 2.1.0 (2026-10-25)
+- Reads the Context OS account folder and offers read-only CRM and call connectors through the shared contract's new Knowledge Base and Connectors section. Adds a Chains subsection and a Guild Pro Kits subsection. No other change.
 
 ### 2.0.1 (2026-10-20)
 

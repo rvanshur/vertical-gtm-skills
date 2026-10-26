@@ -1,16 +1,19 @@
 ---
 name: gtm-competitive-strategy
-version: 2.0.0
+version: 2.1.0
 description: "Builds a deal-specific competitive strategy for one open opportunity: the incumbent filed under a shared type, a gap matrix, a displacement playbook and a win plan with a battlecard. The AE who owns the deal runs it, and the sales manager reviews the output."
 category: Sales-Methodology
 author: Ryan Vanshur
 license: MIT
-updated: 2026-10-20
+updated: 2026-10-25
 tags: [competitive-strategy, battlecard, competitive-analysis, win-plan, competitive-positioning, incumbent-classification, compete]
 requires:
   skills: [gtm-meddpicc-analysis]
 mutating: read-write
 change_log:
+  - version: 2.1.0
+    date: 2026-10-25
+    summary: "Reads the Context OS base and offers read-only connectors through the shared contract's new Knowledge Base and Connectors section, with a Chains subsection."
   - version: 2.0.0
     date: 2026-10-20
     summary: "Moved to the Sales 2.0 standard. The incumbent is filed under one of the seven shared incumbent types, failure patterns and trends are read from the profile's Competitive Patterns and Trends section with their counts and dated sources, and each proof point carries a Status that decides where it may appear. The three old evidence grades become the six shared tags, the two Epistemic Rules sections become one, jurisdiction deadlines must cite their rule and the date checked, and the HTML and PDF card options are removed. The Stonemark example is rebuilt on the chain fact that no buyer preference has been stated, and every example ends with a hand-off block."
@@ -95,8 +98,9 @@ This skill does not carry client-specific information. It reads the client profi
 | Qualification Criteria | Buying triggers and disqualifiers |
 | Qualification Zones | Zone alignment in Step 3a |
 | Sales Methodology | Overrides framework defaults, including the stage names from the Qualification Stage Gates |
+| Knowledge Base | The Location field of the base, and the base items this skill opens: the account's folder under `accounts/` (notes, calls and decisions for that account), and the competitors under `gtm/` (the incumbent's row and its failure patterns) |
 
-If any section in this table is missing, the skill says so once at the start, runs uncustomized on the defaults in Methodology, and marks every output that depended on the missing section.
+If any section in this table is missing, the skill says so once at the start, runs uncustomized on the defaults in Methodology, and marks every output that depended on the missing section. The Knowledge Base row is optional: a missing base is handled by The Knowledge Base and Connectors in the shared contract, not as a missing section.
 
 ### The Shared Contract
 
@@ -105,6 +109,12 @@ Everything in this section is used identically by the 14 sales skills (01 to 14)
 #### The Profile Is the Only Source of Company Facts
 
 Every company fact (ICPs, personas, pains, value propositions, proof points, competitors, triggers, zones, stage names, methodology) comes from `profiles/client-profile.md`. A skill reads the sections its Context table names and nothing else. A skill never carries a company fact of its own. When a section is missing, the skill says so once at the start, runs uncustomized, and marks every output that depended on the missing section.
+
+#### The Knowledge Base and Connectors
+
+When the profile has a `## Knowledge Base` section, which Context OS Setup writes, the skill reads its `Location` field and opens only the base items its Context table names: account folders under `accounts/`, competitors, plays and pricing under `gtm/`, personas under `people/`. Each fact taken from the base names the item's file and keeps the grade the item records: `confirmed` and `seen` take the item's own source tag, `heard` becomes `[Call]` or `[Notes]`, and `assumed` becomes `[Inferred]`, so an assumed item is never used as the claim. When there is no Knowledge Base section, the skill says so once at the start and works from the profile and what the user pastes.
+
+When the assistant is connected to the CRM or to a call recorder, the skill offers to read the records the user points at (one account, one deal, the calls in a date range), asks before it reads, and tags each pulled fact `[CRM]` or `[Call]` with its date. It reads only. It never searches records nobody named and never writes back. Without a connector, pasting the same records works the same way.
 
 #### Account Status, Five Words
 
@@ -237,6 +247,8 @@ When a competitive claim depends on a deadline set by a state or federal rule, t
 ## Core Workflow
 
 ### Step 1: Gather CRM and Competitive Intelligence
+
+Before pulling anything, read the account's folder under `accounts/` and the competitors under `gtm/` in the knowledge base, when the profile has one. Then offer to read the CRM deal and contact records, and ask before reading them, as set out in The Knowledge Base and Connectors.
 
 #### 1a. Search the CRM
 
@@ -717,9 +729,17 @@ report_path: none (inline)
 - **Competitive Displacement (12):** `incumbent_type`, `threat_level`. Both skills file the incumbent from the same Shared Contract list, so the two battlecards agree.
 - **Wrap-Up (O10):** `report_path` (set only when a file was written), `threat_level`, and `next_action` (owner and date).
 
+### Chains
+
+- **Beat The Incumbent:** MEDDPICC Analysis (09), **Competitive Strategy (11)**, Competitive Displacement (12), Account Snapshot (02) or Meeting Prep (06). This skill adds the deal-specific battlecard: the incumbent's type, the gap matrix and the win plan.
+
 ---
 
 ## Changelog
+
+### 2.1.0 (2026-10-25)
+- Reads the Context OS base (the account's folder under `accounts/`, and the competitors under `gtm/`) and offers read-only CRM connectors through the shared contract's Knowledge Base and Connectors section, before the CRM read.
+- Adds a Chains subsection placing the skill in the Beat The Incumbent chain.
 
 ### 2.0.0 (2026-10-20)
 - Moved to the Sales 2.0 standard: Overview with Core Principle, Why This Skill Exists, Role, Input and Output Contracts, Context with the Shared Contract, Core Workflow with a Produces line per step, one Epistemic Rules section, Hard Rules with reasons, Quality Bar, and Integration with named hand-off fields.

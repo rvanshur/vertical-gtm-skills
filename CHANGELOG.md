@@ -5,6 +5,16 @@ bottom of its `SKILL.md`, with the detail.
 
 ---
 
+## 2026-10-25: Sales 2.1 (All 14 Sales Skills)
+
+**The sales skills read the knowledge base.** A new part of the Shared Contract, The Knowledge Base and Connectors, has every sales skill read the base that Context OS Setup builds, through the `Location` field of the profile's `## Knowledge Base` section, the same way the operating skills do. Each skill's Context table names the base items it opens (the account's folder under `accounts/`, and where it needs them, competitors under `gtm/` and personas under `people/`). A fact taken from the base keeps its grade, so an `assumed` item is never used as the claim.
+
+**Connectors, read only.** When the assistant is connected to the CRM or a call recorder, a skill offers to read the records the user points at, asks first, tags each fact `[CRM]` or `[Call]` with its date, and never writes back. Pasting still works the same way.
+
+**Chains and kits.** Each skill now names the chains it belongs to (Qualify To Book, Daily Pipeline, Win Back, Work The Deal, Beat The Incumbent, Close And Hand Off), and `docs/how-it-fits.md` lists the chains with the fields that pass between steps. The six skills whose hand-offs the Business Case & ROI Kit (a paid Guild Pro kit) reads name those fields in a Guild Pro Kits subsection. Every skill stays free and works without any kit.
+
+---
+
 ## 2026-10-20: Sales 2.0, Wave Two (Skills 08 to 14)
 
 **All 14 sales skills are now one system.** Deal Pulse, MEDDPICC Analysis, Stakeholder Mapping, Competitive Strategy, Competitive Displacement, Call Coaching and Sales Handoff are at 2.0.0, each brought to the skill standard in place and each carrying the same Shared Contract as wave one. The champion tests, the seven incumbent types and the talk-time bands appear once per skill, inside the contract, and nowhere else.

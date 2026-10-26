@@ -1,16 +1,19 @@
 ---
 name: gtm-closed-loss-reactivation
-version: 2.0.1
+version: 2.1.0
 description: "Re-engages closed-lost accounts from the CRM history. Checks the recorded loss reason against the evidence, finds what has changed since the deal died, re-scores fit, and returns REACTIVATE, MONITOR or RETIRE with a history-aware opener for the BDR or AE who owns the next step."
 category: Sales-Methodology
 author: Ryan Vanshur
 license: MIT
-updated: 2026-10-20
+updated: 2026-10-25
 tags: [closed-loss, reactivation, win-back, lost-deal, re-engagement, deal-recovery]
 requires:
   skills: []
 mutating: read-write
 change_log:
+  - version: 2.1.0
+    date: 2026-10-25
+    summary: "Reads the Context OS account folder and offers read-only CRM and call connectors through the shared contract's new Knowledge Base and Connectors section, and adds a Chains subsection that places the skill in Win Back. No other change."
   - version: 2.0.1
     date: 2026-10-20
     summary: "Every hand-off block carries a run_date line after its account line, so two instruments on one deal are compared by date (found by the wave two hand-off tests). No other change."
@@ -105,6 +108,7 @@ Throughout this skill, `{Client Profile: X}` means "section X of `profiles/clien
 | Proof Points | The Status of each proof point, so that only Verified rows reach a prospect (Step 6) |
 | Industry Context | Sourced market facts for Step 3. An unsourced fact is dropped |
 | Closed-Loss Intelligence | Loss taxonomy mapping, re-entry windows, reopening events and incumbent renewal cycles. Written by this skill's CUSTOMIZE interview |
+| Knowledge Base | The Location field of the base, and the base items this skill opens: the lost account's folder under `accounts/` (notes, calls and decisions from the original deal), read in Step 1 as the deal history |
 
 If the Closed-Loss Intelligence section is missing, this skill runs uncustomized. It says so once at the start, uses the Loss Reason Taxonomy and the reactivation strategies in Methodology as written, and marks every re-entry window and reopening event as `[Unknown]` until the section exists.
 
@@ -117,6 +121,12 @@ Everything in this section is used identically by the 14 sales skills (01 to 14)
 #### The Profile Is the Only Source of Company Facts
 
 Every company fact (ICPs, personas, pains, value propositions, proof points, competitors, triggers, zones, stage names, methodology) comes from `profiles/client-profile.md`. A skill reads the sections its Context table names and nothing else. A skill never carries a company fact of its own. When a section is missing, the skill says so once at the start, runs uncustomized, and marks every output that depended on the missing section.
+
+#### The Knowledge Base and Connectors
+
+When the profile has a `## Knowledge Base` section, which Context OS Setup writes, the skill reads its `Location` field and opens only the base items its Context table names: account folders under `accounts/`, competitors, plays and pricing under `gtm/`, personas under `people/`. Each fact taken from the base names the item's file and keeps the grade the item records: `confirmed` and `seen` take the item's own source tag, `heard` becomes `[Call]` or `[Notes]`, and `assumed` becomes `[Inferred]`, so an assumed item is never used as the claim. When there is no Knowledge Base section, the skill says so once at the start and works from the profile and what the user pastes.
+
+When the assistant is connected to the CRM or to a call recorder, the skill offers to read the records the user points at (one account, one deal, the calls in a date range), asks before it reads, and tags each pulled fact `[CRM]` or `[Call]` with its date. It reads only. It never searches records nobody named and never writes back. Without a connector, pasting the same records works the same way.
 
 #### Account Status, Five Words
 
@@ -298,6 +308,8 @@ Determine whether the user is a BDR or an AE.
 ---
 
 ### Step 1: Confirm Status and Pull the Closed-Lost Deal History
+
+Before pulling anything, open the lost account's folder under `accounts/` in the Knowledge Base, if the profile has one, and offer the CRM read and, when a call recorder is connected, the call read, for the one closed-lost deal or date range you name. Nothing is read from the CRM or the call recorder until you say yes.
 
 Check the status first. It is one of the five status words in the Shared Contract.
 
@@ -761,10 +773,17 @@ report_path: none (inline)
 - **Hands to Deal Pulse (08):** once reactivation opens a new opportunity, Deal Pulse takes over health monitoring. If the prior deal was scored in MEDDPICC (09), its `meddpicc_scores` show the gaps that the reactivation should address.
 - **Hands to Wrap-Up:** the close reads `reactivation_strategy` as the verdict, `report_path` when a file was written, and `next_action` with its owner and date.
 
+### Chains
+
+- **Win Back:** Closed-Loss Reactivation (05, this skill, first), then Trigger Event Outbound (04) when a dated event opens a window at the lost account, then Meeting Prep (06). This skill decides whether the account is worth contacting at all, before any trigger is timed.
+
 ---
 
 ## Changelog
 
+
+### 2.1.0 (2026-10-25)
+- Reads the Context OS account folder and offers read-only CRM and call connectors through the shared contract's new Knowledge Base and Connectors section. Adds a Chains subsection. No other change.
 
 ### 2.0.1 (2026-10-20)
 

@@ -1,16 +1,19 @@
 ---
 name: gtm-call-coaching
 description: "Scores a discovery or demo call against methodology rubrics and returns a coaching report with evidence-graded coaching points, for the rep and the sales manager who reads it"
-version: 2.0.0
+version: 2.1.0
 category: Sales-Methodology
 author: Ryan Vanshur
 license: MIT
-updated: 2026-10-20
+updated: 2026-10-25
 tags: [call-coaching, discovery-coaching, demo-coaching, sales-methodology, call-scoring, coaching-scorecard]
 requires:
   skills: ["gtm-meeting-prep", "gtm-deal-pulse"]
 mutating: read-write
 change_log:
+  - version: 2.1.0
+    date: 2026-10-25
+    summary: "Reads the Context OS base and offers read-only connectors through the shared contract's new Knowledge Base and Connectors section, with a Chains subsection and a Guild Pro Kits subsection."
   - version: 2.0.0
     date: 2026-10-20
     summary: "Sales 2.0 standard. Discovery adds an Alternatives category (7 categories, N of 35) and restated bands. Demo adds five demo elements, pacing defaults, ROI formulas, per-attendee block and technical checklist. Seven key-moment types, evidence grades, unraised objections checklist, per-phase question review, shared champion tests and talk-time bands by reference, Epistemic Rules, hand-off fields by name."
@@ -110,8 +113,9 @@ Throughout this skill, `{Client Profile: X}` means "section X of `profiles/clien
 | Competitive Landscape | The competitor probes the rep should have asked |
 | Sales Methodology | Which frameworks the team runs, any talk-time bands it overrides, and the Qualification Stage Gates the call should move toward |
 | Call Coaching | The team's category names, demo element names, pacing overrides and extra listen-for phrases. This is the sales-layer section that this skill's CUSTOMIZE interview writes |
+| Knowledge Base | The Location field of the base, and the base items this skill opens: the account's folder under `accounts/` (its earlier calls, notes and decisions), and the personas under `people/` |
 
-If the Call Coaching section is missing, the skill says so once at the start and runs uncustomized. It uses the default category names and the starting pacing defaults, and it marks every coaching point that depended on the missing section.
+If the Call Coaching section is missing, the skill says so once at the start and runs uncustomized. It uses the default category names and the starting pacing defaults, and it marks every coaching point that depended on the missing section. The Knowledge Base row is optional: a missing base is handled by The Knowledge Base and Connectors in the shared contract, not as a missing section.
 
 `{Methodology: X}` means "subsection X of the **Methodology** section below."
 
@@ -123,6 +127,12 @@ Everything in this section is used identically by the 14 sales skills (01 to 14)
 #### The Profile Is the Only Source of Company Facts
 
 Every company fact (ICPs, personas, pains, value propositions, proof points, competitors, triggers, zones, stage names, methodology) comes from `profiles/client-profile.md`. A skill reads the sections its Context table names and nothing else. A skill never carries a company fact of its own. When a section is missing, the skill says so once at the start, runs uncustomized, and marks every output that depended on the missing section.
+
+#### The Knowledge Base and Connectors
+
+When the profile has a `## Knowledge Base` section, which Context OS Setup writes, the skill reads its `Location` field and opens only the base items its Context table names: account folders under `accounts/`, competitors, plays and pricing under `gtm/`, personas under `people/`. Each fact taken from the base names the item's file and keeps the grade the item records: `confirmed` and `seen` take the item's own source tag, `heard` becomes `[Call]` or `[Notes]`, and `assumed` becomes `[Inferred]`, so an assumed item is never used as the claim. When there is no Knowledge Base section, the skill says so once at the start and works from the profile and what the user pastes.
+
+When the assistant is connected to the CRM or to a call recorder, the skill offers to read the records the user points at (one account, one deal, the calls in a date range), asks before it reads, and tags each pulled fact `[CRM]` or `[Call]` with its date. It reads only. It never searches records nobody named and never writes back. Without a connector, pasting the same records works the same way.
 
 #### Account Status, Five Words
 
@@ -362,6 +372,8 @@ Feel (validate emotion), Felt (normalize with peer), Found (deliver outcome).
 ## Core Workflow
 
 ### Step 1: Gather Call Context
+
+Before pulling anything, read the account's folder under `accounts/` (its earlier calls, notes and decisions) and the personas under `people/` in the knowledge base, when the profile has one. Then offer to read the call recording or transcript from the call recorder, and ask before reading it, as set out in The Knowledge Base and Connectors.
 
 **1a. Confirm inputs:** account name, sales rep name, call date and duration, call type, transcript or notes, attendees with titles.
 
@@ -1016,9 +1028,24 @@ report_path: none (inline)
 
 **Related skills.** Meeting Prep before the call to plan it, then this skill after the call to score execution, then Deal Pulse to re-score the deal with what the call showed.
 
+### Chains
+
+- **Work The Deal:** Meeting Prep (06), **Call Coaching (13)**, Deal Pulse (08), MEDDPICC Analysis (09), Stakeholder Mapping (10). This skill adds the scored read of how the call was run, with the champion status and key moments the other skills take by name.
+
+### Guild Pro Kits (Optional)
+
+The Business Case & ROI Kit (a paid Guild Pro kit) reads this skill's hand-off block by field name. This skill is free and works without any kit. The kit reads `champion_status` from this skill. It also reads what the call said about ROI, which this skill records in its return-on-investment check in Step 7. This skill never fills a formula from the call, and every ROI input comes from the buyer, with its source. The field the kit reads from this skill:
+
+- `champion_status`
+
 ---
 
 ## Changelog
+
+### 2.1.0 (2026-10-25)
+- Reads the Context OS base (the account's folder under `accounts/`, and the personas under `people/`) and offers read-only call-recorder and CRM connectors through the shared contract's Knowledge Base and Connectors section, before the call is read.
+- Adds a Chains subsection placing the skill in the Work The Deal chain.
+- Adds a Guild Pro Kits subsection naming the hand-off field the Business Case & ROI Kit reads, and how the kit's ROI read stays tied to the buyer's own figures.
 
 ### 2.0.0 (2026-10-20)
 - Moved to the Sales 2.0 standard: Overview with Core Principle, Why This Skill Exists, Role, Input and Output Contracts, Context with the Shared Contract, Core Workflow with a Produces line per step, Epistemic Rules, Hard Rules with reasons, Quality Bar, and hand-off fields named in the Output Contract and the Integration section.

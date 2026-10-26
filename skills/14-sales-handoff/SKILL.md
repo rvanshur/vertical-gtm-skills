@@ -1,16 +1,19 @@
 ---
 name: gtm-sales-handoff
-version: 2.0.0
+version: 2.1.0
 description: "Post-sale implementation readiness check: scores six dimensions, sets the three dates (kickoff, go-live and Full Adoption Date), names risks with mitigations and quick wins, and writes the handoff the implementation lead plans from"
 category: Sales-Methodology
 author: Ryan Vanshur
 license: MIT
-updated: 2026-10-20
+updated: 2026-10-25
 tags: [sales-handoff, customer-readiness, implementation-readiness, onboarding, cs-handoff, post-sale, kickoff-prep]
 requires:
   skills: [gtm-meddpicc-analysis]
 mutating: read-write
 change_log:
+  - version: 2.1.0
+    date: 2026-10-25
+    summary: "Reads the Context OS base and offers read-only connectors through the shared contract's new Knowledge Base and Connectors section, with a Chains subsection and a Guild Pro Kits subsection."
   - version: 2.0.0
     date: 2026-10-20
     summary: "Sales 2.0 standard. Implementation Profile added as the source of the timing values, three dates renamed to kickoff, go-live and Full Adoption Date, hand-off fields named, Epistemic Rules added, examples on the PlotIQ chain with all six dimensions shown"
@@ -94,8 +97,9 @@ Throughout this skill, `{Client Profile: X}` means section X of `profiles/client
 | Core Pain Points | Mapping why the customer bought, which sets the quick wins |
 | Product Modules | Matching contracted modules to names, and sizing the implementation scope in Step 1 |
 | Implementation Profile | The timing values for the three dates: typical days from kickoff to go-live, how data moves, the timing variables, the default months to full adoption, and the team's own quick win types |
+| Knowledge Base | The Location field of the base, and the base items this skill opens: the account's folder under `accounts/` (its notes, calls and decisions) |
 
-If any section in this table is missing, the skill says so once at the start, runs uncustomized on the Methodology defaults, and marks every output that depended on the missing section. Go-live is then written as `[RECORD]`, not estimated. The Implementation Profile is the section most often missing, and `CUSTOMIZE.md` writes it.
+If any section in this table is missing, the skill says so once at the start, runs uncustomized on the Methodology defaults, and marks every output that depended on the missing section. Go-live is then written as `[RECORD]`, not estimated. The Implementation Profile is the section most often missing, and `CUSTOMIZE.md` writes it. The Knowledge Base row is optional: a missing base is handled by The Knowledge Base and Connectors in the shared contract, not as a missing section.
 
 ### The Shared Contract
 
@@ -104,6 +108,12 @@ Everything in this section is used identically by the 14 sales skills (01 to 14)
 #### The Profile Is the Only Source of Company Facts
 
 Every company fact (ICPs, personas, pains, value propositions, proof points, competitors, triggers, zones, stage names, methodology) comes from `profiles/client-profile.md`. A skill reads the sections its Context table names and nothing else. A skill never carries a company fact of its own. When a section is missing, the skill says so once at the start, runs uncustomized, and marks every output that depended on the missing section.
+
+#### The Knowledge Base and Connectors
+
+When the profile has a `## Knowledge Base` section, which Context OS Setup writes, the skill reads its `Location` field and opens only the base items its Context table names: account folders under `accounts/`, competitors, plays and pricing under `gtm/`, personas under `people/`. Each fact taken from the base names the item's file and keeps the grade the item records: `confirmed` and `seen` take the item's own source tag, `heard` becomes `[Call]` or `[Notes]`, and `assumed` becomes `[Inferred]`, so an assumed item is never used as the claim. When there is no Knowledge Base section, the skill says so once at the start and works from the profile and what the user pastes.
+
+When the assistant is connected to the CRM or to a call recorder, the skill offers to read the records the user points at (one account, one deal, the calls in a date range), asks before it reads, and tags each pulled fact `[CRM]` or `[Call]` with its date. It reads only. It never searches records nobody named and never writes back. Without a connector, pasting the same records works the same way.
 
 #### Account Status, Five Words
 
@@ -326,6 +336,8 @@ This is a starting catalog of four. Pick two or three. Each one must be somethin
 Each step ends with what it produces. The order matters: the scores in Step 5 set the dates in Step 6, and the report in Step 7 is the only place the dates and scores appear together.
 
 ### Step 1: Pull Deal and Engagement Data
+
+Before pulling anything, read the account's folder under `accounts/` (its notes, calls and decisions) in the knowledge base, when the profile has one. Then offer to read the CRM deal and contact records, and ask before reading them, as set out in The Knowledge Base and Connectors.
 
 Query the CRM for the account and record each field, or `[Unknown]` where it is blank.
 
@@ -729,9 +741,26 @@ report_path: none (inline)
 - `report_path` (`none (inline)` unless a file was written)
 - `readiness_score` as the score the session produced for the account
 
+### Chains
+
+- **Close And Hand Off:** MEDDPICC Analysis (09), **Sales Hand-Off (14)**, Wrap-Up (O10). This skill adds the readiness score and the three implementation dates the implementation lead plans from.
+
+### Guild Pro Kits (Optional)
+
+The Business Case & ROI Kit (a paid Guild Pro kit) reads this skill's hand-off block by field name, to take the implementation timeline and the quick wins into its case. This skill is free and works without any kit. The fields the kit reads from this skill:
+
+- `three_dates` (kickoff, go-live and Full Adoption Date)
+- `quick_wins` (week one, month one and the 90-day criteria)
+- `dimension_scores` (the six readiness scores)
+
 ---
 
 ## Changelog
+
+### 2.1.0 (2026-10-25)
+- Reads the Context OS base (the account's folder under `accounts/`) and offers read-only CRM connectors through the shared contract's Knowledge Base and Connectors section, before the CRM read.
+- Adds a Chains subsection placing the skill in the Close And Hand Off chain.
+- Adds a Guild Pro Kits subsection naming the hand-off fields the Business Case & ROI Kit reads.
 
 ### 2.0.0 (2026-10-20)
 - Moved to the Sales 2.0 standard: Overview with Core Principle, Why This Skill Exists, Role, Input and Output Contracts, Context with the Shared Contract, a Produces line on every Core Workflow step, Epistemic Rules, Hard Rules with reasons, and a Quality Bar.
