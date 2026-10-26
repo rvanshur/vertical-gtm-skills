@@ -1,6 +1,6 @@
 ---
 name: gtm-research-outbound
-version: 2.1.8
+version: 2.1.9
 description: "Builds a sourced point of view and outbound package from a public filing, an owner letter or an earnings call, with an ICP verdict, a signal map, a sourced wedge and persona sequences, for the rep and the meeting-prep skill to read"
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: [gtm-account-snapshot]
 mutating: read-write
 change_log:
+  - version: 2.1.9
+    date: 2026-10-26
+    summary: "Round 9 INBOUND rule. An INBOUND account, which asked us first with no open deal, gets one reply to its request for the requesting persona, carrying this skill's angle. The other persona sequences wait until the account goes quiet, meaning no reply within five business days after the reply is sent. The rule sits in Step 1b, Step 7, the Output Contract, the Integration section, Hard Rule 13 and the Quality Bar. None of the four examples holds an INBOUND account (Saltmarsh is TARGET, Brackhaven is ACTIVE, Tamsin Vale is TARGET and Northvale is OUT), so no example or promise changes."
   - version: 2.1.8
     date: 2026-10-26
     summary: "Round 8 profile citations, ENGAGED status and held drafts. Every profile citation is written (profile: Section). A MANUAL REVIEW sequence is held: it is marked Held on its first line, and nothing in it goes out before a person clears the verdict. An ENGAGED account gets one reply draft to its open thread for the replying persona, not a cold sequence. The trigger leads every persona's sequence, and the first line of each email names it. The Saltmarsh decision-cycle fact is restored to the records and the zone basis in identical words, and Saltmarsh stays Zone 3 LOW and MANUAL REVIEW. Heading and label capitalization is aligned word by word."
@@ -104,7 +107,7 @@ Every run returns its report in the chat, in the sections below, in this order. 
 | `signal_map` | Chat, Signal Map section | Six to ten rows, each tagged and placed in one zone. Handed to 06 |
 | `wedge` | Chat, Wedge section | The figure, its arithmetic and its tags. Or "Insufficient data", with the missing figure named. Handed to 06 |
 | `pov_brief` | Chat, POV Brief section | Under 500 words, in the five parts of Step 6. Handed to 06 |
-| `persona_emails` | Chat, Persona Sequences section | The count shown as personas times steps, then each sequence, marked Held when the verdict is MANUAL REVIEW. For an ENGAGED account, the replying persona has one reply draft in place of four emails. Handed to 06 |
+| `persona_emails` | Chat, Persona Sequences section | The count shown as personas times steps, then each sequence, marked Held when the verdict is MANUAL REVIEW. For an ENGAGED account, the replying persona has one reply draft in place of four emails. For an INBOUND account, the requesting persona has one reply to the request, and the other personas wait until the account goes quiet. Handed to 06 |
 | Cheatsheet | Chat, Cheatsheet section | The eight sections for the research type, in the order set in Methodology |
 | Intelligence appendix | Chat, Appendix section | The top eight items, each tagged, and two to four research gaps |
 | `report_path` | Set only when a file was written | Empty when the report is inline |
@@ -208,7 +211,7 @@ Rep talk time as a share of the call, by call type: discovery 30% to 40%, demo 5
 
 #### What The Close Reads
 
-Wrap-Up reads by name the **report path** when a file was written, the **verdict** or **score** the session produced, and the **next action** with its owner and date. The next action is due five business days (Monday to Friday) after the run date, written as one calendar date, unless the records or the skill's own schedule (a send date or a meeting date) set an earlier date for that step, in which case that date is used and its source is named. Ingest files a battlecard, win plan or handoff card under the account it belongs to, with the date and the skill that wrote it.
+Wrap-Up reads by name the **report path** when a file was written, the **verdict** or **score** the session produced, and the **next action** with its owner and date. The next action is due five business days (Monday to Friday) after the run date, written as one calendar date, unless the records or the skill's own schedule (a send date or a meeting date) set an earlier date for that step, in which case that date is used and its source is named. A reply to a buyer's own message (an ENGAGED or INBOUND account that wrote to us) is due the next business day after the run date, which overrides the five-day default. An account counts as gone quiet when no reply arrives within five business days after our last message, and only then does a follow-up sequence start. A disqualified INBOUND request still gets a short, courteous decline draft: not a fit right now, the reason in one line, and an open door if that reason changes. The rep reads it before anything goes out. Ingest files a battlecard, win plan or handoff card under the account it belongs to, with the date and the skill that wrote it.
 
 #### Guild Disciplines, Restated
 
@@ -332,6 +335,7 @@ Read the account's status and owner from the CRM. Without a CRM, read it from th
 - **OUT:** a disqualifier applies (profile: Qualification Criteria). Carry the account to Step 3, where the verdict ends the run.
 - **LOST:** stop, and name `gtm-closed-loss-reactivation` as the right skill.
 - **ENGAGED:** the account replied or met with us, and no deal is open. The package is built as usual, but the replying persona's sequence becomes one reply draft to the open thread, answering what the account said, and not a cold four-email sequence. The report names the replying contact, so the rep checks with that person before a colleague of theirs is emailed. Reason: a cold sequence to someone who already answered reads as not listening.
+- **INBOUND:** they asked us first, and no deal is open. The request is answered before any cold sequence. The reply goes to the person who made the request, it carries the POV angle from Step 6 and the strongest signal in the Step 4 map, and it is ready or held by the verdict. The other personas get no sequence until the account goes quiet, which means no reply within five business days after the reply is sent. Reason: a cold sequence while their request is open reads as not listening. The report names the requesting contact, so the rep checks who asked before anyone else is emailed.
 
 **Produces:** the source, the status word, and the guard result (fired, not fired, or pending). This runs before any research, because the guard decides whether research happens at all.
 
@@ -459,7 +463,7 @@ Earnings sequences draw two to three personas from the trigger row, with two ema
 
 After each persona's sequence, include the persona's hook focus (one line) and that persona's two best discovery questions, grounded in the source.
 
-**Held Packages.** A GREENLIGHT sequence is ready, and the rep reads it before sending. A MANUAL REVIEW sequence is held: its first line reads "Held: send only after a person clears the verdict", and nothing in it goes out before then. An ENGAGED account gets one reply draft to its open thread for the replying persona, as Step 1b says.
+**Held Packages.** A GREENLIGHT sequence is ready, and the rep reads it before sending. A MANUAL REVIEW sequence is held: its first line reads "Held: send only after a person clears the verdict", and nothing in it goes out before then. An ENGAGED account gets one reply draft to its open thread for the replying persona, as Step 1b says. An INBOUND account gets one reply to its request for the requesting persona, as Step 1b says, and its other sequences are not drafted until the account goes quiet. When they are drafted, they follow the same ready or held rule.
 
 **Produces:** the persona sequences, with the count shown as "N personas x M emails = total", and the trigger routing named.
 
@@ -529,6 +533,7 @@ No mode writes a file on its own. A file is written only when the user asks for 
 10. **Write no file unless the user asks.** The report is for the rep to read in the chat. A file that nobody asked for is one more thing to find and delete later.
 11. **Never let a held package go out before a person clears the verdict.** Reason: a MANUAL REVIEW means the zones are not settled, and a draft that reads as ready invites a send before the gap closes.
 12. **Never send a cold sequence to a contact who has already replied.** Reason: an ENGAGED account is already in conversation, and the reply belongs in that thread.
+13. **Never send a cold sequence to an INBOUND account before its request is answered.** Reason: the account asked us first, so a cold sequence ignores the open request. The other personas wait until the account goes quiet.
 
 ---
 
@@ -542,6 +547,7 @@ No mode writes a file on its own. A file is written only when the user asks for 
 - [ ] The email count equals the applicable personas times the steps for the mode, and the count is shown
 - [ ] A MANUAL REVIEW sequence is marked Held on its first line, and nothing in it is ready to send
 - [ ] An ENGAGED account has one reply draft for the replying persona, not a cold sequence
+- [ ] An INBOUND account has one reply to its request for the requesting persona, and its other sequences wait until the account goes quiet
 - [ ] No Illustrative proof point appears in any email or talk track
 - [ ] The guard result is in the output, and an ACTIVE account with an AE owner has either the AE's yes or no sequences
 - [ ] Every rate carries its n
@@ -1062,7 +1068,7 @@ next_action: the rep is told the verdict and its disqualifier by 2026-10-26, and
 ## Integration With Other Skills
 
 - **Reads From `gtm-account-snapshot` (02), By These Names:**
-  - `account_status`: an ACTIVE status with an AE owner triggers the guard, and an ENGAGED status turns the replying persona's sequence into one reply draft (Step 1b)
+  - `account_status`: an ACTIVE status with an AE owner triggers the guard, and an ENGAGED status turns the replying persona's sequence into one reply draft, and an INBOUND status turns the requesting persona's sequence into one reply with the other sequences held back until the account goes quiet (Step 1b)
   - `verdict`: a DISQUALIFY from 02 is confirmed here, not assumed, before research starts
   - `contact_priority`: the ranked personas and names to write to first
   - `pain_hypotheses`: each one is tagged. Only a claim tagged `[Public: source]` or `[CRM]` may be the claim in an email. An `[Inferred]` hypothesis is not used as a claim

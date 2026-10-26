@@ -1,6 +1,6 @@
 ---
 name: gtm-competitive-displacement
-version: 2.1.8
+version: 2.1.9
 description: "Plans outbound to displace a known incumbent, by classifying the incumbent, rating how hard the switch is, and drafting persona-tailored four-step email sequences for the rep to read and send, so the BDR or AE who works the account knows what to say and what not to say."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: [gtm-competitive-strategy]
 mutating: read-write
 change_log:
+  - version: 2.1.9
+    date: 2026-10-26
+    summary: "INBOUND accounts are answered first. Step 0 adds the INBOUND rule, the Output Contract's sequence row names the reply-first value, Hard Rule 10 bars a cold sequence until the account goes quiet, and the Quality Bar carries the check. Example 1's Step 0 states that the INBOUND rule does not apply to its TARGET account. The examples' sequences, difficulty ratings, tiers and next actions do not change."
   - version: 2.1.8
     date: 2026-10-26
     summary: "Citations, ENGAGED and status. A fact taken from the profile is cited (profile: Section) in place of [Notes]. An ENGAGED account gets a reply plan in place of the four-step cold sequence, with a new Hard Rule. Greyfield's status record now states that no reply is on record on its run date, so TARGET stands. Headings and labels are capitalized word by word. The example sequences, difficulty ratings and next actions do not change."
@@ -103,7 +106,7 @@ Every run returns its report in the chat. The file is written only when the user
 | `incumbent_type` | Company and Incumbent Snapshot | The type the profile's Competitive Landscape files the incumbent under, with its confidence |
 | `displacement_difficulty` | Company and Incumbent Snapshot | Low, Medium or High, with the test that set it and whether that test was met |
 | `target_personas` | Key Personas | The profile rows used, ranked, each with its title, the count as n of N, and the contact or `[Unknown]` |
-| `sequence` | Below Key Personas | Four emails per persona, drafted and never sent. A page may show fewer. Then it says the other drafts follow the same rules and are left off the page, and names them. Under the BDR guard, `none (guard)`. Under ENGAGED, `none (ENGAGED: reply plan)`, and the reply plan takes the place of the four emails. |
+| `sequence` | Below Key Personas | Four emails per persona, drafted and never sent. A page may show fewer. Then it says the other drafts follow the same rules and are left off the page, and names them. Under the BDR guard, `none (guard)`. Under ENGAGED, `none (ENGAGED: reply plan)`, and the reply plan takes the place of the four emails. Under INBOUND, `reply first (INBOUND)`: the reply to the buyer's request takes the place of the four emails until the account goes quiet, and then the four-step sequence follows. |
 | `report_path` | Header of the report | `none (inline)` unless the user asked for a file |
 | `next_action` | Last line of the report | The owner, the action and a date, written as "[owner] [action] by [date]", for example "[owner] finds the contact's name, then reviews and sends the first email by [date]". The owner is the BDR or AE of record in the CRM. When the CRM names the owner, that name is written with `[CRM]`. When the owner field is blank, the name is written `[Unknown]` and the role is kept, never a name from another account. The date follows the shared contract's next-action rule (five business days after the run date, or an earlier date the CRM or the records already set for that step, named with its source). The step names the action the owner takes, not the result |
 | File, On Request | `<account>_gtm-competitive-displacement_<date>.md`, saved beside the user's other account notes | Written only when the user asks, in Markdown. The ask is the approval step |
@@ -199,7 +202,7 @@ Rep talk time as a share of the call, by call type: discovery 30% to 40%, demo 5
 
 #### What The Close Reads
 
-Wrap-Up reads by name the **report path** when a file was written, the **verdict** or **score** the session produced, and the **next action** with its owner and date. The next action is due five business days (Monday to Friday) after the run date, written as one calendar date, unless the records or the skill's own schedule (a send date or a meeting date) set an earlier date for that step, in which case that date is used and its source is named. Ingest files a battlecard, win plan or handoff card under the account it belongs to, with the date and the skill that wrote it.
+Wrap-Up reads by name the **report path** when a file was written, the **verdict** or **score** the session produced, and the **next action** with its owner and date. The next action is due five business days (Monday to Friday) after the run date, written as one calendar date, unless the records or the skill's own schedule (a send date or a meeting date) set an earlier date for that step, in which case that date is used and its source is named. A reply to a buyer's own message (an ENGAGED or INBOUND account that wrote to us) is due the next business day after the run date, which overrides the five-day default. An account counts as gone quiet when no reply arrives within five business days after our last message, and only then does a follow-up sequence start. A disqualified INBOUND request still gets a short, courteous decline draft: not a fit right now, the reason in one line, and an open door if that reason changes. The rep reads it before anything goes out. Ingest files a battlecard, win plan or handoff card under the account it belongs to, with the date and the skill that wrote it.
 
 #### Guild Disciplines, Restated
 
@@ -322,6 +325,8 @@ If the user is a BDR and the account is ACTIVE with an AE owner, stop. Produce t
 
 **ENGAGED Accounts:** An ENGAGED account has two-way contact and no open deal, because the account replied or met with us. A cold four-step sequence is wrong for it. The buyer has already answered an outreach, so a first email would make the buyer start over. For an ENGAGED account, Steps 1 and 2 run as written, and Step 3 becomes a reply plan. The reply plan is one drafted reply to the buyer's last message, in the buyer's own words, with the template's best discovery question as its follow-up. The incumbent comes up only when the buyer raises it. The BDR guard does not apply, because no AE deal is open. The reply is written by the rep who holds the thread, or by the owner of record when the CRM does not name the holder. The `sequence` field reads `none (ENGAGED: reply plan)`.
 
+**INBOUND Accounts:** An INBOUND account asked us first, and no deal is open. The buyer's request is the open thread, so the reply comes before any outbound. Steps 1 and 2 run as written. In Step 3, the first output is a reply to the buyer's request, in the buyer's own words. The reply carries the displacement angle as the template's best discovery question, asked as a question about the request, and it never attacks the incumbent. The incumbent comes up only when the buyer raises it. The four-step cold sequence waits. It is drafted only if the account goes quiet, meaning no buyer message for 14 days after our reply (the quiet window the Daily Prospecting skill uses), and then its Email 1 refers to the buyer's earlier request, so it is not a cold first touch. INBOUND stays until a deal opens or the account goes OUT, so the status word does not change when the sequence starts. The BDR guard does not apply, because no deal is open. The `sequence` field reads `reply first (INBOUND)` until the sequence starts.
+
 **Produces:** `user_role` (BDR or AE), the account status word, and the AE owner if there is one.
 
 ### Step 1: Identify The Incumbent And Gather Context
@@ -441,6 +446,7 @@ Confidence applies to the incumbent identification, and it decides whether displ
 7. **Never use the same displacement angle twice in one sequence.** Reason: each email must give the buyer a new reason to reply, and a repeated angle reads as a reminder rather than news.
 8. **Never send, never enroll a contact, never write to the CRM.** Reason: the rep owns the outreach and the record. The Shared Contract states this for every skill, and this skill keeps it in the same words.
 9. **Never draft a cold displacement sequence for an ENGAGED account.** Reason: the buyer has already replied, so a first-touch sequence asks the buyer to start over and ignores the reply.
+10. **Never draft a cold displacement sequence for an INBOUND account before it goes quiet.** Reason: the buyer asked us first, so a cold first email ignores the request and tells the buyer that we did not read it.
 
 ---
 
@@ -459,6 +465,7 @@ Done when all are true:
 - [ ] Each of the four emails uses a different angle, and each body is 120 words or fewer
 - [ ] The role was checked, and the BDR guard was applied where it applies
 - [ ] An ENGAGED account gets a reply plan in place of the four-step sequence, and no cold sequence is drafted for it
+- [ ] An INBOUND account gets a reply to its request first, with the displacement angle in it, and no cold sequence is drafted until the account has gone quiet
 - [ ] The `next_action` line is last, with an owner and a date
 - [ ] No file was written unless the user asked for one
 
@@ -474,7 +481,7 @@ Three worked examples on the PlotIQ cast and the chain file. They show a success
 
 **Input:** "Greyfield Memorial Park uses Stonemark. Build displacement sequences."
 
-**Step 0. Role And Status:** User role is BDR, from the CRM user record `[CRM]` (illustrative). CRM check: TARGET, one touch on 2026-09-24 with no named contact and no reply on record `[CRM]` (illustrative), no open deal, no AE owner. The guard does not apply, and the ENGAGED rule does not apply, because no reply is on record. Sequences are drafted.
+**Step 0. Role And Status:** User role is BDR, from the CRM user record `[CRM]` (illustrative). CRM check: TARGET, one touch on 2026-09-24 with no named contact and no reply on record `[CRM]` (illustrative), no open deal, no AE owner. The guard does not apply, and neither the ENGAGED rule nor the INBOUND rule applies, because no reply is on record and the account is TARGET, not INBOUND. Sequences are drafted.
 
 **Step 1. Identify The Incumbent:** Stonemark, direct software. How we know: the account's CRM note names Stonemark as its map vendor `[CRM]` (illustrative). Confidence: HIGH, because the CRM note names the incumbent.
 
@@ -512,7 +519,7 @@ Proof points: Fennick Gardens (212 unsold plots found in 90 days) and Holloway H
 
 **Step 3. Sequences:** Persona selection: 2 of 5 profile rows, row 2 Pre-Need Sales Manager (primary, the team that feels the intake pain) and row 1 Cemetery General Manager (secondary, the buyer). Both contacts are `[Unknown]`, so the emails use titles. That makes 2 personas and 8 emails. The page shows Email 1 and the HOLD on Email 3 for the Pre-Need Sales Manager, and omits the rest of the drafts: Emails 2 and 4 for that persona, and all four for the Cemetery General Manager. Those drafts exist and follow the structure in Methodology, and they are left off this page only for length.
 
-**Pre-Need Sales Manager, Email 1 (Industry Trend, Held Without a Figure). Drafted, not sent.**
+**Pre-Need Sales Manager, Email 1 (Industry Trend, Held Without A Figure). Drafted, not sent.**
 Subject: Pre-need requests from the intake form
 
 Your team takes pre-need requests through the intake form on the site.
@@ -708,6 +715,11 @@ report_path: none (inline)
 ---
 
 ## Changelog
+
+### 2.1.9 (2026-10-26)
+- INBOUND accounts get a reply to their request first, with the displacement angle carried in that reply. A cold four-step sequence follows only if the account goes quiet, meaning no buyer message for 14 days after our reply.
+- Step 0 has an INBOUND paragraph. The Output Contract's sequence row names `reply first (INBOUND)`. Hard Rule 10 bars a cold sequence before the account goes quiet, and the Quality Bar carries the matching check.
+- Example 1's Step 0 states that the INBOUND rule does not apply to its TARGET account. Examples 2 and 3 were rechecked against the new rule and are unchanged: neither account is INBOUND.
 
 ### 2.1.8 (2026-10-26)
 - Citations. A fact taken from the profile is cited (profile: Section) with the profile's own section name, in place of [Notes]. A rep's or AE's own notes keep [Notes].

@@ -1,7 +1,7 @@
 ---
 name: gtm-account-snapshot
 description: "One-page account brief for BDRs and AEs: a zone-based verdict, persona-ranked contacts, tagged pain hypotheses, a three-step email draft and call prep, read by the rep before anything is sent."
-version: 2.1.8
+version: 2.1.9
 category: Sales-Methodology
 author: Ryan Vanshur
 license: MIT
@@ -11,6 +11,9 @@ requires:
   skills: [gtm-account-qualification, gtm-competitive-displacement]
 mutating: read-write
 change_log:
+  - version: 2.1.9
+    date: 2026-10-26
+    summary: "Round 9 INBOUND rule and ENGAGED example. An INBOUND account, which asked us first with no open deal, gets one reply to its request first, carrying this skill's angle. A cold sequence follows only if the account goes quiet, meaning no reply within five business days after the reply is sent. The rule sits in Step 5, the Call Goal table, the opener, a new INBOUND pattern, Hard Rule 12, the Quality Bar and the Output Contract. New Example 5 shows the ENGAGED path for Quill Hollow Memorial Park on Wednesday 2026-10-28, the day after Ines Carmody replied on 2026-10-27: one ready reply draft, a call goal, and a next action dated 2026-11-02 by the booked call. Example 2 (Sable Fork) is rechecked: its reply went out on 2026-10-19, so the INBOUND reply step is done, and Quick Call Prep still drafts no sequence. Example 1 and the try-it promise are unchanged, so no promise changes."
   - version: 2.1.8
     date: 2026-10-26
     summary: "Round 8 profile citations, ENGAGED status and held drafts. Every profile citation is written (profile: Section). ENGAGED is one of six statuses, and an ENGAGED account gets one reply draft to its open thread, not a cold sequence. A MANUAL REVIEW package is marked Held and is not sent before a person clears the verdict. Quill Hollow's try-it records no longer show replies before the run date, so it stays TARGET on 2026-10-19. Greyfield gets no snapshot sequence in batch, because Competitive Displacement (12) already holds its sequence and the Integration section says not to write a snapshot sequence for a persona that already has a displacement sequence. Heading and label capitalization is aligned word by word."
@@ -107,7 +110,7 @@ Every run returns its report in the chat. The file is written only when the user
 | `zone_scores` | Beside the verdict | One line per zone, 1 to 5, each HIGH, MEDIUM, LOW or UNKNOWN. Carried as handed by Account Qualification (01) when it ran, otherwise scored here with a tag per zone |
 | `contact_priority` | Key Personas | Ranked contacts, each with persona and buying role. Unknown where no contact is found |
 | `pain_hypotheses` | Pain Hypotheses | Ranked by confidence, each one tagged |
-| `sequence` | Below the cheatsheet | Three emails per persona for a cold account, or one reply draft for an ENGAGED account. Drafted and never sent. A MANUAL REVIEW set is marked Held. Quick Call Prep mode omits it |
+| `sequence` | Below the cheatsheet | Three emails per persona for a cold account, one reply draft for an ENGAGED account, or one reply to the request for an INBOUND account, with a cold sequence only if that account goes quiet. Drafted and never sent. A MANUAL REVIEW set is marked Held. Quick Call Prep mode omits it |
 | `report_path` | Only when a file was written | Set only when the user asks for the file. Wrap-Up reads it |
 | `next_action` | Last line of the summary | Owner and a calendar date set by the shared contract's next-action rule (What the Close Reads: five business days after the run date, or an earlier date the records or the skill's own schedule set for that step), in the form "[owner] sends Email 1 to [contact] by [date]" |
 | File option | `<account>_<skill>_<date>.md`, saved beside the user's other account notes | Written only when the user asks. Markdown only. The ask is the approval step |
@@ -207,7 +210,7 @@ Rep talk time as a share of the call, by call type: discovery 30% to 40%, demo 5
 
 #### What The Close Reads
 
-Wrap-Up reads by name the **report path** when a file was written, the **verdict** or **score** the session produced, and the **next action** with its owner and date. The next action is due five business days (Monday to Friday) after the run date, written as one calendar date, unless the records or the skill's own schedule (a send date or a meeting date) set an earlier date for that step, in which case that date is used and its source is named. Ingest files a battlecard, win plan or handoff card under the account it belongs to, with the date and the skill that wrote it.
+Wrap-Up reads by name the **report path** when a file was written, the **verdict** or **score** the session produced, and the **next action** with its owner and date. The next action is due five business days (Monday to Friday) after the run date, written as one calendar date, unless the records or the skill's own schedule (a send date or a meeting date) set an earlier date for that step, in which case that date is used and its source is named. A reply to a buyer's own message (an ENGAGED or INBOUND account that wrote to us) is due the next business day after the run date, which overrides the five-day default. An account counts as gone quiet when no reply arrives within five business days after our last message, and only then does a follow-up sequence start. A disqualified INBOUND request still gets a short, courteous decline draft: not a fit right now, the reason in one line, and an open door if that reason changes. The rep reads it before anything goes out. Ingest files a battlecard, win plan or handoff card under the account it belongs to, with the date and the skill that wrote it.
 
 #### Guild Disciplines, Restated
 
@@ -369,6 +372,8 @@ Quick Call Prep mode drafts none, whatever the verdict.
 
 **ENGAGED accounts** replied or met with us, and no deal is open. They get no cold sequence, because the account is already talking to us, and three cold emails would restart the outreach it has answered. Step 5 drafts one reply to the open thread instead. The reply answers what the account said, cites the date and tag of that message, follows every rule below, and is ready or held by the verdict in the same way. The sequence comes after the pain hypotheses, because each email uses one hypothesis, so the ranked list must exist first.
 
+**INBOUND accounts** asked us first, and no deal is open. The request is answered before any cold touch, so Step 5 drafts one reply to the request instead of a sequence. The reply answers what they asked, carries this skill's angle (the pain hypothesis that ranks first in Step 4, in the words of the request where the request names it), follows every rule below, and is ready or held by the verdict in the same way. A sequence follows only if the account goes quiet, which means no reply within five business days after the reply is sent, counted the way What The Close Reads counts business days. The sequence is then drafted from the same ranked hypotheses, and its Email 1 refers back to the request instead of restarting the outreach. A DISQUALIFY account gets no draft, as the verdict rules say.
+
 **Rules For Every Email:**
 - Include a subject line.
 - Keep the body to 100 words or fewer.
@@ -402,12 +407,14 @@ Account Snapshots use three steps, not four, because this is volume outreach.
 | AE with no deal | Qualify interest for a new opportunity |
 | BDR, ENGAGED account | Book the 15-minute discovery call for the AE, through the open thread |
 | AE, ENGAGED account | Continue the conversation the account started, and qualify it for a deal |
+| BDR, INBOUND account | Answer the request first, then book the 15-minute discovery call for the AE |
+| AE, INBOUND account | Answer the request, then run the discovery call it leads to |
 
 **Next Step After A First Call:** a discovery call, not a demo, until the pain is confirmed. A demo asks the buyer for an hour before there is a reason to give it.
 
 **Opener (30 Seconds):** "Hi [name], this is [rep] from [company]. I'm calling because [a specific reason tied to pain hypothesis 1]. Do you have 30 seconds?"
 
-For an ENGAGED account, the opener refers to the account's own reply, by its date and tag, and not to a cold reason.
+For an ENGAGED account, the opener refers to the account's own reply, by its date and tag, and not to a cold reason. For an INBOUND account, the opener refers to the request, by its date and tag, and not to a cold reason.
 
 **Talk track:** a pain validation question, an impact question, a one-sentence product bridge, and an ask for 15 minutes.
 
@@ -466,6 +473,7 @@ No mode writes a file. A file is written only when the user asks for one, under 
 9. **Never use a tag outside the six.** A manager checks the report by tag, and a seventh label cannot be checked.
 10. **Never let a held package go out before a person clears the verdict.** Reason: a MANUAL REVIEW account has open gaps, and a draft that reads as ready invites a send before the gaps close.
 11. **Never send a cold three-step sequence to an ENGAGED account.** Reason: the account has already answered, and a cold sequence reads as not listening.
+12. **Never send a cold sequence to an INBOUND account before its request is answered.** Reason: the account asked us first, so a cold sequence ignores the open request. A sequence follows only once the account goes quiet.
 
 ---
 
@@ -478,8 +486,9 @@ Done when all are true:
 - [ ] Every zone score carries its tag, and no UNKNOWN zone is scored LOW
 - [ ] The account status is one of the six words, and an ACTIVE status carries its stage name (profile: Qualification Stage Gates)
 - [ ] The owner check ran, and an AE-owned account is named as coordination, not worked
-- [ ] Every Email 1, and the reply draft for an ENGAGED account, opens with a specific, tagged company fact
+- [ ] Every Email 1, and the reply draft for an ENGAGED account or for an INBOUND request, opens with a specific, tagged company fact
 - [ ] A MANUAL REVIEW set is marked Held on its first line, and Quick Call Prep drafts none
+- [ ] An INBOUND account has one reply to its request, carrying the skill's angle, and no cold sequence unless the account has gone quiet
 - [ ] Every email is 100 words or fewer, and no email uses an `[Inferred]` or `[Unknown]` fact as a claim
 - [ ] Every proof point in an email is in the Proof Points table (profile: Proof Points) and is not Illustrative
 - [ ] The call goal matches the user's role, and no demo is proposed before the pain is confirmed
@@ -490,7 +499,7 @@ Done when all are true:
 
 ## Examples
 
-These examples use the PlotIQ example cast, and every fact is tagged as the tag set requires. A number the profile does not supply is marked `(illustrative)`. The four examples cover a BDR research pass that leads to outbound, an AE quick call prep that ends in MANUAL REVIEW, a batch with a disqualified account and a closed-lost one, and the flagship account at its first snapshot. Each ends with a hand-off block.
+These examples use the PlotIQ example cast, and every fact is tagged as the tag set requires. A number the profile does not supply is marked `(illustrative)`. The five examples cover a BDR research pass that leads to outbound, an AE quick call prep that ends in MANUAL REVIEW, a batch with a disqualified account and a closed-lost one, the flagship account at its first snapshot, and an ENGAGED account with its one reply draft. Each ends with a hand-off block.
 
 ### Example 1: BDR Account Snapshot (Quill Hollow Memorial Park, TARGET, GREENLIGHT)
 
@@ -616,7 +625,7 @@ next_action: Nadia Brandt sends Email 1 to Ines Carmody by 2026-10-26
 
 ### Example 2: AE Quick Call Prep (Sable Fork Cemetery, INBOUND, MANUAL REVIEW)
 
-**Context:** Thursday 2026-10-22. Owen Pruitt, the AE, has 20 minutes before a discovery call. Sable Fork Cemetery filled in the website form on 2026-10-15, a week ago, asking for a demo. The BDR replied on 2026-10-19 and booked this call for today `[CRM]`. The general manager, Arlen Biggs, signs under $25K.
+**Context:** Thursday 2026-10-22. Owen Pruitt, the AE, has 20 minutes before a discovery call. Sable Fork Cemetery filled in the website form on 2026-10-15, a week ago, asking for a demo. The BDR replied on 2026-10-19 and booked this call for today `[CRM]`. The general manager, Arlen Biggs, signs under $25K. The reply to the request is already sent, on 2026-10-19 `[CRM]`, so the INBOUND reply step is done, and Quick Call Prep drafts no sequence in any case.
 
 **Input:** "Quick call prep for Sable Fork Cemetery. They requested a demo from the website."
 
@@ -665,7 +674,7 @@ verdict: MANUAL REVIEW
 zone_scores: 1 MEDIUM, 2 LOW, 3 HIGH, 4 MEDIUM, 5 LOW (illustrative)
 contact_priority: 1 Arlen Biggs (General Manager, signs under $25K), 2 Form filler, name Unknown
 pain_hypotheses: 1 Plot lookups in a spreadsheet (MEDIUM, Inferred), 2 Pre-need follow-up (LOW, CRM: pre-need none), 3 Single-person records risk (LOW, Unknown)
-sequence: not generated, Quick Call Prep mode
+sequence: none, Quick Call Prep mode. The request reply went on 2026-10-19 `[CRM]`, so no INBOUND reply is outstanding
 report_path: none (inline)
 next_action: Owen Pruitt runs the discovery call with Arlen Biggs on 2026-10-22 (the call date on record)
 ```
@@ -819,6 +828,92 @@ next_action: Nadia Brandt books the first discovery call for Owen Pruitt with Ru
 
 ---
 
+### Example 5: ENGAGED Account, One Reply Draft (Quill Hollow Memorial Park, ENGAGED, GREENLIGHT)
+
+**Context:** Wednesday 2026-10-28, the day after Ines Carmody replied to Email 1 on 2026-10-27 `[CRM]` (illustrative). On the same record she booked a call for Monday 2026-11-02 `[CRM]` (illustrative). That call is the discovery call that Meeting Prep (06), Example 4, prepares. Quill Hollow is ENGAGED, because the account replied and no deal is open. Email 1 is the one in Example 1, with the subject "Your move to Quill Hollow and the plot maps". Its send date is not in the records `[Unknown]`, and the reply cites Email 1 by the date of her reply.
+
+**Input:** "Ines Carmody replied to our first email and booked a call for November 2. What do I send before then?"
+
+**Step 0: Role Detection.** The user is a BDR, Nadia Brandt `[CRM]` (illustrative). The CRM shows status ENGAGED `[CRM]`, the reply of 2026-10-27 `[CRM]` and no open deal `[CRM]`. The BDR guard does not apply, because the account is not ACTIVE. The ENGAGED path applies: one reply draft, and no cold sequence.
+
+**Step 1: Intelligence Gathering.** One site, 8,800 plots, paper plat maps `[CRM]` (illustrative). One contact on file: Ines Carmody, General Manager, champion label `[CRM]`. She moved to Quill Hollow from Lowmoor Memorial Gardens six months ago `[Public: state licensing database]` (illustrative). The owner signs under $25K, alone, with no board approval step `[CRM]` (illustrative). The owner's name is `[Unknown]`. A records finding appears in the last state review `[CRM]`, and its date is `[Unknown]` (illustrative). The owner brought a growth mandate when Ines Carmody arrived `[CRM]`. The state is `[Unknown]`, so there is no region tier yet. The new records are the reply of 2026-10-27 and the booked call of 2026-11-02, both `[CRM]` (illustrative).
+
+**Step 2: Account Snapshot.**
+
+Company brief: Quill Hollow Memorial Park. Independent cemetery `[CRM]`. One site, 8,800 plots `[CRM]`. CRM status ENGAGED. No open deal.
+
+Zone scores (illustrative), with the verdict. The reply adds no zone fact, and the verdict does not change with status, so the zones read as they did in Example 1:
+
+- Zone 1, Records and Inventory Pain: MEDIUM. Paper plat maps `[CRM]`. The records finding has no date `[Unknown]`, so the HIGH test (a dated finding inside 24 months) is not met (profile: Qualification Zones).
+- Zone 2, Pre-Need Sales Motion: UNKNOWN. No pre-need activity is recorded `[Unknown]`. Silence is not a no.
+- Zone 3, Ownership and Decision Speed: HIGH. The owner signs under $25K alone, with no board approval step `[CRM]` (illustrative).
+- Zone 4, Technology Readiness: UNKNOWN. Website and tools are not checked `[Unknown]`.
+- Zone 5, Growth or Succession: HIGH. A new GM in the last 24 months `[Public: state licensing database]` (illustrative) meets the HIGH column. The growth mandate is context, not a second condition.
+
+Verdict: **GREENLIGHT.** Zones 3 and 5 are HIGH, and no must-have zone is LOW. Zone 1 is MEDIUM, which blocks nothing (profile: Qualification Zones, Verdict Rule). The UNKNOWN zones 2 and 4 are named as open facts, and they neither earn nor block GREENLIGHT.
+
+Region map: no tier, because the state is `[Unknown]`.
+
+**Step 3: Contact Mapping.**
+
+| Persona | Name | Engagement | Last Activity | Priority |
+|---------|------|-----------|---------------|----------|
+| General Manager, champion label | Ines Carmody | Replied to Email 1 `[CRM]` (illustrative). Booked a call for 2026-11-02 `[CRM]` (illustrative) | 2026-10-27 `[CRM]` (illustrative) | 1 |
+| Owner, signs under $25K | Unknown, no contact found `[Unknown]` | n/a | n/a | 2 |
+| Pre-need manager | Unknown `[Unknown]` | n/a | n/a | 3 |
+
+Ines Carmody ranks first, because she is the only named contact, she replied, and she runs the site now. The Champion Test counts seven behaviours. The dated booking is one of them, "commits to next steps with dates" `[CRM]` (illustrative), so one is met, and the status reads **Developing** (one or two met). The other six are not on record, so she is not Strong, and her champion label stays a label.
+
+**Step 4: Pain Hypotheses.** The reply adds no pain fact, so the three hypotheses are Example 1's, ranked by confidence and then by Core Pain Points number (profile: Core Pain Points):
+
+1. **Plot visibility.** HIGH confidence. Paper plat maps `[CRM]`. `[Inferred]`, reasoned from the record type: a paper map cannot show which plots are sold without a walk of the grounds. Discovery question: "How do you check today which plots are open?" Value prop: plot inventory matched against sold records (profile: Value Propositions).
+2. **Records after a state finding.** MEDIUM confidence. The last state review found a records problem `[CRM]`, and its date is `[Unknown]`. The finding is a discovery question only, never the hook. Discovery question: "When was the last state review, and what did it ask you to fix?"
+3. **Plot lookups take minutes.** MEDIUM confidence. `[Inferred]`, reasoned from the record type and the plot count: a paper map of 8,800 plots makes each lookup a search (profile: Core Pain Points, Pain 3). Discovery question: "When a family asks about a plot, how long does the lookup take?"
+
+**Step 5: The Reply, Not A Sequence.** Quill Hollow is ENGAGED, so there is no cold sequence. Email 1 is not sent again as a cold touch, and Emails 2 and 3 are not drafted (Hard Rule 11). The one draft replies to her message.
+
+The words of her 2026-10-27 reply are not in the records `[Unknown]`. The draft therefore answers only what the records hold: that she replied, and that she booked the call. Before it goes out, Nadia Brandt reads her message and edits the draft to answer anything she asked. Nothing in the draft assumes what she wrote.
+
+> **Subject:** Re: Your move to Quill Hollow and the plot maps
+>
+> Ines,
+>
+> Quill Hollow's plot maps are still on paper, so Monday's call is a good place to look at how sold and open plots are checked today.
+>
+> Thank you for writing back on October 27, and for booking the call on November 2.
+>
+> Before we talk, one question to think about: when a family asks for a sold plot, which record does your team check first?
+
+Claim tags for the reply: the paper plot maps `[CRM]` (illustrative), and the October 27 reply and the November 2 booking `[CRM]` (illustrative). The question at the end is a question, so it needs no tag. Proof point: none. Every PlotIQ result is Illustrative (profile: Proof Points), and the two Benchmarks do not answer a reply to a booked call.
+
+Verdict: GREENLIGHT, so the reply is **ready**. It is not held, and the rep still reads it before anything is sent.
+
+**Step 6: Call Prep.**
+
+**Call Goal:** keep the 15-minute discovery call that Ines booked for Monday 2026-11-02 `[CRM]` (illustrative), and hand the research to the AE. The ENGAGED row of the Call Goal table asks for the discovery call, and her booking already holds it. The AE is not named in the records `[Unknown]`.
+
+**Opener:** If the call moves and a phone call is needed, the opener refers to her reply, by its date and tag: "Hi Ines, this is Nadia Brandt from PlotIQ. I'm calling about the call you booked for November 2, after your reply on October 27. Do you have 30 seconds?" Tag: reply 2026-10-27 `[CRM]` (illustrative). Do not reference the Lowmoor history unless she raises it.
+
+**Discovery Question For The Call:** "When a family asks for a sold plot, which record does your team check first?" The next step after this call is another discovery call, not a demo, until the pain is confirmed.
+
+**Step 7: Summary.** BDR. Quill Hollow Memorial Park, ENGAGED, GREENLIGHT, with Zones 3 and 5 HIGH. One contact on file, Ines Carmody, Developing (1 of 7 behaviours). One reply draft, ready, to her reply of 2026-10-27. No cold sequence. Next action: Nadia Brandt sends the reply to Ines Carmody by 2026-11-02. The shared rule gives five business days after the run date, which is 2026-11-04 (Wednesday 2026-10-28 plus five business days). The booked call on 2026-11-02 is an earlier schedule date for this step, so it sets the date, and its source is the booking `[CRM]` (illustrative), as What The Close Reads allows.
+
+```text
+Hand-off (read by 06):
+account: Quill Hollow Memorial Park (ENGAGED, reply 2026-10-27 [CRM], no open deal)
+run_date: 2026-10-28
+account_status: ENGAGED
+verdict: GREENLIGHT
+zone_scores: 1 MEDIUM, 2 UNKNOWN, 3 HIGH, 4 UNKNOWN, 5 HIGH (illustrative)
+contact_priority: 1 Ines Carmody (General Manager, champion label, Developing, 1 of 7 met), 2 Owner, name Unknown (signs under $25K), 3 Pre-need manager, name Unknown
+pain_hypotheses: 1 Plot visibility (HIGH, Inferred), 2 Records after a state finding (MEDIUM, date Unknown), 3 Plot lookups take minutes (MEDIUM, Inferred)
+sequence: one reply draft to Ines Carmody's reply of 2026-10-27, ready (GREENLIGHT). No cold sequence, because the account is ENGAGED
+report_path: none (inline)
+next_action: Nadia Brandt sends the reply to Ines Carmody by 2026-11-02, the booked call date, which is earlier than 2026-11-04 (five business days after the run date) and sets the date from [CRM]
+```
+
+---
+
 ## Common Patterns
 
 ### Pattern: Rapid-Fire Batch Mode
@@ -831,7 +926,11 @@ next_action: Nadia Brandt books the first discovery call for Owen Pruitt with Ru
 
 ### Pattern: ENGAGED Account
 **When:** The account replied or met with us, and no deal is open.
-**Approach:** Build the same brief. Step 5 drafts one reply to the open thread, not a cold sequence. The verdict decides whether the reply is ready or held. The brief names the date and tag of the account's last reply. Reason: three cold emails to someone already talking to us restart the outreach they answered.
+**Approach:** Build the same brief. Step 5 drafts one reply to the open thread, not a cold sequence. The verdict decides whether the reply is ready or held. The brief names the date and tag of the account's last reply. Reason: three cold emails to someone already talking to us restart the outreach they answered. See Example 5.
+
+### Pattern: INBOUND Account
+**When:** The account asked us first, and no deal is open.
+**Approach:** Build the same brief. Step 5 drafts one reply to the request, carrying the top pain hypothesis, and no sequence. The verdict decides whether the reply is ready or held. A sequence follows only if the account goes quiet. Reason: the request is still open, and a cold sequence ignores it.
 
 ### Pattern: Quick Call Prep Only
 **When:** The user says "quick call prep" or "calling in five minutes."
