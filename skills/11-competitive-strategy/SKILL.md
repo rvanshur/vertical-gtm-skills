@@ -318,9 +318,9 @@ Using the calibration in Epistemic Rules, score the five factors. LOW is 1, MEDI
 |--------|-----------|-------|
 | Prospect satisfaction with incumbent | [Frustrated / Neutral / Satisfied / Unknown] | [LOW / MEDIUM / HIGH / MEDIUM] |
 | Contract status | [Expiring / Active / Month-to-month / Unknown] | [LOW / HIGH / LOW / MEDIUM] |
-| Switching barriers | [Minimal / Moderate / Significant] | [LOW / MEDIUM / HIGH] |
+| Switching barriers | [Minimal / Moderate / Significant / Unknown] | [LOW / MEDIUM / HIGH / MEDIUM] |
 | Internal champion for incumbent | [None / Suspected / Confirmed / Unknown] | [LOW / MEDIUM / HIGH / MEDIUM] |
-| Incumbent product advantage | [None / Niche / Broad] | [LOW / MEDIUM / HIGH] |
+| Incumbent product advantage | [None / Niche / Broad / Unknown] | [LOW / MEDIUM / HIGH / MEDIUM] |
 
 **Contract Status:** Expiring means a renewal within six months (LOW). Active means more than six months to renewal (HIGH). Month-to-month is LOW. Unknown is MEDIUM, and no contract on record counts as Unknown, so it is MEDIUM too.
 

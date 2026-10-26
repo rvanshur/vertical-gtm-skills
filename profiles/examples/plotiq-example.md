@@ -184,7 +184,7 @@ Grounding: Zone 1 comes from the paper-operations research. Zone 2 from the pre-
 - **MANUAL REVIEW:** Neither GREENLIGHT nor DISQUALIFY. Usually one HIGH zone, or a must-have at LOW
 - **DISQUALIFY:** Any disqualifier above, or both must-have zones at LOW
 
-Skills apply this rule as written. MEDIUM never counts as HIGH. A zone with no observable fact is UNKNOWN: it counts as neither HIGH nor LOW, so it never earns GREENLIGHT and never blocks it, and the report names it as an open fact.
+Skills apply this rule as written. MEDIUM never counts as HIGH. A HIGH condition that cannot apply to the account counts as met, so an owner who signs alone, with no board approval step, meets a board condition such as "board meets within 60 days". A zone with no observable fact is UNKNOWN: it counts as neither HIGH nor LOW, so it never earns GREENLIGHT and never blocks it, and the report names it as an open fact.
 
 ## Proof Points
 
