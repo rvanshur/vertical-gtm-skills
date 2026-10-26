@@ -21,10 +21,10 @@ Not used as the lead line: "AI-powered cemetery management." Article 51 tested i
 ### ICP1: Independent Cemetery (Rank 1, Start Here)
 
 - **Description:** Single-site or two-site independent cemetery with paper plot records
-- **Key indicator:** Plot records kept on paper maps, binders or spreadsheets, plus a state trust fund or records filing every year
-- **Revenue threshold:** About 2,000 plots or more, so found plots can cover the $10,788 yearly subscription (illustrative threshold)
-- **Typical titles:** General Manager, Cemetery Manager
-- **Why they buy:** A missed trust fund audit can put the license at risk, and unsold plots stay invisible on paper
+- **Key Indicator:** Plot records kept on paper maps, binders or spreadsheets, plus a state trust fund or records filing every year
+- **Revenue Threshold:** About 2,000 plots or more, so found plots can cover the $10,788 yearly subscription (illustrative threshold)
+- **Typical Titles:** General Manager, Cemetery Manager
+- **Why They Buy:** A missed trust fund audit can put the license at risk, and unsold plots stay invisible on paper
 
 **Strong Fit Signals:**
 - [x] Plot map or records on paper or in binders
@@ -35,18 +35,18 @@ Not used as the lead line: "AI-powered cemetery management." Article 51 tested i
 - [ ] Under 1,000 plots (found plots may not cover the subscription)
 - [ ] Digital plot system signed in the last 24 months
 
-### ICP2: Cemetery and Funeral Home Combination (Rank 2)
+### ICP2: Cemetery And Funeral Home Combination (Rank 2)
 
-- **Key indicator:** One owner runs a cemetery and a funeral home on one or two sites, and the cemetery side keeps paper plot records
-- **Revenue threshold:** About 2,000 plots or more on the cemetery side, so found plots can cover the $10,788 yearly subscription for each site (illustrative threshold)
-- **Typical titles:** General Manager (cemetery side), Owner (funeral side)
-- **Why they buy:** Pre-need leads come from the funeral side and must be matched to real plots
+- **Key Indicator:** One owner runs a cemetery and a funeral home on one or two sites, and the cemetery side keeps paper plot records
+- **Revenue Threshold:** About 2,000 plots or more on the cemetery side, so found plots can cover the $10,788 yearly subscription for each site (illustrative threshold)
+- **Typical Titles:** General Manager (cemetery side), Owner (funeral side)
+- **Why They Buy:** Pre-need leads come from the funeral side and must be matched to real plots
 
 ### ICP3: Multi-Location Group (Rank 3, Expansion)
 
-- **Key indicator:** Four to ten sites under one ownership, with a CFO or controller who approves budget
-- **Revenue threshold:** About 2,000 plots or more per cemetery site on average, so found plots can cover the per-site subscription across the group (illustrative threshold)
-- **Why they buy:** Reporting across sites takes weeks, and trust fund rules differ by state
+- **Key Indicator:** Four to ten sites under one ownership, with a CFO or controller who approves budget
+- **Revenue Threshold:** About 2,000 plots or more per cemetery site on average, so found plots can cover the per-site subscription across the group (illustrative threshold)
+- **Why They Buy:** Reporting across sites takes weeks, and trust fund rules differ by state
 - **Cycle:** 6 to 9 months with a CFO gate (research)
 
 ### Market Segments
@@ -67,11 +67,11 @@ Not used as the lead line: "AI-powered cemetery management." Article 51 tested i
 
 ### Archetype Check (Discovery 2.0 Questions)
 
-- **Sales cycle and contract value:** 90 to 150 days for a single site (the research puts a general manager's decision at 4 to 6 months). $10,788 a year plus $5,000 setup, at list
-- **Buyer comfort with software:** Low to medium. Forum posts say "pen and paper is free."
-- **Money through the product, or two sides transacting?** Neither. PlotIQ monitors trust records and holds no funds, and there is one buyer, the operator.
+- **Sales Cycle And Contract Value:** 90 to 150 days for a single site (the research puts a general manager's decision at 4 to 6 months). $10,788 a year plus $5,000 setup, at list
+- **Buyer Comfort With Software:** Low to medium. Forum posts say "pen and paper is free."
+- **Money Through The Product, Or Two Sides Transacting?** Neither. PlotIQ monitors trust records and holds no funds, and there is one buyer, the operator.
 - **Result (article 51):** SMB Community leads. Short cycles, small contracts and buyers who don't love software point there. Note the tension: the research's 90 to 150 day cycle sits at the slow edge of the SMB Community band, so the ten-deal test runs on the first ten closes before the archetype is treated as settled.
-- **Beliefs graded before any new call:** 2 of 6 (illustrative, article 51 cheat sheet).
+- **Beliefs Graded Before Any New Call:** 2 of 6 (illustrative, article 51 cheat sheet).
 
 ## Buyer Personas
 
@@ -84,18 +84,18 @@ Not used as the lead line: "AI-powered cemetery management." Article 51 tested i
 | 5 | CFO or Controller (groups only) | Board or PE operating partner | Trust compliance, faster close | Books scattered across sites | Compliance across every site |
 
 **Persona Detail: Cemetery General Manager**
-- **What keeps them up at night:** A plot sold twice, or an auditor asking for a trust record that sits in a binder in a storage room
-- **Objections you'll hear:** "Our current system works," "Staff won't adopt," "Data migration is risky"
-- **Language they use:** "We have files that date back to the 1970s" (forum post, family funeral home operator)
-- **Evidence grade:** "Cemetery general managers sign the contract" is HEARD (2 buyers said so). "A GM can carry a deal over $25K past the board" is ASSUMED and stays an open bet until a buyer's past behavior confirms it.
+- **What Keeps Them Up At Night:** A plot sold twice, or an auditor asking for a trust record that sits in a binder in a storage room
+- **Objections You'll Hear:** "Our current system works," "Staff won't adopt," "Data migration is risky"
+- **Language They Use:** "We have files that date back to the 1970s" (forum post, family funeral home operator)
+- **Evidence Grade:** "Cemetery general managers sign the contract" is HEARD (2 buyers said so). "A GM can carry a deal over $25K past the board" is ASSUMED and stays an open bet until a buyer's past behavior confirms it.
 
 **Persona Detail: Pre-Need Sales Manager**
-- **What keeps them up at night:** Social media leads that land in an inbox nobody works, and counselors who leave with their notes
-- **Language they use:** "It's not like selling a car" (forum post, pre-need rep, on cold calling)
+- **What Keeps Them Up At Night:** Social media leads that land in an inbox nobody works, and counselors who leave with their notes
+- **Language They Use:** "It's not like selling a car" (forum post, pre-need rep, on cold calling)
 
 ## Core Pain Points
 
-| # | Pain Point | What to Listen For | Business Impact | Frequency | Discovery question |
+| # | Pain Point | What To Listen For | Business Impact | Frequency | Discovery Question |
 |---|-----------|-------------------|----------------|-----------|--------------------|
 | 1 | Plot records on paper, binders or pencil maps | "We have files that date back to the 1970s" | Unsold plots nobody knows exist. The first call hook is 50 to 100 plots (research) | 4 of 4 independent cemetery talks named plot lookup (observation, n=4) | "When a family asks about a plot, where do you look first, and how long does it take?" |
 | 2 | Trust fund and records reporting by hand | "We're concerned about the legal requirement to maintain paper records" | A missed trust fund audit can put the license at risk | Every site with an annual state filing | "Walk me through last year's trust filing. Who pulled the numbers, and from where?" |
@@ -115,7 +115,7 @@ Not used as the lead line: "AI-powered cemetery management." Article 51 tested i
 
 ## Product Modules
 
-| Module | What it does | Implementation weight |
+| Module | What It Does | Implementation Weight |
 |---|---|---|
 | Plot Inventory Digitization (wedge) | Digitizes paper maps and deeds, matches them to records, shows unsold plots | Heavy: needs plot maps and deed scans. Weeks 2 to 3 |
 | Records and Trust Compliance | Plot records, trust fund reporting, state filing reminders | Medium: needs a trust fund ledger export |
@@ -128,7 +128,7 @@ Not used as the lead line: "AI-powered cemetery management." Article 51 tested i
 
 Three competitor archetypes with invented names. Each keeps the real-world pitch and weakness the research records for its type, and they match the three competitor notes in the knowledge base seed (article 51). Each is filed under one of the seven incumbent types the competitive skills use (direct software, a single-function tool, a service bureau, a manual process, no program at all, outside professionals, an adjacent tool). PlotIQ meets three of the seven today. The "pain after 6 to 12 months" column is the pattern the research records for that type of product, and it is illustrative for these invented names.
 
-| Competitor | Type | Their Pitch | Your Advantage | Their Weakness | Pain reported after 6 to 12 months (with source) | Proof that answers it |
+| Competitor | Type | Their Pitch | Your Advantage | Their Weakness | Pain Reported After 6 To 12 Months (with source) | Proof That Answers It |
 |-----------|------|------------|---------------|----------------|-------------------------------------------------|----------------------|
 | Stonemark Enterprise (enterprise cemetery mapping) | Direct software | "The best mapping in the category" | Records, trust compliance and pre-need in one system. Live in 6 weeks, against 90 to 120 | Enterprise pricing (about $1,500 to $2,500 a month, research estimate), no AI, 90 to 120 days to live | The map is excellent, but trust reporting and pre-need still run outside it, so staff keep a second system (research pattern for enterprise mapping tools, illustrative here) | Holloway Hills: zero records findings in its first state review (illustrative) |
 | Lanternfield Case Manager (funeral case management, family portal) | An adjacent tool | "The family portal your families already use" | Cemetery plots and pre-need in one system, support included | Per-user pricing (about $200 to $400 per user, 3-user minimum), support costs extra, no cemetery module | The per-user bill grows with every counselor added, and the cemetery side still has no plot record (research pattern for funeral case tools, illustrative here) | Fennick Gardens: 212 unsold plots found in 90 days (illustrative) |
@@ -143,7 +143,7 @@ Three competitor archetypes with invented names. Each keeps the real-world pitch
 
 ### Buying Triggers
 
-| Trigger | Signal Source | Urgency Window | Persona who acts | Which Skill to Use |
+| Trigger | Signal Source | Urgency Window | Persona Who Acts | Which Skill To Use |
 |---------|-------------|---------------|------------------|-------------------|
 | Audit finding on records or trust fund | State audit letter, local news | 60-120 days | Cemetery General Manager (CFO or Controller in a group) | Trigger Event Outbound (04) |
 | Consolidator buys the site | Ownership change in the state licensing database, deal notices | 60-120 days | CFO or Controller of the acquirer, with the site GM | Trigger Event Outbound (04) |
@@ -159,10 +159,10 @@ Three competitor archetypes with invented names. Each keeps the real-world pitch
 - Monument or memorial retailers with no plots to manage
 - Under 1,000 plots and no pre-need sales
 
-### Motion and Content Plan
+### Motion And Content Plan
 
 - **Motion:** Community-led and partner-led. Referrals from other cemeteries and state association events earn trust over ads. Outbound, the plays above, is the experiment, with no more than 30% of the budget on one unproven channel. A channel with no signal in 30 days is killed and its money moves.
-- **Content, in order:** A guide comparing PlotIQ with paper plot maps (runs first). A roundtable for cemetery general managers. A certification program for pre-need sales teams (scored again next quarter).
+- **Content, In Order:** A guide comparing PlotIQ with paper plot maps (runs first). A roundtable for cemetery general managers. A certification program for pre-need sales teams (scored again next quarter).
 
 ## Qualification Zones
 
@@ -190,7 +190,7 @@ Skills apply this rule as written. MEDIUM never counts as HIGH. A HIGH condition
 
 PlotIQ is in beta and has no real customers yet. Status is one of Verified (the customer confirmed it and agreed to be named), Benchmark (a published figure with its source and date) or Illustrative (invented for an example). Every PlotIQ result below is **Illustrative**, so no sales skill puts one in a talk track, a battlecard or an email a prospect reads. The two research figures are Benchmarks.
 
-| Customer | Key Metric | Segment | Displaced vendor | Use When | Status |
+| Customer | Key Metric | Segment | Displaced Vendor | Use When | Status |
 |----------|-----------|---------|------------------|----------|--------|
 | Fennick Gardens Cemetery (beta) | 212 unsold plots found in 90 days | Independent cemetery | [Unknown] | Found-plots objection, plot inventory pain | Illustrative |
 | Holloway Hills Memorial Park (beta) | Zero records findings in first state review | Independent cemetery | [Unknown] | Compliance objection, Operations Director | Illustrative (GM on video, pending permission) |
@@ -206,9 +206,9 @@ The Fennick Gardens case study waits until its numbers cover a full year (Januar
 - **Challenger** for demos (Teach, Tailor, Take Control)
 - **MEDDPICC** for deal qualification and pipeline reviews
 
-**Unit economics targets (article 51):** Lifetime value to acquisition cost above 3 to 1, payback under 12 months, gross margin above 70%.
+**Unit Economics Targets (article 51):** Lifetime value to acquisition cost above 3 to 1, payback under 12 months, gross margin above 70%.
 
-**Talk-time targets:** none of PlotIQ's own yet. The sales skills' starting bands apply (30% to 40% rep talk time on discovery, 50% to 60% on demos) until ten won calls give PlotIQ its own.
+**Talk-Time Targets:** none of PlotIQ's own yet. The sales skills' starting bands apply (30% to 40% rep talk time on discovery, 50% to 60% on demos) until ten won calls give PlotIQ its own.
 
 ### Qualification Stage Gates
 
@@ -234,27 +234,27 @@ Stages: 1 Target, 2 Discovery, 3 Demo, 4 Proposal, 5 Negotiate, 6 Closed-Won and
 
 What Engine reads before its first run. Every value here is illustrative, like the rest of this example.
 
-- **Growth goal and window:** four one-site contracts signed within 150 days of launch day (illustrative, the goal in the Launch worked example).
-- **Team time for growth work:** [RECORD] hours per week. No figure is recorded for PlotIQ, and none is invented.
-- **Growth measure:** [RECORD] after the first Engine run.
-- **Current bottleneck:** [RECORD] after the first Engine run.
-- **Sprint cadence:** [RECORD] after the first Engine run.
+- **Growth Goal And Window:** four one-site contracts signed within 150 days of launch day (illustrative, the goal in the Launch worked example).
+- **Team Time For Growth Work:** [RECORD] hours per week. No figure is recorded for PlotIQ, and none is invented.
+- **Growth Measure:** [RECORD] after the first Engine run.
+- **Current Bottleneck:** [RECORD] after the first Engine run.
+- **Sprint Cadence:** [RECORD] after the first Engine run.
 - **Narrative:** [RECORD] after the first Engine run.
 
 ## Industry Context
 
 Read by Research Outbound (03), Trigger Event Outbound (04) and Closed-Loss Reactivation (05). Every fact carries its source and year. An unsourced fact is dropped.
 
-- **Sourced facts:**
+- **Sourced Facts:**
   - $20.8B U.S. funeral service market (deathcare research, industry landscape note, 2025 figure)
   - 29,015 U.S. funeral homes (deathcare research, 2026)
   - $139.2M cemetery management software market (deathcare research, 2025)
   - 61.9% cremation rate (deathcare research, 2024)
   - Federal Funeral Rule penalties up to $53,088 per violation (deathcare research, regulatory landscape note, 2026-03-27)
   - California annual trust filing due May 1. New York annual CPA audit due December 31 (deathcare research, regulatory landscape note, 2026-03-27)
-- **The number we move:** unsold plots found. First-call hook of 50 to 100 plots (deathcare research, paper-operations note, 2026-04-01, a Benchmark). 212 in 90 days at Fennick Gardens (illustrative)
-- **Vertical financial signals:** a consolidator's public filing (site count and the system it runs, which can disqualify). An owner letter naming a systems move (a dated project). A pre-need counselor job posting (a pre-need motion starting). A legacy-platform job posting (a renewal coming)
-- **Private-company sources:** the state licensing database (ownership and the GM of record, lag of weeks). The company website (pre-need intake form, staff page, no lag). Local press (double sales and findings, lag of days). Job boards (postings, lag of days)
+- **The Number We Move:** unsold plots found. First-call hook of 50 to 100 plots (deathcare research, paper-operations note, 2026-04-01, a Benchmark). 212 in 90 days at Fennick Gardens (illustrative)
+- **Vertical Financial Signals:** a consolidator's public filing (site count and the system it runs, which can disqualify). An owner letter naming a systems move (a dated project). A pre-need counselor job posting (a pre-need motion starting). A legacy-platform job posting (a renewal coming)
+- **Private-Company Sources:** the state licensing database (ownership and the GM of record, lag of weeks). The company website (pre-need intake form, staff page, no lag). Local press (double sales and findings, lag of days). Job boards (postings, lag of days)
 
 ## Fit Grid
 
@@ -266,22 +266,22 @@ Read by Account Qualification (01) and Daily Prospecting (07). Every cell is som
 | ICP2 Combination | Cemetery side on paper, pre-need leads arriving from the funeral side, one owner signs for both | Funeral side on a case system, cemetery side on a spreadsheet, owner and GM both sign | Funeral home only, no plots to manage |
 | ICP3 Multi-Location Group | 4 to 10 sites, an owner letter naming a systems move, a CFO or controller named | 4 to 10 sites, no stated project, decision owner unknown | A public or PE-backed consolidator running its own system (a disqualifier) |
 
-- **Revenue estimation values:** [RECORD]. PlotIQ has no history to estimate from, so an estimate in an example names its method and is marked illustrative
+- **Revenue Estimation Values:** [RECORD]. PlotIQ has no history to estimate from, so an estimate in an example names its method and is marked illustrative
 
 ## Outbound Voice
 
 Read by Account Snapshot (02).
 
-- **Reference email (illustrative):** "Ruth, most cemeteries your size are carrying 50 to 100 plots that are sold on paper but unsold on the map, or the other way round. If a 15-minute look at how your plot maps are kept would be useful, I can show you what the first sites found. Nadia" (The 50 to 100 figure is a research Benchmark. No PlotIQ result is cited, because every PlotIQ proof point is Illustrative today.)
-- **Vertical research sources:** the state licensing database (ownership, GM of record). The company website (pre-need form, staff page, plot information). Job boards (counselor and legacy-platform postings). Local press (double sales, findings, ownership changes)
-- **Call-today triggers:** a state audit letter in the news, a double sale in the local press, a new GM in the licensing record, an INBOUND form not yet answered
-- **Region map:** Tier A, states with an annual trust filing and an audit (California, filing due May 1. New York, CPA audit due December 31. Source: deathcare research, regulatory landscape note, 2026-03-27). Tier B, states with a filing and no audit: [RECORD]. Tier C, no annual filing: [RECORD]. The cost of a missed rule is highest in Tier A, so Tier A accounts rank first
+- **Reference Email (illustrative):** "Ruth, most cemeteries your size are carrying 50 to 100 plots that are sold on paper but unsold on the map, or the other way round. If a 15-minute look at how your plot maps are kept would be useful, I can show you what the first sites found. Nadia" (The 50 to 100 figure is a research Benchmark. No PlotIQ result is cited, because every PlotIQ proof point is Illustrative today.)
+- **Vertical Research Sources:** the state licensing database (ownership, GM of record). The company website (pre-need form, staff page, plot information). Job boards (counselor and legacy-platform postings). Local press (double sales, findings, ownership changes)
+- **Call-Today Triggers:** a state audit letter in the news, a double sale in the local press, a new GM in the licensing record, an INBOUND form not yet answered
+- **Region Map:** Tier A, states with an annual trust filing and an audit (California, filing due May 1. New York, CPA audit due December 31. Source: deathcare research, regulatory landscape note, 2026-03-27). Tier B, states with a filing and no audit: [RECORD]. Tier C, no annual filing: [RECORD]. The cost of a missed rule is highest in Tier A, so Tier A accounts rank first
 
 ## Trigger Catalog
 
 Read by Trigger Event Outbound (04). One row per trigger in Buying Triggers. A deadline is never stated without its citation.
 
-| Trigger | Rule or deadline it creates (citation) | Proof point that fits | Credible first line |
+| Trigger | Rule Or Deadline It Creates (citation) | Proof Point That Fits | Credible First Line |
 |---|---|---|---|
 | Audit finding on records or trust fund | The state's correction deadline, from the audit letter. California trust filing due May 1, New York CPA audit due December 31 (deathcare research, regulatory landscape note, 2026-03-27). Other states: [RECORD] | Holloway Hills, zero records findings (illustrative) | "Your state review flagged the records. Here is how one site cleared its next one." |
 | Consolidator buys the site | The integration review date in the deal notice, when one is published. No statutory deadline | Fennick Gardens, 212 plots (illustrative) | "Before the integration review, it helps to know what the plot map is worth." |
@@ -291,75 +291,75 @@ Read by Trigger Event Outbound (04). One row per trigger in Buying Triggers. A d
 | Rival contract renewal | The renewal date, from the prospect or the posting | Live in six weeks, one price (illustrative) | "Renewal is the one time switching costs nothing extra." |
 | Pre-need counselor job posting | The posting's start date | Pre-need worked within an hour, target only (profile) | "A new counselor needs leads that get a call back." |
 
-- **Monitoring sources:** the state licensing database (ownership and GM, lag of weeks). Local press and deal notices (days). Job boards (days). The prospect's own website and newsletter (none)
-- **Taboo events:** a death in the owner's family, a lawsuit brought by a bereaved family, a burial error that names a family in the press. PlotIQ never writes into grief
+- **Monitoring Sources:** the state licensing database (ownership and GM, lag of weeks). Local press and deal notices (days). Job boards (days). The prospect's own website and newsletter (none)
+- **Taboo Events:** a death in the owner's family, a lawsuit brought by a bereaved family, a burial error that names a family in the press. PlotIQ never writes into grief
 
 ## Closed-Loss Intelligence
 
 Read by Closed-Loss Reactivation (05). All values illustrative.
 
-- **Loss taxonomy mapping:** "timing" usually means the board date passed or the champion left. "Price" usually means year one crossed the $25K board line, so the $5,000 setup is the issue. "Went with competitor" names Oldgate, Stonemark or Lanternfield and their renewal date. "No decision" means no economic buyer was ever found
-- **Re-entry windows:** timing, 6 to 9 months after the close date. Competitor, 90 to 180 days before the rival's renewal date. Price, the next budget cycle. No decision, 12 months or a trigger, whichever first
-- **Reopening events:** a new GM in the licensing record, an audit finding, a consolidator purchase. A champion moving to a new site (Lowmoor to Quill Hollow) does not reopen the lost account. It opens a play at the new site, through Account Snapshot (02)
-- **Incumbent renewal cycles:** Oldgate, multi-year license with annual maintenance (research estimate). Stonemark, three-year term (research estimate). Lanternfield, annual per-user (research estimate)
+- **Loss Taxonomy Mapping:** "timing" usually means the board date passed or the champion left. "Price" usually means year one crossed the $25K board line, so the $5,000 setup is the issue. "Went with competitor" names Oldgate, Stonemark or Lanternfield and their renewal date. "No decision" means no economic buyer was ever found
+- **Re-Entry Windows:** timing, 6 to 9 months after the close date. Competitor, 90 to 180 days before the rival's renewal date. Price, the next budget cycle. No decision, 12 months or a trigger, whichever first
+- **Reopening Events:** a new GM in the licensing record, an audit finding, a consolidator purchase. A champion moving to a new site (Lowmoor to Quill Hollow) does not reopen the lost account. It opens a play at the new site, through Account Snapshot (02)
+- **Incumbent Renewal Cycles:** Oldgate, multi-year license with annual maintenance (research estimate). Stonemark, three-year term (research estimate). Lanternfield, annual per-user (research estimate)
 
 ## Meeting Prep
 
 Read by Meeting Prep (06).
 
-- **Discovery framework and team vocabulary:** SPIN, by its public stage names (Situation, Problem, Implication, Need-Payoff). PlotIQ has no acronyms of its own
-- **Persona-proof map** (every PlotIQ proof point is Illustrative today, so the rep names the pattern and not the figure until a row is Verified): Cemetery General Manager, Holloway Hills (compliance) first, Fennick Gardens second. Pre-Need Sales Manager, no proof yet, say so and use the target. Operations Director, Holloway Hills. Funeral Home Owner, Fennick Gardens. CFO or Controller, no group proof yet
-- **The demo reframe:** they believe "pen and paper is free". We teach what a 20-minute lookup and an unsold plot cost. The evidence is Fennick Gardens, 212 plots in 90 days (illustrative)
+- **Discovery Framework And Team Vocabulary:** SPIN, by its public stage names (Situation, Problem, Implication, Need-Payoff). PlotIQ has no acronyms of its own
+- **Persona-Proof Map** (every PlotIQ proof point is Illustrative today, so the rep names the pattern and not the figure until a row is Verified): Cemetery General Manager, Holloway Hills (compliance) first, Fennick Gardens second. Pre-Need Sales Manager, no proof yet, say so and use the target. Operations Director, Holloway Hills. Funeral Home Owner, Fennick Gardens. CFO or Controller, no group proof yet
+- **The Demo Reframe:** they believe "pen and paper is free". We teach what a 20-minute lookup and an unsold plot cost. The evidence is Fennick Gardens, 212 plots in 90 days (illustrative)
 
 ## Daily Prospecting
 
 Read by Daily Prospecting (07).
 
-- **Hot definition:** a trigger inside its window plus Zone 1 HIGH, or an INBOUND request not yet answered and within 3 business days of arriving
-- **Daily capacity:** [RECORD]. No figure is recorded for PlotIQ
-- **Exclusion rules:** ACTIVE with an AE owner unless that AE said yes (Brackhaven, owned by Owen Pruitt). OUT accounts. Opt-outs. Any account contacted in the last 14 days with no reply
-- **Opener, verbatim (illustrative):** "I work with cemetery general managers whose plot maps are still on paper. One question: how many plots could you sell today if the records were right?"
-- **Trustworthy CRM fields:** [RECORD]. PlotIQ's CRM has two beta accounts and no history to grade
+- **Hot Definition:** a trigger inside its window plus Zone 1 HIGH, or an INBOUND request not yet answered and within 3 business days of arriving
+- **Daily Capacity:** [RECORD]. No figure is recorded for PlotIQ
+- **Exclusion Rules:** ACTIVE with an AE owner unless that AE said yes (Brackhaven, owned by Owen Pruitt). OUT accounts. Opt-outs. Any account contacted in the last 14 days with no reply
+- **Opener, Verbatim (illustrative):** "I work with cemetery general managers whose plot maps are still on paper. One question: how many plots could you sell today if the records were right?"
+- **Trustworthy CRM Fields:** [RECORD]. PlotIQ's CRM has two beta accounts and no history to grade
 
 ## Deal Health
 
-- **Rapport method name:** [RECORD] PlotIQ has not named its rapport method. The skill uses "rapport method" until it does.
-- **Momentum method name:** [RECORD] PlotIQ has not named its momentum method. The skill uses "momentum method" until it does.
-- **Urgency method name:** [RECORD] PlotIQ has not named its urgency method. The skill uses "urgency method" until it does.
-- **Day in the Life method name:** [RECORD] PlotIQ has not named its day-in-the-life walkthrough. The skill uses "Day in the Life walkthrough" until it does.
+- **Rapport Method Name:** [RECORD] PlotIQ has not named its rapport method. The skill uses "rapport method" until it does.
+- **Momentum Method Name:** [RECORD] PlotIQ has not named its momentum method. The skill uses "momentum method" until it does.
+- **Urgency Method Name:** [RECORD] PlotIQ has not named its urgency method. The skill uses "urgency method" until it does.
+- **Day In The Life Method Name:** [RECORD] PlotIQ has not named its day-in-the-life walkthrough. The skill uses "Day in the Life walkthrough" until it does.
 
 Source: the PlotIQ Sales Methodology section names SPIN Selling, Challenger and MEDDPICC. None of those is one of the four methods this skill scores against, so PlotIQ has no team names for them yet. Nothing in this section is a figure, so no figure is invented here.
 
 ## MEDDPICC
 
-- **Stage minimums:** the profile's Qualification Stage Gates: MEDDPICC at 70 or higher to move from 4 Proposal to 5 Negotiate, the team's own gate for every deal. That figure overrides the skill table's default of 65 for Stage 5 Negotiate. The critical-element floors stay as the skill's table has them (all except Competition at 3 or higher, Economic Buyer at 4 or higher).
-- **Paper process steps:** `[RECORD]`. PlotIQ has no won deal to map from. The flagship's paper steps are open (Brackhaven's legal and vendor review is noted, timing not scoped, `[Unknown]`).
-- **Metric, customer-worded:** `[RECORD]` for the number a champion repeats back. The plot count of 11,000 for Brackhaven is the profile's figure, and it is not yet a metric a buyer has repeated.
-- **Champion proof-of-life:** `[RECORD]`. No won deal has shown one yet. The flagship's examples (Ruth Ellery's internal selling and her board introduction) are illustrative.
-- **Deal killers from real losses:** Decision Process, from the one closed-lost deal on record. Lowmoor Memorial Gardens closed-lost to Oldgate on 2026-01-20 on "timing" `[CRM]`. The true reason was the board date (illustrative). The second killer is `[RECORD]`, because the record holds one real loss and no second ranking can be drawn from it.
+- **Stage Minimums:** the profile's Qualification Stage Gates: MEDDPICC at 70 or higher to move from 4 Proposal to 5 Negotiate, the team's own gate for every deal. That figure overrides the skill table's default of 65 for Stage 5 Negotiate. The critical-element floors stay as the skill's table has them (all except Competition at 3 or higher, Economic Buyer at 4 or higher).
+- **Paper Process Steps:** `[RECORD]`. PlotIQ has no won deal to map from. The flagship's paper steps are open (Brackhaven's legal and vendor review is noted, timing not scoped, `[Unknown]`).
+- **Metric, Customer-Worded:** `[RECORD]` for the number a champion repeats back. The plot count of 11,000 for Brackhaven is the profile's figure, and it is not yet a metric a buyer has repeated.
+- **Champion Proof-Of-Life:** `[RECORD]`. No won deal has shown one yet. The flagship's examples (Ruth Ellery's internal selling and her board introduction) are illustrative.
+- **Deal Killers From Real Losses:** Decision Process, from the one closed-lost deal on record. Lowmoor Memorial Gardens closed-lost to Oldgate on 2026-01-20 on "timing" `[CRM]`. The true reason was the board date (illustrative). The second killer is `[RECORD]`, because the record holds one real loss and no second ranking can be drawn from it.
 
 ## Buying Committee
 
-- **Role-title map:** Economic Buyer: the family board chair at a combination operator (illustrative), or the Cemetery General Manager where the GM signs under $25K (Persona 1, HEARD per the profile). Champion: Pre-Need Sales Manager (Persona 2), or the GM when the GM is the champion (Quill Hollow, illustrative). Technical Evaluator: the systems administrator, who holds the current system's data export (illustrative, [RECORD] until one is named on a PlotIQ account). Influencer: Operations Director (Persona 3). End User: pre-need manager and counselors (illustrative). Blocker: anyone with a stated objection to a tablet or to a migration (illustrative).
-- **Non-buyer rows:**
+- **Role-Title Map:** Economic Buyer: the family board chair at a combination operator (illustrative), or the Cemetery General Manager where the GM signs under $25K (Persona 1, HEARD per the profile). Champion: Pre-Need Sales Manager (Persona 2), or the GM when the GM is the champion (Quill Hollow, illustrative). Technical Evaluator: the systems administrator, who holds the current system's data export (illustrative, [RECORD] until one is named on a PlotIQ account). Influencer: Operations Director (Persona 3). End User: pre-need manager and counselors (illustrative). Blocker: anyone with a stated objection to a tablet or to a migration (illustrative).
+- **Non-Buyer Rows:**
   - Technical reviewer: tests data handling and access before a value conversation. Why it matters here: a late veto on records access ends the deal at signature. Usual stance: cautious until a test passes (hypothesis, illustrative, [RECORD] for PlotIQ's observed behavior).
   - Systems administrator: runs the system being replaced. Why it matters here: the ledger export is the first thing that can stall the migration. Usual stance: neutral to protective of the current system (hypothesis, illustrative).
   - General counsel: reviews the contract and the data terms. Why it matters here: a trust-fund records clause can add weeks before signature. Usual stance: focused on terms and risk (hypothesis, illustrative).
   - Operations head: owns the daily work the product changes. Why it matters here: adoption depends on them. Usual stance: supportive of the outcome, skeptical of disruption (hypothesis, illustrative).
   - Procurement: runs the vendor process and the price comparison. Why it matters here: the incumbent is compared on price and renewal date. Usual stance: process-driven and neutral (hypothesis, illustrative).
   - Records or trust auditor (the CPA on a New York audit, or a state examiner in a Tier A state from the profile): reads the records against the state rule. Why it matters here: a finding reaches the GM's desk and becomes the reason to buy. Usual stance: neutral, wants the records to pass (hypothesis, illustrative).
-- **Ghost patterns:** Combination operators: the funeral home owner on the funeral side (Persona 4, illustrative). Family-owned groups: the owner who wrote the annual letter, and the board or family chair above the CFO (illustrative). Consolidator acquisitions: the acquirer's CFO or controller, with the site GM (the profile's Buying Triggers). Pattern counts across accounts: [RECORD], because PlotIQ has two beta accounts and no closed deals. A pattern is named only after five accounts show it.
-- **Threading benchmark:** [RECORD] for wins versus losses. PlotIQ has no won or lost deals to measure, so no threading score is a benchmark yet.
-- **Standing tensions:** The corporate gate against the site: a CFO or corporate approval that sits six to nine months out (Zone 3 LOW, the profile's Qualification Zones). IT against operations: nobody owns IT at a combination operator, and the operations side decides daily use (illustrative). Owner against general manager: the owner signs under $25K, but the GM recommends and the board approves above it (Zone 3, the profile's Qualification Zones). Incumbent loyalty: a legacy direct-software vendor with a renewal date the GM does not want to disturb (illustrative).
-- **Available plays:** An executive call brokered by the GM or champion, with the board chair named by the GM first (illustrative, the Brackhaven pattern). A find-the-plot demo on the Operations Director's own work orders (the Operations Director hook in the profile). A referral from another cemetery or a state association event, which the profile's Motion and Content Plan names as the trust channel. A pre-need intake review with the Pre-Need Sales Manager (illustrative). A technical discovery with the systems administrator, scheduled through the GM (illustrative).
+- **Ghost Patterns:** Combination operators: the funeral home owner on the funeral side (Persona 4, illustrative). Family-owned groups: the owner who wrote the annual letter, and the board or family chair above the CFO (illustrative). Consolidator acquisitions: the acquirer's CFO or controller, with the site GM (the profile's Buying Triggers). Pattern counts across accounts: [RECORD], because PlotIQ has two beta accounts and no closed deals. A pattern is named only after five accounts show it.
+- **Threading Benchmark:** [RECORD] for wins versus losses. PlotIQ has no won or lost deals to measure, so no threading score is a benchmark yet.
+- **Standing Tensions:** The corporate gate against the site: a CFO or corporate approval that sits six to nine months out (Zone 3 LOW, the profile's Qualification Zones). IT against operations: nobody owns IT at a combination operator, and the operations side decides daily use (illustrative). Owner against general manager: the owner signs under $25K, but the GM recommends and the board approves above it (Zone 3, the profile's Qualification Zones). Incumbent loyalty: a legacy direct-software vendor with a renewal date the GM does not want to disturb (illustrative).
+- **Available Plays:** An executive call brokered by the GM or champion, with the board chair named by the GM first (illustrative, the Brackhaven pattern). A find-the-plot demo on the Operations Director's own work orders (the Operations Director hook in the profile). A referral from another cemetery or a state association event, which the profile's Motion And Content Plan names as the trust channel. A pre-need intake review with the Pre-Need Sales Manager (illustrative). A technical discovery with the systems administrator, scheduled through the GM (illustrative).
 
-## Competitive Patterns and Trends
+## Competitive Patterns And Trends
 
 Written for the PlotIQ example, on the chain file's facts. Every figure is marked (illustrative), marked Benchmark with its source, or marked [RECORD] where PlotIQ has no history yet. PlotIQ is in beta, so no pattern has five counted cases yet.
 
-**Failure patterns:** one row per pattern. The last row is blank, for your own deals.
+**Failure Patterns:** one row per pattern. The last row is blank, for your own deals.
 
-| Pattern | Cases counted and source | Discovery question |
+| Pattern | Cases Counted And Source | Discovery Question |
 |---|---|---|
 | Manual process (paper maps, spreadsheets, memory) breaks at scale, and a double sale or a lost deed surfaces in front of a family | [RECORD] of 5 cases. Source: forum posts and research, 2026-04-01 | "Where does the plot map live today, and when was it last updated?" |
 | Legacy on-premise maintenance is charged every year, and nothing works on a phone | [RECORD] of 5 cases. Source: research pattern for legacy on-premise systems (illustrative). Observation only until five cases | "When does your software contract renew, and what did the last quote include for support?" |
@@ -369,15 +369,15 @@ Written for the PlotIQ example, on the chain file's facts. Every figure is marke
 
 **Trends:** one row per trend. A number appears only with its source named.
 
-| Trend | Dated source | What it means for the incumbent's customers |
+| Trend | Dated Source | What It Means For The Incumbent's Customers |
 |---|---|---|
 | Independents capture pre-need on 20% to 35% of at-need volume, and the largest public operator about 60% | Deathcare research, 2026-03-27 to 2026-04-01 (Benchmark) | The counselor's sale needs the plot record in the same system, so a legacy incumbent without pre-need loses that conversation |
 | Federal Funeral Rule penalties up to $53,088 per violation | Deathcare research, regulatory landscape note, 2026-03-27 (Benchmark) | Compliance framing works against manual and legacy incumbents. Cite it as a Benchmark only |
 | Regional consolidators buy single sites | [RECORD]: no dated source on how often yet, so no number is written. The trigger catalog's 60 to 120 day window is in the profile's Buying Triggers | A consolidator inherits the site's system decision, and an incumbent renewal can fall inside that window |
 
-**Proof point status:** the Status of each row in the profile's Proof Points table. No PlotIQ row is Verified, so no talk track names a customer figure.
+**Proof Point Status:** the Status of each row in the profile's Proof Points table. No PlotIQ row is Verified, so no talk track names a customer figure.
 
-| Proof point | Status | Use |
+| Proof Point | Status | Use |
 |---|---|---|
 | Fennick Gardens Cemetery: 212 unsold plots found in 90 days | Illustrative | Do not cite |
 | Holloway Hills Memorial Park: zero records findings in its first state review | Illustrative (GM on video, pending permission) | Do not cite |
@@ -385,63 +385,63 @@ Written for the PlotIQ example, on the chain file's facts. Every figure is marke
 | Pre-need share of at-need volume (industry) | Benchmark | Context only, with its source named |
 | Federal Funeral Rule penalties (industry) | Benchmark | Context only, with its source named |
 
-**Jurisdiction deadlines:** [RECORD]. No deadline is written into any PlotIQ example. Each deadline added later gets its rule, its citation and the date checked before a battlecard uses it.
+**Jurisdiction Deadlines:** [RECORD]. No deadline is written into any PlotIQ example. Each deadline added later gets its rule, its citation and the date checked before a battlecard uses it.
 
 ## Displacement
 
 PlotIQ has no won-away customers yet. Every figure below is illustrative or a research estimate, and anything PlotIQ has no history for is `[RECORD]`.
 
-- **Incumbent template rows:** one row per incumbent in the Competitive Landscape. Positioning is what the buyer does now and why it falls short, with its tag. Wedge is the one thing PlotIQ does differently. Persona rows are numbers from Buyer Personas (1 Cemetery General Manager, 2 Pre-Need Sales Manager, 3 Operations Director, 4 Funeral Home Owner, 5 CFO or Controller).
+- **Incumbent Template Rows:** one row per incumbent in the Competitive Landscape. Positioning is what the buyer does now and why it falls short, with its tag. Wedge is the one thing PlotIQ does differently. Persona rows are numbers from Buyer Personas (1 Cemetery General Manager, 2 Pre-Need Sales Manager, 3 Operations Director, 4 Funeral Home Owner, 5 CFO or Controller).
 
-| Competitor (type, as filed in Competitive Landscape) | Positioning | Wedge | Discovery question 1 | Discovery question 2 | Discovery question 3 | Primary persona | Secondary persona |
+| Competitor (type, as filed in Competitive Landscape) | Positioning | Wedge | Discovery Question 1 | Discovery Question 2 | Discovery Question 3 | Primary Persona | Secondary Persona |
 |---|---|---|---|---|---|---|---|
 | Stonemark Enterprise (direct software) | The map works, but trust reporting and pre-need still run outside it, so staff keep a second system (research pattern, illustrative) | Records, trust compliance and pre-need in one system, live in 6 weeks against 90 to 120 days (illustrative, research estimate) | Where does the plot map live today, and when was it last updated? | Which system runs the pre-need side, and who maintains it? | When does your map contract renew, and what does the renewal include for support? | 2 | 1 |
 | Oldgate Ledger Pro (direct software) | Maintenance runs 20% a year and nothing works on a phone, so the grounds crew still runs on paper work orders (research pattern, illustrative) | Cloud and mobile, live in 6 weeks against 120 to 180 days (illustrative, research estimate) | When does your software contract renew, and what did the last quote include for support? | Where does the plot map live today, and when was it last updated? | Which system runs the funeral side, and who maintains it? | 3 | 1 |
 | Lanternfield Case Manager (an adjacent tool) | The per-user bill grows with every counselor added, and the cemetery side still has no plot record (research pattern, illustrative) | Cemetery plots and pre-need in one system, support included (illustrative, research estimate) | Which system runs the funeral side, and who maintains it? | How many people use the family portal, and what does each seat cost? | Where does the cemetery's plot record live, and who can find a plot in another section today? | 2 | 4 |
 | Paper maps, a spreadsheet, or doing nothing (a manual process) | A double sale or a lost deed surfaces at the worst moment, in front of a family (forum posts, research 2026-04-01, illustrative pattern) | One view of sold and unsold plots with an audit trail, so no one person holds the records (illustrative) | When a family asks about a plot in another section, how long does the lookup take? | Where does the plot map live today, and when was it last updated? | If the person who knows the records were out for a month, who could answer a family's question? | 1 | 3 |
 
-- **Difficulty tests:** as written in the skill (Low, Medium and High, each directional). Each account is rated from its own records when the skill runs. An ACTIVE account's displacement work is the AE's alone.
+- **Difficulty Tests:** as written in the skill (Low, Medium and High, each directional). Each account is rated from its own records when the skill runs. An ACTIVE account's displacement work is the AE's alone.
 
-- **Proof points against incumbents:** read from the Proof Points table, which carries the Displaced vendor and Status columns. Customer rows stay in Proof Points and are not copied here. Fennick Gardens (212 unsold plots found in 90 days) and Holloway Hills (zero records findings in its first state review) both name no displaced vendor (`[Unknown]`) and are Illustrative, so neither is cited in an email or talk track. The two research benchmarks (20% to 35% of at-need volume for independents, about 60% for the largest public operator, and 50 to 100 plots on paper, all from deathcare research, 2026-03-27 to 2026-04-01) name no vendor and are Benchmark, cited with their source and date.
+- **Proof Points Against Incumbents:** read from the Proof Points table, which carries the Displaced vendor and Status columns. Customer rows stay in Proof Points and are not copied here. Fennick Gardens (212 unsold plots found in 90 days) and Holloway Hills (zero records findings in its first state review) both name no displaced vendor (`[Unknown]`) and are Illustrative, so neither is cited in an email or talk track. The two research benchmarks (20% to 35% of at-need volume for independents, about 60% for the largest public operator, and 50 to 100 plots on paper, all from deathcare research, 2026-03-27 to 2026-04-01) name no vendor and are Benchmark, cited with their source and date.
 
-- **Renewal timing:** Stonemark, January 2027 for Greyfield (`[CRM]`, illustrative). Oldgate Ledger Pro, March 2027 for Brackhaven (`[CRM]`). The competitive research records Stonemark as a three-year term and Oldgate as a multi-year license with annual maintenance (research estimate, illustrative), so the account's own renewal date is always the one used.
+- **Renewal Timing:** Stonemark, January 2027 for Greyfield (`[CRM]`, illustrative). Oldgate Ledger Pro, March 2027 for Brackhaven (`[CRM]`). The competitive research records Stonemark as a three-year term and Oldgate as a multi-year license with annual maintenance (research estimate, illustrative), so the account's own renewal date is always the one used.
 
-- **Won-away failure patterns:** `[RECORD]`. PlotIQ has no won-away customer to quote. Until one is recorded, the template's Positioning rows carry their research tag, and no failure pattern is used as a customer's own words.
+- **Won-Away Failure Patterns:** `[RECORD]`. PlotIQ has no won-away customer to quote. Until one is recorded, the template's Positioning rows carry their research tag, and no failure pattern is used as a customer's own words.
 
-- **Persona rules:** each template row names a primary and a secondary persona from the table above. A sequence uses the persona rows its template names, written as n of 5 rows, and an unknown contact is written `[Unknown]` with the title kept.
+- **Persona Rules:** each template row names a primary and a secondary persona from the table above. A sequence uses the persona rows its template names, written as n of 5 rows, and an unknown contact is written `[Unknown]` with the title kept.
 
 ## Call Coaching
 
-- **Discovery category names:** Defaults (illustrative). Pre-Call Preparation, SPIN Discovery Quality, Priority Ladder Execution, Active Listening, Value Articulation, Next Steps and Momentum, Alternatives. PlotIQ has no graded calls to name them from yet, so the defaults stand.
-- **Demo category names:** Defaults (illustrative). Meeting Opening, Meeting Closing, Teach and Tailor, Pain Alignment and Proof, Question The Problem, Pain-To-Workflow Mapping, Prospect Engagement, Resistance Handling.
-- **Demo element names:** Defaults (illustrative). Introduction, Problem Restatement, Solution, Return on Investment, Next Steps. Questions run through the solution and the return on investment.
-- **Pacing overrides:** [RECORD]. No PlotIQ demo has been graded, so the starting defaults apply (40% to 50% for the solution, 15% to 20% for return on investment and for questions, 5% to 10% for the other three elements). Replace them with PlotIQ's own shares once ten won calls exist, as the Sales Methodology section asks.
-- **Extra listen-for phrases:** None beyond Core Pain Points. The "What to Listen For" column carries the phrases (illustrative until calls are heard).
+- **Discovery Category Names:** Defaults (illustrative). Pre-Call Preparation, SPIN Discovery Quality, Priority Ladder Execution, Active Listening, Value Articulation, Next Steps and Momentum, Alternatives. PlotIQ has no graded calls to name them from yet, so the defaults stand.
+- **Demo Category Names:** Defaults (illustrative). Meeting Opening, Meeting Closing, Teach and Tailor, Pain Alignment and Proof, Question The Problem, Pain-To-Workflow Mapping, Prospect Engagement, Resistance Handling.
+- **Demo Element Names:** Defaults (illustrative). Introduction, Problem Restatement, Solution, Return on Investment, Next Steps. Questions run through the solution and the return on investment.
+- **Pacing Overrides:** [RECORD]. No PlotIQ demo has been graded, so the starting defaults apply (40% to 50% for the solution, 15% to 20% for return on investment and for questions, 5% to 10% for the other three elements). Replace them with PlotIQ's own shares once ten won calls exist, as the Sales Methodology section asks.
+- **Extra Listen-For Phrases:** None beyond Core Pain Points. The "What to Listen For" column carries the phrases (illustrative until calls are heard).
 
 ## Implementation Profile
 
 PlotIQ has no won deals yet. The two timing values below that carry numbers are illustrative planning values for the example, not measurements. The rest stay `[RECORD]`, and none of them is a benchmark.
 
-- **Typical days, kickoff to go-live:** 49 (illustrative). A planning value for the example, set from the six-week roadmap plus one week of buffer. PlotIQ has no completed deals to measure a real one.
-- **How data moves:** Paper plot maps and deed scans are digitized and matched to records (Plot Inventory Digitization, profile). The trust fund ledger arrives as a standard export (Records and Trust Compliance, profile). Deed scans are heavy and fall in weeks 2 to 3 (profile).
-- **Source systems per customer:** [RECORD]. Brackhaven has one source system (Oldgate Ledger Pro, `[CRM]`, illustrative as a timing input). The weeks each extra system adds are not yet set.
-- **Export format familiarity:** [RECORD]. Brackhaven's export is confirmed by the vendor but has not been tested by the implementation team (`[Notes]`, illustrative). The weeks saved when the format is familiar are not yet set.
-- **IT lead time:** 14 days (illustrative). A planning value for the example, added to kickoff when no IT owner is named. It has not been measured on a real deal.
-- **Full adoption months:** 2 (the skill default). PlotIQ has not yet set its own value.
-- **Team quick win types:** [RECORD]. The four types in the skill apply. Week-one examples are added after the first handoff.
+- **Typical Days, Kickoff To Go-Live:** 49 (illustrative). A planning value for the example, set from the six-week roadmap plus one week of buffer. PlotIQ has no completed deals to measure a real one.
+- **How Data Moves:** Paper plot maps and deed scans are digitized and matched to records (Plot Inventory Digitization, profile). The trust fund ledger arrives as a standard export (Records and Trust Compliance, profile). Deed scans are heavy and fall in weeks 2 to 3 (profile).
+- **Source Systems Per Customer:** [RECORD]. Brackhaven has one source system (Oldgate Ledger Pro, `[CRM]`, illustrative as a timing input). The weeks each extra system adds are not yet set.
+- **Export Format Familiarity:** [RECORD]. Brackhaven's export is confirmed by the vendor but has not been tested by the implementation team (`[Notes]`, illustrative). The weeks saved when the format is familiar are not yet set.
+- **IT Lead Time:** 14 days (illustrative). A planning value for the example, added to kickoff when no IT owner is named. It has not been measured on a real deal.
+- **Full Adoption Months:** 2 (the skill default). PlotIQ has not yet set its own value.
+- **Team Quick Win Types:** [RECORD]. The four types in the skill apply. Week-one examples are added after the first handoff.
 
 ## Sources
 
-- **Market and regulatory facts:** Deathcare research project, industry landscape, regulatory landscape and cremation trends notes (2026-03-27 to 2026-04-01). Includes the $20.8B funeral service market (2025), 29,015 U.S. funeral homes (2026), $139.2M cemetery management software market (2025), 61.9% cremation rate (2024), federal Funeral Rule penalties up to $53,088 per violation, California's annual trust filing (due May 1) and New York's annual CPA audit (due December 31).
-- **Competitive research:** Deathcare research project, competitive research note (2026-03-27). Competitor pricing, contract terms, implementation times (90 to 120 days for Stonemark Enterprise, 120 to 180 days for Oldgate Ledger Pro) and the weaknesses buyers report. Every figure from it is a research estimate, cited with this name and date. It is over 90 days old, so it is refreshed before publishing (Quick Validation Checklist).
-- **Pain language:** Forum posts and software review sites, mined in the research (2026-04-01).
-- **PlotIQ facts and open bets:** Guild article 51 and its Discovery 2.0 revision (2026-10-12). Competitor figures are research estimates, and competitor names are invented.
+- **Market And Regulatory Facts:** Deathcare research project, industry landscape, regulatory landscape and cremation trends notes (2026-03-27 to 2026-04-01). Includes the $20.8B funeral service market (2025), 29,015 U.S. funeral homes (2026), $139.2M cemetery management software market (2025), 61.9% cremation rate (2024), federal Funeral Rule penalties up to $53,088 per violation, California's annual trust filing (due May 1) and New York's annual CPA audit (due December 31).
+- **Competitive Research:** Deathcare research project, competitive research note (2026-03-27). Competitor pricing, contract terms, implementation times (90 to 120 days for Stonemark Enterprise, 120 to 180 days for Oldgate Ledger Pro) and the weaknesses buyers report. Every figure from it is a research estimate, cited with this name and date. It is over 90 days old, so it is refreshed before publishing (Quick Validation Checklist).
+- **Pain Language:** Forum posts and software review sites, mined in the research (2026-04-01).
+- **PlotIQ Facts And Open Bets:** Guild article 51 and its Discovery 2.0 revision (2026-10-12). Competitor figures are research estimates, and competitor names are invented.
 
 ## Example Cast
 
 Every worked example in this library, its skill pages and its Guild articles uses the accounts and people below. All of them are invented, and account numbers are illustrative unless a source is named.
 
-**Status codes every skill uses:** TARGET (researched, no two-way contact yet). ENGAGED (the account replied or met with us, and no deal is open). INBOUND (they asked us first, no deal open yet). ACTIVE, with a stage number (open deal). LOST (closed-lost, reactivation eligible). OUT (disqualified).
+**Status Codes Every Skill Uses:** TARGET (researched, no two-way contact yet). ENGAGED (the account replied or met with us, and no deal is open). INBOUND (they asked us first, no deal open yet). ACTIVE, with a stage number (open deal). LOST (closed-lost, reactivation eligible). OUT (disqualified).
 
 ### PlotIQ's Own Team
 
@@ -454,7 +454,7 @@ Every worked example in this library, its skill pages and its Guild articles use
 
 ### Prospect Accounts
 
-| Account | Profile | Situation and Status | Used for |
+| Account | Profile | Situation And Status | Used For |
 |---|---|---|---|
 | **Brackhaven Memorial Gardens** | Combination, 2 sites, 11,000 plots, paper plot maps, one double sale in 24 months (illustrative). GM Ruth Ellery is champion. Operations Director Walt Okonkwo is skeptical of tablets. Pre-need manager Priscilla Dunmore. Family board chair is the economic buyer | ACTIVE, Stage 5 Negotiate. Legacy on-premise system from Oldgate, renewal March 2027. Also evaluated Stonemark mapping. Owner retires within 3 years (illustrative). Handoff to Eli Marsh on signature | Flagship deal: qualification, snapshot, triggers, meeting prep, deal pulse, MEDDPICC, stakeholder map, competitive strategy and handoff |
 | **Saltmarsh Heritage Group** | Family-owned group, 5 sites (2 cemeteries, 3 funeral homes). CFO Hector Ruiz approves budget | TARGET. Its annual owner letter, posted on the company site, says all five sites move to one system in 2027. Three funeral homes run pre-need counselors | Multi-location operator, research-driven outbound from the owner letter |

@@ -128,7 +128,7 @@ Every run produces one prep sheet with the same sections in the same order. The 
 
 ### The Prep Sheet Sections
 
-**Discovery prep (seven sections):**
+**Discovery Prep (seven sections):**
 
 1. **Call Header:** account, status, attendees with buying role, objectives, `report_path`.
 2. **Pain Hypotheses:** ranked, each tagged, with `top_pain` marked.
@@ -136,17 +136,17 @@ Every run produces one prep sheet with the same sections in the same order. The 
 4. **Qualification Gaps:** a traffic-light grid (known green, partial yellow, unknown red). Each yellow or red cell has the question that fills it.
 5. **Competitive Positioning:** the incumbent, the probes as questions, and the differentiators, each proof point with its Status.
 6. **Meeting Scripts:** the open, the close, the objection scripts and the follow-up email draft.
-7. **Call Flow and Timing:** the minute-by-minute flow and two or three if-then scenarios. The sheet ends with `next_action`.
+7. **Call Flow And Timing:** the minute-by-minute flow and two or three if-then scenarios. The sheet ends with `next_action`.
 
-**Demo prep (seven sections):**
+**Demo Prep (seven sections):**
 
 1. **Demo Header:** account, attendees with buying role, confirmed pains, objectives.
-2. **Pain-to-Workflow Map:** ranked pains, the workflow for each, the differentiating feature, and the share of demo minutes.
+2. **Pain-To-Workflow Map:** ranked pains, the workflow for each, the differentiating feature, and the share of demo minutes.
 3. **Demo Script:** the three-beat arc and the time-blocked structure, with the habit each block practices.
 4. **Question Cards:** four questions per module.
-5. **Proof and Feel-Felt-Found:** one proof point per attendee persona, with its Status, and the stories scripted.
+5. **Proof And Feel-Felt-Found:** one proof point per attendee persona, with its Status, and the stories scripted.
 6. **Meeting Scripts:** the open and close, built from the discovery pains, and the follow-up email draft.
-7. **Resistance Playbook and If-Then Scenarios:** typed objections with their responses.
+7. **Resistance Playbook And If-Then Scenarios:** typed objections with their responses.
 
 ---
 
@@ -154,7 +154,7 @@ Every run produces one prep sheet with the same sections in the same order. The 
 
 This skill carries no company facts of its own. It reads them from the profile, the file named in The Shared Contract below. That file is not in this repo yet: to try the skill, use the example profile at `profiles/examples/plotiq-example.md`, and to set up your own company, copy `profiles/client-profile-template.md` to `profiles/client-profile.md`. It reads these sections, and nothing else:
 
-| Profile section | Used for |
+| Profile Section | Used For |
 |---|---|
 | Company | Framing and the meeting open |
 | Buyer Personas | Persona matching for attendees, questions and proof |
@@ -309,11 +309,11 @@ A demo is a checklist of habits, not a tour of the product.
 
 Every demo runs one arc, from the buyer's risk to the cash impact:
 
-1. **The buyer's risk**, in their words: the pain as they named it.
-2. **The workflow change**: what the product does differently, from Value Propositions.
-3. **The cash impact**: the number from Value Propositions, with its Status. An Illustrative number is not shown as a result.
+1. **The Buyer's Risk**, in their words: the pain as they named it.
+2. **The Workflow Change**: what the product does differently, from Value Propositions.
+3. **The Cash Impact**: the number from Value Propositions, with its Status. An Illustrative number is not shown as a result.
 
-### Meeting Open and Close (Both Types)
+### Meeting Open And Close (Both Types)
 
 | Part | What It Does |
 |------|-------------|
@@ -331,7 +331,7 @@ Default: MEDDPICC, with its elements named Metrics, Economic Buyer, Decision Cri
 Every objection script has the same three parts:
 
 1. **Acknowledge** the objection in the buyer's own words.
-2. **Ask the question** that tests it, drawn from the persona's objections in the profile.
+2. **Ask The Question** that tests it, drawn from the persona's objections in the profile.
 3. **Feel-Felt-Found** only if a story exists with a Status that allows its use.
 
 The reason for the question: a scripted rebuttal argues with the buyer. A question makes the buyer examine their own objection, and the answer is more useful to the rep than any rebuttal.
@@ -348,18 +348,18 @@ The reason for the question: a scripted rebuttal argues with the buyer. A questi
 
 ## Quick Reference
 
-**Use this skill when:**
+**Use This Skill When:**
 - Preparing for a discovery call: a first meeting, a follow-up, or a re-engagement
 - Preparing for a demo, after discovery has confirmed pain
 - Needing a one-page sheet to read during the call
 - Needing a fast prep: the user says "quick prep"
 
-**Don't use when:**
+**Don't Use When:**
 - Building outbound sequences for cold accounts (use Account Snapshot, 02)
 - Building competitive strategy for a deal (use Competitive Strategy, 11)
 - Analyzing a call that already happened (use Call Coaching, 13)
 
-**User roles:** AE (primary), BDR (discovery only).
+**User Roles:** AE (primary), BDR (discovery only).
 
 ---
 
@@ -367,12 +367,12 @@ The reason for the question: a scripted rebuttal argues with the buyer. A questi
 
 The order matters. The meeting type decides the method, so it comes first. Pain comes before proof, because a proof point answers a pain. The question bank comes after the pain, because each question is built from a hypothesis. The call flow comes after the question bank, because each block of the flow consumes questions from it. The sheet is assembled last, so no gap can hide in an earlier step.
 
-### Step 0. Detect the Meeting Type
+### Step 0. Detect The Meeting Type
 
 Read `meeting_type` from the request.
 
-**Discovery words:** discovery, disco, first meeting, initial call, re-engagement.
-**Demo words:** demo, demonstration, show them, product walk-through.
+**Discovery Words:** discovery, disco, first meeting, initial call, re-engagement.
+**Demo Words:** demo, demonstration, show them, product walk-through.
 
 If the type is unclear, ask: "Is this a discovery call or a demo?"
 
@@ -384,35 +384,35 @@ If the type is unclear, ask: "Is this a discovery call or a demo?"
 
 Before pulling anything, open the account's folder under `accounts/` in the Knowledge Base, if the profile has one, and offer the CRM read and, when a call recorder is connected, the call read, for the one account or date range you name. Nothing is read from the CRM or the call recorder until you say yes.
 
-1. **Confirm inputs:** account name, meeting type, attendees with titles, call date and length, other team members attending.
-2. **Read the profile sections** named in Context. Take the stage names from Qualification Stage Gates.
-3. **Read the upstream fields by name** if they are present, as listed in Integration With Other Skills. Report any missing one as missing.
-4. **Build the account profile:** company, vertical, size, states, status, deal amount, the rep, and the attendees with buying role. The status is one of the status words in the Shared Contract. An ENGAGED account is labelled so in the header, and its reply is listed as a finding in Step 2.
+1. **Confirm Inputs:** account name, meeting type, attendees with titles, call date and length, other team members attending.
+2. **Read The Profile Sections** named in Context. Take the stage names from Qualification Stage Gates.
+3. **Read The Upstream Fields By Name** if they are present, as listed in Integration With Other Skills. Report any missing one as missing.
+4. **Build The Account Profile:** company, vertical, size, states, status, deal amount, the rep, and the attendees with buying role. The status is one of the status words in the Shared Contract. An ENGAGED account is labelled so in the header, and its reply is listed as a finding in Step 2.
 
 **Produces:** the account profile table and the attendee table. Each attendee has a name or `[Unknown]`, a title, and a buying role as the record names it.
 
-### Step 2. Analyze the Interaction History
+### Step 2. Analyze The Interaction History
 
-1. **Extract findings** from the CRM notes and prior calls, each tagged with its source:
+1. **Extract Findings** from the CRM notes and prior calls, each tagged with its source:
    - Pains already named. Do not re-ask what the buyer has already said.
    - Questions the buyer asked, which show their priorities.
    - Objections raised.
    - People referenced and the stakeholders they point to.
    - Competitors named.
    - The trigger that started the engagement.
-2. **Identify gaps:** pains named but not quantified, people referenced but not met, a decision process not mapped, budget or timeline unknown, the current solution unclear. Each gap becomes a meeting objective. A blank field is unknown, never a no. A fact from a call whose date is unknown takes `[Call, date Unknown]`, the shared contract's form for an undated call, which places no fact in time.
+2. **Identify Gaps:** pains named but not quantified, people referenced but not met, a decision process not mapped, budget or timeline unknown, the current solution unclear. Each gap becomes a meeting objective. A blank field is unknown, never a no. A fact from a call whose date is unknown takes `[Call, date Unknown]`, the shared contract's form for an undated call, which places no fact in time.
 
 **Produces:** the findings list, each item tagged, and the gap list.
 
-### Step 3. Build the Pain Intelligence
+### Step 3. Build The Pain Intelligence
 
 Branch by meeting type.
 
 **Discovery.** Build three to five pain hypotheses from Core Pain Points. For each one, give:
 
-- **Pain hypothesis:** a specific statement, in the buyer's terms.
+- **Pain Hypothesis:** a specific statement, in the buyer's terms.
 - **Evidence:** tagged with its source.
-- **Business impact:** filled from the Business Impact column of (profile: Core Pain Points) or from the call, with its tag. If neither supplies one, write `[Unknown]`. Never write a figure without a source.
+- **Business Impact:** filled from the Business Impact column of (profile: Core Pain Points) or from the call, with its tag. If neither supplies one, write `[Unknown]`. Never write a figure without a source.
 - **Urgency:** the trigger or deadline, tagged, or `[Unknown]`.
 - **Strength:** the strongest tag on the evidence. A pain the buyer named on a call (`[Call]`) outranks one reasoned from other facts (`[Inferred]`).
 
@@ -430,7 +430,7 @@ State the top pain in one line for `top_pain`.
 
 **Produces:** the ranked hypotheses (discovery) or the ranked confirmed pains with time shares (demo), and `top_pain`.
 
-### Step 4. Prepare the Question Bank
+### Step 4. Prepare The Question Bank
 
 Branch by meeting type.
 
@@ -449,13 +449,13 @@ Apply the follow-up ladder rule from the Methodology. For a vague answer, ask fo
 
 **Produces:** the question bank for each discovery phase (discovery), or the question cards per module (demo).
 
-### Step 5. Frame the Call
+### Step 5. Frame The Call
 
-**Discovery: qualification pre-fill.** For each element of the team's qualification framework, mark what is known (green), partly known (yellow) or unknown (red). Each yellow or red cell gets the question that fills it. Identified Pain needs at least one pain quantified, which is the stage 3 depth target. Metrics is green when the record holds a figure for the outcome the solution moves and the buyer has agreed it, yellow when that figure is recorded but not agreed, and red when no such figure is recorded, because account size such as a plot count describes the account and never scores the cell. Economic Buyer is green when the record names the person who signs at this deal's value, yellow when a buyer is named but the signer above that buyer's limit is not confirmed, and red when no buyer is named. Identified Pain is green when one pain is quantified, yellow when a pain is named but not quantified, and red when none is named. An incident count does not quantify a pain: a pain is quantified only when its cost is stated in plots, hours or dollars, as the Stage 2 gate in (profile: Qualification Stage Gates) requires. Champion is green on a Strong result from the shared champion tests, yellow on Developing and red on None. Decision Criteria, Decision Process, Paper Process and Competition have no cell rule of their own, so they take the default: known green, partial yellow, unknown red.
+**Discovery: Qualification Pre-Fill.** For each element of the team's qualification framework, mark what is known (green), partly known (yellow) or unknown (red). Each yellow or red cell gets the question that fills it. Identified Pain needs at least one pain quantified, which is the stage 3 depth target. Metrics is green when the record holds a figure for the outcome the solution moves and the buyer has agreed it, yellow when that figure is recorded but not agreed, and red when no such figure is recorded, because account size such as a plot count describes the account and never scores the cell. Economic Buyer is green when the record names the person who signs at this deal's value, yellow when a buyer is named but the signer above that buyer's limit is not confirmed, and red when no buyer is named. Identified Pain is green when one pain is quantified, yellow when a pain is named but not quantified, and red when none is named. An incident count does not quantify a pain: a pain is quantified only when its cost is stated in plots, hours or dollars, as the Stage 2 gate in (profile: Qualification Stage Gates) requires. Champion is green on a Strong result from the shared champion tests, yellow on Developing and red on None. Decision Criteria, Decision Process, Paper Process and Competition have no cell rule of their own, so they take the default: known green, partial yellow, unknown red.
 
-**Demo: pain-to-workflow map and structure.** Map each pain to a workflow, the differentiating feature, and the proof that makes it land, with its Status. Plan the demo as: the opening (three to five minutes), a problem slide built on the three-beat arc, a block for each pain in order of importance, and a recap and close. Check the five demo habits before the sheet is handed back.
+**Demo: Pain-To-Workflow Map And Structure.** Map each pain to a workflow, the differentiating feature, and the proof that makes it land, with its Status. Plan the demo as: the opening (three to five minutes), a problem slide built on the three-beat arc, a block for each pain in order of importance, and a recap and close. Check the five demo habits before the sheet is handed back.
 
-**Minute-by-minute call flow.** Turn the blocks into minute ranges that add up to the call length. Each block names the question bank section it uses. The flow notes the shared talk-time band for the call type, or the profile's override when Sales Methodology gives one. It does not restate the numbers.
+**Minute-By-Minute Call Flow.** Turn the blocks into minute ranges that add up to the call length. Each block names the question bank section it uses. The flow notes the shared talk-time band for the call type, or the profile's override when Sales Methodology gives one. It does not restate the numbers.
 
 A discovery flow for a 30-minute call (illustrative) looks like this:
 
@@ -472,51 +472,51 @@ A discovery flow for a 30-minute call (illustrative) looks like this:
 
 ### Step 6. Prepare Competitive Intelligence
 
-1. **Identify the current solution** from the CRM and the history. Tag how the team knows it, and note the contract status and satisfaction if the record holds them. A blank is `[Unknown]`.
-2. **Name the incumbent type** using the shared incumbent types in The Shared Contract, tagged with its source.
-3. **Write the competitor probes as questions only.** Use the Competitive Discovery Questions in (profile: Competitive Landscape) and the probes for that incumbent type. A stated weakness of a competitor carries a source, such as `[Public: source]` or `[Call]`, or it is labelled a hypothesis with `[Inferred]` and its reasoning. The reason: a rep who states a rival's weakness as fact, and is wrong, loses credibility in the room.
-4. **Choose two or three differentiators** from Value Propositions. Give each one a matched proof point, with its Status.
+1. **Identify The Current Solution** from the CRM and the history. Tag how the team knows it, and note the contract status and satisfaction if the record holds them. A blank is `[Unknown]`.
+2. **Name The Incumbent Type** using the shared incumbent types in The Shared Contract, tagged with its source.
+3. **Write The Competitor Probes As Questions Only.** Use the Competitive Discovery Questions in (profile: Competitive Landscape) and the probes for that incumbent type. A stated weakness of a competitor carries a source, such as `[Public: source]` or `[Call]`, or it is labelled a hypothesis with `[Inferred]` and its reasoning. The reason: a rep who states a rival's weakness as fact, and is wrong, loses credibility in the room.
+4. **Choose Two Or Three Differentiators** from Value Propositions. Give each one a matched proof point, with its Status.
 
 **Produces:** the incumbent with its tags, the probes as questions, and the differentiators with their proof.
 
-### Step 7. Select Proof and Prepare Resistance
+### Step 7. Select Proof And Prepare Resistance
 
-1. **Choose one proof point per attendee persona** from Proof Points. Match on persona first, then vertical, size and pain. Use the proof by its Status:
+1. **Choose One Proof Point Per Attendee Persona** from Proof Points. Match on persona first, then vertical, size and pain. Use the proof by its Status:
    - **Verified:** may be cited to the prospect.
    - **Benchmark:** context only, with its source and date named. Never "our customer got this."
    - **Illustrative:** never cited to a prospect. On the sheet, the row is marked "do not cite".
 
    Every attendee gets one proof line, including an attendee whose persona is not yet known. That line says the persona is unknown and that no proof is set until it is confirmed. If the profile has no usable proof for a persona, the sheet says so and gives the research target in its place. The research target is the profile figure whose wording matches the persona's Hook Focus, with its research source named. If that figure has no dated source, state it as a target labelled no dated source, and do not present it as a benchmark. An Illustrative row does not make a persona usable: it is shown marked "do not cite", and the research target is given beside it. The reason: a rep who says "we have no proof for this yet" is more credible than one who reaches for a row that does not exist.
-2. **Script two or three Feel-Felt-Found stories:** Feel (validate their concern), Felt (a similar customer felt the same), Found (the outcome, with a metric whose Status allows its use). If no story can carry a Verified or Benchmark result, the Found line uses the Benchmark and says so.
-3. **Prepare typed resistance** (demo): Reactance, Skepticism or Inertia, each with its response from the Methodology.
-4. **Prepare the redirect:** if a buyer asks about something the product does not lead with, acknowledge it and return to the pain they ranked first.
-5. **Watch for buying signals:** pricing questions, internal selling ("my CFO would love this"), volume and scale questions, timeline questions.
+2. **Script Two Or Three Feel-Felt-Found Stories:** Feel (validate their concern), Felt (a similar customer felt the same), Found (the outcome, with a metric whose Status allows its use). If no story can carry a Verified or Benchmark result, the Found line uses the Benchmark and says so.
+3. **Prepare Typed Resistance** (demo): Reactance, Skepticism or Inertia, each with its response from the Methodology.
+4. **Prepare The Redirect:** if a buyer asks about something the product does not lead with, acknowledge it and return to the pain they ranked first.
+5. **Watch For Buying Signals:** pricing questions, internal selling ("my CFO would love this"), volume and scale questions, timeline questions.
 
 **Produces:** one proof point per attendee persona with its Status, the Feel-Felt-Found stories, and the resistance responses.
 
-### Step 8. Script the Open, the Close and the Follow-Up
+### Step 8. Script The Open, The Close And The Follow-Up
 
-1. **The open** follows the Meeting Open and Close part by part, built from the record. A first meeting, which is one with no earlier logged meeting with the attendees, asks how the buyer's team handles the process. A follow-up names the pain they raised last time. A demo quotes discovery back in the buyer's words: name the attendee, then say the pain as they said it.
-2. **The close:** recap what matters most in the buyer's words, ask who else belongs in the next conversation, propose the next agenda from what was discussed, and agree the next milestone with an owner and a date.
-3. **The objection scripts** from the Methodology, one for each objection that (profile: Buyer Personas) lists for the persona.
-4. **The follow-up email draft:** a short note to the attendees, marked DRAFT, not sent. It names the pain in the buyer's words, carries at most one proof point with its Status (Verified or Benchmark only), and states the next step with an owner and a date. The rep reads it and sends it.
+1. **The Open** follows the Meeting Open and Close part by part, built from the record. A first meeting, which is one with no earlier logged meeting with the attendees, asks how the buyer's team handles the process. A follow-up names the pain they raised last time. A demo quotes discovery back in the buyer's words: name the attendee, then say the pain as they said it.
+2. **The Close:** recap what matters most in the buyer's words, ask who else belongs in the next conversation, propose the next agenda from what was discussed, and agree the next milestone with an owner and a date.
+3. **The Objection Scripts** from the Methodology, one for each objection that (profile: Buyer Personas) lists for the persona.
+4. **The Follow-Up Email Draft:** a short note to the attendees, marked DRAFT, not sent. It names the pain in the buyer's words, carries at most one proof point with its Status (Verified or Benchmark only), and states the next step with an owner and a date. The rep reads it and sends it.
 
-**ENGAGED accounts.** When the account is ENGAGED (it replied or met with us, and no deal is open), the open names that reply, its date and the words the buyer used, and it does not restart as a cold first meeting. A reply is not a meeting, so a first meeting with an ENGAGED account is still a first meeting under the rule above, but its open leads with the reply. The reply is a finding in Step 2, tagged `[CRM]` or `[Call]` with its date.
+**ENGAGED Accounts.** When the account is ENGAGED (it replied or met with us, and no deal is open), the open names that reply, its date and the words the buyer used, and it does not restart as a cold first meeting. A reply is not a meeting, so a first meeting with an ENGAGED account is still a first meeting under the rule above, but its open leads with the reply. The reply is a finding in Step 2, tagged `[CRM]` or `[Call]` with its date.
 
 **Produces:** the open, the close, the objection scripts and the follow-up email draft.
 
-### Step 9. Build the Game Plan
+### Step 9. Build The Game Plan
 
 1. **Objectives.**
    - Discovery: validate or disprove the top two or three hypotheses. Run the follow-up ladder per the rule. Identify the economic buyer and the decision process. Secure a next step with a date, attendees and an agenda.
    - Demo: show the top two pains with contrast to the current state. Capture at least two buying reasons in the buyer's own words. Secure a next step with a date, attendees and a decision point.
-2. **Minimum acceptable outcome.** Discovery: one validated, quantified pain and a scheduled next step. Demo: the buyer confirms the product addresses the top pain and agrees to a next step.
-3. **If-then scenarios.** Write five to eight, specific to the meeting type, each with its reason in a few words.
-4. **Team roles,** if others attend: what each person does in the room.
+2. **Minimum Acceptable Outcome.** Discovery: one validated, quantified pain and a scheduled next step. Demo: the buyer confirms the product addresses the top pain and agrees to a next step.
+3. **If-Then Scenarios.** Write five to eight, specific to the meeting type, each with its reason in a few words.
+4. **Team Roles,** if others attend: what each person does in the room.
 
 **Produces:** the objectives with the minimum outcome, the if-then scenarios and the roles.
 
-### Step 10. Assemble the Prep Sheet
+### Step 10. Assemble The Prep Sheet
 
 Lay out the sheet in the section order from The Prep Sheet Sections. Fill the header with the attendees and `report_path: none (inline)`. End the sheet with `next_action`, which names an owner and a date. The date follows the shared contract's next-action rule. When the next action happens on a call whose date is on record, that call date is used and named as its source, as long as it falls before the five-business-day date. When the Economic Buyer cell is yellow, the next action asks the buyer for the signer above the named buyer, and for the next meeting's date, on the call. Write the signer's title only as the record names it. If the record names no signer, the next action asks for the signer's name, and the title stays `[Unknown]`. Hand the sheet back in the reply. Write a file only if the user asks, using the file option. Run the Quality Bar before handing back.
 
@@ -535,12 +535,12 @@ Two meeting types, and one depth setting.
 
 ## Epistemic Rules
 
-- **Every rate carries its n.** "4 of 7 criteria," never "57%" alone.
+- **Every Rate Carries Its N.** "4 of 7 criteria," never "57%" alone.
 - **Silence Is Not A No.** A blank CRM field is unknown and is written `[Unknown]`. It is never written as "no."
 - **Every fact carries one of the six evidence tags** from The Shared Contract. A fact with no tag is removed from the sheet.
 - **A benchmark needs a named source and a date.** Without both, it is removed.
 - **A proof point is used by its Status only.** A Verified row may be cited to a prospect, a Benchmark is context, and an Illustrative row is never cited.
-- **A recurring pattern needs five cases.** Fewer than five is an observation, and the sheet says so in the same sentence.
+- **A Recurring Pattern Needs Five Cases.** Fewer than five is an observation, and the sheet says so in the same sentence.
 
 ---
 
@@ -550,9 +550,9 @@ Two meeting types, and one depth setting.
 2. **Never cite an Illustrative proof point to a prospect.** An Illustrative row describes an invented case. A buyer who asks for the reference finds nothing.
 3. **Never write a business impact figure without its source.** A figure the buyer checks and cannot trace costs more trust than a blank, so a blank stays `[Unknown]`.
 4. **Never invent an attendee, a name, a title or a buyer quote.** The rep says these words out loud. An invented quote makes the first minute of the call a lie.
-5. **Quote the buyer only from the record.** A profile phrase is the team's guess at the words. Only the buyer's own words count as evidence, so a profile phrase is labelled as the profile's.
-6. **Never restate the talk-time bands.** The shared bands in The Shared Contract, or the profile's override, are the only figures. One table prevents two numbers for one coaching metric.
-7. **Never send, enroll or write to the CRM.** The rep reads the draft and decides. A sent email cannot be unsent.
+5. **Quote The Buyer Only From The Record.** A profile phrase is the team's guess at the words. Only the buyer's own words count as evidence, so a profile phrase is labelled as the profile's.
+6. **Never Restate The Talk-Time Bands.** The shared bands in The Shared Contract, or the profile's override, are the only figures. One table prevents two numbers for one coaching metric.
+7. **Never Send, Enroll Or Write To The CRM.** The rep reads the draft and decides. A sent email cannot be unsent.
 8. **Use the team's names from the profile, and public framework names otherwise.** The rep uses the words the team uses on calls, so the buyer hears one vocabulary.
 9. **A competitor's weakness carries a source, or it is labelled a hypothesis.** A rival's weakness stated as fact, and found wrong, loses credibility in the room.
 
@@ -584,7 +584,7 @@ Done when all are true:
 
 All four examples use PlotIQ and its cast from the profile's Example Cast. Facts marked `(illustrative)` are invented for the example. The hand-off block at the end of each example lists the Output Contract fields by name.
 
-### Example 1: Discovery Prep for the Flagship Account (Brackhaven Memorial Gardens, Stage 2)
+### Example 1: Discovery Prep For The Flagship Account (Brackhaven Memorial Gardens, Stage 2)
 
 **Context:** Brackhaven Memorial Gardens is a combination: two sites, 11,000 plots and paper plot maps `[CRM]`. It had one double sale in the last 24 months `[CRM]` (illustrative). The GM, Ruth Ellery, is the buyer's first contact. Operations Director Walt Okonkwo is an influencer. At the time of this call the account sits at Stage 2 Discovery, so its status is ACTIVE at Stage 2. The AE is Owen Pruitt. Priscilla Dunmore, the pre-need manager, is the end user and is not on this call `[CRM]`.
 
@@ -594,7 +594,7 @@ All four examples use PlotIQ and its cast from the profile's Example Cast. Facts
 
 **Step 1.** Account profile: combination, two sites, 11,000 plots `[CRM]`. Status ACTIVE, Stage 2 Discovery `[CRM]`. Upstream from Account Snapshot (02), run when the account was TARGET: `account_status: TARGET (then)` and `verdict: GREENLIGHT`. Its `contact_priority` ranks Ruth Ellery first and Walt Okonkwo second `[Inferred]`, from the persona order in (profile: Buyer Personas). Its `pain_hypotheses` are plot records on paper across two sites (HIGH, `[CRM]`, `[Inferred]` from the record type) and the Oldgate renewal in March 2027 (MEDIUM, `[CRM]`, `[Inferred]` from the contract date). Its `sequence` is three emails to Ruth Ellery, with call prep, drafted and not sent (illustrative). Attendees:
 
-| Name | Title | Buying role |
+| Name | Title | Buying Role |
 |------|-------|-------------|
 | Ruth Ellery | General Manager | Buyer `[CRM]` |
 | Walt Okonkwo | Operations Director | Influencer `[CRM]`. Skeptical of tablets `[Notes]` |
@@ -603,11 +603,11 @@ All four examples use PlotIQ and its cast from the profile's Example Cast. Facts
 
 **Step 3.** Pain hypotheses, ranked by the strength of their tags:
 
-1. **Plot records on paper, with a double sale.** Top pain. Evidence: the double sale `[CRM]` (illustrative). Business impact: unsold plots nobody knows exist (profile: Core Pain Points). The research hook is 50 to 100 plots `[Public: deathcare research, paper-operations note, 2026-04-01]`. Brackhaven's own count is `[Unknown]`.
-2. **Trust fund reporting by hand.** `[Inferred]` from the paper records and the annual filing rule in (profile: Industry Context). The filing that applies depends on the state, which is `[Unknown]`.
-3. **Pre-need leads without a follow-up owner.** `[Unknown]`. No pre-need activity is recorded. Negative framing: "Do you take pre-need calls, and who calls back?"
+1. **Plot Records On Paper, With A Double Sale.** Top pain. Evidence: the double sale `[CRM]` (illustrative). Business impact: unsold plots nobody knows exist (profile: Core Pain Points). The research hook is 50 to 100 plots `[Public: deathcare research, paper-operations note, 2026-04-01]`. Brackhaven's own count is `[Unknown]`.
+2. **Trust Fund Reporting By Hand.** `[Inferred]` from the paper records and the annual filing rule in (profile: Industry Context). The filing that applies depends on the state, which is `[Unknown]`.
+3. **Pre-Need Leads Without A Follow-Up Owner.** `[Unknown]`. No pre-need activity is recorded. Negative framing: "Do you take pre-need calls, and who calls back?"
 
-**Top pain:** plot records on paper, with a double sale `[CRM]`.
+**Top Pain:** plot records on paper, with a double sale `[CRM]`.
 
 **Step 4.** Question bank, top three per phase:
 
@@ -620,12 +620,12 @@ Follow-up ladder on the top pain: stages 1 and 2 when confirmed, and stage 3 on 
 
 **Step 5.** Qualification pre-fill:
 
-- **Metrics: red.** No plot-loss figure is recorded `[Unknown]`. The plot count (11,000) describes the account and the double sale describes the problem, so neither scores the cell.
-- **Economic buyer: yellow.** Ruth is the buyer. The likely signer is above her `[Inferred]`. Two sites at the list price in (profile: Product Modules) come to $21,576 a year, plus the $5,000 setup, for $26,576 in year one. That is above the $25K board line in (profile: Qualification Zones), so the GM cannot sign alone on the record.
-- **Decision criteria: red.** None are stated.
-- **Decision process: red.** The approval body and its meeting dates are `[Unknown]`. Question: "Who has to approve a purchase above the board line, and when does that group meet?"
-- **Identified pain: yellow.** One pain is named and not yet quantified. The stage 3 depth target is not met.
-- **Champion: red.** The shared champion tests cannot be scored from a first discovery call. They are scored after the call.
+- **Metrics: Red.** No plot-loss figure is recorded `[Unknown]`. The plot count (11,000) describes the account and the double sale describes the problem, so neither scores the cell.
+- **Economic Buyer: Yellow.** Ruth is the buyer. The likely signer is above her `[Inferred]`. Two sites at the list price in (profile: Product Modules) come to $21,576 a year, plus the $5,000 setup, for $26,576 in year one. That is above the $25K board line in (profile: Qualification Zones), so the GM cannot sign alone on the record.
+- **Decision Criteria: Red.** None are stated.
+- **Decision Process: Red.** The approval body and its meeting dates are `[Unknown]`. Question: "Who has to approve a purchase above the board line, and when does that group meet?"
+- **Identified Pain: Yellow.** One pain is named and not yet quantified. The stage 3 depth target is not met.
+- **Champion: Red.** The shared champion tests cannot be scored from a first discovery call. They are scored after the call.
 
 **Step 6.** Competitive: the incumbent is Oldgate Ledger Pro `[CRM]`, an incumbent of the direct-software type in the shared list. Renewal is March 2027 `[CRM]`. Probes, as questions: "When does the Oldgate contract renew, and what did the last quote include for support?" and "Where does the plot map live today, and when was it last updated?" Oldgate's mobile weakness matters only if the grounds crew still uses paper work orders `[Inferred]`.
 
@@ -652,7 +652,7 @@ next_action: Owen Pruitt asks Ruth Ellery who signs above her, and for the next 
 report_path: none (inline)
 ```
 
-### Example 2: Prep for an Inbound Request (Sable Fork Cemetery, MANUAL REVIEW)
+### Example 2: Prep For An Inbound Request (Sable Fork Cemetery, MANUAL REVIEW)
 
 **Context:** Sable Fork Cemetery has one site, 2,900 plots and a plot list in a spreadsheet `[CRM]`. The GM, Arlen Biggs, signs under $25K `[CRM]`. The account is INBOUND. Someone filled in the website form on Thursday 2026-10-15, four days ago, and asked for a demo. The form filler is `[Unknown]` until confirmed. The BDR replied to the form on the afternoon of 2026-10-19 and booked discovery for Thursday 2026-10-22 `[CRM]`. This prep is written on the run date, 2026-10-19, after that booking, so the call it prepares is the booked call. The verdict is MANUAL REVIEW, with Zone 3 HIGH the only HIGH zone. The account stays INBOUND, not ENGAGED, because INBOUND stays until a deal opens (Shared Contract), so the booked call does not change its status.
 
@@ -662,7 +662,7 @@ report_path: none (inline)
 
 **Step 1.** Upstream from Account Snapshot (02): `account_status: INBOUND` and `verdict: MANUAL REVIEW`. The zones are 1 MEDIUM, 2 LOW, 3 HIGH, 4 MEDIUM and 5 LOW. Zone 2 is LOW on pre-need: none `[CRM]`. Zone 5 is LOW on plot sales flat for three years, with no succession plan on the record `[CRM]`. Attendees:
 
-| Name | Title | Buying role |
+| Name | Title | Buying Role |
 |------|-------|-------------|
 | Arlen Biggs | General Manager | Buyer, signs under $25K `[CRM]` |
 | `[Unknown]` | Form filler | `[Unknown]`, to confirm on the call |
@@ -671,11 +671,11 @@ report_path: none (inline)
 
 **Step 3.** Pain hypotheses, ranked:
 
-1. **Plot lookups on a spreadsheet.** `[Inferred]` from the plot list `[CRM]` and the lookup pain in (profile: Core Pain Points), which takes minutes to hours. Not measured. Business impact `[Unknown]`.
-2. **Unsold plots nobody can see.** `[Inferred]` from the same spreadsheet and the paper-to-digital gap in (profile: Core Pain Points). The GM may not know how many plots are open `[Unknown]`.
-3. **Pre-need leads with no follow-up.** Not supported by the record: pre-need is none `[CRM]`, and the GM sells plots directly, with no counselor and no intake form. Kept as a question only: "Do you sell pre-need?"
+1. **Plot Lookups On A Spreadsheet.** `[Inferred]` from the plot list `[CRM]` and the lookup pain in (profile: Core Pain Points), which takes minutes to hours. Not measured. Business impact `[Unknown]`.
+2. **Unsold Plots Nobody Can See.** `[Inferred]` from the same spreadsheet and the paper-to-digital gap in (profile: Core Pain Points). The GM may not know how many plots are open `[Unknown]`.
+3. **Pre-Need Leads With No Follow-Up.** Not supported by the record: pre-need is none `[CRM]`, and the GM sells plots directly, with no counselor and no intake form. Kept as a question only: "Do you sell pre-need?"
 
-**Top pain:** none confirmed. Working hypothesis: plot lookups on a spreadsheet `[Inferred]`.
+**Top Pain:** none confirmed. Working hypothesis: plot lookups on a spreadsheet `[Inferred]`.
 
 **Step 4.** Question bank, top three per phase:
 
@@ -686,11 +686,11 @@ report_path: none (inline)
 
 **Step 5.** Qualification pre-fill:
 
-- **Economic buyer: green.** Arlen Biggs signs under $25K `[CRM]`.
-- **Identified pain: red.** None confirmed.
-- **Metrics: red.** No figures.
-- **Decision process: yellow.** The GM signs, and nothing further is recorded `[CRM]`. Question: "Who else looks at a tool before you sign?"
-- **Champion: red.** None identified `[Unknown]`.
+- **Economic Buyer: Green.** Arlen Biggs signs under $25K `[CRM]`.
+- **Identified Pain: Red.** None confirmed.
+- **Metrics: Red.** No figures.
+- **Decision Process: Yellow.** The GM signs, and nothing further is recorded `[CRM]`. Question: "Who else looks at a tool before you sign?"
+- **Champion: Red.** None identified `[Unknown]`.
 
 **Step 6.** Incumbent: none named in the record `[Unknown]`. Probes, as questions: "Where does the plot map live today, and when was it last updated?" and "When does your software contract renew, and what did the last quote include for support?"
 
@@ -717,7 +717,7 @@ next_action: the rep on the Thursday call confirms the form filler and runs disc
 report_path: none (inline)
 ```
 
-### Example 3: Shallow Discovery Holds the Demo (Greyfield Memorial Park)
+### Example 3: Shallow Discovery Holds The Demo (Greyfield Memorial Park)
 
 **Context:** Greyfield Memorial Park has one site, 9,000 plots, a digital map from Stonemark, and a renewal in January 2027 `[CRM]` (profile: Example Cast). It runs a pre-need team of three, with an intake form on its website `[Public: company website]`. This prep is written on 2026-11-16. The pre-need manager replied to Email 1 on 2026-11-03 `[CRM]` (illustrative), and Owen Pruitt became the AE owner that day `[CRM]` (illustrative). Owen held one discovery call with the account on 2026-11-09 `[Call, 2026-11-09]` (illustrative). The call named the January 2027 renewal and confirmed no pain. No contact names are on file `[Unknown]`. The verdict is GREENLIGHT, with Zones 2 and 3 HIGH. The account is ACTIVE at Stage 2 Discovery `[CRM]` (illustrative). An AE has a demo on the calendar for Friday 2026-11-20 with the general manager and the pre-need manager, both unnamed.
 
@@ -733,7 +733,7 @@ Because the record is shallow, the sheet names the missing items and returns the
 
 **Step 1.** Attendees:
 
-| Name | Title | Buying role |
+| Name | Title | Buying Role |
 |------|-------|-------------|
 | `[Unknown]` | General Manager | Buyer persona. The role is `[Unknown]` until discovery names it |
 | `[Unknown]` | Pre-Need Sales Manager | `[Unknown]`. The profile lists this persona as champion, which is a default for the persona, not a finding about this account |
@@ -750,13 +750,13 @@ Because the record is shallow, the sheet names the missing items and returns the
 - "How do you check, today, which plots are sold?"
 - Need-Payoff: "Most operators take 24 hours or more to call back a pre-need lead. Is that your experience?" The 24-hour figure in (profile: Value Propositions) is a research target, not a customer result, so the question states it as the research's view. "If a pre-need lead waited a day, what would that cost the counselor's sale?"
 
-**Missing items, named on the sheet:**
+**Missing Items, Named On The Sheet:**
 
 - Two confirmed pains (0 of 2).
 - One quantified impact (0 of 1).
 - A named buyer (the GM's name is `[Unknown]`).
 
-**The choice belongs to the AE:**
+**The Choice Belongs To The AE:**
 
 - **(a)** Run discovery prep for Friday's meeting. The sheet asks about the intake and the records process, and it names the January 2027 renewal as the timing fact.
 - **(b)** Keep the demo, and open with five to ten minutes of the two questions above.
@@ -780,7 +780,7 @@ next_action: the AE confirms discovery or demo with the GM and asks for the pre-
 report_path: none (inline)
 ```
 
-### Example 4: Quick Call Prep for a Champion (Quill Hollow Memorial Park)
+### Example 4: Quick Call Prep For A Champion (Quill Hollow Memorial Park)
 
 **Context:** Ines Carmody, general manager of Quill Hollow Memorial Park, moved here six months ago from Lowmoor Memorial Gardens. She carries the champion label `[CRM]`. Her Champion Test reads Developing, one of seven behaviours met: she commits to next steps with dates, through the call she booked `[CRM]` (illustrative). The other six are not on record, so she is not Strong. Ines Carmody replied to Email 1 on 2026-10-27 and booked a call for 2026-11-02 `[CRM]` (illustrative). Under What The Close Reads her reply was due 2026-10-29, the next business day after the 2026-10-28 run in Account Snapshot (02) Example 5. The records do not say whether it went out, so this prep does not assume it did. Quill Hollow is an ENGAGED account, with no open deal: Ines Carmody has replied, and that reply is the basis for this call. It has a GREENLIGHT verdict (illustrative). It has one site, 8,800 plots and paper plat maps `[CRM]`. This prep is written on 2026-11-02, and the discovery call is in 15 minutes.
 
@@ -790,9 +790,9 @@ report_path: none (inline)
 
 **Step 3.** Pain hypotheses, ranked:
 
-1. **Unsold plots on paper plat maps.** `[Inferred]`. The site holds 8,800 plots on paper plat maps `[CRM]`. The gap is reasoned, not measured. Top pain.
-2. **A records finding in the last state review.** `[CRM]` for the fact, with its date `[Unknown]`. It ranks below the inferred pain because an undated finding cannot be the hook. It stays a discovery question only (illustrative).
-3. **Pre-need leads.** `[Unknown]`. No pre-need activity is recorded.
+1. **Unsold Plots On Paper Plat Maps.** `[Inferred]`. The site holds 8,800 plots on paper plat maps `[CRM]`. The gap is reasoned, not measured. Top pain.
+2. **A Records Finding In The Last State Review.** `[CRM]` for the fact, with its date `[Unknown]`. It ranks below the inferred pain because an undated finding cannot be the hook. It stays a discovery question only (illustrative).
+3. **Pre-Need Leads.** `[Unknown]`. No pre-need activity is recorded.
 
 **Step 8.** Opener: "Ines, thanks for making the time, and for writing back on October 27. Before we go further, how are the plot records kept at Quill Hollow today?" Do not reference the Lowmoor history unless she raises it. The open names her reply, because the account is ENGAGED.
 
@@ -833,7 +833,7 @@ report_path: none (inline)
 **When:** The user says "quick prep" or "calling in 5 minutes."
 **Approach:** Skip the file option (see the Output Contract). Deliver Steps 1 to 4, and Steps 8 and 9, in short form. Speed over completeness.
 
-### Pattern: Discovery-to-Demo Handoff
+### Pattern: Discovery-To-Demo Handoff
 **When:** The user ran discovery prep earlier and now requests demo prep for the same account.
 **Approach:** Read the earlier `prep_sheet` and the findings from the CRM, which the discovery call populated. Rank the confirmed pains. Check the prerequisite. Flag any discovery gap in the demo opening, and send the rep back to the question bank for it.
 
@@ -849,43 +849,43 @@ report_path: none (inline)
 
 ## Troubleshooting
 
-### "No CRM data is available for this account"
-- **Likely cause:** No record exists, or the record is empty.
+### "No CRM Data Is Available For This Account"
+- **Likely Cause:** No record exists, or the record is empty.
 - **Response:** Proceed with web research, tagged `[Public: source]`, and note "No existing CRM record" on the sheet. For discovery, build hypotheses from the profile's pains and tag them `[Inferred]`. For a demo, do not build a plan. Run the prerequisite fail path.
 
-### "Discovery was shallow: not enough confirmed pains for a demo"
-- **Likely cause:** Fewer than two pains are confirmed, or none is quantified.
+### "Discovery Was Shallow: Not Enough Confirmed Pains For A Demo"
+- **Likely Cause:** Fewer than two pains are confirmed, or none is quantified.
 - **Response:** Name the missing items on the sheet, one line each, with the count held against the count needed. Send the rep back to the question bank in Step 4. Offer the two options: discovery prep for the meeting, or five to ten minutes of discovery questions in the demo opening. Do not build a demo plan on the shallow record.
 
-### "The meeting type is unclear"
-- **Likely cause:** The request could mean either type.
+### "The Meeting Type Is Unclear"
+- **Likely Cause:** The request could mean either type.
 - **Response:** Ask: "Is this a discovery call or a demo?" If the answer is "a bit of both," use discovery, with a brief product overview section.
 
-### "The prospect has been through several discovery calls"
-- **Likely cause:** The conversation has covered the same ground more than once.
+### "The Prospect Has Been Through Several Discovery Calls"
+- **Likely Cause:** The conversation has covered the same ground more than once.
 - **Response:** Focus on what is new. Pull the full history (Step 2) and identify the gap between what has been discussed and what the decision needs. The prep should advance the deal, not repeat earlier calls.
 
-### "The Meeting Prep section of the profile is missing"
-- **Likely cause:** The sales-layer section was never written.
+### "The Meeting Prep Section Of The Profile Is Missing"
+- **Likely Cause:** The sales-layer section was never written.
 - **Response:** Say so once at the start. Run uncustomized. Mark the vocabulary, the persona-proof map and the demo reframe as generic on the sheet, and suggest the CUSTOMIZE interview.
 
-### "Every proof point for a persona is Illustrative"
-- **Likely cause:** The profile has no Verified or Benchmark row for that persona yet.
+### "Every Proof Point For A Persona Is Illustrative"
+- **Likely Cause:** The profile has no Verified or Benchmark row for that persona yet.
 - **Response:** Say so on the sheet. Use the research target or a Benchmark with its source and date. Never use the Illustrative row with a prospect.
 
-### "The business impact cell is blank"
-- **Likely cause:** Neither the profile nor the call holds a figure.
+### "The Business Impact Cell Is Blank"
+- **Likely Cause:** Neither the profile nor the call holds a figure.
 - **Response:** Write `[Unknown]`. Make the question that finds it the sheet's next question to ask on the call.
 
 ---
 
 ## Best Practices
 
-- **Customize the scripts:** reference the specific pains, the contact names and the meeting context. A generic script gets a generic answer.
-- **Match proof to attendees:** one proof point per persona, with its Status. A CFO does not need the story an operations manager needs.
-- **Prepare resistance before it happens:** type it as Reactance, Skepticism or Inertia, so the response fits the signal.
-- **Keep the talk-time band visible:** the call flow shows the shared band for the call type, or the profile's override. Talk time is the coaching metric, so the number on the sheet should be the one the team coaches to.
-- **Keep the sheet to one page:** the sheet is read in the two minutes before the call connects. Anything cut from it moves to the Deal Pulse (08) or Stakeholder Mapping (10) notes, not to a second page.
+- **Customize The Scripts:** reference the specific pains, the contact names and the meeting context. A generic script gets a generic answer.
+- **Match Proof To Attendees:** one proof point per persona, with its Status. A CFO does not need the story an operations manager needs.
+- **Prepare Resistance Before It Happens:** type it as Reactance, Skepticism or Inertia, so the response fits the signal.
+- **Keep The Talk-Time Band Visible:** the call flow shows the shared band for the call type, or the profile's override. Talk time is the coaching metric, so the number on the sheet should be the one the team coaches to.
+- **Keep The Sheet To One Page:** the sheet is read in the two minutes before the call connects. Anything cut from it moves to the Deal Pulse (08) or Stakeholder Mapping (10) notes, not to a second page.
 
 ---
 
@@ -906,10 +906,10 @@ report_path: none (inline)
 
 **Hands to the skills after it, by field name.**
 
-- **Daily Prospecting (07) and Call Coaching (13):** `prep_sheet`, `top_pain`, `question_bank`, `attendees` (with buying role), `proof_point`. Call Coaching grades the call against `question_bank` and `top_pain`.
+- **Daily Prospecting (07) And Call Coaching (13):** `prep_sheet`, `top_pain`, `question_bank`, `attendees` (with buying role), `proof_point`. Call Coaching grades the call against `question_bank` and `top_pain`.
 - **Wrap-Up (O10):** `report_path` (set only when a file was written), `next_action` (owner and date).
 
-**Related skills to run after the call:** Call Coaching (13) to grade the call, and Deal Pulse (08) to update the deal health with what the call showed.
+**Related Skills To Run After The Call:** Call Coaching (13) to grade the call, and Deal Pulse (08) to update the deal health with what the call showed.
 
 ### Chains
 

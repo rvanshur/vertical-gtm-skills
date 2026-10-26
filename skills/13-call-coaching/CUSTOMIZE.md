@@ -51,9 +51,9 @@ Start with question 1.
 
 ## What You Should Expect To Happen
 
-**Question 4 stalls** when nobody has measured what a won call looks like on talk time. The starting shares are a calibration point, not a verdict. Keep them until ten won calls give you your own.
+**Question 4 Stalls** when nobody has measured what a won call looks like on talk time. The starting shares are a calibration point, not a verdict. Keep them until ten won calls give you your own.
 
-**Question 6 stalls** when nobody has agreed what an A call sounds like. Every manager grades from taste, which is the inconsistency this skill removes. Answer it even roughly.
+**Question 6 Stalls** when nobody has agreed what an A call sounds like. Every manager grades from taste, which is the inconsistency this skill removes. Answer it even roughly.
 
 Both stalls point at the same missing thing: a profile. The skill is a procedure. It needs to know which phrases your buyers use, how your team names its categories and what your won calls look like. That is what `profiles/client-profile.md` is for. Build it once and every skill in the suite inherits it.
 

@@ -436,7 +436,7 @@ Analyze how the customer handles each process today. Pull from the discovery not
 - Team hours spent per week
 - Known error rates or quality gaps
 
-**Capture volume baselines** for the post-implementation success measure:
+**Capture Volume Baselines** for the post-implementation success measure:
 - Units processed per month
 - Average processing time per unit
 - Team hours spent on admin per week

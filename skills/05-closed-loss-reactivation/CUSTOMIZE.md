@@ -59,9 +59,9 @@ Start with question 1.
 
 ---
 
-## What You Should Expect to Happen
+## What You Should Expect To Happen
 
-**Question 1 stalls almost universally.** Loss reasons in the CRM are recorded at the moment of
+**Question 1 Stalls Almost Universally.** Loss reasons in the CRM are recorded at the moment of
 giving up, by the person most motivated to call it "price." If your loss data is one-word fields,
 the classification step has nothing true to classify. That finding is worth more than any
 sequence this skill generates.

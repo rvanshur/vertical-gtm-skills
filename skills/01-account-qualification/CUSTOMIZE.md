@@ -40,7 +40,7 @@ Start with question 1.
 
 ---
 
-## What You Should Expect to Happen
+## What You Should Expect To Happen
 
 Most operators answer question 1 from memory and stall on questions 2 and 4. **Question 2 stalls** when there is no loss record to reason from, because bad-fit deals get remembered as bad luck. **Question 4 stalls** when the ICP was written by consensus, so every criterion weighs the same and none of them decide anything.
 
@@ -65,6 +65,6 @@ A cell left in brackets means the fact is unknown. An unknown fact makes the cri
 
 ---
 
-## If You Want to Add a Ninth Criterion
+## If You Want To Add A Ninth Criterion
 
 Don't. Eight weighted criteria is already at the edge of what a scorer can keep honest, and every added criterion dilutes the weights of the ones that decide. If a new fact matters, ask which existing criterion it is evidence for, and fold it in there.

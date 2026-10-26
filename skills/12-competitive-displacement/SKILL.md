@@ -283,9 +283,9 @@ The profile's Buyer Personas table sets the options. The template row names a pr
 
 ### Settled Judgments
 
-- **Wishes the Incumbent Does Not Cover.** A stated wish that the incumbent does not meet, such as pre-need on the same system, counts as known pain with the incumbent, tagged to the source that states it.
+- **Wishes The Incumbent Does Not Cover.** A stated wish that the incumbent does not meet, such as pre-need on the same system, counts as known pain with the incumbent, tagged to the source that states it.
 - **Month-Only Renewals.** A renewal known only to its month is tested from the first day of that month. That month also fixes the end of the term, so the term is not unknown: the rating follows the three tests, and an exit fee that is not on record does not raise it.
-- **Old Research in Email.** A research figure dated more than 90 days before the run date does not appear in an email, even with its source named. The report keeps it as a research estimate. Email 1 then uses the industry trend without a figure, with its question carrying the point, unless a figure dated within 90 days of the run date is on record.
+- **Old Research In Email.** A research figure dated more than 90 days before the run date does not appear in an email, even with its source named. The report keeps it as a research estimate. Email 1 then uses the industry trend without a figure, with its question carrying the point, unless a figure dated within 90 days of the run date is on record.
 - **Email 4 Timing.** When the renewal month is on record, Email 4 confirms it and makes the renewal the reason to look now, as the Contract Renewal Window pattern says. The question in Email 4 is used only when no renewal month is on record.
 - **Best Discovery Question.** A persona's best discovery question is the template question about that persona's own pain. A persona with no such question uses the template's first question.
 - **Roadmap Figures.** A figure from the profile's roadmap, such as weeks to go-live, is PlotIQ's plan and not a sourced number. It appears in the report as the plan and never in an email.
@@ -334,14 +334,14 @@ If the user is a BDR and the account is ACTIVE with an AE owner, stop. Produce t
 
 ### Step 1: Identify The Incumbent And Gather Context
 
-#### 1a. Confirm Inputs
+#### 1A. Confirm Inputs
 - Company name
 - Known incumbent, or "suspected manual process"
 - How it is known (CRM note, prospect statement, job posting, conference conversation)
 - Any known pain with the incumbent, with its source
 - Confidence in the incumbent identification (HIGH, MEDIUM or LOW), by the Confidence rule below
 
-#### 1b. Search The CRM
+#### 1B. Search The CRM
 Pull the account record, deal stage, owner, contacts, BDR owner, engagement history, previous outcomes, and any note that names a vendor or competitor.
 
 **Key Extraction Targets:**
@@ -351,10 +351,10 @@ Pull the account record, deal stage, owner, contacts, BDR owner, engagement hist
 - Contract timing. Renewal dates and term lengths
 - Pain signals about the current tools
 
-#### 1c. Classify The Incumbent
+#### 1C. Classify The Incumbent
 Use `{Client Profile: Competitive Landscape}` to file the incumbent under the type the Shared Contract lists. Record the type as the profile names it.
 
-#### 1d. Assess Displacement Readiness
+#### 1D. Assess Displacement Readiness
 Rate the account's readiness for displacement. Every cell that is not in the record is `[Unknown]`, never a no.
 
 | Signal | Assessment |
@@ -367,7 +367,7 @@ Rate the account's readiness for displacement. Every cell that is not in the rec
 
 A champion is `Partial` only when a named contact shows some champion behavior with a tag. A contact who is not named is `[Unknown]`, never `Partial`.
 
-#### 1e. Rate The Displacement Difficulty
+#### 1E. Rate The Displacement Difficulty
 Run the three tests in Methodology against the contract facts from 1d, and record the rating, the test that set it, and the tag on the contract fact.
 
 **Produces:** `incumbent_type`, the confidence level, the readiness table, and `displacement_difficulty` with its test. Step 1 comes before Step 2 because the template row depends on the type, and the difficulty depends on the contract facts gathered here.
@@ -418,15 +418,15 @@ Pick the persona rows from Methodology, then draft each sequence in the structur
 
 ## Epistemic Rules
 
-- **Every count and rate carries its n.** Write "N of M persona rows" and "N of M template personas", never a bare number.
-- **One evidence tag set.** Facts use the six tags from the Shared Contract. A competitive claim may go into an email only when it carries `[CRM]`, `[Call]` or `[Public: source]`. An `[Inferred]` claim feeds discovery questions and hypotheses. An `[Unknown]` claim is a discovery target.
+- **Every Count And Rate Carries Its N.** Write "N of M persona rows" and "N of M template personas", never a bare number.
+- **One Evidence Tag Set.** Facts use the six tags from the Shared Contract. A competitive claim may go into an email only when it carries `[CRM]`, `[Call]` or `[Public: source]`. An `[Inferred]` claim feeds discovery questions and hypotheses. An `[Unknown]` claim is a discovery target.
 - **Every number in an email has a named, dated source, or it is removed.** One good example: "Cemeteries of this kind often carry [figure] plots that are sold on paper and unsold on the map ([named report and date, within 90 days of the run date], Benchmark)." That sentence stays, because its source is named, dated and recent enough to use. The version "Most cemeteries lose a third of their plots to paperwork" has no source, so the figure and the sentence come out, and the email asks the question instead: "How many plots could you sell today if the records were right?"
-- **An illustrative figure never goes into an email.** A figure an example marks (illustrative) is shown in the report and stays out of every email, because Hard Rule 2 accepts only a named, dated source.
-- **Failure patterns need the buyer's own words.** A failure pattern used in outbound traces to a won-away customer who said it, with its tag. A pattern drawn across accounts needs five cases behind it. Fewer than five is an observation, and the report says so in the same sentence.
+- **An Illustrative Figure Never Goes Into An Email.** A figure an example marks (illustrative) is shown in the report and stays out of every email, because Hard Rule 2 accepts only a named, dated source.
+- **Failure Patterns Need The Buyer's Own Words.** A failure pattern used in outbound traces to a won-away customer who said it, with its tag. A pattern drawn across accounts needs five cases behind it. Fewer than five is an observation, and the report says so in the same sentence.
 - **Silence Is Not A No.** A blank CRM field is `[Unknown]`. An unknown contract term sets the difficulty to High, and it never sets it to Low.
-- **Never fabricate a competitor weakness.** If the intelligence for an incumbent is thin, say so, and use positioning tagged `[Inferred]` that rests on the category pattern.
-- **Difficulty ratings are directional.** A Low rating means the positioning is favorable. It does not mean the deal is easy.
-- **Research older than 90 days.** A research citation dated more than 90 days before the run date is flagged in its citation as over 90 days old at the run date, and it is used only as a research estimate, never as a benchmark and never in an email (Old Research in Email, under Settled Judgments).
+- **Never Fabricate A Competitor Weakness.** If the intelligence for an incumbent is thin, say so, and use positioning tagged `[Inferred]` that rests on the category pattern.
+- **Difficulty Ratings Are Directional.** A Low rating means the positioning is favorable. It does not mean the deal is easy.
+- **Research Older Than 90 Days.** A research citation dated more than 90 days before the run date is flagged in its citation as over 90 days old at the run date, and it is used only as a research estimate, never as a benchmark and never in an email (Old Research in Email, under Settled Judgments).
 
 ### Confidence
 
@@ -440,12 +440,12 @@ Confidence applies to the incumbent identification, and it decides whether displ
 
 ## Hard Rules
 
-1. **The BDR guard.** A BDR never gets sequences on an account that is ACTIVE with an AE owner, unless that AE has said yes. The analysis goes to the AE, who decides how to use it. Reason: two people writing to one buyer costs the deal, and the buyer cannot tell which of the two is the account owner. An account pending AE assignment is not ACTIVE. It is worked, and the output says it is pending.
+1. **The BDR Guard.** A BDR never gets sequences on an account that is ACTIVE with an AE owner, unless that AE has said yes. The analysis goes to the AE, who decides how to use it. Reason: two people writing to one buyer costs the deal, and the buyer cannot tell which of the two is the account owner. An account pending AE assignment is not ACTIVE. It is worked, and the output says it is pending.
 2. **A number in an email has a named, dated source, or it comes out.** Reason: a figure the buyer can ask about, with nothing behind it, identifies the sender as a guesser, and the buyer uses the incumbent every day, so a wrong figure is caught.
 3. **A competitive claim in an email carries `[CRM]`, `[Call]` or `[Public: source]`.** Reason: an `[Inferred]` claim is reasoned, and an `[Unknown]` claim is missing. Neither is evidence the buyer can check.
 4. **A proof point with Status Illustrative never appears in an email or a talk track.** Reason: Illustrative means invented for an example. Citing it to a prospect is a false claim. Verified is the only Status that may be cited as a customer result, and Benchmark may be cited only with its source named.
-5. **Never name the competitor in a subject line.** Reason: it reads as an attack, and it is the most common trigger for spam filters.
-6. **Never attack the competitor or the prospect's choice.** Reason: the prospect chose the current tool for reasons, and a sequence that mocks the choice makes the buyer defend it.
+5. **Never Name The Competitor In A Subject Line.** Reason: it reads as an attack, and it is the most common trigger for spam filters.
+6. **Never Attack The Competitor Or The Prospect's Choice.** Reason: the prospect chose the current tool for reasons, and a sequence that mocks the choice makes the buyer defend it.
 7. **Never use the same displacement angle twice in one sequence.** Reason: each email must give the buyer a new reason to reply, and a repeated angle reads as a reminder rather than news.
 8. **Never send, never enroll a contact, never write to the CRM.** Reason: the rep owns the outreach and the record. The Shared Contract states this for every skill, and this skill keeps it in the same words.
 9. **Never draft a cold displacement sequence for an ENGAGED account.** Reason: the buyer has already replied, so a first-touch sequence asks the buyer to start over and ignores the reply.
@@ -490,14 +490,14 @@ Three worked examples on the PlotIQ cast and the chain file. They show a success
 
 **Step 1. Identify The Incumbent:** Stonemark, direct software. How we know: the account's CRM note names Stonemark as its map vendor `[CRM]` (illustrative). Confidence: HIGH, because the CRM note names the incumbent.
 
-**Step 1d. Displacement Readiness:**
+**Step 1D. Displacement Readiness:**
 - Known Pain: Yes, specific. The pre-need team wants pre-need and records on one system (profile: Example Cast) (illustrative)
 - Contract Status: Expiring within 6 months. Renews January 2027 `[CRM]` (illustrative)
 - Champion: `[Unknown]`. The pre-need team lead is named nowhere, so there is no named contact to score
 - Budget Cycle: `[Unknown]`
 - Previous Evaluation Of Our Product: `[Unknown]`
 
-**Step 1e. Displacement Difficulty: Medium.**
+**Step 1E. Displacement Difficulty: Medium.**
 - Low test (no contract term to exit): not met, the account has a contract.
 - Medium test (renewal inside 180 days): met. The renewal is January 2027, 74 days from today (2026-10-19) when counted from 1 January, `[CRM]`.
 - High test (term past 180 days with an exit fee): not met on the record. The exit fee is `[Unknown]`.
@@ -586,7 +586,7 @@ next_action: Nadia Brandt finds the Pre-Need Sales Manager's name, reviews Email
 
 **Step 1. Identify The Incumbent:** Incumbent: paper maps and binders, a manual process. How we know: the CRM record holds paper plat maps `[CRM]` (illustrative). Confidence: MEDIUM, because the record is partial. No buyer has confirmed the process on a dated call, and the double sales are not yet in writing.
 
-**Step 1d. Displacement Readiness:**
+**Step 1D. Displacement Readiness:**
 - Known Pain: Suspected. The two double sales have not been counted in plots or dollars.
 - Contract Status: none `[Inferred: a manual process has no vendor contract to time against]`.
 - Champion: `[Unknown]`
@@ -594,7 +594,7 @@ next_action: Nadia Brandt finds the Pre-Need Sales Manager's name, reviews Email
 - Previous Evaluation Of Our Product: `[Unknown]`
 - Decision Path: the GM recommends, and the board approves above $25K. Its next meeting is 2027-02-10 `[CRM]`. No signer is named, so the economic buyer is `[Unknown]`.
 
-**Step 1e. Displacement Difficulty: Low.**
+**Step 1E. Displacement Difficulty: Low.**
 - Low test (no contract term to exit): met, the account has no contract to exit.
 - Medium test (renewal inside 180 days): not met, there is no renewal.
 - High test (term past 180 days with an exit fee): not met, there is no contract.
@@ -692,12 +692,12 @@ report_path: none (inline)
 
 ## Best Practices
 
-- **Lead with enablement, not criticism.** "Here is what is possible" beats "here is what is broken," because the buyer is the one who has to defend the current choice.
-- **Use proof points that match.** A customer who made the same switch is the strongest line in a sequence, if its Status is Verified.
-- **Ask gap-exposing questions.** Genuine curiosity surfaces pain better than an accusation.
-- **Address contract timing in every sequence.** Each sequence should discover or use the renewal window.
-- **Tag every claim.** A reader should be able to see which claim is `[CRM]`, `[Call]` or `[Public: source]`, and which is only a question.
-- **Personalize the gap matrix.** Connect each gap to this account's situation, not to the category.
+- **Lead With Enablement, Not Criticism.** "Here is what is possible" beats "here is what is broken," because the buyer is the one who has to defend the current choice.
+- **Use Proof Points That Match.** A customer who made the same switch is the strongest line in a sequence, if its Status is Verified.
+- **Ask Gap-Exposing Questions.** Genuine curiosity surfaces pain better than an accusation.
+- **Address Contract Timing In Every Sequence.** Each sequence should discover or use the renewal window.
+- **Tag Every Claim.** A reader should be able to see which claim is `[CRM]`, `[Call]` or `[Public: source]`, and which is only a question.
+- **Personalize The Gap Matrix.** Connect each gap to this account's situation, not to the category.
 
 ---
 

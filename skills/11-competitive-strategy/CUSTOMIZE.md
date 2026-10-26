@@ -39,7 +39,7 @@ Then produce:
 
 A. A revised "Quick Reference" written in terms of MY competitors and buyers, not generic ones.
 B. A revised "Examples" section built from the real answers I gave you, recognizable to my team but naming no individual.
-C. The section "## Competitive Patterns and Trends", with the four fields below filled from my answers, ready to paste into profiles/client-profile.md.
+C. The section "## Competitive Patterns And Trends", with the four fields below filled from my answers, ready to paste into profiles/client-profile.md.
 D. THE HONEST PART: the questions above I could not answer concretely, and what I would need to gather to answer them. Do not paper over these. An answer I guessed at is a gap, and the gap is the finding.
 
 Start with question 1.
@@ -49,7 +49,7 @@ Start with question 1.
 
 ## What You Should Expect To Happen
 
-**Question 2 stalls** because the win-loss "why" was never captured within a week of the outcome, after which it becomes folklore. **Question 3 is where honesty pays**: most gap matrices are half folklore, and a rep who repeats an unprovable gap to a well-informed buyer loses the room. **Question 6 stalls** when the team has not written down what customers said after the sale. Count what you have, even if it is one case, and label it as one case.
+**Question 2 Stalls** because the win-loss "why" was never captured within a week of the outcome, after which it becomes folklore. **Question 3 is where honesty pays**: most gap matrices are half folklore, and a rep who repeats an unprovable gap to a well-informed buyer loses the room. **Question 6 stalls** when the team has not written down what customers said after the sale. Count what you have, even if it is one case, and label it as one case.
 
 Both kinds of stall point at the same missing thing: a **context layer**. The skill is a procedure. A procedure needs to know who you sell to, what has worked, and what has already gone wrong. That is what `profiles/client-profile.md` is for. Build it once, and every skill in the suite inherits it.
 
@@ -60,7 +60,7 @@ Both kinds of stall point at the same missing thing: a **context layer**. The sk
 Add this section to `profiles/client-profile.md` once. It sits beside the Competitive Landscape section.
 
 ```markdown
-## Competitive Patterns and Trends
+## Competitive Patterns And Trends
 - **Failure patterns:** [pattern | cases counted and source | discovery question]. Fewer than five cases is marked observation.
 - **Trends:** [trend | dated source | what it means for the incumbent's customers]. A number appears only with its source named.
 - **Proof point status:** [each proof point in Proof Points, marked Verified, Benchmark or Illustrative]. Only Verified rows go into talk tracks.
@@ -69,6 +69,6 @@ Add this section to `profiles/client-profile.md` once. It sits beside the Compet
 
 ---
 
-## Evidence Tags on Every Gap-Matrix Row
+## Evidence Tags On Every Gap-Matrix Row
 
 Each gap-matrix row carries an evidence tag, which is `[CRM]`, `[Call]`, `[Notes]`, `[Public: source]`, `[Inferred]` or `[Unknown]`, or a `(profile: Section)` citation for a fact from the profile. A fact with neither is removed before it reaches a buyer. The matrix's job is not to make you feel armed. It is to keep a rep from confidently repeating something a prospect can disprove.

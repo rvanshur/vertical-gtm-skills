@@ -24,7 +24,7 @@ Every name, date and number in this file is invented for the PlotIQ example. Not
 - Walt works from paper, per Ruth's call [Call, 2026-05-19] (illustrative). Ruth's named failures of Oldgate on that call are the record of the incumbent's satisfaction (Step 2c).
 - Incumbent pitch and research: "Mature, deep accounting." Research weaknesses: $10,000 to $50,000 upfront, plus maintenance at 20% a year, poor mobile, and no AI [Public: Deathcare research project, competitive research note, 2026-03-27] (research estimate, over 90 days old at the run date).
 - Incumbent unsold-plot visibility: Oldgate shows sold records only, not what is left [Call, 2026-05-19] (illustrative).
-- Legacy on-premise pattern: "Maintenance is charged every year, and the grounds crew stays on paper work orders." 0 of 5 cases counted on record, observation only (profile: Competitive Patterns and Trends).
+- Legacy on-premise pattern: "Maintenance is charged every year, and the grounds crew stays on paper work orders." 0 of 5 cases counted on record, observation only (profile: Competitive Patterns And Trends).
 - Stonemark was also evaluated [Call, 2026-09-26]. No preference is on record [Unknown], and no criterion for comparing the two tools is on record [Unknown].
 - PlotIQ capabilities: Mobile field app (profile: Product Modules). Plot inventory digitization shows unsold plots (profile: Product Modules). Records and Trust Compliance module (profile: Product Modules).
 - PlotIQ price: $899 a month per site, plus $5,000 setup once (profile: Product Modules).

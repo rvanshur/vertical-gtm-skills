@@ -303,9 +303,9 @@ Make the Buyer Say It: "What excited you most about what you saw today?" (at clo
 ### Demo: Return On Investment Formulas
 Three formulas. Every input is blank until the buyer or the rep supplies it, with its source. **Use your own figures, no defaults.** A figure invented in front of a buyer costs more than the deal it was meant to win.
 
-- **Working capital released per year** = ____ items held × $____ value per item × ____% carrying rate, from the buyer's own finance team
-- **Labor value per year** = (____ tasks per week × ____ minutes per task today, minus ____ tasks per week × ____ minutes per task after) × 52 weeks ÷ 60 × $____ loaded hourly cost
-- **Risk reduction per year** = ____ incidents per year × $____ cost per incident × ____% reduction the change is expected to deliver
+- **Working Capital Released Per Year** = ____ items held × $____ value per item × ____% carrying rate, from the buyer's own finance team
+- **Labor Value Per Year** = (____ tasks per week × ____ minutes per task today, minus ____ tasks per week × ____ minutes per task after) × 52 weeks ÷ 60 × $____ loaded hourly cost
+- **Risk Reduction Per Year** = ____ incidents per year × $____ cost per incident × ____% reduction the change is expected to deliver
 
 Record each result in the buyer's words, tagged with its source. A formula with a blank input is not reported as a result.
 
@@ -614,7 +614,7 @@ For each MEDDIC element, assess what was uncovered on this call:
 | Identified Pain | Specific, named, quantified pain? | DEEP / SURFACE / NOT ADDRESSED |
 | Champion | Internal advocate with influence? | STRONG / DEVELOPING / NONE |
 
-**Champion status** is graded with the shared champion tests in The Shared Contract. Count only the tests met on this call, each with its evidence and tag. A contact who was not in the room cannot meet the tests that need the room, and the report says so. A statement about the buyer's process counts as "explains the internal politics" only when it names who decides or how the decision moves. A statement that names no one does not count. The test "shares competitor intelligence" is met as The Shared Contract defines it (see Champion Tests, One List), and this step applies that one definition to the incumbent the contact describes.
+**Champion Status** is graded with the shared champion tests in The Shared Contract. Count only the tests met on this call, each with its evidence and tag. A contact who was not in the room cannot meet the tests that need the room, and the report says so. A statement about the buyer's process counts as "explains the internal politics" only when it names who decides or how the decision moves. A statement that names no one does not count. The test "shares competitor intelligence" is met as The Shared Contract defines it (see Champion Tests, One List), and this step applies that one definition to the incumbent the contact describes.
 
 **Produces:** the six-element coverage grid and the champion status (Strong, Developing or None) with the tests met on this call.
 
@@ -973,7 +973,7 @@ Assessment: Poor, in the 10 to 17 band of the demo scale (feature touring or mon
 **Per-Attendee Blocks:**
 
 - **Attendee: Walt Okonkwo, Operations Director.** Buying role: influencer (`[CRM]`). Pain they own: paper work orders, and finding the plot in seconds (profile: Buyer Personas). Question they asked: two questions, both about tablets, and no question about the plot lookup (`[Call, 2026-08-20]`). What they need to see: the plot found in seconds, on their own records. Engagement: active on the tablet question, silent on the lookup.
-- **Attendee: two operations staff, names `[Unknown]`.** Buying role: `[Unknown]`. Pain they own: `[Unknown]`. The transcript does not label them, so their engagement is Unknown.
+- **Attendee: Two Operations Staff, Names `[Unknown]`.** Buying role: `[Unknown]`. Pain they own: `[Unknown]`. The transcript does not label them, so their engagement is Unknown.
 
 **Technical Checklist:**
 
@@ -1064,17 +1064,17 @@ report_path: none (inline)
 ## Best Practices
 
 ### Do's
-- **Quote or paraphrase specific moments**: "At 12:30, when the prospect said X, the rep should have..."
-- **Reference exact frameworks**: "Use Priority Ladder Stage 3," not "ask better questions"
-- **Balance praise and improvement**: 3 strengths plus 3 improvements minimum
-- **Make coaching actionable**: include specific language the rep can practice
-- **Grade every point**: a quote with its time, or Moderate or Weak with the reason
+- **Quote Or Paraphrase Specific Moments**: "At 12:30, when the prospect said X, the rep should have..."
+- **Reference Exact Frameworks**: "Use Priority Ladder Stage 3," not "ask better questions"
+- **Balance Praise And Improvement**: 3 strengths plus 3 improvements minimum
+- **Make Coaching Actionable**: include specific language the rep can practice
+- **Grade Every Point**: a quote with its time, or Moderate or Weak with the reason
 
 ### Do Not's
-- **Do not score without evidence**: "seemed good" is not a score justification
-- **Do not give generic advice**: every recommendation must tie to a specific framework
-- **Do not coach on everything at once**: pick the #1 focus area for the next call
-- **Do not skip the game plan**: coaching without a practice plan does not change behavior
+- **Do Not Score Without Evidence**: "seemed good" is not a score justification
+- **Do Not Give Generic Advice**: every recommendation must tie to a specific framework
+- **Do Not Coach On Everything At Once**: pick the #1 focus area for the next call
+- **Do Not Skip The Game Plan**: coaching without a practice plan does not change behavior
 
 ---
 

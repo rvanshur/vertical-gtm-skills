@@ -7,17 +7,17 @@
 
 ---
 
-## How to Use This Template
+## How To Use This Template
 
-1. **Copy this template** to `profiles/client-profile.md` (keep the template itself untouched).
-2. **Fill out the sections below** with your company's actual data. None should run longer than a page.
-3. **Write in operator voice, not marketing voice.** A skill can't score an account against "innovative".
-4. **Refine over time.** After running a few skills you'll spot gaps. Add the missing data, and every skill picks up the change on its next run.
+1. **Copy This Template** to `profiles/client-profile.md` (keep the template itself untouched).
+2. **Fill Out The Sections Below** with your company's actual data. None should run longer than a page.
+3. **Write In Operator Voice, Not Marketing Voice.** A skill can't score an account against "innovative".
+4. **Refine Over Time.** After running a few skills you'll spot gaps. Add the missing data, and every skill picks up the change on its next run.
 5. **Write `[RECORD]` where you have no data yet, never a guess.** A field marked `[RECORD]` tells every skill the team has not recorded that fact, so the skill treats it as unknown and says so in its output instead of scoring against an invented value. Fill it in from a real deal, a real call or a dated source when one exists. The PlotIQ example carries `[RECORD]` in its deal-history sections on purpose, because an invented company has no won deals to draw from.
 
 A completed example lives at [`profiles/examples/plotiq-example.md`](examples/plotiq-example.md): PlotIQ, the made-up software company for cemeteries and funeral homes that every worked example in the library uses.
 
-**Short on time?** Fill **ICP Definitions** and **Competitive Landscape** first. Between them they feed 13 of the 14 sales skills. The full map of which section feeds which skill is in [`docs/customization.md`](../docs/customization.md#which-profile-sections-feed-which-skills).
+**Short On Time?** Fill **ICP Definitions** and **Competitive Landscape** first. Between them they feed 13 of the 14 sales skills. The full map of which section feeds which skill is in [`docs/customization.md`](../docs/customization.md#which-profile-sections-feed-which-skills).
 
 ### Quality Matters Here
 
@@ -104,12 +104,12 @@ The three to five roles you actually sell to. For each, include what they care a
 ### Persona Detail (repeat for each)
 
 **Persona: [Title]**
-- **Also known as:** [Alternative titles for the same role]
-- **What they own:** [Budget, process, team, metric]
-- **What keeps them up at night:** _______________
-- **How they measure success:** _______________
-- **Objections you'll hear:** _______________
-- **Language they use:** [Direct quotes from calls if you have them]
+- **Also Known As:** [Alternative titles for the same role]
+- **What They Own:** [Budget, process, team, metric]
+- **What Keeps Them Up At Night:** _______________
+- **How They Measure Success:** _______________
+- **Objections You'll Hear:** _______________
+- **Language They Use:** [Direct quotes from calls if you have them]
 
 ---
 
@@ -117,7 +117,7 @@ The three to five roles you actually sell to. For each, include what they care a
 
 Your top three to five pain points in order of severity, **in your buyer's words, not yours**.
 
-| # | Pain Point | What to Listen For | Business Impact | Frequency | Discovery question |
+| # | Pain Point | What To Listen For | Business Impact | Frequency | Discovery Question |
 |---|-----------|-------------------|----------------|-----------|--------------------|
 | 1 | ___ | [Exact words/phrases from prospects] | [Quantified if possible] | [How often this comes up] | [The open question that surfaces this pain on a call] |
 | 2 | ___ | ___ | ___ | ___ | ___ |
@@ -147,7 +147,7 @@ Your differentiators, each with a number attached, mapped to the pains they solv
 
 What a customer actually buys, so the Sales-to-CS Handoff skill can size implementation scope. Skip this if you sell a single product with one implementation path.
 
-| Module | What it does | Implementation weight |
+| Module | What It Does | Implementation Weight |
 |---|---|---|
 | ___ | ___ | [Light / Medium / Heavy, and what it depends on] |
 | ___ | ___ | ___ |
@@ -161,15 +161,15 @@ Named competitors and where they break down. This is the section teams flinch at
 
 Every competitor or incumbent is filed under one of seven types, which Competitive Strategy (11) and Competitive Displacement (12) use as their starting list. Rename the types for your market if you need to, but keep seven, one per row:
 
-1. **Direct software** (a product that does what yours does)
-2. **A single-function tool** (does one part of the job well)
-3. **A service bureau** (an outside firm does the work for a fee)
-4. **A manual process** (spreadsheets, paper, memory)
-5. **No program at all** (nobody owns the job today)
-6. **Outside professionals** (an accountant, a lawyer, a consultant)
-7. **An adjacent tool** (software bought for a neighbouring job, stretched to cover this one)
+1. **Direct Software** (a product that does what yours does)
+2. **A Single-Function Tool** (does one part of the job well)
+3. **A Service Bureau** (an outside firm does the work for a fee)
+4. **A Manual Process** (spreadsheets, paper, memory)
+5. **No Program At All** (nobody owns the job today)
+6. **Outside Professionals** (an accountant, a lawyer, a consultant)
+7. **An Adjacent Tool** (software bought for a neighbouring job, stretched to cover this one)
 
-| Competitor | Type | Their Pitch | Your Advantage | Their Weakness | Pain reported after 6 to 12 months (with source) | Proof that answers it |
+| Competitor | Type | Their Pitch | Your Advantage | Their Weakness | Pain Reported After 6 To 12 Months (with source) | Proof That Answers It |
 |-----------|------|------------|---------------|----------------|-------------------------------------------------|----------------------|
 | ___ | [One of the seven] | ___ | ___ | ___ | [What their customers say a year in, and where you heard it] | [A row from Proof Points] |
 | ___ | ___ | ___ | ___ | ___ | ___ | ___ |
@@ -194,7 +194,7 @@ The triggers and signals that qualify an account, and your disqualifiers.
 
 Events that create urgency or openness to buying:
 
-| Trigger | Signal Source | Urgency Window | Persona who acts | Which Skill to Use |
+| Trigger | Signal Source | Urgency Window | Persona Who Acts | Which Skill To Use |
 |---------|-------------|---------------|------------------|-------------------|
 | New executive (CXO) | LinkedIn, news | 30-90 days | [The persona who owns the response, from Buyer Personas] | Trigger Event Outbound (04) |
 | M&A / PE acquisition | News, SEC filings | 60-120 days | ___ | Trigger Event Outbound (04) |
@@ -245,7 +245,7 @@ follow what is written here.
 
 Named customers with specific metrics, matched to the personas and segments they resonate with. These get embedded into outbound sequences, meeting prep and battlecards.
 
-| Customer | Key Metric | Segment | Displaced vendor | Use When | Status |
+| Customer | Key Metric | Segment | Displaced Vendor | Use When | Status |
 |----------|-----------|---------|------------------|----------|--------|
 | ___ | [A specific number, e.g. "212 unsold plots found in 90 days"] | [SMB/MM/Ent] | [The incumbent this customer left, one of the seven types in Competitive Landscape, or "none" for an industry row, or [Unknown]] | [Scenario where this proof point lands best] | [Verified / Benchmark / Illustrative] |
 | ___ | ___ | ___ | ___ | ___ |
@@ -272,7 +272,7 @@ The frameworks your team runs, listed by stage. Meeting Prep, MEDDPICC Analysis 
 - [ ] **Command of the Message** (Value Framework)
 - [ ] **Other:** _______________
 
-**Talk-time targets (optional):** the sales skills start from rep talk time of 30% to 40% on discovery, 50% to 60% on demos, 40% to 50% in negotiation, 35% to 45% on follow-ups and 30% to 40% with executives. Write your own bands here, from your won calls, and Meeting Prep (06) and Call Coaching (13) use yours instead.
+**Talk-Time Targets (optional):** the sales skills start from rep talk time of 30% to 40% on discovery, 50% to 60% on demos, 40% to 50% in negotiation, 35% to 45% on follow-ups and 30% to 40% with executives. Write your own bands here, from your won calls, and Meeting Prep (06) and Call Coaching (13) use yours instead.
 
 ### Qualification Stage Gates
 
@@ -295,7 +295,7 @@ Then define what "qualified" means at each gate:
 
 Each of the 14 sales skills in `skills/` reads one extra section of its own, which that skill's `CUSTOMIZE.md` interview writes for you. The skill names the section in its Context table, and the interview writes exactly that section, so the two never disagree.
 
-| Section | Written by the interview of | Read by |
+| Section | Written By The Interview Of | Read By |
 |---|---|---|
 | Fit Grid | 01 Account Qualification | 01, 07 Daily Prospecting |
 | Outbound Voice | 02 Account Snapshot | 02 |
@@ -307,7 +307,7 @@ Each of the 14 sales skills in `skills/` reads one extra section of its own, whi
 | Deal Health | 08 Deal Pulse | 08 |
 | MEDDPICC | 09 MEDDPICC Analysis | 09 |
 | Buying Committee | 10 Stakeholder Mapping | 10 |
-| Competitive Patterns and Trends | 11 Competitive Strategy | 11 |
+| Competitive Patterns And Trends | 11 Competitive Strategy | 11 |
 | Displacement | 12 Competitive Displacement | 12 |
 | Call Coaching | 13 Call Coaching | 13 |
 | Implementation Profile | 14 Sales Handoff | 14 |
@@ -380,7 +380,7 @@ All fourteen have a fixed shape, so you can also fill them by hand. The first se
 - **Standing tensions:** [the political patterns to check on every deal]
 - **Available plays:** [engagement moves our team can actually run]
 
-## Competitive Patterns and Trends
+## Competitive Patterns And Trends
 - **Failure patterns:** [pattern | cases counted and source | discovery question]. Fewer than five cases is marked observation.
 - **Trends:** [trend | dated source | what it means for the incumbent's customers]. A number appears only with its source named.
 - **Proof point status:** [each proof point in Proof Points, marked Verified, Benchmark or Illustrative]. Only Verified rows go into talk tracks.

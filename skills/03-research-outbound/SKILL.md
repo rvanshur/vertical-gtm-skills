@@ -323,18 +323,18 @@ Role-aware framing:
 
 Before pulling anything, open the account's folder under `accounts/` in the Knowledge Base, if the profile has one, and offer the CRM read and, when a call recorder is connected, the call read, for the one account or date range you name. Nothing is read from the CRM or the call recorder until you say yes.
 
-#### 1a. Confirm The Inputs By Source
+#### 1A. Confirm The Inputs By Source
 
-- **10-K filing:** company name and ticker, fiscal year, filing date, and the filing text or its key sections
-- **Private company (owner letter, company site, news):** company name, the letter or page with its date, and anything known about headquarters, size and ownership
-- **Earnings call:** company name and ticker, quarter, call date, and the transcript or its key sections
+- **10-K Filing:** company name and ticker, fiscal year, filing date, and the filing text or its key sections
+- **Private Company (owner letter, company site, news):** company name, the letter or page with its date, and anything known about headquarters, size and ownership
+- **Earnings Call:** company name and ticker, quarter, call date, and the transcript or its key sections
 
-#### 1b. Check The Account Status And The Guard
+#### 1B. Check The Account Status And The Guard
 
 Read the account's status and owner from the CRM. Without a CRM, read it from the example cast (profile: Example Cast). Then apply the guard for the case that matches:
 
 - **ACTIVE with an AE owner, and the user is a BDR:** the guard fires. Write one coordination note for the AE, with the intelligence the AE can use, and stop. Write no POV brief and no sequences. Run the rest of the workflow only after the AE has said yes.
-- **Pending AE assignment:** the account is not ACTIVE. Work it, and say in the output that it is pending.
+- **Pending AE Assignment:** the account is not ACTIVE. Work it, and say in the output that it is pending.
 - **OUT:** a disqualifier applies (profile: Qualification Criteria). Carry the account to Step 3, where the verdict ends the run.
 - **LOST:** stop, and name `gtm-closed-loss-reactivation` as the right skill.
 - **ENGAGED:** the account replied or met with us, and no deal is open. The package is built as usual, but the replying persona's sequence becomes one reply draft to the open thread, answering what the account said, and not a cold four-email sequence. The report names the replying contact, so the rep checks with that person before a colleague of theirs is emailed. Reason: a cold sequence to someone who already answered reads as not listening.
@@ -441,7 +441,7 @@ Keep the brief under 500 words, skimmable, with every claim tagged.
 
 1. **Company Context** (2 to 3 bullets): what the company does, its segment, ownership and footprint
 2. **Why They Should Care** (3 to 5 bullets): how the profile connects to the product's value
-3. **Risks and Complexity Signals** (3 to 5 bullets): multi-site exposure, manual processes, growth strain
+3. **Risks And Complexity Signals** (3 to 5 bullets): multi-site exposure, manual processes, growth strain
 4. **Fit Verdict:** the verdict word, with its reasons from Step 3
 5. **POV Statement** (6 to 8 sentences): lead with the most notable fact, connect it to the complexity, state the wedge and the value proposition, and close with one ask
 
@@ -506,9 +506,9 @@ Then write the cheatsheet, then the hand-off block, which lists the fields from 
 
 The source decides the mode. The default when the source is ambiguous is Private Company, because the owner letters, company pages and news that make up most enterprise research in this profile are private-company sources.
 
-- **10-K Filing mode:** the source is a public company's annual filing. Build the Fact Bank from Items 1, 1A, 3, 7 and 9A. The filing also states the systems the company runs, so this is where a consolidator that runs its own system is found. That finding ends the run as DISQUALIFY.
-- **Private Company mode (default):** the source is an owner letter, company page, news item or licensing record. The sequences run every applicable persona for four steps.
-- **Earnings Call mode:** the source is a quarterly transcript. The relevance window is 7 to 14 days, so the timeliness banner shows the days since the call.
+- **10-K Filing Mode:** the source is a public company's annual filing. Build the Fact Bank from Items 1, 1A, 3, 7 and 9A. The filing also states the systems the company runs, so this is where a consolidator that runs its own system is found. That finding ends the run as DISQUALIFY.
+- **Private Company Mode (default):** the source is an owner letter, company page, news item or licensing record. The sequences run every applicable persona for four steps.
+- **Earnings Call Mode:** the source is a quarterly transcript. The relevance window is 7 to 14 days, so the timeliness banner shows the days since the call.
 
 No mode writes a file on its own. A file is written only when the user asks for one, and then it is named as the Output Contract says.
 
@@ -516,11 +516,11 @@ No mode writes a file on its own. A file is written only when the user asks for 
 
 ## Epistemic Rules
 
-- **n beside every rate.** Write "3 of 5 zones HIGH", never a bare ratio or a bare figure with no count behind it. A count with no n is not a finding.
-- **Five cases before a pattern.** A claim that a pattern holds across signals or personas needs five matching cases. Fewer is an observation, and it is labelled as one with its n, such as "observation, n=3".
+- **N Beside Every Rate.** Write "3 of 5 zones HIGH", never a bare ratio or a bare figure with no count behind it. A count with no n is not a finding.
+- **Five Cases Before A Pattern.** A claim that a pattern holds across signals or personas needs five matching cases. Fewer is an observation, and it is labelled as one with its n, such as "observation, n=3".
 - **Silence Is Not A No.** A zone or a signal the sources do not speak to is `[Unknown]`, and it is counted in no denominator. Blank is unknown, never negative.
-- **"No difference found" is a finding.** When a comparison shows nothing, report that. It stops a weak angle from becoming a playbook.
-- **Unsourced facts are dropped.** An industry claim with no source in the Industry Context section is removed, not kept with a caveat.
+- **"No Difference Found" Is A Finding.** When a comparison shows nothing, report that. It stops a weak angle from becoming a playbook.
+- **Unsourced Facts Are Dropped.** An industry claim with no source in the Industry Context section is removed, not kept with a caveat.
 
 ---
 
@@ -530,12 +530,12 @@ No mode writes a file on its own. A file is written only when the user asks for 
 2. **Never send, enroll a contact or write to the CRM.** The rep owns the send and the record. The skill drafts, and the rep reads before anything leaves.
 3. **Never work an ACTIVE account with an AE owner unless that AE has said yes.** Two people writing to one buyer costs the deal, and the AE's conversation is the one at risk.
 4. **Never name an Illustrative proof point in an email or a talk track.** The prospect reads it, and an illustrative result is not a real result. Only Verified or Benchmark proof points are named.
-5. **Never score a zone LOW from silence.** A blank is unknown. Scoring it LOW turns a gap into a no, and the verdict then rests on something nobody checked.
+5. **Never Score A Zone LOW From Silence.** A blank is unknown. Scoring it LOW turns a gap into a no, and the verdict then rests on something nobody checked.
 6. **Never write a wedge or a sequence for a DISQUALIFY.** The verdict is the gate. A sequence to a disqualified account spends the rep's first touch on an account that cannot buy. The one exception is the decline draft for an INBOUND account, Hard Rule 14.
-7. **Never use a fixed persona count.** The count comes from the Buyer Personas (profile: Buyer Personas) and the account, so a profile with fewer applicable personas produces fewer emails. A fixed count invents work the profile does not support.
-8. **Never claim savings as a guarantee.** Use typical outcomes with a named source. A guaranteed figure is a promise the company cannot keep, and the buyer's finance team will ask for the proof.
-9. **Use only the six evidence tags.** The next skill grades every fact by its tag, and a label outside the set cannot be read.
-10. **Write no file unless the user asks.** The report is for the rep to read in the chat. A file that nobody asked for is one more thing to find and delete later.
+7. **Never Use A Fixed Persona Count.** The count comes from the Buyer Personas (profile: Buyer Personas) and the account, so a profile with fewer applicable personas produces fewer emails. A fixed count invents work the profile does not support.
+8. **Never Claim Savings As A Guarantee.** Use typical outcomes with a named source. A guaranteed figure is a promise the company cannot keep, and the buyer's finance team will ask for the proof.
+9. **Use Only The Six Evidence Tags.** The next skill grades every fact by its tag, and a label outside the set cannot be read.
+10. **Write No File Unless The User Asks.** The report is for the rep to read in the chat. A file that nobody asked for is one more thing to find and delete later.
 11. **Never let a held package go out before a person clears the verdict.** Reason: a MANUAL REVIEW means the zones are not settled, and a draft that reads as ready invites a send before the gap closes.
 12. **Never send a cold sequence to a contact who has already replied.** Reason: an ENGAGED account is already in conversation, and the reply belongs in that thread.
 13. **Never send a cold sequence to an INBOUND account before its request is answered.** Reason: the account asked us first, so a cold sequence ignores the open request. The other personas wait until the account goes quiet.
@@ -545,7 +545,7 @@ No mode writes a file on its own. A file is written only when the user asks for 
 
 ## Quality Bar
 
-**Done when all are true:**
+**Done When All Are True:**
 
 - [ ] Every fact carries one of the six evidence tags, and no fact is untagged
 - [ ] Every quote appears in the source, with its location
@@ -841,10 +841,10 @@ Your 2026 owner letter names the 2027 move, and I have not heard back, so I will
 
   The cheatsheet, in its eight sections:
   1. **Company Snapshot:** Saltmarsh Heritage Group, family owned `[CRM]`, five sites (two cemeteries, three funeral homes) `[CRM]`. Status TARGET. Verdict MANUAL REVIEW.
-  2. **Geographic and Market Exposure:** state `[Unknown]`, so no region tier. Footprint is four to ten sites, the ICP3 Multi-Location Group row.
+  2. **Geographic And Market Exposure:** state `[Unknown]`, so no region tier. Footprint is four to ten sites, the ICP3 Multi-Location Group row.
   3. **Key Personas:** Hector Ruiz, CFO, approves budget `[CRM]`, the only named contact. The family owner, the funeral home owner, the cemetery general manager, the pre-need sales manager and the operations director have no names on file `[Unknown]`.
-  4. **Pain Points and Signals:** six talk-track hooks. "Your 2026 owner letter says one system in 2027. Which records move first?" "Pre-need leads need a place to land. Where do they go today?" "Two cemeteries, two plot lists. How do you check a sold plot?" "The CFO review sets the timing. What does it need to see?" "Spreadsheets at both cemeteries set how hard the move is." "Growth is the family's own 2027 plan, and it is in writing."
-  5. **Discovery Questions, by persona:** CFO, "What would you need to see at the first meeting?" Funeral Home Owner, "Where do pre-need leads go today?" Cemetery General Manager, "When a family asks about a plot, how many lists do you check?" Pre-Need Sales Manager, "Who confirms a sold plot is still open?" Operations Director, "How long does a plot lookup take?"
+  4. **Pain Points And Signals:** six talk-track hooks. "Your 2026 owner letter says one system in 2027. Which records move first?" "Pre-need leads need a place to land. Where do they go today?" "Two cemeteries, two plot lists. How do you check a sold plot?" "The CFO review sets the timing. What does it need to see?" "Spreadsheets at both cemeteries set how hard the move is." "Growth is the family's own 2027 plan, and it is in writing."
+  5. **Discovery Questions, By Persona:** CFO, "What would you need to see at the first meeting?" Funeral Home Owner, "Where do pre-need leads go today?" Cemetery General Manager, "When a family asks about a plot, how many lists do you check?" Pre-Need Sales Manager, "Who confirms a sold plot is still open?" Operations Director, "How long does a plot lookup take?"
   6. **Value Props:** "Find the unsold plots you can't see on paper" (Pain 1). "Plot and trust records a state auditor accepts" (Pain 2). "Pre-need leads worked within an hour" (Pain 4, a target only). Proof: the 50 to 100 plot figure, cited as a Benchmark hook. Wedge: $10,788 a year per site at list, plus $5,000 setup.
   7. **Objection Handling:** "Our current system works." Reply: "Which records would you check first if a state review came back tomorrow?" "Staff won't adopt." Reply: "What happened the last time a new tool came into the office?" "Data migration is risky." Reply: "What would make the move safe enough to start?"
   8. **Call Flow:** (1) Open: "Hi [name], this is [rep] from PlotIQ. Your 2026 owner letter says all five sites move to one system in 2027. Do you have 30 seconds?" (2) Pain validation: "How do you check which plots are sold and which are open today?" (3) Impact: "What does a lookup cost you, in time or in families waiting?" (4) Bridge: "PlotIQ keeps plot and trust records in a form a state auditor can accept." (5) Ask: "Would 20 minutes next week map which records and leads move first?"
@@ -876,7 +876,7 @@ next_action: a person clears the MANUAL REVIEW verdict, then Nadia Brandt reads 
 
 **Step 0: Role Detection.** The user is a BDR.
 
-**Step 1b: The guard fires.** "Active deal owned by Owen Pruitt (AE) at Stage 5 Negotiate. Share this analysis with Owen. Do not send sequences independently. This skill writes no POV brief and no sequences for a BDR on this account."
+**Step 1B: The Guard Fires.** "Active deal owned by Owen Pruitt (AE) at Stage 5 Negotiate. Share this analysis with Owen. Do not send sequences independently. This skill writes no POV brief and no sequences for a BDR on this account."
 
 **Intelligence For Owen, Not For Outbound:**
 
@@ -915,7 +915,7 @@ next_action: Nadia Brandt sends the coordination note to Owen Pruitt by 2026-10-
 **Process:**
 
 - **Step 2, The Sourced Profile:** 4,200 plots, paper plat maps and one binder per section `[CRM]`. Two double sales in 2 years `[CRM]` (illustrative). No owner letter, filing or news found `[Unknown]`. The signer is `[Unknown]`.
-- **Step 3, the zones:**
+- **Step 3, The Zones:**
 
 | Zone | Score | Basis |
 |---|---|---|
@@ -961,7 +961,7 @@ next_action: Nadia Brandt runs gtm-account-snapshot on Tamsin Vale by 2026-10-26
   - Quoted passage (illustrative, not a quote from a real filing): "All of our funeral homes and cemeteries run on one in-house records platform that we build and maintain." `[Public: annual filing]` (illustrative)
 
   The passage is an illustrative stand-in. A real run quotes the filing's own words and gives the item and page.
-- **Step 3, the zones and the verdict:**
+- **Step 3, The Zones And The Verdict:**
 
 | Zone | Score | Basis |
 |---|---|---|
@@ -1026,37 +1026,37 @@ next_action: the rep is told the verdict and its disqualifier by 2026-10-26, and
 ### "The 10-K Content Is Too Long To Process"
 
 **Symptom:** The filing is too large to read in one pass.
-**Likely cause:** The whole document was pasted.
+**Likely Cause:** The whole document was pasted.
 **Response:** Work the required sections only: Items 1, 1A, 7 and 9A. These carry most of the relevant intelligence. Skip the financial statement tables, and say in the summary that they were skipped.
 
 ### "The Earnings Call Transcript Is Not Available Yet"
 
 **Symptom:** The transcript has not been published.
-**Likely cause:** The call is recent, or the company does not publish transcripts.
+**Likely Cause:** The call is recent, or the company does not publish transcripts.
 **Response:** Use the earnings press release as the substitute. It carries the key metrics but not the analyst questions. Tag it `[Public: earnings press release, date]`, and note the reduced depth at the top of the output.
 
 ### "The Private Company Has Almost No Public Information"
 
 **Symptom:** Step 2 finds only one or two tagged facts.
-**Likely cause:** The company is small, new, or has no press presence.
+**Likely Cause:** The company is small, new, or has no press presence.
 **Response:** Classify it as MANUAL REVIEW only if at least one zone is scored HIGH. Otherwise say "Insufficient data" and list the research gaps. Recommend the routes that do exist: a licensing record search, a job posting review, and the company's own staff pages.
 
 ### "The Revenue Estimation Methods Give Conflicting Results"
 
 **Symptom:** The employee benchmark and the branch proxy give different figures.
-**Likely cause:** The rates come from different sources, or the company's footprint does not match its headcount.
+**Likely Cause:** The rates come from different sources, or the company's footprint does not match its headcount.
 **Response:** Report the range from each method and name the spread. Tag each figure with its method. Do not average them into a single number.
 
 ### "A Zone Cannot Be Scored"
 
 **Symptom:** The sources do not say anything about a zone.
-**Likely cause:** The source is narrow, such as a single filing that covers only financial matters.
+**Likely Cause:** The source is narrow, such as a single filing that covers only financial matters.
 **Response:** Mark the zone `[Unknown]`. Never score it LOW from silence. Name the source that would settle it as a research action.
 
 ### "The Account Is ACTIVE With An AE Owner"
 
 **Symptom:** The user is a BDR and the account has an open deal.
-**Likely cause:** The account is in a late stage, and the BDR was not aware of the AE's work.
+**Likely Cause:** The account is in a late stage, and the BDR was not aware of the AE's work.
 **Response:** The guard fires. Write the coordination note for the AE and stop. Write no sequences, unless the AE has said yes.
 
 ---
@@ -1065,10 +1065,10 @@ next_action: the rep is told the verdict and its disqualifier by 2026-10-26, and
 
 ### Do's
 
-- **Tag every claim.** Use the six tags: `[Public: source, date]`, `[CRM]`, `[Call]`, `[Notes]`, `[Inferred: method]` and `[Unknown]`. The tag tells the next reader how much weight the fact can bear.
-- **Use a different anchor in each email.** A signal used twice in one persona's sequence reads as a copy-paste, and the prospect notices.
-- **Match proof points to the vertical.** Pick the proof point that matches the prospect's segment and persona, and only from Verified or Benchmark status.
-- **For earnings calls, act fast.** The 7 to 14 day window is real. Speed matters more than polish.
+- **Tag Every Claim.** Use the six tags: `[Public: source, date]`, `[CRM]`, `[Call]`, `[Notes]`, `[Inferred: method]` and `[Unknown]`. The tag tells the next reader how much weight the fact can bear.
+- **Use A Different Anchor In Each Email.** A signal used twice in one persona's sequence reads as a copy-paste, and the prospect notices.
+- **Match Proof Points To The Vertical.** Pick the proof point that matches the prospect's segment and persona, and only from Verified or Benchmark status.
+- **For Earnings Calls, Act Fast.** The 7 to 14 day window is real. Speed matters more than polish.
 
 ---
 
@@ -1084,7 +1084,7 @@ next_action: the rep is told the verdict and its disqualifier by 2026-10-26, and
 - **Hands To `gtm-meeting-prep` (06), By These Names:** `pov_brief`, `signal_map`, `wedge` (with its arithmetic shown) and `persona_emails`. Meeting prep reads them to start the first call from the same facts.
 - **Hands To Wrap-Up:** `report_path` when a file was written, the `verdict` and `zone_scores` as the session's result, and `next_action` with its owner and date.
 - **Shared Profile Section:** Trigger Event Outbound (04) and Closed-Loss Reactivation (05) read the same Industry Context section. This skill hands them no fields.
-- **Routes to:** `gtm-competitive-displacement` (12) when a specific incumbent is named in the source, `gtm-trigger-event-outbound` (04) when the source carries a dated event, and `gtm-deal-pulse` (08) once an opportunity exists.
+- **Routes To:** `gtm-competitive-displacement` (12) when a specific incumbent is named in the source, `gtm-trigger-event-outbound` (04) when the source carries a dated event, and `gtm-deal-pulse` (08) once an opportunity exists.
 
 ### Chains
 
