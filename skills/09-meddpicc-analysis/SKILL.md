@@ -13,7 +13,7 @@ mutating: read-write
 change_log:
   - version: 2.1.5
     date: 2026-10-26
-    summary: "The first action is the next action, so its date follows the family's one deadline rule: five business days after the run date, or an earlier date the records set for that step, named with its source. The other four actions keep their own gap timing. The Output Contract points to the rule, the examples name the record behind each earlier date, and the return-to-Stage-5 threshold is stated at the profile's 70 gate."
+    summary: "The invented CRM dated-action context line of the second run is removed, and its stage recommendation, gap actions and next action carry the shared rule's date. "The first action is the next action, so its date follows the family's one deadline rule: five business days after the run date, or an earlier date the records or the skill's own schedule set for that step, named with its source. The other four actions keep their own gap timing. The Output Contract points to the rule, the examples name the record behind each earlier date, and the return-to-Stage-5 threshold is stated at the profile's 70 gate."
   - version: 2.1.4
     date: 2026-10-26
     summary: "Try-it evidence completed so a strict first run reproduces Example 1 under the Pass Rule. The champion test dated after the run date is re-dated to a record on or before it, consistent with Stakeholder Mapping and Deal Pulse. Settles five first-run questions in one sentence each: a board chair named by role is a known stakeholder for Decision Process, a profile gate figure applies whatever date the profile gives its decision, the economic buyer title comes from the Buying Committee role-title map, a critical gap is defined for a next-stage blocker, and the HOLD check date is the dated action's deadline. Adds the close-date history to the record, and the try-it promise states the score count and the check date."
@@ -101,7 +101,7 @@ Core commitments: **eight-element scorecard with weighted scores**, **overall he
 | `stage_recommendation` | Inline, the stage section before the actions | One word: ADVANCE, HOLD, DOWNGRADE or DISQUALIFY, with the rationale and the dated action |
 | `risk_patterns` | Inline, the gap analysis | Each pattern flagged from the risk table, with its evidence tag, or the words "none flagged" |
 | Next actions (five) | Inline, after the stage recommendation | Action, element targeted, owner, deadline and success criterion. The first action is the one the close reads |
-| `next_action` | Last line of the analysis | The first of the five actions, with its owner and the date the shared contract's next-action rule gives (five business days after the run date, or an earlier date the records set for that step, named with its source) |
+| `next_action` | Last line of the analysis | The first of the five actions, with its owner and the date the shared contract's next-action rule gives (five business days after the run date, or an earlier date the records or the skill's own schedule set for that step, named with its source) |
 | `report_path` | Set only when a file was written | `none (inline)` when the analysis stayed in the chat |
 | File option | `<account>_gtm-meddpicc-analysis_<date>.md`, saved beside the user's other account notes | Written only when the user asks, in Markdown. The ask is the approval step |
 
@@ -203,7 +203,7 @@ Rep talk time as a share of the call, by call type: discovery 30% to 40%, demo 5
 
 #### What the Close Reads
 
-Wrap-Up reads by name the **report path** when a file was written, the **verdict** or **score** the session produced, and the **next action** with its owner and date. The next action is due five business days (Monday to Friday) after the run date, written as one calendar date, unless the records already set an earlier date for that step, in which case that date is used and its source is named. Ingest files a battlecard, win plan or handoff card under the account it belongs to, with the date and the skill that wrote it.
+Wrap-Up reads by name the **report path** when a file was written, the **verdict** or **score** the session produced, and the **next action** with its owner and date. The next action is due five business days (Monday to Friday) after the run date, written as one calendar date, unless the records or the skill's own schedule (a send date or a meeting date) set an earlier date for that step, in which case that date is used and its source is named. Ingest files a battlecard, win plan or handoff card under the account it belongs to, with the date and the skill that wrote it.
 
 #### Guild Disciplines, Restated
 
@@ -436,7 +436,7 @@ Then check the risk patterns in the Methodology table. Name each pattern that th
 
 ### Step 5: Generate Coaching Recommendations
 
-Generate five prioritized next actions, each targeting a specific MEDDPICC gap. Each action names the methodology step it uses from `{Client Profile: Sales Methodology}`, the owner (AE, BDR, SE or manager), a deadline (five business days for critical gaps, ten for moderate ones) and a success criterion that shows the action worked. The first action targets the failed critical element with the lowest score, with ties taken in table order. When no current-stage floor fails, it targets the element that blocks the next stage's floor. A critical gap is one that fails the next stage's critical floor, or the element that carries the next stage's exit criterion in the profile's Qualification Stage Gates, such as the approval date for Stage 6 Closed-Won and Handoff, which sits with Decision Process. Every other gap is moderate. The first action is the next action, so its date is set by the shared contract's next-action rule (five business days after the run date, or an earlier date the records set for that step, named with its source). The other four actions keep the deadline above.
+Generate five prioritized next actions, each targeting a specific MEDDPICC gap. Each action names the methodology step it uses from `{Client Profile: Sales Methodology}`, the owner (AE, BDR, SE or manager), a deadline (five business days for critical gaps, ten for moderate ones) and a success criterion that shows the action worked. The first action targets the failed critical element with the lowest score, with ties taken in table order. When no current-stage floor fails, it targets the element that blocks the next stage's floor. A critical gap is one that fails the next stage's critical floor, or the element that carries the next stage's exit criterion in the profile's Qualification Stage Gates, such as the approval date for Stage 6 Closed-Won and Handoff, which sits with Decision Process. Every other gap is moderate. The first action is the next action, so its date is set by the shared contract's next-action rule (five business days after the run date, or an earlier date the records or the skill's own schedule set for that step, named with its source). The other four actions keep the deadline above.
 
 **Produces:** Five actions, each with element targeted, owner, deadline and success criterion.
 
@@ -558,7 +558,7 @@ report_path: none (inline)
 
 ### Example 2: Same Deal Three Weeks Later, Below the Stage Minimum
 
-**Context:** Brackhaven again, on 2026-10-19, three weeks after Example 1 and day 40 in Stage 5 Negotiate. The board date has slipped twice and is not confirmed. Ruth has not replied since 2026-10-03, which is 16 days `[CRM]`. The CRM holds a dated action due 2026-10-23 for Owen to get the board date from Ruth `[CRM]` (illustrative). The board chair has joined one call, in Stage 4 Proposal. The same day's Deal Pulse reads 38, High Risk (08). The CRM still shows Stage 5 Negotiate. This is the non-success case.
+**Context:** Brackhaven again, on 2026-10-19, three weeks after Example 1 and day 40 in Stage 5 Negotiate. The board date has slipped twice and is not confirmed. Ruth has not replied since 2026-10-03, which is 16 days `[CRM]`. The board chair has joined one call, in Stage 4 Proposal. The same day's Deal Pulse reads 38, High Risk (08). The CRM still shows Stage 5 Negotiate. This is the non-success case.
 
 **Input:** "MEDDPICC score Brackhaven again. It's still in Negotiate."
 
@@ -595,13 +595,13 @@ report_path: none (inline)
 - Single-threaded: Ruth is the only contact who has replied `[CRM]`.
 
 **Next actions:**
-1. Owen Pruitt asks Ruth Ellery for the board date, by 2026-10-23. Element: Decision Process (2 to 3). Owner: AE. Success: a dated board meeting is on the record.
-2. Owen asks Ruth for a call with the board chair, by 2026-10-23. Element: Economic Buyer (3 to 4). Owner: AE. Success: the chair attends and states the budget.
-3. Lena Vasquez, Sales Manager, joins the next call with Ruth, by 2026-10-23. Element: Champion (2 to 3). Owner: manager. Success: Ruth commits to a dated next step on the call.
+1. Owen Pruitt asks Ruth Ellery for the board date, by 2026-10-26. Element: Decision Process (2 to 3). Owner: AE. Success: a dated board meeting is on the record.
+2. Owen asks Ruth for a call with the board chair, by 2026-10-26. Element: Economic Buyer (3 to 4). Owner: AE. Success: the chair attends and states the budget.
+3. Lena Vasquez, Sales Manager, joins the next call with Ruth, by 2026-10-26. Element: Champion (2 to 3). Owner: manager. Success: Ruth commits to a dated next step on the call.
 4. Owen re-runs the ROI numbers with Ruth now that the board has moved, by 2026-10-26. Element: Metrics (3 to 4). Owner: AE. Success: current-state numbers are on the record.
 5. Owen asks Ruth which criteria Stonemark is being judged on and writes a position against it, by 2026-10-26. Element: Decision Criteria (3 to 4). Owner: AE. Success: the criteria are on the record and a Stonemark position is written.
 
-**Stage Recommendation: HOLD at Stage 5 Negotiate, with a dated action.** Owen asks Ruth for the board date by 2026-10-23, the dated action the CRM holds, which is earlier than five business days after the run date of 2026-10-19 (2026-10-26). If the board date is not confirmed by 2026-11-02, the deal moves one stage back to Stage 4 Proposal. It does not return to Stage 2 Discovery, because the Identified Pain is 4 and the pain is confirmed.
+**Stage Recommendation: HOLD at Stage 5 Negotiate, with a dated action.** Owen asks Ruth for the board date by 2026-10-26, five business days after the run date of 2026-10-19. If the board date is not confirmed by 2026-11-02, the deal moves one stage back to Stage 4 Proposal. It does not return to Stage 2 Discovery, because the Identified Pain is 4 and the pain is confirmed.
 
 At Stage 4 Proposal this deal also misses the Champion minimum, which is 3 or higher, so the stage move does not fix the score. It brings the forecast in line with the buyer's real date. The deal returns to Stage 5 only when health reaches 70, the profile's gate, and the board chair has been met directly.
 
@@ -614,7 +614,7 @@ health_score: 58 (scored 8 of 8)
 stage_minimum_met: No for Stage 5 Negotiate (70 or higher, from the profile's stage gates). Failed critical elements: Economic Buyer (3, needs 4), Decision Process (2, needs 3), Champion (2, needs 3)
 stage_recommendation: HOLD
 risk_patterns: Close date fantasy (two slips, board date unconfirmed), happy ears ("I'll take it to the board" with no date), single-threaded
-next_action: Owen Pruitt asks Ruth Ellery for the board date by 2026-10-23 (the dated action the CRM holds, earlier than 2026-10-26). If it is not confirmed by 2026-11-02, the stage moves to DOWNGRADE, Stage 4 Proposal
+next_action: Owen Pruitt asks Ruth Ellery for the board date by 2026-10-26 (five business days after the run date of 2026-10-19). If it is not confirmed by 2026-11-02, the stage moves to DOWNGRADE, Stage 4 Proposal
 report_path: none (inline)
 ```
 
@@ -699,6 +699,7 @@ The Business Case & ROI Kit (a paid Guild Pro kit) reads this skill's hand-off b
 
 
 ### 2.1.5 (2026-10-26)
+- The invented CRM dated-action context line of the second run is removed, and its stage recommendation, gap actions and next action carry the shared rule's date.
 - The first action, which is the next action, follows the family's one deadline rule. The other four actions keep their gap timing.
 - The Output Contract points to that rule, and each example names the record behind an earlier date.
 - The return-to-Stage-5 threshold in Example 2 is stated at the profile's 70 gate, as the Stage-Appropriate Minimums section states it.

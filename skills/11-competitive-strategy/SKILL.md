@@ -13,7 +13,7 @@ mutating: read-write
 change_log:
   - version: 2.1.5
     date: 2026-10-26
-    summary: "The next action follows the family's one deadline rule: five business days after the run date, or an earlier date the records set for that step, named with its source. The skill's own Friday-of-the-run-week rule is replaced by a pointer to that rule, and the example next actions carry the recomputed dates."
+    summary: "Every citation of the 2026-03-27 competitive research note is flagged as over 90 days old at the run date, and an Epistemic Rule states the flag. "The next action follows the family's one deadline rule: five business days after the run date, or an earlier date the records or the skill's own schedule set for that step, named with its source. The skill's own Friday-of-the-run-week rule is replaced by a pointer to that rule, and the example next actions carry the recomputed dates."
   - version: 2.1.4
     date: 2026-10-26
     summary: "Try-it evidence completed so a strict first run reproduces Example 1 under the Pass Rule. The gap matrix rows for cost and time to live rest on dated buyer statements, so all five rows hold. The win plan's first step is in the checklist. The next action asks the buyer for the open discovery gap, and it has a deadline rule: the Friday of the run week. Settles the job when the buyer names a question, the observation rule for gap matrix rows, and the undated-call rule. Competitive research is cited by its Sources name and date, and the try-it asks name the profile path."
@@ -95,7 +95,7 @@ Every run returns the battlecard in the chat, in its eight sections. It writes a
 | `battlecard` | The full reply, in the chat | Eight sections in this order: account and incumbent summary, competitive gap matrix, winning zone strategy with landmines, discovery questions, displacement talk tracks, objection handling, proof points and reference stories, win plan checklist |
 | `win_plan` | Battlecard section 8 | The checklist by stage (pre-meeting, discovery, demo, post-meeting), each item with an owner and a date where one is known |
 | `report_path` | Last line of the battlecard | `none (inline)` unless a file was written |
-| `next_action` | Last line of the battlecard | One step, with its owner and a date. The step asks the buyer for the open discovery gap the battlecard names in Step 6, item 8, and its date is the one the shared contract's next-action rule gives (five business days after the run date, or an earlier date the records set for that step, named with its source). Wrap-Up reads this line |
+| `next_action` | Last line of the battlecard | One step, with its owner and a date. The step asks the buyer for the open discovery gap the battlecard names in Step 6, item 8, and its date is the one the shared contract's next-action rule gives (five business days after the run date, or an earlier date the records or the skill's own schedule set for that step, named with its source). Wrap-Up reads this line |
 | File, on request | `<account>_gtm-competitive-strategy_<date>.md`, beside the user's account notes | Written only when the user asks, in Markdown. The ask is the approval step |
 
 ---
@@ -192,7 +192,7 @@ Rep talk time as a share of the call, by call type: discovery 30% to 40%, demo 5
 
 #### What the Close Reads
 
-Wrap-Up reads by name the **report path** when a file was written, the **verdict** or **score** the session produced, and the **next action** with its owner and date. The next action is due five business days (Monday to Friday) after the run date, written as one calendar date, unless the records already set an earlier date for that step, in which case that date is used and its source is named. Ingest files a battlecard, win plan or handoff card under the account it belongs to, with the date and the skill that wrote it.
+Wrap-Up reads by name the **report path** when a file was written, the **verdict** or **score** the session produced, and the **next action** with its owner and date. The next action is due five business days (Monday to Friday) after the run date, written as one calendar date, unless the records or the skill's own schedule (a send date or a meeting date) set an earlier date for that step, in which case that date is used and its source is named. Ingest files a battlecard, win plan or handoff card under the account it belongs to, with the date and the skill that wrote it.
 
 #### Guild Disciplines, Restated
 
@@ -455,7 +455,7 @@ Build a checklist for this competitive scenario. The checklist below is the full
 8. **Critical discovery gap:** what is still unknown about the buyer's current solution
 9. **Win strategy summary:** two or three sentences on how to win this deal competitively
 10. **Risk assessment:** where the competitor could win, stated honestly
-11. **Recommended next steps:** specific actions with a timeline. The next action is the open discovery gap from item 8, asked of the buyer, and it is dated by the shared contract's next-action rule (five business days after the run date, or an earlier date the records set for that step)
+11. **Recommended next steps:** specific actions with a timeline. The next action is the open discovery gap from item 8, asked of the buyer, and it is dated by the shared contract's next-action rule (five business days after the run date, or an earlier date the records or the skill's own schedule set for that step)
 
 **Produces:** The battlecard in its eight sections, with `battlecard`, `incumbent_type`, `threat_level`, `next_action` and `report_path`. The summary comes last because it draws on every step above it.
 
@@ -477,6 +477,7 @@ This skill has one mode. The default is the battlecard for one open deal.
 - **Every claim carries one of the six evidence tags.** The tags are `[CRM]`, `[Call]`, `[Notes]`, `[Public: source]`, `[Inferred]` and `[Unknown]`. A claim with no tag is removed. Verified is a proof point Status, never a tag.
 - **Only Verified proof reaches a talk track.** The Status rule in Methodology decides this, however good the story is.
 - **A benchmark needs a named, dated source.** Otherwise it is removed.
+- **Research older than 90 days.** A research citation dated more than 90 days before the run date is flagged in its citation as over 90 days old at the run date, and it is used only as a research estimate, never as a benchmark.
 - **A jurisdiction deadline cites its rule and the date checked.** Otherwise it is not written.
 - **An inferred claim is a hypothesis.** A claim tagged `[Inferred]` is tested on the buyer before it is used. It never appears as fact in a talk track.
 - **Discovery questions are genuine.** If the AE already knows the answer, the question is a setup. Rewrite it as a positioning statement.
@@ -550,7 +551,7 @@ Two worked examples, both on the PlotIQ cast and the chain file. The first is th
 
 **Step 2: Incumbent Profile:**
 - Classification: direct software, the legacy on-premise row in the profile's Competitive Landscape `[Inferred: profile row match]`
-- Their pitch: "Mature, deep accounting." Research weaknesses: $10,000 to $50,000 upfront, plus maintenance at 20% a year, poor mobile, and no AI `[Public: Deathcare research project, competitive research note, 2026-03-27]`. Not yet checked with this buyer, so these are discovery targets
+- Their pitch: "Mature, deep accounting." Research weaknesses: $10,000 to $50,000 upfront, plus maintenance at 20% a year, poor mobile, and no AI `[Public: Deathcare research project, competitive research note, 2026-03-27] (research estimate, over 90 days old at the run date)`. Not yet checked with this buyer, so these are discovery targets
 - Satisfaction: Neutral. Ruth tolerates it, and Walt works from paper `[Call, 2026-06-16]` (illustrative)
 - Contract status: renewal in March 2027 `[CRM]`
 - Switching barriers: moderate, by the Step 2c rule (the records move by hand from two sites, one per site, and no early contract exit holds them). The trust numbers leave Oldgate as one yearly file, and the plot records stay in binders at two sites `[Call, 2026-06-16] (illustrative)`. The records must move by hand `[Inferred: from the binder records]`, and the scope of the export is `[Unknown]`
@@ -573,11 +574,11 @@ Two worked examples, both on the PlotIQ cast and the chain file. The first is th
 
 | Capability | Oldgate Ledger Pro | PlotIQ | Why It Matters for Brackhaven |
 |-----------|---------|--------|----------------------|
-| Mobile use by the grounds crew | Poor mobile `[Public: Deathcare research project, competitive research note, 2026-03-27]` | Mobile field app `[Public: PlotIQ product modules]` | Walt: "I lose half a day every time a family asks for a plot" `[Call, 2026-09-17]` (illustrative). The grounds crew needs the plot in the field |
+| Mobile use by the grounds crew | Poor mobile `[Public: Deathcare research project, competitive research note, 2026-03-27] (research estimate, over 90 days old at the run date)` | Mobile field app `[Public: PlotIQ product modules]` | Walt: "I lose half a day every time a family asks for a plot" `[Call, 2026-09-17]` (illustrative). The grounds crew needs the plot in the field |
 | Unsold-plot visibility | Sold records only, with no view of what is left `[Call, 2026-06-16] (illustrative)` | Plot inventory digitization shows unsold plots `[Public: PlotIQ product modules]` | Ruth's unsold-plot count depends on this, and Oldgate does not show it |
-| Trust fund records | Deep accounting, their pitch `[Public: Deathcare research project, competitive research note, 2026-03-27]` | Records and Trust Compliance module `[Public: PlotIQ product modules]` | Ruth: "The state auditor asks for the trust numbers, and somebody digs them out of the ledger" `[Call, 2026-06-16] (illustrative)`. A state auditor has to accept the record. Show the output side by side with the filing format |
-| Cost | $10,000 to $50,000 upfront, plus maintenance at 20% a year `[Public: Deathcare research project, competitive research note, 2026-03-27]` | $899 a month per site, plus $5,000 setup once `[Public: PlotIQ price list]` | Ruth: "Every year we pay Oldgate maintenance on top of the license, and it still doesn't tell us what's left" `[Call, 2026-06-16] (illustrative)`. Year one at list for two sites is $26,576 with setup (illustrative), above the $25K board line |
-| Time to live | 120 to 180 days `[Public: Deathcare research project, competitive research note, 2026-03-27]` | 6 weeks `[Public: PlotIQ profile]` | Ruth: "If the new system isn't running by then, we pay Oldgate for another year" `[Call, 2026-06-16] (illustrative)`. The March 2027 renewal is the date the go-live has to meet |
+| Trust fund records | Deep accounting, their pitch `[Public: Deathcare research project, competitive research note, 2026-03-27] (research estimate, over 90 days old at the run date)` | Records and Trust Compliance module `[Public: PlotIQ product modules]` | Ruth: "The state auditor asks for the trust numbers, and somebody digs them out of the ledger" `[Call, 2026-06-16] (illustrative)`. A state auditor has to accept the record. Show the output side by side with the filing format |
+| Cost | $10,000 to $50,000 upfront, plus maintenance at 20% a year `[Public: Deathcare research project, competitive research note, 2026-03-27] (research estimate, over 90 days old at the run date)` | $899 a month per site, plus $5,000 setup once `[Public: PlotIQ price list]` | Ruth: "Every year we pay Oldgate maintenance on top of the license, and it still doesn't tell us what's left" `[Call, 2026-06-16] (illustrative)`. Year one at list for two sites is $26,576 with setup (illustrative), above the $25K board line |
+| Time to live | 120 to 180 days `[Public: Deathcare research project, competitive research note, 2026-03-27] (research estimate, over 90 days old at the run date)` | 6 weeks `[Public: PlotIQ profile]` | Ruth: "If the new system isn't running by then, we pay Oldgate for another year" `[Call, 2026-06-16] (illustrative)`. The March 2027 renewal is the date the go-live has to meet |
 
 **Step 3c: Positioning Landmines:**
 
@@ -668,9 +669,9 @@ report_path: none (inline)
 - Competitors: Oldgate Ledger Pro, the incumbent, renews March 2027 `[CRM]`. Stonemark, evaluated `[Call, 2026-09-26]`
 
 **Step 2: Rival Profile:**
-- Stonemark is enterprise cemetery mapping, and its pitch is "The best mapping in the category" `[Public: Deathcare research project, competitive research note, 2026-03-27]`
-- Research estimates: about $1,500 to $2,500 a month, 90 to 120 days to live, no AI `[Public: Deathcare research project, competitive research note, 2026-03-27]`
-- Its advantage is the depth of its mapping `[Public: Deathcare research project, competitive research note, 2026-03-27]`
+- Stonemark is enterprise cemetery mapping, and its pitch is "The best mapping in the category" `[Public: Deathcare research project, competitive research note, 2026-03-27] (research estimate, over 90 days old at the run date)`
+- Research estimates: about $1,500 to $2,500 a month, 90 to 120 days to live, no AI `[Public: Deathcare research project, competitive research note, 2026-03-27] (research estimate, over 90 days old at the run date)`
+- Its advantage is the depth of its mapping `[Public: Deathcare research project, competitive research note, 2026-03-27] (research estimate, over 90 days old at the run date)`
 - Its gap is that records and trust compliance are not part of its positioning `[Inferred: profile positioning, not yet tested with the buyer]`
 
 **Step 2c: Threat Assessment (Stonemark, the rival in the deal):**
@@ -689,11 +690,11 @@ report_path: none (inline)
 
 | Capability | Stonemark | PlotIQ | Why It Matters for Brackhaven |
 |-----------|-----------|--------|-------------------------------|
-| Mapping depth | Enterprise mapping, their core pitch `[Public: Deathcare research project, competitive research note, 2026-03-27]` | Plot inventory digitization of paper maps and deeds `[Public: PlotIQ product modules]` | The buyer has not said how much map depth decides it. Their strength is real, and the battlecard says so |
+| Mapping depth | Enterprise mapping, their core pitch `[Public: Deathcare research project, competitive research note, 2026-03-27] (research estimate, over 90 days old at the run date)` | Plot inventory digitization of paper maps and deeds `[Public: PlotIQ product modules]` | The buyer has not said how much map depth decides it. Their strength is real, and the battlecard says so |
 | Records and trust compliance in one system | Not in their positioning `[Inferred: profile positioning]` | Records and Trust Compliance module `[Public: PlotIQ product modules]` | A state auditor reads the trust record. Ask Ruth whether the board will judge on it |
 | Pre-need leads in the same system | `[Unknown]`. Ask | Pre-Need CRM and Lead Scoring `[Public: PlotIQ product modules]` | The pre-need manager's leads land in one place, with a named follow-up owner |
-| Time to live | 90 to 120 days `[Public: Deathcare research project, competitive research note, 2026-03-27]` | 6 weeks `[Public: PlotIQ profile]` | The timing decides whether a decision can finish before the March 2027 renewal |
-| Price | About $1,500 to $2,500 a month `[Public: Deathcare research project, competitive research note, 2026-03-27]` | $899 a month per site `[Public: PlotIQ price list]` | Shows the monthly gap without claiming their total cost |
+| Time to live | 90 to 120 days `[Public: Deathcare research project, competitive research note, 2026-03-27] (research estimate, over 90 days old at the run date)` | 6 weeks `[Public: PlotIQ profile]` | The timing decides whether a decision can finish before the March 2027 renewal |
+| Price | About $1,500 to $2,500 a month `[Public: Deathcare research project, competitive research note, 2026-03-27] (research estimate, over 90 days old at the run date)` | $899 a month per site `[Public: PlotIQ price list]` | Shows the monthly gap without claiming their total cost |
 
 **Step 3c: Positioning Landmines:**
 
@@ -809,6 +810,7 @@ report_path: none (inline)
 ## Changelog
 
 ### 2.1.5 (2026-10-26)
+- Every citation of the 2026-03-27 competitive research note is flagged as research estimate, over 90 days old at the run date, and an Epistemic Rule states the flag.
 - The next action follows the family's one deadline rule. The Output Contract and Step 6 point to that rule in place of the skill's own Friday rule.
 - The examples' next actions carry the dates the rule gives.
 

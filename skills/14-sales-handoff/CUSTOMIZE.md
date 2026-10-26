@@ -28,7 +28,7 @@ Ask me these, ONE AT A TIME, and wait for each answer:
 4. The timing variables, one at a time:
    (a) How many source systems does a typical customer run? For each system beyond the first, how many weeks does it add?
    (b) Is the customer's export format familiar to our team? If it is, how many weeks does that save?
-   (c) How many weeks does IT usually take to name an owner and deliver an export?
+   (c) How many days does IT usually take to name an owner and deliver an export? The skill reads this as days, the same unit as the profile's IT lead time.
 
 5. Full adoption. Is two months from kickoff our default? If not, how many months is ours?
 
@@ -66,7 +66,7 @@ Add this section to `profiles/client-profile.md` once:
 - **How data moves:** [file upload, scheduled export or manual entry, and the standard format]
 - **Source systems per customer:** [how many, and the weeks each extra system adds]
 - **Export format familiarity:** [familiar or new to the team, and the weeks saved when familiar]
-- **IT lead time:** [weeks from request to a named IT owner]
+- **IT lead time:** [days from request to a named IT owner]
 - **Full adoption months:** [2 unless your team differs]
 - **Team quick win types:** [any types beyond the four in the skill]
 ```

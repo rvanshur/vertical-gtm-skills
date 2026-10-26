@@ -172,7 +172,7 @@ Zones are groups of account traits the team agrees predict a win. Score each zon
 |------|-----------|------|--------|-----|
 | 1. Records and Inventory Pain | Yes | Plot map or records on paper or binders, plus a double sale, lost deed or records finding in the last 24 months | Plot spreadsheet, paper deeds, lookups take days, or a digital map with plot records or trust reporting still outside it | Full digital plot and records system in place, or no plots (funeral only) |
 | 2. Pre-Need Sales Motion | No | Pre-need counselors, a pre-need intake form on the website, social ads feeding leads into email | Pre-need sold informally by the GM, nothing tracked | No pre-need sales |
-| 3. Ownership and Decision Speed | Yes | GM or owner signs under $25K, board meets within 60 days | GM recommends, board approves, next meeting more than 60 days out | Decision sits with a CFO or corporate gate, 6 to 9 month cycle |
+| 3. Ownership and Decision Speed | Yes | GM or owner signs under $25K, board meets within 60 days | GM recommends and the board approves, or the next board meeting is more than 60 days out | Decision sits with a CFO or corporate gate, 6 to 9 month cycle |
 | 4. Technology Readiness | No | Staff use email and a shared drive daily, website shows plot or pre-need information, has tried a digital tool | Legacy system that fits poorly, or spreadsheets only | No website, no staff email, or an enterprise system under contract to 2028 |
 | 5. Growth or Succession | No | New owner or GM in the last 24 months, owner update naming growth, or retirement within 3 years | Stable, one growth project | Flat plot sales for 3 years, no succession plan |
 

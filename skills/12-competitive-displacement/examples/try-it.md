@@ -16,7 +16,7 @@ Every name, date and number in this file is invented for the PlotIQ example. Not
 - Champion: the pre-need team lead is named nowhere, so the name is [Unknown]. Budget cycle: [Unknown]. Previous evaluation of our product: [Unknown].
 - Contacts: none on file. Every contact is [Unknown], so the sequence uses titles.
 - Account Qualification (01) verdict: GREENLIGHT. Zones 2 and 3 HIGH, and Zone 1 MEDIUM, because the digital map holds no records or trust reporting (profile).
-- Stonemark time to live: 90 to 120 days [Public: deathcare research project, competitive research note, 2026-03-27, research estimate].
+- Stonemark time to live: 90 to 120 days [Public: deathcare research project, competitive research note, 2026-03-27] (research estimate, over 90 days old at the run date).
 - PlotIQ time to live: 6 weeks (profile).
 - Benchmark: independents capture pre-need on 20% to 35% of at-need volume, and the largest public operator about 60% (deathcare research, 2026-03-27 to 2026-04-01, Benchmark).
 - Proof points: Fennick Gardens (212 unsold plots found in 90 days) and Holloway Hills (zero records findings in its first state review) are both Illustrative and name no displaced vendor (profile).

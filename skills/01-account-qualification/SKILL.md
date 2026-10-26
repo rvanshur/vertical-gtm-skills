@@ -13,7 +13,7 @@ mutating: read-write
 change_log:
   - version: 2.1.5
     date: 2026-10-26
-    summary: "The next action follows the shared contract's one deadline rule: five business days after the run date, or an earlier date the records set for that step. The skill's own within-five-days wording is replaced by a pointer to that rule, and the example dates are recomputed under it. An UNKNOWN zone is named as an open fact under the Verdict Rule, as the profile states it."
+    summary: "The Zone 3 row of Example 1 quotes the profile's Zone 3 cell as written. "The next action follows the shared contract's one deadline rule: five business days after the run date, or an earlier date the records or the skill's own schedule set for that step. The skill's own within-five-days wording is replaced by a pointer to that rule, and the example dates are recomputed under it. An UNKNOWN zone is named as an open fact under the Verdict Rule, as the profile states it."
   - version: 2.1.4
     date: 2026-10-26
     summary: "Try-it evidence completed so a strict first run reproduces Example 1. ICP2 criterion 2 is tested against the profile's ICP2 threshold, a Fit Grid row is read at its key indicator, a named pre-need manager counts as pre-need staff, an approval step above the signing line is a risk flag, and the next action gets a date rule. Example 1 gains the records each rule reads."
@@ -98,7 +98,7 @@ Every run returns the verdict and the zone scores in the chat. It writes a file 
 | `icp_match` | Inline, the ICP line of the report | The profile's ICP name, such as `ICP2 Combination`, or `No Fit` with the disqualifier named |
 | `fit_narrative` | Inline, the ICP and Fit Grid lines | Two or three sentences that say why, each fact tagged |
 | `report_path` | Set only when a file was written | `none (inline)` when the report stayed in the chat |
-| `next_action` | Inline, last line of the report | One step, with its owner (BDR or AE) and the date the shared contract's next-action rule gives (What the Close Reads: five business days after the run date, or an earlier date the records set for that step) |
+| `next_action` | Inline, last line of the report | One step, with its owner (BDR or AE) and the date the shared contract's next-action rule gives (What the Close Reads: five business days after the run date, or an earlier date the records or the skill's own schedule set for that step) |
 | File, on request | `<account>_gtm-account-qualification_<date>.md`, beside the user's account notes | Written only when the user asks, in Markdown. The ask is the approval step |
 
 ---
@@ -192,7 +192,7 @@ Rep talk time as a share of the call, by call type: discovery 30% to 40%, demo 5
 
 #### What the Close Reads
 
-Wrap-Up reads by name the **report path** when a file was written, the **verdict** or **score** the session produced, and the **next action** with its owner and date. The next action is due five business days (Monday to Friday) after the run date, written as one calendar date, unless the records already set an earlier date for that step, in which case that date is used and its source is named. Ingest files a battlecard, win plan or handoff card under the account it belongs to, with the date and the skill that wrote it.
+Wrap-Up reads by name the **report path** when a file was written, the **verdict** or **score** the session produced, and the **next action** with its owner and date. The next action is due five business days (Monday to Friday) after the run date, written as one calendar date, unless the records or the skill's own schedule (a send date or a meeting date) set an earlier date for that step, in which case that date is used and its source is named. Ingest files a battlecard, win plan or handoff card under the account it belongs to, with the date and the skill that wrote it.
 
 #### Guild Disciplines, Restated
 
@@ -444,7 +444,7 @@ Return these twelve items inline, in this order.
 9. **Top Risk Flags**
 10. **Account Status:** TARGET, INBOUND, ACTIVE with its stage number, LOST or OUT
 11. **Active Deal?** If yes, the stage, the AE owner and the amount. For a BDR, coordinate with the AE
-12. **Recommended Next Steps:** role-specific, with the `next_action` line last. The `next_action` date follows the shared contract's next-action rule (five business days after the run date, or an earlier date the records set for that step) and is written as a calendar date, so the step can be checked against the run. Reason: a step with no date cannot be checked
+12. **Recommended Next Steps:** role-specific, with the `next_action` line last. The `next_action` date follows the shared contract's next-action rule (five business days after the run date, or an earlier date the records or the skill's own schedule set for that step) and is written as a calendar date, so the step can be checked against the run. Reason: a step with no date cannot be checked
 
 **Produces:** `verdict`, `zone_scores`, `icp_match`, `fit_narrative` and `next_action`, all in the twelve-item report.
 
@@ -521,7 +521,7 @@ Four worked examples, all on the PlotIQ cast and the chain file. They show a mix
 |---|------|--------|----------|
 | 1 | Records and Inventory Pain (must-have) | HIGH | Paper plot maps and a double sale in 24 months `[CRM]` (illustrative) |
 | 2 | Pre-Need Sales Motion | MEDIUM | A pre-need manager exists, and there is no intake form on the site `[Public: company website]` (illustrative). Social ads are not recorded `[Unknown]` |
-| 3 | Ownership and Decision Speed (must-have) | MEDIUM | The GM recommends and the board approves. The board meets within 60 days, which meets the HIGH timing test. The signing test fails, because year one is above the $25K line, so the zone is MEDIUM `[Public: company website, board calendar]` (illustrative) |
+| 3 | Ownership and Decision Speed (must-have) | MEDIUM | The GM recommends and the board approves, which is the profile's MEDIUM cell as written, so the zone is MEDIUM. The board meets within 60 days, which meets the HIGH timing test, but the signing test fails, because year one is above the $25K line `[Public: company website, board calendar]` (illustrative) |
 | 4 | Technology Readiness | MEDIUM | Staff use company email, which the staff page shows `[Public: company website, staff page]` (illustrative). The website shows no plot lookup, and the records system is not named `[Unknown]`. The facts sit between the HIGH and MEDIUM columns with no LOW condition, so MEDIUM under the partial-match rule in Step 4 (illustrative) |
 | 5 | Growth or Succession | HIGH | The owner's bio gives a retirement date of 2029-03-31, inside 3 years of the run date `[Public: company website, owner bio, 2026]` (illustrative) |
 
@@ -752,7 +752,8 @@ An account pending AE assignment is not ACTIVE. Score it, and say that it is pen
 
 
 ### 2.1.5 (2026-10-26)
-- The next action follows the family's one deadline rule (five business days after the run date, or an earlier date the records set for that step). The skill's own within-five-days wording is replaced by a pointer to that rule, and the example dates are recomputed under it.
+- The Zone 3 row of Example 1 quotes the profile's Zone 3 cell as written, and the board timing is named as the part of the HIGH cell that is not met.
+- The next action follows the family's one deadline rule (five business days after the run date, or an earlier date the records or the skill's own schedule set for that step). The skill's own within-five-days wording is replaced by a pointer to that rule, and the example dates are recomputed under it.
 - The Verdict Rule paragraph in Step 6 states that an UNKNOWN zone counts as neither HIGH nor LOW, as the profile states it.
 
 ### 2.1.4 (2026-10-26)

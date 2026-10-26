@@ -13,7 +13,7 @@ mutating: read-write
 change_log:
   - version: 2.1.5
     date: 2026-10-26
-    summary: "The next action follows the family's one deadline rule: five business days after the run date, or an earlier date the records set for that step. The skill's own within-five-days wording is replaced by a pointer to that rule. The Zone 3 MEDIUM cell is quoted with the profile's wording (next meeting more than 60 days out), and an UNKNOWN zone is stated with the Verdict Rule's wording. The examples' next actions carry the recomputed dates."
+    summary: "The Zone 3 MEDIUM cell in Step 4 and Example 1 quotes the profile's new wording, and the competitive research note is flagged as over 90 days old at the run date. "The next action follows the family's one deadline rule: five business days after the run date, or an earlier date the records or the skill's own schedule set for that step. The skill's own within-five-days wording is replaced by a pointer to that rule. The Zone 3 MEDIUM cell is quoted with the profile's current wording (GM recommends and the board approves, or the next board meeting is more than 60 days out), and an UNKNOWN zone is stated with the Verdict Rule's wording. The examples' next actions carry the recomputed dates."
   - version: 2.1.4
     date: 2026-10-26
     summary: "Try-it evidence completed so a strict first run reproduces Example 1. Settles the order of two categories when the AE notes are blank, the timing of a champion's move, unknown zones in the verdict, the anchor of the timing and competitor re-entry windows, the Zone 3 board path after the general manager leaves, and the owner and date of a next step. Oldgate is cited to the competitive research note. Adds the example profile to the try-it pointer in the body."
@@ -204,7 +204,7 @@ Rep talk time as a share of the call, by call type: discovery 30% to 40%, demo 5
 
 #### What the Close Reads
 
-Wrap-Up reads by name the **report path** when a file was written, the **verdict** or **score** the session produced, and the **next action** with its owner and date. The next action is due five business days (Monday to Friday) after the run date, written as one calendar date, unless the records already set an earlier date for that step, in which case that date is used and its source is named. Ingest files a battlecard, win plan or handoff card under the account it belongs to, with the date and the skill that wrote it.
+Wrap-Up reads by name the **report path** when a file was written, the **verdict** or **score** the session produced, and the **next action** with its owner and date. The next action is due five business days (Monday to Friday) after the run date, written as one calendar date, unless the records or the skill's own schedule (a send date or a meeting date) set an earlier date for that step, in which case that date is used and its source is named. Ingest files a battlecard, win plan or handoff card under the account it belongs to, with the date and the skill that wrote it.
 
 #### Guild Disciplines, Restated
 
@@ -417,7 +417,7 @@ Use `{Client Profile: Qualification Criteria}` (Buying Triggers) and `{Client Pr
 
 ### Step 4: Re-Qualify Fit and Set the Verdict
 
-Re-score fit against `{Client Profile: ICP Definitions}`. The company may have changed since the original evaluation. Use the profile's verdict words, GREENLIGHT, MANUAL REVIEW or DISQUALIFY, and show what moved against the original score. When the general manager who would recommend has left, the profile's Zone 3 MEDIUM cell still applies, which reads: GM recommends, board approves, next meeting more than 60 days out. The board path is the observable fact, and the HIGH cell needs a GM or owner who signs under $25K, which no longer describes the account. A zone with no record is UNKNOWN. It counts toward neither HIGH nor LOW, so it never earns or blocks GREENLIGHT, and each UNKNOWN zone is named as the evidence still to find.
+Re-score fit against `{Client Profile: ICP Definitions}`. The company may have changed since the original evaluation. Use the profile's verdict words, GREENLIGHT, MANUAL REVIEW or DISQUALIFY, and show what moved against the original score. When the general manager who would recommend has left, the profile's Zone 3 MEDIUM cell still applies, which reads: GM recommends and the board approves, or the next board meeting is more than 60 days out. The board path is the observable fact, and the HIGH cell needs a GM or owner who signs under $25K, which no longer describes the account. A zone with no record is UNKNOWN. It counts toward neither HIGH nor LOW, so it never earns or blocks GREENLIGHT, and each UNKNOWN zone is named as the evidence still to find.
 
 Then set the reactivation verdict:
 
@@ -542,7 +542,7 @@ Present the complete reactivation analysis inline, in this order:
 9. **Coordination Guidance (BDR only):** "Coordinate with the original AE named in Step 0 before sending reactivation outreach."
 10. **Recommended Next Action:** one step, with its owner and date
 
-The owner of the next action is the person who does the step. For a BDR, that is the BDR, who asks the original AE for what the step needs. A step that asks a colleague for an answer is dated by the shared contract's next-action rule (five business days after the run date, or an earlier date the records set for that step).
+The owner of the next action is the person who does the step. For a BDR, that is the BDR, who asks the original AE for what the step needs. A step that asks a colleague for an answer is dated by the shared contract's next-action rule (five business days after the run date, or an earlier date the records or the skill's own schedule set for that step).
 
 Write a file only when the user asks for one. When they do, the file is the one-page cheatsheet built from this same analysis, in Markdown, named `<account>_gtm-closed-loss-reactivation_<date>.md`, with eight sections in this order: deal history banner, what has changed, reactivation strategy, key contacts, reactivation hooks, discovery questions, objection handling, and call flow. Asking for the file is the approval step.
 
@@ -620,7 +620,7 @@ The AE's loss notes decide between the two categories. That question goes to the
 - **Account:** Ines Carmody now runs Quill Hollow Memorial Park `[Public: state licensing database]`. That is a new account for the team. It is not a reason to reactivate Lowmoor.
 - **Account:** the current Lowmoor contact is `[Unknown]`. The champion left, and no successor is recorded.
 - **Product:** PlotIQ is in beta, with two beta cemeteries and no paid revenue `[CRM]`. Every proof point in the profile is Illustrative, so none goes into a message a prospect reads. A beta result is not a customer win.
-- **Competitor:** the profile records Oldgate's weak points as upfront cost, weak mobile support and no AI. These are competitor estimates `[Public: deathcare research, competitive research note, 2026-03-27]`. The Oldgate pain after 6 to 12 months is a research pattern `(illustrative)`.
+- **Competitor:** the profile records Oldgate's weak points as upfront cost, weak mobile support and no AI. These are competitor estimates `[Public: deathcare research, competitive research note, 2026-03-27] (research estimate, over 90 days old at the run date)`. The Oldgate pain after 6 to 12 months is a research pattern `(illustrative)`.
 - **Market:** Oldgate's renewal date for Lowmoor is `[Unknown]`. The profile's Buying Triggers list a rival renewal as a trigger, but without the date no window can be placed.
 
 **Step 4: Re-Qualification.** The re-score is set against the original qualification on the deal record, zone by zone. Only the zones the records speak to are scored, and the rest are `[Unknown]`.
@@ -628,7 +628,7 @@ The AE's loss notes decide between the two categories. That question goes to the
 | Zone | At the Deal `[CRM]` (illustrative) | Now | What Moved |
 |------|-----------------------------------|-----|------------|
 | 1 Records and Inventory Pain | MEDIUM | MEDIUM | Nothing. Paper deeds and lookups that take days `[CRM]` (illustrative). The trust filing is current with no finding on record `[Public: state licensing database]` (illustrative), so the HIGH test is not met |
-| 3 Ownership and Decision Speed (must-have) | HIGH | MEDIUM | The GM who signed has left. Above $25K the board approves, and its next meeting is 2027-01-20, 93 days after the run date, which is more than 60 days out `[CRM]` (illustrative). That is the profile's MEDIUM cell |
+| 3 Ownership and Decision Speed (must-have) | HIGH | MEDIUM | The GM who signed has left. Above $25K the board approves, and its next meeting is 2027-01-20, 93 days after the run date, so the next board meeting is more than 60 days out `[CRM]` (illustrative). With the GM gone, the board path carries the profile's MEDIUM cell |
 | 2 Pre-Need, 4 Technology, 5 Growth | `[Unknown]` | `[Unknown]` | No record speaks to them, so they are not scored |
 
 The one HIGH zone at the deal, Zone 3, is now MEDIUM, so no zone is HIGH. GREENLIGHT needs two HIGH zones, and DISQUALIFY needs a disqualifier or two must-haves at LOW, so the Verdict Rule gives MANUAL REVIEW. The fit is MANUAL REVIEW at the deal and now, and what moved is the ownership zone. No reopening event has fired. Verdict: **MONITOR**. Set the reminder between 2026-12-18 (60 days) and 2027-01-17 (90 days).
@@ -812,8 +812,10 @@ report_path: none (inline)
 
 
 ### 2.1.5 (2026-10-26)
-- The next action follows the family's one deadline rule (five business days after the run date, or an earlier date the records set for that step). The Step 8 rule for a request to a colleague points to that rule.
-- The Zone 3 MEDIUM cell in Step 4 uses the profile's wording (next meeting more than 60 days out), and Example 1 states its board date against that wording.
+- The Zone 3 MEDIUM cell in Step 4 and Example 1 quotes the profile's new wording (GM recommends and the board approves, or the next board meeting is more than 60 days out).
+- Every citation of the competitive research note carries its over-90-days flag at the run date.
+- The next action follows the family's one deadline rule (five business days after the run date, or an earlier date the records or the skill's own schedule set for that step). The Step 8 rule for a request to a colleague points to that rule.
+- The Zone 3 MEDIUM cell in Step 4 uses the profile's wording as it stood in that version, and Example 1 states its board date against that wording.
 - An UNKNOWN zone in Step 4 counts toward neither HIGH nor LOW, and never earns or blocks GREENLIGHT, as the profile's Verdict Rule states.
 - The examples' next actions carry the recomputed dates.
 

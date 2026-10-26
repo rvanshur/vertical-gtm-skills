@@ -13,7 +13,7 @@ mutating: read-write
 change_log:
   - version: 2.1.5
     date: 2026-10-26
-    summary: "The next action follows the family's one deadline rule: five business days after the run date, or an earlier date the records set for that step. The skill's own within-five-days wording is replaced by a pointer to that rule, and every example next action carries its recomputed date."
+    summary: "The Zone 3 sentence of Example 2 quotes the profile's Zone 3 cell as written. "The next action follows the family's one deadline rule: five business days after the run date, or an earlier date the records or the skill's own schedule set for that step. The skill's own within-five-days wording is replaced by a pointer to that rule, and every example next action carries its recomputed date."
   - version: 2.1.4
     date: 2026-10-26
     summary: "Try-it evidence completed so a strict first run reproduces Example 1. The owner letter carries a day, the persona rule covers a persona the account's business or trigger row calls for, a Benchmark stated per cemetery is multiplied by the sites, a payback figure needs a sourced unit price, the next action has a date and scope rule, and the open items are the Step 8 research gaps."
@@ -99,7 +99,7 @@ Every run returns its report in the chat, in the sections below, in this order. 
 | Cheatsheet | Chat, Cheatsheet section | The eight sections for the research type, in the order set in Methodology |
 | Intelligence appendix | Chat, Appendix section | The top eight items, each tagged, and two to four research gaps |
 | `report_path` | Set only when a file was written | Empty when the report is inline |
-| `next_action` | Chat, last line | One step, with its owner and the date the shared contract's next-action rule gives (What the Close Reads: five business days after the run date, or an earlier date the records set for that step). Read by Wrap-Up |
+| `next_action` | Chat, last line | One step, with its owner and the date the shared contract's next-action rule gives (What the Close Reads: five business days after the run date, or an earlier date the records or the skill's own schedule set for that step). Read by Wrap-Up |
 | Markdown file, on request | The account notes folder | Named `<account>_research-outbound_<date>.md`. Written only when the user asks for it |
 
 ---
@@ -199,7 +199,7 @@ Rep talk time as a share of the call, by call type: discovery 30% to 40%, demo 5
 
 #### What the Close Reads
 
-Wrap-Up reads by name the **report path** when a file was written, the **verdict** or **score** the session produced, and the **next action** with its owner and date. The next action is due five business days (Monday to Friday) after the run date, written as one calendar date, unless the records already set an earlier date for that step, in which case that date is used and its source is named. Ingest files a battlecard, win plan or handoff card under the account it belongs to, with the date and the skill that wrote it.
+Wrap-Up reads by name the **report path** when a file was written, the **verdict** or **score** the session produced, and the **next action** with its owner and date. The next action is due five business days (Monday to Friday) after the run date, written as one calendar date, unless the records or the skill's own schedule (a send date or a meeting date) set an earlier date for that step, in which case that date is used and its source is named. Ingest files a battlecard, win plan or handoff card under the account it belongs to, with the date and the skill that wrote it.
 
 #### Guild Disciplines, Restated
 
@@ -475,7 +475,7 @@ Write the summary as one numbered list, in this order:
 12. Coordination note: the guard result, if it fired
 13. Research gaps: the three unknowns from Step 8, in Step 8 order. These are the open items the rep carries into the call
 
-Then write the cheatsheet, then the hand-off block, which lists the fields from Output Contract by name, and the `next_action` line with its owner and date. The `next_action` covers the rep's review of every draft in the package and the first send, names the first send's date, and puts that date on the shared contract's next-action rule (five business days after the run date, or an earlier date the records set for that step). Reason: the rep reads the whole package before one email leaves.
+Then write the cheatsheet, then the hand-off block, which lists the fields from Output Contract by name, and the `next_action` line with its owner and date. The `next_action` covers the rep's review of every draft in the package and the first send, names the first send's date, and puts that date on the shared contract's next-action rule (five business days after the run date, or an earlier date the records or the skill's own schedule set for that step). Reason: the rep reads the whole package before one email leaves.
 
 **Produces:** the summary, the cheatsheet, the hand-off block, and the next action with owner and date.
 
@@ -856,7 +856,7 @@ next_action: Nadia Brandt reads the 20 drafts and sends Email 1 to Hector Ruiz b
 - The owner retires within 3 years `[CRM]` (illustrative)
 - Ruth Ellery, GM, is the champion `[Call]`. Walt Okonkwo, Operations Director, is skeptical of tablets `[CRM]`
 
-**Zones shown beside the verdict:** 1 HIGH, 2 MEDIUM, 3 MEDIUM, 4 MEDIUM, 5 HIGH. **GREENLIGHT**, because two zones are HIGH and no must-have zone is LOW. Zone 3 stays MEDIUM even though the family board meets within 60 days (2026-11-12), because year one with setup, $26,576, is above the $25K board line.
+**Zones shown beside the verdict:** 1 HIGH, 2 MEDIUM, 3 MEDIUM, 4 MEDIUM, 5 HIGH. **GREENLIGHT**, because two zones are HIGH and no must-have zone is LOW. Zone 3 stays MEDIUM because the GM recommends and the board approves, which is the profile's MEDIUM cell as written, even though the family board meets within 60 days (2026-11-12). Year one with setup, $26,576, is above the $25K board line.
 
 **Output:** A coordination note for Owen. The March 2027 Oldgate renewal is the timing hook. Owen should lead it, because BDR outreach to a deal in Negotiate would cross Owen's conversation with Ruth Ellery. No sequences are written.
 
@@ -1065,7 +1065,8 @@ next_action: the rep is told the verdict and its disqualifier by 2026-10-26, and
 
 
 ### 2.1.5 (2026-10-26)
-- The next action follows the family's one deadline rule (five business days after the run date, or an earlier date the records set for that step). The Output Contract and Step 9 point to that rule, and each example next action carries its date under it.
+- The Zone 3 sentence of Example 2 quotes the profile's Zone 3 cell as written.
+- The next action follows the family's one deadline rule (five business days after the run date, or an earlier date the records or the skill's own schedule set for that step). The Output Contract and Step 9 point to that rule, and each example next action carries its date under it.
 
 ### 2.1.4 (2026-10-26)
 - Try-it evidence completed so a strict first run reproduces Example 1.
