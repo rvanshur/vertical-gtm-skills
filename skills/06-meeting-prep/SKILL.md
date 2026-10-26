@@ -1,6 +1,6 @@
 ---
 name: gtm-meeting-prep
-version: 2.1.5
+version: 2.1.6
 description: "Prepares a rep for a discovery or demo call with one prep sheet: the top pain, a question bank for each discovery phase, one proof point per attendee, objection scripts, a minute-by-minute call flow and a follow-up email draft. The rep reads it during the call."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,9 +11,12 @@ requires:
   skills: [gtm-account-snapshot, gtm-research-outbound, gtm-trigger-event-outbound, gtm-closed-loss-reactivation, gtm-daily-prospecting, gtm-deal-pulse, gtm-stakeholder-mapping, gtm-competitive-strategy, gtm-competitive-displacement, gtm-call-coaching]
 mutating: read-write
 change_log:
+  - version: 2.1.6
+    date: 2026-10-26
+    summary: "Consistency pass against the 2.1.5 audit. The upstream Account Snapshot fields in the first example quote that skill's pain hypotheses and three-email sequence. The Sable Fork, Greyfield and Quill Hollow examples move in time to match the records they read, so each booked call is prepared after its booking, and the Quill Hollow example no longer uses its undated records finding as the hook. The 2.1.5 summary's stray quotation mark is removed so the frontmatter parses."
   - version: 2.1.5
     date: 2026-10-26
-    summary: "Meeting-driven next action dates name whether the records or the skill's own schedule set them. "Per-attendee proof is one line for every attendee, including an attendee whose persona is not yet known. A fact from a call whose date is unknown takes the shared Call tag with its date unknown, in place of the notes tag. The next action follows the family's one deadline rule, and a next action that happens on a call the record dates uses that call date and names it as the source. The examples' next actions carry those dates."
+    summary: "Meeting-driven next action dates name whether the records or the skill's own schedule set them. 'Per-attendee proof is one line for every attendee, including an attendee whose persona is not yet known. A fact from a call whose date is unknown takes the shared Call tag with its date unknown, in place of the notes tag. The next action follows the family's one deadline rule, and a next action that happens on a call the record dates uses that call date and names it as the source. The examples' next actions carry those dates."
   - version: 2.1.4
     date: 2026-10-26
     summary: "Try-it evidence completed so a strict first run reproduces Example 1. Defines the research target as the profile figure that matches a persona's hook focus, settles the tag order for ranking pains, fills each question phase from the profile first and then the record, reads a meeting with no earlier logged meeting as a first meeting, tags a call of unknown date as notes, and names the next action when the economic buyer cell is yellow. No output changed."
@@ -175,7 +178,7 @@ When the assistant is connected to the CRM or to a call recorder, the skill offe
 
 #### Account Status, Five Words
 
-Every account carries one status: **TARGET** (researched, not yet contacted), **INBOUND** (they asked us), **ACTIVE** with its stage number (open deal), **LOST** (closed-lost, eligible for reactivation), **OUT** (disqualified). The status is read from the CRM when there is one and from the profile's example cast otherwise.
+Every account carries one status: **TARGET** (researched, no open deal yet, whether or not contacted), **INBOUND** (they asked us), **ACTIVE** with its stage number (open deal), **LOST** (closed-lost, eligible for reactivation), **OUT** (disqualified). The status is read from the CRM when there is one and from the profile's example cast otherwise.
 
 #### The Verdict Words and the Zone Rule
 
@@ -577,7 +580,7 @@ All four examples use PlotIQ and its cast from the profile's Example Cast. Facts
 
 **Step 0.** `meeting_type = discovery`. The demo prerequisite does not apply.
 
-**Step 1.** Account profile: combination, two sites, 11,000 plots `[CRM]`. Status ACTIVE, Stage 2 Discovery `[CRM]`. Upstream from Account Snapshot (02), run when the account was TARGET: `account_status: TARGET (then)` and `verdict: GREENLIGHT`. Its `contact_priority` ranks Ruth Ellery first and Walt Okonkwo second `[Inferred]`, from the persona order in the profile. Its `pain_hypotheses` are plot records on paper, with one double sale `[CRM]` (illustrative), and trust reporting by hand `[Inferred]`. Its `sequence` is a four-step sequence for Ruth Ellery, drafted and not sent (illustrative). Attendees:
+**Step 1.** Account profile: combination, two sites, 11,000 plots `[CRM]`. Status ACTIVE, Stage 2 Discovery `[CRM]`. Upstream from Account Snapshot (02), run when the account was TARGET: `account_status: TARGET (then)` and `verdict: GREENLIGHT`. Its `contact_priority` ranks Ruth Ellery first and Walt Okonkwo second `[Inferred]`, from the persona order in the profile. Its `pain_hypotheses` are plot records on paper across two sites (HIGH, `[CRM]`, `[Inferred]` from the record type) and the Oldgate renewal in March 2027 (MEDIUM, `[CRM]`, `[Inferred]` from the contract date). Its `sequence` is three emails to Ruth Ellery, with call prep, drafted and not sent (illustrative). Attendees:
 
 | Name | Title | Buying role |
 |------|-------|-------------|
@@ -639,26 +642,26 @@ report_path: none (inline)
 
 ### Example 2: Prep for an Inbound Request (Sable Fork Cemetery, MANUAL REVIEW)
 
-**Context:** Sable Fork Cemetery has one site, 2,900 plots and a plot list in a spreadsheet `[CRM]`. The GM, Arlen Biggs, signs under $25K `[CRM]`. The account is INBOUND. Someone filled in the website form on Thursday 2026-10-15, four days ago, and asked for a demo. The form filler is `[Unknown]` until confirmed. The verdict is MANUAL REVIEW, with Zone 3 HIGH the only HIGH zone.
+**Context:** Sable Fork Cemetery has one site, 2,900 plots and a plot list in a spreadsheet `[CRM]`. The GM, Arlen Biggs, signs under $25K `[CRM]`. The account is INBOUND. Someone filled in the website form on Thursday 2026-10-15, four days ago, and asked for a demo. The form filler is `[Unknown]` until confirmed. The BDR replied to the form on the afternoon of 2026-10-19 and booked discovery for Thursday 2026-10-22 `[CRM]`. This prep is written on the run date, 2026-10-19, after that booking, so the call it prepares is the booked call. The verdict is MANUAL REVIEW, with Zone 3 HIGH the only HIGH zone.
 
 **Input:** "Prep me for the demo with Sable Fork on Thursday."
 
 **Step 0.** The request says demo. The record holds no discovery findings, so the prerequisite fails: no confirmed pain and no quantified impact. The skill builds a discovery prep (`meeting_type = discovery`). A demo before discovery would show features without a confirmed pain.
 
-**Step 1.** Upstream from Account Snapshot (02): `account_status: INBOUND` and `verdict: MANUAL REVIEW`. The zones are 1 MEDIUM, 2 LOW, 3 HIGH, 4 MEDIUM and 5 LOW. Attendees:
+**Step 1.** Upstream from Account Snapshot (02): `account_status: INBOUND` and `verdict: MANUAL REVIEW`. The zones are 1 MEDIUM, 2 LOW, 3 HIGH, 4 MEDIUM and 5 LOW. Zone 2 is LOW on pre-need: none `[CRM]`. Zone 5 is LOW on plot sales flat for three years, with no succession plan on the record `[CRM]`. Attendees:
 
 | Name | Title | Buying role |
 |------|-------|-------------|
 | Arlen Biggs | General Manager | Buyer, signs under $25K `[CRM]` |
 | `[Unknown]` | Form filler | `[Unknown]`, to confirm on the call |
 
-**Step 2.** Findings: the website form request on 2026-10-15 `[CRM]`. No prior calls `[CRM]`. Gaps: no confirmed pain, no quantified impact, no champion, and no decision process beyond the GM's signature.
+**Step 2.** Findings: the website form request on 2026-10-15 `[CRM]`, and the BDR's reply and discovery booking for 2026-10-22 `[CRM]`. No prior calls `[CRM]` before that booking. Gaps: no confirmed pain, no quantified impact, no champion, and no decision process beyond the GM's signature.
 
 **Step 3.** Pain hypotheses, ranked:
 
 1. **Plot lookups on a spreadsheet.** `[Inferred]` from the plot list `[CRM]` and the profile's lookup pain, which takes minutes to hours. Not measured. Business impact `[Unknown]`.
 2. **Unsold plots nobody can see.** `[Inferred]` from the same spreadsheet and the profile's paper-to-digital gap. The GM may not know how many plots are open `[Unknown]`.
-3. **Pre-need leads with no follow-up.** `[Unknown]`. No pre-need data in the record. Negative framing: "Do you sell pre-need?"
+3. **Pre-need leads with no follow-up.** Not supported by the record: pre-need is none `[CRM]`, and the GM sells plots directly, with no counselor and no intake form. Kept as a question only: "Do you sell pre-need?"
 
 **Top pain:** none confirmed. Working hypothesis: plot lookups on a spreadsheet `[Inferred]`.
 
@@ -698,17 +701,17 @@ top_pain: none confirmed. Working hypothesis: plot lookups on a spreadsheet, [In
 question_bank: Situation 3, Problem 3, Implication 3 (top three per phase)
 attendees: Arlen Biggs, General Manager, buyer (signs under $25K). Form filler: [Unknown]
 proof_point: Arlen Biggs, Fennick Gardens, Status Illustrative, do not cite. The prospect hears the Benchmark line only. Form filler, no proof until the persona is confirmed
-next_action: the rep on the Thursday call confirms the form filler and runs discovery, not the demo. Owner: that rep. Date: 2026-10-22, the Thursday call the records name in the request, which is earlier than the five-business-day date of 2026-10-26
+next_action: the rep on the Thursday call confirms the form filler and runs discovery, not the demo. Owner: that rep. Date: 2026-10-22, the discovery call booked on 2026-10-19 `[CRM]`, which is earlier than the five-business-day date of 2026-10-26
 report_path: none (inline)
 ```
 
 ### Example 3: Shallow Discovery Holds the Demo (Greyfield Memorial Park)
 
-**Context:** Greyfield Memorial Park has one site, 9,000 plots, a digital map from Stonemark, and a renewal in January 2027 `[CRM]`. It runs a pre-need team of three, with an intake form on its website `[Public: company website]`. No contact names are on file `[Unknown]`. The verdict is GREENLIGHT, with Zones 2 and 3 HIGH. The account is TARGET, and an AE has a demo on the calendar for Friday with the general manager and the pre-need manager, both unnamed. The CRM holds one discovery note: the renewal date (illustrative).
+**Context:** Greyfield Memorial Park has one site, 9,000 plots, a digital map from Stonemark, and a renewal in January 2027 `[CRM]`. It runs a pre-need team of three, with an intake form on its website `[Public: company website]`. This prep is written on 2026-11-16. The pre-need manager replied to Email 1 on 2026-11-03 `[CRM]` (illustrative), and Owen Pruitt became the AE owner that day `[CRM]` (illustrative). Owen held one discovery call with the account on 2026-11-09 `[Call, 2026-11-09]` (illustrative). The call named the January 2027 renewal and confirmed no pain. No contact names are on file `[Unknown]`. The verdict is GREENLIGHT, with Zones 2 and 3 HIGH. The account is ACTIVE at Stage 2 Discovery `[CRM]` (illustrative). An AE has a demo on the calendar for Friday 2026-11-20 with the general manager and the pre-need manager, both unnamed.
 
 **Input:** "Prep me for the demo with Greyfield on Friday. Attendees are the GM and the pre-need manager."
 
-**Step 0.** `meeting_type = demo`. The prerequisite check runs and fails. The record holds one note, which is shallow discovery, not an empty record:
+**Step 0.** `meeting_type = demo`. The prerequisite check runs and fails. The record holds one discovery call, which is shallow, not an empty record:
 
 - Confirmed pains: 0 of 2 needed.
 - Quantified impact: 0 of 1 needed.
@@ -754,20 +757,20 @@ The AE chooses. The skill does not pick (b) by default, because a demo built on 
 
 ```text
 Hand-off (read by 07 and 13):
-account: Greyfield Memorial Park (TARGET)
-run_date: 2026-10-19
+account: Greyfield Memorial Park (ACTIVE, Stage 2 Discovery, AE owner Owen Pruitt from 2026-11-03)
+run_date: 2026-11-16
 prep_sheet: not produced as a demo plan. Discovery-first recommendation with two options
 top_pain: none confirmed (0 of 2 needed for a demo)
 question_bank: Problem 2 questions and Need-Payoff 1 question, from Step 4
 attendees: General Manager, name [Unknown], buyer. Pre-Need Sales Manager, name [Unknown], buying role [Unknown]
 proof_point: General Manager, Holloway Hills, Status Illustrative, do not cite, with the 50 to 100 plot Benchmark as the research target. Pre-need manager, no proof in the profile yet, so the research target stands in
-next_action: the AE confirms discovery or demo with the GM and asks for the pre-need manager's name. Owner: the AE. Date: 2026-10-22, the working day before the Friday meeting on record (2026-10-23), a date the skill's own schedule sets for the confirmation, which is earlier than the five-business-day date of 2026-10-26
+next_action: the AE confirms discovery or demo with the GM and asks for the pre-need manager's name. Owner: the AE. Date: 2026-11-19, the working day before the Friday meeting on record (2026-11-20), a date the skill's own schedule sets for the confirmation, which is earlier than the five-business-day date of 2026-11-23
 report_path: none (inline)
 ```
 
 ### Example 4: Quick Call Prep for a Champion (Quill Hollow Memorial Park)
 
-**Context:** Ines Carmody, general manager of Quill Hollow Memorial Park, moved here six months ago from Lowmoor Memorial Gardens and is the champion `[CRM]`. Quill Hollow is a TARGET account with a GREENLIGHT verdict. It has one site, 8,800 plots and paper plat maps `[CRM]`. Discovery is in 15 minutes.
+**Context:** Ines Carmody, general manager of Quill Hollow Memorial Park, moved here six months ago from Lowmoor Memorial Gardens. She is the champion label, with the Champion Test not yet run `[CRM]`. Ines Carmody replied to Email 1 on 2026-10-27 and booked a call for 2026-11-02 `[CRM]` (illustrative). Quill Hollow is a TARGET account with a GREENLIGHT verdict. It has one site, 8,800 plots and paper plat maps `[CRM]`. This prep is written on 2026-11-02, and the discovery call is in 15 minutes.
 
 **Input:** "Quick call prep for Quill Hollow. Ines is on the call."
 
@@ -775,21 +778,21 @@ report_path: none (inline)
 
 **Step 3.** Pain hypotheses, ranked:
 
-1. **A records finding in the last state review.** `[CRM]` for the fact. The date is `[Unknown]`, so no deadline window can be computed (illustrative).
-2. **Unsold plots on paper plat maps.** `[Inferred]`. The site holds 8,800 plots on paper plat maps `[CRM]`. The gap is reasoned, not measured.
+1. **Unsold plots on paper plat maps.** `[Inferred]`. The site holds 8,800 plots on paper plat maps `[CRM]`. The gap is reasoned, not measured. Top pain.
+2. **A records finding in the last state review.** `[CRM]` for the fact, with its date `[Unknown]`. It ranks below the inferred pain because an undated finding cannot be the hook. It stays a discovery question only (illustrative).
 3. **Pre-need leads.** `[Unknown]`. No pre-need activity is recorded.
 
 **Step 8.** Opener: "Ines, thanks for making the time. Before we go further, how are the plot records kept at Quill Hollow today?" Do not reference the Lowmoor history unless she raises it.
 
 **Step 4.** Top three discovery questions:
 
-1. "What did the state review ask for, and what is still open?"
+1. "When was the last state review, and what did it ask for?"
 2. "When a family asks about a plot, how long does it take you to answer?"
 3. "Who in the office would have to sign off on a tool under $25K?" The owner signs under $25K `[CRM]`.
 
-**Step 9.** Game plan: confirm the review finding first, then the plot lookup. If-then:
+**Step 9.** Game plan: find when the last state review was and what it asked for, then the plot lookup. If-then:
 
-- If she confirms the finding is still open, ask for the deadline.
+- If she raises the state review, ask when it was, what it asked for, and whether anything is still open.
 - If she says the records are fine, ask for the last audit.
 - If the owner joins, ask about the growth mandate `[CRM]`.
 
@@ -800,13 +803,13 @@ report_path: none (inline)
 ```text
 Hand-off (read by 07 and 13):
 account: Quill Hollow Memorial Park (TARGET)
-run_date: 2026-10-19
+run_date: 2026-11-02
 prep_sheet: inline, short form (quick call prep, no file)
-top_pain: records finding in the last state review, [CRM], date [Unknown] (illustrative)
+top_pain: unsold plots on paper plat maps, [Inferred]. The records finding is a question, not the hook, because its date is [Unknown] (illustrative)
 question_bank: Situation 1, Problem 1, Implication 1 (three questions, from Step 4)
-attendees: Ines Carmody, General Manager, champion [CRM]. The owner signs under $25K
+attendees: Ines Carmody, General Manager, champion label, Champion Test not yet run [CRM]. The owner signs under $25K
 proof_point: Holloway Hills, Status Illustrative, not cited to the prospect
-next_action: the AE asks Ines Carmody for the deadline on the open review item. Owner: the AE on the call. Date: 2026-10-19, the call date on record (discovery in 15 minutes), which is earlier than the five-business-day date of 2026-10-26
+next_action: the AE asks Ines Carmody when the last state review was and what it asked for. Owner: the AE on the call. Date: 2026-11-02, the call booked on 2026-10-27 `[CRM]`, which is earlier than the five-business-day date of 2026-11-09
 report_path: none (inline)
 ```
 
@@ -917,6 +920,14 @@ This skill also reads the kit's hand-off block back as optional context: `case_s
 
 ## Changelog
 
+
+### 2.1.6 (2026-10-26)
+- The upstream Account Snapshot fields in the first example quote that skill's pain hypotheses and its three-email sequence, so the two files read the same values.
+- The Sable Fork example records the discovery call that the BDR booked on the afternoon of the run date. Its prep is written after that booking, and its next action names the booking as the source of the call date.
+- The Quill Hollow example moves to the run date of its booked call. Its undated records finding no longer serves as the hook: it ranks below the inferred pain and stays a discovery question. Its champion is a label until the Champion Test runs.
+- The Greyfield example moves to a run date after the account's first contact and its discovery call. Its demo and confirmation dates are recomputed under the shared rule.
+- The first example keeps its notes tags for the Stonemark evaluation and Walt's tablet skepticism. Its run date, 2026-05-11, comes before the later calls that also record those facts.
+- Frontmatter: the 2.1.5 change summary carried a stray quotation mark that broke the YAML. It is removed.
 
 ### 2.1.5 (2026-10-26)
 - Meeting-driven next action dates name whether the records or the skill's own schedule set them.

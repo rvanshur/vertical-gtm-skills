@@ -13,7 +13,7 @@ Every name, date and number in this file is invented for the PlotIQ example. Not
 - Two sites at $10,788 a year each at list, so $21,576 a year, plus $5,000 setup (profile).
 - AE: Owen Pruitt. Implementation Lead: Eli Marsh (profile). Eli Marsh is assigned [CRM].
 - Champion: Ruth Ellery, with four of seven shared champion tests met on the 2026-10-27 call, each tagged [Call] (illustrative): she explains the internal politics, asks how to help, commits to next steps with dates, and creates urgency inside her company. Ruth is open to the change [Call].
-- On 2026-10-27, Ruth explained the approval path: the family board chair signs off, and the board meets 2026-11-12 [Call] (illustrative).
+- On 2026-10-27, Ruth explained the approval path: the family board chair decides after the family's vote, and the board meets 2026-11-12 [Call] (illustrative).
 - On the same call, Ruth asked, "What do you need from me to get this in front of the board?" [Call] (illustrative).
 - On the same call, Ruth said the board wants the ledger fixed before the March 2027 renewal [Call] (illustrative).
 - Family board chair: a role with no name on file [Unknown]. The chair has joined one call [CRM]. No sponsor is confirmed in writing.

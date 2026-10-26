@@ -1,6 +1,6 @@
 ---
 name: gtm-closed-loss-reactivation
-version: 2.1.5
+version: 2.1.6
 description: "Re-engages closed-lost accounts from the CRM history. Checks the recorded loss reason against the evidence, finds what has changed since the deal died, re-scores fit, and returns REACTIVATE, MONITOR or RETIRE with a history-aware opener for the BDR or AE who owns the next step."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,9 +11,12 @@ requires:
   skills: []
 mutating: read-write
 change_log:
+  - version: 2.1.6
+    date: 2026-10-26
+    summary: "Consistency pass across the sales family. Example 1 states the reason the contact hold is in place: the Oldgate re-entry window cannot be placed because the renewal date is unknown. The secondary contact date follows the shared five-business-day rule, 2026-10-26, instead of 2026-11-02. The GM move is tagged to the state licensing database. The verdict, scores and dates of the examples are unchanged."
   - version: 2.1.5
     date: 2026-10-26
-    summary: "The Zone 3 MEDIUM cell in Step 4 and Example 1 quotes the profile's new wording, and the competitive research note is flagged as over 90 days old at the run date. "The next action follows the family's one deadline rule: five business days after the run date, or an earlier date the records or the skill's own schedule set for that step. The skill's own within-five-days wording is replaced by a pointer to that rule. The Zone 3 MEDIUM cell is quoted with the profile's current wording (GM recommends and the board approves, or the next board meeting is more than 60 days out), and an UNKNOWN zone is stated with the Verdict Rule's wording. The examples' next actions carry the recomputed dates."
+    summary: "The Zone 3 MEDIUM cell in Step 4 and Example 1 quotes the profile's new wording, and the competitive research note is flagged as over 90 days old at the run date. The next action follows the family's one deadline rule: five business days after the run date, or an earlier date the records or the skill's own schedule set for that step. The skill's own within-five-days wording is replaced by a pointer to that rule. The Zone 3 MEDIUM cell is quoted with the profile's current wording (GM recommends and the board approves, or the next board meeting is more than 60 days out), and an UNKNOWN zone is stated with the Verdict Rule's wording. The examples' next actions carry the recomputed dates."
   - version: 2.1.4
     date: 2026-10-26
     summary: "Try-it evidence completed so a strict first run reproduces Example 1. Settles the order of two categories when the AE notes are blank, the timing of a champion's move, unknown zones in the verdict, the anchor of the timing and competitor re-entry windows, the Zone 3 board path after the general manager leaves, and the owner and date of a next step. Oldgate is cited to the competitive research note. Adds the example profile to the try-it pointer in the body."
@@ -147,7 +150,7 @@ When the assistant is connected to the CRM or to a call recorder, the skill offe
 
 #### Account Status, Five Words
 
-Every account carries one status: **TARGET** (researched, not yet contacted), **INBOUND** (they asked us), **ACTIVE** with its stage number (open deal), **LOST** (closed-lost, eligible for reactivation), **OUT** (disqualified). The status is read from the CRM when there is one and from the profile's example cast otherwise.
+Every account carries one status: **TARGET** (researched, no open deal yet, whether or not contacted), **INBOUND** (they asked us), **ACTIVE** with its stage number (open deal), **LOST** (closed-lost, eligible for reactivation), **OUT** (disqualified). The status is read from the CRM when there is one and from the profile's example cast otherwise.
 
 #### The Verdict Words and the Zone Rule
 
@@ -601,13 +604,13 @@ The examples use the PlotIQ example company and its cast, and they match the sha
 
 ### Example 1: The Loss Reason Is a Claim, MONITOR (Lowmoor Memorial Gardens)
 
-**Context:** Lowmoor Memorial Gardens is one site with 7,500 plots. It closed-lost to Oldgate Ledger Pro on 2026-01-20. The CRM reason is "timing" `[CRM]`. The general manager, Ines Carmody, was the champion. She moved to Quill Hollow Memorial Park in April 2026, six months ago.
+**Context:** Lowmoor Memorial Gardens is one site with 7,500 plots. It closed-lost to Oldgate Ledger Pro on 2026-01-20. The CRM reason is "timing" `[CRM]`. The general manager, Ines Carmody, was the champion. She moved to Quill Hollow Memorial Park in April 2026, six months ago `[Public: state licensing database]`.
 
 **Input:** "Should we reactivate Lowmoor Memorial Gardens? We lost to Oldgate on timing."
 
 **Step 0: Role Detection.** The user is a BDR. The original AE is Owen Pruitt `[CRM]` (illustrative), the AE owner on the closed-lost opportunity. The coordination guidance names him, and the BDR coordinates with him before any outreach.
 
-**Step 1: Status and Deal History.** Status is LOST. Close date 2026-01-20 `[CRM]`. Stage lost is 4 Proposal `[CRM]` (illustrative). Days since close is 272, which is nine months, counted to today, 2026-10-19. Deal value is `[Unknown]`. It is optional for the verdict, and the skill asks for it before any price goes into a message. The AE's loss notes are `[Unknown]`, because they are not in the cast. The champion, Ines Carmody, has moved.
+**Step 1: Status and Deal History.** Status is LOST. Close date 2026-01-20 `[CRM]`. Stage lost is 4 Proposal `[CRM]` (illustrative). Days since close is 272, which is nine months, counted to today, 2026-10-19. Deal value is `[Unknown]`. It is optional for the verdict, and the skill asks for it before any price goes into a message. The AE's loss notes are `[Unknown]`, because they are not in the cast. The champion, Ines Carmody, has moved `[Public: state licensing database]`.
 
 **Step 2: Loss Classification.** Two categories fit, and the CRM reason does not settle the question on its own.
 - **Budget / Timing `[CRM]`.** The CRM logs the reason as "timing" `[CRM]`. The profile's loss taxonomy maps "timing" to a board date that has passed, so the board date is the probable sub-reason `[Inferred]`, by the profile's loss taxonomy mapping.
@@ -635,7 +638,7 @@ The one HIGH zone at the deal, Zone 3, is now MEDIUM, so no zone is HIGH. GREENL
 
 The reopening events for Lowmoor are the three the profile lists: a new general manager in the licensing record, an audit finding, or a consolidator purchase. The champion's move is not counted here. It has already happened, and its play runs at Quill Hollow (Example 3).
 
-**Step 5: Strategy (held).** The Buyer's Remorse play, the competitor pattern, is held until a reopening event fires. Timing is too soon for contact. The pain window of 6 to 12 months after the loss is open, at 272 days. Two categories name two re-entry windows. Budget / Timing's window, 6 to 9 months after close, runs 2026-07-20 to 2026-10-20 and is open today. Lost to Competitor's window, 90 to 180 days before Oldgate's renewal, cannot be placed, because the renewal date is `[Unknown]`. The later-opening window governs contact, so the play waits. When it opens, the entry angle is to ask how Oldgate is working out, specifically around the area the AE recorded.
+**Step 5: Strategy (held).** The Buyer's Remorse play, the competitor pattern, is held until a reopening event fires. The hold is for one reason: the Oldgate window cannot be placed. The Lost to Competitor re-entry window runs 90 to 180 days before Oldgate's renewal date, and that renewal date is `[Unknown]`, so the window has no dates to check. The pain window of 6 to 12 months after the loss is open, at 272 days, and so is the Budget / Timing window, 6 to 9 months after close, which runs 2026-07-20 to 2026-10-20. Because the two categories name two re-entry windows, the later-opening window governs contact, and that window cannot be placed. Contact therefore holds until the renewal date is found. When it opens, the entry angle is to ask how Oldgate is working out, specifically around the area the AE recorded.
 
 **Step 6: Sequences (held, 0 emails).** No contact is named, so no email is written. Email 1 cannot name anyone, and no sequence goes to a guessed name.
 
@@ -645,7 +648,7 @@ The held `history_opener` is: "When we last spoke, you went with Oldgate. Curiou
 
 **Summary: MONITOR.** Lowmoor Memorial Gardens, with these next actions:
 1. The BDR asks the original AE for the loss notes and the deal value, by 2026-10-26 (five business days after the run date of 2026-10-19, a Monday, and the records set no earlier date for this step).
-2. The BDR finds the current Lowmoor contact, who is `[Unknown]` today, by 2026-11-02.
+2. The BDR finds the current Lowmoor contact, who is `[Unknown]` today, by 2026-10-26 (the shared rule's five business days after the run date).
 3. The BDR sets the reminder for the window 2026-12-18 to 2027-01-17 to check the reopening events.
 4. Quill Hollow runs as its own account through Account Snapshot (02), not as part of this reactivation.
 
@@ -810,6 +813,11 @@ report_path: none (inline)
 
 ## Changelog
 
+
+### 2.1.6 (2026-10-26)
+- Example 1 Step 5 states the reason contact holds: the Oldgate re-entry window cannot be placed, because Oldgate's renewal date for Lowmoor is unknown. The pain window and the Budget / Timing window are open, but the later window governs.
+- Example 1 gives the secondary contact date as 2026-10-26, the shared rule's five business days after the run date.
+- The state licensing tag is applied to the champion's move in Example 1 and in the try-it records.
 
 ### 2.1.5 (2026-10-26)
 - The Zone 3 MEDIUM cell in Step 4 and Example 1 quotes the profile's new wording (GM recommends and the board approves, or the next board meeting is more than 60 days out).

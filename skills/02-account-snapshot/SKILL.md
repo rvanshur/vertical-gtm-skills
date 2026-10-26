@@ -1,7 +1,7 @@
 ---
 name: gtm-account-snapshot
 description: "One-page account brief for BDRs and AEs: a zone-based verdict, persona-ranked contacts, tagged pain hypotheses, a three-step email draft and call prep, read by the rep before anything is sent."
-version: 2.1.5
+version: 2.1.6
 category: Sales-Methodology
 author: Ryan Vanshur
 license: MIT
@@ -11,9 +11,12 @@ requires:
   skills: [gtm-account-qualification, gtm-competitive-displacement]
 mutating: read-write
 change_log:
+  - version: 2.1.6
+    date: 2026-10-26
+    summary: "Consistency pass across the sales family. The GM move is tagged to the state licensing database, not the CRM. Example 1 opens its emails on that dated move, and the undated records finding becomes a discovery question only. Example 2 scores Zone 2 on the recorded no-pre-need fact and Zone 5 on the recorded flat-sales and no-succession facts, with the same LOW scores and MANUAL REVIEW verdict. Example 3 dates the Corrow Ridge first email to the first day of the Corrow Ridge sequence. Example 4 names the BDR as the one who books the first discovery call for the AE, and tags the owner retirement and board check to their public sources."
   - version: 2.1.5
     date: 2026-10-26
-    summary: "The Zone 3 sentence of Example 4 quotes the profile's Zone 3 cell as written. "The next action follows the family's one deadline rule: five business days after the run date, or an earlier date the records or the skill's own schedule set for that step. The skill's own within-five-days wording is replaced by a pointer to that rule, and the example next actions carry the recomputed dates. An UNKNOWN zone is stated with the Verdict Rule's wording, neither HIGH nor LOW, and the flagship example's next action gains its date."
+    summary: "The Zone 3 sentence of Example 4 quotes the profile's Zone 3 cell as written. The next action follows the family's one deadline rule: five business days after the run date, or an earlier date the records or the skill's own schedule set for that step. The skill's own within-five-days wording is replaced by a pointer to that rule, and the example next actions carry the recomputed dates. An UNKNOWN zone is stated with the Verdict Rule's wording, neither HIGH nor LOW, and the flagship example's next action gains its date."
   - version: 2.1.4
     date: 2026-10-26
     summary: "Try-it evidence completed so a strict first run reproduces Example 1. The GM move is tagged as a CRM fact, Example Cast facts take the tag of their record, scale uses the profile's Size Bands, the gap and champion rules are settled, an undated signal does not count toward a timing hypothesis, a sequence is drafted only for GREENLIGHT, and the next action gets a date rule."
@@ -141,7 +144,7 @@ When the assistant is connected to the CRM or to a call recorder, the skill offe
 
 #### Account Status, Five Words
 
-Every account carries one status: **TARGET** (researched, not yet contacted), **INBOUND** (they asked us), **ACTIVE** with its stage number (open deal), **LOST** (closed-lost, eligible for reactivation), **OUT** (disqualified). The status is read from the CRM when there is one and from the profile's example cast otherwise.
+Every account carries one status: **TARGET** (researched, no open deal yet, whether or not contacted), **INBOUND** (they asked us), **ACTIVE** with its stage number (open deal), **LOST** (closed-lost, eligible for reactivation), **OUT** (disqualified). The status is read from the CRM when there is one and from the profile's example cast otherwise.
 
 #### The Verdict Words and the Zone Rule
 
@@ -470,7 +473,7 @@ These examples use the PlotIQ example cast, and every fact is tagged as the tag 
 
 ### Example 1: BDR Account Snapshot (Quill Hollow Memorial Park, TARGET, GREENLIGHT)
 
-**Context:** A BDR prepares a first outbound touch during a morning block. The general manager, Ines Carmody, moved to Quill Hollow from Lowmoor Memorial Gardens six months ago `[CRM]` (illustrative). Her history at Lowmoor is a closed-loss matter for Closed-Loss Reactivation (05), not this outbound.
+**Context:** A BDR prepares a first outbound touch during a morning block. The general manager, Ines Carmody, moved to Quill Hollow from Lowmoor Memorial Gardens six months ago `[Public: state licensing database]` (illustrative). Her history at Lowmoor is a closed-loss matter for Closed-Loss Reactivation (05), not this outbound.
 
 **Input:** "Account snapshot on Quill Hollow Memorial Park, with outbound sequences and a cheatsheet."
 
@@ -509,30 +512,34 @@ Ines Carmody ranks first because she has engagement history and runs the site no
 **Step 4: Pain Hypotheses.**
 
 1. **Plot visibility.** HIGH confidence. The plot map is on paper `[CRM]`. `[Inferred]`, by reasoning from the record type: a paper map cannot show which plots are sold without a walk of the grounds. Discovery question: "How do you check today which plots are open?" Value prop: plot inventory matched against sold records.
-2. **Records after a state finding.** MEDIUM confidence. The last state review found a records problem `[CRM]`, and its date is `[Unknown]`. The pressure is real, but its timing is not. Because the hypothesis depends on when the finding happened, the undated finding does not count toward the three signals, so size and vertical are the two signals that count, and the hypothesis stays at MEDIUM. Discovery question: "When was the last state review, and what did it ask you to fix?"
+2. **Records after a state finding.** MEDIUM confidence. The last state review found a records problem `[CRM]`, and its date is `[Unknown]`. The pressure is real, but its timing is not. Because the hypothesis depends on when the finding happened, the undated finding does not count toward the three signals, so size and vertical are the two signals that count, and the hypothesis stays at MEDIUM. The finding is a discovery question only, and no email or call opener uses it. Discovery question: "When was the last state review, and what did it ask you to fix?"
 3. **Pre-need follow-up.** LOW confidence. No pre-need activity is recorded `[Unknown]`. Use it as a question, not as a lead.
 
 **Step 5: Sequence (Ines Carmody, General Manager).**
 
 Email 1
 
-Subject: Plot records after the state review at Quill Hollow
+Subject: Your move to Quill Hollow and the plot maps
 
 Ines,
 
-Quill Hollow's last state review turned up a records finding, and the plot maps are still on paper. How do you check today which plots are sold and which are open?
+You took over Quill Hollow in April 2026, and the plot maps here are still on paper. How do you check today which plots are sold and which are open?
 
 Worth 15 minutes to walk through how your plot maps and your sold records line up?
 
+Claim tags for Email 1: the April 2026 move `[Public: state licensing database]`, and the paper plot maps `[CRM]`.
+
 Email 2
 
-Subject: The records finding and the plot map
+Subject: Sold plots and the plot map
 
 Ines,
 
-Quill Hollow's plot maps are still on paper `[CRM]`. When the state asks for a sold plot after a records finding, how long does your team take to show the record?
+Since you took over Quill Hollow in April 2026, the plot maps have stayed on paper. When a family asks for a sold plot, how long does your team take to show the record?
 
 Would 15 minutes next week be worth it to see whether your sold records and your plot maps line up?
+
+Claim tags for Email 2: the April 2026 move `[Public: state licensing database]`, and the paper plot maps `[CRM]`.
 
 Email 3
 
@@ -542,7 +549,7 @@ Ines,
 
 I have not heard back, so I will assume plot records are not a priority this quarter, and I will stop the emails after this one.
 
-If a state review asked for a plot record again, who on your team would pull it?
+If a state auditor asked for a plot record next month, who on your team would pull it?
 
 The emails name no proof point. The research figure for this pain (50 to 100 plots) is a pain Benchmark in the profile, not a row in its Proof Points table, and every PlotIQ result is Illustrative, so Hard Rule 1 leaves all three emails with none.
 
@@ -550,22 +557,23 @@ The emails name no proof point. The research figure for this pain (50 to 100 plo
 
 Call goal: book a 15-minute discovery call for the AE, with the records finding as the reason. The next step is a discovery call, not a demo, until the pain is confirmed.
 
-Opener: "Hi Ines, this is Nadia Brandt from PlotIQ. I'm calling because Quill Hollow's last state review turned up a records finding, and the plot maps are still on paper. Do you have 30 seconds?"
+Opener: "Hi Ines, this is Nadia Brandt from PlotIQ. I'm calling because you took over Quill Hollow in April 2026, and the plot maps are still on paper. Do you have 30 seconds?"
 
 Talk track:
 - Pain validation: "How do you check today which plots are open?"
-- Impact: "What did the finding ask you to fix, and how long did the fix take?"
+- Impact: "When a family asks for a sold plot, how long does the lookup take?"
+- Discovery question on the records finding: "When was the last state review, and what did it ask you to fix?"
 - Product bridge: "PlotIQ keeps plot and trust records in a form a state auditor can accept."
 - Ask: "Would 15 minutes with our account executive be worth it?"
 
-Voicemail: "Hi Ines, this is Nadia Brandt at PlotIQ, about the records finding in Quill Hollow's last state review. I'll send a quick email with details."
+Voicemail: "Hi Ines, this is Nadia Brandt at PlotIQ, about the plot maps at Quill Hollow. I'll send a quick email with details."
 
 | Objection | Rebuttal |
 |-----------|----------|
 | "We already have a solution" | "Good, that means you understand the value. What's working well, and what would you improve?" |
 | "Not interested" | "Fair enough. How is your team handling open plots today?" |
 | "Send me an email" | "Happy to. Would the ROI overview or the capability overview be more useful?" |
-| "No budget" | "That makes sense. If I could show you how a similar operator solved the records finding, would 15 minutes be worth it?" |
+| "No budget" | "That makes sense. If I could show you how a similar operator solved the open-plot problem, would 15 minutes be worth it?" |
 
 **Step 7: Summary.** BDR. Quill Hollow Memorial Park, TARGET, GREENLIGHT, with Zones 3 and 5 HIGH. One contact on file, Ines Carmody, first. Owner and pre-need contacts unknown. One persona, three emails. Next action: Nadia Brandt sends Email 1 to Ines Carmody by 2026-10-26 (five business days after the run date of 2026-10-19, a Monday, and the records set no earlier date for this step). Unknown facts to resolve on the call: the records finding date, the owner's name, the state.
 
@@ -587,19 +595,19 @@ next_action: Nadia Brandt sends Email 1 to Ines Carmody by 2026-10-26
 
 ### Example 2: AE Quick Call Prep (Sable Fork Cemetery, INBOUND, MANUAL REVIEW)
 
-**Context:** An AE has 20 minutes before a call. Sable Fork Cemetery filled in the website form on 2026-10-15, four days ago, asking for a demo. The general manager, Arlen Biggs, signs under $25K.
+**Context:** Thursday 2026-10-22. Owen Pruitt, the AE, has 20 minutes before a discovery call. Sable Fork Cemetery filled in the website form on 2026-10-15, a week ago, asking for a demo. The BDR replied on 2026-10-19 and booked this call for today `[CRM]`. The general manager, Arlen Biggs, signs under $25K.
 
 **Input:** "Quick call prep for Sable Fork Cemetery. They requested a demo from the website."
 
 **Step 0: Role Detection.** The user is an AE. Quick Call Prep mode: Steps 1 to 4 and Step 6 only.
 
-**Step 1: Intelligence Gathering.** The CRM holds a new record created from the form `[CRM]`, status INBOUND `[CRM]`, and no open deal `[CRM]`. Who filled in the form is `[Unknown]`. The search that led to the form is `[Unknown]`. One site, 2,900 plots `[CRM]`. The plot list is a spreadsheet `[CRM]`. The general manager, Arlen Biggs, signs under $25K `[CRM]`.
+**Step 1: Intelligence Gathering.** The CRM holds a new record created from the form `[CRM]`, status INBOUND `[CRM]`, no open deal `[CRM]`, and a discovery call with Arlen Biggs booked for 2026-10-22 `[CRM]`. Who filled in the form is `[Unknown]`. The search that led to the form is `[Unknown]`. One site, 2,900 plots `[CRM]`. The plot list is a spreadsheet `[CRM]`. The general manager, Arlen Biggs, signs under $25K `[CRM]`.
 
 **Step 2: Account Snapshot.** Status INBOUND.
 
 Quick-score signals: primary fit Yes, 2,900 plots, above the ICP1 Strong line `[CRM]`. Single site `[CRM]`. Regulatory complexity Unknown, because nobody has asked about a state finding `[Unknown]`. Scale Mid-Market, one site with 2,900 plots `[CRM]`, which meets the Mid-Market rule of one to three sites with 2,000 plots or more in total. Team complexity Small team, one named contact (the GM) `[CRM]`, and no records owner named `[Unknown]`.
 
-Zone scores (illustrative): Zone 1 MEDIUM (plot list in a spreadsheet `[CRM]`). Zone 2 LOW (illustrative). Zone 3 HIGH (the GM signs under $25K `[CRM]`). Zone 4 MEDIUM (illustrative). Zone 5 LOW (illustrative).
+Zone scores (illustrative): Zone 1 MEDIUM (plot list in a spreadsheet `[CRM]`). Zone 2 LOW (pre-need: none, and the GM sells plots directly `[CRM]`). Zone 3 HIGH (the GM signs under $25K `[CRM]`). Zone 4 MEDIUM (illustrative). Zone 5 LOW (plot sales flat for three years, and no succession plan on the record `[CRM]`, illustrative).
 
 Verdict: **MANUAL REVIEW.** One zone is HIGH (Zone 3), so GREENLIGHT does not hold. The Verdict Rule gives MANUAL REVIEW for one HIGH zone. A MANUAL REVIEW does not authorize outbound.
 
@@ -608,12 +616,12 @@ Region map: no tier, because the state is not recorded `[Unknown]`.
 **Step 4: Pain Hypotheses.**
 
 1. **Plot lookups in a spreadsheet.** MEDIUM confidence. `[Inferred]`, by reasoning from the record type: a 2,900-plot list in a spreadsheet is harder to check against sold records than a digital system. Discovery question: "When someone asks for a plot, how long does it take to find it today?"
-2. **Pre-need follow-up.** LOW confidence. No pre-need activity is recorded `[Unknown]`. Ask, do not lead with it.
+2. **Pre-need follow-up.** LOW confidence. The record says pre-need is none `[CRM]`, so there is no follow-up process to repair. Ask only to confirm, and do not lead with it.
 3. **Single-person records risk.** LOW confidence. No records owner is named `[Unknown]`. Ask who maintains the list.
 
 **Step 6: Call Prep.**
 
-Call goal: confirm the pain, measure a real plot lookup, and find out who signs under $25K. The next step is a discovery call, not a demo, until the pain is confirmed.
+Call goal: confirm the pain, measure a real plot lookup, and find out who signs under $25K. This call is discovery, not a demo, and the demo waits until the pain is confirmed.
 
 Opener: "Thanks for asking for a demo. Before I show you anything, what prompted you to look for plot records software this week?"
 
@@ -625,20 +633,20 @@ Talk track:
 
 Objection prep: "We're happy with the spreadsheet." Rebuttal: "That makes sense. When did you last check the spreadsheet against the plots you have actually sold?"
 
-**Step 7: Summary.** AE. Sable Fork Cemetery, INBOUND, MANUAL REVIEW, with Zone 3 the only HIGH zone. No active deal. Quick call prep delivered. Next action: the AE books a discovery call with Arlen Biggs by 2026-10-26 (five business days after the run date of 2026-10-19, a Monday, and the records set no earlier date for this step). Re-score the zones after that call.
+**Step 7: Summary.** AE. Sable Fork Cemetery, INBOUND, MANUAL REVIEW, with Zone 3 the only HIGH zone. No active deal. Quick call prep delivered. Next action: Owen Pruitt runs the discovery call with Arlen Biggs today, 2026-10-22, the call date the records set for this step, which is earlier than five business days after the run date. Re-score the zones after the call.
 
 ```text
 Hand-off (read by 06 and 04):
 account: Sable Fork Cemetery (INBOUND)
-run_date: 2026-10-19
+run_date: 2026-10-22
 account_status: INBOUND
 verdict: MANUAL REVIEW
 zone_scores: 1 MEDIUM, 2 LOW, 3 HIGH, 4 MEDIUM, 5 LOW (illustrative)
 contact_priority: 1 Arlen Biggs (General Manager, signs under $25K), 2 Form filler, name Unknown
-pain_hypotheses: 1 Plot lookups in a spreadsheet (MEDIUM, Inferred), 2 Pre-need follow-up (LOW, Unknown), 3 Single-person records risk (LOW, Unknown)
+pain_hypotheses: 1 Plot lookups in a spreadsheet (MEDIUM, Inferred), 2 Pre-need follow-up (LOW, CRM: pre-need none), 3 Single-person records risk (LOW, Unknown)
 sequence: not generated, Quick Call Prep mode
 report_path: none (inline)
-next_action: The AE books a discovery call with Arlen Biggs by 2026-10-26
+next_action: Owen Pruitt runs the discovery call with Arlen Biggs on 2026-10-22 (the call date on record)
 ```
 
 ---
@@ -671,7 +679,7 @@ contact_priority: Corrow Ridge, the acquirer's CFO or controller and the site GM
 pain_hypotheses: ranked per account in the table, each tagged
 sequence: snapshot drafts for Corrow Ridge and Greyfield only. None for the other three
 report_path: none (inline)
-next_action: BDR sends the Corrow Ridge Email 1 by 2026-10-26
+next_action: BDR sends the Corrow Ridge Email 1 by 2026-10-20
 ```
 
 ---
@@ -696,9 +704,9 @@ Zone scores (illustrative), with the verdict:
 
 - Zone 1, Records and Inventory Pain: HIGH. Paper plot maps at two sites `[CRM]`, and a double sale in the last 24 months `[CRM]` (illustrative).
 - Zone 2, Pre-Need Sales Motion: MEDIUM. A pre-need manager runs the pre-need side `[Notes]` (illustrative). The intake form is `[Unknown]`, so the HIGH test is not met.
-- Zone 3, Ownership and Decision Speed: MEDIUM. The GM recommends and the family board approves, which is the profile's MEDIUM cell as written. The board also meets within 60 days `[Notes]` (illustrative).
+- Zone 3, Ownership and Decision Speed: MEDIUM. The GM recommends and the family board approves, which is the profile's MEDIUM cell as written. The board also meets within 60 days `[Public: company website, board calendar]` (illustrative).
 - Zone 4, Technology Readiness: MEDIUM. A legacy system from Oldgate `[CRM]`.
-- Zone 5, Growth or Succession: HIGH. The owner retires within three years `[Notes]` (illustrative).
+- Zone 5, Growth or Succession: HIGH. The owner retires within three years `[Public: company website, owner bio, 2026]` (illustrative).
 
 Verdict: **GREENLIGHT.** Two zones are HIGH (1 and 5), and no must-have zone is LOW. Zone 3 is MEDIUM, which is not LOW, so the must-have does not block.
 
@@ -772,7 +780,7 @@ Voicemail: "Hi Ruth, this is Nadia Brandt at PlotIQ, about the two plot maps at 
 | "No budget" | "That makes sense. If I could show you how a similar operator solved the two-list problem, would 15 minutes be worth it?" |
 | "Send me an email" | "Happy to. Would the ROI overview or the capability overview be more useful?" |
 
-**Step 7: Summary.** The summary states the verdict, the two HIGH zones, the three contacts, and the next action: Owen Pruitt books the first discovery call with Ruth Ellery by 2026-05-11 (illustrative), five business days after the run date of 2026-05-04, a Monday, and the records set no earlier date for this step. The board chair is the open question for that call.
+**Step 7: Summary.** The summary states the verdict, the two HIGH zones, the three contacts, and the next action: Nadia Brandt, the BDR, books the first discovery call for Owen Pruitt with Ruth Ellery by 2026-05-11 (illustrative), five business days after the run date of 2026-05-04, a Monday, and the records set no earlier date for this step. The board chair is the open question for that call.
 
 ```text
 Hand-off (read by 06):
@@ -785,7 +793,7 @@ contact_priority: 1 Ruth Ellery (General Manager, buyer), 2 Walt Okonkwo (Operat
 pain_hypotheses: 1 Plot records on paper across two sites (HIGH, CRM and Inferred), 2 The Oldgate renewal in March 2027 (MEDIUM, CRM and Inferred)
 sequence: three emails to Ruth Ellery, with call prep
 report_path: none (inline)
-next_action: Owen Pruitt books the first discovery call with Ruth Ellery by 2026-05-11 (illustrative)
+next_action: Nadia Brandt books the first discovery call for Owen Pruitt with Ruth Ellery by 2026-05-11 (illustrative)
 ```
 
 ---
@@ -888,6 +896,13 @@ The Business Case & ROI Kit (a paid Guild Pro kit) reads this skill's hand-off b
 
 ## Changelog
 
+
+### 2.1.6 (2026-10-26)
+- The GM move in Examples 1 and the try-it is tagged to the state licensing database, not the CRM.
+- Example 1 opens its three emails and its call opener on the dated GM move. The undated records finding is used only as a discovery question, and no email or call line quotes it.
+- Example 2 cites the recorded no-pre-need fact for Zone 2 and the recorded flat-sales and no-succession facts for Zone 5. Both zones stay LOW, so the MANUAL REVIEW verdict is unchanged.
+- Example 3 dates the Corrow Ridge Email 1 to the first day of the Corrow Ridge sequence, and the hand-off next action carries the same date.
+- Example 4 names the BDR as the one who books the first discovery call for the AE, and tags the owner retirement and the board check to their public sources.
 
 ### 2.1.5 (2026-10-26)
 - The Zone 3 sentence of Example 4 quotes the profile's Zone 3 cell as written.

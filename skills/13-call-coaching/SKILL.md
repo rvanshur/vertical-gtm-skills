@@ -1,7 +1,7 @@
 ---
 name: gtm-call-coaching
 description: "Scores a discovery or demo call against methodology rubrics and returns a coaching report with evidence-graded coaching points, for the rep and the sales manager who reads it"
-version: 2.1.5
+version: 2.1.6
 category: Sales-Methodology
 author: Ryan Vanshur
 license: MIT
@@ -11,6 +11,9 @@ requires:
   skills: ["gtm-meeting-prep", "gtm-deal-pulse"]
 mutating: read-write
 change_log:
+  - version: 2.1.6
+    date: 2026-10-26
+    summary: "Consistency pass against the 2.1.5 audit. The Sable Fork example is graded on the discovery call that the BDR booked for the Thursday after the run date, and it is re-dated to match. The demo example is dated to the Stage 3 demo that the record places before the later stages, and its scores are re-checked against the rubric rows, with the band and the total recomputed. The Pre-Call Preparation and Pain Alignment rules are applied as written in both examples."
   - version: 2.1.5
     date: 2026-10-26
     summary: "The next action follows the family's one deadline rule: five business days after the run date, or an earlier date the records or the call set for that step, named with its source. A date agreed on the call or by email is the step's date, and the line names how it was agreed. The skill's own not-yet-agreed [Unknown] date is replaced by the shared rule. The Example 3 next action carries its recomputed date."
@@ -153,7 +156,7 @@ When the assistant is connected to the CRM or to a call recorder, the skill offe
 
 #### Account Status, Five Words
 
-Every account carries one status: **TARGET** (researched, not yet contacted), **INBOUND** (they asked us), **ACTIVE** with its stage number (open deal), **LOST** (closed-lost, eligible for reactivation), **OUT** (disqualified). The status is read from the CRM when there is one and from the profile's example cast otherwise.
+Every account carries one status: **TARGET** (researched, no open deal yet, whether or not contacted), **INBOUND** (they asked us), **ACTIVE** with its stage number (open deal), **LOST** (closed-lost, eligible for reactivation), **OUT** (disqualified). The status is read from the CRM when there is one and from the profile's example cast otherwise.
 
 #### The Verdict Words and the Zone Rule
 
@@ -845,7 +848,7 @@ report_path: none (inline)
 
 ### Example 2: Discovery Call (Second Discovery Booked, Not a Demo), Sable Fork Cemetery
 
-**Context:** Sable Fork Cemetery is one site with 2,900 plots. Its plot list lives in a spreadsheet (`[Notes]`, illustrative). The account is INBOUND (`[CRM]`): it requested a demo through the website form on 2026-10-15 (`[CRM]`). Who filled in the form is `[Unknown]`. Its verdict is MANUAL REVIEW, with Zone 3 HIGH as the only HIGH zone (`[Inferred]`, from the zone scores in Account Qualification). The General Manager, Arlen Biggs, signs under $25K (`[CRM]`). Owen Pruitt (Account Executive, illustrative assignment) ran the call. The call date is illustrative. The call was graded from its transcript, so every `[Call]` tag is that call.
+**Context:** Sable Fork Cemetery is one site with 2,900 plots. Its plot list lives in a spreadsheet (`[Notes]`, illustrative). The account is INBOUND (`[CRM]`): it requested a demo through the website form on 2026-10-15 (`[CRM]`). Who filled in the form is `[Unknown]`. Its verdict is MANUAL REVIEW, with Zone 3 HIGH as the only HIGH zone (`[Inferred]`, from the zone scores in Account Qualification). The General Manager, Arlen Biggs, signs under $25K (`[CRM]`). The BDR replied to the form on the afternoon of 2026-10-19 and booked this discovery call for Thursday 2026-10-22 (`[CRM]`). Owen Pruitt (Account Executive, illustrative assignment) ran the call on 2026-10-22 (`[Call, 2026-10-22]`). The call was graded from its transcript, so every `[Call]` tag is that call.
 
 **Input:** "Coach the discovery call for Sable Fork Cemetery. call_type = discovery"
 
@@ -853,16 +856,16 @@ report_path: none (inline)
 
 | Category | Score (1 to 5) | Evidence |
 |---|---|---|
-| Pre-Call Preparation | 3 | Used the prep sheet's hypothesis that the plot list lives in a spreadsheet (`[Inferred]`). Did not confirm who filled in the website form, which the sheet lists as `[Unknown]`. |
+| Pre-Call Preparation | 4 | Used the prep sheet's hypothesis that the plot list lives in a spreadsheet (`[Inferred]`), and a version of its plot-list question at 06:40 (`[Call]`), which counts as referenced account research. Did not confirm who filled in the website form, which the sheet lists as `[Unknown]`. |
 | SPIN Discovery Quality | 3 | Situation well executed (06:40, `[Call]`). The Problem phase began but the lookup count was not asked. Implication and Need-Payoff not reached. |
 | Priority Ladder Execution | 3 | Described the lookup at Level 2 (19:30, `[Call]`). Not quantified. |
 | Active Listening | 4 | Rep talk time 38% (illustrative), inside the discovery band. Restated the lookups well at 18:30. Missed the count at 18:45. |
 | Value Articulation | 3 | Referred to "other cemeteries" with no figure at 29:00 (`[Call]`). No proof point used. |
 | Next Steps and Momentum | 4 | Booked a second discovery session with Arlen Biggs on a named date, 2026-10-29 (illustrative), with Owen as owner. Other attendees not named. |
 | Alternatives | 3 | Asked about the current process only, the spreadsheet (06:40, `[Call]`). Did not ask whether anything else was tried. |
-| **Total** | | **23 of 35, scored 7 of 7** |
+| **Total** | | **24 of 35, scored 7 of 7** |
 
-Assessment: Needs Improvement, in the 17 to 23 band of the restated scale.
+Assessment: Good, in the 24 to 30 band of the restated scale. The Pre-Call Preparation score is 4 because a prep-sheet question the rep used on the call counts as referenced account research.
 
 **Question review (discovery):**
 
@@ -907,14 +910,14 @@ Assessment: Needs Improvement, in the 17 to 23 band of the restated scale.
 ```text
 Hand-off (read by 08, 09 and 06):
 account: Sable Fork Cemetery (INBOUND)
-run_date: 2026-10-19 (illustrative)
-call_score: 23 of 35, scored 7 of 7
-category_scores: Pre-Call Preparation 3, SPIN Discovery Quality 3, Priority Ladder Execution 3, Active Listening 4, Value Articulation 3, Next Steps and Momentum 4, Alternatives 3
+run_date: 2026-10-23 (illustrative)
+call_score: 24 of 35, scored 7 of 7
+category_scores: Pre-Call Preparation 4, SPIN Discovery Quality 3, Priority Ladder Execution 3, Active Listening 4, Value Articulation 3, Next Steps and Momentum 4, Alternatives 3
 focus_area: Count the lookups and time them, then ask who else holds the list
 coaching_points: 1 Strength, Strong (06:40). 2 Count the lookups, Strong (18:30). 3 Proof point without a number, Moderate (29:00). 4 Second discovery, not a demo, Strong (40:20). 5 Who else holds the list, Weak (no question in the transcript)
 key_moments: discovery breakthrough (18:30), missed opportunity (18:45), buying signal captured (33:10), competitive intelligence (09:20), commitment (40:20), red flag MEDIUM (44:00)
 champion_status: Developing, one of seven shared tests met on this call (commits to a next step with a date)
-next_action: Owen Pruitt holds a second discovery session with Arlen Biggs to count the lookups and time them. No demo until the pain is confirmed. Owner: Owen Pruitt. Date: 2026-10-29 (illustrative)
+next_action: Owen Pruitt holds a second discovery session with Arlen Biggs to count the lookups and time them. No demo until the pain is confirmed. Owner: Owen Pruitt. Date: 2026-10-29, the session Arlen Biggs agreed to on the call (`[Call, 2026-10-22]`), which is earlier than the five-business-day date of 2026-10-30
 report_path: none (inline)
 ```
 
@@ -922,7 +925,7 @@ report_path: none (inline)
 
 ### Example 3: Demo Call (Needs Improvement, Non-Success), Brackhaven Memorial Gardens
 
-**Context:** Owen Pruitt (Account Executive, illustrative assignment) demoed to Walt Okonkwo, Operations Director, and two operations staff at Brackhaven Memorial Gardens (`[CRM]`). Ruth Ellery, the General Manager and champion, was not in the room. The deal is ACTIVE at Stage 5 Negotiate (`[CRM]`). In discovery, Walt said he is skeptical of tablets (`[Call]`). This is the non-success case: the call did not answer the one objection that mattered to the room. The source is the call transcript (illustrative). The call date is illustrative, and the call length is 60 minutes (illustrative).
+**Context:** Owen Pruitt (Account Executive, illustrative assignment) demoed to Walt Okonkwo, Operations Director, and two operations staff at Brackhaven Memorial Gardens (`[CRM]`). Ruth Ellery, the General Manager and champion, was not in the room. The deal is ACTIVE at Stage 3 Demo on the call date (`[CRM]`, illustrative). In discovery, Walt said he is skeptical of tablets (`[Call]`). This is the non-success case: the call did not answer the one objection that mattered to the room. The source is the call transcript (illustrative). The call date is 2026-08-20 (illustrative), and the call length is 60 minutes (illustrative).
 
 **Input:** "Coach the demo for Brackhaven Memorial Gardens. call_type = demo"
 
@@ -933,14 +936,14 @@ report_path: none (inline)
 | Meeting Opening | 2 | Went to the screen at 03:10 with no reference to the discovery pains (`[Call]`). No agreed outcome. |
 | Meeting Closing | 2 | The close was "Any questions?" at 58:20 (`[Call]`). No owner, no date. |
 | Teach and Tailor | 3 | The trust report and the mobile app were shown in menu order, not in the order of Walt's pain (`[Call]`, 12:00 to 40:00). |
-| Pain Alignment and Proof | 2 | No pain named before any workflow. Ruth's discovery pains not referenced. No proof cited (`[Call]`). |
+| Pain Alignment and Proof | 1 | No pain reference at all: no pain named before any workflow, and Ruth's discovery pains not referenced. No proof cited (`[Call]`). Row 1 applies. |
 | Question the Problem | 2 | No Prime Pain before any workflow, and no requirements check at a transition. The close did not ask what excited the buyer. |
 | Pain-to-Workflow Mapping | 2 | Walt's "zero wrong-plot burials" and "find the plot in seconds" pains never came up. Weak grade: inferred from what did not happen. |
-| Prospect Engagement | 3 | Prospect talk time 34% (illustrative), 6 points under the demo band, so 3 on the rubric. Walt asked two questions, both about tablets (`[Call]`). |
+| Prospect Engagement | 2 | Prospect talk time 34% (illustrative), 16 points under the demo band's 50% floor, so 2 on the rubric. Walt asked two questions, both about tablets (`[Call]`). |
 | Resistance Handling | 3 | Walt's tablet objection met with a reassurance and a second feature, not a question (`[Call]`, 23:40). |
-| **Total** | | **19 of 40, scored 8 of 8** |
+| **Total** | | **17 of 40, scored 8 of 8** |
 
-Assessment: Needs Improvement, in the 18 to 25 band.
+Assessment: Poor, in the 10 to 17 band of the demo scale (feature touring or monologue).
 
 **Pacing by section (Step 7):**
 
@@ -999,15 +1002,15 @@ Assessment: Needs Improvement, in the 18 to 25 band.
 
 ```text
 Hand-off (read by 08, 09 and 06):
-account: Brackhaven Memorial Gardens (ACTIVE, Stage 5 Negotiate)
-run_date: 2026-10-19 (illustrative)
-call_score: 19 of 40, scored 8 of 8
-category_scores: Meeting Opening 2, Meeting Closing 2, Teach and Tailor 3, Pain Alignment and Proof 2, Question the Problem 2, Pain-to-Workflow Mapping 2, Prospect Engagement 3, Resistance Handling 3
+account: Brackhaven Memorial Gardens (ACTIVE, Stage 3 Demo)
+run_date: 2026-08-20 (illustrative)
+call_score: 17 of 40, scored 8 of 8
+category_scores: Meeting Opening 2, Meeting Closing 2, Teach and Tailor 3, Pain Alignment and Proof 1, Question the Problem 2, Pain-to-Workflow Mapping 2, Prospect Engagement 2, Resistance Handling 3
 focus_area: Build a pain-to-workflow map from the discovery notes, open with Walt's paper work-order pain, and replace reassurance with questions
 coaching_points: 1 Telling not asking, Strong (23:40). 2 Open on the pain, Strong (12:00). 3 Pain-to-workflow map, Weak (absent from the transcript). 4 Question the Problem, Moderate (summarized in notes)
 key_moments: objection (23:40), missed opportunity (12:00), competitive intelligence (31:15), red flag HIGH (55:00)
 champion_status: None on this call (Ruth Ellery not in the room)
-next_action: Owen Pruitt sends Walt Okonkwo the pain-to-workflow map for the next demo, and Ruth Ellery briefs Walt on the board's approval path. Owner: Owen Pruitt. Date: 2026-10-26 (illustrative), five business days after the run date of 2026-10-19, with no earlier date on the record
+next_action: Owen Pruitt sends Walt Okonkwo the pain-to-workflow map for the next demo, and Ruth Ellery briefs Walt on the board's approval path. Owner: Owen Pruitt. Date: 2026-08-27 (illustrative), five business days after the run date of 2026-08-20, with no earlier date on the record
 report_path: none (inline)
 ```
 
@@ -1089,6 +1092,11 @@ The Business Case & ROI Kit (a paid Guild Pro kit) reads this skill's hand-off b
 ---
 
 ## Changelog
+
+### 2.1.6 (2026-10-26)
+- The discovery example's Pre-Call Preparation scores the rep's use of a prep-sheet question, as the rubric's own rule says, and its total and band are recomputed from the rows.
+- The discovery example's record states the booking that set its call date. The call is dated from its transcript, and the second session is dated to the one agreed on the call.
+- The demo example is dated to the Stage 3 demo, which precedes the account's later negotiation stage. Its Pain Alignment and Proof row scores the rubric's no-pain line, and its Prospect Engagement row scores the band's distance from the demo floor. The total and the band are recomputed once from the rows.
 
 ### 2.1.5 (2026-10-26)
 - The next action follows the family's one deadline rule. The Output Contract and the Quality Bar point to that rule, and a date agreed on the call or by email is still the step's date.

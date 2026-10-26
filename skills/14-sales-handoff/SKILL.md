@@ -1,6 +1,6 @@
 ---
 name: gtm-sales-handoff
-version: 2.1.5
+version: 2.1.6
 description: "Post-sale implementation readiness check: scores six dimensions, sets the three dates (kickoff, go-live and Full Adoption Date), names risks with mitigations and quick wins, and writes the handoff the implementation lead plans from"
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,9 +11,12 @@ requires:
   skills: [gtm-meddpicc-analysis]
 mutating: read-write
 change_log:
+  - version: 2.1.6
+    date: 2026-10-26
+    summary: "The Technical score follows the constrained-IT rule wherever one known source system has no IT owner named, and the Orange rule governs the dates in the example that sits in that band, with no date set and conditional dates anchored on the readiness check date. The IT owner date in the conditions matches the next action. The adoption risk likelihood is High where a record shows the skepticism. The chair decision wording follows the family's vote, and the ready-to-sign statement is labelled a claim, since no dated record holds it. The YAML summary quote is fixed."
   - version: 2.1.5
     date: 2026-10-26
-    summary: "The invented CRM dated-action context line of the third run is removed, its next action carries the shared rule's date, and the CUSTOMIZE interview asks for the IT lead time in days. "The next action follows the family's one deadline rule: five business days after the run date, or an earlier date the records or the skill's own schedule set for that step, named with its source. The skill's own next-action dates are recomputed under that rule, and the IT-owner condition and its risk mitigation move with the next action so the three agree. The Output Contract points to the rule."
+    summary: "The invented CRM dated-action context line of the third run is removed, its next action carries the shared rule's date, and the CUSTOMIZE interview asks for the IT lead time in days. The next action follows the family's one deadline rule: five business days after the run date, or an earlier date the records or the skill's own schedule set for that step, named with its source. The skill's own next-action dates are recomputed under that rule, and the IT-owner condition and its risk mitigation move with the next action so the three agree. The Output Contract points to the rule."
   - version: 2.1.4
     date: 2026-10-26
     summary: "Try-it fixes from the blind retest: the composite formula reads each weight as a decimal, the Yellow kickoff window is the buffer before any IT lead time, a Yellow report with a critical dimension states its conditions, all three dates are labelled proposed before signature, severity and likelihood follow stated rules and every top risk states both, a check before signature is a preview, the next action names the action the owner takes, and the worked examples show the date arithmetic and each risk's likelihood."
@@ -134,7 +137,7 @@ When the assistant is connected to the CRM or to a call recorder, the skill offe
 
 #### Account Status, Five Words
 
-Every account carries one status: **TARGET** (researched, not yet contacted), **INBOUND** (they asked us), **ACTIVE** with its stage number (open deal), **LOST** (closed-lost, eligible for reactivation), **OUT** (disqualified). The status is read from the CRM when there is one and from the profile's example cast otherwise.
+Every account carries one status: **TARGET** (researched, no open deal yet, whether or not contacted), **INBOUND** (they asked us), **ACTIVE** with its stage number (open deal), **LOST** (closed-lost, eligible for reactivation), **OUT** (disqualified). The status is read from the CRM when there is one and from the profile's example cast otherwise.
 
 #### The Verdict Words and the Zone Rule
 
@@ -311,7 +314,7 @@ The signature is the handoff trigger, not one of the three dates. The three date
 **Date 1: Kickoff.** The day the implementation lead starts. Set by the readiness level:
 - **Green (80 to 100):** kickoff in the week of the handoff.
 - **Yellow (60 to 79):** kickoff two to four weeks after the readiness check. The check date is the anchor, not the signature. A check on 2026-11-02 with a three-week buffer gives 2026-11-02 plus 21 days. Without a dated reason for another point in the window, use three weeks, as the worked example does. Under Yellow a critical dimension does not hold kickoff by itself. The report lists the conditions that must be met first, and the kickoff date stays proposed until they are.
-- **Orange (40 to 59) or Red (0 to 39):** no kickoff date is set until every critical dimension reaches 3. Any date shown is marked conditional.
+- **Orange (40 to 59) or Red (0 to 39):** no kickoff date is set until every critical dimension reaches 3. Any date shown is marked conditional. A conditional date uses the Yellow rule's three-week buffer from the check date, plus the IT lead time when no IT owner is named, and go-live and the Full Adoption Date follow it as usual.
 - **IT lead time:** the profile's IT lead time is added to the kickoff date when no IT owner is yet named. It comes on top of the buffer, so kickoff can fall more than four weeks after the check. It is read on the check date: an IT owner named by then means no lead time is added.
 
 **Date 2: Go-Live.** Kickoff plus the typical days from kickoff to go-live in the Implementation Profile, written as the arithmetic: kickoff date plus N days. The skill ships that value blank. If the profile has no value, go-live is written as `[RECORD]`, and the skill does not estimate it.
@@ -564,7 +567,7 @@ All three examples use the PlotIQ flagship, Brackhaven Memorial Gardens, and the
 
 **Input:** "Run the readiness check for Brackhaven Memorial Gardens before they sign."
 
-**Process:** Ruth Ellery is the champion. Four of seven shared champion tests are met on the 2026-10-27 call, each tagged `[Call]` (illustrative): she explains the internal politics, asks how to help, commits to next steps with dates, and creates urgency inside her company. The family board chair is a role with no name on file (`[Unknown]`) who has joined one call (`[CRM]`). No IT contact is on file (`[Unknown]`). The source is Oldgate Ledger Pro (`[CRM]`), and its ledger export is not yet scoped (`[Unknown]`). Plot records are on paper (`[Call]`). Walt Okonkwo, Operations Director, is skeptical of tablets (`[Call]`). Oldgate's contract renews in March 2027 (`[CRM]`). On the 2026-10-27 call, Ruth agreed that Owen would ask her to name the board chair and confirm the sponsor role in writing by 2026-11-09 (`[Call]`, illustrative), which is also five business days after the run date of 2026-11-02.
+**Process:** Ruth Ellery is the champion. Four of seven shared champion tests are met on the 2026-10-27 call, each tagged `[Call, 2026-10-27]` (illustrative): she explains the internal politics, asks how to help, commits to next steps with dates, and creates urgency inside her company. The family board chair is a role with no name on file (`[Unknown]`) who has joined one call (`[CRM]`). No IT contact is on file (`[Unknown]`). The source is Oldgate Ledger Pro (`[CRM]`), and its ledger export is not yet scoped (`[Unknown]`). Plot records are on paper (`[CRM]`). Walt Okonkwo, Operations Director, is skeptical of tablets (`[Call, 2026-09-21]`). Oldgate's contract renews in March 2027 (`[CRM]`). On the 2026-10-27 call, Ruth agreed that Owen would ask her to name the board chair and confirm the sponsor role in writing by 2026-11-09 (`[Call, 2026-10-27]`, illustrative), which is also five business days after the run date of 2026-11-02.
 
 **Scoring:**
 
@@ -611,7 +614,7 @@ All three examples use the PlotIQ flagship, Brackhaven Memorial Gardens, and the
 - **Go-Live:** 2026-12-07 plus 49 days = **2027-01-25** (Monday). The 49 days is the profile's typical days from kickoff to go-live (illustrative). It is a planning value set from the six-week roadmap plus one week of buffer, not a measured one.
 - **Full Adoption Date:** 2026-12-07 plus two months = 2027-02-07, a Sunday. Rolled to Monday, **2027-02-08**. No other adjustment applies: one source system adds nothing, and an export format the team does not know yet subtracts nothing.
 
-**Risks (top 3):** Technical (HIGH, likelihood High): no IT owner and an unscoped export. Mitigation: Oldgate's support runs a test export on a sample file before kickoff. Stakeholder (HIGH, likelihood High): the board chair is unnamed and the sponsor role is not in writing. Mitigation: Owen Pruitt asks Ruth Ellery for the chair's name and a written sponsor confirmation before the 2026-11-12 board. Adoption (MEDIUM, likelihood Medium): Walt Okonkwo's skepticism of tablets. Mitigation: the work-order pilot is shown to Walt before kickoff.
+**Risks (top 3):** Technical (HIGH, likelihood High): no IT owner and an unscoped export. Mitigation: Oldgate's support runs a test export on a sample file before kickoff. Stakeholder (HIGH, likelihood High): the board chair is unnamed and the sponsor role is not in writing. Mitigation: Owen Pruitt asks Ruth Ellery for the chair's name and a written sponsor confirmation before the 2026-11-12 board. Adoption (MEDIUM, likelihood High): Walt Okonkwo's skepticism of tablets. Mitigation: the work-order pilot is shown to Walt before kickoff.
 
 **Conditions before kickoff:**
 1. Brackhaven names an IT owner.
@@ -674,16 +677,17 @@ report_path: none (inline)
 | Change Management | 10% | 3 | 0.30 | Ruth champions the change `[Call]`. Walt is skeptical of tablets `[Call]` |
 | **Total** | **100%** | | **2.85** | |
 
-**Composite:** 2.85 ÷ 5 × 100 = **57 of 100 (Orange, at risk)**. Technical is a critical dimension at 2, so the Orange rule holds kickoff.
+**Composite:** 2.85 ÷ 5 × 100 = **57 of 100 (Orange, at risk)**. Technical and Resource are critical dimensions at 2, so the Orange rule holds kickoff until both reach 3.
 
 **Three dates:**
-- **Kickoff:** The base is 2026-11-23, one week after signature, as this example sets it. The 14-day IT lead time (illustrative) is added because no IT owner is named at this check: 2026-11-23 plus 14 days = **2026-12-07** (Monday). It is held until Technical reaches 3 by Friday 2026-12-04, which needs conditions 1 and 2 below. If it does not, kickoff moves to the first date the conditions clear. If that is Monday **2026-12-14**, kickoff is that day. The lead time is not added again, because it was read once, on the check date, and the other two dates move with kickoff. Go-live is then 2026-12-14 plus 49 days = **2027-02-01**, and the Full Adoption Date is 2026-12-14 plus two months = 2027-02-14, a Sunday, rolled to **2027-02-15**.
-- **If kickoff holds on 2026-12-07:** go-live **2027-01-25** (49 days, illustrative), and the Full Adoption Date **2027-02-08** (2027-02-07 is a Sunday, rolled to Monday).
+- **Orange Rule:** no kickoff date is set until every critical dimension reaches 3. Two dimensions are critical here, Technical and Resource, both at 2. Orange gives no base, so the dates below are conditional and anchored on the check date, 2026-11-16 (the signature date, which is also the check date in this example).
+- **Conditional Dates (Not Set):** the three-week default from the Yellow rule is used as the reference buffer: 2026-11-16 plus 21 days is 2026-12-07 (Monday). No IT owner is named at this check, so the 14-day IT lead time (illustrative) is added: 2026-12-07 plus 14 days = **2026-12-21** (Monday), the conditional kickoff. Go-live is 2026-12-21 plus 49 days (illustrative) = **2027-02-08** (Monday). The Full Adoption Date is 2026-12-21 plus two months = 2027-02-21, a Sunday, rolled to **2027-02-22** (Monday).
+- If the conditions clear later, the readiness check is run again, and the three dates are set from that new check date.
 
 **Risks (top 3):** Technical (HIGH, likelihood High): no IT owner and no one briefed on the migration. Mitigation: Eli Marsh asks Ruth Ellery to name an IT owner by 2026-11-23, five business days after the run date of 2026-11-16, and Oldgate's support briefs that owner on the export. Stakeholder (HIGH, likelihood High): the sponsor is not named. Mitigation: the board chair's name and written sponsor confirmation are a condition of kickoff. Resource (MEDIUM, likelihood Medium): the migration and the renewal compete. Mitigation: the renewal date goes on the project plan with a parallel-run window before March 2027.
 
 **Conditions before kickoff:**
-1. Brackhaven names an IT owner, by 2026-11-30.
+1. Brackhaven names an IT owner, by 2026-11-23, the date in the next action.
 2. That owner is briefed on the migration by Oldgate's support.
 3. The board chair is named and confirms the sponsor role in writing.
 4. Walt joins the work-order demo, so his pilot is agreed before kickoff.
@@ -696,7 +700,7 @@ account: Brackhaven Memorial Gardens (ACTIVE, Stage 6 Closed-Won and Handoff)
 run_date: 2026-11-16
 readiness_score: 57
 dimension_scores: Stakeholder 3, Workflow 4, Technical 2, Data 3, Resource 2, Change Management 3
-three_dates: kickoff 2026-12-07 (held until Technical reaches 3 by 2026-12-04), go-live 2027-01-25, Full Adoption Date 2027-02-08
+three_dates: none set (Orange rule). Conditional, anchored on the check date 2026-11-16: kickoff 2026-12-21, go-live 2027-02-08, Full Adoption Date 2027-02-22
 risks: Technical (HIGH), Stakeholder (HIGH), Resource (MEDIUM)
 quick_wins: week one remove one manual step, month one risk audit of open plots, 90 days lookup times at baseline
 next_action: Eli Marsh asks Ruth Ellery to name a Brackhaven IT owner by 2026-11-23 (five business days after the run date of 2026-11-16)
@@ -705,11 +709,11 @@ report_path: none (inline)
 
 ### Example 3: Red Readiness on 2026-10-19, Ruth Says They Are Ready
 
-**Context:** Brackhaven is at Stage 5 Negotiate (`[CRM]`), with the family board on 2026-11-12. Ruth Ellery has not replied since 2026-10-03, which is 16 days (`[CRM]`). Ruth has said the customer is "ready to sign." The board date has not been confirmed by anyone since then (`[Unknown]`). The 09 rule applies: a HOLD at Stage 5 with a dated action, and a DOWNGRADE to Stage 4 Proposal if the board date is not confirmed by 2026-11-02. This is the non-success case: the readiness check runs as a preview, and no handoff is issued.
+**Context:** Brackhaven is at Stage 5 Negotiate (`[CRM]`), with the family board on 2026-11-12. Ruth Ellery has not replied since 2026-10-03, which is 16 days (`[CRM]`). The rep reports that Ruth said the customer is ready to sign, but no dated record holds the statement, so it is a claim and scores nothing. The board date has not been confirmed by anyone since then (`[Unknown]`). The 09 rule applies: a HOLD at Stage 5 with a dated action, and a DOWNGRADE to Stage 4 Proposal if the board date is not confirmed by 2026-11-02. This is the non-success case: the readiness check runs as a preview, and no handoff is issued.
 
 **Input:** "Run readiness for Brackhaven Memorial Gardens. Ruth says they're ready to sign."
 
-**Process:** The CRM shows Stage 5 Negotiate with $21,576 a year at list, and the board date on file is 2026-11-12. Ruth is the only contact who has responded. No IT contact is on file (`[Unknown]`), and the ledger export has not been examined (`[Unknown]`). No volume baseline exists. Ruth's "ready to sign" is a claim with no board confirmation behind it, so the skill scores the record, not the claim.
+**Process:** The CRM shows Stage 5 Negotiate with $21,576 a year at list, and the board date on file is 2026-11-12. Ruth is the only buyer contact who has replied since 2026-10-03. No IT contact is on file (`[Unknown]`), and the ledger export has not been examined (`[Unknown]`). No volume baseline exists. Ruth's "ready to sign" is a claim with no board confirmation behind it, so the skill scores the record, not the claim.
 
 **Scoring:**
 
@@ -717,33 +721,33 @@ report_path: none (inline)
 |---|---|---|---|---|
 | Stakeholder | 20% | 2 | 0.40 | Only the sales champion is engaged `[Call]`. No sponsor or IT lead introduced |
 | Workflow | 20% | 2 | 0.40 | Limited notes. The process is not mapped, and no lookup is timed `[Notes]` |
-| Technical | 20% | 1 | 0.20 | Oldgate named `[CRM]`. No IT contact `[Unknown]`. Export not examined `[Unknown]` |
+| Technical | 20% | 2 | 0.40 | Oldgate named `[CRM]`, one known source system. No IT contact `[Unknown]`, so IT counts as constrained and Technical scores 2. Export not examined `[Unknown]` |
 | Data | 15% | 2 | 0.30 | Paper plot records. The ledger export has not been examined `[Call]` |
 | Resource | 15% | 2 | 0.30 | The board date is not confirmed, and the champion has been silent for 16 days `[CRM]` |
 | Change Management | 10% | 2 | 0.20 | Walt is skeptical of tablets `[Call]`. The team has not been briefed `[Notes]` |
-| **Total** | **100%** | | **1.80** | |
+| **Total** | **100%** | | **2.00** | |
 
-**Composite:** 1.80 ÷ 5 × 100 = **36 of 100 (Red, not ready)**. No handoff is issued.
+**Composite:** 2.00 ÷ 5 × 100 = **40 of 100 (Orange, at risk)**. Orange holds kickoff. No handoff is issued, because this check runs before signature as a preview.
 
-**Three dates:** Kickoff, go-live and Full Adoption Date are all **TBD**. The date rules cannot run on an unsigned deal with no confirmed board date.
+**Three dates:** none set. The Orange rule sets no kickoff date until every critical dimension reaches 3. All six dimensions score 2 here, so all six are critical. Go-live and the Full Adoption Date both follow the kickoff, so neither is set.
 
-**Risks (top 3, ranked by the rule under Risk Categories):** Technical (HIGH, likelihood High, dimension 1), Resource (HIGH, likelihood High, dimension 2), Stakeholder (HIGH, likelihood High, dimension 2). Resource ranks above Stakeholder because both sit on a dimension scored 2 and Resource comes first in the table. Adoption is MEDIUM and ranks fourth, because Walt is an influencer (`[CRM]`) and the economic buyer is not in the room.
+**Risks (top 3, ranked by the rule under Risk Categories):** every dimension scores 2, so the Risk Categories row order decides among the HIGH risks: Technical (HIGH, likelihood High), Resource (HIGH, likelihood High), Stakeholder (HIGH, likelihood High). Technical is the first row of the table and Stakeholder the last of the three. Adoption is MEDIUM and ranks fourth, because Walt is an influencer (`[CRM]`) and the economic buyer is not in the room.
 
-**Recommendation:** Do not proceed to kickoff. Sales re-engages first, in this order:
+**Recommendation (Orange):** kickoff is held, and no date is set, until every critical dimension reaches 3. Sales re-engages first, in this order:
 1. Owen Pruitt asks Ruth Ellery to confirm the board date by 2026-10-26, five business days after the run date of 2026-10-19, the date the 09 HOLD's dated action falls on.
 2. Brackhaven names an IT contact, and Oldgate's support tests the export on a sample file.
-3. Ruth names a second contact, since she is the only one who has responded.
+3. Ruth names a second contact, since she is the only buyer contact who has replied since 2026-10-03.
 4. Plot lookups are timed, to set the volume baseline.
 
-**Output:** Composite 36 (Red). Re-run the check once the board date is confirmed and the signature is in.
+**Output:** Composite 40 (Orange). Re-run the check once the board date is confirmed and the signature is in.
 
 ```text
 Hand-off (read by the implementation lead and Wrap-Up):
 account: Brackhaven Memorial Gardens (ACTIVE, Stage 5 Negotiate)
 run_date: 2026-10-19
-readiness_score: 36
-dimension_scores: Stakeholder 2, Workflow 2, Technical 1, Data 2, Resource 2, Change Management 2
-three_dates: none set (no handoff issued, board date not confirmed)
+readiness_score: 40
+dimension_scores: Stakeholder 2, Workflow 2, Technical 2, Data 2, Resource 2, Change Management 2
+three_dates: none set (Orange rule: no kickoff date until every critical dimension reaches 3, and a check before signature is a preview)
 risks: Technical (HIGH), Resource (HIGH), Stakeholder (HIGH)
 quick_wins: none until the gaps close
 next_action: Owen Pruitt asks Ruth Ellery to confirm the board date by 2026-10-26, five business days after the run date of 2026-10-19
@@ -828,6 +832,13 @@ The Business Case & ROI Kit (a paid Guild Pro kit) reads this skill's hand-off b
 ---
 
 ## Changelog
+
+### 2.1.6 (2026-10-26)
+- The Technical score follows the constrained-IT rule where one known source system has no IT owner named. The Orange rule governs the dates in the example that sits in that band: no date is set, and conditional dates are anchored on the readiness check date.
+- The IT owner date in the second example's conditions matches its next action.
+- The adoption risk likelihood in the first example is High, because the record shows the skepticism.
+- The chair decision wording follows the family's vote. The "ready to sign" statement is labelled a claim, since no dated record holds it.
+- The buyer-contact wording in the third example names the contact who has replied since 2026-10-03.
 
 ### 2.1.5 (2026-10-26)
 - The invented CRM dated-action context line of the third run is removed, and its next action and the IT-owner dates in the second run carry the shared rule's dates.

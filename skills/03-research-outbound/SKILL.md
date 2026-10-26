@@ -1,6 +1,6 @@
 ---
 name: gtm-research-outbound
-version: 2.1.5
+version: 2.1.6
 description: "Builds a sourced point of view and outbound package from a public filing, an owner letter or an earnings call, with an ICP verdict, a signal map, a sourced wedge and persona sequences, for the rep and the meeting-prep skill to read"
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,9 +11,12 @@ requires:
   skills: [gtm-account-snapshot]
 mutating: read-write
 change_log:
+  - version: 2.1.6
+    date: 2026-10-26
+    summary: "Consistency pass across the sales family. Example 3 re-scores Zones 2 to 5 on the rules and the records: Zone 2 LOW rests on the recorded no-pre-need fact, Zone 3 MEDIUM on the recorded approval path, Zone 4 LOW on a named web search with no website, and Zone 5 MEDIUM on the recorded growth project. The verdict and zone line are unchanged. Example 2 tags the Stonemark evaluation to its dated call. The owner-letter wording is unchanged."
   - version: 2.1.5
     date: 2026-10-26
-    summary: "The Zone 3 sentence of Example 2 quotes the profile's Zone 3 cell as written. "The next action follows the family's one deadline rule: five business days after the run date, or an earlier date the records or the skill's own schedule set for that step. The skill's own within-five-days wording is replaced by a pointer to that rule, and every example next action carries its recomputed date."
+    summary: "The Zone 3 sentence of Example 2 quotes the profile's Zone 3 cell as written. The next action follows the family's one deadline rule: five business days after the run date, or an earlier date the records or the skill's own schedule set for that step. The skill's own within-five-days wording is replaced by a pointer to that rule, and every example next action carries its recomputed date."
   - version: 2.1.4
     date: 2026-10-26
     summary: "Try-it evidence completed so a strict first run reproduces Example 1. The owner letter carries a day, the persona rule covers a persona the account's business or trigger row calls for, a Benchmark stated per cemetery is multiplied by the sites, a payback figure needs a sourced unit price, the next action has a date and scope rule, and the open items are the Step 8 research gaps."
@@ -142,7 +145,7 @@ When the assistant is connected to the CRM or to a call recorder, the skill offe
 
 #### Account Status, Five Words
 
-Every account carries one status: **TARGET** (researched, not yet contacted), **INBOUND** (they asked us), **ACTIVE** with its stage number (open deal), **LOST** (closed-lost, eligible for reactivation), **OUT** (disqualified). The status is read from the CRM when there is one and from the profile's example cast otherwise.
+Every account carries one status: **TARGET** (researched, no open deal yet, whether or not contacted), **INBOUND** (they asked us), **ACTIVE** with its stage number (open deal), **LOST** (closed-lost, eligible for reactivation), **OUT** (disqualified). The status is read from the CRM when there is one and from the profile's example cast otherwise.
 
 #### The Verdict Words and the Zone Rule
 
@@ -852,9 +855,9 @@ next_action: Nadia Brandt reads the 20 drafts and sends Email 1 to Hector Ruiz b
 - Two sites, 11,000 plots, paper plot maps `[CRM]`
 - One double sale in the last 24 months `[CRM]` (illustrative)
 - Legacy on-premise system from Oldgate, renewal March 2027 `[CRM]`
-- Stonemark mapping also evaluated, no preference stated `[Call]`
-- The owner retires within 3 years `[CRM]` (illustrative)
-- Ruth Ellery, GM, is the champion `[Call]`. Walt Okonkwo, Operations Director, is skeptical of tablets `[CRM]`
+- Stonemark mapping also evaluated, no preference stated `[Call, 2026-09-26]`
+- The owner retires within 3 years `[Public: company website, owner bio, 2026]` (illustrative)
+- Ruth Ellery, GM, is the champion `[Call, 2026-09-26]`. Walt Okonkwo, Operations Director, is skeptical of tablets `[Call, 2026-09-21]`
 
 **Zones shown beside the verdict:** 1 HIGH, 2 MEDIUM, 3 MEDIUM, 4 MEDIUM, 5 HIGH. **GREENLIGHT**, because two zones are HIGH and no must-have zone is LOW. Zone 3 stays MEDIUM because the GM recommends and the board approves, which is the profile's MEDIUM cell as written, even though the family board meets within 60 days (2026-11-12). Year one with setup, $26,576, is above the $25K board line.
 
@@ -889,10 +892,10 @@ next_action: Nadia Brandt sends the coordination note to Owen Pruitt by 2026-10-
 | Zone | Score | Basis |
 |---|---|---|
 | 1 Records and Inventory Pain | HIGH | Paper plat maps, one binder per section, two double sales in 2 years `[CRM]` (illustrative) |
-| 2 Pre-Need Sales Motion | LOW | The account's website was checked on 2026-10-19 and has no pre-need intake form `[Public: account website, checked 2026-10-19]` (illustrative). A checked absence, not a blank |
-| 3 Ownership and Decision Speed | MEDIUM | Provisional. The signer is `[Unknown]`, so the score rests on the one fact the sources give: one site under one management team (illustrative). The first research action confirms or changes it |
-| 4 Technology Readiness | LOW | The search found no website. The search was run and found nothing `[Unknown]` as a complete check, so a site visit or a call can overturn this score |
-| 5 Growth or Succession | MEDIUM | Provisional. The search found no new owner, owner update or growth project `[Unknown]`, so the middle score stands until a call says otherwise |
+| 2 Pre-Need Sales Motion | LOW | No pre-need sales on the record `[CRM]` (illustrative), which is the profile's LOW cell. A web search on 2026-10-19 also found no intake form, which agrees with it |
+| 3 Ownership and Decision Speed | MEDIUM | The GM recommends and the board approves above $25K, and the next board meeting is 2027-02-10, which is 114 days after the run date `[CRM]` (illustrative). Both conditions of the profile's MEDIUM cell are met. The signer is `[Unknown]`, so the first research action names who signs |
+| 4 Technology Readiness | LOW | A web search on 2026-10-19 found no website `[Public: web search, 2026-10-19]` (illustrative). No website is one of the profile's LOW conditions. This is a checked absence, named so a reader can repeat it, and a site visit or a call can overturn it |
+| 5 Growth or Succession | MEDIUM | One growth project: a new plot section planned for 2027 `[CRM]` (illustrative). That is the profile's MEDIUM cell, stable with one growth project |
 
 **Verdict: MANUAL REVIEW.** One zone is HIGH, and no must-have zone is LOW enough to disqualify, but one HIGH zone does not reach GREENLIGHT. Do not write a point of view brief from one strong fact.
 
@@ -1063,6 +1066,10 @@ next_action: the rep is told the verdict and its disqualifier by 2026-10-26, and
 
 ## Changelog
 
+
+### 2.1.6 (2026-10-26)
+- Example 3 re-scores its zones on the rules and the records. Zone 2 LOW cites the recorded no-pre-need fact, not a website check. Zone 3 MEDIUM cites the recorded approval path and the next board meeting. Zone 4 LOW cites a named web search that found no website, as a checked absence. Zone 5 MEDIUM cites the recorded growth project. The zone line and the MANUAL REVIEW verdict are unchanged.
+- Example 2 tags the Stonemark evaluation to its dated call.
 
 ### 2.1.5 (2026-10-26)
 - The Zone 3 sentence of Example 2 quotes the profile's Zone 3 cell as written.

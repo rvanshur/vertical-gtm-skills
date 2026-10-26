@@ -80,15 +80,15 @@ Greyfield Memorial Park
 
 Saltmarsh Heritage Group
 - Status: TARGET [CRM] (illustrative)
-- Owner letter on the company site says all five sites move to one system in 2027 [Public: company site, owner letter 2026]
+- Owner letter on the company site says: "Growth in 2027 means one system for all five sites" [Public: company site, owner letter 2026]
 - CFO Hector Ruiz approves budget [CRM]
 - Pre-need counselors at three funeral homes [CRM]
 - Pre-need intake form on the company website [Public: company website] (illustrative)
 - Social ads feed leads into email at the three funeral homes [CRM] (illustrative)
-- Plot and pre-need tools are spreadsheets only, with no digital tool tried [CRM] (illustrative)
+- Plot and pre-need tools are spreadsheets only, with no digital tool tried [Notes] (illustrative)
 - No touch yet
-- Two cemeteries keep plot records on paper binders and spreadsheets, with no digital plot system [CRM] (illustrative)
-- The same owner letter names growth: a pre-need push across the three funeral homes [Public: company site, owner letter 2026] (illustrative)
+- Both cemeteries keep plot records in spreadsheets only, with no digital plot system [Notes] (illustrative)
+- Zone 5 evidence: the owner letter names growth, which is the profile's owner update naming growth [Public: company site, owner letter 2026]
 
 Tamsin Vale Cemetery
 - Status: TARGET [CRM] (illustrative)

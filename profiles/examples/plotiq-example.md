@@ -441,7 +441,7 @@ PlotIQ has no won deals yet. The two timing values below that carry numbers are 
 
 Every worked example in this library, its skill pages and its Guild articles uses the accounts and people below. All of them are invented, and account numbers are illustrative unless a source is named.
 
-**Status codes every skill uses:** TARGET (researched, not yet contacted). INBOUND (they asked us). ACTIVE, with a stage number (open deal). LOST (closed-lost, reactivation eligible). OUT (disqualified).
+**Status codes every skill uses:** TARGET (researched, no open deal yet, whether or not contacted). INBOUND (they asked us). ACTIVE, with a stage number (open deal). LOST (closed-lost, reactivation eligible). OUT (disqualified).
 
 ### PlotIQ's Own Team
 
