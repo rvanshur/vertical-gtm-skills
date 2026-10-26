@@ -1,6 +1,6 @@
 ---
 name: gtm-sales-handoff
-version: 2.1.4
+version: 2.1.5
 description: "Post-sale implementation readiness check: scores six dimensions, sets the three dates (kickoff, go-live and Full Adoption Date), names risks with mitigations and quick wins, and writes the handoff the implementation lead plans from"
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: [gtm-meddpicc-analysis]
 mutating: read-write
 change_log:
+  - version: 2.1.5
+    date: 2026-10-26
+    summary: "The next action follows the family's one deadline rule: five business days after the run date, or an earlier date the records set for that step, named with its source. The skill's own next-action dates are recomputed under that rule, and the IT-owner condition and its risk mitigation move with the next action so the three agree. The Output Contract points to the rule."
   - version: 2.1.4
     date: 2026-10-26
     summary: "Try-it fixes from the blind retest: the composite formula reads each weight as a decimal, the Yellow kickoff window is the buffer before any IT lead time, a Yellow report with a critical dimension states its conditions, all three dates are labelled proposed before signature, severity and likelihood follow stated rules and every top risk states both, a check before signature is a preview, the next action names the action the owner takes, and the worked examples show the date arithmetic and each risk's likelihood."
@@ -91,7 +94,7 @@ Every run returns the readiness report in the chat, in the nine sections of Step
 | `three_dates` | Inline, the three-date plan | Kickoff, go-live and Full Adoption Date, each with its arithmetic shown. Before signature, all three are labelled proposed |
 | `risks` | Inline, the risk section | The top three, each with severity, likelihood and a specific mitigation. Severity and likelihood follow the rules under Risk Categories |
 | `quick_wins` | Inline, the quick win section | A week one item, a month one item and the 90-day criteria |
-| `next_action` | Inline, last line of the report | One step, with its owner and a date. It names the action the owner takes, with a verb such as asks, names or confirms, and never the result |
+| `next_action` | Inline, last line of the report | One step, with its owner and the date the shared contract's next-action rule gives (five business days after the run date, or an earlier date the records set for that step, named with its source). It names the action the owner takes, with a verb such as asks, names or confirms, and never the result |
 | `report_path` | Set only when a file was written | `none (inline)` when the report stayed in the chat |
 | File, on request | `<account>_gtm-sales-handoff_<date>.md`, beside the user's account notes | Written only when the user asks, in Markdown, with the readiness card. The ask is the approval step |
 
@@ -561,7 +564,7 @@ All three examples use the PlotIQ flagship, Brackhaven Memorial Gardens, and the
 
 **Input:** "Run the readiness check for Brackhaven Memorial Gardens before they sign."
 
-**Process:** Ruth Ellery is the champion. Four of seven shared champion tests are met on the 2026-10-27 call, each tagged `[Call]` (illustrative): she explains the internal politics, asks how to help, commits to next steps with dates, and creates urgency inside her company. The family board chair is a role with no name on file (`[Unknown]`) who has joined one call (`[CRM]`). No IT contact is on file (`[Unknown]`). The source is Oldgate Ledger Pro (`[CRM]`), and its ledger export is not yet scoped (`[Unknown]`). Plot records are on paper (`[Call]`). Walt Okonkwo, Operations Director, is skeptical of tablets (`[Call]`). Oldgate's contract renews in March 2027 (`[CRM]`). On the 2026-10-27 call, Ruth agreed that Owen would ask her to name the board chair and confirm the sponsor role in writing by 2026-11-09 (`[Call]`, illustrative).
+**Process:** Ruth Ellery is the champion. Four of seven shared champion tests are met on the 2026-10-27 call, each tagged `[Call]` (illustrative): she explains the internal politics, asks how to help, commits to next steps with dates, and creates urgency inside her company. The family board chair is a role with no name on file (`[Unknown]`) who has joined one call (`[CRM]`). No IT contact is on file (`[Unknown]`). The source is Oldgate Ledger Pro (`[CRM]`), and its ledger export is not yet scoped (`[Unknown]`). Plot records are on paper (`[Call]`). Walt Okonkwo, Operations Director, is skeptical of tablets (`[Call]`). Oldgate's contract renews in March 2027 (`[CRM]`). On the 2026-10-27 call, Ruth agreed that Owen would ask her to name the board chair and confirm the sponsor role in writing by 2026-11-09 (`[Call]`, illustrative), which is also five business days after the run date of 2026-11-02.
 
 **Scoring:**
 
@@ -677,10 +680,10 @@ report_path: none (inline)
 - **Kickoff:** The base is 2026-11-23, one week after signature, as this example sets it. The 14-day IT lead time (illustrative) is added because no IT owner is named at this check: 2026-11-23 plus 14 days = **2026-12-07** (Monday). It is held until Technical reaches 3 by Friday 2026-12-04, which needs conditions 1 and 2 below. If it does not, kickoff moves to the first date the conditions clear. If that is Monday 2026-11-30, the lead time is added again: 2026-11-30 plus 14 days = **2026-12-14** (Monday), and the other two dates move with it. Go-live is then 2026-12-14 plus 49 days = **2027-02-01**, and the Full Adoption Date is 2026-12-14 plus two months = 2027-02-14, a Sunday, rolled to **2027-02-15**.
 - **If kickoff holds on 2026-12-07:** go-live **2027-01-25** (49 days, illustrative), and the Full Adoption Date **2027-02-08** (2027-02-07 is a Sunday, rolled to Monday).
 
-**Risks (top 3):** Technical (HIGH, likelihood High): no IT owner and no one briefed on the migration. Mitigation: Eli Marsh asks Ruth Ellery to name an IT owner by 2026-11-20, and Oldgate's support briefs that owner on the export. Stakeholder (HIGH, likelihood High): the sponsor is not named. Mitigation: the board chair's name and written sponsor confirmation are a condition of kickoff. Resource (MEDIUM, likelihood Medium): the migration and the renewal compete. Mitigation: the renewal date goes on the project plan with a parallel-run window before March 2027.
+**Risks (top 3):** Technical (HIGH, likelihood High): no IT owner and no one briefed on the migration. Mitigation: Eli Marsh asks Ruth Ellery to name an IT owner by 2026-11-23, five business days after the run date of 2026-11-16, and Oldgate's support briefs that owner on the export. Stakeholder (HIGH, likelihood High): the sponsor is not named. Mitigation: the board chair's name and written sponsor confirmation are a condition of kickoff. Resource (MEDIUM, likelihood Medium): the migration and the renewal compete. Mitigation: the renewal date goes on the project plan with a parallel-run window before March 2027.
 
 **Conditions before kickoff:**
-1. Brackhaven names an IT owner, by 2026-11-20.
+1. Brackhaven names an IT owner, by 2026-11-30.
 2. That owner is briefed on the migration by Oldgate's support.
 3. The board chair is named and confirms the sponsor role in writing.
 4. Walt joins the work-order demo, so his pilot is agreed before kickoff.
@@ -696,13 +699,13 @@ dimension_scores: Stakeholder 3, Workflow 4, Technical 2, Data 3, Resource 2, Ch
 three_dates: kickoff 2026-12-07 (held until Technical reaches 3 by 2026-12-04), go-live 2027-01-25, Full Adoption Date 2027-02-08
 risks: Technical (HIGH), Stakeholder (HIGH), Resource (MEDIUM)
 quick_wins: week one remove one manual step, month one risk audit of open plots, 90 days lookup times at baseline
-next_action: Eli Marsh asks Ruth Ellery to name a Brackhaven IT owner by 2026-11-20
+next_action: Eli Marsh asks Ruth Ellery to name a Brackhaven IT owner by 2026-11-23 (five business days after the run date of 2026-11-16)
 report_path: none (inline)
 ```
 
 ### Example 3: Red Readiness on 2026-10-19, Ruth Says They Are Ready
 
-**Context:** Brackhaven is at Stage 5 Negotiate (`[CRM]`), with the family board on 2026-11-12. Ruth Ellery has not replied since 2026-10-03, which is 16 days (`[CRM]`). Ruth has said the customer is "ready to sign." The board date has not been confirmed by anyone since then (`[Unknown]`). The 09 rule applies: a HOLD at Stage 5 with a dated action, and a DOWNGRADE to Stage 4 Proposal if the board date is not confirmed by 2026-11-02. This is the non-success case: the readiness check runs as a preview, and no handoff is issued.
+**Context:** Brackhaven is at Stage 5 Negotiate (`[CRM]`), with the family board on 2026-11-12. Ruth Ellery has not replied since 2026-10-03, which is 16 days (`[CRM]`). The CRM holds a dated action due 2026-10-23 for Owen to get the board date from Ruth (`[CRM]`, illustrative), the action the 09 HOLD requires. Ruth has said the customer is "ready to sign." The board date has not been confirmed by anyone since then (`[Unknown]`). The 09 rule applies: a HOLD at Stage 5 with a dated action, and a DOWNGRADE to Stage 4 Proposal if the board date is not confirmed by 2026-11-02. This is the non-success case: the readiness check runs as a preview, and no handoff is issued.
 
 **Input:** "Run readiness for Brackhaven Memorial Gardens. Ruth says they're ready to sign."
 
@@ -743,7 +746,7 @@ dimension_scores: Stakeholder 2, Workflow 2, Technical 1, Data 2, Resource 2, Ch
 three_dates: none set (no handoff issued, board date not confirmed)
 risks: Technical (HIGH), Resource (HIGH), Stakeholder (HIGH)
 quick_wins: none until the gaps close
-next_action: Owen Pruitt asks Ruth Ellery to confirm the board date by 2026-10-23
+next_action: Owen Pruitt asks Ruth Ellery to confirm the board date by 2026-10-23 (the CRM's dated action, earlier than the five-business-day date of 2026-10-26)
 report_path: none (inline)
 ```
 
@@ -825,6 +828,11 @@ The Business Case & ROI Kit (a paid Guild Pro kit) reads this skill's hand-off b
 ---
 
 ## Changelog
+
+### 2.1.5 (2026-10-26)
+- The next action follows the family's one deadline rule. The Output Contract points to that rule, and each example names the record behind an earlier date.
+- The IT-owner condition and its risk mitigation in Example 2 move with the recomputed next action, so the three dates and the conditions still agree.
+- The three dates, their arithmetic and the Yellow and Orange rules are unchanged.
 
 ### 2.1.4 (2026-10-26)
 - Try-it fixes from the blind retest. The composite formula states its weights as decimals, so it reads 0 to 100. The Yellow kickoff window is the buffer, and the IT lead time comes after it. A Yellow report with a critical dimension lists its conditions before kickoff. All three dates are labelled proposed before signature. Severity and likelihood follow stated rules, and each top risk states both. A check before signature is a preview. The next action names the action the owner takes. The worked examples show the date arithmetic and the likelihood of each risk.

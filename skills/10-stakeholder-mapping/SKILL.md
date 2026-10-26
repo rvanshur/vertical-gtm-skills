@@ -1,6 +1,6 @@
 ---
 name: gtm-stakeholder-mapping
-version: 2.1.4
+version: 2.1.5
 description: "Maps the buying committee for one account: classifies every contact by buying role, marks each missing decision-maker as an UNKNOWN ghost node, scores multi-threading on seven weighted dimensions, and returns an engagement plan the AE or BDR reads before the next meeting."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: [gtm-meddpicc-analysis]
 mutating: read-write
 change_log:
+  - version: 2.1.5
+    date: 2026-10-26
+    summary: "The URGENT action's date follows the family's one deadline rule (five business days after the run date, or an earlier date the records set for that step, named with its source), in place of the Friday-of-the-run-week rule. HIGH and MEDIUM actions keep their own windows. The examples name the record behind each date, and the Saltmarsh research action carries the shared rule's date."
   - version: 2.1.4
     date: 2026-10-26
     summary: "Try-it evidence completed so a strict first run reproduces Example 1 under the Pass Rule. Settles the buyer-persona and non-buyer ghost rule, the HIGH influence rule, the undated-interaction rule, the revenue band rule and the order and deadlines of the URGENT, HIGH and MEDIUM actions. The try-it records carry the dated champion tests shared with Meeting Prep and Deal Pulse, the dated Skeptic call, the Actively Engaged status the rule gives, and the board date as not yet formally confirmed, so the next action's ask is not already on the record. The promise states scored 7 of 7."
@@ -90,7 +93,7 @@ Every run produces a **complete stakeholder map with the same eight sections**, 
 | `ghost_nodes` | Inline, in the hand-off block | Each expected position with no named contact, written "UNKNOWN, role" |
 | `champion_status` | Inline, in the hand-off block | Strong, Developing or None, with the shared champion tests met and the call date for each |
 | `report_path` | Inline, in the hand-off block | `none (inline)` unless a file was written |
-| `next_action` | Inline, in the hand-off block | The first action, with its owner and date |
+| `next_action` | Inline, in the hand-off block | The first action, with its owner and the date the shared contract's next-action rule gives (five business days after the run date, or an earlier date the records set for that step, named with its source) |
 | Markdown file (on request only) | Written only when the user asks, named `<account>_stakeholder-mapping_<date>.md` | Saved beside the user's other account notes. Never written by default |
 
 ---
@@ -559,12 +562,12 @@ Create a prioritized engagement plan:
 
 | Priority | Criteria | Action Window |
 |----------|---------|---------------|
-| URGENT | Blocker unaddressed, EB not engaged, Champion at risk | This week |
+| URGENT | Blocker unaddressed, EB not engaged, Champion at risk | Five business days after the run date, or the earlier record date |
 | HIGH | Missing buying role, key department uncontacted, critical ghost node | Next 2 weeks |
 | MEDIUM | Strengthen existing relationship, expand into adjacent department | Next 30 days |
 | LOW | Informational contact, maintain awareness | Ongoing |
 
-Deadlines run from the run date. URGENT actions fall due on the Friday of the run week, HIGH actions 14 days after the run date, and MEDIUM actions 30 days after it. Within one priority, a blocker comes first, then an economic buyer who is not engaged, then a champion at risk.
+Deadlines run from the run date. URGENT actions fall due on the date the shared contract's next-action rule gives (five business days after the run date, or an earlier date the records set for that step, named with its source). HIGH actions fall due 14 days after the run date, and MEDIUM actions 30 days after it. Within one priority, a blocker comes first, then an economic buyer who is not engaged, then a champion at risk.
 
 For each recommended action:
 - **Who:** Contact name or ghost node ("UNKNOWN, role")
@@ -656,7 +659,7 @@ The plays come from the profile's Buying Committee section (available plays). A 
 
 ### Example 1: AE Deal Strategy, Brackhaven Memorial Gardens (Stage 5 Negotiate, Board Chair Unnamed)
 
-**Context:** Today is Monday 2026-10-19. Owen Pruitt, Account Executive, owns Brackhaven Memorial Gardens. The deal has been ACTIVE at Stage 5 Negotiate since 2026-09-09 `[CRM]`, a two-site combination with 11,000 plots `[CRM]`. The family board is working to 2026-11-12 `[CRM]`, and the board has not formally confirmed the date `[Notes]`. The account record states annual revenue under $50M `[CRM]` (illustrative), with 60 employees `[CRM]` (illustrative). The second Deal Pulse on this date reads High Risk. Ruth Ellery has not replied since 2026-10-03, 16 days ago `[CRM]`. Owner assignment, dates and interaction counts are illustrative where the profile does not supply them. The family board chair has joined one call, in Stage 4 Proposal `[Call]`, and is not on file by name.
+**Context:** Today is Monday 2026-10-19. Owen Pruitt, Account Executive, owns Brackhaven Memorial Gardens. The deal has been ACTIVE at Stage 5 Negotiate since 2026-09-09 `[CRM]`, a two-site combination with 11,000 plots `[CRM]`. The family board is working to 2026-11-12 `[CRM]`, and the board has not formally confirmed the date `[Notes]`. The account record states annual revenue under $50M `[CRM]` (illustrative), with 60 employees `[CRM]` (illustrative). The second Deal Pulse on this date reads High Risk. Ruth Ellery has not replied since 2026-10-03, 16 days ago `[CRM]`. The CRM holds a dated action due 2026-10-23 for Owen to get the board date from Ruth `[CRM]` (illustrative). Owner assignment, dates and interaction counts are illustrative where the profile does not supply them. The family board chair has joined one call, in Stage 4 Proposal `[Call]`, and is not on file by name.
 
 **Input:** "Build an org map for Brackhaven Memorial Gardens. We're at Negotiate and need to multi-thread before the board meeting."
 
@@ -690,7 +693,7 @@ Raw total 12 of 20, scored 7 of 7. threading_score = 12 ÷ 2 = **6**, Developing
 **Political landscape:** Ruth is top-right (leverage), with Influence HIGH and support Strong `[CRM]`. The "UNKNOWN, family board chair" is HIGH influence, so it sits at the top of the map, on the centre line of support: interested in cost and not yet a supporter, a Skeptic `[Call]`. The chair takes no quadrant until the chair is named. Walt sits on the centre line, not in a quadrant, because his influence is MEDIUM and only HIGH influence takes a quadrant. He is a Skeptic with concerns and no opposition yet `[Call]`, and his daily use decides whether the system survives. Priscilla is LOW influence, so she is not placed on the map, and her support is `[Unknown]` until a conversation shows it.
 
 **Output:** Engagement strategy:
-- URGENT, this week: Owen asks Ruth Ellery for the board date and the board chair's name by 2026-10-23, and asks her to broker a second call with the chair. Why: the economic buyer is unnamed and has been on one call, and the champion has not replied since 2026-10-03 `[CRM]`. How: a short note through Ruth, not a cold message to the chair. Messaging: price and the board line only, year one $26,576 with the $5,000 setup against the $25K line (`profile pricing`). No customer result is cited, because the proof points are Illustrative.
+- URGENT, the CRM's dated action (due 2026-10-23, earlier than five business days after the run date of 2026-10-19, which is 2026-10-26): Owen asks Ruth Ellery for the board date and the board chair's name by 2026-10-23, and asks her to broker a second call with the chair. Why: the economic buyer is unnamed and has been on one call, and the champion has not replied since 2026-10-03 `[CRM]`. How: a short note through Ruth, not a cold message to the chair. Messaging: price and the board line only, year one $26,576 with the $5,000 setup against the $25K line (`profile pricing`). No customer result is cited, because the proof points are Illustrative.
 - HIGH, by 2026-11-02: ask Ruth who keeps the Oldgate system running and who holds the ledger export. Who: "UNKNOWN, systems administrator". Why: the Technical Evaluator score is 0, and nobody owns IT. How: Ruth or Walt names one person, and the technical discovery runs before the readiness check on 2026-11-02. Messaging: the export question, not a product claim.
 - HIGH, by 2026-11-02: a find-the-plot demo on Walt's own work orders. This is the strategy that keeps the blocker neutralized. Message: "Find the plot in seconds," the Operations Director hook in the profile.
 - MEDIUM, by 2026-11-18: ask Ruth who the funeral home owner is, since the combination's pre-need leads run through that side. Who: "UNKNOWN, funeral home owner".
@@ -705,7 +708,7 @@ threading_score: 6 (scored 7 of 7)
 buying_roles: Champion Ruth Ellery (Strong), Economic Buyer UNKNOWN, family board chair (identified by role, one call), Technical Evaluator UNKNOWN, systems administrator, Influencer Walt Okonkwo (Skeptic), End User Priscilla Dunmore
 ghost_nodes: UNKNOWN, family board chair, UNKNOWN, systems administrator, UNKNOWN, funeral home owner
 champion_status: Strong (Ruth Ellery, four of seven shared champion tests met: offers introductions 2026-09-26 [Call], commits to next steps with dates 2026-09-26 [Call], explains the internal politics 2026-09-26 [Call], defends the solution when we are not in the room 2026-09-25 [CRM])
-next_action: Owen Pruitt asks Ruth Ellery for the board date and the board chair's name by 2026-10-23
+next_action: Owen Pruitt asks Ruth Ellery for the board date and the board chair's name by 2026-10-23 (the CRM's dated action, earlier than 2026-10-26)
 report_path: none (inline)
 ```
 
@@ -740,7 +743,7 @@ Ghost nodes, from the profile's Buyer Personas. The revenue table does not apply
 Raw total 4 of 18, scored 6 of 7. threading_score = 4 ÷ (2 × 9) × 10 = 2.2, rounded to **2**, Critical, almost no contacts. The Blocker row is left out rather than scored, so the map does not look better than the one contact it holds.
 
 **Output:** Coverage is critical and single-threaded. The only known decision-maker is the CFO, and nobody else has been identified. A cold message to the CFO with the 2027 claim would be a single-threaded bet. The engagement plan is research only, with no outreach yet:
-- Find the pre-need sales manager or pre-need counselor at one of the three funeral homes through LinkedIn research. This is the person who feels the lead follow-up pain daily. Next action: the BDR completes this research by 2026-10-23.
+- Find the pre-need sales manager or pre-need counselor at one of the three funeral homes through LinkedIn research. This is the person who feels the lead follow-up pain daily. Next action: the BDR completes this research by 2026-10-26, five business days after the run date of 2026-10-19 (no earlier record date).
 - Find the cemetery general manager for the two cemeteries (Persona 1).
 - Keep the CFO as the economic buyer to reach once a second contact confirms the timeline. Use the owner letter as the shared hook, not as an assertion about what the family has decided.
 - Re-score after the first two contacts. If the score does not move, the plan is wrong and needs rework.
@@ -755,7 +758,7 @@ threading_score: 2 (scored 6 of 7)
 buying_roles: Economic Buyer Hector Ruiz (CFO, not engaged), all other roles UNKNOWN
 ghost_nodes: UNKNOWN, owner, UNKNOWN, cemetery general manager, UNKNOWN, pre-need sales manager, UNKNOWN, funeral home owner, UNKNOWN, operations director
 champion_status: None (no contact has met any shared champion test)
-next_action: BDR identifies one pre-need sales manager at a funeral home by 2026-10-23
+next_action: BDR identifies one pre-need sales manager at a funeral home by 2026-10-26
 report_path: none (inline)
 ```
 
@@ -825,6 +828,10 @@ report_path: none (inline)
 ---
 
 ## Changelog
+
+### 2.1.5 (2026-10-26)
+- The URGENT action's date follows the family's one deadline rule. The Friday-of-the-run-week rule is removed. HIGH and MEDIUM windows are unchanged.
+- The examples name the record behind each earlier date, and the research action in the BDR example carries the shared rule's date.
 
 ### 2.1.4 (2026-10-26)
 - Try-it evidence completed so a strict first run reproduces Example 1 under the Pass Rule. The try-it records carry the champion tests with their dates (matching the Meeting Prep and Deal Pulse records for the same account), the Skeptic call's date, the engagement status the rule gives, and the board date as working-to and not yet formally confirmed.

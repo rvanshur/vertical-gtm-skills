@@ -1,6 +1,6 @@
 ---
 name: gtm-competitive-strategy
-version: 2.1.4
+version: 2.1.5
 description: "Builds a deal-specific competitive strategy for one open opportunity: the incumbent filed under a shared type, a gap matrix, a displacement playbook and a win plan with a battlecard. The AE who owns the deal runs it, and the sales manager reviews the output."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: [gtm-meddpicc-analysis]
 mutating: read-write
 change_log:
+  - version: 2.1.5
+    date: 2026-10-26
+    summary: "The next action follows the family's one deadline rule: five business days after the run date, or an earlier date the records set for that step, named with its source. The skill's own Friday-of-the-run-week rule is replaced by a pointer to that rule, and the example next actions carry the recomputed dates."
   - version: 2.1.4
     date: 2026-10-26
     summary: "Try-it evidence completed so a strict first run reproduces Example 1 under the Pass Rule. The gap matrix rows for cost and time to live rest on dated buyer statements, so all five rows hold. The win plan's first step is in the checklist. The next action asks the buyer for the open discovery gap, and it has a deadline rule: the Friday of the run week. Settles the job when the buyer names a question, the observation rule for gap matrix rows, and the undated-call rule. Competitive research is cited by its Sources name and date, and the try-it asks name the profile path."
@@ -92,7 +95,7 @@ Every run returns the battlecard in the chat, in its eight sections. It writes a
 | `battlecard` | The full reply, in the chat | Eight sections in this order: account and incumbent summary, competitive gap matrix, winning zone strategy with landmines, discovery questions, displacement talk tracks, objection handling, proof points and reference stories, win plan checklist |
 | `win_plan` | Battlecard section 8 | The checklist by stage (pre-meeting, discovery, demo, post-meeting), each item with an owner and a date where one is known |
 | `report_path` | Last line of the battlecard | `none (inline)` unless a file was written |
-| `next_action` | Last line of the battlecard | One step, with its owner and a date. The step asks the buyer for the open discovery gap the battlecard names in Step 6, item 8, and it is due on the Friday of the run week. Wrap-Up reads this line |
+| `next_action` | Last line of the battlecard | One step, with its owner and a date. The step asks the buyer for the open discovery gap the battlecard names in Step 6, item 8, and its date is the one the shared contract's next-action rule gives (five business days after the run date, or an earlier date the records set for that step, named with its source). Wrap-Up reads this line |
 | File, on request | `<account>_gtm-competitive-strategy_<date>.md`, beside the user's account notes | Written only when the user asks, in Markdown. The ask is the approval step |
 
 ---
@@ -452,7 +455,7 @@ Build a checklist for this competitive scenario. The checklist below is the full
 8. **Critical discovery gap:** what is still unknown about the buyer's current solution
 9. **Win strategy summary:** two or three sentences on how to win this deal competitively
 10. **Risk assessment:** where the competitor could win, stated honestly
-11. **Recommended next steps:** specific actions with a timeline. The next action is the open discovery gap from item 8, asked of the buyer, and it is due on the Friday of the run week, so one run week gives one date
+11. **Recommended next steps:** specific actions with a timeline. The next action is the open discovery gap from item 8, asked of the buyer, and it is dated by the shared contract's next-action rule (five business days after the run date, or an earlier date the records set for that step)
 
 **Produces:** The battlecard in its eight sections, with `battlecard`, `incumbent_type`, `threat_level`, `next_action` and `report_path`. The summary comes last because it draws on every step above it.
 
@@ -469,7 +472,7 @@ This skill has one mode. The default is the battlecard for one open deal.
 - **Every rate carries its n.** Write "2 of 5 cases", never a bare rate.
 - **Five cases before a pattern.** A failure pattern needs five cases with a named source behind it. Fewer than five is an observation, and the battlecard says so in the same sentence.
 - **Silence is not a no.** A blank CRM field or an unanswered question is `[Unknown]`. It is counted in no denominator and is never read as a negative about the incumbent.
-- **An undated call is not a dated fact.** A call with no date is tagged `[Call]` with `[Unknown]` for its date, and it does not place a satisfaction, need or contract fact in time until the date is on the record.
+- **An undated call is not a dated fact.** A call whose date is not on record is tagged `[Call, date Unknown]`, and it does not place a satisfaction, need or contract fact in time until the date is on the record.
 - **"No difference found" is a finding.** If the buyer's criteria do not separate the incumbent from the rival, the battlecard says the deal is open on those criteria. It does not invent a winning gap.
 - **Every claim carries one of the six evidence tags.** The tags are `[CRM]`, `[Call]`, `[Notes]`, `[Public: source]`, `[Inferred]` and `[Unknown]`. A claim with no tag is removed. Verified is a proof point Status, never a tag.
 - **Only Verified proof reaches a talk track.** The Status rule in Methodology decides this, however good the story is.
@@ -619,7 +622,7 @@ The battlecard names the capability, and the demo shows it on Brackhaven's own c
 **Pre-Meeting (Live Items)**
 - [ ] Ask Ruth to pull the count of plots with no recorded sale, and to bring her own number. Do not estimate it. Owner: Owen Pruitt. Date: `[Unknown]` until Ruth agrees
 - [ ] Know that no Verified proof point exists, so the demo shows the capability on Brackhaven's own counts and no customer is named. Owner: Owen Pruitt. Date: before the next meeting, `[Unknown]` until it is set
-- [ ] Confirm the exact Oldgate renewal day and the trust-file scope with Ruth. Do not assume either. Owner: Owen Pruitt. Date: 2026-10-23 (the next action)
+- [ ] Confirm the exact Oldgate renewal day and the trust-file scope with Ruth. Do not assume either. Owner: Owen Pruitt. Date: 2026-10-26 (the next action, five business days after the run date of 2026-10-19)
 - [ ] Prepare a mitigation for each landmine in Step 3c. Owner: Owen Pruitt. Date: before the next meeting, `[Unknown]` until it is set
 
 **During Discovery**
@@ -647,7 +650,7 @@ threat_level: MEDIUM (five factors 2, 1, 2, 1, 2, average 1.6)
 gap_matrix: 5 rows, mobile use, unsold-plot visibility, trust fund records, cost, time to live
 battlecard: 8 sections, inline
 win_plan: 4 stages, pre-meeting to post-meeting, owner on each item, date where known
-next_action: Owen Pruitt asks Ruth Ellery for the exact Oldgate renewal day and the trust-file scope by 2026-10-23
+next_action: Owen Pruitt asks Ruth Ellery for the exact Oldgate renewal day and the trust-file scope by 2026-10-26
 report_path: none (inline)
 ```
 
@@ -725,7 +728,7 @@ threat_level: HIGH by calibration (five factors 2, 2, 2, 1, 3, average 2.0 reads
 gap_matrix: 5 rows, Stonemark against PlotIQ, no preference stated
 battlecard: 8 sections, inline, the rival's advantage named
 win_plan: 5 groups, criteria in writing before any demo
-next_action: Owen Pruitt asks Ruth Ellery to put the board's decision criteria in writing by 2026-10-23
+next_action: Owen Pruitt asks Ruth Ellery to put the board's decision criteria in writing by 2026-10-26
 report_path: none (inline)
 ```
 
@@ -804,6 +807,10 @@ report_path: none (inline)
 ---
 
 ## Changelog
+
+### 2.1.5 (2026-10-26)
+- The next action follows the family's one deadline rule. The Output Contract and Step 6 point to that rule in place of the skill's own Friday rule.
+- The examples' next actions carry the dates the rule gives.
 
 ### 2.1.4 (2026-10-26)
 - Try-it evidence completed so a strict first run reproduces Example 1 under the Pass Rule. The buyer's stated cost and timing pains are added to the record with their call dates, so the cost and time-to-live rows of the gap matrix rest on the buyer, not on the research alone. Undated statements are dated, and the Stonemark mention is dated.

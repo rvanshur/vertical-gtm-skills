@@ -1,7 +1,7 @@
 ---
 name: gtm-call-coaching
 description: "Scores a discovery or demo call against methodology rubrics and returns a coaching report with evidence-graded coaching points, for the rep and the sales manager who reads it"
-version: 2.1.4
+version: 2.1.5
 category: Sales-Methodology
 author: Ryan Vanshur
 license: MIT
@@ -11,6 +11,9 @@ requires:
   skills: ["gtm-meeting-prep", "gtm-deal-pulse"]
 mutating: read-write
 change_log:
+  - version: 2.1.5
+    date: 2026-10-26
+    summary: "The next action follows the family's one deadline rule: five business days after the run date, or an earlier date the records or the call set for that step, named with its source. A date agreed on the call or by email is the step's date, and the line names how it was agreed. The skill's own not-yet-agreed [Unknown] date is replaced by the shared rule. The Example 3 next action carries its recomputed date."
   - version: 2.1.4
     date: 2026-10-26
     summary: "Try-it fixes from the blind retest: the Partial Markers rule says a lower-line marker does not block a higher score once the higher line's markers are all shown, the Pre-Call Preparation rule counts prep-sheet facts used on the call, buying signals gain approval and need kinds, the next action takes a date agreed after the call and names an agreed session by its date, the practice exercise covers every cost the focus skill names, and the focus tie-break gives the reason its gate names the skill. The try-it records carry the full transcript check for silence and talk share."
@@ -94,7 +97,7 @@ Every run returns the coaching report in the chat, in the eight sections under R
 | `key_moments` | Inline, the Key Moments section | Each moment has its type from the seven key-moment types and the fields that type requires |
 | `champion_status` | Inline, the MEDDIC Status section | Strong, Developing or None, with the shared champion tests met on this call, each tagged |
 | `report_path` | Set only when a file was written | `none (inline)` when the report stayed in the chat |
-| `next_action` | Inline, last line of the report | One step, with its owner and a date. A date not yet agreed is written as `[Unknown]`. A date agreed after the call, by email or otherwise, is the step's date, and the line says how it was agreed. A session already agreed is written with its date, and the step names what happens in that session |
+| `next_action` | Inline, last line of the report | One step, with its owner and the date the shared contract's next-action rule gives (five business days after the run date, or an earlier date the records or the call set for that step). A date agreed after the call, by email or otherwise, is the step's date, and the line says how it was agreed. A session already agreed is written with its date, and the step names what happens in that session |
 | File, on request | `<account>_gtm-call-coaching_<date>.md`, beside the user's account notes | Written only when the user asks, in Markdown. The ask is the approval step |
 
 ### Report Sections
@@ -731,7 +734,7 @@ Mark each key moment with one of seven types. Capture the fields the type requir
 - [ ] Pains are matched to the profile's list, and the champion status shows the tests met
 - [ ] Key moments use the seven types and carry their required fields
 - [ ] Exactly one focus area is named, with a practice exercise
-- [ ] The next action names an owner and a date, or states that the date is `[Unknown]`
+- [ ] The next action names an owner and a date, set by the shared next-action rule or by a date agreed on the call or by email, with the source named
 - [ ] The hand-off block lists the fields by name
 
 ---
@@ -1004,7 +1007,7 @@ focus_area: Build a pain-to-workflow map from the discovery notes, open with Wal
 coaching_points: 1 Telling not asking, Strong (23:40). 2 Open on the pain, Strong (12:00). 3 Pain-to-workflow map, Weak (absent from the transcript). 4 Question the Problem, Moderate (summarized in notes)
 key_moments: objection (23:40), missed opportunity (12:00), competitive intelligence (31:15), red flag HIGH (55:00)
 champion_status: None on this call (Ruth Ellery not in the room)
-next_action: Owen Pruitt sends Walt Okonkwo the pain-to-workflow map for the next demo, and Ruth Ellery briefs Walt on the board's approval path. Owner: Owen Pruitt. Date: 2026-10-22 (illustrative)
+next_action: Owen Pruitt sends Walt Okonkwo the pain-to-workflow map for the next demo, and Ruth Ellery briefs Walt on the board's approval path. Owner: Owen Pruitt. Date: 2026-10-26 (illustrative), five business days after the run date of 2026-10-19, with no earlier date on the record
 report_path: none (inline)
 ```
 
@@ -1086,6 +1089,10 @@ The Business Case & ROI Kit (a paid Guild Pro kit) reads this skill's hand-off b
 ---
 
 ## Changelog
+
+### 2.1.5 (2026-10-26)
+- The next action follows the family's one deadline rule. The Output Contract and the Quality Bar point to that rule, and a date agreed on the call or by email is still the step's date.
+- The examples' next actions carry the dates the rule gives.
 
 ### 2.1.4 (2026-10-26)
 - Try-it fixes from the blind retest. The Partial Markers rule now says whether a lower-line marker blocks a higher score. The Pre-Call Preparation rule says which prep-sheet facts count. Buying signals gain approval and need kinds. The next action takes a date agreed after the call, and an agreed session is written with its date. The practice exercise covers every cost the focus skill names, and the focus tie-break gives the reason its gate names the skill. The try-it records carry the full transcript check for silence and talk share.

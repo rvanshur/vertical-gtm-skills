@@ -1,6 +1,6 @@
 ---
 name: gtm-meeting-prep
-version: 2.1.4
+version: 2.1.5
 description: "Prepares a rep for a discovery or demo call with one prep sheet: the top pain, a question bank for each discovery phase, one proof point per attendee, objection scripts, a minute-by-minute call flow and a follow-up email draft. The rep reads it during the call."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: [gtm-account-snapshot, gtm-research-outbound, gtm-trigger-event-outbound, gtm-closed-loss-reactivation, gtm-daily-prospecting, gtm-deal-pulse, gtm-stakeholder-mapping, gtm-competitive-strategy, gtm-competitive-displacement, gtm-call-coaching]
 mutating: read-write
 change_log:
+  - version: 2.1.5
+    date: 2026-10-26
+    summary: "Per-attendee proof is one line for every attendee, including an attendee whose persona is not yet known. A fact from a call whose date is unknown takes the shared Call tag with its date unknown, in place of the notes tag. The next action follows the family's one deadline rule, and a next action that happens on a call the record dates uses that call date and names it as the source. The examples' next actions carry those dates."
   - version: 2.1.4
     date: 2026-10-26
     summary: "Try-it evidence completed so a strict first run reproduces Example 1. Defines the research target as the profile figure that matches a persona's hook focus, settles the tag order for ranking pains, fills each question phase from the profile first and then the record, reads a meeting with no earlier logged meeting as a first meeting, tags a call of unknown date as notes, and names the next action when the economic buyer cell is yellow. No output changed."
@@ -385,7 +388,7 @@ Before pulling anything, open the account's folder under `accounts/` in the Know
    - People referenced and the stakeholders they point to.
    - Competitors named.
    - The trigger that started the engagement.
-2. **Identify gaps:** pains named but not quantified, people referenced but not met, a decision process not mapped, budget or timeline unknown, the current solution unclear. Each gap becomes a meeting objective. A blank field is unknown, never a no. A fact from a call whose date is unknown takes `[Notes]`, because the `[Call]` tag needs its date.
+2. **Identify gaps:** pains named but not quantified, people referenced but not met, a decision process not mapped, budget or timeline unknown, the current solution unclear. Each gap becomes a meeting objective. A blank field is unknown, never a no. A fact from a call whose date is unknown takes `[Call, date Unknown]`, the shared contract's form for an undated call, which places no fact in time.
 
 **Produces:** the findings list, each item tagged, and the gap list.
 
@@ -471,7 +474,7 @@ A discovery flow for a 30-minute call (illustrative) looks like this:
    - **Benchmark:** context only, with its source and date named. Never "our customer got this."
    - **Illustrative:** never cited to a prospect. On the sheet, the row is marked "do not cite".
 
-   If the profile has no usable proof for a persona, the sheet says so and gives the research target in its place. The research target is the profile figure whose wording matches the persona's Hook Focus, with its research source named. Persona 1's target is the 50 to 100 plot benchmark, and Persona 3's is the 20 second target. An Illustrative row does not make a persona usable: it is shown marked "do not cite", and the research target is given beside it. The reason: a rep who says "we have no proof for this yet" is more credible than one who reaches for a row that does not exist.
+   Every attendee gets one proof line, including an attendee whose persona is not yet known. That line says the persona is unknown and that no proof is set until it is confirmed. If the profile has no usable proof for a persona, the sheet says so and gives the research target in its place. The research target is the profile figure whose wording matches the persona's Hook Focus, with its research source named. Persona 1's target is the 50 to 100 plot benchmark, and Persona 3's is the 20 second target. An Illustrative row does not make a persona usable: it is shown marked "do not cite", and the research target is given beside it. The reason: a rep who says "we have no proof for this yet" is more credible than one who reaches for a row that does not exist.
 2. **Script two or three Feel-Felt-Found stories:** Feel (validate their concern), Felt (a similar customer felt the same), Found (the outcome, with a metric whose Status allows its use). If no story can carry a Verified or Benchmark result, the Found line uses the Benchmark and says so.
 3. **Prepare typed resistance** (demo): Reactance, Skepticism or Inertia, each with its response from the Methodology.
 4. **Prepare the redirect:** if a buyer asks about something the product does not lead with, acknowledge it and return to the pain they ranked first.
@@ -501,7 +504,7 @@ A discovery flow for a 30-minute call (illustrative) looks like this:
 
 ### Step 10. Assemble the Prep Sheet
 
-Lay out the sheet in the section order from The Prep Sheet Sections. Fill the header with the attendees and `report_path: none (inline)`. End the sheet with `next_action`, which names an owner and a date. When the Economic Buyer cell is yellow, the next action asks the buyer for the signer above the named buyer, and for the next meeting's date, on the call. Hand the sheet back in the reply. Write a file only if the user asks, using the file option. Run the Quality Bar before handing back.
+Lay out the sheet in the section order from The Prep Sheet Sections. Fill the header with the attendees and `report_path: none (inline)`. End the sheet with `next_action`, which names an owner and a date. The date follows the shared contract's next-action rule. When the next action happens on a call whose date is on record, that call date is used and named as its source, as long as it falls before the five-business-day date. When the Economic Buyer cell is yellow, the next action asks the buyer for the signer above the named buyer, and for the next meeting's date, on the call. Hand the sheet back in the reply. Write a file only if the user asks, using the file option. Run the Quality Bar before handing back.
 
 **Produces:** `prep_sheet` (inline), `top_pain`, `question_bank`, `attendees`, `proof_point`, `next_action` and `report_path`.
 
@@ -630,7 +633,7 @@ top_pain: plot records on paper, with a double sale [CRM] (illustrative)
 question_bank: Situation 3, Problem 3, Implication 3, Need-Payoff 2 (top three per phase)
 attendees: Ruth Ellery, General Manager, buyer. Walt Okonkwo, Operations Director, influencer
 proof_point: Holloway Hills, Status Illustrative, not cited to the prospect
-next_action: Owen Pruitt asks Ruth Ellery for the approval body's chair and the meeting date on this call. Date: 2026-05-12 (illustrative, the call itself). The meeting date is [Unknown] until agreed
+next_action: Owen Pruitt asks Ruth Ellery for the approval body's chair and the meeting date on this call. Date: 2026-05-12 (illustrative), the call date on record, which is earlier than the five-business-day date of 2026-05-18. The meeting date is [Unknown] until agreed
 report_path: none (inline)
 ```
 
@@ -680,6 +683,8 @@ report_path: none (inline)
 
 **Step 8.** Open: "Arlen, thanks for making the time. The request came in through the website, so I'd like to learn how the plot records work before I show you anything. How are the plots kept today?" Follow-up email: DRAFT, not sent.
 
+**Step 7 (form filler).** The form filler's persona is `[Unknown]`, so the proof line for that attendee reads: no proof is set until the persona is confirmed on the call.
+
 **Step 9.** Objectives: learn the plot-records process, find the pain, confirm the form filler, and identify who else looks at a tool. Minimum outcome: one confirmed pain with a number, and a discovery next step. If the GM says the spreadsheet works fine, ask when it was last checked against the plots actually sold. If the form filler is not Arlen, ask their role before any demo question.
 
 **Step 10.** This prep has no demo plan. The demo is booked only after the pain is confirmed. Call flow, 30 minutes (illustrative), with the discovery band from the Shared Contract.
@@ -692,8 +697,8 @@ prep_sheet: inline, discovery, seven sections, demo held
 top_pain: none confirmed. Working hypothesis: plot lookups on a spreadsheet, [Inferred]
 question_bank: Situation 3, Problem 3, Implication 3 (top three per phase)
 attendees: Arlen Biggs, General Manager, buyer (signs under $25K). Form filler: [Unknown]
-proof_point: Fennick Gardens, Status Illustrative, do not cite. The prospect hears the Benchmark line only
-next_action: the rep on the Thursday call confirms the form filler and runs discovery, not the demo. Owner: that rep. Date: 2026-10-22
+proof_point: Arlen Biggs, Fennick Gardens, Status Illustrative, do not cite. The prospect hears the Benchmark line only. Form filler, no proof until the persona is confirmed
+next_action: the rep on the Thursday call confirms the form filler and runs discovery, not the demo. Owner: that rep. Date: 2026-10-22, the Thursday call named in the request, which is earlier than the five-business-day date of 2026-10-26
 report_path: none (inline)
 ```
 
@@ -743,7 +748,7 @@ Because the record is shallow, the sheet names the missing items and returns the
 
 The AE chooses. The skill does not pick (b) by default, because a demo built on unconfirmed pains is a feature tour.
 
-**Step 7.** Proof for the pre-need manager: the profile has no proof for this persona yet, so the sheet says so. The research target for pre-need follow-up, within an hour, stands in as the goal, labelled as a target.
+**Step 7.** Proof, one line per attendee. For the General Manager, the persona-proof map names Holloway Hills, Status Illustrative, marked "do not cite", and the research target beside it is 50 to 100 plots sold on paper and unsold on the map (Benchmark, deathcare research, paper-operations note, 2026-04-01). For the pre-need manager, the profile has no proof for this persona yet, so the sheet says so. The research target for pre-need follow-up, within an hour, stands in as the goal, labelled as a target.
 
 **Step 10.** Hand-off:
 
@@ -755,8 +760,8 @@ prep_sheet: not produced as a demo plan. Discovery-first recommendation with two
 top_pain: none confirmed (0 of 2 needed for a demo)
 question_bank: Problem 2 questions and Need-Payoff 1 question, from Step 4
 attendees: General Manager, name [Unknown], buyer. Pre-Need Sales Manager, name [Unknown], buying role [Unknown]
-proof_point: none cited. The pre-need persona has no proof in the profile yet, so the sheet says so and gives the research target
-next_action: the AE confirms discovery or demo with the GM and asks for the pre-need manager's name. Owner: the AE. Date: 2026-10-22
+proof_point: General Manager, Holloway Hills, Status Illustrative, do not cite, with the 50 to 100 plot Benchmark as the research target. Pre-need manager, no proof in the profile yet, so the research target stands in
+next_action: the AE confirms discovery or demo with the GM and asks for the pre-need manager's name. Owner: the AE. Date: 2026-10-22, the last working day before the Friday meeting on record (2026-10-23), which is earlier than the five-business-day date of 2026-10-26
 report_path: none (inline)
 ```
 
@@ -801,7 +806,7 @@ top_pain: records finding in the last state review, [CRM], date [Unknown] (illus
 question_bank: Situation 1, Problem 1, Implication 1 (three questions, from Step 4)
 attendees: Ines Carmody, General Manager, champion [CRM]. The owner signs under $25K
 proof_point: Holloway Hills, Status Illustrative, not cited to the prospect
-next_action: the AE asks Ines Carmody for the deadline on the open review item. Owner: the AE on the call. Date: 2026-10-19
+next_action: the AE asks Ines Carmody for the deadline on the open review item. Owner: the AE on the call. Date: 2026-10-19, the call date on record (discovery in 15 minutes), which is earlier than the five-business-day date of 2026-10-26
 report_path: none (inline)
 ```
 
@@ -912,6 +917,11 @@ This skill also reads the kit's hand-off block back as optional context: `case_s
 
 ## Changelog
 
+
+### 2.1.5 (2026-10-26)
+- Every attendee has one proof line, including an attendee whose persona is unknown. The Greyfield and Sable Fork examples show a line for each attendee.
+- An undated call fact takes the shared Call tag with its date unknown, in place of the notes tag.
+- The next action follows the family's one deadline rule. Where the next action happens on a dated call, that call date is used and named as the source, and each example names its source.
 
 ### 2.1.4 (2026-10-26)
 - Try-it evidence completed so a strict first run reproduces Example 1. Step 3 gives the tag order for ranking pain hypotheses. Step 4 writes each phase's range from the profile first, then the record. Step 7 defines the research target as the profile figure that matches the persona's hook focus. Step 8 reads a meeting with no earlier logged meeting as a first meeting. Step 10 names the signer above the buyer as the next action when the economic buyer cell is yellow. A call of unknown date is tagged as notes. The Example 1 records gain the meeting history line, and the Stonemark tag becomes notes. No output changed.

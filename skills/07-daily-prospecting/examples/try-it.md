@@ -108,5 +108,5 @@ Tamsin Vale Cemetery
 - Exclusions: 3 (Brackhaven Memorial Gardens by the BDR guard, Northvale Memorial Holdings as OUT, and one opted-out contact at Lowmoor).
 - Priority dial queue, top three: 1 Corrow Ridge Cemetery (Hot, GREENLIGHT). 2 Sable Fork Cemetery (Hot, MANUAL REVIEW). 3 Quill Hollow Memorial Park (Warm, GREENLIGHT).
 - Lowmoor Memorial Gardens is on hold as Recycle. Closed-Loss Reactivation holds it on MONITOR.
-- Next action: Nadia Brandt shares today's Brackhaven intel with Owen Pruitt by 2026-10-19.
+- Next action: Nadia Brandt shares today's Brackhaven intel with Owen Pruitt by 2026-10-19, the due date of the Brackhaven task on record (the run date, earlier than the five-business-day date of 2026-10-26).
 - Report path: none (inline).

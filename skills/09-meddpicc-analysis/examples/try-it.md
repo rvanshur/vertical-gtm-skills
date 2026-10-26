@@ -28,4 +28,4 @@ Every name, date and number in this file is invented for the PlotIQ example. Not
 - Element scores: Metrics 4, Economic Buyer 4, Decision Criteria 4, Decision Process 4, Paper Process 3, Identified Pain 5, Champion 5, Competition 4.
 - Stage check: the Stage 5 Negotiate minimum of 70 is met. The Stage 6 Closed-Won and Handoff minimum of 75 is met on health but not on the critical elements, because Paper Process is 3 and needs 4.
 - Stage recommendation: HOLD at Stage 5 Negotiate, checked 2026-10-05. The top risk is Paper Process at 3.
-- Next action: Owen Pruitt asks Ruth Ellery to walk through the legal and vendor steps by 2026-10-05.
+- Next action: Owen Pruitt asks Ruth Ellery to walk through the legal and vendor steps by 2026-10-05, five business days after the run date of 2026-09-28, with no earlier record date.

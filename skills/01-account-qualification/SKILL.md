@@ -1,6 +1,6 @@
 ---
 name: gtm-account-qualification
-version: 2.1.4
+version: 2.1.5
 description: "Scores an account against the ICP definitions, 8 weighted criteria and the profile's five qualification zones, and returns a GREENLIGHT, MANUAL REVIEW or DISQUALIFY verdict with every zone shown, for the BDR or AE who decides where to spend time."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: []
 mutating: read-write
 change_log:
+  - version: 2.1.5
+    date: 2026-10-26
+    summary: "The next action follows the shared contract's one deadline rule: five business days after the run date, or an earlier date the records set for that step. The skill's own within-five-days wording is replaced by a pointer to that rule, and the example dates are recomputed under it. An UNKNOWN zone is named as an open fact under the Verdict Rule, as the profile states it."
   - version: 2.1.4
     date: 2026-10-26
     summary: "Try-it evidence completed so a strict first run reproduces Example 1. ICP2 criterion 2 is tested against the profile's ICP2 threshold, a Fit Grid row is read at its key indicator, a named pre-need manager counts as pre-need staff, an approval step above the signing line is a risk flag, and the next action gets a date rule. Example 1 gains the records each rule reads."
@@ -95,7 +98,7 @@ Every run returns the verdict and the zone scores in the chat. It writes a file 
 | `icp_match` | Inline, the ICP line of the report | The profile's ICP name, such as `ICP2 Combination`, or `No Fit` with the disqualifier named |
 | `fit_narrative` | Inline, the ICP and Fit Grid lines | Two or three sentences that say why, each fact tagged |
 | `report_path` | Set only when a file was written | `none (inline)` when the report stayed in the chat |
-| `next_action` | Inline, last line of the report | One step, with its owner (BDR or AE) and a date within five business days after the run date |
+| `next_action` | Inline, last line of the report | One step, with its owner (BDR or AE) and the date the shared contract's next-action rule gives (What the Close Reads: five business days after the run date, or an earlier date the records set for that step) |
 | File, on request | `<account>_gtm-account-qualification_<date>.md`, beside the user's account notes | Written only when the user asks, in Markdown. The ask is the approval step |
 
 ---
@@ -404,7 +407,7 @@ No Fit Indicator and Previous DQ both point at the disqualifier clause of the Ve
 
 ### Step 6: Deliver the Qualification Verdict
 
-The verdict comes from the profile's Verdict Rule alone, as the Shared Contract states. The 8-criteria scorecard from Step 3 does not gate the verdict. It feeds `icp_match` and `fit_narrative`. Reason: a second gate would be a second definition of fit, and the profile is the one place that definition lives. A Moderate cell in the Fit Grid row does not block GREENLIGHT when the account meets the ICP definition with evidence, because the Fit Grid row is recorded as context and the Verdict Rule decides.
+The verdict comes from the profile's Verdict Rule alone, as the Shared Contract states. An UNKNOWN zone counts as neither HIGH nor LOW, so it never earns or blocks GREENLIGHT, and the report names it as an open fact. The 8-criteria scorecard from Step 3 does not gate the verdict. It feeds `icp_match` and `fit_narrative`. Reason: a second gate would be a second definition of fit, and the profile is the one place that definition lives. A Moderate cell in the Fit Grid row does not block GREENLIGHT when the account meets the ICP definition with evidence, because the Fit Grid row is recorded as context and the Verdict Rule decides.
 
 #### Verdict Framework
 
@@ -441,7 +444,7 @@ Return these twelve items inline, in this order.
 9. **Top Risk Flags**
 10. **Account Status:** TARGET, INBOUND, ACTIVE with its stage number, LOST or OUT
 11. **Active Deal?** If yes, the stage, the AE owner and the amount. For a BDR, coordinate with the AE
-12. **Recommended Next Steps:** role-specific, with the `next_action` line last. The `next_action` date falls within five business days after the run date and is written as a calendar date, so the step can be checked against the run. Reason: a step with no date cannot be checked
+12. **Recommended Next Steps:** role-specific, with the `next_action` line last. The `next_action` date follows the shared contract's next-action rule (five business days after the run date, or an earlier date the records set for that step) and is written as a calendar date, so the step can be checked against the run. Reason: a step with no date cannot be checked
 
 **Produces:** `verdict`, `zone_scores`, `icp_match`, `fit_narrative` and `next_action`, all in the twelve-item report.
 
@@ -528,7 +531,7 @@ Four worked examples, all on the PlotIQ cast and the chain file. They show a mix
 
 **Opportunity Signals:** Records pain with a double sale `[CRM]` (illustrative), and a succession window of about 3 years (illustrative).
 
-**Next action:** The BDR on the account checks for active AE deals first, then runs Account Snapshot Outbound and books discovery for the AE by 2026-05-08 (illustrative), a Friday. That date is four business days after the run date of 2026-05-04.
+**Next action:** The BDR on the account checks for active AE deals first, then runs Account Snapshot Outbound and books discovery for the AE by 2026-05-11 (illustrative), a Monday. That date is five business days after the run date of 2026-05-04, a Monday, and the records set no earlier date for this step.
 
 ```text
 Hand-off (read by 02):
@@ -538,7 +541,7 @@ verdict: GREENLIGHT
 zone_scores: 1 HIGH, 2 MEDIUM, 3 MEDIUM, 4 MEDIUM, 5 HIGH
 icp_match: ICP2 Combination
 fit_narrative: Two sites on paper plot maps, with one double sale in 24 months `[CRM]` (illustrative). Zones 1 and 5 are HIGH and no must-have zone is LOW. The board's signing line keeps Zone 3 at MEDIUM. Illustrative throughout.
-next_action: The BDR on the account checks for active AE deals first, then runs Account Snapshot Outbound and books discovery for the AE by 2026-05-08 (illustrative)
+next_action: The BDR on the account checks for active AE deals first, then runs Account Snapshot Outbound and books discovery for the AE by 2026-05-11 (illustrative)
 report_path: none (inline)
 ```
 
@@ -579,7 +582,7 @@ report_path: none (inline)
 
 **Opportunity Signals:** The acquisition is a consolidator trigger. Its window runs from 2026-08-30 to 2026-10-29, which is 60 to 120 days after the 2026-07-01 close `[Public: state licensing database]`. On 2026-10-19 there are 10 days left in the window.
 
-**Next action:** The BDR confirms Harborline's ownership type and system by 2026-10-22 (illustrative), so a sequence can start before the window closes on 2026-10-29.
+**Next action:** The BDR confirms Harborline's ownership type and system by 2026-10-26 (illustrative), a Monday, five business days after the run date of 2026-10-19, so a sequence can start before the window closes on 2026-10-29.
 
 ```text
 Hand-off (read by 02):
@@ -589,7 +592,7 @@ verdict: GREENLIGHT
 zone_scores: 1 HIGH, 2 UNKNOWN, 3 MEDIUM, 4 UNKNOWN, 5 HIGH
 icp_match: ICP1 Independent Cemetery (at site level, after the acquisition)
 fit_narrative: One cemetery site with 14,000 plots on paper plat maps (illustrative) and a new owner inside 24 months. Zones 1 and 5 are HIGH and no must-have zone is LOW. Harborline's type and system are [Unknown] and are checked first.
-next_action: The BDR confirms Harborline's ownership type and system by 2026-10-22 (illustrative)
+next_action: The BDR confirms Harborline's ownership type and system by 2026-10-26 (illustrative)
 report_path: none (inline)
 ```
 
@@ -630,7 +633,7 @@ report_path: none (inline)
 
 **Opportunity Signals:** The inbound request itself, `[CRM]`, received 2026-10-15.
 
-**Next action:** The BDR confirms who filled in the form, and the pre-need answer, by 2026-10-23 (illustrative), a Friday. Re-run the verdict if any zone changes.
+**Next action:** The BDR confirms who filled in the form, and the pre-need answer, by 2026-10-26 (illustrative), a Monday, five business days after the run date of 2026-10-19. Re-run the verdict if any zone changes.
 
 ```text
 Hand-off (read by 02):
@@ -640,7 +643,7 @@ verdict: MANUAL REVIEW
 zone_scores: 1 MEDIUM, 2 LOW, 3 HIGH, 4 MEDIUM, 5 LOW
 icp_match: ICP1 Independent Cemetery
 fit_narrative: One cemetery site with 2,900 plots on a spreadsheet (illustrative), and a general manager who signs under $25K (illustrative). One HIGH zone and no must-have zone at LOW, so MANUAL REVIEW. The form's author is [Unknown], which limits how far the LOW pre-need answer can be trusted.
-next_action: The BDR confirms who filled in the form, and the pre-need answer, by 2026-10-23 (illustrative)
+next_action: The BDR confirms who filled in the form, and the pre-need answer, by 2026-10-26 (illustrative)
 report_path: none (inline)
 ```
 
@@ -666,7 +669,7 @@ report_path: none (inline)
 
 **Risk Flags:** No Fit Indicator. It points at the disqualifier clause, which is the reason for the verdict.
 
-**Next action:** No outbound. The BDR logs the disqualifier and its filing source in the CRM by 2026-10-23 (illustrative), so no rep re-qualifies the account from scratch. The rep does the logging, not this skill.
+**Next action:** No outbound. The BDR logs the disqualifier and its filing source in the CRM by 2026-10-26 (illustrative), a Monday, five business days after the run date of 2026-10-19, so no rep re-qualifies the account from scratch. The rep does the logging, not this skill.
 
 ```text
 Hand-off (read by 02):
@@ -676,7 +679,7 @@ verdict: DISQUALIFY
 zone_scores: 1 UNKNOWN, 2 UNKNOWN, 3 UNKNOWN, 4 LOW, 5 UNKNOWN
 icp_match: No Fit, ICP3 Multi-Location Group disqualifier (public consolidator running its own system)
 fit_narrative: About 240 funeral homes and 90 cemeteries, running its own in-house system `[Public: annual filing]`. The profile's disqualifier applies, so the zones are not weighed. Status OUT, not LOST.
-next_action: The BDR logs the disqualifier and its filing source in the CRM by 2026-10-23 (illustrative)
+next_action: The BDR logs the disqualifier and its filing source in the CRM by 2026-10-26 (illustrative)
 report_path: none (inline)
 ```
 
@@ -747,6 +750,10 @@ An account pending AE assignment is not ACTIVE. Score it, and say that it is pen
 
 ## Changelog
 
+
+### 2.1.5 (2026-10-26)
+- The next action follows the family's one deadline rule (five business days after the run date, or an earlier date the records set for that step). The skill's own within-five-days wording is replaced by a pointer to that rule, and the example dates are recomputed under it.
+- The Verdict Rule paragraph in Step 6 states that an UNKNOWN zone counts as neither HIGH nor LOW, as the profile states it.
 
 ### 2.1.4 (2026-10-26)
 - Try-it evidence completed so a strict first run reproduces Example 1.

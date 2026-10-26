@@ -1,6 +1,6 @@
 ---
 name: gtm-daily-prospecting
-version: 2.1.4
+version: 2.1.5
 description: "Builds the morning dial sheet for a BDR or AE: ranks accounts into Hot, Warm, New and Recycle tiers, removes accounts the BDR guard blocks, and writes a pre-call brief for the top eight, read by the rep at the phone and by the meeting prep skill."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: [gtm-meeting-prep]
 mutating: read-write
 change_log:
+  - version: 2.1.5
+    date: 2026-10-26
+    summary: "The next action follows the family's one deadline rule: five business days after the run date, or an earlier date the records set for that step, which is named with its source. The Output Contract points to that rule, and each example names the record behind its next action date."
   - version: 2.1.4
     date: 2026-10-26
     summary: "Try-it evidence completed so a strict first run reproduces Example 1. Settles the zone rules a first scorer meets: a HIGH cell with several conditions needs each one on evidence, a board path between 60 days and three months scores MEDIUM, an acquisition that changes the owner of record scores Zone 5 HIGH, and an UNKNOWN zone never blocks GREENLIGHT. Also settles the order of ties, the upstream verdict of a Recycle hold, the status source and the next action when several steps are due. Adds the record facts behind each zone and the status lines. The Fit Grid grade is applied to the tests the records meet."
@@ -96,7 +99,7 @@ To try the skill without your own data, use `examples/try-it.md`, which holds th
 | `dial_sheet` | Inline: the Priority Dial Queue table and the dashboard | Tiers Hot, Warm, New and Recycle. A Recycle account on hold is marked "(hold)". Hands to Meeting Prep (06) |
 | `pre_call_briefs` | Inline: the Top Account Briefs, top eight | Each brief has the five parts in Step 6. Hands to Meeting Prep (06) |
 | `exclusions` | Inline: the Active Deal Exclusions and the exclusion list | Each row names the reason and the action. Covers the BDR guard, OUT accounts and opt-outs. Hands to Meeting Prep (06) |
-| `next_action` | The last line of the report | One step, with its owner and a date. The close reads it |
+| `next_action` | The last line of the report | One step, with its owner and the date the shared contract's next-action rule gives (five business days after the run date, or an earlier date the records set for that step, named with its source). The close reads it |
 | `report_path` | Set only when a file was written, otherwise "none (inline)" | Read by the close |
 | Dial sheet layout | Inline | Six sections: header, priority dial queue, top account briefs, talk track quick reference, discovery question bank, end-of-day tracker |
 | File option | Written only when the user asks, as `<account>_<skill>_<date>.md` | A dial sheet covers many accounts, so the `<account>` slot takes the rep's name, for example `Nadia-Brandt_daily-prospecting_2026-10-19.md` |
@@ -648,7 +651,7 @@ Every zone score in the table rests on a fact in the try-it records, as the zone
 
 **End-of-day prompts:** Log the disposition for each dial. Create the follow-up tasks. Add accounts to a sequence in the CRM only after reading the draft.
 
-**Next action:** Nadia Brandt shares today's Brackhaven intel with Owen Pruitt by 2026-10-19. It is due first, on the run date, ahead of the Sable Fork reply that closes 2026-10-20.
+**Next action:** Nadia Brandt shares today's Brackhaven intel with Owen Pruitt by 2026-10-19. The date is the due date of the Brackhaven task on record, which is the run date and earlier than the five-business-day date of 2026-10-26. It is due first, ahead of the Sable Fork reply that closes 2026-10-20.
 
 **Report path:** none (inline).
 
@@ -659,7 +662,7 @@ run_date: 2026-10-19
 dial_sheet: 7 accounts (Hot 2, Warm 2, New 2, Recycle 1 on hold). Corrow Ridge Cemetery, Sable Fork Cemetery, Quill Hollow Memorial Park, Greyfield Memorial Park, Saltmarsh Heritage Group, Tamsin Vale Cemetery, Lowmoor Memorial Gardens
 pre_call_briefs: 7 (the list holds seven accounts, so the top-eight slots are not all filled)
 exclusions: Brackhaven Memorial Gardens (BDR guard, Owen Pruitt named as owner). Northvale Memorial Holdings (OUT, DISQUALIFY). a former Lowmoor contact, name withheld (opt-out, illustrative)
-next_action: Nadia Brandt shares Brackhaven intel with Owen Pruitt by 2026-10-19
+next_action: Nadia Brandt shares Brackhaven intel with Owen Pruitt by 2026-10-19 (the Brackhaven task's due date on record, the run date)
 report_path: none (inline)
 ```
 
@@ -715,7 +718,7 @@ run_date: 2026-10-19
 dial_sheet: 6 accounts (Hot 3, Warm 1, New 1, Recycle 1 on hold). Brackhaven Memorial Gardens, Corrow Ridge Cemetery, Sable Fork Cemetery, Quill Hollow Memorial Park, Tamsin Vale Cemetery, Lowmoor Memorial Gardens
 pre_call_briefs: 6 (one per account on the sheet)
 exclusions: none (AE view, BDR guard not applied)
-next_action: Owen Pruitt gets the board date from Ruth Ellery by 2026-10-23
+next_action: Owen Pruitt gets the board date from Ruth Ellery by 2026-10-23 (the CRM's dated action, earlier than the five-business-day date of 2026-10-26)
 report_path: none (inline)
 ```
 
@@ -788,6 +791,10 @@ report_path: none (inline)
 
 ## Changelog
 
+
+### 2.1.5 (2026-10-26)
+- The next action follows the family's one deadline rule. The Output Contract points to that rule, and each example names the record (a task due date or a dated CRM action) when that record sets an earlier date.
+- The Fit Grid reading in the examples follows the Fit Scoring rule as the team approved it, with each tier's tests counted with n.
 
 ### 2.1.4 (2026-10-26)
 - Try-it evidence completed so a strict first run reproduces Example 1. Step 4 states how a HIGH cell with several conditions is read, how a board path between 60 days and three months is scored, that an acquisition changing the owner of record scores Zone 5 HIGH, and that an UNKNOWN zone never blocks GREENLIGHT. Step 5 breaks ties by the Fit Grid tests met and then by the nearest deadline, and takes a Recycle hold's verdict from the upstream skill. Step 7 orders several steps by due date. Step 2 names the status source. The try-it records gain the owner of record, the status lines and the zone facts. The Fit Grid grade in the examples follows the tests the records meet.

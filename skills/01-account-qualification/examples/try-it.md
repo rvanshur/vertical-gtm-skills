@@ -44,4 +44,4 @@ People And Decision
 - Zones: 1 HIGH, 2 MEDIUM, 3 MEDIUM, 4 MEDIUM, 5 HIGH.
 - ICP: ICP2 Combination. 7 of 8 criteria are STRONG or PARTIAL.
 - Risk flag: board approval above the $25K line keeps Zone 3 at MEDIUM. It does not change the verdict on its own.
-- Next action: The BDR on the account checks for active AE deals first, then runs Account Snapshot Outbound and books discovery for the AE by 2026-05-08 (illustrative).
+- Next action: The BDR on the account checks for active AE deals first, then runs Account Snapshot Outbound and books discovery for the AE by 2026-05-11 (illustrative).
