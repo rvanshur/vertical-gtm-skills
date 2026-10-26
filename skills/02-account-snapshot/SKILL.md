@@ -1,7 +1,7 @@
 ---
 name: gtm-account-snapshot
 description: "One-page account brief for BDRs and AEs: a zone-based verdict, persona-ranked contacts, tagged pain hypotheses, a three-step email draft and call prep, read by the rep before anything is sent."
-version: 2.1.7
+version: 2.1.8
 category: Sales-Methodology
 author: Ryan Vanshur
 license: MIT
@@ -11,6 +11,9 @@ requires:
   skills: [gtm-account-qualification, gtm-competitive-displacement]
 mutating: read-write
 change_log:
+  - version: 2.1.8
+    date: 2026-10-26
+    summary: "Round 8 profile citations, ENGAGED status and held drafts. Every profile citation is written (profile: Section). ENGAGED is one of six statuses, and an ENGAGED account gets one reply draft to its open thread, not a cold sequence. A MANUAL REVIEW package is marked Held and is not sent before a person clears the verdict. Quill Hollow's try-it records no longer show replies before the run date, so it stays TARGET on 2026-10-19. Greyfield gets no snapshot sequence in batch, because Competitive Displacement (12) already holds its sequence and the Integration section says not to write a snapshot sequence for a persona that already has a displacement sequence. Heading and label capitalization is aligned word by word."
   - version: 2.1.7
     date: 2026-10-26
     summary: "Round 7 leak scrub. The rule text no longer points at the examples by number. The regulatory signal and Zone 1 are separated by the question each asks, the top personas and the Champion Test are defined where Step 3 applies them, and the pain-hypothesis list follows a rule that shows every HIGH or MEDIUM hypothesis, with at least three. The example and the try-it follow the rule, and the try-it records state facts only."
@@ -50,9 +53,9 @@ change_log:
 
 ## Overview
 
-Account Snapshot is the rapid outbound package for one account. It pulls the CRM record, scores the account against the profile's qualification zones, maps known contacts to buyer personas, writes pain hypotheses, drafts a three-step email sequence and builds a cold call sheet. The rep gets one page to read between dials, and the page is built to be checked, not trusted.
+Account Snapshot is the rapid outbound package for one account. It pulls the CRM record, scores the account against the qualification zones (profile: Qualification Zones), maps known contacts to buyer personas, writes pain hypotheses, drafts a three-step email sequence and builds a cold call sheet. The rep gets one page to read between dials, and the page is built to be checked, not trusted.
 
-Every fact carries one of six evidence tags. Every verdict follows the profile's Verdict Rule as written. Every email is a draft. The rep reads, edits and sends. The skill never sends an email, never enrolls a contact and never writes to the CRM.
+Every fact carries one of six evidence tags. Every verdict follows the Verdict Rule as written (profile: Qualification Zones). Every email is a draft. The rep reads, edits and sends. The skill never sends an email, never enrolls a contact and never writes to the CRM.
 
 **Core Principle:** Speed with specificity. Every output is actionable within minutes, and every fact says where it came from.
 
@@ -86,7 +89,7 @@ To try the skill without your own data, use `examples/try-it.md`, which holds th
 |-------|----------|-------|
 | Account name | Yes | The company to research. Matched to the CRM record when one exists |
 | User role (BDR or AE) | Yes | Sets the call goal and the owner check. Asked when the context does not make it clear |
-| CRM access | No | Without it, facts carry public or Unknown tags, and the status comes from the profile's example cast when the account is listed there |
+| CRM access | No | Without it, facts carry public or Unknown tags, and the status comes from the example cast (profile: Example Cast) when the account is listed there |
 | Prior interactions | No | Calls and notes, read as `[Call]` or `[Notes]` with their dates |
 | Persona to focus on | No | Narrows the sequence to one buyer |
 
@@ -99,12 +102,12 @@ Every run returns its report in the chat. The file is written only when the user
 | Output | Where It Lives | Notes |
 |--------|----------------|-------|
 | Cheatsheet, eight sections | In the chat | Company Snapshot, Geographic and Market Exposure, Key Personas, Pain Hypotheses, Discovery Questions, Value Props, Objection Handling, Call Flow. The layout never changes between runs |
-| `account_status` | Top of the Company Snapshot | One of TARGET, INBOUND, ACTIVE (with its stage number), LOST or OUT |
+| `account_status` | Top of the Company Snapshot | One of TARGET, ENGAGED, INBOUND, ACTIVE (with its stage number), LOST or OUT |
 | `verdict` | Beside the zone scores | GREENLIGHT, MANUAL REVIEW or DISQUALIFY, from the Verdict Rule as written |
 | `zone_scores` | Beside the verdict | One line per zone, 1 to 5, each HIGH, MEDIUM, LOW or UNKNOWN. Carried as handed by Account Qualification (01) when it ran, otherwise scored here with a tag per zone |
 | `contact_priority` | Key Personas | Ranked contacts, each with persona and buying role. Unknown where no contact is found |
 | `pain_hypotheses` | Pain Hypotheses | Ranked by confidence, each one tagged |
-| `sequence` | Below the cheatsheet | Three emails per persona, drafted and never sent. Quick Call Prep mode omits it |
+| `sequence` | Below the cheatsheet | Three emails per persona for a cold account, or one reply draft for an ENGAGED account. Drafted and never sent. A MANUAL REVIEW set is marked Held. Quick Call Prep mode omits it |
 | `report_path` | Only when a file was written | Set only when the user asks for the file. Wrap-Up reads it |
 | `next_action` | Last line of the summary | Owner and a calendar date set by the shared contract's next-action rule (What the Close Reads: five business days after the run date, or an earlier date the records or the skill's own schedule set for that step), in the form "[owner] sends Email 1 to [contact] by [date]" |
 | File option | `<account>_<skill>_<date>.md`, saved beside the user's other account notes | Written only when the user asks. Markdown only. The ask is the approval step |
@@ -115,7 +118,7 @@ Every run returns its report in the chat. The file is written only when the user
 
 The skill reads these sections of the profile file, `profiles/client-profile.md`. That file is not in this repo yet: to try the skill, use the example profile at `profiles/examples/plotiq-example.md`, and to set up your own company, copy `profiles/client-profile-template.md` to `profiles/client-profile.md`. Section names below are the profile's own names.
 
-| Profile section | Used for |
+| Profile Section | Used For |
 |-----------------|----------|
 | ICP Definitions | Segment and the ICP line for the verdict |
 | Qualification Zones | The five zone scores beside the verdict |
@@ -145,7 +148,7 @@ When the profile has a `## Knowledge Base` section, which Context OS Setup write
 
 When the assistant is connected to the CRM or to a call recorder, the skill offers to read the records the user points at (one account, one deal, the calls in a date range), asks before it reads, and tags each pulled fact `[CRM]` or `[Call]` with its date. It reads only. It never searches records nobody named and never writes back. Without a connector, pasting the same records works the same way.
 
-#### Account Status, Five Words
+#### Account Status, Six Words
 
 Every account carries one status: **TARGET** (researched, no two-way contact yet, though outreach may have gone out with no reply), **ENGAGED** (two-way contact: the account replied or met with us, and no deal is open), **INBOUND** (they asked us first, and no deal is open yet, which stays INBOUND until a deal opens or the account goes OUT), **ACTIVE** with its stage number (open deal), **LOST** (closed-lost, eligible for reactivation), **OUT** (disqualified). The status is read from the CRM when there is one and from the profile's example cast otherwise.
 
@@ -220,11 +223,11 @@ Wrap-Up reads by name the **report path** when a file was written, the **verdict
 
 ## Methodology
 
-### Evidence Tags for Rapid Research
+### Evidence Tags For Rapid Research
 
 Every fact in the report carries exactly one of the six shared tags. A fact with no tag is removed from the report.
 
-| Tag | Meaning | Usable as a claim in an email |
+| Tag | Meaning | Usable As A Claim In An Email |
 |-----|---------|-------------------------------|
 | `[CRM]` | A field or note in the CRM | Yes |
 | `[Call]` | Said on a recorded or transcribed call, with the call date | Yes |
@@ -235,7 +238,7 @@ Every fact in the report carries exactly one of the six shared tags. A fact with
 
 Pain hypotheses carry the `[Inferred]` tag, because they are educated guesses from the profile and not confirmed pain. An estimate also takes `[Inferred]`, with its method named, because the tag set has no separate estimate tag.
 
-A fact that the profile's Example Cast supplies takes the tag of the record that would hold it, and carries `(illustrative)`. A contact's role or move is `[CRM]`, and a contact's stated engagement is `[CRM]`. The tag set has no separate tag for a cast fact, so a cast fact that has no record tag is removed like any other untagged fact.
+A fact that the Example Cast supplies (profile: Example Cast) takes the tag of the record that would hold it, and carries `(illustrative)`. A contact's role or move is `[CRM]`, and a contact's stated engagement is `[CRM]`. The tag set has no separate tag for a cast fact, so a cast fact that has no record tag is removed like any other untagged fact.
 
 ### Speed Versus Depth
 
@@ -243,15 +246,15 @@ A fact that the profile's Example Cast supplies takes the tag of the record that
 2. **Five-minute research ceiling.** If research runs past five minutes, stop and work with what you have. The rest becomes discovery questions.
 3. **Unknown is acceptable.** An `[Unknown]` tag with a discovery question beats a fabricated fact.
 
-### Zone Scores and the Verdict
+### Zone Scores And The Verdict
 
-Score each of the five zones HIGH, MEDIUM or LOW from tagged facts, using the profile's Qualification Zones definitions. Score a zone UNKNOWN when the record is silent. UNKNOWN is a fourth zone value that this skill adds for a zone no source speaks to, on top of the profile's HIGH, MEDIUM and LOW. It is never a guess. UNKNOWN is not LOW, because a blank field may only mean nobody recorded it. A HIGH condition that cannot apply to the account counts as met, so an owner who signs alone, with no board approval step, meets a board condition such as "board meets within 60 days". Zones 1 and 3 are must-haves. A zone that meets some but not all of a HIGH column's conditions, and no LOW condition, scores MEDIUM, as in Account Qualification (01) Step 4, and the report names the HIGH condition that fell short. The regulatory signal and Zone 1 ask different questions. The signal asks whether a finding is on the record, at any date. Zone 1 HIGH needs a records finding dated inside the last 24 months, as the profile's Zone 1 HIGH cell states, so an undated finding leaves Zone 1 at MEDIUM and its date is named as an open fact.
+Score each of the five zones HIGH, MEDIUM or LOW from tagged facts, using the Qualification Zones definitions (profile: Qualification Zones). Score a zone UNKNOWN when the record is silent. UNKNOWN is a fourth zone value that this skill adds for a zone no source speaks to, on top of the profile's HIGH, MEDIUM and LOW. It is never a guess. UNKNOWN is not LOW, because a blank field may only mean nobody recorded it. A HIGH condition that cannot apply to the account counts as met, so an owner who signs alone, with no board approval step, meets a board condition such as "board meets within 60 days". Zones 1 and 3 are must-haves. A zone that meets some but not all of a HIGH column's conditions, and no LOW condition, scores MEDIUM, as in Account Qualification (01) Step 4, and the report names the HIGH condition that fell short. The regulatory signal and Zone 1 ask different questions. The signal asks whether a finding is on the record, at any date. Zone 1 HIGH needs a records finding dated inside the last 24 months, as the profile's Zone 1 HIGH cell states, so an undated finding leaves Zone 1 at MEDIUM and its date is named as an open fact.
 
 Apply the Verdict Rule as written:
 
 - **GREENLIGHT:** at least two zones HIGH, and no must-have zone at LOW.
 - **MANUAL REVIEW:** neither GREENLIGHT nor DISQUALIFY holds. Usually one HIGH zone, or a must-have zone at LOW.
-- **DISQUALIFY:** a disqualifier from the profile applies, or both must-have zones are LOW.
+- **DISQUALIFY:** a disqualifier (profile: Qualification Criteria) applies, or both must-have zones are LOW.
 
 MEDIUM never counts as HIGH. The next skill reads these zones, so a score that rounds up changes its verdict.
 
@@ -266,10 +269,10 @@ These five signals are the one-glance read a rep sees first. They do not set the
 | Primary fit signal | Yes, Partial or No, against the ICP Definitions |
 | Geographic or scale signal | Single region, or Multi-region (name the regions) |
 | Regulatory or complexity signal | High, Medium or Minimal. High when a state records or trust finding is on the record, whatever its date. Medium when a state records or trust filing applies and no finding is on the record. Minimal when no state filing applies |
-| Scale (volume) | Site and plot counts, written as numbers, with the Size Band from the profile's Size Bands table: SMB (one site with under 2,000 plots), Mid-Market (one to three sites with 2,000 plots or more in total) or Enterprise (four sites or more) |
+| Scale (volume) | Site and plot counts, written as numbers, with the Size Band from the Size Bands table (profile: Market Segments): SMB (one site with under 2,000 plots), Mid-Market (one to three sites with 2,000 plots or more in total) or Enterprise (four sites or more) |
 | Team complexity signal | Dedicated team (three or more named people run the account's functions), Small team (one or two named) or Unknown (none named) |
 
-### Confidence in Pain Hypotheses
+### Confidence In Pain Hypotheses
 
 - **HIGH:** the hypothesis matches the profile on three or more signals, such as size, vertical, footprint and CRM history. A signal whose date is `[Unknown]` does not count toward the three when the hypothesis depends on a recent event, and the hypothesis is then scored on its other signals.
 - **MEDIUM:** it matches on one or two signals. It is plausible and needs validation.
@@ -277,32 +280,32 @@ These five signals are the one-glance read a rep sees first. They do not set the
 
 ### Region Map
 
-The tiers come from the profile's Outbound Voice region map, not from this skill. Each tier names the cost of a missed rule there and its source. Rank accounts in the highest-cost tier first, because a missed rule costs the most there. A state that is not recorded in the CRM gets no tier until someone records it. A tier still marked as a record placeholder in the profile is not a tier yet, so say so instead of guessing one.
+The tiers come from the region map (profile: Outbound Voice), not from this skill. Each tier names the cost of a missed rule there and its source. Rank accounts in the highest-cost tier first, because a missed rule costs the most there. A state that is not recorded in the CRM gets no tier until someone records it. A tier still marked as a record placeholder in the profile is not a tier yet, so say so instead of guessing one.
 
 ---
 
 ## Quick Reference
 
-**Use this skill when:**
+**Use This Skill When:**
 - Preparing for a prospecting call or an outbound block
 - Needing a quick account brief before reaching out
 - A BDR needs a complete outbound package for one account
 - Running snapshots across several accounts in one block
 
-**Don't use when:**
+**Don't Use When:**
 - You need deep financial analysis of a public company (use `gtm-research-outbound`)
 - The account has a known incumbent to displace (use `gtm-competitive-displacement`)
 - The account is a closed-lost deal (use `gtm-closed-loss-reactivation`)
 - A trigger event just happened (use `gtm-trigger-event-outbound`)
 
-**User roles:** BDR (primary), AE
-**Expected time:** 5 to 10 minutes per account
+**User Roles:** BDR (primary), AE
+**Expected Time:** 5 to 10 minutes per account
 
 ---
 
 ## Core Workflow
 
-### Step 0: Detect the User Role
+### Step 0: Detect The User Role
 
 Decide whether the user is a BDR or an AE. The role changes the call goal, the summary framing and the owner check.
 
@@ -320,21 +323,21 @@ Run the CRM search first, then the research, because the CRM is the record a man
 
 **Produces:** a list of tagged facts from the CRM and from public sources, and the list of Unknown facts that become discovery questions.
 
-### Step 2: Build the Account Snapshot
+### Step 2: Build The Account Snapshot
 
 Build the company brief, the quick-score signals, the zone scores with the verdict, and the region map, in that order. The zones come before any sequence, because the verdict decides whether a sequence is written at all.
 
-**Company brief (5 to 8 bullets):** Company (full name and headquarters), Segment (from the ICP Definitions), Vertical, Size (with its tag), Footprint (regions, locations, key markets), Ownership, CRM Status (TARGET, INBOUND, ACTIVE with its stage name from the profile, LOST or OUT), Current owner and BDR owner, and Coordination Required. Coordination is "Yes, coordinate with [AE name]" when the user is a BDR and an AE holds an open deal.
+**Company brief (5 to 8 bullets):** Company (full name and headquarters), Segment (profile: ICP Definitions), Vertical, Size (with its tag), Footprint (regions, locations, key markets), Ownership, CRM Status (TARGET, ENGAGED, INBOUND, ACTIVE with its stage name (profile: Qualification Stage Gates), LOST or OUT), Current owner and BDR owner, and Coordination Required. Coordination is "Yes, coordinate with [AE name]" when the user is a BDR and an AE holds an open deal.
 
-**Zone scores and verdict:** Score the five zones with Step 2's rules, show each zone's score with its tag, and state the verdict from the Verdict Rule. Each verdict names the zones that carry it.
+**Zone Scores And Verdict:** Score the five zones with Step 2's rules, show each zone's score with its tag, and state the verdict from the Verdict Rule. Each verdict names the zones that carry it.
 
-**Region map:** Map the account's state to the profile's tier, with its source. Name the cost of a missed rule in that tier.
+**Region map:** Map the account's state to its tier (profile: Outbound Voice), with the tier's source. Name the cost of a missed rule in that tier.
 
 **Produces:** the company brief, the five zone scores with their tags, the verdict, the account status, and the region tier (or an explicit "no tier yet").
 
-### Step 3: Map Contacts to Personas
+### Step 3: Map Contacts To Personas
 
-Map the known CRM contacts to the profile's Buyer Personas. For each persona, record the name or Unknown, the title, the engagement level, the last activity and a priority from 1 to 5.
+Map the known CRM contacts to the Buyer Personas (profile: Buyer Personas). For each persona, record the name or Unknown, the title, the engagement level, the last activity and a priority from 1 to 5.
 
 Rank the contacts by four rules, in order: known contacts with engagement history come before cold ones, persona relevance to the likely pain comes next, recent activity counts above old activity, and prior deal context breaks ties. A champion label in the CRM is recorded as a label, tagged `[CRM]`. The Champion Test in the shared contract decides whether a contact is a champion, and a snapshot does not call a contact Strong on the label alone. The test is the shared list of seven behaviours: three or more met with evidence is Strong, one or two is Developing, and none is None. When the records hold none of the seven behaviours, the Champion Test is reported as not yet run, not as None, because silence is not a no. None is reported only after a call or note has been checked against the seven. Recommend the top two or three personas to target first, with the reason for each. Rank the applicable personas by who signs first, then by the persona whose pain ranks first in Step 4, then by the influencer. Name as gaps the top-three personas in the contact priority with no contact on file, and the economic buyer when the record names the buyer but not the person. A persona outside the top three is listed as not targeted, not as a gap.
 
@@ -342,32 +345,40 @@ Rank the contacts by four rules, in order: known contacts with engagement histor
 
 ### Step 4: Generate Pain Hypotheses
 
-Write from three to five pain hypotheses from the profile's Core Pain Points. Show every hypothesis that scores HIGH or MEDIUM, up to five. A LOW hypothesis is shown only to reach three. For each hypothesis, give:
+Write from three to five pain hypotheses from the Core Pain Points (profile: Core Pain Points). Show every hypothesis that scores HIGH or MEDIUM, up to five. A LOW hypothesis is shown only to reach three. For each hypothesis, give:
 
-- **Pain point:** the name from the profile's taxonomy, qualified by the dated event when the hypothesis depends on one, such as records after a state finding
-- **Why likely:** the reasoning, with its tag
+- **Pain point:** the name from the Core Pain Points taxonomy (profile: Core Pain Points), qualified by the dated event when the hypothesis depends on one, such as records after a state finding
+- **Why Likely:** the reasoning, with its tag
 - **Confidence:** HIGH, MEDIUM or LOW, per the confidence rules above
-- **Discovery question:** the question that validates it on a call
-- **Value prop:** the profile's value proposition that addresses it, stated as its mechanism
+- **Discovery Question:** the question that validates it on a call
+- **Value Prop:** the value proposition that addresses it (profile: Value Propositions), stated as its mechanism
 
-Order the hypotheses by confidence, HIGH first, and within a level by the profile's Core Pain Points number. If every hypothesis is MEDIUM or LOW, say the account needs more research or a discovery call before deeper work.
+Order the hypotheses by confidence, HIGH first, and within a level by the Core Pain Points number (profile: Core Pain Points). If every hypothesis is MEDIUM or LOW, say the account needs more research or a discovery call before deeper work.
 
 **Produces:** `pain_hypotheses`, ranked, each one tagged, each with its discovery question.
 
-### Step 5: Generate the Outbound Sequence
+### Step 5: Generate The Outbound Sequence
 
-Draft a three-step email sequence for each of the top two or three personas, and only when the verdict is GREENLIGHT. A MANUAL REVIEW or DISQUALIFY account gets no sequence, and the report says so. The sequence comes after the pain hypotheses, because each email uses one hypothesis, so the ranked list must exist first.
+Draft a three-step email sequence for each of the top two or three personas. What is drafted depends on the verdict, and on whether the account is already in conversation.
 
-**Rules for every email:**
+- **GREENLIGHT:** a ready sequence. The rep reads it, edits it if needed and sends it.
+- **MANUAL REVIEW:** a held package. Its first line reads "Held: send only after a person clears the verdict", and nothing in it goes out before then.
+- **DISQUALIFY:** no drafts. The report says so.
+
+Quick Call Prep mode drafts none, whatever the verdict.
+
+**ENGAGED accounts** replied or met with us, and no deal is open. They get no cold sequence, because the account is already talking to us, and three cold emails would restart the outreach it has answered. Step 5 drafts one reply to the open thread instead. The reply answers what the account said, cites the date and tag of that message, follows every rule below, and is ready or held by the verdict in the same way. The sequence comes after the pain hypotheses, because each email uses one hypothesis, so the ranked list must exist first.
+
+**Rules For Every Email:**
 - Include a subject line.
 - Keep the body to 100 words or fewer.
 - Open with something specific to the company, tagged `[CRM]` or `[Public: source]`.
 - Use the contact's name when it is known.
 - Give each step a different pain or angle.
 - Use only `[CRM]`, `[Call]`, `[Notes]` and `[Public: source]` facts as claims. Write `[Inferred]` and `[Unknown]` facts as questions.
-- Use at most one proof point per email, from the profile's Proof Points table, matched to the segment and the persona. Never use an Illustrative result, because a prospect who asks for its source gets none. A Benchmark is cited with the source named.
+- Use at most one proof point per email, from the Proof Points table (profile: Proof Points), matched to the segment and the persona. Never use an Illustrative result, because a prospect who asks for its source gets none. A Benchmark is cited with the source named.
 
-**Sequence structure (per persona):**
+**Sequence Structure (Per Persona):**
 
 | Step | Angle | Purpose |
 |------|-------|---------|
@@ -379,9 +390,9 @@ Account Snapshots use three steps, not four, because this is volume outreach.
 
 **Produces:** `sequence`, one three-step set per persona, drafted, with each claim's tag listed beneath the draft.
 
-### Step 6: Build the Call Prep Sheet
+### Step 6: Build The Call Prep Sheet
 
-**Role-aware call goal:**
+**Role-Aware Call Goal:**
 
 | Role | Call Goal |
 |------|-----------|
@@ -389,16 +400,20 @@ Account Snapshots use three steps, not four, because this is volume outreach.
 | BDR with an active AE deal | Stop. Share the research with the AE instead |
 | AE | Advance the deal to its next stage step |
 | AE with no deal | Qualify interest for a new opportunity |
+| BDR, ENGAGED account | Book the 15-minute discovery call for the AE, through the open thread |
+| AE, ENGAGED account | Continue the conversation the account started, and qualify it for a deal |
 
-**Next step after a first call:** a discovery call, not a demo, until the pain is confirmed. A demo asks the buyer for an hour before there is a reason to give it.
+**Next Step After A First Call:** a discovery call, not a demo, until the pain is confirmed. A demo asks the buyer for an hour before there is a reason to give it.
 
-**Opener (30 seconds):** "Hi [name], this is [rep] from [company]. I'm calling because [a specific reason tied to pain hypothesis 1]. Do you have 30 seconds?"
+**Opener (30 Seconds):** "Hi [name], this is [rep] from [company]. I'm calling because [a specific reason tied to pain hypothesis 1]. Do you have 30 seconds?"
+
+For an ENGAGED account, the opener refers to the account's own reply, by its date and tag, and not to a cold reason.
 
 **Talk track:** a pain validation question, an impact question, a one-sentence product bridge, and an ask for 15 minutes.
 
-**Voicemail (under 30 seconds):** name and company, one specific statement, and the call to action "I'll send a quick email with details."
+**Voicemail (Under 30 Seconds):** name and company, one specific statement, and the call to action "I'll send a quick email with details."
 
-**Objections:** Use the profile's Competitive Landscape for competitive objections. Include four to five objections with rebuttals tailored to the account.
+**Objections:** Use the Competitive Landscape (profile: Competitive Landscape) for competitive objections. Include four to five objections with rebuttals tailored to the account.
 
 | Objection | Rebuttal |
 |-----------|----------|
@@ -410,7 +425,7 @@ Account Snapshots use three steps, not four, because this is volume outreach.
 
 **Produces:** the call goal, the opener, the talk track, the voicemail and the objection table, all tied to the ranked pain hypotheses.
 
-### Step 7: Assemble the Cheatsheet and Summary
+### Step 7: Assemble The Cheatsheet And Summary
 
 Assemble the eight cheatsheet sections in this order: Company Snapshot, Geographic and Market Exposure, Key Personas, Pain Hypotheses, Discovery Questions, Value Props, Objection Handling and Call Flow.
 
@@ -424,7 +439,7 @@ Close with a summary line in this order: the user's role, the account, the statu
 
 - **Full Snapshot (default).** Steps 0 to 7, all eight cheatsheet sections, and the sequence. Use it for a single account the rep will work this week.
 - **Quick Call Prep.** Steps 1 to 4 and Step 6 only. Skip the sequence. Use it when the rep says "quick call prep" or "calling in five minutes," because speed matters more than completeness before a call.
-- **Batch.** Steps 1 to 4 for each account, then a ranked summary table. Full sequences for the top two or three accounts only. Use it for five to ten accounts in one prospecting block.
+- **Batch.** Steps 1 to 4 for each account, then a ranked summary table. Full sequences for the top two or three accounts only, ready for GREENLIGHT and held for MANUAL REVIEW. Use it for five to ten accounts in one prospecting block.
 
 No mode writes a file. A file is written only when the user asks for one, under the Output Contract.
 
@@ -449,6 +464,8 @@ No mode writes a file. A file is written only when the user asks for one, under 
 7. **Never send an email, enroll a contact or write to the CRM.** The rep reads the draft and sends it, because the rep owns the relationship and the record.
 8. **Never write an outcome number without its source or its Illustrative mark.** An unsourced figure in an email becomes the first question the buyer asks.
 9. **Never use a tag outside the six.** A manager checks the report by tag, and a seventh label cannot be checked.
+10. **Never let a held package go out before a person clears the verdict.** Reason: a MANUAL REVIEW account has open gaps, and a draft that reads as ready invites a send before the gaps close.
+11. **Never send a cold three-step sequence to an ENGAGED account.** Reason: the account has already answered, and a cold sequence reads as not listening.
 
 ---
 
@@ -459,11 +476,12 @@ Done when all are true:
 - [ ] Every fact carries one of the six tags, and no fact is left untagged
 - [ ] The verdict follows the Verdict Rule, with the zones that carry it named beside it
 - [ ] Every zone score carries its tag, and no UNKNOWN zone is scored LOW
-- [ ] The account status is one of the five words, and an ACTIVE status carries its stage name from the profile
+- [ ] The account status is one of the six words, and an ACTIVE status carries its stage name (profile: Qualification Stage Gates)
 - [ ] The owner check ran, and an AE-owned account is named as coordination, not worked
-- [ ] Every Email 1 opens with a specific, tagged company fact
+- [ ] Every Email 1, and the reply draft for an ENGAGED account, opens with a specific, tagged company fact
+- [ ] A MANUAL REVIEW set is marked Held on its first line, and Quick Call Prep drafts none
 - [ ] Every email is 100 words or fewer, and no email uses an `[Inferred]` or `[Unknown]` fact as a claim
-- [ ] Every proof point in an email is in the profile's Proof Points table and is not Illustrative
+- [ ] Every proof point in an email is in the Proof Points table (profile: Proof Points) and is not Illustrative
 - [ ] The call goal matches the user's role, and no demo is proposed before the pain is confirmed
 - [ ] Each rate carries its n, and each pattern rests on five cases or is labelled an observation
 - [ ] The hand-off block lists every field by name, with its value
@@ -506,17 +524,17 @@ Region map: no tier, because the state is not recorded `[Unknown]`.
 
 | Persona | Name | Engagement | Last Activity | Priority |
 |---------|------|-----------|---------------|----------|
-| General Manager, champion | Ines Carmody | Warm, labelled champion at her last site `[CRM]`. Champion Test not yet run | 2026-09-29 `[CRM]` (illustrative) | 1 |
+| General Manager, champion | Ines Carmody | Labelled champion at her last site `[CRM]`. No reply to PlotIQ on record `[CRM]`. Champion Test not yet run | Not recorded `[Unknown]` | 1 |
 | Owner, signs under $25K | Unknown, no contact found `[Unknown]` | n/a | n/a | 2 |
 | Pre-need manager | Unknown `[Unknown]` | n/a | n/a | 3 |
 
-Ines Carmody ranks first because she has engagement history and runs the site now. The owner ranks second, because the owner signs.
+Ines Carmody ranks first because she is the only named contact and runs the site now. Her champion label stays a label until the Champion Test runs. The owner ranks second, because the owner signs.
 
 **Step 4: Pain Hypotheses.**
 
 1. **Plot visibility.** HIGH confidence. The plot map is on paper `[CRM]`. `[Inferred]`, by reasoning from the record type: a paper map cannot show which plots are sold without a walk of the grounds. Discovery question: "How do you check today which plots are open?" Value prop: plot inventory matched against sold records.
 2. **Records after a state finding.** MEDIUM confidence. The last state review found a records problem `[CRM]`, and its date is `[Unknown]`. The pressure is real, but its timing is not. Because the hypothesis depends on when the finding happened, the undated finding does not count toward the three signals, so size and vertical are the two signals that count, and the hypothesis stays at MEDIUM. The finding is a discovery question only, and no email or call opener uses it. Discovery question: "When was the last state review, and what did it ask you to fix?"
-3. **Plot lookups take minutes.** MEDIUM confidence. `[Inferred]`, by reasoning from the record type and the plot count: a paper map of 8,800 plots makes each lookup a search, which matches the profile's Core Pain 3 on two signals. Discovery question: "When a family asks about a plot, how long does the lookup take?" Value prop: a plot answer in seconds, the profile's Value Proposition 3.
+3. **Plot lookups take minutes.** MEDIUM confidence. `[Inferred]`, by reasoning from the record type and the plot count: a paper map of 8,800 plots makes each lookup a search, which matches Core Pain Point 3 on two signals (profile: Core Pain Points). Discovery question: "When a family asks about a plot, how long does the lookup take?" Value Prop: a plot answer in seconds (profile: Value Propositions, Value Proposition 3).
 
 **Step 5: Sequence (Ines Carmody, General Manager).**
 
@@ -554,7 +572,7 @@ I have not heard back, so I will assume plot records are not a priority this qua
 
 If a state auditor asked for a plot record next month, who on your team would pull it?
 
-The emails name no proof point. The research figure for this pain (50 to 100 plots) is a pain Benchmark in the profile, not a row in its Proof Points table, and every PlotIQ result is Illustrative, so Hard Rule 1 leaves all three emails with none.
+The emails name no proof point. The research figure for this pain (50 to 100 plots) is a pain Benchmark (profile: Core Pain Points), not a row in the Proof Points table (profile: Proof Points), and every PlotIQ result is Illustrative, so Hard Rule 1 leaves all three emails with none.
 
 **Step 6: Call Prep.**
 
@@ -662,7 +680,7 @@ next_action: Owen Pruitt runs the discovery call with Arlen Biggs on 2026-10-22 
 
 **Batch Mode.** Steps 1 to 4 for each account, then this ranked table. Zone scores are illustrative. The table shows the zones that carry each verdict.
 
-| Account | Status and Verdict | Zones That Carry the Verdict | Plots | Top Pain | Next Step | Priority |
+| Account | Status and Verdict | Zones That Carry The Verdict | Plots | Top Pain | Next Step | Priority |
 |---------|--------------------|------------------------------|-------|----------|-----------|----------|
 | Corrow Ridge Cemetery | TARGET, GREENLIGHT | Zone 1 HIGH, Zone 5 HIGH (illustrative) | 14,000 | Paper plat maps and a deed recorded twice in 2025 (illustrative) | Trigger Event Outbound (04). The ownership change closed 110 days ago, and 10 days of the window remain | 1 |
 | Greyfield Memorial Park | TARGET, GREENLIGHT | Zone 1 MEDIUM (a digital map, with plot records and trust reporting still outside it), Zone 2 HIGH, Zone 3 HIGH | 9,000 | Pre-need and records wanted together | Competitive Displacement (12). The Stonemark contract renews January 2027 | 2 |
@@ -670,7 +688,7 @@ next_action: Owen Pruitt runs the discovery call with Arlen Biggs on 2026-10-22 
 | Lowmoor Memorial Gardens | LOST, re-scored MANUAL REVIEW | Re-scored on fit, zone detail in Closed-Loss Reactivation (05) | 7,500 | Closed-lost to Oldgate on "timing" `[CRM]` | Route to Closed-Loss Reactivation (05). Do not sequence from this table | 4 |
 | Northvale Memorial Holdings | OUT, DISQUALIFY | A disqualifier applies, so zones are not scored | Not applicable | Runs its own in-house system `[Public: annual filing]` | Do not prospect | 5 |
 
-**Recommendation.** Corrow Ridge and Greyfield are the two accounts that get a full snapshot sequence, one persona each, in the batch run. This block shows their rows and hand-off, not their emails. Trigger Event Outbound (04) and Competitive Displacement (12) write the sharper sequences for those two from their own inputs, so the snapshot drafts are first drafts. Hold Tamsin Vale until the person who signs is known. Send Lowmoor to Closed-Loss Reactivation (05), because it is a closed-lost account and not a cold prospect. Drop Northvale from the queue.
+**Recommendation.** Corrow Ridge gets a ready snapshot sequence, one persona, in the batch run. Tamsin Vale is MANUAL REVIEW, so it gets a held package, marked Held, which no one sends until a person clears the verdict. Greyfield gets no snapshot sequence, because Competitive Displacement (12) already holds its sequence, and a second one would be a duplicate. This block shows the rows and the hand-off, not the emails. Trigger Event Outbound (04) writes the sharper Corrow Ridge sequence from its own inputs, so the snapshot draft is a first draft. Send Lowmoor to Closed-Loss Reactivation (05), because it is a closed-lost account and not a cold prospect. Drop Northvale from the queue.
 
 ```text
 Hand-off (read by 06):
@@ -680,7 +698,7 @@ account_status: TARGET for Corrow Ridge, Greyfield and Tamsin Vale. LOST for Low
 verdict: GREENLIGHT (Corrow Ridge, Greyfield), MANUAL REVIEW (Tamsin Vale, Lowmoor re-scored), DISQUALIFY (Northvale)
 contact_priority: Corrow Ridge, the acquirer's CFO or controller and the site GM. Greyfield, the pre-need team, no names on file. Tamsin Vale, signer Unknown
 pain_hypotheses: ranked per account in the table, each tagged
-sequence: snapshot drafts for Corrow Ridge and Greyfield only. None for the other three
+sequence: ready snapshot draft for Corrow Ridge, held package for Tamsin Vale (MANUAL REVIEW), none for Greyfield (Competitive Displacement holds its sequence), Lowmoor or Northvale
 report_path: none (inline)
 next_action: BDR sends the Corrow Ridge Email 1 by 2026-10-20
 ```
@@ -707,7 +725,7 @@ Zone scores (illustrative), with the verdict:
 
 - Zone 1, Records and Inventory Pain: HIGH. Paper plot maps at two sites `[CRM]`, and a double sale in the last 24 months `[CRM]` (illustrative).
 - Zone 2, Pre-Need Sales Motion: MEDIUM. A pre-need manager runs the pre-need side `[Notes]` (illustrative). The intake form is `[Unknown]`, so the HIGH test is not met.
-- Zone 3, Ownership and Decision Speed: MEDIUM. The GM recommends and the family board approves, which is the profile's MEDIUM cell as written. The board also meets within 60 days `[Public: company website, board calendar]` (illustrative).
+- Zone 3, Ownership and Decision Speed: MEDIUM. The GM recommends and the family board approves, which is the MEDIUM cell as written (profile: Qualification Zones). The board also meets within 60 days `[Public: company website, board calendar]` (illustrative).
 - Zone 4, Technology Readiness: MEDIUM. A legacy system from Oldgate `[CRM]`.
 - Zone 5, Growth or Succession: HIGH. The owner retires within three years `[Public: company website, owner bio, 2026]` (illustrative).
 
@@ -760,7 +778,7 @@ Ruth,
 
 I have not heard back, so I will stop the emails after this one. If the two plot lists were ever checked against each other, who at Brackhaven would do it?
 
-The emails name no customer result, because the profile's Brackhaven result is Illustrative and not yet signed.
+The emails name no customer result, because the Brackhaven result is Illustrative and not yet signed (profile: Proof Points).
 
 **Step 6: Call Prep.**
 
@@ -811,15 +829,19 @@ next_action: Nadia Brandt books the first discovery call for Owen Pruitt with Ru
 **When:** The user is a BDR and the account has an open AE deal.
 **Action:** Show the deal in the summary, and recommend sharing the research with the AE instead of sending independent emails.
 
+### Pattern: ENGAGED Account
+**When:** The account replied or met with us, and no deal is open.
+**Approach:** Build the same brief. Step 5 drafts one reply to the open thread, not a cold sequence. The verdict decides whether the reply is ready or held. The brief names the date and tag of the account's last reply. Reason: three cold emails to someone already talking to us restart the outreach they answered.
+
 ### Pattern: Quick Call Prep Only
 **When:** The user says "quick call prep" or "calling in five minutes."
 **Approach:** Skip the sequence. Deliver Steps 1 to 4 and Step 6. See Example 2.
 
-### Pattern: Snapshot Reveals a Trigger Event
+### Pattern: Snapshot Reveals A Trigger Event
 **When:** Research turns up a recent event such as an acquisition, an expansion or a leadership change.
 **Action:** Note the trigger in the summary, and recommend Trigger Event Outbound (04), which runs on the trigger's own window.
 
-### Pattern: Snapshot Reveals a Known Incumbent
+### Pattern: Snapshot Reveals A Known Incumbent
 **When:** The CRM or the research names a specific competing product.
 **Action:** Note the incumbent in the summary, and recommend Competitive Displacement (12) for the competitive sequence.
 
@@ -828,31 +850,31 @@ next_action: Nadia Brandt books the first discovery call for Owen Pruitt with Ru
 ## Troubleshooting
 
 ### "No CRM data available"
-**Likely cause:** The CRM record is missing, or the rep has no access.
+**Likely Cause:** The CRM record is missing, or the rep has no access.
 **Response:** Proceed with public research only. Write "No existing CRM record" in the output. Tag every fact `[Public: source]`, `[Inferred]` or `[Unknown]`. Recommend CRM enrichment as the first action.
 
-### "No contacts found for the target personas"
-**Likely cause:** The CRM holds no contacts for those personas.
+### "No Contacts Found For The Target Personas"
+**Likely Cause:** The CRM holds no contacts for those personas.
 **Response:** Look for likely contacts through public sources. Write each persona gap as "Unknown, no contact found." Make contact discovery the first action. Personalize emails by title until a name is found.
 
 ### "The company spans more than one segment"
-**Likely cause:** A company with a secondary division.
+**Likely Cause:** A company with a secondary division.
 **Response:** Classify the account by its primary business, and score the zones on that segment. Note the secondary division as an opportunity, not as a second verdict.
 
-### "The account is a previous customer that churned"
-**Likely cause:** The account was lost after it bought.
+### "The Account Is A Previous Customer That Churned"
+**Likely Cause:** The account was lost after it bought.
 **Response:** Flag it as a risk, and read the churn reason from the CRM. If the reason was fixed, outreach may still fit. Consider Closed-Loss Reactivation (05), which is built for this case.
 
-### "Research turns up almost nothing on the company"
-**Likely cause:** Small private companies often publish little.
+### "Research Turns Up Almost Nothing On The Company"
+**Likely Cause:** Small private companies often publish little.
 **Response:** Work with what the CRM and the company's own website show. Tag everything `[Public: source]`, `[Inferred]` or `[Unknown]`. Produce a lean snapshot with two or three pain hypotheses, and let the discovery call be the main research.
 
-### "Should I prospect if the verdict is MANUAL REVIEW?"
-**Likely cause:** The Verdict Rule found one HIGH zone, or a must-have zone at LOW.
+### "Should I Prospect If The Verdict Is MANUAL REVIEW?"
+**Likely Cause:** The Verdict Rule found one HIGH zone, or a must-have zone at LOW.
 **Response:** Find which zones are the gap. If the gap is data, such as an UNKNOWN zone, prioritize the discovery questions that fill it. If the gap is fit, such as a must-have at LOW, deprioritize the account in favor of GREENLIGHT accounts.
 
-### "A zone is UNKNOWN and the verdict is close"
-**Likely cause:** The record is silent on that zone.
+### "A Zone Is UNKNOWN And The Verdict Is Close"
+**Likely Cause:** The record is silent on that zone.
 **Response:** Do not score it. Name it in the summary as the question that would decide the verdict, and say which way the verdict moves if the answer is HIGH or LOW.
 
 ---
@@ -870,14 +892,14 @@ next_action: Nadia Brandt books the first discovery call for Owen Pruitt with Ru
 
 ## Integration With Other Skills
 
-**Reads from the skill before it:**
+**Reads From The Skill Before It:**
 - **`gtm-account-qualification`** (01). Reads `verdict`, `zone_scores`, `icp_match` and `fit_narrative`. When `zone_scores` arrive, use them instead of scoring the zones again, and say so. When they are absent, score the zones from the profile and say that the scores are new.
 - **`gtm-competitive-displacement`** (12). Reads `incumbent_type`, `displacement_difficulty`, `target_personas` and `sequence`. Use `target_personas` to order the contacts, and use `incumbent_type` in the competitive objections. Do not write a snapshot sequence for a persona that already has a displacement `sequence`.
 
-**Hands to the skills after it:**
+**Hands To The Skills After It:**
 - **`gtm-research-outbound`** (03), **`gtm-trigger-event-outbound`** (04) and **`gtm-meeting-prep`** (06). Each receives `account_status`, `verdict`, `contact_priority`, `pain_hypotheses` and `sequence`. The receiving skill reads these names as written.
 
-**Hands to the close:**
+**Hands To The Close:**
 - **Wrap-Up** reads `report_path` when a file was written, the `verdict`, and `next_action` with its owner and date.
 
 ### Chains
@@ -899,6 +921,14 @@ The Business Case & ROI Kit (a paid Guild Pro kit) reads this skill's hand-off b
 
 ## Changelog
 
+
+### 2.1.8 (2026-10-26)
+- Every profile citation is written (profile: Section), naming the real section. Template placeholders and the shared contract are unchanged.
+- ENGAGED is one of six statuses. Step 5 gives an ENGAGED account one reply draft to its open thread, not a cold sequence, and the Call Goal table, the opener, a new ENGAGED pattern, Hard Rule 11 and the Quality Bar follow the same rule. The verdict itself does not change with status.
+- A MANUAL REVIEW package is held: it is marked Held on its first line, nothing in it goes out before a person clears the verdict, and Hard Rule 10 says so. Quick Call Prep drafts none. Batch mode names its ready and held sets.
+- Example 1 and its try-it no longer show two replies from the GM before the run date. The account stays TARGET on 2026-10-19 and the reply that makes it ENGAGED comes later, so the status and the contact ranking reason are restated.
+- Example 3 gives Greyfield no snapshot sequence, because Competitive Displacement (12) already holds its sequence, and gives Tamsin Vale a held package in place of the hold note.
+- Headings and labels are capitalized word by word.
 
 ### 2.1.7 (2026-10-26)
 - The rule text no longer refers to the examples by number. The try-it pointer names a full first run.

@@ -1,6 +1,6 @@
 ---
 name: gtm-trigger-event-outbound
-version: 2.1.7
+version: 2.1.8
 description: "Turns one dated business event at a target account into a short outbound sequence, but only after checking the event against its window. Reports when the window has closed or the event date is unknown. Read by the BDR or AE who sends the sequence."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: [gtm-account-snapshot, gtm-closed-loss-reactivation]
 mutating: read-write
 change_log:
+  - version: 2.1.8
+    date: 2026-10-26
+    summary: "Round 8 profile citations, ENGAGED status and labels. Every profile citation is written (profile: Section). ENGAGED is one of six statuses. An ENGAGED account's Email 1 replies in the open thread and names the event, with no cold opener, and the BDR and AE rules, the Output Contract, the Rules for Every Email, Hard Rule 9, the Quality Bar and a new pattern say so. The Quill Hollow example and try-it stay TARGET on 2026-10-19, because no reply is on record before that date. Heading and label capitalization is aligned word by word."
   - version: 2.1.7
     date: 2026-10-26
     summary: "Round 7 leak scrub. The rule text no longer carries a worked window count or a worked send schedule. The disqualifier check gets a due date and the rule that sets it, weekend send days move to the Friday before, the sequence cadence is one day for each email, every unnamed contact is named in the next action, and days remaining are counted from the run date. The try-it records state facts only, and the promise follows the same rules."
@@ -118,7 +121,7 @@ when the user asks for one.
 | `urgency_window` | Event Summary, inline | Start and end dates, written as calendar dates, for example [short end] to [long end]. "None" with the reason when the event is undated or routed to another skill |
 | `days_remaining` | Event Summary, inline | Days from today to the last day a sequence may still start, as set by the One Window Rule. Zero or fewer means EXPIRED. "None" when no window exists |
 | `event_tag` | Event Summary, inline | One evidence tag for the event, for example `[Public: state licensing database]` |
-| `sequence` | Sequence section, inline | Three emails per persona, each under 100 words, or "none" with the reason |
+| `sequence` | Sequence section, inline | Three emails per persona, each under 100 words, or "none" with the reason. For an ENGAGED account, Email 1 is a reply in the open thread |
 | `report_path` | Close section | Set only when a file was written. Otherwise "none (inline)" |
 | `next_action` | Close section | The action, its owner and the date the shared contract's next-action rule gives (What the Close Reads: five business days after the run date, or an earlier date the records or the skill's own schedule set for that step, named with its source) |
 | File option | `<account>_<skill>_<date>.md`, saved beside the user's account notes | Written only when the user asks for a file. Not written by default |
@@ -133,7 +136,7 @@ Load the client profile from [`profiles/client-profile.md`](../../profiles/clien
 starting. Throughout this skill, `{Client Profile: X}` means section X of that file. The sections this
 skill reads are in the table below. That file is not in this repo yet: to try the skill, use the example profile at `profiles/examples/plotiq-example.md`, and to set up your own company, copy `profiles/client-profile-template.md` to `profiles/client-profile.md`.
 
-| Profile section | Used for |
+| Profile Section | Used For |
 |-----------------|----------|
 | Industry Context | Sourced market and regulatory facts, each with its source and year. The only citations an implication may use |
 | Trigger Catalog | The rule or deadline each trigger creates with its citation, the proof point that fits, the credible first line, the monitoring sources and the taboo events |
@@ -164,7 +167,7 @@ When the profile has a `## Knowledge Base` section, which Context OS Setup write
 
 When the assistant is connected to the CRM or to a call recorder, the skill offers to read the records the user points at (one account, one deal, the calls in a date range), asks before it reads, and tags each pulled fact `[CRM]` or `[Call]` with its date. It reads only. It never searches records nobody named and never writes back. Without a connector, pasting the same records works the same way.
 
-#### Account Status, Five Words
+#### Account Status, Six Words
 
 Every account carries one status: **TARGET** (researched, no two-way contact yet, though outreach may have gone out with no reply), **ENGAGED** (two-way contact: the account replied or met with us, and no deal is open), **INBOUND** (they asked us first, and no deal is open yet, which stays INBOUND until a deal opens or the account goes OUT), **ACTIVE** with its stage number (open deal), **LOST** (closed-lost, eligible for reactivation), **OUT** (disqualified). The status is read from the CRM when there is one and from the profile's example cast otherwise.
 
@@ -244,11 +247,11 @@ connects the event to value.
 ### Trigger Type Taxonomy
 
 The taxonomy names nine trigger types. Windows are not in this table on purpose. Each trigger's window,
-persona and routing skill come from the profile's Buying Triggers table, and the rule or deadline each
-trigger creates comes from the Trigger Catalog with its citation. A type the profile does not list can
+persona and routing skill come from the Buying Triggers table (profile: Qualification Criteria), and the rule or deadline each
+trigger creates comes from the Trigger Catalog (profile: Trigger Catalog) with its citation. A type the profile does not list can
 still be classified, but it gets no window until the profile is updated.
 
-| Trigger Type | What It Means | Persona Who Acts (default, the profile's column overrides it) | Proof Point That Fits (the Trigger Catalog row decides) |
+| Trigger Type | What It Means | Persona Who Acts (default, overridden by its profile column, profile: Qualification Criteria) | Proof Point That Fits (the Trigger Catalog row decides) |
 |--------------|---------------|------------------------------------------------------------------|----------------------------------------------------------|
 | **Acquisition / M&A** | The account changed hands or bought another business. Operational complexity rises at once | The buyer of the business, with the site or unit lead | Integration proof, used only if its Status is Verified or Benchmark |
 | **New Executive Hire** | A new leader is inside the evaluation period for the tools they inherit | The new hire | Proof for the function the hire runs |
@@ -299,7 +302,7 @@ mappings.
 - Compliance and operational complexity grow faster than the footprint
 
 **Competitor Contract Event:**
-- The profile routes this trigger to Competitive Displacement (12) when it is in the Buying Triggers table
+- The profile routes this trigger to Competitive Displacement (12) when it is in the Buying Triggers table (profile: Qualification Criteria)
 - This skill only coordinates. The timing belongs to the routed skill
 
 **Compliance Failure / Costly Error:**
@@ -326,26 +329,26 @@ mappings.
 
 **Leadership Thought Leadership:**
 - The post is the event, and its date is the post date
-- The window is the profile's row for this trigger, with no fixed number in this skill
+- The window is the row for this trigger (profile: Qualification Criteria), with no fixed number in this skill
 
 ---
 
 ## Quick Reference
 
-**Use this skill when:**
+**Use This Skill When:**
 - A prospect company just had a dated event (acquisition, expansion, new leader, audit finding)
 - An earnings call or filing revealed a relevant signal
 - A competitor contract is near renewal
 - A compliance failure or financial event just became public
 - A prospect executive posted about relevant pain on LinkedIn
 
-**Don't use when:**
+**Don't Use When:**
 - No specific trigger event exists (use `gtm-account-snapshot` for cold outbound)
 - The account has a known incumbent to displace (use `gtm-competitive-displacement`)
 - The account is closed-lost (use `gtm-closed-loss-reactivation`)
 
-**User roles:** BDR, AE
-**Expected time:** 10 to 15 minutes per account. Speed matters because the window closes on a fixed date.
+**User Roles:** BDR, AE
+**Expected Time:** 10 to 15 minutes per account. Speed matters because the window closes on a fixed date.
 
 ---
 
@@ -362,10 +365,11 @@ ask: "Are you a BDR or an AE?"
 - **BDR with no active deal:** full sequences, and the meeting is booked for the AE.
 - **BDR on an ACTIVE account with an AE owner:** no independent sequence. Write a coordination note for the AE (see Hard Rule 6).
 - **AE:** full sequences, and the trigger is used to advance the deal.
+- **BDR or AE on an ENGAGED account** (the account replied or met with us, and no deal is open): the event goes into the open thread. Email 1 is a reply to the last message the account sent, and it names the event with its tag. Email 2 and Email 3 keep their days, and each one is sent as a reply in that thread. The sequence stops when the account asks it to, and no cold opener is written for that account. Reason: the account is already talking to us, and a cold opener about the event reads as if its reply was never read.
 
 **Produces:** the user's role (BDR or AE) and the path that applies: full sequences or coordination only.
 
-### Step 1: Identify and Classify the Trigger Event
+### Step 1: Identify And Classify The Trigger Event
 
 Before pulling anything, open the account's folder under `accounts/` in the Knowledge Base, if the profile has one, and offer the CRM read and, when a call recorder is connected, the call read, for the one account or date range you name. Nothing is read from the CRM or the call recorder until you say yes.
 
@@ -374,7 +378,7 @@ Before pulling anything, open the account's folder under `accounts/` in the Know
 Confirm the account, the event description, the source and the event date against the Input Contract.
 If the date is missing, go straight to 1d, which stops the run.
 
-#### 1b. Classify the Trigger Type
+#### 1b. Classify The Trigger Type
 
 Map the event to `{Methodology: Trigger Type Taxonomy}`. If the event is ambiguous, apply the
 `{Methodology: Trigger Classification Decision Tree}`. Determine:
@@ -383,10 +387,10 @@ Map the event to `{Methodology: Trigger Type Taxonomy}`. If the event is ambiguo
 - **Profile trigger:** the matching row in the Buying Triggers table, with its persona and routing skill
 - **Event tag:** one of the six evidence tags. The source decides the tag
 
-#### 1c. Search the CRM
+#### 1c. Search The CRM
 
 Check for an open deal, the account owner and known contacts. Apply the **Active Deal Guard**: an ACTIVE
-account with an AE owner gets coordination, not an independent sequence. A profile disqualifier is read with all of its conditions: a consolidator is disqualified only when it is public or PE-backed and runs its own system. Each condition still `[Unknown]` is checked before the first email whose claim depends on it is sent. The check's due date is the business day before that email's send day, and the report names the check and that date. Emails whose claims do not depend on the condition may go out before the check, so the check is never skipped, only timed.
+account with an AE owner gets coordination, not an independent sequence. A disqualifier (profile: Qualification Criteria) is read with all of its conditions: a consolidator is disqualified only when it is public or PE-backed and runs its own system. Each condition still `[Unknown]` is checked before the first email whose claim depends on it is sent. The check's due date is the business day before that email's send day, and the report names the check and that date. Emails whose claims do not depend on the condition may go out before the check, so the check is never skipped, only timed.
 
 #### 1d. Validate Timeliness
 
@@ -400,7 +404,7 @@ share remaining and the trigger status.
 **Produces:** `trigger_type`, `event_tag`, `urgency_window`, `days_remaining` and the trigger status. Or,
 when the date is unknown, the UNVERIFIED refusal and the one question that would clear it.
 
-### Step 2: Build the Event Intelligence Brief
+### Step 2: Build The Event Intelligence Brief
 
 This step follows Step 1 because an implication is only useful when the event is still inside its window.
 When the status is UNVERIFIED or EXPIRED, the brief states the classification and the reason, and stops.
@@ -412,20 +416,19 @@ When the status is UNVERIFIED or EXPIRED, the brief states the classification an
 - **Source:** where it is recorded
 - **Company:** the full company name
 - **Trigger type:** the taxonomy name, and the profile trigger it matches
-- **Urgency window:** start and end dates, days remaining and share remaining
-- **Trigger status:** URGENT, CLOSING, STALE, EXPIRED or UNVERIFIED
+- **Urgency Window:** start and end dates, days remaining and share remaining
+- **Trigger Status:** URGENT, CLOSING, STALE, EXPIRED or UNVERIFIED
 
 #### Business Implications
 
 Connect the event to specific product value with `{Methodology: Event-to-Value Mapping}`. Write four to six
-implications. Each one is tagged `[Inferred]`, names its basis, and connects to a value proposition from
-the profile.
+implications. Each one is tagged `[Inferred]`, names its basis, and connects to a value proposition (profile: Value Propositions).
 
 Format each implication this way:
 
 - **Implication:** what the event probably means for the prospect
-- **Value connection:** how the product addresses it, from Value Propositions
-- **Evidence tag:** `[Inferred]`, with the basis named, for example "the ownership change in the licensing record"
+- **Value Connection:** how the product addresses it, from Value Propositions (profile: Value Propositions)
+- **Evidence Tag:** `[Inferred]`, with the basis named, for example "the ownership change in the licensing record"
 
 **Produces:** the Event Summary and four to six tagged implications. When the status is UNVERIFIED or EXPIRED, the brief states the classification and the reason, and nothing more.
 
@@ -436,18 +439,19 @@ window is shorter. Each persona gets its own three-step sequence.
 
 #### Persona Selection
 
-Choose two or three personas from the profile's Persona who acts column for this trigger. Name the
+Choose two or three personas from the Persona who acts column (profile: Qualification Criteria) for this trigger. Name the
 persona that has to respond, and name any persona that only hears about the event.
 
-#### Rules for Every Email
+#### Rules For Every Email
 
 - A subject line that names the event. Generic subject lines are not allowed
 - A body of 100 words or fewer. Urgency demands brevity
 - The first line names the specific event, with enough detail to show awareness
 - The call to action is framed as time-sensitive, for example "before the review"
 - A known contact is addressed by name. An unknown contact is `[first name]` until research fills it
+- For an ENGAGED account, Email 1 replies in the open thread and names the event, with no cold opener
 - Only events with a tag that supports them may be referenced directly. Implications are written as questions
-- At most one proof point per email. It must be one the profile marks Verified or Benchmark, named with its source. An Illustrative proof point is never cited
+- At most one proof point per email. It must be one the profile marks Verified or Benchmark (profile: Proof Points), named with its source. An Illustrative proof point is never cited
 
 #### Sequence Structure (Per Persona)
 
@@ -496,12 +500,12 @@ same ten items as sections. Otherwise leave `report_path` as "none (inline)".
 
 ## Epistemic Rules
 
-### Evidence Tags for Trigger Events
+### Evidence Tags For Trigger Events
 
 Every fact in an event summary, an implication or an email carries one tag. This is the shared set of
 six, and no other label is used.
 
-| Tag | Use It For in a Trigger |
+| Tag | Use It For In A Trigger |
 |-----|-------------------------|
 | `[Public: source]` | The event itself, when a public record says it happened, such as a state licensing record, a press release or a deal notice. Name the source |
 | `[CRM]` | A CRM field or note. Give the note's date when it has one. An undated note is `[CRM]` with its date `[Unknown]` |
@@ -512,7 +516,7 @@ six, and no other label is used.
 
 A trigger's status is not an evidence tag. It is one of the statuses in the next subsection.
 
-A fact that the profile's Example Cast supplies takes the tag of the record that would hold it, and carries `(illustrative)`. A consolidator's size, or an account's plot count, is `[Public: source]` when a public record holds it and `[CRM]` when the CRM does. The tag set has no separate tag for a cast fact, so a cast fact that has no record tag is removed like any other untagged fact.
+A fact that the Example Cast supplies (profile: Example Cast) takes the tag of the record that would hold it, and carries `(illustrative)`. A consolidator's size, or an account's plot count, is `[Public: source]` when a public record holds it and `[CRM]` when the CRM does. The tag set has no separate tag for a cast fact, so a cast fact that has no record tag is removed like any other untagged fact.
 
 ### Trigger Status
 
@@ -543,7 +547,7 @@ This subsection is the only place the window arithmetic is stated. Every other s
 4. **Business implications are always `[Inferred]`.** The event is a record. The implication is your hypothesis, and it is framed as a question the buyer can answer.
 5. **Two sources beat one.** An event with a `[Public: source]` tag and a matching CRM note is firmer than a CRM note alone.
 
-### Silence Is Not a No
+### Silence Is Not A No
 
 A blank CRM field or a missing contact is `[Unknown]`. It is counted in no denominator, and it never
 makes a trigger look weaker or stronger than the evidence shows.
@@ -560,6 +564,7 @@ makes a trigger look weaker or stronger than the evidence shows.
 6. **The BDR guard applies.** No sequence goes to an ACTIVE account with an AE owner unless that AE has said yes. Two people writing to one buyer costs the deal, so the BDR writes a coordination note instead.
 7. **Nothing sends and nothing writes to the CRM.** The rep reads the draft and sends it. Sending is the step where a wrong fact reaches a buyer, so a person must make it.
 8. **No response rate appears in any output.** No response rate in the library has a named, dated source. An unsourced rate sounds like evidence and is not.
+9. **No cold opener to an ENGAGED account.** Reason: a contact who has replied is already in conversation, and a cold opener about the event ignores what they said.
 
 ---
 
@@ -574,11 +579,12 @@ makes a trigger look weaker or stronger than the evidence shows.
 - [ ] Each implication is tagged `[Inferred]` with its basis named
 - [ ] Every email is 100 words or fewer, its subject names the event, and each email uses a different angle
 - [ ] Every proof point is one the profile marks Verified or Benchmark, with its source. Or no proof point is used, and the output says so
-- [ ] Every persona comes from the profile's Persona who acts column
+- [ ] Every persona comes from the Persona who acts column (profile: Qualification Criteria)
 - [ ] No deadline appears without its citation
 - [ ] The BDR guard was checked, and the coordination path was used on an AE-owned ACTIVE account
 - [ ] The hand-off fields are present: `trigger_type`, `urgency_window`, `days_remaining`, `event_tag` and `sequence`
 - [ ] `next_action` names an owner and a date
+- [ ] An ENGAGED account's Email 1 replies in the open thread, and no cold opener is written
 
 ---
 
@@ -606,7 +612,7 @@ site", with the acquirer's CFO or controller as the persona who acts, and the si
 `[Public: state licensing database]`, the ownership change in the licensing record. The implication is
 `[Inferred]` and is written later. The event is not INFERRED, because a public record states it. The review date that Email 1 relies on comes from the deal notice, not the CRM: the integration review is set for 2027-02-16 `[Public: deal notice, 2026-07-01]` (illustrative), which is inside Q1 2027.
 
-**Step 1d. Timeliness.** The profile's window for this trigger is 60 to 120 days after the event date.
+**Step 1d. Timeliness.** The window for this trigger is 60 to 120 days after the event date (profile: Qualification Criteria).
 
 - Event date: 2026-07-01 `[Public: state licensing database]`
 - Urgency window: 2026-08-30 to 2026-10-29 (60 and 120 days after the event date)
@@ -616,8 +622,8 @@ site", with the acquirer's CFO or controller as the persona who acts, and the si
 
 **Step 1c. CRM.** Status TARGET, no owner and no open deal. The acquirer's CFO or controller is not named
 in the CRM `[Unknown]`, so the BDR finds the name in the licensing record or the deal notice before Email 1
-goes out. Harborline's ownership type and whether it runs its own system are both `[Unknown]`. The profile's
-disqualifier needs both conditions: a public or PE-backed consolidator that runs its own system. Neither is
+goes out. Harborline's ownership type and whether it runs its own system are both `[Unknown]`. The disqualifier (profile: Qualification Criteria)
+needs both conditions: a public or PE-backed consolidator that runs its own system. Neither is
 confirmed, so the check is due by 2026-10-22. Email 1 asks nothing that depends on it, so Email 1 may go
 before the check. Email 2 waits for it. If both conditions hold, no sequence goes out.
 
@@ -630,17 +636,17 @@ before the check. Email 2 waits for it. If both conditions hold, no sequence goe
 
 Business implications, each tagged:
 
-- **Implication:** The site's plot records have to move into the acquirer's process on the acquirer's timetable. **Value connection:** The plot map is the first record the integration review checks. **Evidence tag:** `[Inferred]`, basis: the ownership change, plus the paper plat maps recorded in the CRM `[CRM]`
-- **Implication:** The acquirer's own system decides where the records land. **Value connection:** Plot records are the decision point the acquirer has not yet made. **Evidence tag:** `[Inferred]`, basis: the profile lists a consolidator's own system as a fit question to check
-- **Implication:** The integration review sets the deadline for any plot-record decision at the site. **Value connection:** A dated review turns a general question into a specific one. **Evidence tag:** `[Inferred]`, basis: the review date of 2027-02-16 in the deal notice `[Public: deal notice, 2026-07-01]` (illustrative), and the GM keeping the site budget until that review `[CRM]`
-- **Implication:** The acquirer's CFO will want one view of records across sites before the review. **Value connection:** The product gives one plot view across entities. **Evidence tag:** `[Inferred]`, basis: the CFO is the persona who acts on this trigger in the profile
+- **Implication:** The site's plot records have to move into the acquirer's process on the acquirer's timetable. **Value Connection:** The plot map is the first record the integration review checks. **Evidence tag:** `[Inferred]`, basis: the ownership change, plus the paper plat maps recorded in the CRM `[CRM]`
+- **Implication:** The acquirer's own system decides where the records land. **Value Connection:** Plot records are the decision point the acquirer has not yet made. **Evidence tag:** `[Inferred]`, basis: the disqualifier list names a consolidator that runs its own system (profile: Qualification Criteria)
+- **Implication:** The integration review sets the deadline for any plot-record decision at the site. **Value Connection:** A dated review turns a general question into a specific one. **Evidence tag:** `[Inferred]`, basis: the review date of 2027-02-16 in the deal notice `[Public: deal notice, 2026-07-01]` (illustrative), and the GM keeping the site budget until that review `[CRM]`
+- **Implication:** The acquirer's CFO will want one view of records across sites before the review. **Value Connection:** The product gives one plot view across entities. **Evidence tag:** `[Inferred]`, basis: the CFO is the persona who acts on this trigger (profile: Qualification Criteria)
 
 **Step 3. Sequence.** The personas are the acquirer's CFO or controller and the site GM, from the Buying
-Triggers row, so two personas with three emails each. This example shows the CFO's three emails. The site
+Triggers row (profile: Qualification Criteria), so two personas with three emails each. This example shows the CFO's three emails. The site
 GM's three emails follow the same rules, ask which system will hold the site's records, and are omitted from
 this page only.
 
-**Proof point.** None can be cited. The profile's proof point for this trigger, Fennick Gardens with 212
+**Proof point.** None can be cited. The proof point for this trigger (profile: Trigger Catalog), Fennick Gardens with 212
 plots, is Illustrative, so no figure goes into any email. The emails use questions where a proof point
 would go.
 
@@ -669,9 +675,9 @@ would go.
 > be? I will stop here after this note. If the question comes up before the review, reply and I will set a
 > 15-minute call the same week. [your name]
 
-**Why this persona:** the profile names the acquirer's CFO or controller as the person who has to respond
-to a consolidator's purchase. **Discovery question:** "Which system will hold this site's plot records after
-the integration review?" **Call to action framing:** time-sensitive, tied to the review date.
+**Why This Persona:** the Buying Triggers row (profile: Qualification Criteria) names the acquirer's CFO or controller as the person who has to respond
+to a consolidator's purchase. **Discovery Question:** "Which system will hold this site's plot records after
+the integration review?" **Call To Action Framing:** time-sensitive, tied to the review date.
 
 **Summary:** BDR. Corrow Ridge Cemetery, trigger STALE with 10 days remaining. Six emails in two sequences:
 three to the acquirer's CFO, and three to the site GM, which are omitted from this page.
@@ -706,7 +712,7 @@ that records the finding. The event date is `[Unknown]`, because the CRM note do
 
 **Step 1d. Stop.** The window cannot be computed.
 
-> **Refused.** The profile's window for this trigger is 60 to 120 days after the event date, and the event
+> **Refused.** The window for this trigger is 60 to 120 days after the event date (profile: Qualification Criteria), and the event
 > date is `[Unknown]`. This skill will not estimate a date, will not use the day the CRM note was written, and
 > will not pick either end of a window from an invented date. Days remaining: none. Share remaining: none.
 > Trigger status: UNVERIFIED.
@@ -714,10 +720,10 @@ that records the finding. The event date is `[Unknown]`, because the CRM note do
 **Output.** The classification and the open question only. Sequence: none. The sequences for Account Snapshot,
 Meeting Prep and Daily Prospecting cite the same finding the same way, as `[CRM]` with the date unknown.
 
-**The question that clears it.** The review date comes from the state review letter or from Ines Carmody. Once
+**The Question That Clears It.** The review date comes from the state review letter or from Ines Carmody. Once
 either one supplies the date, the CRM note is updated with the date and its source, and the skill runs again.
 
-**Decision rule once the date is known.** If the window is still open, run the trigger as Example 1 does. If it
+**Decision Rule Once The Date Is Known.** If the window is still open, run the trigger as Example 1 does. If it
 has closed, route to Account Snapshot (`gtm-account-snapshot`) or Research Outbound (`gtm-research-outbound`).
 The finding's own date sets the clock, never the date the CRM note was entered.
 
@@ -736,7 +742,7 @@ next_action: Nadia Brandt asks Ines Carmody for the review date by 2026-10-26
 
 ---
 
-### Example 3: Rival Renewal on an Active AE Deal (Brackhaven Memorial Gardens)
+### Example 3: Rival Renewal On An Active AE Deal (Brackhaven Memorial Gardens)
 
 **Context:** Brackhaven Memorial Gardens is ACTIVE at Stage 5 Negotiate, and AE Owen Pruitt owns the deal. Its
 legacy on-premise system is from Oldgate, a direct-software incumbent, with a renewal in March 2027. The
@@ -748,7 +754,7 @@ renewal day of 1 March is illustrative. The family board meets on 2026-11-12.
 as owner. The BDR with an active AE deal path applies.
 
 **Step 1. Classify.** Trigger type: Competitor Contract Event. The matching profile trigger is "Rival contract
-renewal", which the profile routes to Competitive Displacement (12). Event tag: `[CRM]`, the renewal as logged
+renewal", which the Buying Triggers row routes to Competitive Displacement (12) (profile: Qualification Criteria). Event tag: `[CRM]`, the renewal as logged
 in the CRM.
 
 **Step 1c. Active Deal Guard.** No sequence goes to the buyer. Two people writing to one buyer costs the deal, so
@@ -785,48 +791,52 @@ next_action: Nadia Brandt sends the note to Owen Pruitt by 2026-10-26, after rea
 **When:** Two separate dated events happen at one account, such as a private-equity acquisition and a new CFO.
 **Approach:** Classify each event on its own, with its own window. Email 1 uses the event with the shorter remaining window. Each email uses a different event angle. No example here stacks triggers, because no account in the example cast has two dated events. Add one when a real stack appears.
 
-### Pattern: Trigger and Displacement Combo
+### Pattern: Trigger And Displacement Combo
 **When:** The trigger reveals a rival contract.
 **Approach:** When the profile routes the trigger to Competitive Displacement (12), this skill writes no sequence and hands the timing to 12. Run 12 for the deeper competitive analysis, as Example 3 does.
 
 ### Pattern: LinkedIn Thought Leadership Trigger
 **When:** An executive posts about the pain on LinkedIn.
-**Approach:** The window is the profile's row for this trigger, not a number in this skill. Write a single-persona sequence for the person who posted, and quote the post in Email 1.
+**Approach:** The window is the row for this trigger (profile: Qualification Criteria), not a number in this skill. Write a single-persona sequence for the person who posted, and quote the post in Email 1.
 
-### Pattern: Trigger on Closed-Lost Account
+### Pattern: Trigger On Closed-Lost Account
 **When:** A trigger event occurs at an account that was closed-lost.
 **Approach:** Use this skill for the time-sensitive sequence, and open it with the history from `gtm-closed-loss-reactivation`. That skill decides first whether the account should be contacted at all.
+
+### Pattern: Trigger On An ENGAGED Account
+**When:** A dated event happens at an account that replied or met with us, and no deal is open.
+**Approach:** Put the event into the open thread. Email 1 replies to the account's last message and names the event, and Email 2 and Email 3 follow on their days as replies. No cold opener is written for that account. Reason: the trigger gives the reply a reason to be answered, and a cold opener would ignore it.
 
 ---
 
 ## Troubleshooting
 
 ### The Event Is Past Half of Its Window
-**Likely cause:** A normal window running down. Nothing is wrong.
+**Likely Cause:** A normal window running down. Nothing is wrong.
 **Response:** Read the trigger status. STALE still runs and says the deadline in Email 1. EXPIRED does not run. Acquisitions can stay in integration for months, so an acquisition can carry residual relevance. Change the Email 1 opener from "I saw your announcement" to "Since the event in [month], your team is likely dealing with [implication]."
 
 ### The Event Cannot Be Verified
-**Likely cause:** The source is a rumor, a single unconfirmed post, or a record without a date.
+**Likely Cause:** The source is a rumor, a single unconfirmed post, or a record without a date.
 **Response:** Mark the trigger UNVERIFIED and write no sequence. Name the source that would confirm the event and who can obtain it.
 
 ### The Event Date Is Unknown
-**Likely cause:** The CRM note was written without the date.
+**Likely Cause:** The CRM note was written without the date.
 **Response:** Use the Step 1d refusal. Ask the note's author for the date, attach the source to the note, and run the skill again once the date is known.
 
 ### Multiple Trigger Types Apply
-**Likely cause:** One event matches two types, such as an acquisition that brings in a new executive.
+**Likely Cause:** One event matches two types, such as an acquisition that brings in a new executive.
 **Response:** Follow the decision tree, which sends personnel changes to New Executive Hire first. Use Stacked Triggers only when a second, separate dated event exists.
 
 ### The Implications Feel Speculative
-**Likely cause:** This is expected. The event is a record, and the implications are always `[Inferred]`.
+**Likely Cause:** This is expected. The event is a record, and the implications are always `[Inferred]`.
 **Response:** Frame each implication as a question, such as "I imagine..." or "Curious how this is affecting...". Let the buyer confirm or deny it.
 
 ### The Trigger Reveals a Rival Contract
-**Likely cause:** The event shows a competitor's contract is near renewal.
+**Likely Cause:** The event shows a competitor's contract is near renewal.
 **Response:** Route the trigger as the profile says, to Competitive Displacement (12). Coordinate with the AE if one owns the deal.
 
-### A BDR Finds a Trigger on an Active AE Deal
-**Likely cause:** The Active Deal Guard applies.
+### A BDR Finds A Trigger On An Active AE Deal
+**Likely Cause:** The Active Deal Guard applies.
 **Response:** Write the coordination note only, in the format Example 3 uses. Do not send a sequence.
 
 ---
@@ -871,6 +881,12 @@ next_action: Nadia Brandt sends the note to Owen Pruitt by 2026-10-26, after rea
 
 ## Changelog
 
+
+### 2.1.8 (2026-10-26)
+- Every profile citation is written (profile: Section), naming the real section. Template placeholders and the shared contract are unchanged.
+- ENGAGED is one of six statuses. Step 0 gives an ENGAGED account an open-thread path: Email 1 replies to the account's last message and names the event, with no cold opener. Step 3, the Rules for Every Email, Hard Rule 9, the Quality Bar and a new pattern follow the same rule. The verdict logic is unchanged, because this skill has no verdict.
+- The examples and the try-it keep their TARGET status on 2026-10-19. The Quill Hollow record shows no reply before that date, so it is not ENGAGED on its run date.
+- Headings and labels are capitalized word by word.
 
 ### 2.1.7 (2026-10-26)
 - The disqualifier check has a due date: the business day before the send day of the first email whose claim depends on the unresolved condition. Emails that do not depend on it may go out before the check, and the check is never skipped.

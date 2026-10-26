@@ -45,7 +45,7 @@ Start with question 1.
 
 ---
 
-## What You Should Expect to Happen
+## What You Should Expect To Happen
 
 Question 4 stalls when contact roles were never recorded, because threading history cannot be rebuilt from notes that do not say who was in the room. Question 3 is answered at once, since everyone has a ghost-node story, and then stalls on what would have surfaced that person earlier. That second stall is the part that changes behavior.
 

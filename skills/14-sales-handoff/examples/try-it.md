@@ -7,11 +7,11 @@ Every name, date and number in this file is invented for the PlotIQ example. Not
 
 ## The Records
 - Readiness check date: 2026-11-02.
-- Brackhaven Memorial Gardens has two sites and 11,000 plots (profile). Status: ACTIVE at Stage 5 Negotiate [CRM].
+- Brackhaven Memorial Gardens has two sites and 11,000 plots (profile: Example Cast). Status: ACTIVE at Stage 5 Negotiate [CRM].
 - The family board meets 2026-11-12, and the signature is expected 2026-11-16 [CRM].
 - Contracted modules: Plot Inventory Digitization and Records and Trust Compliance (illustrative).
-- Two sites at $10,788 a year each at list, so $21,576 a year, plus $5,000 setup (profile).
-- AE: Owen Pruitt. Implementation Lead: Eli Marsh (profile). Eli Marsh is assigned [CRM].
+- Two sites at $10,788 a year each at list, so $21,576 a year, plus $5,000 setup (profile: Product Modules).
+- AE: Owen Pruitt. Implementation Lead: Eli Marsh (profile: Example Cast). Eli Marsh is assigned [CRM].
 - Sales champion: Ruth Ellery (illustrative). Ruth is open to the change [Call, 2026-10-27].
 - On 2026-10-27, Ruth explained the approval path: the family board chair decides after the family's vote, and the board meets 2026-11-12 [Call, 2026-10-27] (illustrative).
 - On the same call, Ruth asked, "What do you need from me to get this in front of the board?" [Call, 2026-10-27] (illustrative).
@@ -25,7 +25,7 @@ Every name, date and number in this file is invented for the PlotIQ example. Not
 - Plot records are on paper [Call, 2026-10-27]. Lookup and trust report steps are mapped [Call, 2026-10-27]. Lookup times have not been timed. Walt estimates about two plot lookups a week [Call, 2026-09-17] (illustrative).
 - The trust ledger holds both sites' trust numbers in one place [Notes] (illustrative). The plot records are on paper, with uneven quality and some re-entry by hand during the transition [Notes] (illustrative).
 - Eli Marsh is shared with another implementation through the end of the year [CRM] (illustrative).
-- Implementation Profile: typical days from kickoff to go-live are 49 (illustrative), the IT lead time is 14 days (illustrative), and full adoption months are 2 (the skill default).
+- Implementation Profile: typical days from kickoff to go-live are 49 (profile: Implementation Profile, illustrative), the IT lead time is 14 days (profile: Implementation Profile, illustrative), and full adoption months are 2 (profile: Implementation Profile, the skill default).
 - On the 2026-10-27 call, the board chair's name and a written sponsor confirmation were raised with Ruth [Call, 2026-10-27] (illustrative). Her answer is not recorded.
 - Deed scans are scheduled for weeks 2 to 3 (illustrative).
 - Walt Okonkwo, Operations Director, is skeptical of tablets [Call, 2026-09-21].

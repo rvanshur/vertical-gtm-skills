@@ -51,7 +51,7 @@ Start with question 1.
 
 ---
 
-## What You Should Expect to Happen
+## What You Should Expect To Happen
 
 **Question 2 stalls** when the failure patterns come from your own sales floor instead of from won-away customers. That gap is dangerous, because the incumbent's customers know their real failures better than you do. **Question 4 stalls** when nobody has written down an honest migration. "Seamless" is not a migration plan.
 

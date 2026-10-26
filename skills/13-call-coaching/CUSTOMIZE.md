@@ -23,7 +23,7 @@ Ask me these, ONE AT A TIME, and wait for each answer:
 
 1. Discovery categories. The defaults are Pre-Call Preparation, SPIN Discovery Quality, Priority Ladder Execution, Active Listening, Value Articulation, Next Steps and Momentum, and Alternatives. Does your team call them something else? Give me your names in order, or say "defaults".
 
-2. Demo categories. The defaults are Meeting Opening, Meeting Closing, Teach and Tailor, Pain Alignment and Proof, Question the Problem, Pain-to-Workflow Mapping, Prospect Engagement, and Resistance Handling. Give me your names in order, or say "defaults".
+2. Demo categories. The defaults are Meeting Opening, Meeting Closing, Teach and Tailor, Pain Alignment and Proof, Question The Problem, Pain-To-Workflow Mapping, Prospect Engagement, and Resistance Handling. Give me your names in order, or say "defaults".
 
 3. Demo elements. The defaults are Introduction, Problem Restatement, Solution, Return on Investment, and Next Steps, with questions running through the solution. Does your team name them differently? Give me your names, or say "defaults".
 
@@ -49,7 +49,7 @@ Start with question 1.
 
 ---
 
-## What You Should Expect to Happen
+## What You Should Expect To Happen
 
 **Question 4 stalls** when nobody has measured what a won call looks like on talk time. The starting shares are a calibration point, not a verdict. Keep them until ten won calls give you your own.
 

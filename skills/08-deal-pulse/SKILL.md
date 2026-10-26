@@ -1,6 +1,6 @@
 ---
 name: gtm-deal-pulse
-version: 2.1.7
+version: 2.1.8
 description: "Scores one open deal across 16 signals in 4 pillars and produces a 0 to 100 health score, a risk level and named next actions. The AE and the sales manager read it, and the MEDDPICC, Call Coaching and Meeting Prep skills take its fields by name."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: ["gtm-call-coaching"]
 mutating: read-write
 change_log:
+  - version: 2.1.8
+    date: 2026-10-26
+    summary: "Profile facts are cited (profile: Section), in place of the older profile forms. ENGAGED is now a stop: an account that replied or met with us, with no open deal, has no deal to score, so the skill names its status and its last reply and routes it to Account Qualification (01). The Input Contract, Step 1, the Troubleshooting entry and the Quick Reference name the case. No score, verdict, band, risk level or next action changes."
   - version: 2.1.7
     date: 2026-10-26
     summary: "Round 7 scrub and fix. The rubric sentences for buyer-contact pain, decision influence, multi-threading and the technical action are written as general rules, with no worked record shape. A technical requirement recorded as unknown scores RED under its row, and INSUFFICIENT is used only when nothing is on record for the signal. Pillar bands are stated as read from the average, not from signal colours. The unrounded health figure has one decimal place. Each RED action has the AE who owns the deal as its owner, and a person asked is named separately. The Best Practices example and the pointer are reworded. No score, verdict, band or risk level changes."
@@ -79,7 +82,7 @@ To try the skill without your own data, use `examples/try-it.md`, which holds a 
 
 | Input | Required | Notes |
 |-------|----------|-------|
-| Account name with an open opportunity | Required | The deal must be ACTIVE with its stage number. For a prospect with no opportunity, use Account Qualification (01) |
+| Account name with an open opportunity | Required | The deal must be ACTIVE with its stage number. For a prospect with no opportunity, or an ENGAGED account (two-way contact, no open deal), use Account Qualification (01) |
 | CRM access (interaction history, notes and activity), or the same records pasted | Required | The evidence every signal is scored from |
 | Opportunity stage, deal amount, close date and primary contact | Required | Read from the CRM. If the CRM is silent on one, ask the user rather than guess |
 | Days in current stage | Optional | Used for stalled-deal detection. Calculated from the stage change date when the CRM has it |
@@ -142,7 +145,7 @@ When the profile has a `## Knowledge Base` section, which Context OS Setup write
 
 When the assistant is connected to the CRM or to a call recorder, the skill offers to read the records the user points at (one account, one deal, the calls in a date range), asks before it reads, and tags each pulled fact `[CRM]` or `[Call]` with its date. It reads only. It never searches records nobody named and never writes back. Without a connector, pasting the same records works the same way.
 
-#### Account Status, Five Words
+#### Account Status, Six Words
 
 Every account carries one status: **TARGET** (researched, no two-way contact yet, though outreach may have gone out with no reply), **ENGAGED** (two-way contact: the account replied or met with us, and no deal is open), **INBOUND** (they asked us first, and no deal is open yet, which stays INBOUND until a deal opens or the account goes OUT), **ACTIVE** with its stage number (open deal), **LOST** (closed-lost, eligible for reactivation), **OUT** (disqualified). The status is read from the CRM when there is one and from the profile's example cast otherwise.
 
@@ -248,7 +251,7 @@ The team's own names for these four, and the full methodology it runs, are in `{
 | YELLOW | Pain is stated generally but not quantified, or only acknowledged by the champion (not validated by economic buyer or multiple stakeholders). |
 | RED | No pain articulated, or pain is vague or aspirational with no business impact stated. We are projecting pain onto the buyer. |
 
-A champion who is also the buyer contact, the persona the profile names as the buyer, speaks for the buyer on this signal, so a quantified account from that champion counts as the buyer's own account. A champion who is not the buyer contact keeps this signal YELLOW until the buyer or a second stakeholder confirms the pain. A quantified account counts only when it was given within 14 days of the score, the same window Buyer Responsiveness uses.
+A champion who is also the buyer contact, the persona that (profile: Buyer Personas) names as the buyer, speaks for the buyer on this signal, so a quantified account from that champion counts as the buyer's own account. A champion who is not the buyer contact keeps this signal YELLOW until the buyer or a second stakeholder confirms the pain. A quantified account counts only when it was given within 14 days of the score, the same window Buyer Responsiveness uses.
 
 #### Signal 2: Compelling Reason to Change
 | Score | Criteria |
@@ -406,7 +409,7 @@ For each RED signal, recommend a specific action mapped to the team's methodolog
 | Champion Strength | Use the rapport method to develop an internal advocate. Identify who has the most to gain. |
 | Solution Fit | Schedule a tailored demo against specific use cases. Use the Day in the Life walkthrough, not a feature walkthrough. |
 | Technical Readiness | Use the urgency method. Request a technical discovery with IT. Identify the key integration variables. If no one owns IT, the AE asks the champion who should, and the IT contact stays [Unknown] until a name is given. |
-| Competitive Landscape | Run the competitive displacement playbook. Lead with a proof point from the profile whose Status is Verified or Benchmark. |
+| Competitive Landscape | Run the competitive displacement playbook. Lead with a proof point from (profile: Proof Points) whose Status is Verified or Benchmark. |
 | Product Alignment | Build a requirements matrix and validate it feature by feature. Address gaps with a roadmap or a workaround. |
 | Budget Path | Engage the economic buyer directly. Build the ROI or financial justification. Ask: "Who signs the check?" |
 | Decision Process | Run discovery. Ask: "Walk me through how your company has bought software like this before." |
@@ -428,7 +431,7 @@ For each RED signal, recommend a specific action mapped to the team's methodolog
 - Building an evidence-based case for a deal stage change
 
 **Don't use when:**
-- The account has no active opportunity (use Account Qualification (01) instead)
+- The account has no active opportunity, including an ENGAGED account (use Account Qualification (01) instead)
 - You need competitive strategy (use Competitive Strategy (11))
 - You need meeting prep (use Meeting Prep (06))
 
@@ -441,6 +444,8 @@ For each RED signal, recommend a specific action mapped to the team's methodolog
 ## Core Workflow
 
 ### Step 1: Pull Deal Data
+
+Check the status first. An ACTIVE account is scored. An ENGAGED account has two-way contact and no open deal, so there is no deal to score: stop, name the status and the date of the last reply, and route the account to Account Qualification (01), which decides whether a deal should open. Scoring it here would put a health number on a deal that is not in the pipeline.
 
 Before pulling anything, read the account's folder under `accounts/` in the knowledge base, when the profile has one, for its notes, calls and decisions. Then offer to read the CRM deal record and, when a call recorder is connected, the deal's calls, and ask before reading either, as set out in The Knowledge Base and Connectors.
 
@@ -645,7 +650,7 @@ These rules are never broken. Each one has its reason.
 4. **Never send, enroll a contact or write to the CRM.** The rep reads the drafted actions and sends them. Nothing reaches a buyer or changes a record without a person deciding it.
 5. **Never leave a RED signal without a named action.** A RED with no action tells the rep what is wrong and nothing about what to do next, so the deal sits.
 6. **Never name a stakeholder who is not in the record.** A guessed name becomes the buyer on the map and the next email goes to the wrong person. An unknown buyer is written as `[Unknown]` with the role.
-7. **Never cite an Illustrative proof point to a buyer.** The profile marks it Illustrative, and an unverified claim that reaches a buyer costs credibility. Lead with a Verified or Benchmark proof point only.
+7. **Never cite an Illustrative proof point to a buyer.** (profile: Proof Points) marks it Illustrative, and an unverified claim that reaches a buyer costs credibility. Lead with a Verified or Benchmark proof point only.
 
 ---
 
@@ -672,7 +677,7 @@ All figures are from the PlotIQ profile and the PlotIQ chain file, or marked `(i
 
 ### Example 1: First Pulse, Medium Risk (Brackhaven Memorial Gardens, 2026-09-28)
 
-**Context:** Brackhaven Memorial Gardens is a combination of two sites with 11,000 plots (illustrative). It has been ACTIVE at Stage 5 Negotiate since 2026-09-09 `[CRM]`, so this pulse is on day 19 in stage. Owner: Owen Pruitt, Account Executive `[CRM]`. Amount: $21,576 a year at list (2 sites at $10,788 each) `[CRM]`. Close date: 2026-11-12, the family board's meeting `[CRM]`. Champion: GM Ruth Ellery. Skeptic: Operations Director Walt Okonkwo. Economic buyer: the family board chair, whose name is `[Unknown]`. The board chair has joined one call, in Stage 4 `[CRM]`. Each `[Call]` fact in this example is from the 2026-09-26 contract terms call unless its sentence gives another date.
+**Context:** Brackhaven Memorial Gardens is a combination of two sites with 11,000 plots (illustrative). It has been ACTIVE at Stage 5 Negotiate since 2026-09-09 `[CRM]`, so this pulse is on day 19 in stage. Owner: Owen Pruitt, Account Executive `[CRM]`. Amount: $21,576 a year at list `[CRM]`, which is 2 sites at $10,788 each (profile: Product Modules). Close date: 2026-11-12, the family board's meeting `[CRM]`. Champion: GM Ruth Ellery. Skeptic: Operations Director Walt Okonkwo. Economic buyer: the family board chair, whose name is `[Unknown]`. The board chair has joined one call, in Stage 4 `[CRM]`. Each `[Call]` fact in this example is from the 2026-09-26 contract terms call unless its sentence gives another date.
 
 **Input:** "Run the deal pulse for Brackhaven Memorial Gardens. Today is 2026-09-28."
 
@@ -803,8 +808,8 @@ Recommended actions:
 
 1. Buyer Responsiveness (RED, momentum method): Owen asks Ruth for the board date by 2026-10-26. A breakup email is drafted for Owen to send, framed around the March 2027 renewal, because the 16 days of silence are past the 14 day line.
 2. Technical Readiness (RED, Urgency method): Owen asks Ruth who, if anyone, owns IT and the Oldgate data question, and books a technical discovery. Nobody at Brackhaven owns it on the record, so the first answer may be no one.
-3. Timeline Alignment (RED): Lena Vasquez, Sales Manager, joins the next call, so the board date is set with a manager present.
-4. Competitive Landscape (YELLOW): keep the Stonemark comparison ready and ask Walt what he would need to see before he states a preference. No proof point with Verified or Benchmark status exists in the profile yet, so the team cites none to Walt.
+3. Timeline Alignment (RED): Lena Vasquez, Sales Manager (profile: Example Cast), joins the next call, so the board date is set with a manager present.
+4. Competitive Landscape (YELLOW): keep the Stonemark comparison ready and ask Walt what he would need to see before he states a preference. No proof point with Verified or Benchmark status exists in (profile: Proof Points) yet, so the team cites none to Walt.
 
 ```text
 Hand-off (read by 09, 13 and 06):
@@ -853,7 +858,7 @@ report_path: none (inline)
 
 ### "The account has no opportunity record"
 
-**Likely cause:** The deal has not been created in the CRM yet, or this is a prospect that is not in the pipeline.
+**Likely cause:** The deal has not been created in the CRM yet, or this is a prospect that is not in the pipeline, or an ENGAGED account whose buyer has replied but no deal is open.
 
 **Response:** Stop. This skill needs an open opportunity. Use Account Qualification (01) for an account before the pipeline, or Account Snapshot (02) for prospecting prep.
 
@@ -921,6 +926,11 @@ The Business Case & ROI Kit (a paid Guild Pro kit) reads this skill's hand-off b
 ---
 
 ## Changelog
+
+### 2.1.8 (2026-10-26)
+- Profile facts are cited as (profile: Section), with the profile's own section name, in place of the older profile forms.
+- ENGAGED is named in the Input Contract, Step 1, the Troubleshooting entry and the Quick Reference. An ENGAGED account has two-way contact and no open deal, so the skill stops, names its status and last reply, and routes it to Account Qualification (01) instead of scoring a deal that is not in the pipeline.
+- No score, verdict, band, risk level or next action changes.
 
 ### 2.1.7 (2026-10-26)
 - Four rubric sentences (buyer-contact pain, decision influence, multi-threading and the technical action) are written as general rules, with no worked record shape.

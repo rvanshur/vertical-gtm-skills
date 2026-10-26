@@ -27,12 +27,12 @@ Company
 People
 - Ines Carmody, General Manager, champion [CRM] (illustrative). She moved to Quill Hollow from Lowmoor Memorial Gardens six months ago [Public: state licensing database] (illustrative)
 - Ines Carmody is the only contact on file [CRM]
-- Engagement: two logged replies from Ines Carmody to earlier emails, the last on 2026-09-29 [CRM] (illustrative)
+- Engagement: no reply from Ines Carmody to PlotIQ on record [CRM] (illustrative). Her champion label comes from her time at Lowmoor Memorial Gardens, and it stays a label until the Champion Test runs
 - Pre-need activity: [Unknown]
 
 ## What You Should Get
 
-- Status: TARGET, no open deal. Verdict: GREENLIGHT, with Zones 3 and 5 HIGH.
+- Status: TARGET, no open deal. No reply from the contact is on record, so the account is not ENGAGED. Verdict: GREENLIGHT, with Zones 3 and 5 HIGH. The sequence is a ready draft, not a held one, because the verdict is GREENLIGHT.
 - Zones: 1 MEDIUM, 2 UNKNOWN, 3 HIGH, 4 UNKNOWN, 5 HIGH. No must-have zone is LOW.
 - Risk level: Regulatory complexity High, because of the records finding [CRM] (illustrative). Region tier: none, because the state is [Unknown].
 - Contacts: Ines Carmody first (General Manager, champion label [CRM]; Champion Test not yet run). The owner and the pre-need manager are gaps, both Unknown.

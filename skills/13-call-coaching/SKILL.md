@@ -1,7 +1,7 @@
 ---
 name: gtm-call-coaching
 description: "Scores a discovery or demo call against methodology rubrics and returns a coaching report with evidence-graded coaching points, for the rep and the sales manager who reads it"
-version: 2.1.7
+version: 2.1.8
 category: Sales-Methodology
 author: Ryan Vanshur
 license: MIT
@@ -11,6 +11,9 @@ requires:
   skills: ["gtm-meeting-prep", "gtm-deal-pulse"]
 mutating: read-write
 change_log:
+  - version: 2.1.8
+    date: 2026-10-26
+    summary: "Round 8 citation and status pass. Every profile citation is now written (profile: Section). Deal Health Impact has a status rule: ACTIVE reads the stage gate, ENGAGED applies no gate and names whether the call opened a deal, INBOUND stays INBOUND after a call until a deal opens, and any other status applies no gate. Step 1 reads the account status so the rule has its input. Step 3 points to the one definition of shares competitor intelligence in The Shared Contract instead of restating it, so a named manual process that the CRM does not hold counts as the incumbent, and one example's champion count is rechecked on that test. Headings and labels are capitalized word by word."
   - version: 2.1.7
     date: 2026-10-26
     summary: "Round 7 scrub. Worked counts and quoted phrases are removed from the rules, and the rules state the general test in their place: the focus-area tie-break, the champion test about the buyer's process, and the minute figure in Step 7 and the Epistemic Rules. The Next Steps rubric says what the rep's ask decides between 2 and 3, so one call gets one score. The competitor-intelligence champion test is applied to a named incumbent that the contact describes. A next action takes the shared rule's date when the record holds no agreed date, and the try-it record states facts only."
@@ -124,13 +127,13 @@ Every run returns the coaching report in the chat, in the eight sections under R
 
 ## Context
 
-**This skill does not contain client-specific information. It points to it.**
+**This Skill Does Not Contain Client-Specific Information. It Points To It.**
 
 > **Load the client profile from [`profiles/client-profile.md`](../../profiles/client-profile.md) before starting.** That single file is shared by all 14 skills in this suite. Update it once and every skill inherits the change on its next run. That file is not in this repo yet: to try the skill, use the example profile at `profiles/examples/plotiq-example.md`, and to set up your own company, copy `profiles/client-profile-template.md` to `profiles/client-profile.md`.
 
 Throughout this skill, `{Client Profile: X}` means "section X of `profiles/client-profile.md`". Sections this skill reads:
 
-| Profile section | Used for |
+| Profile Section | Used For |
 |---|---|
 | Company | Account framing and vertical context |
 | Buyer Personas | Which attendee each coaching point belongs to, and the persona's language |
@@ -160,7 +163,7 @@ When the profile has a `## Knowledge Base` section, which Context OS Setup write
 
 When the assistant is connected to the CRM or to a call recorder, the skill offers to read the records the user points at (one account, one deal, the calls in a date range), asks before it reads, and tags each pulled fact `[CRM]` or `[Call]` with its date. It reads only. It never searches records nobody named and never writes back. Without a connector, pasting the same records works the same way.
 
-#### Account Status, Five Words
+#### Account Status, Six Words
 
 Every account carries one status: **TARGET** (researched, no two-way contact yet, though outreach may have gone out with no reply), **ENGAGED** (two-way contact: the account replied or met with us, and no deal is open), **INBOUND** (they asked us first, and no deal is open yet, which stays INBOUND until a deal opens or the account goes OUT), **ACTIVE** with its stage number (open deal), **LOST** (closed-lost, eligible for reactivation), **OUT** (disqualified). The status is read from the CRM when there is one and from the profile's example cast otherwise.
 
@@ -223,19 +226,19 @@ Wrap-Up reads by name the **report path** when a file was written, the **verdict
 
 #### Guild Disciplines, Restated
 
-1. **Evidence over optimism.** Score what the record proves, not what the rep believes. Under-scoring protects a deal. Over-scoring kills it.
-2. **Silence is not a no.** An empty field is unknown and is counted in no denominator.
-3. **One cast, one story.** Every example uses the profile's example company and its cast. An example never presents an invented number as a real result.
-4. **The profile is upstream.** Strategy skills write it. Sales skills read it. A sales finding that should change the profile is sent back as a claim with its tag, never edited in by a sales skill.
-5. **Published numbers only.** A figure from a published Guild article may be cited to it. Any other figure in an example is marked illustrative.
+1. **Evidence Over Optimism.** Score what the record proves, not what the rep believes. Under-scoring protects a deal. Over-scoring kills it.
+2. **Silence Is Not A No.** An empty field is unknown and is counted in no denominator.
+3. **One Cast, One Story.** Every example uses the profile's example company and its cast. An example never presents an invented number as a real result.
+4. **The Profile Is Upstream.** Strategy skills write it. Sales skills read it. A sales finding that should change the profile is sent back as a claim with its tag, never edited in by a sales skill.
+5. **Published Numbers Only.** A figure from a published Guild article may be cited to it. Any other figure in an example is marked illustrative.
 6. **Names as roles** in anything shared. No vendor, tool or model names in a free skill beyond the platform line. The CRM is "the CRM".
-7. **Draft, never send.** A rep reads before anything leaves.
+7. **Draft, Never Send.** A rep reads before anything leaves.
 
 ---
 
 ## Methodology
 
-Your coaching playbook, in code. The frameworks below are the skill's defaults. **SPIN and Priority Ladder are used for discovery. Challenger, MEDDPICC and Question the Problem are used for demos.** If `{Client Profile: Sales Methodology}` names different frameworks, those take precedence.
+Your coaching playbook, in code. The frameworks below are the skill's defaults. **SPIN and Priority Ladder are used for discovery. Challenger, MEDDPICC and Question The Problem are used for demos.** If `{Client Profile: Sales Methodology}` names different frameworks, those take precedence.
 
 The champion tests, the seven incumbent types and the talk-time bands are defined once, in The Shared Contract above. This skill refers to them and never restates them.
 
@@ -253,12 +256,12 @@ Prioritize: "On a scale of 1-10, how urgently does this need to change?"
 Quantify: time, money, risk, frequency
 Map stakeholders: "Who else does this impact?"
 
-**Key rule:** Do not demo until Priority Ladder is complete.
+**Key Rule:** Do not demo until Priority Ladder is complete.
 
-### Discovery: Alternatives and the Negative-Frame Close
+### Discovery: Alternatives And The Negative-Frame Close
 Alternatives are what the buyer has already tried for this problem. A buyer who has tried and stopped has told you what it cost them to stop. The rep asks about each attempt, why it stopped and what it cost.
 
-**Negative-frame close (one line, generic words):** "Would it be a bad idea to keep doing it the current way for another quarter?" It asks the buyer to say why waiting is a problem, which is the discovery the call needs.
+**Negative-Frame Close (One Line, Generic Words):** "Would it be a bad idea to keep doing it the current way for another quarter?" It asks the buyer to say why waiting is a problem, which is the discovery the call needs.
 
 ### Demo: Challenger Sale Framework
 | Element | Principle | What Great Looks Like |
@@ -267,37 +270,37 @@ Alternatives are what the buyer has already tried for this problem. A buyer who 
 | **Tailor** | Customize message to individual stakeholders | Different message for different personas, connects to their specific outcomes |
 | **Take Control** | Drive the conversation and create constructive tension | Comfortable pushing back, proposes next steps, does not wait for permission |
 
-### Demo: Five Demo Elements and Pacing
-A demo has five elements. Questions are not a sixth element. They run through the solution and the return on investment, and they score under Question the Problem.
+### Demo: Five Demo Elements And Pacing
+A demo has five elements. Questions are not a sixth element. They run through the solution and the return on investment, and they score under Question The Problem.
 
-| Demo element | Demo category it scores under | Starting pacing default |
+| Demo Element | Demo Category It Scores Under | Starting Pacing Default |
 |---|---|---|
 | Introduction (agenda, attendees, the outcome both sides want) | 1 Meeting Opening | 5% to 10% of the call |
-| Problem restatement (the confirmed pains, in the buyer's words) | 6 Pain-to-Workflow Mapping | 5% to 10% of the call |
+| Problem restatement (the confirmed pains, in the buyer's words) | 6 Pain-To-Workflow Mapping | 5% to 10% of the call |
 | Solution (one workflow at a time, each tied to a pain) | 3 Teach and Tailor | 40% to 50% of the call |
 | Return on investment (the buyer's own figures, using the formulas below) | 4 Pain Alignment and Proof | 15% to 20% of the call |
-| Questions (Question the Problem checkpoints) | 5 Question the Problem | 15% to 20% of the call |
+| Questions (Question The Problem checkpoints) | 5 Question The Problem | 15% to 20% of the call |
 | Next steps (named owner, date and attendees) | 2 Meeting Closing | 5% to 10% of the call |
 
 Categories 7 (Prospect Engagement) and 8 (Resistance Handling) run across all five elements and are scored over the whole call.
 
-**Team names.** Where the profile's Call Coaching section names the five elements, the report uses those names. The shares stay as set in the pacing table unless the profile overrides them.
+**Team Names.** Where the profile's Call Coaching section names the five elements, the report uses those names. The shares stay as set in the pacing table unless the profile overrides them.
 
-**The half rule.** In a demo the prospect talks for about half of the call. Read the prospect's share as the rest of the call, measured against the demo band in The Shared Contract. A demo where the prospect talks well under that band is a presentation to an audience, not a conversation with a buyer.
+**The Half Rule.** In a demo the prospect talks for about half of the call. Read the prospect's share as the rest of the call, measured against the demo band in The Shared Contract. A demo where the prospect talks well under that band is a presentation to an audience, not a conversation with a buyer.
 
-**Pacing is a starting default.** The shares above are a starting point for the team to calibrate. Where the profile's Call Coaching section sets its own pacing, the scores use the team's numbers and the report says so.
+**Pacing Is A Starting Default.** The shares above are a starting point for the team to calibrate. Where the profile's Call Coaching section sets its own pacing, the scores use the team's numbers and the report says so.
 
-### Demo: Meeting Open and Close
+### Demo: Meeting Open And Close
 **Opening:** Connect to the pain from discovery. Confirm the time and who is in the room. Agree the agenda together. Agree what a good outcome would be.
 **Closing:** Recap what mattered most to them. Ask who else should join next time. Propose the next agenda. Agree the next step, with an owner and a date.
 
-### Demo: Question the Problem
+### Demo: Question The Problem
 Prime Pain: "Many teams struggle with [X]. To what extent is that true for you?" (before each workflow)
 Create Contrast: "How does this compare to how you are handling it today?" (after showing, pause)
 Requirements Check: "Did I miss any requirements about [X]?" (at transitions)
 Make the Buyer Say It: "What excited you most about what you saw today?" (at close)
 
-### Demo: Return on Investment Formulas
+### Demo: Return On Investment Formulas
 Three formulas. Every input is blank until the buyer or the rep supplies it, with its source. **Use your own figures, no defaults.** A figure invented in front of a buyer costs more than the deal it was meant to win.
 
 - **Working capital released per year** = ____ items held × $____ value per item × ____% carrying rate, from the buyer's own finance team
@@ -306,17 +309,17 @@ Three formulas. Every input is blank until the buyer or the rep supplies it, wit
 
 Record each result in the buyer's words, tagged with its source. A formula with a blank input is not reported as a result.
 
-### Demo: Per-Attendee Block and Technical Checklist
-**Per-attendee block.** One block for each person in the room. Missing names are `[Unknown]`, never guessed.
+### Demo: Per-Attendee Block And Technical Checklist
+**Per-Attendee Block.** One block for each person in the room. Missing names are `[Unknown]`, never guessed.
 
 - **Attendee:** name or `[Unknown]`, title
-- **Buying role:** as the record names it
-- **Pain they own:** the matching pain from Core Pain Points, tagged
-- **Question they asked:** the quote and its time, or "none asked"
-- **What they need to see:** tagged to a quote, or marked Unknown
+- **Buying Role:** as the record names it
+- **Pain They Own:** the matching pain from Core Pain Points, tagged
+- **Question They Asked:** the quote and its time, or "none asked"
+- **What They Need To See:** tagged to a quote, or marked Unknown
 - **Engagement:** the quote or silence that shows it
 
-**Five-line technical checklist.** Score each line Yes, No or Unknown. Unknown means the notes do not show it.
+**Five-Line Technical Checklist.** Score each line Yes, No or Unknown. Unknown means the notes do not show it.
 
 1. Screen share and audio were tested before the start.
 2. Every attendee's access was confirmed before the call.
@@ -328,8 +331,8 @@ Record each result in the buyer's words, tagged with its source. A formula with 
 Every improvement point is written in three parts. Each part is tagged.
 
 - **Situation:** what the rep faced, with the quote and its time
-- **Proof point:** the proof from the profile that answers it, with its Status shown. An Illustrative proof point is never cited to the prospect. A Benchmark is named with its source, and it is the line the rep says
-- **Coaching moment:** the exact sentence the rep should have said instead, and the framework technique it practices
+- **Proof Point:** the proof from the profile that answers it, with its Status shown. An Illustrative proof point is never cited to the prospect. A Benchmark is named with its source, and it is the line the rep says
+- **Coaching Moment:** the exact sentence the rep should have said instead, and the framework technique it practices
 
 ### Evidence Grades
 | Grade | Meaning |
@@ -352,7 +355,7 @@ Six lines, scored for every discovery and demo call. Each line is Raised, Not ra
 
 A line marked Not raised is a finding only when the call gave the buyer a fair chance to raise it. Otherwise it is Unknown.
 
-### Universal: Three Types of Resistance
+### Universal: Three Types Of Resistance
 | Type | Definition | Response |
 |------|-----------|---------|
 | Reactance | Emotional pushback, feels pressured | Back off, give autonomy, negative framing |
@@ -374,24 +377,24 @@ Feel (validate emotion), Felt (normalize with peer), Found (deliver outcome).
 
 ## Quick Reference
 
-**Use this skill when:**
+**Use This Skill When:**
 - Reviewing a discovery or demo call recording or transcript
 - Conducting a manager 1:1 with coaching
 - Self-coaching after a call
 - Building a rep development plan
 
-**Do not use when:**
+**Do Not Use When:**
 - Preparing for an upcoming call (use `gtm-meeting-prep`)
 - Scoring deal health without a specific call (use `gtm-deal-pulse`)
 
-**Call type parameter:**
+**Call Type Parameter:**
 - `call_type = discovery`: 7 categories, scored against SPIN, Priority Ladder and Alternatives. Total out of 35.
-- `call_type = demo`: 8 categories, scored against Challenger, MEDDPICC and Question the Problem. Total out of 40.
+- `call_type = demo`: 8 categories, scored against Challenger, MEDDPICC and Question The Problem. Total out of 40.
 - If not specified, ask. The call type decides the rubric.
 
-**User roles:** AE, Sales Manager, Sales Coach
+**User Roles:** AE, Sales Manager, Sales Coach
 
-**Expected time:** 20 to 30 minutes per call
+**Expected Time:** 20 to 30 minutes per call
 
 ---
 
@@ -401,13 +404,13 @@ Feel (validate emotion), Felt (normalize with peer), Found (deliver outcome).
 
 Before pulling anything, read the account's folder under `accounts/` (its earlier calls, notes and decisions) and the personas under `people/` in the knowledge base, when the profile has one. Then offer to read the call recording or transcript from the call recorder, and ask before reading it, as set out in The Knowledge Base and Connectors.
 
-**1a. Confirm inputs:** account name, sales rep name, call date and duration, call type, transcript or notes, attendees with titles.
+**1A. Confirm Inputs:** account name, sales rep name, call date and duration, call type, transcript or notes, attendees with titles.
 
-**1b. Read the prep sheet, if one exists.** Read the Meeting Prep fields by name: `prep_sheet`, `top_pain`, `question_bank`, `attendees` and `proof_point`. Read them before scoring, because Pre-Call Preparation is scored against them. A missing field is reported as missing, not rebuilt here.
+**1B. Read The Prep Sheet, If One Exists.** Read the Meeting Prep fields by name: `prep_sheet`, `top_pain`, `question_bank`, `attendees` and `proof_point`. Read them before scoring, because Pre-Call Preparation is scored against them. A missing field is reported as missing, not rebuilt here.
 
-**1c. Pull CRM context:** stage, amount, close date, owner, contacts and their roles, prior touchpoints, and any earlier coaching report. If a Deal Pulse exists, read its fields by name (`health_score`, `risk_level`, `pillar_scores`, `signal_scores`, `next_actions`) for the before and after comparison.
+**1C. Pull CRM Context:** stage, amount, close date, owner, contacts and their roles, prior touchpoints, the account status (TARGET, ENGAGED, INBOUND, ACTIVE with its stage, LOST or OUT), and any earlier coaching report. The status decides which Deal Health Impact reading applies (see The Status Rule For Deal Health Impact in Step 8). If a Deal Pulse exists, read its fields by name (`health_score`, `risk_level`, `pillar_scores`, `signal_scores`, `next_actions`) for the before and after comparison.
 
-**1d. Check the source.** A transcript with speaker labels supports every category. Notes support the categories their evidence allows. Where the source cannot show talk share or exact language, those are marked Unknown and the report says why. Unknown is never scored as zero. A category that cannot be scored without them is INSUFFICIENT under the Unknown Rule in Step 2.
+**1D. Check The Source.** A transcript with speaker labels supports every category. Notes support the categories their evidence allows. Where the source cannot show talk share or exact language, those are marked Unknown and the report says why. Unknown is never scored as zero. A category that cannot be scored without them is INSUFFICIENT under the Unknown Rule in Step 2.
 
 **Produces:** the confirmed input list, the prep fields read or marked missing, and one line on the source quality.
 
@@ -472,7 +475,7 @@ Rep talk time is read against the discovery band in The Shared Contract. "Points
 
 The Winning Zone is the part of the call where each capability is tied to a pain the prospect named in their own words. A value claim with no named pain sits outside it.
 
-#### Category 6: Next Steps and Momentum (1-5)
+#### Category 6: Next Steps And Momentum (1-5)
 | Score | Evidence |
 |-------|----------|
 | 5 | Leadership-based recommendation. Specific actions with owners and dates. Identified next meeting attendees. |
@@ -481,7 +484,7 @@ The Winning Zone is the part of the call where each capability is tied to a pain
 | 2 | Prospect drove next steps. The rep asked for no date, owner or attendees before the call ended, and the prospect set the step or let it drop. |
 | 1 | No next step established. Call ended without forward motion. |
 
-**The rep's ask decides between 2 and 3.** A rep who asked for a date, an owner or attendees, and got none, scores 3. A rep who asked for none of them, and let the prospect set or drop the step, scores 2.
+**The Rep's Ask Decides Between 2 And 3.** A rep who asked for a date, an owner or attendees, and got none, scores 3. A rep who asked for none of them, and let the prospect set or drop the step, scores 2.
 
 A date that the rep sets by email after the call is not on the call. It counts in the Next Action line of the hand-off, and this score reads only what the call shows.
 
@@ -494,12 +497,12 @@ A date that the rep sets by email after the call is not on the call. It counts i
 | 2 | Named an alternative the buyer raised, then did not ask about it. |
 | 1 | No question about alternatives. Assumed the buyer had tried nothing. |
 
-**Question review (discovery).** For each SPIN phase, quote the rep's question, rate it, and write one better question. Ratings are Strong, Adequate, Weak or Missing (no question asked in that phase). The better question draws on the Core Pain Points "Discovery question" column where one fits.
+**Question Review (Discovery).** For each SPIN phase, quote the rep's question, rate it, and write one better question. Ratings are Strong, Adequate, Weak or Missing (no question asked in that phase). The better question draws on the Core Pain Points "Discovery question" column where one fits.
 
-| Phase | Question quoted (with its time) | Rating | One better question |
+| Phase | Question Quoted (With Its Time) | Rating | One Better Question |
 |---|---|---|---|
 
-**Discovery score interpretation (out of 35):**
+**Discovery Score Interpretation (Out Of 35):**
 
 | Total | Assessment |
 |-------|-----------|
@@ -509,7 +512,7 @@ A date that the rep sets by email after the call is not on the call. It counts i
 | 10 to 16 | Poor (fundamental issues) |
 | 7 to 9 | Critical (immediate intervention needed) |
 
-**Arithmetic for the restated bands.** The original bands were set for a maximum of 30. For the maximum of 35, each old lower cut-off is multiplied by 35, divided by 30, and rounded up to a whole number. 26 × 35 ÷ 30 = 30.3, so 31. 20 × 35 ÷ 30 = 23.3, so 24. 14 × 35 ÷ 30 = 16.3, so 17. 8 × 35 ÷ 30 = 9.3, so 10. The floor is 7, because seven categories at 1 each is the lowest possible total, and 6 × 35 ÷ 30 = 7.0 gives the same figure.
+**Arithmetic For The Restated Bands.** The original bands were set for a maximum of 30. For the maximum of 35, each old lower cut-off is multiplied by 35, divided by 30, and rounded up to a whole number. 26 × 35 ÷ 30 = 30.3, so 31. 20 × 35 ÷ 30 = 23.3, so 24. 14 × 35 ÷ 30 = 16.3, so 17. 8 × 35 ÷ 30 = 9.3, so 10. The floor is 7, because seven categories at 1 each is the lowest possible total, and 6 × 35 ÷ 30 = 7.0 gives the same figure.
 
 **If `call_type = demo`** (score 8 categories, out of 40):
 
@@ -531,7 +534,7 @@ A date that the rep sets by email after the call is not on the call. It counts i
 | 2 | Prospect drove close. Rep passive. |
 | 1 | No close. Ended abruptly. No forward motion. |
 
-#### Category 3: Teach and Tailor (1-5)
+#### Category 3: Teach And Tailor (1-5)
 | Score | Evidence |
 |-------|----------|
 | 5 | Effortless flow: one workflow at a time, prospect's language, no jargon. Led with commercial insight. Message tailored to each persona present. Recap mapped each section to pain. |
@@ -540,7 +543,7 @@ A date that the rep sets by email after the call is not on the call. It counts i
 | 2 | Confusing (bounced between screens, showed irrelevant features). Significant off-topic time. |
 | 1 | Feature tour. No narrative. No connection to prospect. Internal jargon. |
 
-#### Category 4: Pain Alignment and Proof (1-5)
+#### Category 4: Pain Alignment And Proof (1-5)
 | Score | Evidence |
 |-------|----------|
 | 5 | Every workflow tied to a discovery pain, named before each. The top pain gets the largest share of demo minutes. Proof matched on persona, scale and vertical, with its Status shown. Feel-Felt-Found used. Return on investment run with the buyer's own figures. |
@@ -549,7 +552,7 @@ A date that the rep sets by email after the call is not on the call. It counts i
 | 2 | Not ordered by pain. Equal time on all features. Wrong-scale proof. |
 | 1 | No pain reference. Generic demo. No social proof. |
 
-#### Category 5: Question the Problem (1-5)
+#### Category 5: Question The Problem (1-5)
 | Score | Evidence |
 |-------|----------|
 | 5 | All 4 questions: Primed pain before every workflow, created contrast + PAUSED, requirements checks at transitions, closed with "What excited you most?" and captured answer. |
@@ -558,7 +561,7 @@ A date that the rep sets by email after the call is not on the call. It counts i
 | 2 | Minimal questioning. Showed features without checking contrast. "Any questions?" close. |
 | 1 | Pure monologue. No questioning during demo. No contrast, no checks, no close question. |
 
-#### Category 6: Pain-to-Workflow Mapping (1-5)
+#### Category 6: Pain-To-Workflow Mapping (1-5)
 | Score | Evidence |
 |-------|----------|
 | 5 | Every discovery pain mapped to a workflow. Shown in pain priority order. Rep referenced discovery findings. Demo data relevant. |
@@ -587,7 +590,7 @@ Prospect talk time is read against the demo band in The Shared Contract, measure
 | 2 | Met resistance with more features (wrong response). Got defensive. |
 | 1 | Froze on objections. Ignored resistance. Or: no resistance because prospect wasn't engaged enough to care. |
 
-**Demo score interpretation (out of 40):**
+**Demo Score Interpretation (Out Of 40):**
 | Total | Assessment |
 |-------|-----------|
 | 34 to 40 | Excellent (prospect is selling themselves) |
@@ -602,7 +605,7 @@ Prospect talk time is read against the demo band in The Shared Contract, measure
 
 For each MEDDIC element, assess what was uncovered on this call:
 
-| Element | What to Assess | Grade |
+| Element | What To Assess | Grade |
 |---------|---------------|-------|
 | Metrics | Quantified outcomes discussed? | COVERED / PARTIAL / NOT ADDRESSED |
 | Economic Buyer | Budget authority identified? | IDENTIFIED / DEVELOPING / NOT ADDRESSED |
@@ -611,13 +614,13 @@ For each MEDDIC element, assess what was uncovered on this call:
 | Identified Pain | Specific, named, quantified pain? | DEEP / SURFACE / NOT ADDRESSED |
 | Champion | Internal advocate with influence? | STRONG / DEVELOPING / NONE |
 
-**Champion status** is graded with the shared champion tests in The Shared Contract. Count only the tests met on this call, each with its evidence and tag. A contact who was not in the room cannot meet the tests that need the room, and the report says so. A statement about the buyer's process counts as "explains the internal politics" only when it names who decides or how the decision moves. A statement that names no one does not count. The test "shares competitor intelligence" is met when the contact names a competitor or incumbent and tells the rep something the rep did not already hold from the CRM, such as how it was used, what it cost or why it was dropped.
+**Champion status** is graded with the shared champion tests in The Shared Contract. Count only the tests met on this call, each with its evidence and tag. A contact who was not in the room cannot meet the tests that need the room, and the report says so. A statement about the buyer's process counts as "explains the internal politics" only when it names who decides or how the decision moves. A statement that names no one does not count. The test "shares competitor intelligence" is met as The Shared Contract defines it (see Champion Tests, One List), and this step applies that one definition to the incumbent the contact describes.
 
 **Produces:** the six-element coverage grid and the champion status (Strong, Developing or None) with the tests met on this call.
 
 ### Step 4: Map Pain Discovery Depth
 
-**Find the pains in the buyer's words.** Use the "What to Listen For" column of the profile's Core Pain Points as the phrase list. Add any extra phrases the profile's Call Coaching section lists, each with the pain it points to. Each phrase heard on the call is recorded with its time and its tag, and the pain it points to is matched to the profile's pain list. A pain with no matching phrase is marked as not heard, not as absent.
+**Find The Pains In The Buyer's Words.** Use the "What to Listen For" column of the profile's Core Pain Points as the phrase list. Add any extra phrases the profile's Call Coaching section lists, each with the pain it points to. Each phrase heard on the call is recorded with its time and its tag, and the pain it points to is matched to the profile's pain list. A pain with no matching phrase is marked as not heard, not as absent.
 
 For each pain discovered, assess depth using the Priority Ladder levels:
 
@@ -635,7 +638,7 @@ Map each pain to `{Client Profile: Core Pain Points}` and the relevant value pro
 
 **Produces:** the pains with their phrases, times and tags, each with its depth level.
 
-### Step 5: Evaluate Competitive Intelligence (if applicable)
+### Step 5: Evaluate Competitive Intelligence (If Applicable)
 
 What was learned about the prospect's current solution:
 - Solution identified? (competitor, manual, none)
@@ -651,7 +654,7 @@ Reference `{Client Profile: Competitive Landscape}` for the competitor probes th
 
 Mark each key moment with one of seven types. Capture the fields the type requires.
 
-| Key moment type | Fields to capture |
+| Key Moment Type | Fields To Capture |
 |---|---|
 | Objection | Time, quote, resistance type (reactance, skepticism or inertia), the response given |
 | Buying signal | Time, quote, kind (implementation, pricing, timeline, approval or need), captured or missed. Approval is a question about what the buyer's sign-off needs. Need is the buyer's own statement that the pain is worth solving |
@@ -667,7 +670,7 @@ Mark each key moment with one of seven types. Capture the fields the type requir
 
 **Concerning Moments:** What happened, risk level (HIGH/MEDIUM/LOW), recovery plan.
 
-**Demo-specific:** Buying Signals (captured vs. missed), and Anti-Patterns detected. Each anti-pattern is one line:
+**Demo-Specific:** Buying Signals (captured vs. missed), and Anti-Patterns detected. Each anti-pattern is one line:
 - **Feature Tour:** Walking through screens in order without tying any feature to a stated pain.
 - **Happy Ears:** Treating polite interest as a buying signal when the call has no evidence for it.
 - **Telling Not Asking:** Stating a benefit or conclusion the rep has not confirmed with the prospect.
@@ -677,16 +680,16 @@ Mark each key moment with one of seven types. Capture the fields the type requir
 - **Weak Close:** Ending without a named next step, an owner and a date.
 - **Generic Proof:** Using a case study or number that does not match the prospect's persona, size or vertical.
 
-**Unraised objections.** Complete the six-line checklist under Methodology, with its evidence for each line.
+**Unraised Objections.** Complete the six-line checklist under Methodology, with its evidence for each line.
 
 **Produces:** the key moments by type with their fields, the anti-patterns found (demo), and the six-line unraised objections checklist.
 
-### Step 7: Demo Checks (demo calls only)
+### Step 7: Demo Checks (Demo Calls Only)
 
-1. **Pacing by section.** Estimate the minutes spent in each of the five demo elements, and the minutes in off-topic time. Set each against its starting default, or the team's default from the profile. Every minute figure carries its n against the call length, written as "N of L minutes" with the share beside it.
-2. **Per-attendee block.** One block for each person in the room, using the fields under Methodology.
-3. **Technical checklist.** The five lines, each Yes, No or Unknown.
-4. **Return on investment.** Record whether the call ran an ROI section and with whose figures. If the call gave no inputs, say so. Do not fill the formulas with defaults.
+1. **Pacing By Section.** Estimate the minutes spent in each of the five demo elements, and the minutes in off-topic time. Set each against its starting default, or the team's default from the profile. Every minute figure carries its n against the call length, written as "N of L minutes" with the share beside it.
+2. **Per-Attendee Block.** One block for each person in the room, using the fields under Methodology.
+3. **Technical Checklist.** The five lines, each Yes, No or Unknown.
+4. **Return On Investment.** Record whether the call ran an ROI section and with whose figures. If the call gave no inputs, say so. Do not fill the formulas with defaults.
 
 **Produces:** the pacing table, the per-attendee blocks, the checklist result and the ROI status.
 
@@ -698,9 +701,11 @@ Mark each key moment with one of seven types. Capture the fields the type requir
 
 **Deal Health Impact:** Before and after this call. The key risk. Buying signals to advance. Where the call moves the stage gate in the profile's Qualification Stage Gates, and where it does not.
 
-**Focus Area for Next Call:** One skill only. Prep steps, what to practice, success criteria. Five things at once do not change a habit. The practice exercise covers every cost the focus skill's evidence names, in one exercise, and the focus-area line names each of them. When categories tie for the lowest score, the focus area is the tied category that matches an exit criterion of the account's next stage in the profile's Qualification Stage Gates, where the next stage is the one after the account's current stage. The focus-area line quotes that exit criterion, so the choice can be checked against the profile.
+**The Status Rule For Deal Health Impact.** The call is scored the same whatever the account's status, because the rubric grades the rep and not the account. Status changes only what this line can say. ACTIVE (open deal): the line reads the call against the stage gate in the profile's Qualification Stage Gates. ENGAGED (two-way contact, no open deal): no stage gate applies. The line names the status and says whether the call gave the buyer a reason to open a deal, a quantified pain or a dated next meeting, each tagged. For an ENGAGED account, the Next Call Game Plan's success criteria name that deal-opening step, because until one is set the account stays in conversation without a deal. INBOUND (they asked us first): the account stays INBOUND after a call until a deal opens, so the line reads it as INBOUND and applies no stage gate. If the record shows TARGET, LOST or OUT, the line names that status and applies no stage gate.
 
-**Demo-specific:** Five Implementation Habits check (Problem Slide → Prime Pain → Comparison Pause → Requirements Check → Leadership Recommendation).
+**Focus Area For Next Call:** One skill only. Prep steps, what to practice, success criteria. Five things at once do not change a habit. The practice exercise covers every cost the focus skill's evidence names, in one exercise, and the focus-area line names each of them. When categories tie for the lowest score, the focus area is the tied category that matches an exit criterion of the account's next stage in the profile's Qualification Stage Gates, where the next stage is the one after the account's current stage. The focus-area line quotes that exit criterion, so the choice can be checked against the profile.
+
+**Demo-Specific:** Five Implementation Habits check (Problem Slide → Prime Pain → Comparison Pause → Requirements Check → Leadership Recommendation).
 
 **Produces:** the coaching points with their quotes or grades, the one focus area, the deal health impact and the next action with its owner and date.
 
@@ -708,33 +713,33 @@ Mark each key moment with one of seven types. Capture the fields the type requir
 
 ## Epistemic Rules
 
-- **Every rate carries its n.** "3 of 7 shared tests met", "N of L minutes", "5 of 6 unraised objection lines checked." A bare rate is not written.
-- **One call is one observation.** A habit becomes a pattern only with five cases. This skill grades one call, so a habit seen on this call is reported as an observation with its count, never as a trend.
-- **Silence is not a no.** A question that was not asked is unknown for that dimension, not a negative. A talk share the source cannot measure is Unknown, not zero. The category it scores is INSUFFICIENT under the Unknown Rule, and it is left out of the total and the count.
-- **"No difference found" is a finding.** A call that scores the same as the rep's last call is reported as such.
-- **Every coaching point is graded.** A quote with its time is Strong. A paraphrase is Moderate. An inference from what did not happen is Weak, and the reasoning is written.
-- **Evidence over optimism.** Score what the record proves, not what the rep believes. Under-scoring protects a deal. Over-scoring kills it.
+- **Every Rate Carries Its N.** "3 of 7 shared tests met", "N of L minutes", "5 of 6 unraised objection lines checked." A bare rate is not written.
+- **One Call Is One Observation.** A habit becomes a pattern only with five cases. This skill grades one call, so a habit seen on this call is reported as an observation with its count, never as a trend.
+- **Silence Is Not A No.** A question that was not asked is unknown for that dimension, not a negative. A talk share the source cannot measure is Unknown, not zero. The category it scores is INSUFFICIENT under the Unknown Rule, and it is left out of the total and the count.
+- **"No Difference Found" Is A Finding.** A call that scores the same as the rep's last call is reported as such.
+- **Every Coaching Point Is Graded.** A quote with its time is Strong. A paraphrase is Moderate. An inference from what did not happen is Weak, and the reasoning is written.
+- **Evidence Over Optimism.** Score what the record proves, not what the rep believes. Under-scoring protects a deal. Over-scoring kills it.
 
 ---
 
 ## Hard Rules
 
-1. **No coaching point without a quote or a grade.** A point nobody can check is an opinion about the rep, and the rep is entitled to check it.
-2. **No category score without its evidence line.** The total must be recomputable from the scored rows, or the rep cannot see how it was reached. An INSUFFICIENT row carries no value and is left out of the total and the count, so the total always reads with its scored count.
-3. **Do not score from notes what needs a transcript.** Talk share, listening technique and exact language need the words. Notes cannot show them, so they are marked Unknown.
-4. **Do not restate the shared lists.** The champion tests, the incumbent types and the talk-time bands live once, in The Shared Contract. A second copy drifts, and then two managers grade the same call against two rules.
-5. **Never cite an Illustrative proof point to the prospect.** The profile marks it as invented for an example. The rep would be claiming a result that does not exist.
-6. **Never fill a return-on-investment input with a default.** A made-up saving in front of a buyer is the fastest way to lose the deal. Use your own figures, no defaults.
-7. **Never turn a call score into a compensation or ranking figure.** Once the score touches pay, reps perform for the grader and the coaching signal dies.
-8. **Coach one focus area per call.** Five fixes at once do not change a habit, and the rep cannot practice all five.
-9. **Every recommendation names a framework technique.** Generic advice does not change behavior, and a technique can be practiced and checked.
-10. **Nothing is sent and nothing is written to the CRM.** The rep reads the coaching and decides what to do with it.
+1. **No Coaching Point Without A Quote Or A Grade.** A point nobody can check is an opinion about the rep, and the rep is entitled to check it.
+2. **No Category Score Without Its Evidence Line.** The total must be recomputable from the scored rows, or the rep cannot see how it was reached. An INSUFFICIENT row carries no value and is left out of the total and the count, so the total always reads with its scored count.
+3. **Do Not Score From Notes What Needs A Transcript.** Talk share, listening technique and exact language need the words. Notes cannot show them, so they are marked Unknown.
+4. **Do Not Restate The Shared Lists.** The champion tests, the incumbent types and the talk-time bands live once, in The Shared Contract. A second copy drifts, and then two managers grade the same call against two rules.
+5. **Never Cite An Illustrative Proof Point To The Prospect.** The profile marks it as invented for an example. The rep would be claiming a result that does not exist.
+6. **Never Fill A Return-On-Investment Input With A Default.** A made-up saving in front of a buyer is the fastest way to lose the deal. Use your own figures, no defaults.
+7. **Never Turn A Call Score Into A Compensation Or Ranking Figure.** Once the score touches pay, reps perform for the grader and the coaching signal dies.
+8. **Coach One Focus Area Per Call.** Five fixes at once do not change a habit, and the rep cannot practice all five.
+9. **Every Recommendation Names A Framework Technique.** Generic advice does not change behavior, and a technique can be practiced and checked.
+10. **Nothing Is Sent And Nothing Is Written To The CRM.** The rep reads the coaching and decides what to do with it.
 
 ---
 
 ## Quality Bar
 
-**Done when all are true:**
+**Done When All Are True:**
 
 - [ ] Every category is scored from 1 to 5, with an evidence line
 - [ ] The Total is written `N of M, scored n of 7` (or 8) and equals the sum of its scored rows, `call_score` is the same figure, and fewer than five scored categories gives no overall score
@@ -764,7 +769,7 @@ All three examples use the PlotIQ example company and its cast. Every call-level
 
 **Methodology Scorecard:**
 
-| Category | Score (1 to 5) | Evidence |
+| Category | Score (1 To 5) | Evidence |
 |---|---|---|
 | Pre-Call Preparation | 4 | Opened on the prep sheet's top pain, plot records on paper (`[Notes]`), and asked about the lookup at 02:10 (`[Call, 2026-05-12]`). Referred to both attendees by name at 00:40 (`[Call, 2026-05-12]`), set the agenda at 00:50 (`[Call, 2026-05-12]`), and named each attendee's title at 01:10 (`[Call, 2026-05-12]`). Did not check the double sale on file (`[CRM]`) before asking about it. |
 | SPIN Discovery Quality | 3 | Situation and Problem well executed. Implication started at 19:05 and was cut short. Need-Payoff not reached. Two phases well executed, one started. |
@@ -777,42 +782,42 @@ All three examples use the PlotIQ example company and its cast. Every call-level
 
 Assessment: Good, in the 24 to 30 band of the restated scale (see Step 2 for the arithmetic). All seven categories have evidence, so the Unknown Rule does not apply.
 
-**Question review (discovery):**
+**Question Review (Discovery):**
 
-| Phase | Question quoted (with its time) | Rating | One better question |
+| Phase | Question Quoted (With Its Time) | Rating | One Better Question |
 |---|---|---|---|
 | Situation | "When a family asks for a plot, where do you look first, and how long does that take?" (02:10) | Strong | "How many of those requests come in during a typical week?" |
 | Problem | "What happens when a plot sells twice?" (14:20) | Adequate | "When a plot sells twice, what does it cost the family and the site, and who finds out?" |
 | Implication | "So that's a problem for the trust report too?" (19:05) | Weak | "If an auditor asked for last year's trust fund records today, how long would the pull take?" |
 | Need-Payoff | None asked | Missing | "What would it mean for your team if a plot answer took 20 seconds instead of 20 minutes?" |
 
-**Pain Discovery Map:** The plot-records pain, with its depth level. The phrase "We have files that date back to the 1970s" (09:15, `[Call, 2026-05-12]`) is on the profile's listen-for list for plot records on paper. The pain reached Level 2 (described) at 14:20. It did not reach Level 3, which is the minimum for a strong business case.
+**Pain Discovery Map:** The plot-records pain, with its depth level. The phrase "We have files that date back to the 1970s" (09:15, `[Call, 2026-05-12]`) is on the listen-for list for plot records on paper (profile: Core Pain Points). The pain reached Level 2 (described) at 14:20. It did not reach Level 3, which is the minimum for a strong business case.
 
 **Key Moments:**
 
-- **Discovery breakthrough (14:20):** Ruth: "We sold section F twice last spring." `[Call, 2026-05-12]`. Priority Ladder Level 2. The double sale is the note on file (`[CRM]`), now confirmed in her words.
-- **Buying signal, captured, kind need (09:15):** Ruth: "We have files that date back to the 1970s." `[Call, 2026-05-12]`. Owen asked "How far back do they go?"
+- **Discovery Breakthrough (14:20):** Ruth: "We sold section F twice last spring." `[Call, 2026-05-12]`. Priority Ladder Level 2. The double sale is the note on file (`[CRM]`), now confirmed in her words.
+- **Buying Signal, Captured, Kind Need (09:15):** Ruth: "We have files that date back to the 1970s." `[Call, 2026-05-12]`. Owen asked "How far back do they go?"
 - **Objection (23:40):** Walt: "I don't want my crew walking around with a tablet in a cemetery." `[Call, 2026-05-12]`. Type: skepticism. Owen's response: "They're just screens, you can use them at the desk." `[Call, 2026-05-12]`.
-- **Competitive intelligence (17:05):** Ruth: "We started moving plots into Oldgate and stopped." `[Call, 2026-05-12]`. Incumbent type: direct software. Oldgate Ledger Pro, renewal March 2027 (`[CRM]`).
-- **Missed opportunity (28:30):** Ruth: "The board takes these things up." Owen: "Great, thanks." `[Call, 2026-05-12]`. The question that should have followed: "Who sits on the board, and when does it next meet?"
-- **Red flag, MEDIUM (31:10):** Ruth: "We don't really have an IT person." `[Call, 2026-05-12]`. Recovery: ask who installs the system and who holds the ledger data, before the next session.
+- **Competitive Intelligence (17:05):** Ruth: "We started moving plots into Oldgate and stopped." `[Call, 2026-05-12]`. Incumbent type: direct software. Oldgate Ledger Pro, renewal March 2027 (`[CRM]`).
+- **Missed Opportunity (28:30):** Ruth: "The board takes these things up." Owen: "Great, thanks." `[Call, 2026-05-12]`. The question that should have followed: "Who sits on the board, and when does it next meet?"
+- **Red Flag, MEDIUM (31:10):** Ruth: "We don't really have an IT person." `[Call, 2026-05-12]`. Recovery: ask who installs the system and who holds the ledger data, before the next session.
 
 **Framework-Specific Coaching:**
 
 **Top 3 Strengths**
 
 1. **Strength, Strong.** At 02:10 Owen asked, "When a family asks for a plot, where do you look first, and how long does that take?" `[Call, 2026-05-12]`. The question went to the process before the product. Keep it as the opener.
-2. **Owen followed up, Strong.** At 09:15 Ruth said, "We have files that date back to the 1970s." Owen asked, "How far back do they go?" `[Call, 2026-05-12]`. The follow-up opened the depth of the records.
-3. **Owen asked why the move stopped, Strong.** At 17:05 Ruth said, "We started moving plots into Oldgate and stopped." Owen asked why it stopped `[Call, 2026-05-12]`. That question is what the Alternatives score rests on.
+2. **Owen Followed Up, Strong.** At 09:15 Ruth said, "We have files that date back to the 1970s." Owen asked, "How far back do they go?" `[Call, 2026-05-12]`. The follow-up opened the depth of the records.
+3. **Owen Asked Why The Move Stopped, Strong.** At 17:05 Ruth said, "We started moving plots into Oldgate and stopped." Owen asked why it stopped `[Call, 2026-05-12]`. That question is what the Alternatives score rests on.
 
 **Top 3 Improvement Areas**
 
-1. **Quantify the double sale, Strong.** At 14:20 Ruth said, "We sold section F twice last spring." `[Call, 2026-05-12]`. Owen moved on in the same breath, so the Priority Ladder stopped at Level 2. Practice: "How many plots did that cost you last year, and how long did each lookup take?"
-2. **Benchmark for the tablet objection, Moderate.** At 23:40 Walt raised tablets. Owen's answer is paraphrased in the notes, so the grade is Moderate.
+1. **Quantify The Double Sale, Strong.** At 14:20 Ruth said, "We sold section F twice last spring." `[Call, 2026-05-12]`. Owen moved on in the same breath, so the Priority Ladder stopped at Level 2. Practice: "How many plots did that cost you last year, and how long did each lookup take?"
+2. **Benchmark For The Tablet Objection, Moderate.** At 23:40 Walt raised tablets. Owen's answer is paraphrased in the notes, so the grade is Moderate.
    - **Situation:** Walt's skepticism of tablets, 23:40 (`[Call, 2026-05-12]`).
-   - **Proof point:** "most cemeteries your size carry 50 to 100 plots that are sold on paper and unsold on the map" (Benchmark, deathcare research, 2026-03-27 to 2026-04-01). The Holloway Hills proof point is Illustrative, so it is not cited.
-   - **Coaching moment:** Say the benchmark, then ask, "How does that compare with what your crew sees?"
-3. **The board question and the close, Strong, with a Weak part.** At 28:30 Ruth said the board takes these things up, and Owen said "Great, thanks" (`[Call, 2026-05-12]`). The chair's name and the meeting date were both within reach. Ask, "Who sits on the board, and when does it next meet?" The chair is still `[Unknown]` after this call. The last two minutes of the transcript contain no date for the next step. Inferred from what did not happen, so that part is Weak. Practice: set a date before the call ends.
+   - **Proof Point:** "most cemeteries your size carry 50 to 100 plots that are sold on paper and unsold on the map" (Benchmark, `[Public: deathcare research, 2026-03-27 to 2026-04-01]`, profile: Proof Points). The Holloway Hills proof point is Illustrative (profile: Proof Points), so it is not cited.
+   - **Coaching Moment:** Say the benchmark, then ask, "How does that compare with what your crew sees?"
+3. **The Board Question And The Close, Strong, With A Weak Part.** At 28:30 Ruth said the board takes these things up, and Owen said "Great, thanks" (`[Call, 2026-05-12]`). The chair's name and the meeting date were both within reach. Ask, "Who sits on the board, and when does it next meet?" The chair is still `[Unknown]` after this call. The last two minutes of the transcript contain no date for the next step. Inferred from what did not happen, so that part is Weak. Practice: set a date before the call ends.
 
 **MEDDIC Status:**
 
@@ -825,18 +830,18 @@ Assessment: Good, in the 24 to 30 band of the restated scale (see Step 2 for the
 | Identified Pain | SURFACE | Plot records on paper, described at Level 2 (14:20, `[Call, 2026-05-12]`). |
 | Champion | DEVELOPING | Two of seven shared tests met (below). |
 
-**Champion status:** Developing. Two of seven shared champion tests met on this call, each tagged: shares competitor intelligence (17:05, `[Call, 2026-05-12]`: "We started moving plots into Oldgate and stopped.") and asks how to help (33:00, `[Call, 2026-05-12]`: "What would you need from us to put this in front of the board?"). The 28:30 exchange is about process, the board taking the item up, so it is not counted as a test.
+**Champion Status:** Developing. Two of seven shared champion tests met on this call, each tagged: shares competitor intelligence (17:05, `[Call, 2026-05-12]`: "We started moving plots into Oldgate and stopped.") and asks how to help (33:00, `[Call, 2026-05-12]`: "What would you need from us to put this in front of the board?"). The 28:30 exchange is about process, the board taking the item up, so it is not counted as a test.
 
 **Competitive Intel Summary:** Current solution: Oldgate Ledger Pro, direct software (`[CRM]`). Contract: renewal in March 2027 (`[CRM]`). Satisfaction: not stated on this call (`[Unknown]`). The gap: the move into Oldgate began and stopped (17:05, `[Call, 2026-05-12]`), and the cost of the stop was not asked. The probe that went unasked is what the move cost.
 
 **Deal Health Impact:** Before this call: `[Unknown]`, because no Deal Pulse (08) exists for this account in the records. After this call: the Stage 2 to 3 gate in the profile needs the records problem quantified (plots, hours or dollars) and the GM named as the likely economic buyer. Ruth is named as GM and buyer (`[CRM]`). The problem is not yet quantified, so the gate is not met, and this call does not move the deal to a demo.
 
-**Focus Area for Next Call:** Priority Ladder to Level 3 on the cost of a plot lookup and of a double sale. The chair and the date are success criteria in the game plan, not a second focus.
+**Focus Area For Next Call:** Priority Ladder to Level 3 on the cost of a plot lookup and of a double sale. The chair and the date are success criteria in the game plan, not a second focus.
 
 **Next Call Game Plan:**
 - **Prep:** the plot-lookup count and the minutes per lookup, and the double-sale count and its cost, from the discovery notes.
 - **Questions:** "How many plot requests come in a week, and how long does each one take?" Then the board question.
-- **Success criteria:** a number for lookups per week, minutes per lookup, the double-sale count and its cost, the board chair's name, and the meeting date, set before the session ends.
+- **Success Criteria:** a number for lookups per week, minutes per lookup, the double-sale count and its cost, the board chair's name, and the meeting date, set before the session ends.
 
 ```text
 Hand-off (read by 08, 09 and 06):
@@ -854,7 +859,7 @@ report_path: none (inline)
 
 ---
 
-### Example 2: Discovery Call (Second Discovery Booked, Not a Demo), Sable Fork Cemetery
+### Example 2: Discovery Call (Second Discovery Booked, Not A Demo), Sable Fork Cemetery
 
 **Context:** Sable Fork Cemetery is one site with 2,900 plots. Its plot list lives in a spreadsheet (`[Notes]`, illustrative). The account is INBOUND (`[CRM]`): it requested a demo through the website form on 2026-10-15 (`[CRM]`). Who filled in the form is `[Unknown]`. Its verdict is MANUAL REVIEW, with Zone 3 HIGH as the only HIGH zone (`[Inferred]`, from the zone scores in Account Qualification). The General Manager, Arlen Biggs, signs under $25K (`[CRM]`). The BDR replied to the form on the afternoon of 2026-10-19 and booked this discovery call for Thursday 2026-10-22 (`[CRM]`). Owen Pruitt (Account Executive, illustrative assignment) ran the call on 2026-10-22 (`[Call, 2026-10-22]`). The call was graded from its transcript, so every `[Call]` tag is that call.
 
@@ -862,7 +867,7 @@ report_path: none (inline)
 
 **Scoring:**
 
-| Category | Score (1 to 5) | Evidence |
+| Category | Score (1 To 5) | Evidence |
 |---|---|---|
 | Pre-Call Preparation | 4 | Used the prep sheet's hypothesis that the plot list lives in a spreadsheet (`[Inferred]`), and a version of its plot-list question at 06:40 (`[Call, 2026-10-22]`), which counts as referenced account research. Did not confirm who filled in the website form, which the sheet lists as `[Unknown]`. |
 | SPIN Discovery Quality | 3 | Situation well executed (06:40, `[Call, 2026-10-22]`). The Problem phase began but the lookup count was not asked. Implication and Need-Payoff not reached. |
@@ -875,45 +880,45 @@ report_path: none (inline)
 
 Assessment: Good, in the 24 to 30 band of the restated scale. The Pre-Call Preparation score is 4 because a prep-sheet question the rep used on the call counts as referenced account research.
 
-**Question review (discovery):**
+**Question Review (Discovery):**
 
-| Phase | Question quoted (with its time) | Rating | One better question |
+| Phase | Question Quoted (With Its Time) | Rating | One Better Question |
 |---|---|---|---|
 | Situation | "Where does the plot list live, and who updates it?" (06:40) | Strong | "Where does the plot list live, who updates it, and when was it last updated?" |
 | Problem | "What happens when a family asks for a plot and the list is out of date?" (12:10) | Adequate | "When a family asks for a plot and the list is out of date, what do you do, and how long does that take?" |
-| Implication | "Does that happen often?" (15:30) | Weak | "What does a 20-minute lookup cost you, versus 20 seconds?" (the profile's discovery question for this pain) |
+| Implication | "Does that happen often?" (15:30) | Weak | "What does a 20-minute lookup cost you, versus 20 seconds?" (profile: Core Pain Points) |
 | Need-Payoff | None asked | Missing | "How would it help if a plot answer came in seconds?" |
 
 **Key Moments:**
 
-- **Discovery breakthrough (18:30):** Arlen: "I do most of the lookups myself." `[Call, 2026-10-22]`. Priority Ladder Level 2.
-- **Missed opportunity (18:45):** Owen did not ask how many lookups happen in a week or how long each takes. The question that should have followed is the profile's discovery question for this pain, "What does a 20-minute lookup cost you, versus 20 seconds?"
-- **Buying signal, captured (33:10):** Arlen asked how long setup takes. Owen answered that go-live is in about six weeks (`[Call, 2026-10-22]`, the profile's roadmap). Captured.
-- **Competitive intelligence (09:20):** The current process is a spreadsheet (`[Call, 2026-10-22]`). Incumbent type: manual process. Contract status: none.
+- **Discovery Breakthrough (18:30):** Arlen: "I do most of the lookups myself." `[Call, 2026-10-22]`. Priority Ladder Level 2.
+- **Missed Opportunity (18:45):** Owen did not ask how many lookups happen in a week or how long each takes. The question that should have followed is the discovery question in (profile: Core Pain Points), "What does a 20-minute lookup cost you, versus 20 seconds?"
+- **Buying Signal, Captured (33:10):** Arlen asked how long setup takes. Owen answered that go-live is in about six weeks (`[Call, 2026-10-22]`, profile: Value Propositions). Captured.
+- **Competitive Intelligence (09:20):** The current process is a spreadsheet (`[Call, 2026-10-22]`). Incumbent type: manual process. Contract status: none.
 - **Commitment (40:20):** Arlen agreed to a second discovery session with Owen on 2026-10-29 (illustrative). Attendees: Arlen only. Owner: Owen.
-- **Red flag, MEDIUM (44:00):** Arlen: "Nobody else looks at the list." `[Call, 2026-10-22]`. One person holds the data. Recovery: ask who else needs the list, by role.
+- **Red Flag, MEDIUM (44:00):** Arlen: "Nobody else looks at the list." `[Call, 2026-10-22]`. One person holds the data. Recovery: ask who else needs the list, by role.
 
 **Coaching Points:**
 
 1. **Strength, Strong.** At 06:40 Owen asked, "Where does the plot list live, and who updates it?" `[Call, 2026-10-22]`. Keep the question.
-2. **Count the lookups, Strong.** At 18:30 Arlen said, "I do most of the lookups myself" (`[Call, 2026-10-22]`). Owen moved to the next topic at 18:45 without a count. Practice: "How many lookups does a typical week include, and how long does each one take?"
-3. **Name a proof point without a number, Moderate.** At 29:00 Owen said other cemeteries have the same problem. The notes paraphrase the reply, so the grade is Moderate.
+2. **Count The Lookups, Strong.** At 18:30 Arlen said, "I do most of the lookups myself" (`[Call, 2026-10-22]`). Owen moved to the next topic at 18:45 without a count. Practice: "How many lookups does a typical week include, and how long does each one take?"
+3. **Name A Proof Point Without A Number, Moderate.** At 29:00 Owen said other cemeteries have the same problem. The notes paraphrase the reply, so the grade is Moderate.
    - **Situation:** the lookup problem, 29:00 (`[Call, 2026-10-22]`).
-   - **Proof point:** Fennick Gardens, 212 unsold plots found in 90 days. Status Illustrative, do not cite. The rep uses the Benchmark instead: "most cemeteries your size carry 50 to 100 plots that are sold on paper and unsold on the map" (Benchmark, deathcare research, 2026-03-27 to 2026-04-01).
-   - **Coaching moment:** Say the benchmark, then ask, "How many of those do you think you have?"
-4. **Second discovery, not a demo, Strong.** At 40:20 Owen did not offer a demo. He booked a second discovery session: "I'd like to see the list before I show you anything" (`[Call, 2026-10-22]`). Keep this. It is the right step while the pain is unconfirmed.
-5. **Who else holds the list, Weak.** After Arlen said, "Nobody else looks at the list" (44:00), Owen did not ask who else needs it. Inferred from the question that did not come, so the grade is Weak. Practice: ask who else needs the list, by role.
+   - **Proof Point:** Fennick Gardens, 212 unsold plots found in 90 days (profile: Proof Points). Status Illustrative, do not cite. The rep uses the Benchmark instead: "most cemeteries your size carry 50 to 100 plots that are sold on paper and unsold on the map" (Benchmark, `[Public: deathcare research, 2026-03-27 to 2026-04-01]`, profile: Proof Points).
+   - **Coaching Moment:** Say the benchmark, then ask, "How many of those do you think you have?"
+4. **Second Discovery, Not A Demo, Strong.** At 40:20 Owen did not offer a demo. He booked a second discovery session: "I'd like to see the list before I show you anything" (`[Call, 2026-10-22]`). Keep this. It is the right step while the pain is unconfirmed.
+5. **Who Else Holds The List, Weak.** After Arlen said, "Nobody else looks at the list" (44:00), Owen did not ask who else needs it. Inferred from the question that did not come, so the grade is Weak. Practice: ask who else needs the list, by role.
 
-**Champion status:** Developing. One of seven shared champion tests met on this call: commits to a next step with a date (40:20, `[Call, 2026-10-22]`).
+**Champion Status:** Developing. Two of seven shared champion tests met on this call, each tagged: shares competitor intelligence (09:20, `[Call, 2026-10-22]`: the plot list is kept in a spreadsheet, the manual process incumbent, which the CRM does not hold), and commits to a next step with a date (40:20, `[Call, 2026-10-22]`).
 
-**Deal Health Impact:** Sable Fork is INBOUND, so no ACTIVE stage gate applies yet. The pain is not confirmed: the lookup count is missing. The next step is a second discovery session, not a demo. The verdict stays MANUAL REVIEW.
+**Deal Health Impact:** Sable Fork is INBOUND. It stays INBOUND after this call, because no deal is open (the status rule in Step 8), so no ACTIVE stage gate applies yet. The pain is not confirmed: the lookup count is missing. The next step is a second discovery session, not a demo. The verdict stays MANUAL REVIEW.
 
-**Focus Area for Next Call:** Ask the lookup-count question, then the who-else-holds-the-list question.
+**Focus Area For Next Call:** Ask the lookup-count question, then the who-else-holds-the-list question.
 
 **Next Call Game Plan:**
 - **Prep:** the spreadsheet's owner and update rhythm, and the form filler's name if the website shows it.
 - **Questions:** the count question, then the who-else question. Then the Need-Payoff question.
-- **Success criteria:** a number for lookups per week, minutes per lookup, and the name of anyone else who needs the list.
+- **Success Criteria:** a number for lookups per week, minutes per lookup, and the name of anyone else who needs the list.
 
 ```text
 Hand-off (read by 08, 09 and 06):
@@ -924,7 +929,7 @@ category_scores: Pre-Call Preparation 4, SPIN Discovery Quality 3, Priority Ladd
 focus_area: Count the lookups and time them, then ask who else holds the list
 coaching_points: 1 Strength, Strong (06:40). 2 Count the lookups, Strong (18:30). 3 Proof point without a number, Moderate (29:00). 4 Second discovery, not a demo, Strong (40:20). 5 Who else holds the list, Weak (no question in the transcript)
 key_moments: discovery breakthrough (18:30), missed opportunity (18:45), buying signal captured (33:10), competitive intelligence (09:20), commitment (40:20), red flag MEDIUM (44:00)
-champion_status: Developing, one of seven shared tests met on this call (commits to a next step with a date)
+champion_status: Developing, two of seven shared tests met on this call (shares competitor intelligence, commits to a next step with a date)
 next_action: Owen Pruitt holds a second discovery session with Arlen Biggs to count the lookups and time them. No demo until the pain is confirmed. Owner: Owen Pruitt. Date: 2026-10-29, the session Arlen Biggs agreed to on the call (`[Call, 2026-10-22]`), which is earlier than the five-business-day date of 2026-10-30
 report_path: none (inline)
 ```
@@ -939,23 +944,23 @@ report_path: none (inline)
 
 **Scoring:**
 
-| Category | Score (1 to 5) | Evidence |
+| Category | Score (1 To 5) | Evidence |
 |---|---|---|
 | Meeting Opening | 2 | Went to the screen at 03:10 with no reference to the discovery pains (`[Call, 2026-08-20]`). No agreed outcome. |
 | Meeting Closing | 2 | The close was "Any questions?" at 58:20 (`[Call, 2026-08-20]`). No owner, no date. |
 | Teach and Tailor | 3 | The trust report and the mobile app were shown in menu order, not in the order of Walt's pain (`[Call, 2026-08-20]`, 12:00 to 40:00). |
 | Pain Alignment and Proof | 1 | No pain reference at all: no pain named before any workflow, and Ruth's discovery pains not referenced. No proof cited (`[Call, 2026-08-20]`). Row 1 applies. |
-| Question the Problem | 2 | No Prime Pain before any workflow, and no requirements check at a transition. The close did not ask what excited the buyer. |
-| Pain-to-Workflow Mapping | 2 | Walt's "zero wrong-plot burials" and "find the plot in seconds" pains never came up. Weak grade: inferred from what did not happen. |
+| Question The Problem | 2 | No Prime Pain before any workflow, and no requirements check at a transition. The close did not ask what excited the buyer. |
+| Pain-To-Workflow Mapping | 2 | Walt's "zero wrong-plot burials" and "find the plot in seconds" pains never came up. Weak grade: inferred from what did not happen. |
 | Prospect Engagement | 2 | Prospect talk time 34% (illustrative), 16 points under the demo band's 50% floor, so 2 on the rubric. Walt asked two questions, both about tablets (`[Call, 2026-08-20]`). |
 | Resistance Handling | 3 | Walt's tablet objection met with a reassurance and a second feature, not a question (`[Call, 2026-08-20]`, 23:40). |
 | **Total** | | **17 of 40, scored 8 of 8** |
 
 Assessment: Poor, in the 10 to 17 band of the demo scale (feature touring or monologue).
 
-**Pacing by section (Step 7):**
+**Pacing By Section (Step 7):**
 
-| Demo element | Starting default | This call (illustrative) |
+| Demo Element | Starting Default | This Call (Illustrative) |
 |---|---|---|
 | Introduction | 5% to 10% of the call | 2 of 60 minutes (3%) |
 | Problem restatement | 5% to 10% of the call | 0 of 60 minutes (0%) |
@@ -965,12 +970,12 @@ Assessment: Poor, in the 10 to 17 band of the demo scale (feature touring or mon
 | Next steps | 5% to 10% of the call | 1 of 60 minutes (2%) |
 | Off-topic and screen navigation (not an element) | None | 13 of 60 minutes (22%) |
 
-**Per-attendee blocks:**
+**Per-Attendee Blocks:**
 
-- **Attendee: Walt Okonkwo, Operations Director.** Buying role: influencer (`[CRM]`). Pain they own: paper work orders, and finding the plot in seconds (`[CRM]`, Buyer Personas). Question they asked: two questions, both about tablets, and no question about the plot lookup (`[Call, 2026-08-20]`). What they need to see: the plot found in seconds, on their own records. Engagement: active on the tablet question, silent on the lookup.
+- **Attendee: Walt Okonkwo, Operations Director.** Buying role: influencer (`[CRM]`). Pain they own: paper work orders, and finding the plot in seconds (profile: Buyer Personas). Question they asked: two questions, both about tablets, and no question about the plot lookup (`[Call, 2026-08-20]`). What they need to see: the plot found in seconds, on their own records. Engagement: active on the tablet question, silent on the lookup.
 - **Attendee: two operations staff, names `[Unknown]`.** Buying role: `[Unknown]`. Pain they own: `[Unknown]`. The transcript does not label them, so their engagement is Unknown.
 
-**Technical checklist:**
+**Technical Checklist:**
 
 1. Screen share and audio tested before the start: Unknown. Neither the notes nor the transcript show it.
 2. Every attendee's access confirmed: Unknown.
@@ -978,44 +983,44 @@ Assessment: Poor, in the 10 to 17 band of the demo scale (feature touring or mon
 4. Backup ready if the screen failed: Unknown.
 5. Attendee names matched the invitation: Partly. Walt's name matched. The two staff names are `[Unknown]`.
 
-**Return on investment:** No return-on-investment section ran. The call gave no inputs, so no formula was filled. Use your own figures, no defaults.
+**Return On Investment:** No return-on-investment section ran. The call gave no inputs, so no formula was filled. Use your own figures, no defaults.
 
 **Key Moments:**
 
 - **Objection (23:40):** Walt: "I don't believe tablets will hold up out there." `[Call, 2026-08-20]`. Type: skepticism. Response given: a reassurance, "They're rugged, you'll like them." Not captured.
-- **Missed opportunity (12:00 onward):** the paper work-order pain was never raised. The question that should have been asked: "Walk me through what a work order looks like on paper, from the counter to the crew."
-- **Competitive intelligence (31:15):** Walt said the ledger runs on Oldgate `[Call, 2026-08-20]`. Incumbent type: direct software. Renewal March 2027 (`[CRM]`).
-- **Red flag, HIGH (55:00):** No one in the room can approve the purchase. The economic buyer is the family board chair (`[CRM]`), name `[Unknown]`. Recovery: Ruth briefs Walt on the board's approval path before the next session.
+- **Missed Opportunity (12:00 Onward):** the paper work-order pain was never raised. The question that should have been asked: "Walk me through what a work order looks like on paper, from the counter to the crew."
+- **Competitive Intelligence (31:15):** Walt said the ledger runs on Oldgate `[Call, 2026-08-20]`. Incumbent type: direct software. Renewal March 2027 (`[CRM]`).
+- **Red Flag, HIGH (55:00):** No one in the room can approve the purchase. The economic buyer is the family board chair (`[CRM]`), name `[Unknown]`. Recovery: Ruth briefs Walt on the board's approval path before the next session.
 
 **Coaching Points:**
 
-1. **Telling, not asking, Strong.** At 23:40 Walt said, "I don't believe tablets will hold up out there." Owen replied, "They're rugged, you'll like them" (`[Call, 2026-08-20]`). That is the Telling Not Asking anti-pattern.
+1. **Telling, Not Asking, Strong.** At 23:40 Walt said, "I don't believe tablets will hold up out there." Owen replied, "They're rugged, you'll like them" (`[Call, 2026-08-20]`). That is the Telling Not Asking anti-pattern.
    - **Situation:** Walt's skepticism, 23:40 (`[Call, 2026-08-20]`).
-   - **Proof point:** the profile has no proof on tablet durability. Say so, and do not borrow a number.
-   - **Coaching moment:** Acknowledge ("That makes sense."), then ask, "What would need to be true about the tablets for your crew to use them?"
-2. **Open on the pain, Strong.** At 12:00 Owen opened on the trust report, then the mobile app, in menu order (`[Call, 2026-08-20]`). Walt's pain never came up. Open with the pain the discovery call named, when Ruth described the plot lookup on paper (14:20, `[Call, 2026-05-12]`): "In discovery, Ruth told us a plot lookup on paper takes too long. I'll show you that first."
-3. **Pain-to-workflow map, Weak.** Walt's "zero wrong-plot burials" and "find the plot in seconds" are not in the transcript at any point. Inferred from what did not happen, so the grade is Weak. Practice: build the map from the discovery notes before the next demo.
-4. **Question the Problem, Moderate.** The transcript shows no Prime Pain before any workflow. The first 20 minutes are summarized in the rep's notes, so the grade is Moderate.
+   - **Proof Point:** the profile has no proof on tablet durability. Say so, and do not borrow a number.
+   - **Coaching Moment:** Acknowledge ("That makes sense."), then ask, "What would need to be true about the tablets for your crew to use them?"
+2. **Open On The Pain, Strong.** At 12:00 Owen opened on the trust report, then the mobile app, in menu order (`[Call, 2026-08-20]`). Walt's pain never came up. Open with the pain the discovery call named, when Ruth described the plot lookup on paper (14:20, `[Call, 2026-05-12]`): "In discovery, Ruth told us a plot lookup on paper takes too long. I'll show you that first."
+3. **Pain-To-Workflow Map, Weak.** Walt's "zero wrong-plot burials" and "find the plot in seconds" are not in the transcript at any point. Inferred from what did not happen, so the grade is Weak. Practice: build the map from the discovery notes before the next demo.
+4. **Question The Problem, Moderate.** The transcript shows no Prime Pain before any workflow. The first 20 minutes are summarized in the rep's notes, so the grade is Moderate.
 
-**Champion status:** None on this call. Ruth Ellery was not in the room, so no shared champion test that needs the room could be met. Walt is an influencer (`[CRM]`).
+**Champion Status:** None on this call. Ruth Ellery was not in the room, so no shared champion test that needs the room could be met. Walt is an influencer (`[CRM]`).
 
 **Deal Health Impact:** The call did not answer the tablet objection, which is the one that matters to the room. The buyer with the authority is the board chair (`[CRM]`), whom this call did not reach. The next session needs the approval path, not another feature tour.
 
-**Focus Area for Next Call:** Build a pain-to-workflow map from the discovery notes and open with Walt's paper work-order pain. Practice Telling Not Asking: replace each reassurance with a question.
+**Focus Area For Next Call:** Build a pain-to-workflow map from the discovery notes and open with Walt's paper work-order pain. Practice Telling Not Asking: replace each reassurance with a question.
 
 **Next Call Game Plan:**
 - **Prep:** the pain-to-workflow map, the approval path from Ruth, and a backup plan for the screen.
 - **Questions:** "What would need to be true about the tablets for your crew to use them?" Then the Prime Pain question before each workflow.
-- **Success criteria:** Walt names the pain in his own words, and the next step has an owner and a date.
+- **Success Criteria:** Walt names the pain in his own words, and the next step has an owner and a date.
 
 ```text
 Hand-off (read by 08, 09 and 06):
 account: Brackhaven Memorial Gardens (ACTIVE, Stage 3 Demo)
 run_date: 2026-08-20 (illustrative)
 call_score: 17 of 40, scored 8 of 8
-category_scores: Meeting Opening 2, Meeting Closing 2, Teach and Tailor 3, Pain Alignment and Proof 1, Question the Problem 2, Pain-to-Workflow Mapping 2, Prospect Engagement 2, Resistance Handling 3
+category_scores: Meeting Opening 2, Meeting Closing 2, Teach and Tailor 3, Pain Alignment and Proof 1, Question The Problem 2, Pain-To-Workflow Mapping 2, Prospect Engagement 2, Resistance Handling 3
 focus_area: Build a pain-to-workflow map from the discovery notes, open with Walt's paper work-order pain, and replace reassurance with questions
-coaching_points: 1 Telling not asking, Strong (23:40). 2 Open on the pain, Strong (12:00). 3 Pain-to-workflow map, Weak (absent from the transcript). 4 Question the Problem, Moderate (summarized in notes)
+coaching_points: 1 Telling not asking, Strong (23:40). 2 Open on the pain, Strong (12:00). 3 Pain-to-workflow map, Weak (absent from the transcript). 4 Question The Problem, Moderate (summarized in notes)
 key_moments: objection (23:40), missed opportunity (12:00), competitive intelligence (31:15), red flag HIGH (55:00)
 champion_status: None on this call (Ruth Ellery not in the room)
 next_action: Owen Pruitt sends Walt Okonkwo the pain-to-workflow map for the next demo, and Ruth Ellery briefs Walt on the board's approval path. Owner: Owen Pruitt. Date: 2026-08-27 (illustrative), five business days after the run date of 2026-08-20, with no earlier date on the record
@@ -1026,32 +1031,32 @@ report_path: none (inline)
 
 ## Common Patterns
 
-**The discovery that stops at Level 2.** The rep hears the pain and moves to the solution before anyone has counted it. Score it under Priority Ladder, quote the moment, and practice the count and the time.
+**The Discovery That Stops At Level 2.** The rep hears the pain and moves to the solution before anyone has counted it. Score it under Priority Ladder, quote the moment, and practice the count and the time.
 
-**The warm contact who meets no test.** The contact is friendly and helpful and meets none of the shared champion tests. Grade the champion status by the tests, not by tone. A friendly contact is not a champion.
+**The Warm Contact Who Meets No Test.** The contact is friendly and helpful and meets none of the shared champion tests. Grade the champion status by the tests, not by tone. A friendly contact is not a champion.
 
-**The reassurance to a skeptic.** A buyer raises a doubt and the rep answers with more reassurance or another feature. Diagnose the resistance type first, then use the Three-Step Turnaround. Score it under Resistance Handling.
+**The Reassurance To A Skeptic.** A buyer raises a doubt and the rep answers with more reassurance or another feature. Diagnose the resistance type first, then use the Three-Step Turnaround. Score it under Resistance Handling.
 
-**The call that ends with "I'll send info".** No owner, no date, no attendees. Score Next Steps at 3 or below, and write the next action with its owner and date before the call ends.
+**The Call That Ends With "I'll Send Info".** No owner, no date, no attendees. Score Next Steps at 3 or below, and write the next action with its owner and date before the call ends.
 
 ---
 
 ## Troubleshooting
 
-### "No transcript available (only rep notes)"
-**Likely cause:** The call was not recorded, or no transcript was made.
+### "No Transcript Available (Only Rep Notes)"
+**Likely Cause:** The call was not recorded, or no transcript was made.
 **Solution:** Coach from notes and flag the reduced confidence: "Coaching based on rep notes only. Talk share, listening technique and exact language are Unknown. Coaching points rest on notes are graded Moderate at most."
 
-### "Prospect talk time is missing from the transcript"
-**Likely cause:** The transcript has no speaker labels, or more than two people spoke.
+### "Prospect Talk Time Is Missing From The Transcript"
+**Likely Cause:** The transcript has no speaker labels, or more than two people spoke.
 **Solution:** Do not guess a score. Ask for the labelled transcript and re-run, or score the category from the evidence that is present and say in the evidence line which part was scored.
 
-### "Rep scored well but deal isn't progressing"
-**Likely cause:** Good methodology on the call does not fix a deal with no champion or no budget path.
+### "Rep Scored Well But Deal Isn't Progressing"
+**Likely Cause:** Good methodology on the call does not fix a deal with no champion or no budget path.
 **Solution:** Good methodology execution doesn't guarantee deal progression if the fundamentals aren't there. Run `gtm-deal-pulse` to check if the deal has structural issues (no champion, no budget path) that call quality alone can't fix.
 
-### "Call was a hybrid (started as discovery, turned into demo)"
-**Likely cause:** The rep moved to the demo before the discovery pains and the Priority Ladder were complete.
+### "Call Was A Hybrid (Started As Discovery, Turned Into Demo)"
+**Likely Cause:** The rep moved to the demo before the discovery pains and the Priority Ladder were complete.
 **Solution:** Score as discovery (primary type). Note the demo elements that occurred, and flag the methodology risk: "Demoing before completing Priority Ladder reduces future negotiation leverage. Recommend completing discovery framework before next demo."
 
 ---
@@ -1065,7 +1070,7 @@ report_path: none (inline)
 - **Make coaching actionable**: include specific language the rep can practice
 - **Grade every point**: a quote with its time, or Moderate or Weak with the reason
 
-### Do not's
+### Do Not's
 - **Do not score without evidence**: "seemed good" is not a score justification
 - **Do not give generic advice**: every recommendation must tie to a specific framework
 - **Do not coach on everything at once**: pick the #1 focus area for the next call
@@ -1075,17 +1080,17 @@ report_path: none (inline)
 
 ## Integration With Other Skills
 
-**Reads from the skills before it, by field name.** A missing field is reported as missing, not rebuilt here.
+**Reads From The Skills Before It, By Field Name.** A missing field is reported as missing, not rebuilt here.
 
 - **Meeting Prep (06):** `prep_sheet`, `top_pain`, `question_bank`, `attendees` (with buying role), `proof_point`. This skill grades the call against `question_bank` and `top_pain`, and checks the proof point the rep used against `proof_point`.
 - **Deal Pulse (08):** `health_score`, `risk_level`, `pillar_scores`, `signal_scores`, `next_actions`. Read only for the before and after comparison in Deal Health Impact.
 
-**Hands to the skills after it, by field name.**
+**Hands To The Skills After It, By Field Name.**
 
-- **Deal Pulse (08), MEDDPICC Analysis (09) and Meeting Prep (06):** `call_score`, `category_scores`, `focus_area`, `coaching_points`, `key_moments`, `champion_status`. Deal Pulse re-scores its signals with `champion_status` and `key_moments`. MEDDPICC Analysis uses the coaching points as evidence for its coverage grades.
+- **Deal Pulse (08), MEDDPICC Analysis (09) And Meeting Prep (06):** `call_score`, `category_scores`, `focus_area`, `coaching_points`, `key_moments`, `champion_status`. Deal Pulse re-scores its signals with `champion_status` and `key_moments`. MEDDPICC Analysis uses the coaching points as evidence for its coverage grades.
 - **Wrap-Up (O10):** `report_path` (set only when a file was written), `next_action` (owner and date).
 
-**Related skills.** Meeting Prep before the call to plan it, then this skill after the call to score execution, then Deal Pulse to re-score the deal with what the call showed.
+**Related Skills.** Meeting Prep before the call to plan it, then this skill after the call to score execution, then Deal Pulse to re-score the deal with what the call showed.
 
 ### Chains
 
@@ -1100,6 +1105,12 @@ The Business Case & ROI Kit (a paid Guild Pro kit) reads this skill's hand-off b
 ---
 
 ## Changelog
+
+### 2.1.8 (2026-10-26)
+- Round 8 citation and status pass. Every profile citation is now written (profile: Section). The research benchmark keeps its public source tag.
+- Deal Health Impact has a status rule. ACTIVE reads the stage gate. ENGAGED applies no gate and names whether the call gave the buyer a reason to open a deal. INBOUND stays INBOUND after a call until a deal opens. Any other status applies no gate. Step 1 reads the account status so the rule has its input.
+- Step 3 points to the one definition of shares competitor intelligence in The Shared Contract instead of restating it. Under that definition, a named manual process that the CRM does not hold counts as the incumbent, so one example's champion count is rechecked on it.
+- Headings and labels are capitalized word by word. Question The Problem and Pain-To-Workflow follow the same rule.
 
 ### 2.1.7 (2026-10-26)
 - Round 7 scrub. The rules no longer carry a worked count, a quoted record phrase or a worked focus answer. Each states the general test: the focus-area tie-break names the exit criterion of the next stage, the champion test about the buyer's process names who decides, and the minute figure is written as "N of L minutes".
@@ -1150,7 +1161,7 @@ The Business Case & ROI Kit (a paid Guild Pro kit) reads this skill's hand-off b
 - Examples re-cast on PlotIQ, the library's one example company. Example arithmetic and listed errors fixed, and a non-success example added.
 
 ### 1.2.1 (2026-10-13)
-- Two framework names replaced with plain descriptions: "Question the Problem" and "Priority Ladder". The methods are unchanged.
+- Two framework names replaced with plain descriptions: "Question The Problem" and "Priority Ladder". The methods are unchanged.
 - The demo meeting open and close rewritten as a generic structure, replacing an internal framework.
 
 ### 1.2.0 (2026-09-29)
@@ -1166,4 +1177,4 @@ The Business Case & ROI Kit (a paid Guild Pro kit) reads this skill's hand-off b
 - Initial release. Merged from two coaching skills.
 - Unified via a call type parameter: discovery (6 categories, out of 30) and demo (8 categories, out of 40).
 - Generalized via the client profile with configurable defaults.
-- Added demo-specific checks: Challenger, the demo meeting open and close, Question the Problem, the Five Implementation Habits, and anti-pattern detection.
+- Added demo-specific checks: Challenger, the demo meeting open and close, Question The Problem, the Five Implementation Habits, and anti-pattern detection.

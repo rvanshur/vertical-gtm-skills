@@ -23,16 +23,17 @@ Every name, date and number in this file is invented for the PlotIQ example. Not
 - Walt works from paper, per Ruth's call [Call, 2026-05-19] (illustrative). No satisfaction rating of the incumbent is recorded.
 - Incumbent pitch and research: "Mature, deep accounting." Research weaknesses: $10,000 to $50,000 upfront, plus maintenance at 20% a year, poor mobile, and no AI [Public: Deathcare research project, competitive research note, 2026-03-27] (research estimate, over 90 days old at the run date).
 - Incumbent unsold-plot visibility: Oldgate shows sold records only, not what is left [Call, 2026-05-19] (illustrative).
-- Legacy on-premise pattern: "Maintenance is charged every year, and the grounds crew stays on paper work orders." Cases counted on the PlotIQ record: not recorded yet (profile).
+- Legacy on-premise pattern: "Maintenance is charged every year, and the grounds crew stays on paper work orders." Cases counted on the PlotIQ record: not recorded yet (profile: Competitive Patterns and Trends).
 - Stonemark was also evaluated [Call, 2026-09-26].
-- PlotIQ capabilities: Mobile field app [Public: PlotIQ profile, Product Modules]. Plot inventory digitization shows unsold plots [Public: PlotIQ profile, Product Modules]. Records and Trust Compliance module [Public: PlotIQ profile, Product Modules].
-- PlotIQ price: $899 a month per site, plus $5,000 setup once [Public: PlotIQ profile, Pricing].
-- Time to live: the incumbent at 120 to 180 days [Public: Deathcare research project, competitive research note, 2026-03-27] (research estimate, over 90 days old at the run date). PlotIQ at 6 weeks [Public: PlotIQ profile].
+- PlotIQ capabilities: Mobile field app (profile: Product Modules). Plot inventory digitization shows unsold plots (profile: Product Modules). Records and Trust Compliance module (profile: Product Modules).
+- PlotIQ price: $899 a month per site, plus $5,000 setup once (profile: Product Modules).
+- Time to live: the incumbent at 120 to 180 days [Public: Deathcare research project, competitive research note, 2026-03-27] (research estimate, over 90 days old at the run date). PlotIQ at 6 weeks (profile: Value Propositions).
 - Trust records: the incumbent's "deep accounting" is its pitch [Public: Deathcare research project, competitive research note, 2026-03-27] (research estimate, over 90 days old at the run date).
 
 ## What You Should Get
 - Incumbent: direct software, Oldgate Ledger Pro [CRM].
 - Threat level: MEDIUM. The five factors are 2, 1, 2, 1 and 2, with an average of 1.6.
+- Rival: Stonemark, evaluated [Call, 2026-09-26], with no preference on record [Unknown]. The rival record is not scored and does not change the threat level. Its full form is Example 3 in SKILL.md.
 - Gap matrix: five rows, covering mobile use, unsold-plot visibility, trust fund records, cost and time to live.
 - Win plan starts with Ruth counting the plots with no recorded sale in her own number, and confirming the exact renewal day and the trust-file scope with her. No estimate is used.
 - Next action: Owen Pruitt asks Ruth Ellery for the exact Oldgate renewal day and the trust-file export scope by 2026-10-26, five business days after the run date of 2026-10-19.
