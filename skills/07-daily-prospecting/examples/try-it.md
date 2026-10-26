@@ -3,13 +3,13 @@
 Every name, date and number in this file is invented for the PlotIQ example. Nothing here is a real company.
 
 ## Ask Your Assistant
-"Run Daily Prospecting on Nadia Brandt's morning list using skills/07-daily-prospecting/examples/try-it.md"
+"Run Daily Prospecting on Nadia Brandt's morning list using skills/07-daily-prospecting/examples/try-it.md and the PlotIQ profile at profiles/examples/plotiq-example.md"
 
 ## The Records
 
 Run date: Monday 2026-10-19 (illustrative)
 Rep: Nadia Brandt, BDR, Texas and Oklahoma
-Open tasks due today: nine (illustrative count). They are listed account by account below.
+Open tasks due today: nine (illustrative count), one for each account listed below. The opt-out under Lowmoor is an exclusion, not a task.
 
 Brackhaven Memorial Gardens
 - Status: ACTIVE, Stage 5 Negotiate [CRM]
@@ -28,7 +28,7 @@ Lowmoor Memorial Gardens
 - Closed-Loss Reactivation (05), run 2026-10-19: verdict MONITOR, reminder set for 2026-12-18 to 2027-01-17 [Notes]
 
 A former Lowmoor contact (name withheld)
-- Opted out after the loss [CRM] (illustrative). The opt-out holds for every dial to this contact
+- Opted out on 2026-02-14, after the loss [CRM] (illustrative). The opt-out holds for every dial to this contact
 
 Corrow Ridge Cemetery
 - Consolidator bought the site on 2026-07-01 [Public: state licensing database]. Profile window: 60 to 120 days
@@ -36,7 +36,9 @@ Corrow Ridge Cemetery
 - A deed recorded twice in 2025 [CRM] (illustrative), inside the 24-month test
 - Zone 1 HIGH
 - No contact on file. The task names none
-- Annual state filing and signing limit: [Unknown]
+- No touch yet [CRM] (illustrative)
+- Signing limit: the GM recommends, and the Harborline board approves above $25K. Its next meeting is 2027-01-12 [CRM] (illustrative)
+- Annual state filing: [Unknown]
 
 Sable Fork Cemetery
 - INBOUND. Demo request through the website form on Thursday 2026-10-15 [CRM]
@@ -44,6 +46,10 @@ Sable Fork Cemetery
 - Who filled in the form: [Unknown]
 - One site, 2,900 plots, plot list in a spreadsheet [CRM] (illustrative)
 - GM Arlen Biggs signs under $25K [CRM]
+- No board approval step: the GM signs alone [CRM] (illustrative)
+- Pre-need: none. The GM sells plots directly, with no counselor and no intake form [CRM] (illustrative)
+- Plot records live only in the spreadsheet. Staff use email [CRM] (illustrative)
+- Plot sales flat for three years, and no succession plan on the record [CRM] (illustrative)
 
 Quill Hollow Memorial Park
 - GM Ines Carmody moved here from Lowmoor six months ago, with an owner growth mandate [CRM]
@@ -58,6 +64,9 @@ Greyfield Memorial Park
 - One site, 9,000 plots (illustrative)
 - Pre-need team of three, with an intake form on the site [Public: company website]
 - Stonemark signing date: [Unknown]
+- Owner signs under $25K alone, with no board approval step [CRM] (illustrative)
+- The Stonemark map holds no records or trust reporting [CRM] (illustrative)
+- Wants pre-need and records together, with one growth project [CRM] (illustrative)
 - Last touch on the account record 2026-09-24, with no named contact [CRM] (illustrative)
 
 Saltmarsh Heritage Group
@@ -65,11 +74,19 @@ Saltmarsh Heritage Group
 - CFO Hector Ruiz approves budget [CRM]
 - Pre-need counselors at three funeral homes [CRM]
 - No touch yet
+- Two cemeteries keep plot records on paper binders and spreadsheets, with no digital plot system [CRM] (illustrative)
+- The same owner letter names growth: a pre-need push across the three funeral homes [Public: company site, owner letter 2026] (illustrative)
 
 Tamsin Vale Cemetery
 - 4,200 plots, paper plat maps [CRM]
 - No phone on file
 - Who signs: [Unknown]
+- Two double sales in the last 24 months, the latest on 2026-03-12 [CRM] (illustrative)
+- No touch yet [CRM] (illustrative)
+- No pre-need sales [CRM] (illustrative)
+- Approval path: the GM recommends, and the board approves above $25K. Its next meeting is 2027-02-10 [CRM] (illustrative)
+- No website found on a public search [Public: web search, 2026-10-19] (illustrative)
+- One growth project: a new plot section planned for 2027 [CRM] (illustrative)
 
 ## What You Should Get
 

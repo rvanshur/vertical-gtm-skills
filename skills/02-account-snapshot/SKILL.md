@@ -1,16 +1,19 @@
 ---
 name: gtm-account-snapshot
 description: "One-page account brief for BDRs and AEs: a zone-based verdict, persona-ranked contacts, tagged pain hypotheses, a three-step email draft and call prep, read by the rep before anything is sent."
-version: 2.1.2
+version: 2.1.3
 category: Sales-Methodology
 author: Ryan Vanshur
 license: MIT
-updated: 2026-10-25
+updated: 2026-10-26
 tags: [account-snapshot, bdr-daily-driver, outbound, prospecting, cold-call-prep, email-sequences, cheatsheet, sales-2-0]
 requires:
   skills: [gtm-account-qualification, gtm-competitive-displacement]
 mutating: read-write
 change_log:
+  - version: 2.1.3
+    date: 2026-10-26
+    summary: "Try-it evidence completed so a strict first run reproduces Example 1. The Zone rule gains the partial-match sentence, the champion label is kept as a label until the Champion Test runs, the scale and team signals are defined without bands the profile does not set, and the LOW rule covers a hypothesis with no signal. Examples 1 and 4 gain the Emails 2 and 3 and the call prep their Full Snapshot mode defines. The verdicts, zone scores and next actions do not change."
   - version: 2.1.2
     date: 2026-10-25
     summary: "Try-it evidence completed so a strict first run reproduces Example 1. Adds the owner's signing fact to the records and to Example 1, a fourth UNKNOWN zone value, the regulatory High, Medium and Minimal thresholds, and an Email 1 with no proof point because the Benchmark is not in the Proof Points table."
@@ -98,7 +101,7 @@ Every run returns its report in the chat. The file is written only when the user
 
 ## Context
 
-The skill reads these sections of the profile file. Section names below are the profile's own names.
+The skill reads these sections of the profile file, `profiles/client-profile.md`. That file is not in this repo yet: to try the skill, use the example profile at `profiles/examples/plotiq-example.md`, and to set up your own company, copy `profiles/client-profile-template.md` to `profiles/client-profile.md`. Section names below are the profile's own names.
 
 | Profile section | Used for |
 |-----------------|----------|
@@ -228,7 +231,7 @@ Pain hypotheses carry the `[Inferred]` tag, because they are educated guesses fr
 
 ### Zone Scores and the Verdict
 
-Score each of the five zones HIGH, MEDIUM or LOW from tagged facts, using the profile's Qualification Zones definitions. Score a zone UNKNOWN when the record is silent. UNKNOWN is a fourth zone value that this skill adds for a zone no source speaks to, on top of the profile's HIGH, MEDIUM and LOW. It is never a guess. UNKNOWN is not LOW, because a blank field may only mean nobody recorded it. A HIGH condition that cannot apply to the account counts as met, so an owner who signs alone, with no board approval step, meets a board condition such as "board meets within 60 days". Zones 1 and 3 are must-haves.
+Score each of the five zones HIGH, MEDIUM or LOW from tagged facts, using the profile's Qualification Zones definitions. Score a zone UNKNOWN when the record is silent. UNKNOWN is a fourth zone value that this skill adds for a zone no source speaks to, on top of the profile's HIGH, MEDIUM and LOW. It is never a guess. UNKNOWN is not LOW, because a blank field may only mean nobody recorded it. A HIGH condition that cannot apply to the account counts as met, so an owner who signs alone, with no board approval step, meets a board condition such as "board meets within 60 days". Zones 1 and 3 are must-haves. A zone that meets some but not all of a HIGH column's conditions, and no LOW condition, scores MEDIUM, as in Account Qualification (01) Step 4, and the report names the HIGH condition that fell short.
 
 Apply the Verdict Rule as written:
 
@@ -249,14 +252,14 @@ These five signals are the one-glance read a rep sees first. They do not set the
 | Primary fit signal | Yes, Partial or No, against the ICP Definitions |
 | Geographic or scale signal | Single region, or Multi-region (name the regions) |
 | Regulatory or complexity signal | High, Medium or Minimal. High when a state records or trust finding is on the record, whatever its date. Medium when a state records or trust filing applies and no finding is on the record. Minimal when no state filing applies |
-| Scale (volume) | Enterprise, Mid-Market or SMB, using the profile's own bands |
-| Team complexity signal | Dedicated team, Small team or Unknown |
+| Scale (volume) | Site and plot counts, written as numbers. The profile sets no Enterprise, Mid-Market or SMB bands, so no band word is used until it does |
+| Team complexity signal | Dedicated team (three or more named people run the account's functions), Small team (one or two named) or Unknown (none named) |
 
 ### Confidence in Pain Hypotheses
 
 - **HIGH:** the hypothesis matches the profile on three or more signals, such as size, vertical, footprint and CRM history.
 - **MEDIUM:** it matches on one or two signals. It is plausible and needs validation.
-- **LOW:** it is generic and could describe any company in the industry. Rewrite it to be specific, or flag it as weak.
+- **LOW:** it is generic and could describe any company in the industry. Rewrite it to be specific, or flag it as weak. A hypothesis with no signal and no record data is LOW, because it fits neither HIGH nor MEDIUM.
 
 ### Region Map
 
@@ -319,7 +322,7 @@ Build the company brief, the quick-score signals, the zone scores with the verdi
 
 Map the known CRM contacts to the profile's Buyer Personas. For each persona, record the name or Unknown, the title, the engagement level, the last activity and a priority from 1 to 5.
 
-Rank the contacts by four rules, in order: known contacts with engagement history come before cold ones, persona relevance to the likely pain comes next, recent activity counts above old activity, and prior deal context breaks ties. Recommend the top two or three personas to target first, with the reason for each. Name the personas with no contact on file as gaps.
+Rank the contacts by four rules, in order: known contacts with engagement history come before cold ones, persona relevance to the likely pain comes next, recent activity counts above old activity, and prior deal context breaks ties. A champion label in the CRM is recorded as a label, tagged `[CRM]`. The Champion Test in the shared contract decides whether a contact is a champion, and a snapshot does not call a contact Strong on the label alone. Recommend the top two or three personas to target first, with the reason for each. Name the personas with no contact on file as gaps.
 
 **Produces:** `contact_priority`, a ranked list of contacts with persona and buying role, and the persona gaps.
 
@@ -471,7 +474,7 @@ These examples use the PlotIQ example cast, and every fact is tagged as the tag 
 
 Company brief: Quill Hollow Memorial Park. Independent cemetery `[CRM]`. One site, 8,800 plots `[CRM]`. Ownership `[Unknown]`. CRM status TARGET. No active deal.
 
-Quick-score signals: primary fit Yes, 8,800 plots on paper, above the ICP1 Strong line `[CRM]`. Single region `[CRM]`. Regulatory complexity High, because of the records finding `[CRM]`. Scale mid-size, one site `[CRM]`. Team complexity: a dedicated GM and owner `[CRM]`.
+Quick-score signals: primary fit Yes, 8,800 plots on paper, above the ICP1 Strong line `[CRM]`. Single region `[CRM]`. Regulatory complexity High, because of the records finding `[CRM]`. Scale one site, 8,800 plots `[CRM]`. Team complexity: Small team, one named contact (the GM) `[CRM]`, and the owner has no name `[Unknown]`.
 
 Zone scores (illustrative), with the verdict:
 
@@ -489,7 +492,7 @@ Region map: no tier, because the state is not recorded `[Unknown]`.
 
 | Persona | Name | Engagement | Last Activity | Priority |
 |---------|------|-----------|---------------|----------|
-| General Manager, champion | Ines Carmody | Warm, champion at her last site `[CRM]` | Two weeks ago (illustrative) | 1 |
+| General Manager, champion | Ines Carmody | Warm, labelled champion at her last site `[CRM]`. Champion Test not yet run | 2026-09-29 `[CRM]` (illustrative) | 1 |
 | Owner, signs under $25K | Unknown, no contact found `[Unknown]` | n/a | n/a | 2 |
 | Pre-need manager | Unknown `[Unknown]` | n/a | n/a | 3 |
 
@@ -513,11 +516,50 @@ Quill Hollow's last state review turned up a records finding, and the plot maps 
 
 Worth 15 minutes to walk through how your plot maps and your sold records line up?
 
-The email names no proof point. The research figure for this pain (50 to 100 plots) is a pain Benchmark in the profile, not a row in its Proof Points table, and every PlotIQ result is Illustrative, so Hard Rule 1 leaves the email with none. Emails 2 and 3 for this persona follow the same rules, each with a different pain and at most one proof point, and are omitted from this page only.
+Email 2
 
-**Step 6: Call prep omitted for length.**
+Subject: The records finding and the plot map
 
-**Step 7: Summary.** BDR. Quill Hollow Memorial Park, TARGET, GREENLIGHT, with Zones 3 and 5 HIGH. One contact on file, Ines Carmody, first. Owner and pre-need contacts unknown. One persona, three emails, two omitted. Next action: Nadia Brandt sends Email 1 to Ines Carmody by 2026-10-21. Unknown facts to resolve on the call: the records finding date, the owner's name, the state.
+Ines,
+
+Quill Hollow's plot maps are still on paper `[CRM]`. When the state asks for a sold plot after a records finding, how long does your team take to show the record?
+
+Would 15 minutes next week be worth it to see whether your sold records and your plot maps line up?
+
+Email 3
+
+Subject: Should I close the file?
+
+Ines,
+
+I have not heard back, so I will assume plot records are not a priority this quarter, and I will stop the emails after this one.
+
+If a state review asked for a plot record again, who on your team would pull it?
+
+The emails name no proof point. The research figure for this pain (50 to 100 plots) is a pain Benchmark in the profile, not a row in its Proof Points table, and every PlotIQ result is Illustrative, so Hard Rule 1 leaves all three emails with none.
+
+**Step 6: Call Prep.**
+
+Call goal: book a 15-minute discovery call for the AE, with the records finding as the reason. The next step is a discovery call, not a demo, until the pain is confirmed.
+
+Opener: "Hi Ines, this is Nadia Brandt from PlotIQ. I'm calling because Quill Hollow's last state review turned up a records finding, and the plot maps are still on paper. Do you have 30 seconds?"
+
+Talk track:
+- Pain validation: "How do you check today which plots are open?"
+- Impact: "What did the finding ask you to fix, and how long did the fix take?"
+- Product bridge: "PlotIQ keeps plot and trust records in a form a state auditor can accept."
+- Ask: "Would 15 minutes with our account executive be worth it?"
+
+Voicemail: "Hi Ines, this is Nadia Brandt at PlotIQ, about the records finding in Quill Hollow's last state review. I'll send a quick email with details."
+
+| Objection | Rebuttal |
+|-----------|----------|
+| "We already have a solution" | "Good, that means you understand the value. What's working well, and what would you improve?" |
+| "Not interested" | "Fair enough. How is your team handling open plots today?" |
+| "Send me an email" | "Happy to. Would the ROI overview or the capability overview be more useful?" |
+| "No budget" | "That makes sense. If I could show you how a similar operator solved the records finding, would 15 minutes be worth it?" |
+
+**Step 7: Summary.** BDR. Quill Hollow Memorial Park, TARGET, GREENLIGHT, with Zones 3 and 5 HIGH. One contact on file, Ines Carmody, first. Owner and pre-need contacts unknown. One persona, three emails. Next action: Nadia Brandt sends Email 1 to Ines Carmody by 2026-10-21. Unknown facts to resolve on the call: the records finding date, the owner's name, the state.
 
 ```text
 Hand-off (read by 06):
@@ -528,7 +570,7 @@ verdict: GREENLIGHT
 zone_scores: 1 MEDIUM, 2 UNKNOWN, 3 HIGH, 4 UNKNOWN, 5 HIGH (illustrative)
 contact_priority: 1 Ines Carmody (General Manager, champion), 2 Owner, name Unknown (signs under $25K), 3 Pre-need manager, name Unknown
 pain_hypotheses: 1 Plot visibility (HIGH, CRM and Inferred), 2 Records after a state finding (MEDIUM, CRM, date Unknown), 3 Pre-need follow-up (LOW, Unknown)
-sequence: three emails to Ines Carmody, Emails 2 and 3 omitted for length
+sequence: three emails to Ines Carmody, with call prep
 report_path: none (inline)
 next_action: Nadia Brandt sends Email 1 to Ines Carmody by 2026-10-21
 ```
@@ -547,7 +589,7 @@ next_action: Nadia Brandt sends Email 1 to Ines Carmody by 2026-10-21
 
 **Step 2: Account Snapshot.** Status INBOUND.
 
-Quick-score signals: primary fit Yes, 2,900 plots, above the ICP1 Strong line `[CRM]`. Single site `[CRM]`. Regulatory complexity Unknown, because nobody has asked about a state finding `[Unknown]`. Scale mid-size `[CRM]`. Team complexity Unknown, because no records owner is named `[Unknown]`.
+Quick-score signals: primary fit Yes, 2,900 plots, above the ICP1 Strong line `[CRM]`. Single site `[CRM]`. Regulatory complexity Unknown, because nobody has asked about a state finding `[Unknown]`. Scale one site, 2,900 plots `[CRM]`. Team complexity Small team, one named contact (the GM) `[CRM]`, and no records owner named `[Unknown]`.
 
 Zone scores (illustrative): Zone 1 MEDIUM (plot list in a spreadsheet `[CRM]`). Zone 2 LOW (illustrative). Zone 3 HIGH (the GM signs under $25K `[CRM]`). Zone 4 MEDIUM (illustrative). Zone 5 LOW (illustrative).
 
@@ -609,7 +651,7 @@ next_action: The AE books a discovery call with Arlen Biggs by 2026-10-22
 | Lowmoor Memorial Gardens | LOST, re-scored MANUAL REVIEW | Re-scored on fit, zone detail in Closed-Loss Reactivation (05) | 7,500 | Closed-lost to Oldgate on "timing" `[CRM]` | Route to Closed-Loss Reactivation (05). Do not sequence from this table | 4 |
 | Northvale Memorial Holdings | OUT, DISQUALIFY | A disqualifier applies, so zones are not scored | Not applicable | Runs its own in-house system `[Public: annual filing]` | Do not prospect | 5 |
 
-**Recommendation.** Write the snapshot sequences for Corrow Ridge and Greyfield now. Trigger Event Outbound (04) and Competitive Displacement (12) write the sharper sequences for those two from their own inputs, so use these as the first drafts. Hold Tamsin Vale until the person who signs is known. Send Lowmoor to Closed-Loss Reactivation (05), because it is a closed-lost account and not a cold prospect. Drop Northvale from the queue.
+**Recommendation.** Corrow Ridge and Greyfield are the two accounts that get a full snapshot sequence, one persona each, in the batch run. This block shows their rows and hand-off, not their emails. Trigger Event Outbound (04) and Competitive Displacement (12) write the sharper sequences for those two from their own inputs, so the snapshot drafts are first drafts. Hold Tamsin Vale until the person who signs is known. Send Lowmoor to Closed-Loss Reactivation (05), because it is a closed-lost account and not a cold prospect. Drop Northvale from the queue.
 
 ```text
 Hand-off (read by 06):
@@ -640,7 +682,7 @@ next_action: BDR sends the Corrow Ridge Email 1 by 2026-10-21
 
 Company brief: Brackhaven Memorial Gardens. Combination, two sites `[CRM]`. 11,000 plots `[CRM]`. Paper plot maps `[CRM]`. Family-owned, with a family board `[Notes]` (illustrative). CRM status TARGET. No active deal.
 
-Quick-score signals: primary fit Yes, a combination with 11,000 plots `[CRM]`. Two sites `[CRM]`. Regulatory complexity Medium `[Notes]` (illustrative). Scale enterprise for the segment `[CRM]`. Team: a GM and an operations director `[CRM]`.
+Quick-score signals: primary fit Yes, a combination with 11,000 plots `[CRM]`. Two sites `[CRM]`. Regulatory complexity Medium `[Notes]` (illustrative). Scale two sites, 11,000 plots `[CRM]`. Team complexity Dedicated team, three named contacts `[CRM]`.
 
 Zone scores (illustrative), with the verdict:
 
@@ -681,9 +723,48 @@ Brackhaven runs two sites, and the plot maps at both are still on paper. How do 
 
 Most cemeteries your size carry 50 to 100 plots that are sold on paper but open on the map (Benchmark, deathcare research, paper-operations note, 2026-04-01). Worth 15 minutes to see whether your two sites show the same gap?
 
-Emails 2 and 3 are omitted for length. The email names no customer result, because the profile's Brackhaven result is Illustrative and not yet signed.
+Email 2
 
-**Step 6 and Step 7: omitted for length.** The summary states the verdict, the two HIGH zones, the three contacts, and the next action: Owen Pruitt books the first discovery call with Ruth Ellery. The board chair is the open question for that call.
+Subject: The Oldgate renewal and two plot lists
+
+Ruth,
+
+Brackhaven's Oldgate license renews in March 2027 `[CRM]`. When a renewal comes up, which date do you plan around: the renewal itself, or the first board meeting after it?
+
+Would a 15-minute call before March help you compare the two plot lists?
+
+Email 3
+
+Subject: Should I close the file?
+
+Ruth,
+
+I have not heard back, so I will stop the emails after this one. If the two plot lists were ever checked against each other, who at Brackhaven would do it?
+
+The emails name no customer result, because the profile's Brackhaven result is Illustrative and not yet signed.
+
+**Step 6: Call Prep.**
+
+Call goal: book a 15-minute discovery call for the AE, Owen Pruitt, with Ruth Ellery. The next step is a discovery call, not a demo, until the two-site pain is confirmed.
+
+Opener: "Hi Ruth, this is Nadia Brandt from PlotIQ. I'm calling because Brackhaven runs two sites, and the plot maps at both are still on paper. Do you have 30 seconds?"
+
+Talk track:
+- Pain validation: "Which site's plot list do your staff check first?"
+- Impact: "How do you find a plot that is sold on one map and open on the other?"
+- Competitive question: "What happens at the Oldgate renewal, and who decides?"
+- Ask: "Would 15 minutes with Owen Pruitt be worth it?"
+
+Voicemail: "Hi Ruth, this is Nadia Brandt at PlotIQ, about the two plot maps at Brackhaven. I'll send a quick email with details."
+
+| Objection | Rebuttal |
+|-----------|----------|
+| "We already have a solution" | "Good, that means you understand the value. What's working well, and what would you improve?" |
+| "Not interested" | "Fair enough. How is your team handling open plots today?" |
+| "No budget" | "That makes sense. If I could show you how a similar operator solved the two-list problem, would 15 minutes be worth it?" |
+| "Send me an email" | "Happy to. Would the ROI overview or the capability overview be more useful?" |
+
+**Step 7: Summary.** The summary states the verdict, the two HIGH zones, the three contacts, and the next action: Owen Pruitt books the first discovery call with Ruth Ellery. The board chair is the open question for that call.
 
 ```text
 Hand-off (read by 06):
@@ -694,7 +775,7 @@ verdict: GREENLIGHT
 zone_scores: 1 HIGH, 2 MEDIUM, 3 MEDIUM, 4 MEDIUM, 5 HIGH (illustrative)
 contact_priority: 1 Ruth Ellery (General Manager, buyer), 2 Walt Okonkwo (Operations Director, influencer), 3 Priscilla Dunmore (pre-need manager, end user)
 pain_hypotheses: 1 Plot records on paper across two sites (HIGH, CRM and Inferred), 2 The Oldgate renewal in March 2027 (MEDIUM, CRM and Inferred)
-sequence: three emails to Ruth Ellery, Emails 2 and 3 omitted for length
+sequence: three emails to Ruth Ellery, with call prep
 report_path: none (inline)
 next_action: Owen Pruitt books the first discovery call with Ruth Ellery (date set on the call)
 ```
@@ -799,6 +880,14 @@ The Business Case & ROI Kit (a paid Guild Pro kit) reads this skill's hand-off b
 
 ## Changelog
 
+
+### 2.1.3 (2026-10-26)
+- Try-it evidence completed so a strict first run reproduces Example 1. Adds the last logged contact with the champion (2026-09-29, matching skill 07's record) to the records, so the ranking reason is evidenced.
+- Zone Scores gains the partial-match sentence, with a pointer to Account Qualification (01) Step 4. The Zone 3 sentence is unchanged.
+- Confidence gains one sentence: a hypothesis with no signal and no record data is LOW.
+- Contact Mapping gains one sentence: a CRM champion label is recorded as a label until the shared Champion Test runs.
+- Scale and Team signals are defined from counts, with no Enterprise, Mid-Market or SMB bands and no team label that the rule does not support. The examples' scale and team words change to match. No verdict, zone score or next action changes.
+- Examples 1 and 4 gain Emails 2 and 3 and a call prep, the parts the default Full Snapshot mode defines. Example 3 says which accounts get full sequences and that the block shows their rows only.
 
 ### 2.1.2 (2026-10-25)
 - Try-it evidence completed so a strict first run reproduces Example 1.

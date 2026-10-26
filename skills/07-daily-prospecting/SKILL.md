@@ -1,16 +1,19 @@
 ---
 name: gtm-daily-prospecting
-version: 2.1.2
+version: 2.1.3
 description: "Builds the morning dial sheet for a BDR or AE: ranks accounts into Hot, Warm, New and Recycle tiers, removes accounts the BDR guard blocks, and writes a pre-call brief for the top eight, read by the rep at the phone and by the meeting prep skill."
 category: Sales-Methodology
 author: Ryan Vanshur
 license: MIT
-updated: 2026-10-25
+updated: 2026-10-26
 tags: [daily-prospecting, dial-prep, bdr-prep, morning-report, call-prep, outbound-report, prospecting-brief]
 requires:
   skills: [gtm-meeting-prep]
 mutating: read-write
 change_log:
+  - version: 2.1.3
+    date: 2026-10-26
+    summary: "Try-it evidence completed so a strict first run reproduces Example 1. Adds the record facts behind the Greyfield, Sable Fork, Tamsin Vale, Saltmarsh and Corrow Ridge zones, the touch and opt-out dates, and the trigger-window count. Two openers that rested on unsourced claims now use the profile's own lines. Points the try-it ask at the example profile. Verdicts, tiers and next actions unchanged."
   - version: 2.1.2
     date: 2026-10-25
     summary: "Try-it evidence completed so a strict first run reproduces Example 1. Adds the half-of-tests rule for a Fit Grid row, the rule that a role-table Hot never overrides the profile's Hot definition, and the UNKNOWN zone rule. Names the Hot disagreement on Quill Hollow in its brief."
@@ -101,7 +104,7 @@ To try the skill without your own data, use `examples/try-it.md`, which holds th
 
 **This skill does not contain company-specific information. It points to it.**
 
-> **Load the profile from [`profiles/client-profile.md`](../../profiles/client-profile.md) before starting.** That single file is shared by all 14 skills in this suite. Update it once and every skill inherits the change on its next run.
+> **Load the profile from [`profiles/client-profile.md`](../../profiles/client-profile.md) before starting.** That single file is shared by all 14 skills in this suite. Update it once and every skill inherits the change on its next run. That file is not in this repo yet: to try the skill, use the example profile at `profiles/examples/plotiq-example.md`, and to set up your own company, copy `profiles/client-profile-template.md` to `profiles/client-profile.md`.
 
 Throughout this skill, `{Profile: X}` means "section X of `profiles/client-profile.md`". Sections this skill reads:
 
@@ -413,7 +416,7 @@ Write a brief for each account in the top eight of the prioritized list. A Recyc
 
 #### A. Why This Account (one to two sentences)
 
-Name the zone scores and the verdict, and the one observed fact that puts the account in its tier. For a trigger, state its window, the days remaining and how the count was made. For an undated finding, say "undated" in the brief and do not call it recent.
+Name the zone scores and the verdict, and the one observed fact that puts the account in its tier. For a trigger, state its window, the days remaining and how the count was made. A window counts from the dated event: it opens at the lower bound and closes at the upper bound, and the days remaining run from the run date to the close. For an undated finding, say "undated" in the brief and do not call it recent.
 
 #### B. Personalized Conversation Opener
 
@@ -552,12 +555,12 @@ The report is returned inline. A Markdown file is written only when the user ask
 
 Seven accounts remain. Each is scored against the Fit Grid row for its ICP and the five Qualification Zones:
 
-- **Corrow Ridge Cemetery.** Consolidator bought the site on 2026-07-01 (`[Public: state licensing database]`). The window is 60 to 120 days from the profile, open 2026-08-30 to 2026-10-29, so 10 days remain (`[Inferred]`, from 2026-10-29 minus 2026-10-19). Zone 1 HIGH, on the paper plat maps and a deed recorded twice in 2025 (`[CRM]`, illustrative), which falls inside the 24-month test. Hot. Fit Grid ICP1 Strong row, 2 of 4 tests met (14,000 plots, paper plat maps). The annual state filing and the signing limit are `[Unknown]` and are not counted against it.
-- **Sable Fork Cemetery.** INBOUND. Demo request through the website form on Thursday 2026-10-15 (`[CRM]`), four days old. Hot. The profile's Hot definition is "an INBOUND request not yet answered and within 3 business days of arriving." Thursday 2026-10-15 to Monday 2026-10-19 is two business days, so the request meets the definition (`[Inferred]`). No reply from PlotIQ is logged (`[CRM]`), so the request is not yet answered. MANUAL REVIEW.
+- **Corrow Ridge Cemetery.** Consolidator bought the site on 2026-07-01 (`[Public: state licensing database]`). The window is 60 to 120 days from the profile, open 2026-08-30 to 2026-10-29, so 10 days remain (`[Inferred]`, from 2026-10-29 minus 2026-10-19). Zone 1 HIGH, on the paper plat maps and a deed recorded twice in 2025 (`[CRM]`, illustrative), which falls inside the 24-month test. Hot. Fit Grid ICP1 Strong row, 2 of 4 tests met (14,000 plots, paper plat maps). The signing limit is on the record now: the GM recommends, and the Harborline board approves above $25K, with its next meeting on 2027-01-12 (`[CRM]`, illustrative). That scores Zone 3 MEDIUM. The annual state filing stays `[Unknown]`.
+- **Sable Fork Cemetery.** INBOUND. Demo request through the website form on Thursday 2026-10-15 (`[CRM]`), four days old. Hot. The profile's Hot definition is "an INBOUND request not yet answered and within 3 business days of arriving." Thursday 2026-10-15 to Monday 2026-10-19 is two business days, so the request meets the definition (`[Inferred]`). No reply from PlotIQ is logged (`[CRM]`), so the request is not yet answered. MANUAL REVIEW, with Zone 3 HIGH, because the GM signs alone under $25K with no board approval step (`[CRM]`, illustrative).
 - **Quill Hollow Memorial Park.** GM Ines Carmody moved here from Lowmoor six months ago with an owner growth mandate (`[CRM]`). Last touch 2026-09-29, 20 days ago, now quiet (`[CRM]`, illustrative). Warm. The records finding in the last state review is `[CRM]` with its date `[Unknown]`. Zone 1 is therefore MEDIUM, because the finding's 24-month test cannot be confirmed. Zone 3 is HIGH because the owner signs under $25K alone, with no board approval step (`[CRM]`, illustrative). GREENLIGHT stands on Zones 3 and 5. The GM change is dated 2026-04-25 (`[Public: state licensing database]`, illustrative), and the Hot conflict it raises is named in its brief.
-- **Greyfield Memorial Park.** Digital map from Stonemark, a direct software incumbent (`[CRM]`). Pre-need team of three with an intake form on the site (`[Public: company website]`). Fit Grid ICP1 Moderate: 1 of 4 Strong tests met (9,000 plots). The paper-records test is not met, and the Weak row is not applied because the Stonemark signing date is `[Unknown]`. Last touch on the account record 2026-09-24 with no named contact (`[CRM]`, illustrative). Warm. GREENLIGHT with Zones 2 and 3 HIGH.
-- **Saltmarsh Heritage Group.** Owner letter on the company site says all five sites move to one system in 2027 (`[Public: company site, owner letter 2026]`). CFO Hector Ruiz approves budget (`[CRM]`). MANUAL REVIEW because Zone 3 is a must-have at LOW. New.
-- **Tamsin Vale Cemetery.** 4,200 plots and paper plat maps (`[CRM]`). No phone on file. Who signs is `[Unknown]`. MANUAL REVIEW, Zone 1 HIGH only. New.
+- **Greyfield Memorial Park.** Digital map from Stonemark, a direct software incumbent (`[CRM]`). Pre-need team of three with an intake form on the site (`[Public: company website]`). Fit Grid ICP1 Moderate: 1 of 4 Strong tests met (9,000 plots). The paper-records test is not met, and the Weak row is not applied because the Stonemark signing date is `[Unknown]`. Last touch on the account record 2026-09-24 with no named contact (`[CRM]`, illustrative). Warm. GREENLIGHT with Zones 2 and 3 HIGH. Zone 3 is HIGH because the owner signs under $25K alone, with no board approval step (`[CRM]`, illustrative). Zone 5 is MEDIUM, one growth project, and Zone 1 is MEDIUM because the Stonemark map holds no records or trust reporting (`[CRM]`, illustrative).
+- **Saltmarsh Heritage Group.** Owner letter on the company site says all five sites move to one system in 2027 (`[Public: company site, owner letter 2026]`). CFO Hector Ruiz approves budget (`[CRM]`). MANUAL REVIEW because Zone 3 is a must-have at LOW. Zone 5 is HIGH, because the owner letter names a pre-need push, and Zones 1 and 4 are MEDIUM, because the plot records are on paper binders and spreadsheets (`[CRM]`, illustrative). New.
+- **Tamsin Vale Cemetery.** 4,200 plots and paper plat maps (`[CRM]`). No phone on file. Who signs is `[Unknown]`. MANUAL REVIEW, Zone 1 HIGH only, because the paper plat maps meet two double sales in the last 24 months (`[CRM]`, illustrative). New.
 - **Lowmoor Memorial Gardens.** Closed-lost to Oldgate on 2026-01-20, nine months ago, with the reason logged as "timing" (`[CRM]`). The champion, Ines Carmody, has moved to Quill Hollow. MANUAL REVIEW on re-score. Recycle, on hold.
 
 The Warm tier holds two accounts. Two cases are not a pattern, so the report states the two accounts and claims nothing about the tier as a whole.
@@ -578,11 +581,11 @@ Dashboard: 7 accounts on the sheet, 6 to dial and 1 on hold. Tiers: 2 Hot, 2 War
 | 6 | New | Tamsin Vale Cemetery | No name, no phone on file | MANUAL REVIEW. Zones 1 HIGH, 2 LOW, 3 MEDIUM, 4 LOW, 5 MEDIUM | Find who signs, and find a phone number. The first action is a contact search |
 | 7 | Recycle (hold) | Lowmoor Memorial Gardens | Unknown, champion moved | MANUAL REVIEW. Zones as re-scored in Closed-Loss Reactivation (05), not restated here | Do not dial. Closed-Loss Reactivation holds it on MONITOR |
 
-Zone scores for Corrow Ridge zone 3 is `(illustrative)`, and Corrow Ridge and Quill Hollow zones 2 and 4 are UNKNOWN, as Account Qualification and Account Snapshot score them. The chain file gives only the zones named in it. Greyfield zones 1, 4 and 5 are `(illustrative)` for the same reason, and its zones 2 and 3 come from the cast.
+Every zone score in the table rests on a fact in the try-it records, as the zone rule requires. A zone with no such fact is UNKNOWN, and the scores that stay UNKNOWN are the evidence still to gather.
 
 **Brief for #1 (Corrow Ridge Cemetery):**
 - **Why this account:** The site was bought by Harborline Funeral Partners, a 14-site regional consolidator, on 2026-07-01 (`[Public: state licensing database]`). The window is 60 to 120 days, so it is open until 2026-10-29, with 10 days remaining (`[Inferred]`). Zone 1 HIGH (14,000 plots on paper plat maps, `[CRM]`, and a deed recorded twice in 2025, `[CRM]` (illustrative), inside the 24-month test). Zone 5 HIGH (a new owner inside 24 months). Whether Harborline runs its own system is `[Unknown]`, and it is the first question.
-- **Opener:** "Hi, it's Nadia Brandt with PlotIQ. Teams going through acquisitions typically find their plot records break when they try to standardize. Not sure if that's hit your team yet?" The persona who acts is the acquirer's CFO or controller, with the site GM. No contact is on file, so the first call is to find the GM.
+- **Opener:** "Hi, it's Nadia Brandt with PlotIQ. Before the integration review, it helps to know what the plot map is worth. Not sure if that's hit your team yet?" The persona who acts is the acquirer's CFO or controller, with the site GM. No contact is on file, so the first call is to find the GM.
 - **Discovery questions:** (1) "Does Harborline run its own plot system, or will this site move onto theirs?" (2) "When a family asks about a plot, where do you look first, and how long does it take?" (3) "Walk me through last year's trust filing. Who pulled the numbers, and from where?"
 - **Objection prep:** "We already have a provider." Response: "That's good to hear. What's working well, and where are the gaps?"
 - **Call goal:** Learn whether Harborline runs its own plot system, then book discovery with the site GM before the Q1 2027 integration review.
@@ -604,7 +607,7 @@ Zone scores for Corrow Ridge zone 3 is `(illustrative)`, and Corrow Ridge and Qu
 
 **Brief for #4 (Greyfield Memorial Park):**
 - **Why this account:** A digital map from Stonemark, a direct software incumbent, and a pre-need team of three with a website intake form (`[CRM]`, `[Public: company website]`). Moderate: 1 of 4 Strong tests met. The Stonemark signing date is `[Unknown]`. Zones 2 and 3 HIGH. Warm: the account record shows a touch on 2026-09-24, 25 days ago, with no named contact (`[CRM]`, illustrative).
-- **Opener:** "Hi, it's Nadia Brandt with PlotIQ. Other cemetery general managers tell us plot records are one of those things that works fine until it doesn't. Curious if you've ever had a close call? Walk me through who calls back a lead from your intake form."
+- **Opener:** "Hi, it's Nadia Brandt with PlotIQ. Your website has a pre-need intake form, and I wanted to ask who calls back the leads it sends."
 - **Discovery questions:** (1) "When a pre-need lead comes in from the website, who calls them back, and when?" (2) "Where does the plot map live today, and when was it last updated?" (3) "What happened the last time you brought a new tool in here?"
 - **Objection prep:** "We already have a provider." Response: "That's good to hear. What's working well, and where are the gaps?"
 - **Call goal:** Find the owner of pre-need intake, and ask how website leads are called back. The Stonemark renewal is not raised on this dial, because Competitive Displacement (12) holds that case.
@@ -634,7 +637,7 @@ Zone scores for Corrow Ridge zone 3 is `(illustrative)`, and Corrow Ridge and Qu
 |---|---|---|
 | Brackhaven Memorial Gardens | BDR guard. ACTIVE, Stage 5 Negotiate, AE Owen Pruitt. No yes from Owen on file (`[CRM]`) | Share today's intel with Owen Pruitt. Ask whether he wants BDR assist |
 | Northvale Memorial Holdings | OUT. Public consolidator running its own in-house system (`[Public: annual filing]`). DISQUALIFY | Remove from the sheet. No dial, no sequence. OUT is not LOST, so it is not a reactivation |
-| Former contact at Lowmoor Memorial Gardens, name withheld | Opted out after the loss (`[CRM]`, illustrative). The opt-out holds for every future dial to this contact | Keep the contact off every sheet. Record the opt-out in the CRM |
+| Former contact at Lowmoor Memorial Gardens, name withheld | Opted out on 2026-02-14, after the loss (`[CRM]`, illustrative). The opt-out holds for every future dial to this contact | Keep the contact off every sheet. Record the opt-out in the CRM |
 
 **AE Coordination (BDR only):** Brackhaven needs a sync with Owen Pruitt before anyone calls Ruth Ellery again. The board meets 2026-11-12, and Owen owns the next step.
 
@@ -780,6 +783,9 @@ report_path: none (inline)
 
 ## Changelog
 
+
+### 2.1.3 (2026-10-26)
+- Try-it evidence completed so a strict first run reproduces Example 1. The try-it records now carry the facts behind each worked zone, the Lowmoor opt-out date and the net-new touches. A trigger window counts from its dated event. The Corrow Ridge and Greyfield openers use the profile's own lines, not unsourced "teams tell us" claims. The try-it ask names the example profile. No tier, verdict or next action changed.
 
 ### 2.1.2 (2026-10-25)
 - Try-it evidence completed so a strict first run reproduces Example 1. A Fit Grid row now carries its grade at half its tests met, a zone with no fact shows UNKNOWN, and a role-table Hot never overrides the profile's Hot definition. Example 1 gains the dated records that its grades and tiers rest on. No tier, grade, verdict or next action changes.

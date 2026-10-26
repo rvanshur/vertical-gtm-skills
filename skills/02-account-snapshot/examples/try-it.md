@@ -3,7 +3,7 @@
 Every name, date and number in this file is invented for the PlotIQ example. Nothing here is a real company.
 
 ## Ask Your Assistant
-"Run Account Snapshot Outbound on Quill Hollow Memorial Park using skills/02-account-snapshot/examples/try-it.md. Treat today as 2026-10-19."
+"Run Account Snapshot Outbound on Quill Hollow Memorial Park using skills/02-account-snapshot/examples/try-it.md and the PlotIQ profile at profiles/examples/plotiq-example.md. Treat today as 2026-10-19."
 
 ## The Records
 
@@ -26,6 +26,7 @@ Company
 People
 - Ines Carmody, General Manager, champion. She moved to Quill Hollow from Lowmoor Memorial Gardens six months ago (illustrative)
 - Ines Carmody is the only contact on file [CRM]
+- Engagement: two logged replies from Ines Carmody to earlier emails, the last on 2026-09-29 [CRM] (illustrative)
 - Pre-need activity: [Unknown]
 
 ## What You Should Get

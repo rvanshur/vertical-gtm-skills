@@ -2,8 +2,10 @@
 
 Every name, date and number in this file is invented for the PlotIQ example. Nothing here is a real company.
 
+These records are as of 2026-05-12, before Brackhaven's deal reached Stage 5 Negotiate; the profile's Example Cast shows where the account stands later.
+
 ## Ask Your Assistant
-"Run Call Coaching on Brackhaven Memorial Gardens using skills/13-call-coaching/examples/try-it.md" Treat today as 2026-05-12.
+"Run Call Coaching on Brackhaven Memorial Gardens using skills/13-call-coaching/examples/try-it.md and the PlotIQ profile at profiles/examples/plotiq-example.md" Treat today as 2026-05-12.
 
 ## The Records
 - Account: Brackhaven Memorial Gardens is ACTIVE at Stage 2 Discovery [CRM]. It is a combination of two sites with 11,000 plots and paper plot maps [CRM] (illustrative).
@@ -15,10 +17,14 @@ Every name, date and number in this file is invented for the PlotIQ example. Not
 - Source: a speaker-labelled transcript. Every excerpt below is verbatim, with its transcript time.
 - Rep talk time: 36% (illustrative) [Call].
 - 00:40, Owen: "Ruth, Walt, thanks for the time." [Call]
+- 00:50, Owen: "Today I'd like to agree the agenda: the lookups, the trust report, and what a good second session would look like." [Call]
+- 01:10, Owen: "Ruth, as general manager you sign off the trust report, right? Walt, as operations director you run the crews?" [Call]
 - 02:10, Owen: "When a family asks for a plot, where do you look first, and how long does that take?" [Call]
 - 09:15, Ruth: "We have files that date back to the 1970s." Owen asked: "How far back do they go?" [Call]
 - 14:20, Owen asked: "What happens when a plot sells twice?" [Call]
 - 14:20, Ruth: "We sold section F twice last spring." [Call]
+- 16:40, Owen: "So the files go back to the 1970s, and they are all paper?" [Call]
+- 16:55, Owen: "What have you tried for the lookups so far?" [Call]
 - 17:05, Ruth: "We started moving plots into Oldgate and stopped." Owen asked why it stopped. Cost was not asked. [Call]
 - 19:05, Owen: "So that's a problem for the trust report too?" [Call]
 - 21:30, Ruth described the lookups. Owen moved on. [Call]

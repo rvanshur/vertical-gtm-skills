@@ -3,7 +3,7 @@
 Every name, date and number in this file is invented for the PlotIQ example. Nothing here is a real company.
 
 ## Ask Your Assistant
-"Run MEDDPICC Analysis on Brackhaven Memorial Gardens using skills/09-meddpicc-analysis/examples/try-it.md"
+"Run MEDDPICC Analysis on Brackhaven Memorial Gardens using skills/09-meddpicc-analysis/examples/try-it.md and the PlotIQ profile at profiles/examples/plotiq-example.md"
 
 ## The Records
 - Run date: 2026-09-28. Brackhaven Memorial Gardens is a combination of two sites with 11,000 plots (profile).
@@ -13,9 +13,9 @@ Every name, date and number in this file is invented for the PlotIQ example. Not
 - Close date: 2026-11-12, the family board meeting [CRM].
 - Champion: GM Ruth Ellery. Economic buyer: the family board chair, name [Unknown], who joined one call in Stage 4 Proposal.
 - Same-day Deal Pulse (08): health 72, Medium Risk.
-- Pain: one double sale in 24 months [CRM] (illustrative). Trust fund reporting done by hand [Call]. Ruth put a cost on each in her own words [Call] (illustrative).
+- Pain: one double sale in 24 months [CRM] (illustrative). Trust fund reporting done by hand [Call]. Ruth, on the 2026-09-26 call, in her own words: "Each double sale costs my staff about 40 hours to unwind." [Call, 2026-09-26] (illustrative). She named the March 2027 Oldgate renewal as the deadline behind the 2026-11-12 board date [Call, 2026-09-26] (illustrative). Brackhaven is Zone 1 HIGH on the profile: plot records on paper and one double sale in 24 months (profile).
 - Second stakeholder pain: Walt Okonkwo, Operations Director, on the 2026-09-17 call: "I lose half a day every time a family asks for a plot and the binder is in the wrong room." About two lookups a week [Call] (illustrative).
-- Metrics: Ruth gave the plot count, 11,000 (profile), and the hours her team spends on the trust fund report [Call] (illustrative). The ROI framework was shared, not yet agreed [Call].
+- Metrics: Ruth gave the plot count, 11,000 (profile). On the 2026-09-26 call she gave her own current-state number: the trust fund report takes her office about 30 hours each year, built by hand from the ledger [Call, 2026-09-26] (illustrative). The ROI framework was shared, not yet agreed [Call].
 - Economic buyer: identified by title. Direct access was established on one call [CRM]. Budget was discussed, not confirmed [Call].
 - Decision criteria: must-haves are known from discovery, and the deal maps to them strongly [Call]. The pre-need module is a nice-to-have [Call].
 - Decision process: committee mapped as board, GM and Operations Director [CRM]. The board meets 2026-11-12 [CRM]. The approval sequence is partly confirmed [Notes].

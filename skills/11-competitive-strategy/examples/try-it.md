@@ -3,14 +3,14 @@
 Every name, date and number in this file is invented for the PlotIQ example. Nothing here is a real company.
 
 ## Ask Your Assistant
-"Run Competitive Strategy on Brackhaven Memorial Gardens using skills/11-competitive-strategy/examples/try-it.md" Treat today as 2026-10-19.
+"Run Competitive Strategy on Brackhaven Memorial Gardens using skills/11-competitive-strategy/examples/try-it.md and the PlotIQ profile at profiles/examples/plotiq-example.md. Treat today as 2026-10-19."
 
 ## The Records
 - Run date: 2026-10-19. Brackhaven Memorial Gardens is a combination with 2 sites, 11,000 plots and paper plot maps [CRM] (illustrative).
 - Deal: ACTIVE at Stage 5 Negotiate since 2026-09-09. $21,576 a year at list, owned by Owen Pruitt, 40 days in stage [CRM].
 - Account Qualification (01) verdict: GREENLIGHT.
 - Contacts: Ruth Ellery, General Manager, champion [Call]. Walt Okonkwo, Operations Director, skeptical of tablets [Call]. Priscilla Dunmore, pre-need manager [CRM]. The family board chair is the economic buyer, on one call [CRM], name [Unknown].
-- Discovery quote (illustrative): Ruth: "We can't tell which plots are sold without going to the binder." [Call] (illustrative)
+- Reason to look, in Ruth's words on the 2026-06-16 discovery call: "We can't tell which plots are sold without going to the binder." [Call, 2026-06-16] (illustrative). The unsold-plot count is the job she named.
 - Walt Okonkwo wants work orders in the field, so the crew can find a plot in seconds [Call] (illustrative).
 - Incumbent: Oldgate Ledger Pro [CRM]. Ruth named it on the first call, and the call was logged. Renewal in March 2027 [CRM], under six months away.
 - Discovery call, 2026-06-16 (illustrative), with Ruth on the incumbent [Call]:

@@ -1,16 +1,19 @@
 ---
 name: gtm-trigger-event-outbound
-version: 2.1.2
+version: 2.1.3
 description: "Turns one dated business event at a target account into a short outbound sequence, but only after checking the event against its window. Reports when the window has closed or the event date is unknown. Read by the BDR or AE who sends the sequence."
 category: Sales-Methodology
 author: Ryan Vanshur
 license: MIT
-updated: 2026-10-25
+updated: 2026-10-26
 tags: [trigger-event, acquisition, leadership-change, compliance-finding, urgency-window, outbound-sequence, event-driven-prospecting]
 requires:
   skills: [gtm-account-snapshot, gtm-closed-loss-reactivation]
 mutating: read-write
 change_log:
+  - version: 2.1.3
+    date: 2026-10-26
+    summary: "Try-it evidence completed so a strict first run reproduces Example 1. Every subject line names the event, the implications are all tagged [Inferred] with their basis, the disqualifier is stated with both of its conditions, Email 1 no longer asks the question the disqualifier check answers, and the decision tree routes an acquisition of the account to Acquisition / M&A. The window, status, sequence dates and next action do not change."
   - version: 2.1.2
     date: 2026-10-25
     summary: "Try-it evidence completed so a strict first run reproduces Example 1. Adds the deal notice's integration review date as the deadline source, shows the site GM as a second persona with its emails omitted from the page only, adds a sentence for a cadence that runs past the window, and the run date to the Ask line."
@@ -116,7 +119,7 @@ when the user asks for one.
 
 Load the client profile from [`profiles/client-profile.md`](../../profiles/client-profile.md) before
 starting. Throughout this skill, `{Client Profile: X}` means section X of that file. Sections this
-skill reads:
+skill reads: That file is not in this repo yet: to try the skill, use the example profile at `profiles/examples/plotiq-example.md`, and to set up your own company, copy `profiles/client-profile-template.md` to `profiles/client-profile.md`.
 
 | Profile section | Used for |
 |-----------------|----------|
@@ -258,6 +261,8 @@ personnel changes first, because a leader's arrival changes who owns the decisio
 6. **Is it a LinkedIn or social post by an executive?** → Leadership Thought Leadership
 7. **None of the above?** → Decide whether it is a trigger or just news. Not all news is a trigger. If it does not connect to a value proposition, skip it.
 
+An acquisition that changes who owns the account is not a tree branch of its own. It is classed as Acquisition / M&A from the taxonomy table, unless steps 1 to 6 match first.
+
 ### Event-to-Value Mapping
 
 Each implication Step 2 writes is an inference, tagged `[Inferred]`, and it starts from one of these
@@ -368,7 +373,7 @@ Map the event to `{Methodology: Trigger Type Taxonomy}`. If the event is ambiguo
 #### 1c. Search the CRM
 
 Check for an open deal, the account owner and known contacts. Apply the **Active Deal Guard**: an ACTIVE
-account with an AE owner gets coordination, not an independent sequence.
+account with an AE owner gets coordination, not an independent sequence. A profile disqualifier is read with all of its conditions: a consolidator is disqualified only when it is public or PE-backed and runs its own system, and a condition that is still `[Unknown]` is checked before the sequence that depends on it.
 
 #### 1d. Validate Timeliness
 
@@ -498,7 +503,7 @@ window length, as set by the One Window Rule.
 
 - **URGENT**: more than 50% of the window remains
 - **CLOSING**: 25% to 50% of the window remains
-- **STALE**: under 25% of the window remains. The sequence still runs, and Email 1 names the deadline
+- **STALE**: under 25% of the window remains. The sequence still runs, and Email 1 names the deadline. The deadline is the profile's citable date, such as the integration review date in a deal notice. The window's last day is an internal count, and an email names it only when the profile gives it as the deadline
 - **EXPIRED**: zero or fewer days remain. No trigger sequence. Only residual relevance can justify a different approach
 - **UNVERIFIED**: the event has no date that can be checked, so no window can exist. No sequence until the date is found
 
@@ -593,8 +598,10 @@ site", with the acquirer's CFO or controller as the persona who acts, and the si
 
 **Step 1c. CRM.** Status TARGET, no owner and no open deal. The acquirer's CFO or controller is not named
 in the CRM `[Unknown]`, so the BDR finds the name in the licensing record or the deal notice before Email 1
-goes out. Whether Harborline runs its own system for its sites is `[Unknown]`, and it is the first question
-to answer. If it does, the profile's disqualifier applies and no sequence goes out.
+goes out. Harborline's ownership type and whether it runs its own system are both `[Unknown]`. The profile's
+disqualifier needs both conditions: a public or PE-backed consolidator that runs its own system. Neither is
+confirmed, so the check is due by 2026-10-22. Email 1 asks nothing that depends on it, so Email 1 may go
+before the check. Email 2 waits for it. If both conditions hold, no sequence goes out.
 
 **Step 2. Event Intelligence Brief.**
 
@@ -607,7 +614,7 @@ Business implications, each tagged:
 
 - **Implication:** The site's plot records have to move into the acquirer's process on the acquirer's timetable. **Value connection:** The plot map is the first record the integration review checks. **Evidence tag:** `[Inferred]`, basis: the ownership change, plus the paper plat maps recorded in the CRM `[CRM]`
 - **Implication:** The acquirer's own system decides where the records land. **Value connection:** Plot records are the decision point the acquirer has not yet made. **Evidence tag:** `[Inferred]`, basis: the profile lists a consolidator's own system as a fit question to check
-- **Implication:** The review date is the deadline every email can use. **Value connection:** A dated review turns a general question into a specific one. **Evidence tag:** `[Public: deal notice, 2026-07-01]` for the review date, 2027-02-16 (illustrative), and `[CRM]` for the GM keeping the site budget until that review
+- **Implication:** The integration review sets the deadline for any plot-record decision at the site. **Value connection:** A dated review turns a general question into a specific one. **Evidence tag:** `[Inferred]`, basis: the review date of 2027-02-16 in the deal notice `[Public: deal notice, 2026-07-01]` (illustrative), and the GM keeping the site budget until that review `[CRM]`
 - **Implication:** The acquirer's CFO will want one view of records across sites before the review. **Value connection:** The product gives one plot view across entities. **Evidence tag:** `[Inferred]`, basis: the CFO is the persona who acts on this trigger in the profile
 
 **Step 3. Sequence.** The personas are the acquirer's CFO or controller and the site GM, from the Buying
@@ -624,13 +631,13 @@ would go.
 > **Subject:** Corrow Ridge after the Harborline close
 >
 > [first name], the state licensing record shows Harborline Funeral Partners took over Corrow Ridge
-> Cemetery on July 1. The integration review is in Q1 2027. Before it, what does the plot map hold? The
+> Cemetery on July 1. The deal notice dated 2026-07-01 sets the integration review for 2027-02-16, inside Q1 2027. Before it, what does the plot map hold? The
 > site keeps its plot records on paper plat maps, and a 15-minute look at them would show what the review
-> is likely to ask for. Do you know yet whether Harborline runs its own system for its sites? [your name]
+> is likely to ask for. What would the review need from the plot map first? [your name]
 
-**Email 2 (Day 4 or 5, 2026-10-23 to 2026-10-24)**
+**Email 2 (Day 4 or 5, 2026-10-23 to 2026-10-24)**, sent only after the ownership and system check due 2026-10-22
 
-> **Subject:** One question before the review
+> **Subject:** Corrow Ridge's plot map before the Harborline review
 >
 > [first name], one question, because the review sets the deadline. Once the review is held, which system
 > keeps Corrow Ridge's plot records: the one the site uses today, or Harborline's? If that is still open,
@@ -638,7 +645,7 @@ would go.
 
 **Email 3 (Day 8 to 10, 2026-10-27 to 2026-10-29, on or before the long end)**
 
-> **Subject:** If the timing is wrong, when would it be right?
+> **Subject:** Corrow Ridge after the Harborline close: if the timing is wrong
 >
 > [first name], if the integration review is not the right moment to look at the plot records, when would
 > be? I will stop here after this note. If the question comes up before the review, reply and I will set a
@@ -846,6 +853,14 @@ next_action: Nadia Brandt sends the note to Owen Pruitt by 2026-10-21, after rea
 
 ## Changelog
 
+
+### 2.1.3 (2026-10-26)
+- Try-it evidence completed so a strict first run reproduces Example 1.
+- Decision tree gains one sentence: an acquisition that changes who owns the account is Acquisition / M&A from the taxonomy unless steps 1 to 6 match first.
+- Trigger Status, STALE, gains one sentence: the deadline an email names is the profile's citable date, not the window's last day.
+- Example 1 implication 3 is tagged [Inferred] with its basis, not with the deal notice tag. Its subject lines now name the event, and Email 1 cites the deal notice for the review date.
+- Example 1 states the disqualifier with both conditions. Email 1 asks nothing that depends on the ownership and system check, and Email 2, which waits for that check due 2026-10-22, asks the system question.
+- No window, status, sequence date, verdict or next action changes.
 
 ### 2.1.2 (2026-10-25)
 - Try-it evidence completed so a strict first run reproduces Example 1.

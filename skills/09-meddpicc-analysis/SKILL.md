@@ -1,16 +1,19 @@
 ---
 name: gtm-meddpicc-analysis
-version: 2.1.2
+version: 2.1.3
 description: "Scores an active deal across all eight MEDDPICC elements from the CRM record, computes a weighted health score, and recommends ADVANCE, HOLD, DOWNGRADE or DISQUALIFY. The deal's AE and sales manager read the output."
 category: Sales-Methodology
 author: Ryan Vanshur
 license: MIT
-updated: 2026-10-25
+updated: 2026-10-26
 tags: [meddpicc, deal-analysis, deal-scoring, pipeline-review, sales-methodology, deal-qualification]
 requires:
   skills: ["gtm-deal-pulse", "gtm-call-coaching", "gtm-stakeholder-mapping"]
 mutating: read-write
 change_log:
+  - version: 2.1.3
+    date: 2026-10-26
+    summary: "Try-it evidence completed so a strict first run reproduces Example 1. Adds the record of Ruth's own pain and the prospect's own trust-report hours, so Identified Pain and Metrics hold their scores. Settles four first-run questions in one sentence each: an economic buyer identified by title scores 4 without a name, a profile gate figure is the minimum for the stage it enters, the stage line also reports the next stage, and the first action follows the failed critical element. The try-it ask now names the profile path."
   - version: 2.1.2
     date: 2026-10-25
     summary: "Try-it evidence completed so a strict first run reproduces Example 1. Adds the UNKNOWN rule: an element with no evidence is INSUFFICIENT, is left out of the total and count, and the result reads scored n of 8. Below 6 of 8 there is no overall score. The weighted formula is re-weighted over the scored rows. Resolves the contradiction between the no-evidence scoring and the silence rule, and settles what a score of 5 on Identified Pain requires."
@@ -102,7 +105,7 @@ Core commitments: **eight-element scorecard with weighted scores**, **overall he
 
 **This skill does not contain client-specific information. It points to it.**
 
-> **Load the client profile from [`profiles/client-profile.md`](../../profiles/client-profile.md) before starting.** That single file is shared by all 14 sales skills in this suite. Update it once and every skill inherits the change on its next run.
+> **Load the client profile from [`profiles/client-profile.md`](../../profiles/client-profile.md) before starting.** That single file is shared by all 14 sales skills in this suite. Update it once and every skill inherits the change on its next run. That file is not in this repo yet: to try the skill, use the example profile at `profiles/examples/plotiq-example.md`, and to set up your own company, copy `profiles/client-profile-template.md` to `profiles/client-profile.md`.
 
 Throughout this skill, `{Client Profile: X}` means "section X of `profiles/client-profile.md`". Sections this skill reads:
 
@@ -327,11 +330,11 @@ The champion status comes first, from the shared champion tests in the Shared Co
 | Stage 5 Negotiate | 65 or higher | All except Competition at 3 or higher, and Economic Buyer at 4 or higher |
 | Stage 6 Closed-Won and Handoff | 75 or higher | All at 3 or higher, and Economic Buyer and Paper Process at 4 or higher |
 
-Stage names come from the client profile's Qualification Stage Gates. Stage 1 Target has no minimum because no element is scored before a deal is active. If the team overrides these minimums in its MEDDPICC profile section, the override is used, and the report says it was used. Where the profile's Qualification Stage Gates state a different score than this table, the profile's figure is the minimum, because the profile is the only source of company facts and a stage gate is one. The report names the figure it used and shows the table's default beside it.
+Stage names come from the client profile's Qualification Stage Gates. Stage 1 Target has no minimum because no element is scored before a deal is active. If the team overrides these minimums in its MEDDPICC profile section, the override is used, and the report says it was used. Where the profile's Qualification Stage Gates state a different score than this table, the profile's figure is the minimum, because the profile is the only source of company facts and a stage gate is one. The report names the figure it used and shows the table's default beside it. The profile's Qualification Stage Gates are written as the move into a stage, so a gate figure is the minimum for the stage it enters: the profile's 70 for entering Stage 5 Negotiate replaces the table's 65.
 
 ### Stage Recommendation Rules
 
-Apply the stage minimum check, the gap ranking and the risk patterns first. Then pick one word. Below 6 of 8 elements scored, no word is given (the INSUFFICIENT rule in Methodology).
+Apply the stage minimum check, the gap ranking and the risk patterns first. Then pick one word. Below 6 of 8 elements scored, no word is given (the INSUFFICIENT rule in Methodology). The stage line reports the minimum for the deal's current stage and, as a second check, the next stage's minimum and critical elements. A failed next-stage check holds the deal where it is and does not mean the deal fails its current stage.
 
 1. **ADVANCE** when the health score meets the next stage's minimum and every critical element for the next stage is scored and at its floor. An INSUFFICIENT critical element is not at its floor. Reason: the record supports the next stage's exit criteria, so the stage can move.
 2. **HOLD** when the deal meets its current stage minimum but not the next, or when it misses its current minimum and every failed element has a dated action that can close the gap. The deal stays where it is, and the dated actions go on the record. Reason: a missed minimum with a date in hand is a plan, not a loss.
@@ -391,8 +394,8 @@ Read the Deal Pulse, Call Coaching and Stakeholder Mapping fields by name when t
 Score each element against its rubric in {Methodology: MEDDPICC Scoring Rubrics}. Be honest. An element with no evidence is INSUFFICIENT, not scored (the INSUFFICIENT rule in Methodology). Add the client context for each element.
 
 **Client context by element:**
-- **Metrics:** look for the numbers in `{Client Profile: Value Propositions}`, such as time saved, cost reduced, compliance rates or volume. Use the team's own metric wording from the MEDDPICC section.
-- **Economic Buyer:** use the economic-buyer persona from `{Client Profile: Buyer Personas}`, the one that owns budget.
+- **Metrics:** look for the numbers in `{Client Profile: Value Propositions}`, such as time saved, cost reduced, compliance rates or volume. Use the team's own metric wording from the MEDDPICC section. A number counts as the prospect's only when the prospect stated it on a call or in the CRM, so a figure taken only from the profile does not by itself earn the score 4.
+- **Economic Buyer:** use the economic-buyer persona from `{Client Profile: Buyer Personas}`, the one that owns budget. A buyer identified by title who has had direct access on at least one call scores 4 even when the name is `[Unknown]`, and a title known only from the org chart, never confirmed, scores 2.
 - **Decision Criteria:** push toward `{Client Profile: Qualification Criteria}`, and redirect away from areas where competitors are stronger.
 - **Decision Process:** a "we'll handle it internally" answer without dates scores 2, not 3.
 - **Paper Process:** score against the team's paper steps in the MEDDPICC section. If the close date is less than 60 days away and Paper Process scores below 3, the close date is almost certainly wrong.
@@ -425,7 +428,7 @@ Then check the risk patterns in the Methodology table. Name each pattern that th
 
 ### Step 5: Generate Coaching Recommendations
 
-Generate five prioritized next actions, each targeting a specific MEDDPICC gap. Each action names the methodology step it uses from `{Client Profile: Sales Methodology}`, the owner (AE, BDR, SE or manager), a deadline (five business days for critical gaps, ten for moderate ones) and a success criterion that shows the action worked.
+Generate five prioritized next actions, each targeting a specific MEDDPICC gap. Each action names the methodology step it uses from `{Client Profile: Sales Methodology}`, the owner (AE, BDR, SE or manager), a deadline (five business days for critical gaps, ten for moderate ones) and a success criterion that shows the action worked. The first action targets the failed critical element with the lowest score, with ties taken in table order. When no current-stage floor fails, it targets the element that blocks the next stage's floor.
 
 **Produces:** Five actions, each with element targeted, owner, deadline and success criterion.
 
@@ -495,12 +498,12 @@ Write a file only when the user asks for one, named `<account>_gtm-meddpicc-anal
 **Input:** "Run MEDDPICC deal analysis for Brackhaven Memorial Gardens."
 
 **Scoring summary (scored 8 of 8):**
-- **Metrics: 4 of 5.** Ruth gave the plot count, 11,000 (profile), and the hours her team spends on the trust fund report (`[Call]`, illustrative). The ROI framework was shared, not yet agreed `[Call]`.
+- **Metrics: 4 of 5.** Ruth gave the plot count, 11,000 (profile). Her own current-state number is the trust fund report, which takes her office about 30 hours each year, built by hand from the ledger (`[Call, 2026-09-26]`, illustrative). The ROI framework was shared, not yet agreed `[Call]`.
 - **Economic Buyer: 4 of 5.** The family board chair is identified by title. Direct access was established on one call `[CRM]`. Budget was discussed, not confirmed `[Call]`.
 - **Decision Criteria: 4 of 5.** Must-haves are known from discovery and the deal maps to them strongly `[Call]`. The pre-need module is a nice-to-have `[Call]`.
 - **Decision Process: 4 of 5.** The committee is mapped: board, GM and Operations Director `[CRM]`. The board meets 2026-11-12 `[CRM]`. The approval sequence is partly confirmed `[Notes]`.
 - **Paper Process: 3 of 5.** Aware that legal and vendor review exists `[Notes]`. The steps and timing are not scoped `[Unknown]`.
-- **Identified Pain: 5 of 5.** One double sale in 24 months `[CRM]` (illustrative), trust fund reporting done by hand `[Call]`, and Ruth put a cost on each in her own words `[Call]` (illustrative). A second stakeholder has her own quantified pain: Walt Okonkwo, Operations Director, says he loses half a day each time a family asks for a plot and the binder is in the wrong room, about two lookups a week (`[Call]`, 2026-09-17, illustrative). Two stakeholders meet the rule for 5.
+- **Identified Pain: 5 of 5.** Two stakeholders each state a quantified pain in their own words. Ruth Ellery, General Manager, on the 2026-09-26 call: "Each double sale costs my staff about 40 hours to unwind" (`[Call, 2026-09-26]`, illustrative), after one double sale in 24 months `[CRM]` (illustrative). Trust fund reporting is done by hand `[Call]`. She named the March 2027 Oldgate renewal as the deadline behind the 2026-11-12 board date `[Call, 2026-09-26]` (illustrative), so the timeline is urgent. Walt Okonkwo, Operations Director, on the 2026-09-17 call: "I lose half a day every time a family asks for a plot and the binder is in the wrong room," about two lookups a week (`[Call, 2026-09-17]`, illustrative). The pain maps to Zone 1, HIGH on the profile: plot records on paper and one double sale in 24 months (profile). Two stakeholders meet the rule for 5.
 - **Champion: 5 of 5.** Ruth Ellery is Strong: four of seven shared champion tests met, each tagged `[Call]`. Offers introductions (she offers to introduce the board chair, 2026-09-26). Commits to next steps with dates (the 2026-11-12 board date, 2026-09-26). Explains the internal politics (she shares the board's questions, 2026-09-19). Defends the solution when we are not in the room (she is selling internally, 2026-10-01). She also coached us on Walt Okonkwo's objection to tablets `[Call]` (illustrative).
 - **Competition: 4 of 5.** Oldgate Ledger Pro is the incumbent, direct software, renewal March 2027 `[CRM]`. Stonemark was evaluated with no preference stated `[Call]`. A strategy exists and is not yet tested with the buyer `[Notes]`.
 
@@ -686,6 +689,12 @@ The Business Case & ROI Kit (a paid Guild Pro kit) reads this skill's hand-off b
 
 ## Changelog
 
+
+### 2.1.3 (2026-10-26)
+- Try-it evidence completed so a strict first run reproduces Example 1. The try-it records and Example 1 now carry Ruth's own pain and the prospect's own trust-report figure, so Identified Pain holds at 5 and Metrics at 4. Brackhaven is placed in Zone 1 HIGH on the profile. The try-it ask names the profile path.
+- Four first-run questions are settled in one sentence each: an economic buyer identified by title scores 4 without a name (Step 2). A profile gate figure is the minimum for the stage it enters, so 70 replaces 65 for Stage 5 (Methodology). The stage line also reports the next stage, and a failed next-stage check holds the deal (Stage Recommendation Rules). The first action follows the failed critical element (Step 5).
+- A prospect's number counts only when the prospect stated it on a call or in the CRM (Step 2, Metrics).
+- The examples' outputs, scores and verdicts do not change.
 
 ### 2.1.2 (2026-10-25)
 - Try-it evidence completed so a strict first run reproduces Example 1. An element with no evidence is INSUFFICIENT: it is left out of the total and the count, the result reads "scored n of 8", and below 6 of 8 there is no overall score. The weighted formula is re-weighted over the scored rows, and the formula is updated in the Output Contract, the Methodology, Step 3, the Quality Bar and the Troubleshooting. A score of 5 on Identified Pain needs two or more stakeholders. The examples score all eight elements, so their numbers do not change.

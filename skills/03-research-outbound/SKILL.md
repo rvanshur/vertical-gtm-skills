@@ -1,16 +1,19 @@
 ---
 name: gtm-research-outbound
-version: 2.1.2
+version: 2.1.3
 description: "Builds a sourced point of view and outbound package from a public filing, an owner letter or an earnings call, with an ICP verdict, a signal map, a sourced wedge and persona sequences, for the rep and the meeting-prep skill to read"
 category: Sales-Methodology
 author: Ryan Vanshur
 license: MIT
-updated: 2026-10-25
+updated: 2026-10-26
 tags: [research-outbound, 10k-analysis, earnings-call, private-company, pov-brief, enterprise-prospecting, persona-sequences]
 requires:
   skills: [gtm-account-snapshot]
 mutating: read-write
 change_log:
+  - version: 2.1.3
+    date: 2026-10-26
+    summary: "Try-it evidence completed so a strict first run reproduces Example 1. Zone 2 gains its intake form and social-ads facts, the decision cycle is recorded from the group's own budget review, the partial-match rule is stated, a Benchmark without a unit is read per cemetery site, and a two-persona trigger row is routed to the budget approver. Example 1 gains the five-part POV brief, all twenty emails, the cheatsheet and the intelligence appendix. The verdict, zone scores and wedge arithmetic do not change."
   - version: 2.1.2
     date: 2026-10-25
     summary: "Try-it evidence completed so a strict first run reproduces Example 1. Adds the spreadsheet plot records and current system, the owner letter's growth wording, the funeral homes under the same owner, and the two sites' plot counts to the records and to Example 1, and the run date to the Ask line."
@@ -99,7 +102,7 @@ Every run returns its report in the chat, in the sections below, in this order. 
 
 **This skill does not contain company-specific information. It points to it.**
 
-Read the profile, `profiles/client-profile.md`, which is written from `profiles/client-profile-template.md`. The sections below are the only ones this skill reads. The skill carries no company fact of its own.
+Read the profile, `profiles/client-profile.md`, which is written from `profiles/client-profile-template.md`. The sections below are the only ones this skill reads. The skill carries no company fact of its own. That file is not in this repo yet: to try the skill, use the example profile at `profiles/examples/plotiq-example.md`, and to set up your own company, copy `profiles/client-profile-template.md` to `profiles/client-profile.md`.
 
 | Profile section | Used for |
 |---|---|
@@ -377,7 +380,7 @@ Extract six to ten signals, ranked by urgency, in this format:
 
 Score each of the profile's five zones HIGH, MEDIUM or LOW, from observable facts. Apply the profile's Verdict Rule as written, so the verdict is GREENLIGHT, MANUAL REVIEW or DISQUALIFY. Show every zone's score beside the verdict, and name any must-have zone that scored LOW in the reason.
 
-Three rules apply here. MEDIUM never counts as HIGH. A zone the sources do not speak to is `[Unknown]`, not LOW, because silence is not a no. A zone scored on a checked absence (a search that was run and found nothing, for example) is scored, and the check is named so a reader can repeat it.
+Four rules apply here. MEDIUM never counts as HIGH. A zone the sources do not speak to is `[Unknown]`, not LOW, because silence is not a no. A zone scored on a checked absence (a search that was run and found nothing, for example) is scored, and the check is named so a reader can repeat it. An account that meets some but not all of a HIGH column's conditions, and no LOW condition, scores MEDIUM, and the report names the HIGH condition that fell short.
 
 The reasons for the verdict go in three to six bullets, each with its tag.
 
@@ -405,7 +408,7 @@ Build a wedge only when the sources support the numbers. Show every calculation,
 | A profile Benchmark | Cite the benchmark with its source and date. It is a hook, not a result | `[Public: source, date]` |
 | A figure the sources lack | Write it as unknown, and name it as a discovery question | `[Unknown]` |
 
-Never claim savings as a guarantee. Frame the result as what companies of a similar size typically see, and name the source for that claim.
+Never claim savings as a guarantee. Frame the result as what companies of a similar size typically see, and name the source for that claim. A Benchmark stated without a unit is read per cemetery site, so it is multiplied by the cemetery sites in the account, and the multiplication is shown.
 
 **Produces:** the wedge as a sentence with its arithmetic, or "Insufficient data" with the missing figure named.
 
@@ -425,7 +428,7 @@ Keep the brief under 500 words, skimmable, with every claim tagged.
 
 **Count first.** The persona count comes from the profile's Buyer Personas. Count the personas that apply to this account type, because the profile marks some personas for groups only. Multiply by the steps for the mode. In a filing or private package, that is personas x 4. For a profile with five personas, a multi-location group gets 20 emails. A single site drops the group-only persona and gets 16. The count is never fixed.
 
-**Route the trigger.** Match the source's signal to a row in the profile's Buying Triggers table. The row's Persona who acts column names the person who has to respond. That persona's sequence is listed first, and its Email 1 is the one the rep sends first. A trigger sequence goes to the person who must act on the event, not to every persona.
+**Route the trigger.** Match the source's signal to a row in the profile's Buying Triggers table. The row's Persona who acts column names the person who has to respond. That persona's sequence is listed first, and its Email 1 is the one the rep sends first. When a row names two personas, the one who approves budget leads, and the other persona's sequence follows with its own emails. A trigger sequence goes to the person who must act on the event, not to every persona.
 
 | Step | Angle | Purpose |
 |------|-------|---------|
@@ -546,16 +549,19 @@ All examples use PlotIQ and its cast from the profile's Example Cast. Every figu
   - The three funeral homes are part of the group's own footprint, under the same owner. `[CRM]`
   - Plot counts: 3,100 plots at the first cemetery site and 2,800 at the second. `[CRM]` (illustrative)
   - Three funeral homes run pre-need counselors. `[CRM]`
+  - The company website has a pre-need intake form. `[Public: company website]` (illustrative)
+  - Social media ads on the group's pages send pre-need enquiries into the group's shared email. `[Public: company social media pages]` (illustrative)
   - The group is family owned. `[CRM]`
   - The CFO, Hector Ruiz, approves budget. `[CRM]`
+  - The group reviews system spend twice a year, so a system decision takes 6 to 9 months. `[CRM]` (illustrative)
   - Which system replaces the spreadsheets, and when the plot records move: `[Unknown]`
 - **Step 3, the zones and the verdict.** ICP3 Multi-Location Group, four to ten sites. The five zones from the profile:
 
 | Zone | Score | Basis |
 |---|---|---|
 | 1 Records and Inventory Pain | MEDIUM | Both cemetery sites keep plot records in spreadsheets `[Notes]` (illustrative), which is the MEDIUM basis |
-| 2 Pre-Need Sales Motion | HIGH | Pre-need counselors at three funeral homes `[CRM]` |
-| 3 Ownership and Decision Speed | LOW | The CFO approves budget `[CRM]`, and the profile's ICP3 cycle runs 6 to 9 months. A must-have zone |
+| 2 Pre-Need Sales Motion | HIGH | Pre-need counselors at three funeral homes `[CRM]`, a pre-need intake form on the company website `[Public: company website]` (illustrative), and social media ads sending enquiries into email `[Public: company social media pages]` (illustrative). All three HIGH conditions are met |
+| 3 Ownership and Decision Speed | LOW | The CFO approves budget `[CRM]`, and the group's own budget review runs twice a year, so a decision takes 6 to 9 months `[CRM]` (illustrative). A must-have zone |
 | 4 Technology Readiness | MEDIUM | The cemetery sites run on spreadsheets only `[Notes]` (illustrative), which is the MEDIUM basis |
 | 5 Growth or Succession | HIGH | The owner letter names growth as the 2027 plan, one system for all five sites `[Public: company site, owner letter 2026]`. That is the owner update naming growth the HIGH test asks for |
 
@@ -573,22 +579,241 @@ All examples use PlotIQ and its cast from the profile's Example Cast. Every figu
 | Family owned and owner-led | The owner letter is the family's own plan | 5 HIGH | A growth story the owner can carry | Who in the family signs off on the 2027 move? | `[Public: company site, owner letter 2026]` |
 
 - **Step 5, the wedge.** Two cemetery sites x 50 to 100 plots each = 100 to 200 plots to check. The 50 to 100 is the profile's first-call hook, a Benchmark `[Public: deathcare research, 2026-03-27 to 2026-04-01]`. It is a hook, not a result. It is read against the two sites' own counts, 3,100 and 2,800 plots `[CRM]` (illustrative). Five sites x $10,788 a year at list = $53,940 a year, plus $5,000 setup once `[Inferred: units x profile list price]`. The price of an unsold plot is `[Unknown]`, so no payback figure is written. The first discovery question asks for it.
-- **Step 6, the POV statement** (six sentences): Five sites under one family owner are moving to one system, and the first question is records, not software. Two cemeteries carry plot records, and the first-call hook is 50 to 100 plots per cemetery site `[Public: deathcare research, 2026-03-27 to 2026-04-01]`. Three funeral homes already generate pre-need leads, so the same system has to reach the sales side. The CFO is the gate, and the cycle runs 6 to 9 months. The point of view: one system across five sites in 2027 is a records project before it is a software project, and the group can start with the cemetery plots. The ask: 20 minutes to map which records and leads move first.
-- **Step 7, the sequences.** Five personas apply. Saltmarsh is a group, so the profile's CFO persona applies, and its three funeral homes sit in the same footprint under the same owner, so the Funeral Home Owner persona applies too. Five personas x 4 steps = 20 emails. The owner-letter trigger's Persona who acts column reads "CFO or Controller in a group", so the CFO's sequence is listed first. Email 1 to the CFO:
+- **Step 6, the POV brief** (five parts, under 500 words):
 
-> **Subject:** One system across five sites in 2027
->
-> Hector,
->
-> Your owner letter says all five Saltmarsh sites move to one system in 2027. Two cemeteries and three funeral homes on one system is a records question before it is a software question. Which plot records and pre-need leads move first?
->
-> Your pre-need counselors at three funeral homes already generate leads. Where do those leads land today?
->
-> Worth 20 minutes to map it before the move?
+  **1. Company Context**
+  - Saltmarsh Heritage Group is a family-owned group with five sites, two cemeteries and three funeral homes. `[CRM]`
+  - The three funeral homes sit under the same owner as the cemeteries. `[CRM]`
+  - Its owner letter is posted on the company site and dated 2026. `[Public: company site, owner letter 2026]`
 
-- **Steps 8 and 9.** Research gap: which system the group picks, and when the records move.
+  **2. Why They Should Care**
+  - The owner letter says all five sites move to one system in 2027. `[Public: company site, owner letter 2026]`
+  - Three funeral homes run pre-need counselors, so the sales side needs the plot record in the same place. `[CRM]`
+  - Both cemetery sites keep plot records in spreadsheets. `[Notes]` (illustrative)
 
-**Output:** Intelligence profile with tags. Point of view brief built on the single-system plan. Twenty persona emails, with Email 1 to the CFO shown above. Verdict MANUAL REVIEW.
+  **3. Risks and Complexity Signals**
+  - The two cemeteries hold 3,100 and 2,800 plots. `[CRM]` (illustrative)
+  - The CFO, Hector Ruiz, approves budget, and the group reviews system spend twice a year, so a decision takes 6 to 9 months. `[CRM]` (illustrative)
+  - The date the plot records move is not set. `[Unknown]`
+
+  **4. Fit Verdict:** MANUAL REVIEW. Zones 2 and 5 are HIGH, but Zone 3, a must-have, is LOW, so GREENLIGHT does not hold. `[Inferred: zone rules, Step 3]`
+
+  **5. POV Statement** (eight sentences): Five sites under one family owner are moving to one system in 2027. `[Public: company site, owner letter 2026]` That makes the first question records, not software, because both cemetery sites keep plot records in spreadsheets. `[Notes]` (illustrative) The first-call hook is 50 to 100 plots per cemetery site. `[Public: deathcare research, 2026-03-27 to 2026-04-01]` That figure is a hook, not a result, so the two cemeteries, at 3,100 and 2,800 plots, set the scale to check. `[CRM]` (illustrative) Three funeral homes already run pre-need counselors, so the same system has to reach the sales side. `[CRM]` The CFO gate and the 6 to 9 month cycle set the timing, so the group can start with the cemetery plots. `[CRM]` (illustrative) The wedge is five sites at $10,788 a year at list, which is $53,940 a year, plus $5,000 setup once. `[Inferred: units x profile list price]` The ask is 20 minutes to map which records and leads move first.
+- **Step 7, the sequences.** Five personas apply. Saltmarsh is a group, so the profile's CFO or Controller in a group persona applies, and its three funeral homes sit in the same footprint under the same owner, so the Funeral Home Owner persona applies too. The cemetery, pre-need and operations personas apply to the two cemeteries and the funeral side. Five personas x 4 steps = 20 emails. The owner-letter trigger's Persona who acts column reads "Funeral Home Owner, or CFO or Controller in a group". The row names two personas, and the one who approves budget leads, so the CFO's sequence is listed first. The other four sequences follow in the order below. Each email opens with a citation.
+
+**Persona 5, CFO or Controller in a group (Hector Ruiz, approves budget). Leads.**
+
+Email 1, point of view and wedge
+Subject: One system across five sites in 2027
+
+Hector,
+
+Your 2026 owner letter says all five Saltmarsh sites move to one system in 2027. Two cemeteries and three funeral homes on one system is a records question before it is a software question. Which plot records and pre-need leads move first?
+
+Three of your funeral homes already run pre-need counselors. Where do those leads land today?
+
+Worth 20 minutes to map it before the move?
+
+Email 2, complexity
+Subject: Two cemeteries, one budget cycle
+
+Hector,
+
+Your 2026 owner letter names one system for all five sites, and both cemetery sites keep plot records in spreadsheets (illustrative). Moving two plot lists and three pre-need desks onto one system is a sequencing problem. Which list would your auditors ask for first?
+
+Would 15 minutes to see the order help?
+
+Email 3, process and efficiency
+Subject: The review date
+
+Hector,
+
+Your 2026 owner letter sets 2027 as the year for one system. The group reviews system spend twice a year (illustrative), so a decision takes six to nine months from the first meeting to sign-off. What would you need to see at the first meeting to put the decision on the next review?
+
+Email 4, breakup
+Subject: Should I close this?
+
+Hector,
+
+Your 2026 owner letter set a 2027 date, and I have not heard back, so I will stop after this note. If the budget review is the right moment, who on your team should I reach before it?
+
+**Persona 4, Funeral Home Owner (the owner of the three funeral homes).**
+
+Email 1, point of view and wedge
+Subject: Three funeral homes, one pre-need list
+
+Hello,
+
+Your 2026 owner letter says all five Saltmarsh sites move to one system in 2027, and your three funeral homes already run pre-need counselors. Where do pre-need leads go today, and who calls them back?
+
+Worth 20 minutes to see how the funeral side fits the move?
+
+Email 2, complexity
+Subject: Enquiries into one inbox
+
+Hello,
+
+Your website's pre-need intake form and the ads on your social pages both send enquiries into one shared inbox. When a family asks about a pre-need plot, how long does it take your team to confirm the plot is open?
+
+Would 15 minutes next week help?
+
+Email 3, process and efficiency
+Subject: The pre-need share
+
+Hello,
+
+Deathcare research (2026-03-27 to 2026-04-01) puts independent operators' pre-need at 20% to 35% of at-need volume, with the largest public operator near 60%. What share do your three funeral homes capture today, and how is it counted?
+
+Email 4, breakup
+Subject: Last note
+
+Hello,
+
+Your 2026 owner letter names the 2027 move, and I have not heard back, so this is my last note. If the funeral side is not on that list, who should I talk to instead?
+
+**Persona 1, Cemetery General Manager (name not on file). Works the two cemetery sites.**
+
+Email 1, point of view and wedge
+Subject: Plot records at two cemeteries
+
+Hello,
+
+Your 2026 owner letter says all five sites move to one system in 2027. For the two cemeteries, the first question is the plot record: which plots are sold and which are open, and how does your team check that today?
+
+Worth 20 minutes to walk through one cemetery's list?
+
+Email 2, complexity
+Subject: Two lists, one answer
+
+Hello,
+
+Your 2026 owner letter names one system, and each cemetery keeps its own plot list in spreadsheets (illustrative). When a family asks about a plot, how many lists does your team check before it can answer?
+
+Would it help to see what one shared list shows for one site?
+
+Email 3, process and efficiency
+Subject: The 50 to 100 plot check
+
+Hello,
+
+The first-call hook for cemeteries is 50 to 100 plots that the paper records and the map do not agree on (Benchmark, deathcare research, paper-operations note, 2026-04-01). Would a check of one site show whether that gap exists?
+
+Email 4, breakup
+Subject: Closing the loop
+
+Hello,
+
+Your 2026 owner letter sets the 2027 date, and I have not heard back, so I will stop here. If one site's list ever disagreed with the map, who would find out first?
+
+**Persona 2, Pre-Need Sales Manager (name not on file). Works the funeral side's leads.**
+
+Email 1, point of view and wedge
+Subject: Pre-need leads across three funeral homes
+
+Hello,
+
+Your 2026 owner letter says all five sites move to one system in 2027, and three funeral homes already run pre-need counselors. Which funeral home's leads get a call back first, and how long does that take?
+
+Worth 15 minutes to compare two of them?
+
+Email 2, complexity
+Subject: The plot after the lead
+
+Hello,
+
+Your 2026 owner letter names one system for the move, and a pre-need sale needs the plot record in the same place as the lead. Today the plot lists sit in spreadsheets at the two cemeteries (illustrative). When a counselor sells a plot, who confirms it is still open?
+
+Email 3, process and efficiency
+Subject: The pre-need share
+
+Hello,
+
+Deathcare research (2026-03-27 to 2026-04-01) puts independents' pre-need at 20% to 35% of at-need volume. Where does your group sit on that range, and how is it counted?
+
+Email 4, breakup
+Subject: Last note
+
+Hello,
+
+Your 2026 owner letter sets the 2027 date, and I will stop after this note. If a pre-need lead came in this week, who would call it back?
+
+**Persona 3, Operations Director (name not on file). Runs the daily work at both cemeteries.**
+
+Email 1, point of view and wedge
+Subject: Find the plot in seconds
+
+Hello,
+
+Your 2026 owner letter says all five sites move to one system in 2027. For operations, that move decides how fast a plot is found. How long does a plot lookup take at each cemetery today?
+
+Worth 15 minutes to time one?
+
+Email 2, complexity
+Subject: Records across two sites and three funeral homes
+
+Hello,
+
+Your 2026 owner letter names one system, and both cemetery sites keep plot records in spreadsheets (illustrative), while the funeral homes keep their own paperwork. When a funeral home needs a plot, how many records does your team check?
+
+Email 3, process and efficiency
+Subject: Where the time goes
+
+Hello,
+
+Four of four independent cemetery conversations in the deathcare research named plot lookup as a pain (observation, n=4, 2026-04-01). Would a timed lookup at each site show where the time goes: the search, the sold record or the paper map?
+
+Email 4, breakup
+Subject: Last note
+
+Hello,
+
+Your 2026 owner letter names the 2027 move, and I have not heard back, so I will stop here. If a plot lookup ran long on one site, who would you want to see it first?
+
+**Sequence check:** 5 personas x 4 emails = 20 emails. Each email is under 120 words, names no Illustrative proof point, and uses at most one Benchmark, which is cited with its source and date.
+
+- **Step 8, the intelligence appendix.** The top eight items, each tagged:
+  1. One system across five sites in 2027. `[Public: company site, owner letter 2026]`
+  2. Five sites: two cemeteries and three funeral homes. `[CRM]`
+  3. Three funeral homes run pre-need counselors. `[CRM]`
+  4. A pre-need intake form on the company website. `[Public: company website]` (illustrative)
+  5. Social media ads send pre-need enquiries into one shared email. `[Public: company social media pages]` (illustrative)
+  6. Both cemetery sites keep plot records in spreadsheets. `[Notes]` (illustrative)
+  7. The CFO approves budget, and the group reviews system spend twice a year, so a decision takes 6 to 9 months. `[CRM]` (illustrative)
+  8. The first-call hook is 50 to 100 plots per cemetery site. `[Public: deathcare research, 2026-03-27 to 2026-04-01]` (a Benchmark, a hook and not a result)
+
+  Research gaps, each a question for a call:
+  1. Which system does the group pick, and when do the plot records move? `[Unknown]`
+  2. Who in the family signs the 2027 plan, besides the CFO? `[Unknown]`
+  3. Which state's records or trust filing applies to each cemetery site? `[Unknown]`
+
+- **Step 9, the summary, cheatsheet and hand-off.** The summary, as one numbered list:
+  1. Company: Saltmarsh Heritage Group, family owned `[CRM]`, five sites in the ICP3 Multi-Location Group segment, headquarters and revenue `[Unknown]`.
+  2. Research type: Private Company, from an owner letter.
+  3. Verdict and zones: MANUAL REVIEW. Zone 1 MEDIUM, Zone 2 HIGH, Zone 3 LOW, Zone 4 MEDIUM, Zone 5 HIGH. The reasons are the 2027 system plan (Zone 5), the pre-need motion (Zone 2) and the CFO gate with its 6 to 9 month cycle (Zone 3).
+  4. Quantified wedge: 100 to 200 plots to check (a Benchmark hook), and $53,940 a year at list plus $5,000 setup once.
+  5. CRM status: TARGET, no open deal, no AE owner. The only named contact is Hector Ruiz, CFO.
+  6. Geographic exposure: state `[Unknown]`, so no region tier yet.
+  7. Relevance window: not applicable to a private company.
+  8. Sequences: 5 personas x 4 emails = 20 emails.
+  9. Personalized contacts: Hector Ruiz, the one named person, receives the personalized Email 1.
+  10. Strongest entry point: the CFO's Email 1, which ties the owner letter to the one-system plan.
+  11. User role: BDR, Nadia Brandt.
+  12. Coordination note: the guard did not fire, because the status is TARGET.
+  13. Research gaps: the three in Step 8.
+
+  The cheatsheet, in its eight sections:
+  1. **Company Snapshot:** Saltmarsh Heritage Group, family owned `[CRM]`, five sites (two cemeteries, three funeral homes) `[CRM]`. Status TARGET. Verdict MANUAL REVIEW.
+  2. **Geographic and Market Exposure:** state `[Unknown]`, so no region tier. Footprint is four to ten sites, the ICP3 Multi-Location Group row.
+  3. **Key Personas:** Hector Ruiz, CFO, approves budget `[CRM]`, the only named contact. The family owner, the funeral home owner, the cemetery general manager, the pre-need sales manager and the operations director have no names on file `[Unknown]`.
+  4. **Pain Points and Signals:** six talk-track hooks. "Your 2026 owner letter says one system in 2027. Which records move first?" "Pre-need leads need a place to land. Where do they go today?" "Two cemeteries, two plot lists. How do you check a sold plot?" "The CFO review sets the timing. What does it need to see?" "Spreadsheets at both cemeteries set how hard the move is." "Growth is the family's own 2027 plan, and it is in writing."
+  5. **Discovery Questions, by persona:** CFO, "What would you need to see at the first meeting?" Funeral Home Owner, "Where do pre-need leads go today?" Cemetery General Manager, "When a family asks about a plot, how many lists do you check?" Pre-Need Sales Manager, "Who confirms a sold plot is still open?" Operations Director, "How long does a plot lookup take?"
+  6. **Value Props:** "Find the unsold plots you can't see on paper" (Pain 1). "Plot and trust records a state auditor accepts" (Pain 2). "Pre-need leads worked within an hour" (Pain 4, a target only). Proof: the 50 to 100 plot figure, cited as a Benchmark hook. Wedge: $10,788 a year per site at list, plus $5,000 setup.
+  7. **Objection Handling:** "Our current system works." Reply: "Which records would you check first if a state review came back tomorrow?" "Staff won't adopt." Reply: "What happened the last time a new tool came into the office?" "Data migration is risky." Reply: "What would make the move safe enough to start?"
+  8. **Call Flow:** (1) Open: "Hi [name], this is [rep] from PlotIQ. Your 2026 owner letter says all five sites move to one system in 2027. Do you have 30 seconds?" (2) Pain validation: "How do you check which plots are sold and which are open today?" (3) Impact: "What does a lookup cost you, in time or in families waiting?" (4) Bridge: "PlotIQ keeps plot and trust records in a form a state auditor can accept." (5) Ask: "Would 20 minutes next week map which records and leads move first?"
+
+- **Hand-off and next action.** Shown in the hand-off block below.
+
+**Output:** Intelligence profile with tags. Five-part point of view brief built on the single-system plan. Twenty persona emails, all shown in Step 7. Verdict MANUAL REVIEW.
 
 ```text
 Hand-off (read by 06):
@@ -597,7 +822,7 @@ run_date: 2026-10-19
 pov_brief: POV statement, one system across five sites in 2027 as a records project first, verdict MANUAL REVIEW stated
 signal_map: six rows, each tagged and placed in a zone (table above)
 wedge: 2 cemetery sites x 50 to 100 plots = 100 to 200 plots to check (Benchmark, not a result). 5 sites x $10,788 = $53,940 a year at list, plus $5,000 setup once. Plot price unknown, so no payback figure
-persona_emails: 20 (5 personas x 4 steps). Email 1 to the CFO shown above
+persona_emails: 20 (5 personas x 4 steps), all shown in Step 7
 verdict: MANUAL REVIEW
 zone_scores: 1 MEDIUM, 2 HIGH, 3 LOW, 4 MEDIUM, 5 HIGH
 account_status: TARGET
@@ -831,6 +1056,15 @@ next_action: the rep is told the verdict and its disqualifier by 2026-10-21, and
 
 ## Changelog
 
+
+### 2.1.3 (2026-10-26)
+- Try-it evidence completed so a strict first run reproduces Example 1.
+- Records gain the company's pre-need intake form and social-ads facts (both illustrative), so Zone 2 meets all three HIGH conditions, and the group's twice-yearly budget review, which sets the 6 to 9 month decision cycle from the group's own process. The owner-letter quote is marked as the wording these records hold.
+- Step 3 gains the partial-match sentence, reused from Account Qualification (01) Step 4 word for word.
+- Step 5 gains one sentence: a Benchmark stated without a unit is read per cemetery site and multiplied, with the multiplication shown.
+- Step 7 gains one sentence: when a trigger row names two personas, the one who approves budget leads.
+- Example 1 gains the five-part POV brief, all twenty persona emails (five personas, four steps each, each opening with a citation), the eight-section cheatsheet, the eight-item intelligence appendix with three gaps, and the summary.
+- No verdict, zone score, count or wedge arithmetic changes. Example 1 still reads MANUAL REVIEW, Zones 1 MEDIUM, 2 HIGH, 3 LOW, 4 MEDIUM, 5 HIGH, 20 emails.
 
 ### 2.1.2 (2026-10-25)
 - Try-it evidence completed so a strict first run reproduces Example 1.

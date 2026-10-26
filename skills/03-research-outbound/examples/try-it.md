@@ -3,7 +3,7 @@
 Every name, date and number in this file is invented for the PlotIQ example. Nothing here is a real company.
 
 ## Ask Your Assistant
-"Run Research-Driven Outbound on Saltmarsh Heritage Group using skills/03-research-outbound/examples/try-it.md. Treat today as 2026-10-19."
+"Run Research-Driven Outbound on Saltmarsh Heritage Group using skills/03-research-outbound/examples/try-it.md and the PlotIQ profile at profiles/examples/plotiq-example.md. Treat today as 2026-10-19."
 
 ## The Records
 
@@ -18,7 +18,10 @@ Company
 - Funeral homes: The three funeral homes are part of the group's own footprint, under the same owner [CRM]
 - Plot counts: 3,100 plots at the first cemetery site and 2,800 at the second [CRM] (illustrative)
 - Pre-need: Three funeral homes run pre-need counselors [CRM]
+- Pre-need intake form: The company website has a pre-need intake form [Public: company website] (illustrative)
+- Pre-need leads from ads: Social media ads on the group's pages send pre-need enquiries into the group's shared email [Public: company social media pages] (illustrative)
 - Budget: The CFO, Hector Ruiz, approves budget [CRM]
+- Decision cycle: The group reviews system spend at a budget review twice a year, so a system decision takes 6 to 9 months [CRM] (illustrative)
 - Status: TARGET. No open deal and no AE owner
 - Plot records method: Both cemetery sites keep plot records in spreadsheets [Notes] (illustrative)
 - Current system: Spreadsheets only, at the two cemetery sites [Notes] (illustrative)
@@ -27,7 +30,8 @@ Company
 Owner Letter
 - All five sites move to one system in 2027 [Public: company site, owner letter 2026]
 - The owner letter is the family's own plan for 2027 [Public: company site, owner letter 2026]
-- The owner letter names growth as the 2027 plan: "Growth in 2027 means one system for all five sites." [Public: company site, owner letter 2026] (illustrative)
+- The owner letter names growth as the 2027 plan: "Growth in 2027 means one system for all five sites." [Public: company site, owner letter 2026]
+- The quoted line is the owner letter's wording as these records hold it. A run quotes only the text it is given. On a live account, paste the real letter and quote from it, never from memory
 
 ## What You Should Get
 

@@ -5,7 +5,7 @@ Every name, date and number in this file is invented for the PlotIQ example. Not
 These records are as of 2026-05-04, before Brackhaven reached ACTIVE at Stage 5 Negotiate (2026-09-09); the profile's Example Cast shows where the account stands later.
 
 ## Ask Your Assistant
-"Run Account Qualification on Brackhaven Memorial Gardens using skills/01-account-qualification/examples/try-it.md"
+"Run Account Qualification on Brackhaven Memorial Gardens using skills/01-account-qualification/examples/try-it.md and the PlotIQ profile at profiles/examples/plotiq-example.md"
 
 ## The Records
 
@@ -23,6 +23,7 @@ Company
 - Location spread: [Unknown]
 - Current system: [Unknown]
 - Family board chair: [Unknown]
+- Ownership: Family-owned, with no private equity, ESOP or public owner [Public: company website, about page, 2026] (illustrative)
 
 People And Decision
 - Pre-need manager and Operations Director are named on the staff page [Public: company website, staff page] (illustrative)
@@ -30,7 +31,7 @@ People And Decision
 - No intake form for pre-need on the website [Public: company website] (illustrative)
 - The website shows no plot lookup [Public: company website] (illustrative)
 - The records system is not named [Unknown]
-- The owner may retire within 3 years [Public: company website, owner bio, 2026] (illustrative)
+- The owner has a dated retirement plan: retirement on 2029-03-31, stated in the owner bio [Public: company website, owner bio, 2026] (illustrative)
 - The general manager recommends and the board approves [Public: company website, board calendar] (illustrative)
 - The board meets within 60 days [Public: company website, board calendar] (illustrative)
 - Year one with setup is $26,576 (illustrative), above the $25K board line [Inferred: two sites at list price, plus the one-time setup]

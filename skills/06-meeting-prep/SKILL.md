@@ -1,16 +1,19 @@
 ---
 name: gtm-meeting-prep
-version: 2.1.2
+version: 2.1.3
 description: "Prepares a rep for a discovery or demo call with one prep sheet: the top pain, a question bank for each discovery phase, one proof point per attendee, objection scripts, a minute-by-minute call flow and a follow-up email draft. The rep reads it during the call."
 category: Sales-Methodology
 author: Ryan Vanshur
 license: MIT
-updated: 2026-10-25
+updated: 2026-10-26
 tags: [meeting-prep, discovery-prep, demo-prep, call-prep, discovery-questions, meeting-scripts, objection-handling, meddpicc]
 requires:
   skills: [gtm-account-snapshot, gtm-research-outbound, gtm-trigger-event-outbound, gtm-closed-loss-reactivation, gtm-daily-prospecting, gtm-deal-pulse, gtm-stakeholder-mapping, gtm-competitive-strategy, gtm-competitive-displacement, gtm-call-coaching]
 mutating: read-write
 change_log:
+  - version: 2.1.3
+    date: 2026-10-26
+    summary: "Try-it evidence completed so a strict first run reproduces Example 1. Adds the upstream Account Snapshot fields the sheet reads, names one proof point with its research target for each attendee persona, counts a phase that holds fewer than three questions as the questions it has, and rules that an incident count does not quantify a pain. Points the try-it ask at the example profile."
   - version: 2.1.2
     date: 2026-10-25
     summary: "Try-it evidence completed so a strict first run reproduces Example 1. Adds the colour rules for Metrics, Economic Buyer and Identified Pain, states that an Illustrative proof row does not make a persona usable, and dates the Example 1 next action to the call."
@@ -131,7 +134,7 @@ Every run produces one prep sheet with the same sections in the same order. The 
 
 ## Context
 
-This skill carries no company facts of its own. It reads them from the profile, the file named in The Shared Contract below. It reads these sections, and nothing else:
+This skill carries no company facts of its own. It reads them from the profile, the file named in The Shared Contract below. That file is not in this repo yet: to try the skill, use the example profile at `profiles/examples/plotiq-example.md`, and to set up your own company, copy `profiles/client-profile-template.md` to `profiles/client-profile.md`. It reads these sections, and nothing else:
 
 | Profile section | Used for |
 |---|---|
@@ -420,7 +423,7 @@ Branch by meeting type.
 - **Implication (3 to 4 questions):** what they have tried, past evaluations, why earlier attempts stopped.
 - **Need-Payoff (2 to 3 questions):** value framing for the weaker hypotheses. A benchmark may appear in the question only with its source and date named.
 
-Each question carries its listen-for phrase from the What to Listen For column. A phrase the buyer has said in the record is quoted as theirs. A phrase from the profile is labelled as the profile's, because the buyer has not said it yet. The sheet shows the top three questions per phase.
+Each question carries its listen-for phrase from the What to Listen For column. A phrase the buyer has said in the record is quoted as theirs. A phrase from the profile is labelled as the profile's, because the buyer has not said it yet. The sheet shows the top three questions per phase. A phase with fewer than three questions shows all of them, so a Need-Payoff of two shows two.
 
 Apply the follow-up ladder rule from the Methodology. For a vague answer, ask for specifics with plain probes: "Walk me through that," "What happens next," "Describe the last time it happened."
 
@@ -430,7 +433,7 @@ Apply the follow-up ladder rule from the Methodology. For a vague answer, ask fo
 
 ### Step 5. Frame the Call
 
-**Discovery: qualification pre-fill.** For each element of the team's qualification framework, mark what is known (green), partly known (yellow) or unknown (red). Each yellow or red cell gets the question that fills it. Identified Pain needs at least one pain quantified, which is the stage 3 depth target. Metrics is green when the record holds a figure for the outcome the solution moves and the buyer has agreed it, yellow when that figure is recorded but not agreed, and red when no such figure is recorded, because account size such as a plot count describes the account and never scores the cell. Economic Buyer is green when the record names the person who signs at this deal's value, yellow when a buyer is named but the signer above that buyer's limit is not confirmed, and red when no buyer is named. Identified Pain is green when one pain is quantified, yellow when a pain is named but not quantified, and red when none is named.
+**Discovery: qualification pre-fill.** For each element of the team's qualification framework, mark what is known (green), partly known (yellow) or unknown (red). Each yellow or red cell gets the question that fills it. Identified Pain needs at least one pain quantified, which is the stage 3 depth target. Metrics is green when the record holds a figure for the outcome the solution moves and the buyer has agreed it, yellow when that figure is recorded but not agreed, and red when no such figure is recorded, because account size such as a plot count describes the account and never scores the cell. Economic Buyer is green when the record names the person who signs at this deal's value, yellow when a buyer is named but the signer above that buyer's limit is not confirmed, and red when no buyer is named. Identified Pain is green when one pain is quantified, yellow when a pain is named but not quantified, and red when none is named. An incident count does not quantify a pain: a pain is quantified only when its cost is stated in plots, hours or dollars, as the profile's Stage 2 gate requires, so one double sale in 24 months leaves Identified Pain yellow.
 
 **Demo: pain-to-workflow map and structure.** Map each pain to a workflow, the differentiating feature, and the proof that makes it land, with its Status. Plan the demo as: the opening (three to five minutes), a problem slide built on the three-beat arc, a block for each pain in order of importance, and a recap and close. Check the five demo habits before the sheet is handed back.
 
@@ -568,7 +571,7 @@ All four examples use PlotIQ and its cast from the profile's Example Cast. Facts
 
 **Step 0.** `meeting_type = discovery`. The demo prerequisite does not apply.
 
-**Step 1.** Account profile: combination, two sites, 11,000 plots `[CRM]`. Status ACTIVE, Stage 2 Discovery `[CRM]`. Upstream from Account Snapshot (02), run when the account was TARGET: `account_status: TARGET (then)` and `verdict: GREENLIGHT`. Attendees:
+**Step 1.** Account profile: combination, two sites, 11,000 plots `[CRM]`. Status ACTIVE, Stage 2 Discovery `[CRM]`. Upstream from Account Snapshot (02), run when the account was TARGET: `account_status: TARGET (then)` and `verdict: GREENLIGHT`. Its `contact_priority` ranks Ruth Ellery first and Walt Okonkwo second `[Inferred]`, from the persona order in the profile. Its `pain_hypotheses` are plot records on paper, with one double sale `[CRM]` (illustrative), and trust reporting by hand `[Inferred]`. Its `sequence` is a four-step sequence for Ruth Ellery, drafted and not sent (illustrative). Attendees:
 
 | Name | Title | Buying role |
 |------|-------|-------------|
@@ -588,9 +591,9 @@ All four examples use PlotIQ and its cast from the profile's Example Cast. Facts
 **Step 4.** Question bank, top three per phase:
 
 - **Situation:** "Walk me through how a plot sale is recorded, from the first call to the deed." "Who keeps the plot maps, and where?" "How many sales come through the office in a month?"
-- **Problem:** "When a family asks about a plot, where do you look first, and how long does it take?" Listen for: "We have files that date back to the 1970s," a profile phrase Ruth has not yet said. "How many plots could you sell today if the records were right?"
-- **Implication:** "What have you tried to fix the plot records before, and why did it stop?"
-- **Need-Payoff:** "Most cemeteries your size carry 50 to 100 plots sold on paper and unsold on the map. Is that close to your experience?" (Benchmark, deathcare research, paper-operations note, 2026-04-01.)
+- **Problem:** "When a family asks about a plot, where do you look first, and how long does it take?" Listen for: "We have files that date back to the 1970s," a profile phrase Ruth has not yet said. "How many plots could you sell today if the records were right?" "Walk me through last year's trust filing. Who pulled the numbers, and from where?"
+- **Implication:** "What have you tried to fix the plot records before, and why did it stop?" "What happened the last time a family was given a plot that was already sold?" "Who could answer a family's question about a plot if the person who keeps the maps were out for a month?"
+- **Need-Payoff:** "Most cemeteries your size carry 50 to 100 plots sold on paper and unsold on the map. Is that close to your experience?" (Benchmark, deathcare research, paper-operations note, 2026-04-01.) "If the plots the map is hiding were sold, what would that be worth to the office in a year?"
 
 Follow-up ladder on the top pain: stages 1 and 2 when confirmed, and stage 3 on the top pain: "What does a double sale cost you, in money or in family trust?"
 
@@ -605,7 +608,7 @@ Follow-up ladder on the top pain: stages 1 and 2 when confirmed, and stage 3 on 
 
 **Step 6.** Competitive: the incumbent is Oldgate Ledger Pro `[CRM]`, an incumbent of the direct-software type in the shared list. Renewal is March 2027 `[CRM]`. Probes, as questions: "When does the Oldgate contract renew, and what did the last quote include for support?" and "Where does the plot map live today, and when was it last updated?" Oldgate's mobile weakness matters only if the grounds crew still uses paper work orders `[Inferred]`.
 
-**Step 7.** Proof for Ruth Ellery, the GM: Holloway Hills, zero records findings in its first state review, Status Illustrative. Not cited to Ruth. The row is Illustrative, so the sheet marks it "do not cite" and gives the research target beside it: 50 to 100 plots sold on paper and unsold on the map (Benchmark, deathcare research, paper-operations note, 2026-04-01). For Walt Okonkwo, the same row is the persona-proof map's choice, and it is Illustrative too. No Verified proof exists for an Operations Director yet, so the sheet says so and gives the research target for a same-day plot answer instead.
+**Step 7.** Proof for Ruth Ellery, the GM: Holloway Hills, zero records findings in its first state review, Status Illustrative. Not cited to Ruth. The row is Illustrative, so the sheet marks it "do not cite" and gives the research target beside it: 50 to 100 plots sold on paper and unsold on the map (Benchmark, deathcare research, paper-operations note, 2026-04-01). For Walt Okonkwo, the profile's persona-proof map also names Holloway Hills, Status Illustrative, marked "do not cite". No Verified proof exists for an Operations Director yet, so the research target beside it is a plot answer in 20 seconds (profile target, research, not a customer result).
 
 **Step 8.** Open: "Ruth, thanks for making the time. Before we go further, how are the plot records kept at Brackhaven today?" Close: recap the pain in Ruth's words, ask who else belongs in the next conversation, and agree the next date with an owner.
 
@@ -906,6 +909,9 @@ This skill also reads the kit's hand-off block back as optional context: `case_s
 
 ## Changelog
 
+
+### 2.1.3 (2026-10-26)
+- Try-it evidence completed so a strict first run reproduces Example 1. The example reads the upstream contact, pain and sequence fields and names a proof point with its research target for each attendee. Its question bank shows the counts the try-it promises. A phase with fewer than three questions shows all of them, and an incident count does not quantify a pain. The try-it ask names the example profile. No output count, verdict or next action changed. The proof line now names both attendees.
 
 ### 2.1.2 (2026-10-25)
 - Try-it evidence completed so a strict first run reproduces Example 1. Adds the colour rules for Metrics, Economic Buyer and Identified Pain to the qualification pre-fill, and states that an Illustrative proof row does not make a persona usable. Example 1 gains the call date and the Ruth Ellery research target, and its next action is dated to the call. The meeting date stays unknown until agreed.

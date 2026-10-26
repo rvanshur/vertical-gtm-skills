@@ -3,7 +3,7 @@
 Every name, date and number in this file is invented for the PlotIQ example. Nothing here is a real company.
 
 ## Ask Your Assistant
-"Run Trigger Event Outbound on Corrow Ridge Cemetery using skills/04-trigger-event-outbound/examples/try-it.md. Treat today as 2026-10-19."
+"Run Trigger Event Outbound on Corrow Ridge Cemetery using skills/04-trigger-event-outbound/examples/try-it.md and the PlotIQ profile at profiles/examples/plotiq-example.md. Treat today as 2026-10-19."
 
 ## The Records
 

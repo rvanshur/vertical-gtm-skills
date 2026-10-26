@@ -3,10 +3,11 @@
 Every name, date and number in this file is invented for the PlotIQ example. Nothing here is a real company.
 
 ## Ask Your Assistant
-"Run Competitive Displacement on Greyfield Memorial Park using skills/12-competitive-displacement/examples/try-it.md" Treat today as 2026-10-19.
+"Run Competitive Displacement on Greyfield Memorial Park using skills/12-competitive-displacement/examples/try-it.md and the PlotIQ profile at profiles/examples/plotiq-example.md" Treat today as 2026-10-19.
 
 ## The Records
 - Run date: 2026-10-19. User role: BDR, from the CRM user record [CRM] (illustrative).
+- The BDR who owns the account in the CRM is Nadia Brandt [CRM] (illustrative).
 - Greyfield Memorial Park is a one-site cemetery with 9,000 plots (profile). It runs a digital map from Stonemark, a direct software incumbent (profile). Its three-person pre-need team takes requests through an intake form on the site (profile).
 - CRM check: TARGET, not yet contacted. No open deal and no AE owner.
 - The account's CRM note names its map vendor [CRM] (illustrative).
@@ -15,7 +16,7 @@ Every name, date and number in this file is invented for the PlotIQ example. Not
 - Champion: the pre-need team lead is named nowhere, so the name is [Unknown]. Budget cycle: [Unknown]. Previous evaluation of our product: [Unknown].
 - Contacts: none on file. Every contact is [Unknown], so the sequence uses titles.
 - Account Qualification (01) verdict: GREENLIGHT. Zones 2 and 3 HIGH, and Zone 1 MEDIUM, because the digital map holds no records or trust reporting (profile).
-- Stonemark time to live: 90 to 120 days [Public: competitive research estimate, 2026-03-27].
+- Stonemark time to live: 90 to 120 days [Public: deathcare research project, competitive research, 2026-03-27, research estimate].
 - PlotIQ time to live: 6 weeks (profile).
 - Benchmark: independents capture pre-need on 20% to 35% of at-need volume, and the largest public operator about 60% (deathcare research, 2026-03-27 to 2026-04-01, Benchmark).
 - Proof points: Fennick Gardens (212 unsold plots found in 90 days) and Holloway Hills (zero records findings in its first state review) are both Illustrative and name no displaced vendor (profile).

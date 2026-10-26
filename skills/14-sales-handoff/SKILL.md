@@ -1,16 +1,19 @@
 ---
 name: gtm-sales-handoff
-version: 2.1.2
+version: 2.1.3
 description: "Post-sale implementation readiness check: scores six dimensions, sets the three dates (kickoff, go-live and Full Adoption Date), names risks with mitigations and quick wins, and writes the handoff the implementation lead plans from"
 category: Sales-Methodology
 author: Ryan Vanshur
 license: MIT
-updated: 2026-10-25
+updated: 2026-10-26
 tags: [sales-handoff, customer-readiness, implementation-readiness, onboarding, cs-handoff, post-sale, kickoff-prep]
 requires:
   skills: [gtm-meddpicc-analysis]
 mutating: read-write
 change_log:
+  - version: 2.1.3
+    date: 2026-10-26
+    summary: "Dates recomputed from the profile's typical days (49, illustrative) and IT lead time (14 days, illustrative), with the arithmetic shown. One sentence each settles the Yellow buffer default, the IT lead time reading, the preview scope before signature and the top-three risk ranking. Workflow and Technical rules settle the stated estimate and the constrained IT case, and the try-it records carry the evidence the examples cite."
   - version: 2.1.2
     date: 2026-10-25
     summary: "Try-it evidence completed so a strict first run reproduces Example 1. The Unknown Rule is added: a dimension with no evidence is INSUFFICIENT, the composite re-weights over the scored dimensions, and fewer than five scored dimensions gives no composite. Stakeholder is added to the Risk Categories table, and the example shows the baseline, the stated plan and the agreed date."
@@ -95,7 +98,7 @@ Every run returns the readiness report in the chat, in the nine sections of Step
 
 This skill does not contain client-specific information. It points to it.
 
-> **Load the client profile from [`profiles/client-profile.md`](../../profiles/client-profile.md) before starting.** That single file is shared by all 14 skills in this suite. Update it once and every skill inherits the change on its next run.
+> **Load the client profile from [`profiles/client-profile.md`](../../profiles/client-profile.md) before starting.** That single file is shared by all 14 skills in this suite. Update it once and every skill inherits the change on its next run. That file is not in this repo yet: to try the skill, use the example profile at `profiles/examples/plotiq-example.md`, and to set up your own company, copy `profiles/client-profile-template.md` to `profiles/client-profile.md`.
 
 Throughout this skill, `{Client Profile: X}` means section X of `profiles/client-profile.md`. Sections this skill reads:
 
@@ -221,6 +224,8 @@ Your readiness framework. The dimensions and scoring rules below give a structur
 - **2** = Source system unclear or multi-system, IT outsourced or constrained, significant data concerns
 - **1** = Source system unknown, no IT engagement, never done integration, major data issues
 
+With one known source system and no IT owner named, IT counts as constrained, so Technical scores 2 even when the source is clear.
+
 #### Dimension 4: Data Readiness (Weight: 15%)
 - **5** = All critical data elements available, clean, customer already exports elsewhere
 - **4** = Most data available, minor gaps solvable
@@ -289,15 +294,17 @@ Integration advantages to note: the product takes any standard output, most cust
 | **Vendor transition** | Existing provider contract still active, overlapping services | Map contract end dates. Plan a parallel-run period. Ensure no service gap |
 | **Stakeholder** | No executive sponsor named, no IT lead, or the champion has gone quiet | Name the sponsor and the IT lead before kickoff. Put the sponsor's written confirmation in the kickoff conditions |
 
+**Ranking the Top Three.** Rank risks by severity, HIGH first. Within a severity, a risk on the lowest-scoring dimension comes first, and a tie goes to the row order of this table.
+
 ### The Three Dates
 
 The signature is the handoff trigger, not one of the three dates. The three dates are the ones the implementation lead plans from: kickoff, go-live and Full Adoption Date. Every date shows its arithmetic.
 
 **Date 1: Kickoff.** The day the implementation lead starts. Set by the readiness level:
 - **Green (80 to 100):** kickoff in the week of the handoff.
-- **Yellow (60 to 79):** kickoff two to four weeks after the readiness check. The check date is the anchor, not the signature. A check on 2026-11-02 with a three-week buffer gives 2026-11-02 plus 21 days.
+- **Yellow (60 to 79):** kickoff two to four weeks after the readiness check. The check date is the anchor, not the signature. A check on 2026-11-02 with a three-week buffer gives 2026-11-02 plus 21 days. Without a dated reason for another point in the window, use three weeks, as the worked example does.
 - **Orange (40 to 59) or Red (0 to 39):** no kickoff date is set until every critical dimension reaches 3. Any date shown is marked conditional.
-- **IT lead time:** the profile's IT lead time is added to the kickoff date when no IT owner is yet named.
+- **IT lead time:** the profile's IT lead time is added to the kickoff date when no IT owner is yet named. It comes on top of the buffer, so kickoff can fall more than four weeks after the check. It is read on the check date: an IT owner named by then means no lead time is added.
 
 **Date 2: Go-Live.** Kickoff plus the typical days from kickoff to go-live in the Implementation Profile, written as the arithmetic: kickoff date plus N days. The skill ships that value blank. If the profile has no value, go-live is written as `[RECORD]`, and the skill does not estimate it.
 
@@ -328,12 +335,13 @@ This is a starting catalog of four. Pick two or three. Each one must be somethin
 
 **Use this skill when:**
 - A deal is closed-won, or about to close, and needs the handoff to implementation
+- Before signature, as a readiness preview: the three dates are proposed, and no handoff is issued until the signature
 - Preparing for an implementation kickoff meeting
 - Checking whether a near-close deal is ready for a smooth implementation
 - A sales manager is reviewing handoff quality
 
 **Don't use when:**
-- The deal is still in the active sales process (use `gtm-deal-pulse` or `gtm-meddpicc-analysis`)
+- The deal is still in the active sales process and no preview is wanted (use `gtm-deal-pulse` or `gtm-meddpicc-analysis`)
 - The question is account strategy before the sale (use `gtm-competitive-strategy`)
 - The customer is already in implementation. This is for the transition point only
 
@@ -412,7 +420,7 @@ Analyze how the customer handles each process today. Pull from the discovery not
 - Current quality or compliance rate, if known
 - Losses attributable to process failures, if disclosed
 
-**Produces:** the workflow summary and the baseline list. A baseline that was never measured is written as `[Unknown]`, not as a zero.
+**Produces:** the workflow summary and the baseline list. A baseline that was never measured is written as `[Unknown]`, not as a zero. A volume the customer stated on a call, tagged with its date, is a partial baseline: it supports a Workflow score of 4, and a score of 5 needs measured baselines.
 
 ### Step 4: Assess Technical Readiness
 
@@ -548,7 +556,7 @@ All three examples use the PlotIQ flagship, Brackhaven Memorial Gardens, and the
 
 **Input:** "Run the readiness check for Brackhaven Memorial Gardens before they sign."
 
-**Process:** Ruth Ellery is the champion (`[Call]`, four of seven shared champion tests met). The family board chair is a role with no name on file (`[Unknown]`) who has joined one call (`[CRM]`). No IT contact is on file (`[Unknown]`). The source is Oldgate Ledger Pro (`[CRM]`), and its ledger export is not yet scoped (`[Unknown]`). Plot records are on paper (`[Call]`). Walt Okonkwo, Operations Director, is skeptical of tablets (`[Call]`). Oldgate's contract renews in March 2027 (`[CRM]`). On the 2026-10-27 call, Ruth agreed that Owen would ask her to name the board chair and confirm the sponsor role in writing by 2026-11-09 (`[Call]`, illustrative).
+**Process:** Ruth Ellery is the champion. Four of seven shared champion tests are met on the 2026-10-27 call, each tagged `[Call]` (illustrative): she explains the internal politics, asks how to help, commits to next steps with dates, and creates urgency inside her company. The family board chair is a role with no name on file (`[Unknown]`) who has joined one call (`[CRM]`). No IT contact is on file (`[Unknown]`). The source is Oldgate Ledger Pro (`[CRM]`), and its ledger export is not yet scoped (`[Unknown]`). Plot records are on paper (`[Call]`). Walt Okonkwo, Operations Director, is skeptical of tablets (`[Call]`). Oldgate's contract renews in March 2027 (`[CRM]`). On the 2026-10-27 call, Ruth agreed that Owen would ask her to name the board chair and confirm the sponsor role in writing by 2026-11-09 (`[Call]`, illustrative).
 
 **Scoring:**
 
@@ -558,7 +566,7 @@ All three examples use the PlotIQ flagship, Brackhaven Memorial Gardens, and the
 | Workflow | 20% | 4 | 0.80 | Lookup and trust report steps mapped `[Call]`. Walt's estimate of about two plot lookups a week `[Call, 2026-09-17]` (illustrative), so a partial baseline exists. Lookup times not yet timed |
 | Technical | 20% | 2 | 0.40 | Oldgate named `[CRM]`. No IT contact on file `[Unknown]`. Ledger export unscoped `[Unknown]` |
 | Data | 15% | 3 | 0.45 | The trust ledger holds both sites' trust numbers in one place `[Notes]` (illustrative). Plot records on paper `[Call]`, with uneven quality and some re-entry by hand during the transition `[Notes]` (illustrative). Deed scans scheduled for weeks 2 to 3 (illustrative) |
-| Resource | 15% | 3 | 0.45 | Eli Marsh assigned `[CRM]`, and shared with another implementation through the end of the year `[CRM]` (illustrative). The March 2027 Oldgate renewal competes for attention `[CRM]` |
+| Resource | 15% | 3 | 0.45 | Eli Marsh assigned `[CRM]`, and shared with another implementation through the end of the year `[CRM]` (illustrative). The March 2027 Oldgate renewal competes for the same people `[Notes]` (illustrative) |
 | Change Management | 10% | 3 | 0.30 | Ruth is open to the change `[Call]`. Walt is skeptical of tablets `[Call]` |
 | **Total** | **100%** | | **3.00** | |
 
@@ -591,9 +599,9 @@ All three examples use the PlotIQ flagship, Brackhaven Memorial Gardens, and the
 | Multi-system complexity | Green | One source system `[CRM]` |
 
 **Three dates:**
-- **Kickoff:** Yellow gives a two to four week buffer from this check on 2026-11-02. Three weeks: 2026-11-02 plus 21 days = **2026-11-23** (Monday). The IT lead time is added when no IT owner is named, and that value is `[RECORD]`, so this date is provisional until the lead time is recorded. The date is proposed, and it holds only if the conditions below are met.
-- **Go-Live:** 2026-11-23 plus 49 days = **2027-01-11** (Monday). The 49 days is Brackhaven's own implementation plan from Eli Marsh `[Notes]` (illustrative). It is the team's stated plan for this account, not a typical value. PlotIQ's typical days stay `[RECORD]`, so this is not a benchmark.
-- **Full Adoption Date:** 2026-11-23 plus two months = 2027-01-23, a Saturday. Rolled to Monday, **2027-01-25**. No other adjustment applies: one source system, and the export format is not yet known to the implementation team. The date is provisional, because kickoff is provisional.
+- **Kickoff:** Yellow gives a two to four week buffer from this check on 2026-11-02. Three weeks: 2026-11-02 plus 21 days = **2026-11-23** (Monday). The IT lead time is added when no IT owner is named: 2026-11-23 plus 14 days (illustrative) = **2026-12-07** (Monday). The date is proposed, and it holds only if the conditions below are met.
+- **Go-Live:** 2026-12-07 plus 49 days = **2027-01-25** (Monday). The 49 days is the profile's typical days from kickoff to go-live (illustrative). It is a planning value set from the six-week roadmap plus one week of buffer, not a measured one.
+- **Full Adoption Date:** 2026-12-07 plus two months = 2027-02-07, a Sunday. Rolled to Monday, **2027-02-08**. No other adjustment applies: one source system adds nothing, and an export format the team does not know yet subtracts nothing.
 
 **Risks (top 3):** Technical (HIGH, likelihood high on current evidence): no IT owner and an unscoped export. Mitigation: Oldgate's support runs a test export on a sample file before kickoff. Stakeholder (HIGH): the board chair is unnamed and the sponsor role is not in writing. Mitigation: Owen Pruitt asks Ruth Ellery for the chair's name and a written sponsor confirmation before the 2026-11-12 board. Adoption (MEDIUM): Walt Okonkwo's skepticism of tablets. Mitigation: the work-order pilot is shown to Walt before kickoff.
 
@@ -614,7 +622,7 @@ Sales Team Completes:
 - [x] Timeline commitments documented: the account plan and the three dates `[Notes]`
 - [ ] Technical requirements noted: not yet, no IT owner
 - [ ] Success criteria agreed with the customer: not yet
-- [ ] Three-date plan communicated: not yet, the dates are provisional
+- [ ] Three-date plan communicated: not yet, the dates are proposed until the conditions are met
 
 Implementation Team Confirms:
 - [x] Implementation owner assigned: Eli Marsh `[CRM]`
@@ -631,7 +639,7 @@ account: Brackhaven Memorial Gardens (ACTIVE, Stage 5 Negotiate)
 run_date: 2026-11-02
 readiness_score: 60, scored 6 of 6
 dimension_scores: Stakeholder 3, Workflow 4, Technical 2, Data 3, Resource 3, Change Management 3
-three_dates: kickoff 2026-11-23 (proposed), go-live 2027-01-11, Full Adoption Date 2027-01-25
+three_dates: kickoff 2026-12-07 (proposed), go-live 2027-01-25, Full Adoption Date 2027-02-08
 risks: Technical (HIGH), Stakeholder (HIGH), Adoption (MEDIUM)
 quick_wins: week one remove one manual step, month one risk audit of open plots, 90 days lookup times at baseline
 next_action: Owen Pruitt asks Ruth Ellery for the board chair's name and written sponsor confirmation by 2026-11-09
@@ -661,8 +669,8 @@ report_path: none (inline)
 **Composite:** 2.85 ÷ 5 × 100 = **57 of 100 (Orange, at risk)**. Technical is a critical dimension at 2, so the Orange rule holds kickoff.
 
 **Three dates:**
-- **Kickoff:** 2026-11-23 is held only if Technical reaches 3 by Friday 2026-11-20, which needs conditions 1 and 2 below. If it does not, kickoff moves to the first date the conditions clear. If that is Monday 2026-11-30, the other two dates move with it: go-live 2026-11-30 plus 49 days = **2027-01-18**, and the Full Adoption Date 2026-11-30 plus two months = 2027-01-30, a Saturday, rolled to **2027-02-01**.
-- **If kickoff holds on 2026-11-23:** go-live **2027-01-11** (49 days, illustrative), and the Full Adoption Date **2027-01-25** (Saturday 2027-01-23 rolled to Monday).
+- **Kickoff:** The base is 2026-11-23, one week after signature, as this example sets it. The 14-day IT lead time (illustrative) is added because no IT owner is named at this check: 2026-11-23 plus 14 days = **2026-12-07** (Monday). It is held until Technical reaches 3 by Friday 2026-12-04, which needs conditions 1 and 2 below. If it does not, kickoff moves to the first date the conditions clear. If that is Monday 2026-11-30, the lead time is added again: 2026-11-30 plus 14 days = **2026-12-14** (Monday), and the other two dates move with it. Go-live is then 2026-12-14 plus 49 days = **2027-02-01**, and the Full Adoption Date is 2026-12-14 plus two months = 2027-02-14, a Sunday, rolled to **2027-02-15**.
+- **If kickoff holds on 2026-12-07:** go-live **2027-01-25** (49 days, illustrative), and the Full Adoption Date **2027-02-08** (2027-02-07 is a Sunday, rolled to Monday).
 
 **Risks (top 3):** Technical (HIGH): no IT owner and no one briefed on the migration. Mitigation: Eli Marsh asks Ruth Ellery to name an IT owner by 2026-11-20, and Oldgate's support briefs that owner on the export. Stakeholder (HIGH): the sponsor is not named. Mitigation: the board chair's name and written sponsor confirmation are a condition of kickoff. Resource (MEDIUM): the migration and the renewal compete. Mitigation: the renewal date goes on the project plan with a parallel-run window before March 2027.
 
@@ -680,7 +688,7 @@ account: Brackhaven Memorial Gardens (ACTIVE, Stage 6 Closed-Won and Handoff)
 run_date: 2026-11-16
 readiness_score: 57
 dimension_scores: Stakeholder 3, Workflow 4, Technical 2, Data 3, Resource 2, Change Management 3
-three_dates: kickoff 2026-11-23 (held until Technical reaches 3 by 2026-11-20), go-live 2027-01-11, Full Adoption Date 2027-01-25
+three_dates: kickoff 2026-12-07 (held until Technical reaches 3 by 2026-12-04), go-live 2027-01-25, Full Adoption Date 2027-02-08
 risks: Technical (HIGH), Stakeholder (HIGH), Resource (MEDIUM)
 quick_wins: week one remove one manual step, month one risk audit of open plots, 90 days lookup times at baseline
 next_action: Eli Marsh asks Ruth Ellery to name a Brackhaven IT owner by 2026-11-20
@@ -711,6 +719,8 @@ report_path: none (inline)
 
 **Three dates:** Kickoff, go-live and Full Adoption Date are all **TBD**. The date rules cannot run on an unsigned deal with no confirmed board date.
 
+**Risks (top 3, ranked by the rule under Risk Categories):** Technical (HIGH, dimension 1), Resource (HIGH, dimension 2), Stakeholder (HIGH, dimension 2). Resource ranks above Stakeholder because both sit on a dimension scored 2 and Resource comes first in the table. Adoption is MEDIUM and ranks fourth, because Walt is an influencer (`[CRM]`) and the economic buyer is not in the room.
+
 **Recommendation:** Do not proceed to kickoff. Sales re-engages first, in this order:
 1. Owen Pruitt asks Ruth Ellery to confirm the board date by 2026-10-23, the dated action the 09 HOLD requires.
 2. Brackhaven names an IT contact, and Oldgate's support tests the export on a sample file.
@@ -726,7 +736,7 @@ run_date: 2026-10-19
 readiness_score: 36
 dimension_scores: Stakeholder 2, Workflow 2, Technical 1, Data 2, Resource 2, Change Management 2
 three_dates: none set (no handoff issued, board date not confirmed)
-risks: Technical (HIGH), Stakeholder (HIGH), Resource (HIGH)
+risks: Technical (HIGH), Resource (HIGH), Stakeholder (HIGH)
 quick_wins: none until the gaps close
 next_action: Owen Pruitt asks Ruth Ellery to confirm the board date by 2026-10-23
 report_path: none (inline)
@@ -810,6 +820,9 @@ The Business Case & ROI Kit (a paid Guild Pro kit) reads this skill's hand-off b
 ---
 
 ## Changelog
+
+### 2.1.3 (2026-10-26)
+- Try-it evidence completed so a strict first run reproduces Example 1, with one approved output change: the three dates now use the profile's typical days (49, illustrative) and IT lead time (14 days, illustrative). Example 1 kickoff moves from 2026-11-23 to 2026-12-07 (2026-11-02 plus 21 days, then plus 14 days), go-live from 2027-01-11 to 2027-01-25 (plus 49 days), and the Full Adoption Date from 2027-01-25 to 2027-02-08 (2027-02-07 is a Sunday, rolled to Monday). The provisional label and the [RECORD] wording are removed from the dates. Example 2 and the try-it records follow the same arithmetic. Added rules: the Yellow buffer default of three weeks, the IT lead time on top of the buffer and read on the check date, the preview scope before signature, the top-three ranking, the partial Workflow baseline, and the constrained IT case for Technical.
 
 ### 2.1.2 (2026-10-25)
 - Try-it evidence completed so a strict first run reproduces Example 1. The Unknown Rule is added: a dimension with no evidence is INSUFFICIENT, the composite re-weights over the scored dimensions and reads with its scored count, and fewer than five scored dimensions gives no composite. Stakeholder is added as a Risk Categories row, which the example's top risk now uses. Example 1 shows the stakeholder map, the workflow baseline, the technical rows, the checklist, and the stated plan and agreed date behind its dates.
