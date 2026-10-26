@@ -3,7 +3,7 @@
 Every name, date and number in this file is invented for the PlotIQ example. Nothing here is a real company.
 
 ## Ask Your Assistant
-"Run Sales Handoff on Brackhaven Memorial Gardens using skills/14-sales-handoff/examples/try-it.md"
+"Run Sales Handoff on Brackhaven Memorial Gardens using skills/14-sales-handoff/examples/try-it.md" Treat today as 2026-11-02.
 
 ## The Records
 - Readiness check date: 2026-11-02.
@@ -17,7 +17,11 @@ Every name, date and number in this file is invented for the PlotIQ example. Not
 - No IT contact is on file [Unknown].
 - Source system: Oldgate Ledger Pro [CRM]. The ledger export is not yet scoped [Unknown]. The export format is not yet known to the implementation team.
 - Oldgate's contract renews in March 2027 [CRM].
-- Plot records are on paper [Call]. Lookup and trust report steps are mapped [Call]. Lookup times have not been timed, so there is no baseline.
+- Plot records are on paper [Call]. Lookup and trust report steps are mapped [Call]. Lookup times have not been timed. Walt estimates about two plot lookups a week [Call, 2026-09-17] (illustrative), so a partial baseline exists.
+- The trust ledger holds both sites' trust numbers in one place [Notes] (illustrative). The plot records are on paper, with uneven quality and some re-entry by hand during the transition [Notes] (illustrative).
+- Eli Marsh is shared with another implementation through the end of the year [CRM] (illustrative).
+- Brackhaven's own implementation plan from Eli Marsh is 49 days from kickoff to go-live [Notes] (illustrative). It is the team's stated plan for this account, not a typical value.
+- On the 2026-10-27 call, Ruth agreed that Owen would ask her to name the board chair and confirm the sponsor role in writing by 2026-11-09 [Call] (illustrative).
 - Deed scans are scheduled for weeks 2 to 3 (illustrative).
 - Walt Okonkwo, Operations Director, is skeptical of tablets [Call].
 - One double sale in 24 months [CRM] (illustrative).

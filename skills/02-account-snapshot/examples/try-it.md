@@ -3,7 +3,7 @@
 Every name, date and number in this file is invented for the PlotIQ example. Nothing here is a real company.
 
 ## Ask Your Assistant
-"Run Account Snapshot Outbound on Quill Hollow Memorial Park using skills/02-account-snapshot/examples/try-it.md"
+"Run Account Snapshot Outbound on Quill Hollow Memorial Park using skills/02-account-snapshot/examples/try-it.md. Treat today as 2026-10-19."
 
 ## The Records
 
@@ -17,7 +17,7 @@ Company
 - Plot records: Paper plat maps [CRM] (illustrative)
 - Records finding: A records finding appears in the last state review [CRM] (illustrative)
 - Records finding date: [Unknown]
-- Owner signing authority: The owner signs under $25K [CRM]
+- Owner signing authority: The owner signs under $25K [CRM]. The owner signs alone, with no board approval step [CRM] (illustrative)
 - Owner name: [Unknown]
 - Growth: The owner brought a growth mandate when Ines Carmody arrived [CRM]
 - Status: TARGET. No open deal [CRM]

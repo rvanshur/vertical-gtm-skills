@@ -1,6 +1,6 @@
 ---
 name: gtm-competitive-strategy
-version: 2.1.1
+version: 2.1.2
 description: "Builds a deal-specific competitive strategy for one open opportunity: the incumbent filed under a shared type, a gap matrix, a displacement playbook and a win plan with a battlecard. The AE who owns the deal runs it, and the sales manager reviews the output."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: [gtm-meddpicc-analysis]
 mutating: read-write
 change_log:
+  - version: 2.1.2
+    date: 2026-10-25
+    summary: "Try-it evidence completed so a strict first run reproduces Example 1: dated records for the incumbent, a contract-status rule, the product-advantage levels defined, the calibration clauses named, staged win plan, and talk tracks and objections added to Example 1."
   - version: 2.1.1
     date: 2026-10-25
     summary: "Adds examples/try-it.md so a first run reproduces Example 1."
@@ -299,12 +302,16 @@ Using the calibration in Epistemic Rules, score the five factors. LOW is 1, MEDI
 | Factor | Assessment | Score |
 |--------|-----------|-------|
 | Prospect satisfaction with incumbent | [Frustrated / Neutral / Satisfied / Unknown] | [LOW / MEDIUM / HIGH / MEDIUM] |
-| Contract status | [Expiring / Active / Month-to-month / Unknown] | [LOW / MEDIUM-HIGH / LOW / MEDIUM] |
+| Contract status | [Expiring / Active / Month-to-month / Unknown] | [LOW / HIGH / LOW / MEDIUM] |
 | Switching barriers | [Minimal / Moderate / Significant] | [LOW / MEDIUM / HIGH] |
 | Internal champion for incumbent | [None / Suspected / Confirmed] | [LOW / MEDIUM / HIGH] |
 | Incumbent product advantage | [None / Niche / Broad] | [LOW / MEDIUM / HIGH] |
 
-**Overall Threat Level:** Average the five scores and round to the nearest level. Show the average and the sum. Then apply the calibration. The calibration can raise the level above the average when the rival holds a genuine product advantage in one area, and the battlecard says which rule applied.
+**Contract Status:** Expiring means a renewal within six months (LOW). Active means more than six months to renewal (HIGH). Month-to-month is LOW, and Unknown is MEDIUM.
+
+**Product Advantage:** None means the incumbent holds no advantage over your product in the job the buyer named as the reason to look. Niche means its advantage sits in an adjacent job. Broad means its advantage sits in the job the buyer named.
+
+**Overall Threat Level:** Average the five scores and round to the nearest level. Show the average and the sum. Then apply the calibration. The calibration can raise the level above the average only when one of its clauses is met with a recorded fact. An Unknown fact does not raise the level. The battlecard names each clause it checked and says which one applied, if any.
 
 **Produces:** `incumbent_type` and `threat_level`, with the five factors and the average shown, and each failure pattern labelled as a pattern or an observation. The classification comes before the threat score because the threat factors depend on which type the incumbent is.
 
@@ -465,7 +472,7 @@ This skill has one mode. The default is the battlecard for one open deal.
 
 ### Competitive Threat Assessment Calibration
 
-- **HIGH:** The prospect is satisfied with the incumbent, the incumbent is entrenched (2 years or more), the contract is active, there is no switching-cost concern from the prospect, or the incumbent has a genuine product advantage in one area.
+- **HIGH:** The prospect is satisfied with the incumbent, the incumbent is entrenched (2 years or more), the contract is active with more than six months to renewal, there is no switching-cost concern from the prospect, or the incumbent has a Broad product advantage.
 - **MEDIUM:** The prospect has expressed some dissatisfaction and the contract timing is favorable, but the incumbent has strong relationships or the switching costs are real.
 - **LOW:** The prospect is actively frustrated, the incumbent is manual or absent, the switching barriers are minimal, or the prospect is already evaluating alternatives.
 
@@ -518,14 +525,19 @@ Two worked examples, both on the PlotIQ cast and the chain file. The first is th
 - Contacts: Ruth Ellery, GM, champion `[Call]`. Walt Okonkwo, Operations Director, skeptical of tablets `[Call]`. Priscilla Dunmore, pre-need manager `[CRM]`. Family board chair, the economic buyer, on one call `[CRM]`, name `[Unknown]`
 - Discovery note (illustrative quote): Ruth: "We can't tell which plots are sold without going to the binder." `[Call]` (illustrative)
 - Incumbent: Oldgate Ledger Pro `[CRM]`. Ruth named it on the first call, and the call was logged
+- Discovery call, 2026-06-16 (illustrative), Ruth on the incumbent `[Call]`:
+  - "Nobody here is attached to Oldgate. It's just what we've always had." (illustrative)
+  - "Oldgate tells us what sold. It doesn't tell us what's left." (illustrative)
+  - "The state auditor asks for the trust numbers, and somebody digs them out of the ledger." (illustrative)
+  - "The trust numbers come out of Oldgate as one file a year. The plot records stay in the binders." (illustrative). The migration scope of that file is `[Unknown]`
 
 **Step 2: Incumbent Profile:**
 - Classification: direct software, the legacy on-premise row in the profile's Competitive Landscape `[Inferred: profile row match]`
 - Their pitch: "Mature, deep accounting." Research weaknesses: $10,000 to $50,000 upfront, plus maintenance at 20% a year, poor mobile, and no AI `[Public: deathcare research, 2026-03-27]`. Not yet checked with this buyer, so these are discovery targets
 - Satisfaction: Neutral. Ruth tolerates it, and Walt works from paper `[Call]` (illustrative)
 - Contract status: renewal in March 2027 `[CRM]`
-- Switching barriers: moderate. Two sites of plot records and a trust fund ledger to export `[Inferred: scope of the two-site records (illustrative)]`
-- Internal champion for the incumbent: none identified `[Inferred: no call on file defends Oldgate]`
+- Switching barriers: moderate. The trust numbers leave Oldgate as one yearly file, and the plot records stay in binders at two sites `[Call, 2026-06-16] (illustrative)`. The records must move by hand `[Inferred: from the binder records]`, and the scope of the export is `[Unknown]`
+- Internal champion for the incumbent: none. Ruth says nobody on staff is attached to Oldgate `[Call, 2026-06-16] (illustrative)`
 - Failure pattern check: "Maintenance is charged every year, and the grounds crew stays on paper work orders" is a legacy on-premise pattern from the research. The PlotIQ record holds [RECORD] of 5 cases, so until five are counted it is an observation only, and the battlecard does not call it a pattern
 
 **Step 2c: Threat Assessment:**
@@ -533,20 +545,20 @@ Two worked examples, both on the PlotIQ cast and the chain file. The first is th
 | Factor | Assessment | Threat |
 |--------|-----------|--------|
 | Satisfaction | Neutral | MEDIUM |
-| Contract | Renewal in March 2027, a favorable window | LOW |
-| Switching barriers | Moderate (two sites of records, a ledger export) | MEDIUM |
-| Internal champion for incumbent | None identified | LOW |
-| Incumbent product advantage | Niche (accounting depth) | MEDIUM |
+| Contract | Expiring: renewal in March 2027, under six months away | LOW |
+| Switching barriers | Moderate (the trust file, and two sites of binders to move by hand) | MEDIUM |
+| Internal champion for incumbent | None | LOW |
+| Incumbent product advantage | Niche (accounting depth, an adjacent job to plot records) | MEDIUM |
 
-**Overall: MEDIUM threat.** The five scores are 2, 1, 2, 1 and 2, a sum of 8, so the average is 8 ÷ 5 = 1.6 on the 1 (LOW) to 3 (HIGH) scale, which rounds to MEDIUM. The calibration agrees, because the incumbent's advantage is niche and no one has argued for keeping it. The main risk is inertia: Walt's paper process has no one pushing for change.
+**Overall: MEDIUM threat.** The five scores are 2, 1, 2, 1 and 2, a sum of 8, so the average is 8 ÷ 5 = 1.6 on the 1 (LOW) to 3 (HIGH) scale, which rounds to MEDIUM. The calibration does not raise it. Each HIGH clause was checked. The prospect is Neutral, not satisfied. Entrenched for 2 years or more is `[Unknown]`, so it does not count. The contract is under six months from renewal. The switching barriers are a real concern, so the no-concern clause is not met. The advantage is Niche, not Broad. The average stands at MEDIUM. The main risk is inertia: Walt's paper process has no one pushing for change.
 
 **Step 3b: Gap Matrix:**
 
 | Capability | Oldgate Ledger Pro | PlotIQ | Why It Matters for Brackhaven |
 |-----------|---------|--------|----------------------|
 | Mobile use by the grounds crew | Poor mobile `[Public: deathcare research, 2026-03-27]` | Mobile field app `[Public: PlotIQ product modules]` | Walt needs work orders in the field, so the crew can find a plot in seconds `[Call]` (illustrative) |
-| Unsold-plot visibility | `[Unknown]`. Ask in discovery (question 1 below) | Plot inventory digitization shows unsold plots `[Public: PlotIQ product modules]` | Ruth's unsold-plot count depends on this, and it is not among Oldgate's known features |
-| Trust fund records | Deep accounting, their pitch `[Public: deathcare research, 2026-03-27]` | Records and Trust Compliance module `[Public: PlotIQ product modules]` | A state auditor has to accept the record. Show the output side by side with the filing format |
+| Unsold-plot visibility | Sold records only, with no view of what is left `[Call, 2026-06-16] (illustrative)` | Plot inventory digitization shows unsold plots `[Public: PlotIQ product modules]` | Ruth's unsold-plot count depends on this, and Oldgate does not show it |
+| Trust fund records | Deep accounting, their pitch `[Public: deathcare research, 2026-03-27]` | Records and Trust Compliance module `[Public: PlotIQ product modules]` | Ruth: "The state auditor asks for the trust numbers, and somebody digs them out of the ledger" `[Call, 2026-06-16] (illustrative)`. A state auditor has to accept the record. Show the output side by side with the filing format |
 | Cost | $10,000 to $50,000 upfront, plus maintenance at 20% a year `[Public: deathcare research, 2026-03-27]` | $899 a month per site, plus $5,000 setup once `[Public: PlotIQ price list]` | Year one at list for two sites is $26,576 with setup (illustrative), above the $25K board line |
 | Time to live | 120 to 180 days `[Public: deathcare research, 2026-03-27]` | 6 weeks `[Public: PlotIQ profile]` | The March 2027 renewal leaves room to go live before the window closes |
 
@@ -562,16 +574,52 @@ Two worked examples, both on the PlotIQ cast and the chain file. The first is th
 1. "Where does the plot map live today, and when was it last updated?" Exposes: how old the plot map is, and whether sales can see it. If confirmed (a binder, years old): pivot to plot inventory digitization, which runs in weeks 2 to 3. If denied (a current digital map exists): probe whether it shows sold and unsold plots.
 2. "Which system runs the funeral side, and who maintains it?" Exposes: a second system and a key-person dependency. If confirmed: pivot to the combined records view. If denied: ask how pre-need leads are tracked today.
 3. "When does your software contract renew, and what did the last quote include for support?" Confirms the March 2027 date and the support cost. If confirmed: align the evaluation to the renewal decision. If denied: ask who makes the renewal decision.
+4. "When a family asks about a plot in another section, how long does the lookup take?" Exposes: the cost of the paper lookup. If confirmed (minutes to hours): pivot to the find-the-plot demo on Walt's own work orders. If denied (a quick answer exists today): ask what the answer is built from.
+5. "If the person who keeps the records were out for a month, who could answer a family's question?" Exposes: a key-person dependency on the binders. If confirmed (no one): pivot to one view of sold and unsold plots with an audit trail. If denied: ask who the backup is and how long they would take to find the plot.
 
-**Step 4c and 4d: Talk Tracks and Proof Points:** No talk track is written here, and that is the rule working. The Brackhaven scenario has no Verified proof point yet. The two customer rows in the profile, Holloway Hills and Fennick Gardens, are Illustrative and are marked do not cite. The battlecard names the capability, and the demo shows it on Brackhaven's own counts.
+**Step 4b: Objection Handling (keyed to this buyer):**
 
-**Step 5: Win Plan highlights:**
-- Ask Ruth to pull the count of plots with no recorded sale, and to bring her own number. Do not estimate it.
-- Confirm the renewal notice date with Ruth. Do not assume it.
-- Plan the evaluation to finish before the March 2027 renewal decision. The 60 to 90 day evaluation window is an illustrative assumption to calibrate with Ruth.
-- The demo leads with an unsold-plot list drawn from Brackhaven's own records, not a feature tour.
-- Economic buyer: the family board chair, who has been on one call `[CRM]`. Ruth builds the case.
-- Risk: the "deep accounting" argument lands with the board chair. Mitigation: show the trust report output next to the state filing format.
+| Objection | Response Framework | Script | Status |
+|-----------|-------------------|--------|--------|
+| "We already use Oldgate" | Positive frame, then discovery | "That's good. It means you already understand the value. What's working well, and what would you change?" | Field-tested |
+| "Switching cost is too high" | Quantify the cost of staying | "What does staying cost each year? Put a number on unsold plots for twelve months, from your own records, and we can compare." | Field-tested |
+| "Oldgate has deep accounting" | Name the strength, then the job it does not do | "Oldgate is strong on accounting. Our trust records are built for what a state auditor reads, and we can show you the output next to your current ledger." | Test and refine |
+
+**Step 4c: Displacement Talk Tracks:** Three talk tracks, each readable aloud in under 20 seconds. No Verified proof point fits this scenario, so none of them has an example clause. The rep shows the capability in the demo instead.
+
+1. "When a family asks about a plot and the answer is in a binder, PlotIQ shows sold and unsold plots on one map, so the answer takes seconds. We can show that on your own plot records in the demo."
+2. "When the state asks for the trust numbers and they come out of the ledger one year at a time, PlotIQ's Records and Trust Compliance module keeps the trust record beside the plots. We can show the output next to your state filing format."
+3. "When the renewal is six months away, the decision has to finish before it. PlotIQ goes live in six weeks, and a legacy system runs 120 to 180 days (Benchmark, deathcare research, 2026-03-27). We can plan the evaluation to finish before March 2027."
+
+**Step 4d: Match Proof Points:**
+
+| Proof Point | Status | Why It Matches This Deal | How to Use It |
+|------------|--------|------------------------|---------------|
+| Holloway Hills Memorial Park: zero records findings in its first state review | Illustrative | Compliance and the trust record, the Operations Director's concern | Do not cite |
+| Fennick Gardens Cemetery: 212 unsold plots found in 90 days | Illustrative | Unsold-plot visibility, the Ruth-level pain | Do not cite |
+
+The battlecard names the capability, and the demo shows it on Brackhaven's own counts. No Verified row exists yet, so no talk track or email names a customer.
+
+**Step 5: Win Plan:**
+
+**Pre-Meeting**
+- [ ] Ask Ruth to pull the count of plots with no recorded sale, and to bring her own number. Do not estimate it. Owner: Owen Pruitt. Date: `[Unknown]` until Ruth agrees
+- [ ] Confirm the Oldgate renewal notice date with Ruth. Do not assume it. Owner: Owen Pruitt. Date: 2026-10-23 (the next action)
+- [ ] Prepare a mitigation for each landmine in Step 3c. Owner: Owen Pruitt. Date: before the next meeting, `[Unknown]` until it is set
+
+**During Discovery**
+- [ ] Ask Ruth to put the board's decision criteria in her own words. Owner: Owen Pruitt. Date: `[Unknown]`
+- [ ] Plan the evaluation to finish before the March 2027 renewal decision. The 60 to 90 day evaluation window is an illustrative assumption to calibrate with Ruth. Owner: Owen Pruitt, with Ruth. Date: `[Unknown]`
+- [ ] Confirm the economic buyer: the family board chair, who has been on one call `[CRM]`. Ruth builds the case. Owner: Owen Pruitt, through Ruth. Date: `[Unknown]`
+
+**During Demo**
+- [ ] The demo leads with an unsold-plot list drawn from Brackhaven's own records, not a feature tour. Owner: Owen Pruitt. Date: `[Unknown]`
+- [ ] Show the trust report output next to the state filing format, because the "deep accounting" argument may land with the board chair. Owner: Owen Pruitt. Date: `[Unknown]`
+
+**Post-Meeting**
+- [ ] Send Ruth a follow-up in her own words for the pain, with the next dated step. Owner: Owen Pruitt. Date: `[Unknown]` until the board date is set
+
+Risk: the "deep accounting" argument lands with the board chair, and the mitigation is the trust report beside the filing format, in the demo above.
 
 **Output:** Full eight-section battlecard. Threat level MEDIUM. The strongest competitive lever is unsold-plot visibility, and records a state auditor accepts, both shown in Brackhaven's own counts. The honest risk is Oldgate's accounting depth, and the chance that the paper process stays the default.
 
@@ -583,7 +631,7 @@ incumbent_type: direct software, Oldgate Ledger Pro [CRM]
 threat_level: MEDIUM (five factors 2, 1, 2, 1, 2, average 1.6)
 gap_matrix: 5 rows, mobile use, unsold-plot visibility, trust fund records, cost, time to live
 battlecard: 8 sections, inline
-win_plan: 5 groups, pre-meeting to post-meeting, owners on each item
+win_plan: 4 stages, pre-meeting to post-meeting, owner on each item, date where known
 next_action: Owen Pruitt asks Ruth Ellery for the board date and the Oldgate renewal notice date by 2026-10-23
 report_path: none (inline)
 ```
@@ -617,7 +665,7 @@ report_path: none (inline)
 | Internal champion for the rival | None identified `[Inferred: no call on file argues for Stonemark]` | LOW |
 | Product advantage | Broad: mapping depth is the rival's core pitch | HIGH |
 
-**Overall: HIGH threat.** The five scores are 2, 2, 2, 1 and 3, a sum of 10, so the average is 2.0, which reads MEDIUM. The calibration gives HIGH anyway, because the rival holds a genuine product advantage in one area, mapping depth, and no buyer criterion yet says that area matters less. The battlecard shows both the average and the rule that raised the level.
+**Overall: HIGH threat.** The five scores are 2, 2, 2, 1 and 3, a sum of 10, so the average is 2.0, which reads MEDIUM. The calibration gives HIGH anyway, because the rival's advantage is Broad: mapping depth sits in the job the buyer named as the reason to look, the plot record, and no buyer criterion yet says that area matters less. The battlecard shows both the average and the rule that raised the level.
 
 **Step 3b: Gap Matrix:**
 
@@ -741,6 +789,9 @@ report_path: none (inline)
 ---
 
 ## Changelog
+
+### 2.1.2 (2026-10-25)
+- Try-it evidence completed so a strict first run reproduces Example 1. The contract-status row, the product-advantage levels and the calibration clauses are stated as rules, and Example 1 names each clause it checked.
 
 ### 2.1.1 (2026-10-25)
 - Adds examples/try-it.md so a first run reproduces Example 1.

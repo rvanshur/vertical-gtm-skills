@@ -1,6 +1,6 @@
 ---
 name: gtm-account-qualification
-version: 2.1.1
+version: 2.1.2
 description: "Scores an account against the ICP definitions, 8 weighted criteria and the profile's five qualification zones, and returns a GREENLIGHT, MANUAL REVIEW or DISQUALIFY verdict with every zone shown, for the BDR or AE who decides where to spend time."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: []
 mutating: read-write
 change_log:
+  - version: 2.1.2
+    date: 2026-10-25
+    summary: "Try-it evidence completed so a strict first run reproduces Example 1. Revenue Threshold is evidenced by a CRM revenue range, which is a Step 1e method. Step 4 states a partial-match rule for zones, and Step 6 states that a Moderate Fit Grid cell does not block GREENLIGHT. The Example 1 scores, verdict and next action do not change."
   - version: 2.1.1
     date: 2026-10-25
     summary: "Adds examples/try-it.md so a first run reproduces Example 1. No other change."
@@ -354,7 +357,7 @@ Score each zone in `{Client Profile: Qualification Zones}` as HIGH, MEDIUM, LOW 
 | LOW | Weak or no alignment, with evidence |
 | UNKNOWN | Insufficient data to assess |
 
-MEDIUM never counts as HIGH. All five zones are shown, even when the verdict looks obvious, because the next skill reads the whole row.
+MEDIUM never counts as HIGH. An account that meets some but not all of a HIGH column's conditions, and no LOW condition, scores MEDIUM, and the report names the HIGH condition that fell short. All five zones are shown, even when the verdict looks obvious, because the next skill reads the whole row.
 
 **Produces:** Five zone scores, each with its evidence tag, the must-have zones marked, and the count (N of 5 zones HIGH or MEDIUM).
 
@@ -390,7 +393,7 @@ No Fit Indicator and Previous DQ both point at the disqualifier clause of the Ve
 
 ### Step 6: Deliver the Qualification Verdict
 
-The verdict comes from the profile's Verdict Rule alone, as the Shared Contract states. The 8-criteria scorecard from Step 3 does not gate the verdict. It feeds `icp_match` and `fit_narrative`. Reason: a second gate would be a second definition of fit, and the profile is the one place that definition lives.
+The verdict comes from the profile's Verdict Rule alone, as the Shared Contract states. The 8-criteria scorecard from Step 3 does not gate the verdict. It feeds `icp_match` and `fit_narrative`. Reason: a second gate would be a second definition of fit, and the profile is the one place that definition lives. A Moderate cell in the Fit Grid row does not block GREENLIGHT when the account meets the ICP definition with evidence, because the Fit Grid row is recorded as context and the Verdict Rule decides.
 
 #### Verdict Framework
 
@@ -483,14 +486,14 @@ Four worked examples, all on the PlotIQ cast and the chain file. They show a mix
 
 **Input:** "Qualify Brackhaven Memorial Gardens for fit."
 
-**Process:** Step 2 classifies the account as ICP2 Combination. The Fit Grid row is Strong on "cemetery side on paper". It is Moderate on "owner and GM both sign", because a family board signs. The year-one cost with setup is $26,576 (illustrative), which is above the $25K board line. Step 3 scores the criteria below. Step 4 scores the zones below, using the zone rule in the profile.
+**Process:** Step 0 reads the user's role as BDR `[CRM]` (illustrative). Step 2 classifies the account as ICP2 Combination. The Fit Grid row is Strong on "cemetery side on paper". It is Moderate on "owner and GM both sign", because a family board signs. The year-one cost with setup is $26,576 (illustrative), which is above the $25K board line. Step 3 scores the criteria below. Step 4 scores the zones below, using the zone rule in the profile.
 
 **Criteria (ICP2), 7 of 8 STRONG or PARTIAL:**
 
 | # | Criterion | Rating | Evidence |
 |---|-----------|--------|----------|
 | 1 | Sub-Vertical Match | STRONG | Combination of a cemetery and a funeral home, 2 sites `[CRM]` (illustrative) |
-| 2 | Revenue Threshold | PARTIAL | Revenue not stated. Estimated from the site count `[Inferred: site count]` |
+| 2 | Revenue Threshold | PARTIAL | Revenue not stated in public records. The CRM notes a revenue range of $2 to 4 million a year `[CRM]` (illustrative), which is a range and not a confirmed figure |
 | 3 | Multi-Region Operations | UNKNOWN | Location spread not checked `[Unknown]` |
 | 4 | Ownership / Growth Profile | PARTIAL | Family-owned, not PE-backed. The owner may retire within 3 years, a succession signal `[Public: company website, owner bio, 2026]` (illustrative) |
 | 5 | Transaction Complexity | STRONG | Plot records on paper, pre-need sales, two sites `[CRM]` (illustrative) |
@@ -505,7 +508,7 @@ Four worked examples, all on the PlotIQ cast and the chain file. They show a mix
 | 1 | Records and Inventory Pain (must-have) | HIGH | Paper plot maps and a double sale in 24 months `[CRM]` (illustrative) |
 | 2 | Pre-Need Sales Motion | MEDIUM | A pre-need manager exists, and there is no intake form on the site `[Public: company website]` (illustrative) |
 | 3 | Ownership and Decision Speed (must-have) | MEDIUM | The GM recommends and the board approves. The board meets within 60 days, which meets the HIGH timing test. The signing test fails, because year one is above the $25K line, so the zone is MEDIUM `[Public: company website, board calendar]` (illustrative) |
-| 4 | Technology Readiness | MEDIUM | The website shows no plot lookup, and the records system is not named `[Unknown]`. Read against the MEDIUM column (illustrative) |
+| 4 | Technology Readiness | MEDIUM | Staff use company email, which the staff page shows `[Public: company website, staff page]` (illustrative). The website shows no plot lookup, and the records system is not named `[Unknown]`. The facts sit between the HIGH and MEDIUM columns with no LOW condition, so MEDIUM under the partial-match rule in Step 4 (illustrative) |
 | 5 | Growth or Succession | HIGH | The owner retires within 3 years `[Public: company website, owner bio, 2026]` (illustrative) |
 
 **Verdict:** GREENLIGHT. Two zones are HIGH (1 and 5), and no must-have zone is LOW. Seven of eight criteria are STRONG or PARTIAL, which is recorded in `icp_match` and `fit_narrative`. No disqualifier applies.
@@ -733,6 +736,14 @@ An account pending AE assignment is not ACTIVE. Score it, and say that it is pen
 
 ## Changelog
 
+
+### 2.1.2 (2026-10-25)
+- Try-it evidence completed so a strict first run reproduces Example 1.
+- Revenue Threshold (criterion 2) is evidenced by a CRM revenue range, which is a Step 1e method. Site count is not a Step 1e method, so it is removed from Example 1.
+- Step 4 gains one sentence on partial column matches: a zone with some HIGH conditions met and no LOW condition scores MEDIUM, and the report names the failed condition. Example 1's Zone 4 gains the staff-email fact that makes it a partial match.
+- Step 6 gains one sentence: a Moderate Fit Grid cell does not block GREENLIGHT when the ICP definition is met with evidence.
+- Example 1 gains the user's role (Step 0) as BDR.
+- No score, verdict, zone rating or next action changes. Example 1 still reads 7 of 8 criteria, Zones 1 HIGH, 2 MEDIUM, 3 MEDIUM, 4 MEDIUM, 5 HIGH, GREENLIGHT.
 
 ### 2.1.1 (2026-10-25)
 - Adds examples/try-it.md so a first run reproduces Example 1. No other change.

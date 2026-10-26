@@ -3,14 +3,18 @@
 Every name, date and number in this file is invented for the PlotIQ example. Nothing here is a real company.
 
 ## Ask Your Assistant
-"Run Call Coaching on Brackhaven Memorial Gardens using skills/13-call-coaching/examples/try-it.md"
+"Run Call Coaching on Brackhaven Memorial Gardens using skills/13-call-coaching/examples/try-it.md" Treat today as 2026-05-12.
 
 ## The Records
 - Account: Brackhaven Memorial Gardens is ACTIVE at Stage 2 Discovery [CRM]. It is a combination of two sites with 11,000 plots and paper plot maps [CRM] (illustrative).
 - Call type: discovery. Call date: 2026-05-12 (illustrative). Owen Pruitt, Account Executive (illustrative assignment), ran the call. The call was graded from its transcript, so every [Call] tag is this call and every time is its transcript time.
 - Attendees: Ruth Ellery, General Manager, buyer [CRM]. Walt Okonkwo, Operations Director, influencer [CRM].
 - Prep sheet: the top pain is plot records on paper [Notes]. A double sale is on file in the CRM [CRM].
+- Prep sheet question_bank [Notes] (illustrative): "When a family asks for a plot, where do you look first, and how long does that take?" and "How many plots could you sell today if the records were right?"
+- Prep sheet proof_point [Notes]: the Benchmark that most cemeteries your size carry 50 to 100 plots sold on paper and unsold on the map (deathcare research, 2026-03-27 to 2026-04-01). The Holloway Hills proof point is Illustrative and is not cited.
+- Source: a speaker-labelled transcript. Every excerpt below is verbatim, with its transcript time.
 - Rep talk time: 36% (illustrative) [Call].
+- 00:40, Owen: "Ruth, Walt, thanks for the time." [Call]
 - 02:10, Owen: "When a family asks for a plot, where do you look first, and how long does that take?" [Call]
 - 09:15, Ruth: "We have files that date back to the 1970s." Owen asked: "How far back do they go?" [Call]
 - 14:20, Owen asked: "What happens when a plot sells twice?" [Call]
@@ -24,6 +28,7 @@ Every name, date and number in this file is invented for the PlotIQ example. Not
 - 31:10, Ruth: "We don't really have an IT person." [Call]
 - 33:00, Ruth: "What would you need from us to put this in front of the board?" [Call]
 - The last two minutes of the transcript contain no date for the next step [Call].
+- After the call, on 2026-05-12, Owen emailed Ruth to propose 2026-05-19 for the second session, and Ruth replied that the date works [Notes] (illustrative). The call itself set no date.
 - The board chair's name is [Unknown] after this call.
 - Competitive: Oldgate Ledger Pro, renewal March 2027 [CRM].
 

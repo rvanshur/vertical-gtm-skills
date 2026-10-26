@@ -1,6 +1,6 @@
 ---
 name: gtm-closed-loss-reactivation
-version: 2.1.1
+version: 2.1.2
 description: "Re-engages closed-lost accounts from the CRM history. Checks the recorded loss reason against the evidence, finds what has changed since the deal died, re-scores fit, and returns REACTIVATE, MONITOR or RETIRE with a history-aware opener for the BDR or AE who owns the next step."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: []
 mutating: read-write
 change_log:
+  - version: 2.1.2
+    date: 2026-10-25
+    summary: "Try-it evidence completed so a strict first run reproduces Example 1. Adds the deal's original qualification and the re-score facts (plot records, signing authority, filing status) with a zone-by-zone re-score, tags the category Budget / Timing [CRM] with the board date as an Inferred sub-reason, names the reopening events the profile lists, settles primary-first classification and the stricter re-entry window in one sentence each, and adds the run date to the Ask line."
   - version: 2.1.1
     date: 2026-10-25
     summary: "Adds examples/try-it.md so a first run reproduces Example 1. No other change."
@@ -370,7 +373,7 @@ The CRM comes first because the person who logged it heard the buyer. Inference 
 - Died at Stage 5 Negotiate: likely Price, Budget or Lost to Competitor
 - Last three or more touchpoints unanswered: likely No Decision / Went Dark
 
-When more than one reason applies, classify by the primary reason, the one that ended the deal. Note the secondary factors as context.
+When more than one reason applies, classify by the primary reason, the one that ended the deal, and name it first. A second category is named too when the record supports both, with the evidence for each. Note the secondary factors as context. A category takes the `[CRM]` tag when the logged reason maps to it, and any board-date reading stays an `[Inferred]` sub-reason.
 
 **Produces:** `loss_classification`, which names the category, each fact behind it with its tag, and the question the AE's notes must answer. Two categories can fit. Name both, and tag the evidence for each. The tags carry the confidence: a `[CRM]` fact is a record, and an `[Inferred]` fact is a reasoned judgment with its method shown.
 
@@ -423,7 +426,7 @@ For a deeper re-score, run Account Qualification (01). Its `verdict`, `zone_scor
 
 Select the approach from `{Methodology: Reactivation Strategies by Loss Reason}`, using the classification from Step 2 and the verdict from Step 4. The classification must come first, because the strategy is chosen from the loss reason.
 
-Assess the timing as too soon, right time or overdue. Check it against two windows: the strategy's window for the pain, and the re-entry window in Closed-Loss Intelligence for contact. Where the two disagree, say so and name the one that governs. The profile's entry window governs contact.
+Assess the timing as too soon, right time or overdue. Check it against two windows: the strategy's window for the pain, and the re-entry window in Closed-Loss Intelligence for contact. Where the two disagree, say so and name the one that governs. The profile's entry window governs contact. When Step 2 names two categories, contact waits for the later-opening of their two re-entry windows, so the stricter window governs, and a window whose anchor date is `[Unknown]` cannot be placed and holds contact.
 
 **Produces:** `reactivation_strategy`, with the verdict, the approach, the timing assessment and the entry angle. For a MONITOR, the reopening event.
 
@@ -594,8 +597,8 @@ The examples use the PlotIQ example company and its cast, and they match the sha
 **Step 1: Status and Deal History.** Status is LOST. Close date 2026-01-20 `[CRM]`. Days since close is 272, which is nine months, counted to today, 2026-10-19. Deal value is `[Unknown]`. It is optional for the verdict, and the skill asks for it before any price goes into a message. The AE's loss notes are `[Unknown]`, because they are not in the cast. The champion, Ines Carmody, has moved.
 
 **Step 2: Loss Classification.** Two categories fit, and the CRM reason does not settle the question on its own.
-- **Budget / Timing.** The CRM says "timing" `[CRM]`. The profile's loss taxonomy maps "timing" to a board date that has passed, so the true reason is probably the board date `[Inferred]`. The method is the profile's loss taxonomy mapping.
-- **Lost to Competitor.** Oldgate is named as the winner `[CRM]`.
+- **Budget / Timing `[CRM]`.** The CRM logs the reason as "timing" `[CRM]`. The profile's loss taxonomy maps "timing" to a board date that has passed, so the board date is the probable sub-reason `[Inferred]`, by the profile's loss taxonomy mapping.
+- **Lost to Competitor `[CRM]`.** Oldgate is named as the winner `[CRM]`.
 - **Champion Left does not apply.** She moved six months ago, after the loss, so her move did not cause it.
 
 The AE's loss notes decide between the two categories. That question goes to the AE in Step 8.
@@ -607,11 +610,19 @@ The AE's loss notes decide between the two categories. That question goes to the
 - **Competitor:** the profile records Oldgate's weak points as upfront cost, weak mobile support and no AI. These are competitor estimates `[Public: deathcare research, 2026-04-01]`. The Oldgate pain after 6 to 12 months is a research pattern `(illustrative)`.
 - **Market:** Oldgate's renewal date for Lowmoor is `[Unknown]`. The profile's Buying Triggers list a rival renewal as a trigger, but without the date no window can be placed.
 
-**Step 4: Re-Qualification.** Fit is re-scored as MANUAL REVIEW, which is how the cast records it. The zone scores are `[Unknown]` in the cast, so this example does not restate them. Fit is short of GREENLIGHT, and no reopening event has fired. Verdict: **MONITOR**. Set the reminder between 2026-12-18 (60 days) and 2027-01-17 (90 days).
+**Step 4: Re-Qualification.** The re-score is set against the original qualification on the deal record, zone by zone. Only the zones the records speak to are scored, and the rest are `[Unknown]`.
 
-The reopening events for Lowmoor are a new general manager in the licensing record, and Oldgate's renewal reaching 180 days out. The champion's move is not counted here. It has already happened, and its play runs at Quill Hollow (Example 3).
+| Zone | At the Deal `[CRM]` (illustrative) | Now | What Moved |
+|------|-----------------------------------|-----|------------|
+| 1 Records and Inventory Pain | MEDIUM | MEDIUM | Nothing. Paper deeds and lookups that take days `[CRM]` (illustrative). The trust filing is current with no finding on record `[Public: state licensing database]` (illustrative), so the HIGH test is not met |
+| 3 Ownership and Decision Speed (must-have) | HIGH | MEDIUM | The GM who signed has left. Above $25K the board approves, and its next meeting is 2027-01-20, more than three months out `[CRM]` (illustrative). That is the profile's MEDIUM cell |
+| 2 Pre-Need, 4 Technology, 5 Growth | `[Unknown]` | `[Unknown]` | No record speaks to them, so they are not scored |
 
-**Step 5: Strategy (held).** The Buyer's Remorse play, the competitor pattern, is held until a reopening event fires. Timing is too soon for contact. The pain window of 6 to 12 months after the loss is open, at 272 days. The entry window, 90 to 180 days before Oldgate's renewal, cannot be placed, because the renewal date is `[Unknown]`. The profile's entry window governs contact, so the play waits. When it opens, the entry angle is to ask how Oldgate is working out, specifically around the area the AE recorded.
+The one HIGH zone at the deal, Zone 3, is now MEDIUM, so no zone is HIGH. GREENLIGHT needs two HIGH zones, and DISQUALIFY needs a disqualifier or two must-haves at LOW, so the Verdict Rule gives MANUAL REVIEW. The fit is MANUAL REVIEW at the deal and now, and what moved is the ownership zone. No reopening event has fired. Verdict: **MONITOR**. Set the reminder between 2026-12-18 (60 days) and 2027-01-17 (90 days).
+
+The reopening events for Lowmoor are the three the profile lists: a new general manager in the licensing record, an audit finding, or a consolidator purchase. The champion's move is not counted here. It has already happened, and its play runs at Quill Hollow (Example 3).
+
+**Step 5: Strategy (held).** The Buyer's Remorse play, the competitor pattern, is held until a reopening event fires. Timing is too soon for contact. The pain window of 6 to 12 months after the loss is open, at 272 days. Two categories name two re-entry windows. Budget / Timing's window, 6 to 9 months after close, runs 2026-07-20 to 2026-10-20 and is open today. Lost to Competitor's window, 90 to 180 days before Oldgate's renewal, cannot be placed, because the renewal date is `[Unknown]`. The later-opening window governs contact, so the play waits. When it opens, the entry angle is to ask how Oldgate is working out, specifically around the area the AE recorded.
 
 **Step 6: Sequences (held, 0 emails).** No contact is named, so no email is written. Email 1 cannot name anyone, and no sequence goes to a guessed name.
 
@@ -629,7 +640,7 @@ The held `history_opener` is: "When we last spoke, you went with Oldgate. Curiou
 Hand-off (read by 04 and 06):
 account: Lowmoor Memorial Gardens (LOST)
 run_date: 2026-10-19
-loss_classification: Budget / Timing [Inferred] (the board date, from the CRM reason "timing" [CRM]). Lost to Competitor [CRM] (Oldgate named as winner). Champion Left does not apply
+loss_classification: Budget / Timing [CRM] (logged reason "timing", board date as an [Inferred] sub-reason). Lost to Competitor [CRM] (Oldgate named as winner). Champion Left does not apply
 change_assessment: account, Ines Carmody now at Quill Hollow [Public: state licensing database]. product, beta with no paid revenue [CRM]. market, Oldgate renewal date [Unknown]
 reactivation_strategy: MONITOR (Buyer's Remorse play, held until a reopening event fires)
 history_opener: held. Oldgate loss [CRM], dated 2026-01-20. Written when a reopening event fires and the AE's notes confirm the area
@@ -786,6 +797,9 @@ report_path: none (inline)
 
 ## Changelog
 
+
+### 2.1.2 (2026-10-25)
+- Try-it evidence completed so a strict first run reproduces Example 1.
 
 ### 2.1.1 (2026-10-25)
 - Adds examples/try-it.md so a first run reproduces Example 1. No other change.

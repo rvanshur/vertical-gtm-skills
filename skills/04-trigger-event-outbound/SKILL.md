@@ -1,6 +1,6 @@
 ---
 name: gtm-trigger-event-outbound
-version: 2.1.1
+version: 2.1.2
 description: "Turns one dated business event at a target account into a short outbound sequence, but only after checking the event against its window. Reports when the window has closed or the event date is unknown. Read by the BDR or AE who sends the sequence."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: [gtm-account-snapshot, gtm-closed-loss-reactivation]
 mutating: read-write
 change_log:
+  - version: 2.1.2
+    date: 2026-10-25
+    summary: "Try-it evidence completed so a strict first run reproduces Example 1. Adds the deal notice's integration review date as the deadline source, shows the site GM as a second persona with its emails omitted from the page only, adds a sentence for a cadence that runs past the window, and the run date to the Ask line."
   - version: 2.1.1
     date: 2026-10-25
     summary: "Adds examples/try-it.md so a first run reproduces Example 1. No other change."
@@ -437,7 +440,9 @@ persona that has to respond, and name any persona that only hears about the even
 | **Email 3** | Day 8 to 10 | A soft close that asks whether the timing is wrong |
 
 The last send must land on or before the long end of the window. Put the first send's date beside the
-window so the reader can check it.
+window so the reader can check it. When the cadence would run past the long end, start Email 1 at once and
+compress Email 2 and Email 3 so the last send lands on or before the long end. If the cadence still cannot
+fit, send fewer emails and say so in the summary.
 
 #### After Each Persona Sequence, Include
 
@@ -576,7 +581,7 @@ Full sequences apply.
 **Step 1. Classify.** Trigger type: Acquisition / M&A. The matching profile trigger is "Consolidator buys the
 site", with the acquirer's CFO or controller as the persona who acts, and the site GM alongside. Event tag:
 `[Public: state licensing database]`, the ownership change in the licensing record. The implication is
-`[Inferred]` and is written later. The event is not INFERRED, because a public record states it.
+`[Inferred]` and is written later. The event is not INFERRED, because a public record states it. The review date that Email 1 relies on comes from the deal notice, not the CRM: the integration review is set for 2027-02-16 `[Public: deal notice, 2026-07-01]` (illustrative), which is inside Q1 2027.
 
 **Step 1d. Timeliness.** The profile's window for this trigger is 60 to 120 days after the event date.
 
@@ -602,12 +607,13 @@ Business implications, each tagged:
 
 - **Implication:** The site's plot records have to move into the acquirer's process on the acquirer's timetable. **Value connection:** The plot map is the first record the integration review checks. **Evidence tag:** `[Inferred]`, basis: the ownership change, plus the paper plat maps recorded in the CRM `[CRM]`
 - **Implication:** The acquirer's own system decides where the records land. **Value connection:** Plot records are the decision point the acquirer has not yet made. **Evidence tag:** `[Inferred]`, basis: the profile lists a consolidator's own system as a fit question to check
-- **Implication:** The review date is the deadline every email can use. **Value connection:** A dated review turns a general question into a specific one. **Evidence tag:** `[CRM]`, the GM keeps the site budget until the Q1 2027 review, with the review date `[Inferred]` as the deadline
+- **Implication:** The review date is the deadline every email can use. **Value connection:** A dated review turns a general question into a specific one. **Evidence tag:** `[Public: deal notice, 2026-07-01]` for the review date, 2027-02-16 (illustrative), and `[CRM]` for the GM keeping the site budget until that review
 - **Implication:** The acquirer's CFO will want one view of records across sites before the review. **Value connection:** The product gives one plot view across entities. **Evidence tag:** `[Inferred]`, basis: the CFO is the persona who acts on this trigger in the profile
 
-**Step 3. Sequence.** The persona is the acquirer's CFO or controller, from the Buying Triggers row. The
-profile names the site GM as well. This example shows the CFO's three emails. The site GM's three emails
-are omitted here and follow the same structure, asking which system will hold the site's records.
+**Step 3. Sequence.** The personas are the acquirer's CFO or controller and the site GM, from the Buying
+Triggers row, so two personas with three emails each. This example shows the CFO's three emails. The site
+GM's three emails follow the same rules, ask which system will hold the site's records, and are omitted from
+this page only.
 
 **Proof point.** None can be cited. The profile's proof point for this trigger, Fennick Gardens with 212
 plots, is Illustrative, so no figure goes into any email. The emails use questions where a proof point
@@ -642,8 +648,8 @@ would go.
 to a consolidator's purchase. **Discovery question:** "Which system will hold this site's plot records after
 the integration review?" **Call to action framing:** time-sensitive, tied to the review date.
 
-**Summary:** BDR. Corrow Ridge Cemetery, trigger STALE with 10 days remaining. Three emails to the acquirer's
-CFO. The site GM's three emails are omitted from this example.
+**Summary:** BDR. Corrow Ridge Cemetery, trigger STALE with 10 days remaining. Six emails in two sequences:
+three to the acquirer's CFO, and three to the site GM, which are omitted from this page.
 
 Hand-off (read by 06):
 account: Corrow Ridge Cemetery (TARGET)
@@ -652,7 +658,7 @@ trigger_type: Acquisition / M&A (profile trigger: consolidator buys the site)
 urgency_window: 2026-08-30 to 2026-10-29
 days_remaining: 10
 event_tag: [Public: state licensing database]
-sequence: three emails to the acquirer's CFO or controller, name [Unknown]. The site GM's three emails are omitted from this example
+sequence: six emails, three to the acquirer's CFO or controller (name [Unknown]) and three to the site GM. The GM's three are omitted from this example
 report_path: none (inline)
 next_action: Nadia Brandt finds the acquirer's CFO or controller by 2026-10-20, then sends Email 1 after reading the draft
 
@@ -840,6 +846,9 @@ next_action: Nadia Brandt sends the note to Owen Pruitt by 2026-10-21, after rea
 
 ## Changelog
 
+
+### 2.1.2 (2026-10-25)
+- Try-it evidence completed so a strict first run reproduces Example 1.
 
 ### 2.1.1 (2026-10-25)
 - Adds examples/try-it.md so a first run reproduces Example 1. No other change.

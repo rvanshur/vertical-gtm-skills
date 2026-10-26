@@ -3,7 +3,7 @@
 Every name, date and number in this file is invented for the PlotIQ example. Nothing here is a real company.
 
 ## Ask Your Assistant
-"Run Competitive Strategy on Brackhaven Memorial Gardens using skills/11-competitive-strategy/examples/try-it.md"
+"Run Competitive Strategy on Brackhaven Memorial Gardens using skills/11-competitive-strategy/examples/try-it.md" Treat today as 2026-10-19.
 
 ## The Records
 - Run date: 2026-10-19. Brackhaven Memorial Gardens is a combination with 2 sites, 11,000 plots and paper plot maps [CRM] (illustrative).
@@ -12,10 +12,15 @@ Every name, date and number in this file is invented for the PlotIQ example. Not
 - Contacts: Ruth Ellery, General Manager, champion [Call]. Walt Okonkwo, Operations Director, skeptical of tablets [Call]. Priscilla Dunmore, pre-need manager [CRM]. The family board chair is the economic buyer, on one call [CRM], name [Unknown].
 - Discovery quote (illustrative): Ruth: "We can't tell which plots are sold without going to the binder." [Call] (illustrative)
 - Walt Okonkwo wants work orders in the field, so the crew can find a plot in seconds [Call] (illustrative).
-- Incumbent: Oldgate Ledger Pro [CRM]. Ruth named it on the first call, and the call was logged. Renewal in March 2027 [CRM].
+- Incumbent: Oldgate Ledger Pro [CRM]. Ruth named it on the first call, and the call was logged. Renewal in March 2027 [CRM], under six months away.
+- Discovery call, 2026-06-16 (illustrative), with Ruth on the incumbent [Call]:
+  - "Nobody here is attached to Oldgate. It's just what we've always had." (illustrative)
+  - "Oldgate tells us what sold. It doesn't tell us what's left." (illustrative)
+  - "The state auditor asks for the trust numbers, and somebody digs them out of the ledger." (illustrative)
+  - "The trust numbers come out of Oldgate as one file a year. The plot records stay in the binders." (illustrative). The migration scope of that file is [Unknown].
 - Satisfaction with the incumbent: Neutral. Ruth tolerates it, and Walt works from paper [Call] (illustrative).
 - Incumbent pitch and research: "Mature, deep accounting." Research weaknesses: $10,000 to $50,000 upfront, plus maintenance at 20% a year, poor mobile, and no AI [Public: deathcare research, 2026-03-27].
-- Incumbent unsold-plot visibility: [Unknown]. Ask in discovery.
+- Incumbent unsold-plot visibility: Oldgate shows sold records only, not what is left [Call, 2026-06-16] (illustrative).
 - Legacy on-premise pattern: "Maintenance is charged every year, and the grounds crew stays on paper work orders." Cases counted on the PlotIQ record: [RECORD] of 5, an observation only until five cases (profile).
 - Stonemark was also evaluated.
 - PlotIQ capabilities: Mobile field app [Public: PlotIQ product modules]. Plot inventory digitization shows unsold plots [Public: PlotIQ product modules]. Records and Trust Compliance module [Public: PlotIQ product modules].

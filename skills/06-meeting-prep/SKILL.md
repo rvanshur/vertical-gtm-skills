@@ -1,6 +1,6 @@
 ---
 name: gtm-meeting-prep
-version: 2.1.1
+version: 2.1.2
 description: "Prepares a rep for a discovery or demo call with one prep sheet: the top pain, a question bank for each discovery phase, one proof point per attendee, objection scripts, a minute-by-minute call flow and a follow-up email draft. The rep reads it during the call."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: [gtm-account-snapshot, gtm-research-outbound, gtm-trigger-event-outbound, gtm-closed-loss-reactivation, gtm-daily-prospecting, gtm-deal-pulse, gtm-stakeholder-mapping, gtm-competitive-strategy, gtm-competitive-displacement, gtm-call-coaching]
 mutating: read-write
 change_log:
+  - version: 2.1.2
+    date: 2026-10-25
+    summary: "Try-it evidence completed so a strict first run reproduces Example 1. Adds the colour rules for Metrics, Economic Buyer and Identified Pain, states that an Illustrative proof row does not make a persona usable, and dates the Example 1 next action to the call."
   - version: 2.1.1
     date: 2026-10-25
     summary: "Adds examples/try-it.md so a first run reproduces Example 1. No other change."
@@ -427,7 +430,7 @@ Apply the follow-up ladder rule from the Methodology. For a vague answer, ask fo
 
 ### Step 5. Frame the Call
 
-**Discovery: qualification pre-fill.** For each element of the team's qualification framework, mark what is known (green), partly known (yellow) or unknown (red). Each yellow or red cell gets the question that fills it. Identified Pain needs at least one pain quantified, which is the stage 3 depth target.
+**Discovery: qualification pre-fill.** For each element of the team's qualification framework, mark what is known (green), partly known (yellow) or unknown (red). Each yellow or red cell gets the question that fills it. Identified Pain needs at least one pain quantified, which is the stage 3 depth target. Metrics is green when the record holds a figure for the outcome the solution moves and the buyer has agreed it, yellow when that figure is recorded but not agreed, and red when no such figure is recorded, because account size such as a plot count describes the account and never scores the cell. Economic Buyer is green when the record names the person who signs at this deal's value, yellow when a buyer is named but the signer above that buyer's limit is not confirmed, and red when no buyer is named. Identified Pain is green when one pain is quantified, yellow when a pain is named but not quantified, and red when none is named.
 
 **Demo: pain-to-workflow map and structure.** Map each pain to a workflow, the differentiating feature, and the proof that makes it land, with its Status. Plan the demo as: the opening (three to five minutes), a problem slide built on the three-beat arc, a block for each pain in order of importance, and a recap and close. Check the five demo habits before the sheet is handed back.
 
@@ -462,7 +465,7 @@ A discovery flow for a 30-minute call (illustrative) looks like this:
    - **Benchmark:** context only, with its source and date named. Never "our customer got this."
    - **Illustrative:** never cited to a prospect. On the sheet, the row is marked "do not cite".
 
-   If the profile has no usable proof for a persona, the sheet says so and gives the research target in its place. The reason: a rep who says "we have no proof for this yet" is more credible than one who reaches for a row that does not exist.
+   If the profile has no usable proof for a persona, the sheet says so and gives the research target in its place. An Illustrative row does not make a persona usable: it is shown marked "do not cite", and the research target is given beside it. The reason: a rep who says "we have no proof for this yet" is more credible than one who reaches for a row that does not exist.
 2. **Script two or three Feel-Felt-Found stories:** Feel (validate their concern), Felt (a similar customer felt the same), Found (the outcome, with a metric whose Status allows its use). If no story can carry a Verified or Benchmark result, the Found line uses the Benchmark and says so.
 3. **Prepare typed resistance** (demo): Reactance, Skepticism or Inertia, each with its response from the Methodology.
 4. **Prepare the redirect:** if a buyer asks about something the product does not lead with, acknowledge it and return to the pain they ranked first.
@@ -593,7 +596,7 @@ Follow-up ladder on the top pain: stages 1 and 2 when confirmed, and stage 3 on 
 
 **Step 5.** Qualification pre-fill:
 
-- **Metrics: red.** No plot counts or sale counts are recorded `[Unknown]`.
+- **Metrics: red.** No plot-loss figure is recorded `[Unknown]`. The plot count (11,000) describes the account and the double sale describes the problem, so neither scores the cell.
 - **Economic buyer: yellow.** Ruth is the buyer. The likely signer is above her `[Inferred]`. Two sites at the list price in the profile come to $21,576 a year, plus the $5,000 setup, for $26,576 in year one. That is above the $25K board line in the profile, so the GM cannot sign alone on the record.
 - **Decision criteria: red.** None are stated.
 - **Decision process: red.** The approval body and its meeting dates are `[Unknown]`. Question: "Who has to approve a purchase above the board line, and when does that group meet?"
@@ -602,7 +605,7 @@ Follow-up ladder on the top pain: stages 1 and 2 when confirmed, and stage 3 on 
 
 **Step 6.** Competitive: the incumbent is Oldgate Ledger Pro `[CRM]`, an incumbent of the direct-software type in the shared list. Renewal is March 2027 `[CRM]`. Probes, as questions: "When does the Oldgate contract renew, and what did the last quote include for support?" and "Where does the plot map live today, and when was it last updated?" Oldgate's mobile weakness matters only if the grounds crew still uses paper work orders `[Inferred]`.
 
-**Step 7.** Proof for Ruth Ellery, the GM: Holloway Hills, zero records findings in its first state review, Status Illustrative. Not cited to Ruth. For Walt Okonkwo, the same row is the persona-proof map's choice, and it is Illustrative too. No Verified proof exists for an Operations Director yet, so the sheet says so and gives the research target for a same-day plot answer instead.
+**Step 7.** Proof for Ruth Ellery, the GM: Holloway Hills, zero records findings in its first state review, Status Illustrative. Not cited to Ruth. The row is Illustrative, so the sheet marks it "do not cite" and gives the research target beside it: 50 to 100 plots sold on paper and unsold on the map (Benchmark, deathcare research, paper-operations note, 2026-04-01). For Walt Okonkwo, the same row is the persona-proof map's choice, and it is Illustrative too. No Verified proof exists for an Operations Director yet, so the sheet says so and gives the research target for a same-day plot answer instead.
 
 **Step 8.** Open: "Ruth, thanks for making the time. Before we go further, how are the plot records kept at Brackhaven today?" Close: recap the pain in Ruth's words, ask who else belongs in the next conversation, and agree the next date with an owner.
 
@@ -621,7 +624,7 @@ top_pain: plot records on paper, with a double sale [CRM] (illustrative)
 question_bank: Situation 3, Problem 3, Implication 3, Need-Payoff 2 (top three per phase)
 attendees: Ruth Ellery, General Manager, buyer. Walt Okonkwo, Operations Director, influencer
 proof_point: Holloway Hills, Status Illustrative, not cited to the prospect
-next_action: Owen Pruitt asks Ruth Ellery for the approval body's chair and the meeting date on this call. Date: [Unknown] until agreed
+next_action: Owen Pruitt asks Ruth Ellery for the approval body's chair and the meeting date on this call. Date: 2026-05-12 (illustrative, the call itself). The meeting date is [Unknown] until agreed
 report_path: none (inline)
 ```
 
@@ -903,6 +906,9 @@ This skill also reads the kit's hand-off block back as optional context: `case_s
 
 ## Changelog
 
+
+### 2.1.2 (2026-10-25)
+- Try-it evidence completed so a strict first run reproduces Example 1. Adds the colour rules for Metrics, Economic Buyer and Identified Pain to the qualification pre-fill, and states that an Illustrative proof row does not make a persona usable. Example 1 gains the call date and the Ruth Ellery research target, and its next action is dated to the call. The meeting date stays unknown until agreed.
 
 ### 2.1.1 (2026-10-25)
 - Adds examples/try-it.md so a first run reproduces Example 1. No other change.

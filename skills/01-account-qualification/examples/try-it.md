@@ -2,6 +2,8 @@
 
 Every name, date and number in this file is invented for the PlotIQ example. Nothing here is a real company.
 
+These records are as of 2026-05-04, before Brackhaven reached ACTIVE at Stage 5 Negotiate (2026-09-09); the profile's Example Cast shows where the account stands later.
+
 ## Ask Your Assistant
 "Run Account Qualification on Brackhaven Memorial Gardens using skills/01-account-qualification/examples/try-it.md"
 
@@ -9,6 +11,7 @@ Every name, date and number in this file is invented for the PlotIQ example. Not
 
 Run date: 2026-05-04 (illustrative)
 Status at the time of qualification: TARGET (illustrative)
+Role: BDR [CRM] (illustrative)
 
 Company
 - Account: Brackhaven Memorial Gardens
@@ -16,13 +19,14 @@ Company
 - Plots: 11,000 plots [CRM] (illustrative)
 - Plot records: Paper plot maps [CRM] (illustrative)
 - Double sales: One double sale in the last 24 months [CRM] (illustrative)
-- Revenue: Not stated. Estimated from the site count [Inferred: site count]
+- Revenue: Not stated in public records. The CRM notes a revenue range of $2 to 4 million a year [CRM] (illustrative), which is a range and not a confirmed figure
 - Location spread: [Unknown]
 - Current system: [Unknown]
 - Family board chair: [Unknown]
 
 People And Decision
 - Pre-need manager and Operations Director are named on the staff page [Public: company website, staff page] (illustrative)
+- Staff use company email, which the staff page shows [Public: company website, staff page] (illustrative)
 - No intake form for pre-need on the website [Public: company website] (illustrative)
 - The website shows no plot lookup [Public: company website] (illustrative)
 - The records system is not named [Unknown]

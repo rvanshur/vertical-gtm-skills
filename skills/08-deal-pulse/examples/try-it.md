@@ -17,15 +17,16 @@ Every name, date and number in this file is invented for the PlotIQ example. Not
 - Responsiveness: Ruth replies within a day [CRM] (illustrative).
 - Meetings: the last two calls covered the same contract terms with the same attendees [CRM].
 - Follow-through: Ruth sent the trust fund ledger sample she promised [Notes] (illustrative).
-- Double sale: one double sale in the last 24 months is a note in the CRM [CRM] (illustrative). Ruth describes the paper plot records as the reason it happened [Call].
+- Double sale: one double sale in the last 24 months is a note in the CRM [CRM] (illustrative). Ruth describes the paper plot records as the reason it happened [Call]. Ruth puts the staff time to unwind one double sale at about 40 hours [Call] (illustrative).
 - Renewal: Ruth named the March 2027 Oldgate renewal as the deadline [Call]. The renewal date is in the CRM [CRM].
-- Strategic priority: the owner's retirement within three years is not a company priority the board has confirmed [Unknown].
+- Strategic priority: Ruth's stated goal for the cemetery side is one system for plot records before the owner retires [Call] (illustrative), a departmental goal. The owner's retirement within three years is not a company priority the board has confirmed [Unknown].
 - Champion: Ruth Ellery meets four of the shared champion tests, four of seven, each tagged [Call]. She offered to introduce the board chair [Call].
 - Solution: Ruth confirmed the records fix answers her double-sale problem [Call]. The demo ran on Brackhaven's own plot records [CRM].
-- Technical: no IT contact is on file, and nobody at Brackhaven owns IT [Unknown]. The Oldgate ledger export is unscoped [Unknown].
+- Requirements: the CRM note lists 12 requirements, and the demo covered 10 of them, or 83% [CRM] (illustrative).
+- Technical: no IT contact is on file, and nobody at Brackhaven owns IT [Unknown]. The Oldgate ledger export is unscoped [Unknown]. Owen proposed Friday 2026-10-02 for a technical discovery on the export [Notes] (illustrative).
 - Competition: Stonemark mapping was also evaluated, and no preference has been stated [Call].
 - Procurement: legal review and vendor onboarding are known in outline [Call], and their timing is not scoped [Unknown].
-- Board date: proposed, and not yet confirmed by the buyer. The approval steps after the board are not mapped [Unknown].
+- Board date: Ruth confirmed 2026-11-12 as the date she is working to, on the 2026-09-26 call [Call] (illustrative). The board itself has not formally confirmed it. The approval steps after the board are not mapped [Unknown].
 - Budget path: the family board chair is the economic buyer, and the chair's name is [Unknown].
 
 ## What You Should Get
@@ -33,3 +34,4 @@ Every name, date and number in this file is invented for the PlotIQ example. Not
 - Pillar averages: Why Anything 87.5, Why Us 62.5, Why Now 62.5, Execution 75.0. No pillar is below 30, so the pillar step does not apply.
 - Scorecard: 8 GREEN, 7 YELLOW and 1 RED. The RED signal is Technical Readiness.
 - Next action: Owen Pruitt asks Ruth Ellery for a technical discovery session on the Oldgate export by 2026-10-02.
+- Evidence Confidence: Strong, 11 interactions in the last 90 days (illustrative). It does not change the score.

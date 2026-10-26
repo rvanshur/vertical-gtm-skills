@@ -1,7 +1,7 @@
 ---
 name: gtm-account-snapshot
 description: "One-page account brief for BDRs and AEs: a zone-based verdict, persona-ranked contacts, tagged pain hypotheses, a three-step email draft and call prep, read by the rep before anything is sent."
-version: 2.1.1
+version: 2.1.2
 category: Sales-Methodology
 author: Ryan Vanshur
 license: MIT
@@ -11,6 +11,9 @@ requires:
   skills: [gtm-account-qualification, gtm-competitive-displacement]
 mutating: read-write
 change_log:
+  - version: 2.1.2
+    date: 2026-10-25
+    summary: "Try-it evidence completed so a strict first run reproduces Example 1. Adds the owner's signing fact to the records and to Example 1, a fourth UNKNOWN zone value, the regulatory High, Medium and Minimal thresholds, and an Email 1 with no proof point because the Benchmark is not in the Proof Points table."
   - version: 2.1.1
     date: 2026-10-25
     summary: "Adds examples/try-it.md so a first run reproduces Example 1. No other change."
@@ -225,7 +228,7 @@ Pain hypotheses carry the `[Inferred]` tag, because they are educated guesses fr
 
 ### Zone Scores and the Verdict
 
-Score each of the five zones HIGH, MEDIUM or LOW from tagged facts, using the profile's Qualification Zones definitions. Score a zone UNKNOWN when the record is silent. UNKNOWN is not LOW, because a blank field may only mean nobody recorded it. Zones 1 and 3 are must-haves.
+Score each of the five zones HIGH, MEDIUM or LOW from tagged facts, using the profile's Qualification Zones definitions. Score a zone UNKNOWN when the record is silent. UNKNOWN is a fourth zone value that this skill adds for a zone no source speaks to, on top of the profile's HIGH, MEDIUM and LOW. It is never a guess. UNKNOWN is not LOW, because a blank field may only mean nobody recorded it. Zones 1 and 3 are must-haves.
 
 Apply the Verdict Rule as written:
 
@@ -245,7 +248,7 @@ These five signals are the one-glance read a rep sees first. They do not set the
 |--------|---------|
 | Primary fit signal | Yes, Partial or No, against the ICP Definitions |
 | Geographic or scale signal | Single region, or Multi-region (name the regions) |
-| Regulatory or complexity signal | High, Medium or Minimal |
+| Regulatory or complexity signal | High, Medium or Minimal. High when a state records or trust finding is on the record, whatever its date. Medium when a state records or trust filing applies and no finding is on the record. Minimal when no state filing applies |
 | Scale (volume) | Enterprise, Mid-Market or SMB, using the profile's own bands |
 | Team complexity signal | Dedicated team, Small team or Unknown |
 
@@ -462,7 +465,7 @@ These examples use the PlotIQ example cast, and every fact is tagged as the tag 
 
 **Step 0: Role Detection.** The user is a BDR. The CRM shows the account, status TARGET `[CRM]`, and no open deal `[CRM]`. Clear to proceed.
 
-**Step 1: Intelligence Gathering.** One site, 8,800 plots, paper plat maps `[CRM]`. One contact on file: Ines Carmody, General Manager, champion `[CRM]`. The owner signs under $25K `[CRM]`. The owner's name is `[Unknown]`. A records finding appears in the last state review `[CRM]`, and its date is `[Unknown]` (both illustrative). The owner brought a growth mandate when Ines Carmody arrived `[CRM]`. The state is not recorded `[Unknown]`, so no region tier yet.
+**Step 1: Intelligence Gathering.** One site, 8,800 plots, paper plat maps `[CRM]`. One contact on file: Ines Carmody, General Manager, champion `[CRM]`. The owner signs under $25K `[CRM]`, alone, with no board approval step `[CRM]` (illustrative). The owner's name is `[Unknown]`. A records finding appears in the last state review `[CRM]`, and its date is `[Unknown]` (both illustrative). The owner brought a growth mandate when Ines Carmody arrived `[CRM]`. The state is not recorded `[Unknown]`, so no region tier yet.
 
 **Step 2: Account Snapshot.**
 
@@ -474,7 +477,7 @@ Zone scores (illustrative), with the verdict:
 
 - Zone 1, Records and Inventory Pain: MEDIUM. Paper plat maps `[CRM]`. The records finding has no date `[Unknown]`, so the HIGH test (a finding in the last 24 months) is not met.
 - Zone 2, Pre-Need Sales Motion: UNKNOWN. No pre-need activity is recorded `[Unknown]`. Silence is not a no.
-- Zone 3, Ownership and Decision Speed: HIGH. The owner signs under $25K `[CRM]`.
+- Zone 3, Ownership and Decision Speed: HIGH. The owner signs under $25K alone, with no board approval step `[CRM]` (illustrative).
 - Zone 4, Technology Readiness: UNKNOWN. Website and tools are not yet checked `[Unknown]`.
 - Zone 5, Growth or Succession: HIGH. A new GM in the last 24 months `[CRM]`, and an owner growth mandate `[CRM]`.
 
@@ -508,9 +511,9 @@ Ines,
 
 Quill Hollow's last state review turned up a records finding, and the plot maps are still on paper. How do you check today which plots are sold and which are open?
 
-Most cemeteries your size carry 50 to 100 plots that are sold on paper but open on the map (Benchmark, deathcare research, paper-operations note, 2026-04-01). Worth 15 minutes to see whether your maps show the same gap?
+Worth 15 minutes to walk through how your plot maps and your sold records line up?
 
-The email names no customer result, because every PlotIQ result in the profile is Illustrative. Emails 2 and 3 for this persona follow the same structure, each with a different pain, and are omitted for length.
+The email names no proof point. The research figure for this pain (50 to 100 plots) is a pain Benchmark in the profile, not a row in its Proof Points table, and every PlotIQ result is Illustrative, so Hard Rule 1 leaves the email with none. Emails 2 and 3 for this persona follow the same rules, each with a different pain and at most one proof point, and are omitted from this page only.
 
 **Step 6: Call prep omitted for length.**
 
@@ -796,6 +799,9 @@ The Business Case & ROI Kit (a paid Guild Pro kit) reads this skill's hand-off b
 
 ## Changelog
 
+
+### 2.1.2 (2026-10-25)
+- Try-it evidence completed so a strict first run reproduces Example 1.
 
 ### 2.1.1 (2026-10-25)
 - Adds examples/try-it.md so a first run reproduces Example 1. No other change.
