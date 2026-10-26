@@ -1,6 +1,6 @@
 ---
 name: gtm-stakeholder-mapping
-version: 2.1.5
+version: 2.1.6
 description: "Maps the buying committee for one account: classifies every contact by buying role, marks each missing decision-maker as an UNKNOWN ghost node, scores multi-threading on seven weighted dimensions, and returns an engagement plan the AE or BDR reads before the next meeting."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,9 +11,12 @@ requires:
   skills: [gtm-meddpicc-analysis]
 mutating: read-write
 change_log:
+  - version: 2.1.6
+    date: 2026-10-26
+    summary: "Consistency pass across the sales skills. The upstream MEDDPICC reference in the examples is the revised score for the same day, the pre-need walkthrough is described as a walkthrough and not a demo, the IT ownership fact is tagged Unknown, and the CFO budget approval is tagged to the CRM. No threading score, verdict or next action changes."
   - version: 2.1.5
     date: 2026-10-26
-    summary: "The invented CRM dated-action context line and its try-it line are removed, and the URGENT next action carries the shared rule's date. "The URGENT action's date follows the family's one deadline rule (five business days after the run date, or an earlier date the records or the skill's own schedule set for that step, named with its source), in place of the Friday-of-the-run-week rule. HIGH and MEDIUM actions keep their own windows. The examples name the record behind each date, and the Saltmarsh research action carries the shared rule's date."
+    summary: "The invented CRM dated-action context line and its try-it line are removed, and the URGENT next action carries the shared rule's date. The URGENT action's date follows the family's one deadline rule (five business days after the run date, or an earlier date the records or the skill's own schedule set for that step, named with its source), in place of the Friday-of-the-run-week rule. HIGH and MEDIUM actions keep their own windows. The examples name the record behind each date, and the Saltmarsh research action carries the shared rule's date."
   - version: 2.1.4
     date: 2026-10-26
     summary: "Try-it evidence completed so a strict first run reproduces Example 1 under the Pass Rule. Settles the buyer-persona and non-buyer ghost rule, the HIGH influence rule, the undated-interaction rule, the revenue band rule and the order and deadlines of the URGENT, HIGH and MEDIUM actions. The try-it records carry the dated champion tests shared with Meeting Prep and Deal Pulse, the dated Skeptic call, the Actively Engaged status the rule gives, and the board date as not yet formally confirmed, so the next action's ask is not already on the record. The promise states scored 7 of 7."
@@ -134,7 +137,7 @@ When the assistant is connected to the CRM or to a call recorder, the skill offe
 
 #### Account Status, Five Words
 
-Every account carries one status: **TARGET** (researched, not yet contacted), **INBOUND** (they asked us), **ACTIVE** with its stage number (open deal), **LOST** (closed-lost, eligible for reactivation), **OUT** (disqualified). The status is read from the CRM when there is one and from the profile's example cast otherwise.
+Every account carries one status: **TARGET** (researched, no open deal yet, whether or not contacted), **INBOUND** (they asked us), **ACTIVE** with its stage number (open deal), **LOST** (closed-lost, eligible for reactivation), **OUT** (disqualified). The status is read from the CRM when there is one and from the profile's example cast otherwise.
 
 #### The Verdict Words and the Zone Rule
 
@@ -663,28 +666,28 @@ The plays come from the profile's Buying Committee section (available plays). A 
 
 **Input:** "Build an org map for Brackhaven Memorial Gardens. We're at Negotiate and need to multi-thread before the board meeting."
 
-**Process:** `user_role = AE`. CRM shows an ACTIVE deal at Stage 5 Negotiate, $21,576 a year at list (two sites at the $10,788 list price) `[CRM]`. The Active Deal Guard does not apply, because the user is the AE. The upstream MEDDPICC fields for this account are read by name, and the second MEDDPICC run on 2026-10-19 scored the deal 58 ORANGE `[CRM]`. Three contacts are on file, and three positions are ghost nodes.
+**Process:** `user_role = AE`. CRM shows an ACTIVE deal at Stage 5 Negotiate, $21,576 a year at list (two sites at the $10,788 list price) `[CRM]`. The Active Deal Guard does not apply, because the user is the AE. The upstream MEDDPICC fields for this account are read by name, and the second MEDDPICC run on 2026-10-19 scored the deal 71 YELLOW `[CRM]`. Three contacts are on file, and three positions are ghost nodes.
 
 Contacts on file, `[CRM]`:
 - Ruth Ellery, General Manager (Executive). Champion, Strong: four of seven shared champion tests met, each tagged with its source and date: offers introductions `[Call, 2026-09-26]`, commits to next steps with dates `[Call, 2026-09-26]`, explains the internal politics, saying the chair decides after the family's vote `[Call, 2026-09-26]`, and defends the solution when we are not in the room, having briefed the board chair on the records fix `[CRM, 2026-09-25]`. Influence HIGH, from demonstrated seniority in meetings: she set the 2026-11-12 date the family board is working to `[Call, 2026-09-26]` (illustrative). Actively Engaged: two logged interactions in the last 30 days, the 2026-09-26 call and her reply on 2026-10-03. Her last logged reply is 2026-10-03.
 - Walt Okonkwo, Operations Director (Operations). Influencer with a Skeptic position `[Call, 2026-09-21]`, skeptical of tablets. Influence MEDIUM, and he controls daily use of the system. Partially Engaged: one logged interaction in the last 30 days, the 2026-09-21 call.
-- Priscilla Dunmore, pre-need manager (Sales). End User, Influence LOW, Actively Engaged: the demo on 2026-10-08 and a second logged interaction on 2026-10-14, two in the last 30 days `[CRM]` (illustrative).
+- Priscilla Dunmore, pre-need manager (Sales). End User, Influence LOW, Actively Engaged: a pre-need walkthrough on 2026-10-08, which was not a demo, and a second logged interaction on 2026-10-14, two in the last 30 days `[CRM]` (illustrative).
 
 Ghost nodes, written by role only:
 - "UNKNOWN, family board chair" (Executive). Economic Buyer, identified by role. One call in Stage 4 Proposal `[Call]`, and budget not confirmed `[Call]`.
-- "UNKNOWN, systems administrator" (Technology). Technical Evaluator. Nobody at Brackhaven owns IT, and no IT contact is on file `[Notes]`. The Oldgate ledger export has no named owner `[Unknown]`, and only the person who runs the system can say who holds it, an open question only they can answer.
+- "UNKNOWN, systems administrator" (Technology). Technical Evaluator. Nobody at Brackhaven owns IT, and no IT contact is on file `[Unknown]`. The Oldgate ledger export has no named owner `[Unknown]`, and only the person who runs the system can say who holds it, an open question only they can answer.
 - "UNKNOWN, funeral home owner" (combination side, Persona 4). `[Inferred]` from the ICP2 Combination pattern, which needs a funeral home side to the account. Persona 4 in the profile names this role, and the combination side needs it, because the pre-need leads run through it (Next Actions below). General counsel and procurement are known only in outline, with legal review and vendor onboarding timing not scoped `[Unknown]` and no open question on the record, so they are named as gaps, not ghost nodes. The CFO persona applies to groups only, and this account has two sites. The revenue table starts at $50M, so at under $50M it adds no ghost rows.
 
 **Multi-threading score:**
 
 | Dimension | Weight | Score (0 to 2) | Weighted | Why |
 |---|---|---|---|---|
-| C-Level Access | 2x | 1 | 2 | The board chair joined one call `[Call]`, but is not on file by name, so no named C-level contact is engaged. The board chair counts as C-level (Methodology), engaged but unnamed, so 1. Ruth is a GM, not a C-level title, so she counts toward Department Breadth only |
+| C-Level Access | 2x | 1 | 2 | The board chair joined one call, in Stage 4 Proposal `[CRM]`, but is not on file by name, so no named C-level contact is engaged. The board chair counts as C-level (Methodology), engaged but unnamed, so 1. Ruth is a GM, not a C-level title, so she counts toward Department Breadth only |
 | Champion Identified | 2x | 2 | 4 | Ruth Ellery, Strong: four of seven shared champion tests met, each tagged with its source and date |
 | Department Breadth | 1x | 1 | 1 | Executive, Operations and Sales: 3 departments (the 2 to 3 band) `[CRM]` |
 | Technical Evaluator | 1x | 0 | 0 | No IT contact on file `[Unknown]`. Nobody owns IT `[Notes]` |
 | Economic Buyer Engaged | 2x | 1 | 2 | Identified by role only, one call, budget not confirmed `[Call]` |
-| End User Validation | 1x | 2 | 2 | Priscilla Dunmore, Actively Engaged: the demo on 2026-10-08 and a second logged interaction on 2026-10-14, two in the last 30 days `[CRM]` (illustrative) |
+| End User Validation | 1x | 2 | 2 | Priscilla Dunmore, Actively Engaged: a pre-need walkthrough on 2026-10-08, which was not a demo, and a second logged interaction on 2026-10-14, two in the last 30 days `[CRM]` (illustrative) |
 | Blocker Mitigation | 1x | 1 | 1 | Walt Okonkwo, a Skeptic with a stated objection, identified, and a strategy exists (a demo on his own work orders) `[Notes]`. Developing under the Skeptic rule in Methodology |
 | **Total** | | | **12 of 20** (scored 7 of 7) | |
 
@@ -714,7 +717,7 @@ report_path: none (inline)
 
 ### Example 2: BDR Prospecting, Single-Threaded Account (Non-Success)
 
-**Context:** A BDR is researching Saltmarsh Heritage Group, a family-owned group with five sites (two cemeteries and three funeral homes). The account is TARGET, not yet contacted `[CRM]`. Its annual owner letter, posted on the company site, says all five sites move to one system in 2027 `[Public: company site, owner letter 2026]`. CFO Hector Ruiz approves the budget `[Notes]`. This is the non-success case: the map is thin, and the BDR must not treat one contact as a buying committee.
+**Context:** A BDR is researching Saltmarsh Heritage Group, a family-owned group with five sites (two cemeteries and three funeral homes). The account is TARGET, not yet contacted `[CRM]`. Its annual owner letter, posted on the company site, says all five sites move to one system in 2027 `[Public: company site, owner letter 2026]`. CFO Hector Ruiz approves the budget `[CRM]`. This is the non-success case: the map is thin, and the BDR must not treat one contact as a buying committee.
 
 **Input:** "Map the org structure for Saltmarsh Heritage Group so I know who to target first."
 
@@ -828,6 +831,12 @@ report_path: none (inline)
 ---
 
 ## Changelog
+
+### 2.1.6 (2026-10-26)
+- Consistency pass across the sales skills. Example 1 cites the revised MEDDPICC score for its run date, and its Priscilla Dunmore interaction on 2026-10-08 is a pre-need walkthrough, not a demo. Her engagement status and End User Validation score are unchanged, because two interactions fall in the last 30 days.
+- The IT ownership fact in Example 1 is tagged Unknown, not Notes, consistent with the other skills.
+- Example 2 tags the CFO's budget approval to the CRM.
+- No threading score, verdict or next action changes.
 
 ### 2.1.5 (2026-10-26)
 - The invented CRM dated-action context line and its try-it line are removed, and the URGENT next action carries the shared rule's date.

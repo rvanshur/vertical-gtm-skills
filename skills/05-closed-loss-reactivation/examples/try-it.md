@@ -21,7 +21,7 @@ The Deal
 - Deal value: [Unknown]
 - AE loss notes: [Unknown]
 - Original AE: Owen Pruitt, the AE owner on the closed-lost opportunity [CRM] (illustrative)
-- Champion: Ines Carmody, General Manager. She was the champion. She moved to Quill Hollow Memorial Park in April 2026, six months ago (illustrative)
+- Champion: Ines Carmody, General Manager. She was the champion. She moved to Quill Hollow Memorial Park in April 2026, six months ago [Public: state licensing database] (illustrative)
 - Current Lowmoor contact: [Unknown]. No successor is recorded
 - Oldgate renewal date for Lowmoor: [Unknown]
 - Original qualification at the deal: MANUAL REVIEW, with Zone 1 MEDIUM and Zone 3 HIGH (the GM signed under $25K, with a board date inside 60 days) [CRM] (illustrative)

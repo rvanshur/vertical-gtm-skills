@@ -1,6 +1,6 @@
 ---
 name: gtm-competitive-displacement
-version: 2.1.5
+version: 2.1.6
 description: "Plans outbound to displace a known incumbent, by classifying the incumbent, rating how hard the switch is, and drafting persona-tailored four-step email sequences for the rep to read and send, so the BDR or AE who works the account knows what to say and what not to say."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,9 +11,12 @@ requires:
   skills: [gtm-competitive-strategy]
 mutating: read-write
 change_log:
+  - version: 2.1.6
+    date: 2026-10-26
+    summary: "Greyfield's contact status reads the logged touch of 2026-09-24 with no named contact, in place of not yet contacted. Tamsin Vale's second example no longer relies on a buyer call: its incumbent and decision path cite the CRM record, its contract term is recorded as none, and it keeps two personas with eight drafts on hold. Brackhaven's third example cites the dated call row in the Competitive Strategy skill for Oldgate's unsold-plot visibility. The Competitive Strategy citation and the next action rule are unchanged."
   - version: 2.1.5
     date: 2026-10-26
-    summary: "The competitive research citation is flagged as over 90 days old at the run date, and an Epistemic Rule states the flag. "The next action follows the family's one deadline rule: five business days after the run date, or an earlier date the CRM or the records set for that step, named with its source. The skill's own four-business-day rule is replaced by a pointer to that rule, and the example next actions carry the recomputed dates."
+    summary: "The competitive research citation is flagged as over 90 days old at the run date, and an Epistemic Rule states the flag. The next action follows the family's one deadline rule: five business days after the run date, or an earlier date the CRM or the records set for that step, named with its source. The skill's own four-business-day rule is replaced by a pointer to that rule, and the example next actions carry the recomputed dates."
   - version: 2.1.4
     date: 2026-10-26
     summary: "Try-it fixes from the blind retest: the Output Contract names the parts the steps produce and the four the steps do not produce, the next action takes a date rule and an action verb, the Context names the example profile for a first run, a CRM note confirms the incumbent only when its text names it, the hand-off block is defined, the competitive research is cited by its Sources name, and the Methodology settles the open judgments (Settled Judgments) and bars illustrative figures from emails."
@@ -133,7 +136,7 @@ When the assistant is connected to the CRM or to a call recorder, the skill offe
 
 #### Account Status, Five Words
 
-Every account carries one status: **TARGET** (researched, not yet contacted), **INBOUND** (they asked us), **ACTIVE** with its stage number (open deal), **LOST** (closed-lost, eligible for reactivation), **OUT** (disqualified). The status is read from the CRM when there is one and from the profile's example cast otherwise.
+Every account carries one status: **TARGET** (researched, no open deal yet, whether or not contacted), **INBOUND** (they asked us), **ACTIVE** with its stage number (open deal), **LOST** (closed-lost, eligible for reactivation), **OUT** (disqualified). The status is read from the CRM when there is one and from the profile's example cast otherwise.
 
 #### The Verdict Words and the Zone Rule
 
@@ -456,11 +459,11 @@ Three worked examples on the PlotIQ cast and the chain file. They show a success
 
 ### Example 1: Pre-Need and Records Displacement, Stonemark at Greyfield Memorial Park
 
-**Context:** Greyfield Memorial Park is a one-site cemetery with 9,000 plots (profile). It runs a digital map from Stonemark, a direct software incumbent, and its three-person pre-need team takes requests through an intake form on the site. The Stonemark renewal is January 2027. The account is TARGET, not yet contacted, and its verdict is GREENLIGHT (Zones 2 and 3 HIGH, Zone 1 MEDIUM, because the digital map holds no records or trust reporting). No contact names are on file, so every contact is `[Unknown]` and the sequence uses titles. The BDR guard does not apply, because a TARGET account is not ACTIVE. The profile has no Knowledge Base section, so this run says so once here and works from the profile and the records.
+**Context:** Greyfield Memorial Park is a one-site cemetery with 9,000 plots (profile). It runs a digital map from Stonemark, a direct software incumbent, and its three-person pre-need team takes requests through an intake form on the site. The Stonemark renewal is January 2027. The account is TARGET, with one touch on 2026-09-24 and no named contact `[CRM]` (illustrative), and its verdict is GREENLIGHT (Zones 2 and 3 HIGH, Zone 1 MEDIUM, because the digital map holds no records or trust reporting). No contact names are on file, so every contact is `[Unknown]` and the sequence uses titles. The BDR guard does not apply, because a TARGET account is not ACTIVE. The profile has no Knowledge Base section, so this run says so once here and works from the profile and the records.
 
 **Input:** "Greyfield Memorial Park uses Stonemark. Build displacement sequences."
 
-**Step 0. Role and Status:** User role is BDR, from the CRM user record `[CRM]` (illustrative). CRM check: TARGET, no open deal, no AE owner. The guard does not apply. Sequences are drafted.
+**Step 0. Role and Status:** User role is BDR, from the CRM user record `[CRM]` (illustrative). CRM check: TARGET, one touch on 2026-09-24 with no named contact `[CRM]` (illustrative), no open deal, no AE owner. The guard does not apply. Sequences are drafted.
 
 **Step 1. Identify the Incumbent:** Stonemark, direct software. How we know: the account's CRM note names Stonemark as its map vendor `[CRM]` (illustrative). Confidence: HIGH, because the CRM note names the incumbent.
 
@@ -526,7 +529,7 @@ The benchmark carries its source and date in the body, so a buyer who asks where
 2. **Incumbent type:** direct software.
 3. **Displacement difficulty:** Medium, set by the renewal test (1 of 3 tests met, directional).
 4. **Readiness:** pre-need and records pain is known, and the champion, budget cycle and prior evaluation are `[Unknown]`.
-5. **CRM status:** TARGET, no open deal, no AE owner, no contacts on file.
+5. **CRM status:** TARGET, one touch on 2026-09-24 with no named contact, no open deal, no AE owner, no contacts on file.
 6. **Personas targeted:** 2 of 5 profile rows, the two that feel the intake pain and sign the contract.
 7. **Sequences generated:** 2 personas x 4 emails. Email 1 is shown in full. Email 3 is on HOLD. Emails 2 and 4 follow the structure above.
 8. **Strongest opening:** "Your team takes pre-need requests through the intake form on the site."
@@ -558,24 +561,25 @@ next_action: Nadia Brandt finds the Pre-Need Sales Manager's name, reviews Email
 
 **Step 0. Role and Status:** User is a BDR (illustrative). CRM check: TARGET, no open deal.
 
-**Step 1. Identify the Incumbent:** Incumbent: paper maps and binders, a manual process. How we know: the GM described the process on one call `[Call, 2026-10-02 (illustrative)]`. Confidence: MEDIUM. The process is known, but the double sales come from that one conversation and are not yet in writing.
+**Step 1. Identify the Incumbent:** Incumbent: paper maps and binders, a manual process. How we know: the CRM record holds paper plat maps `[CRM]` (illustrative). Confidence: MEDIUM, because the record is partial. No buyer has confirmed the process on a dated call, and the double sales are not yet in writing.
 
 **Step 1d. Displacement Readiness:**
 - Known pain: Suspected. The two double sales have not been counted in plots or dollars.
-- Contract status: `[Unknown]`. A manual process has no vendor contract to time against.
+- Contract status: none `[Inferred: a manual process has no vendor contract to time against]`.
 - Champion: `[Unknown]`
 - Budget cycle: `[Unknown]`
 - Previous evaluation of our product: `[Unknown]`
+- Decision path: the GM recommends, and the board approves above $25K. Its next meeting is 2027-02-10 `[CRM]`. No signer is named, so the economic buyer is `[Unknown]`.
 
 **Step 1e. Displacement Difficulty: Low.**
-- Low test (no contract term to exit): met, a manual process has no renewal.
+- Low test (no contract term to exit): met, the account has no contract to exit.
 - Medium test (renewal inside 180 days): not met, there is no renewal.
 - High test (term past 180 days with an exit fee): not met, there is no contract.
 - The rating is Low, the highest test met. The test is directional.
 
-**Step 2. Template Row and Intelligence:** The profile's manual process row for Displacement says the wedge is one view of sold and unsold plots with an audit trail, so no one person holds the records. Primary persona: row 1, Cemetery General Manager. Secondary persona: row 3, Operations Director, who is not on file. Gap matrix: no single view of sold and unsold plots (one binder per section), no audit trail, and key-person risk. The only proof point is Fennick Gardens, which is Illustrative and cannot be cited.
+**Step 2. Template Row and Intelligence:** The profile's manual process row for Displacement says the wedge is one view of sold and unsold plots with an audit trail, so no one person holds the records. Primary persona: row 1, Cemetery General Manager. Secondary persona: row 3, Operations Director, with no contact on file, so its contact is `[Unknown]` and its title is kept. Gap matrix: no single view of sold and unsold plots (one binder per section), no audit trail, and key-person risk. The only proof point is Fennick Gardens, which is Illustrative and cannot be cited.
 
-**Step 3. Sequences:** Persona selection: 1 of 2 template personas. The Operations Director is not on file, so the sequence has one persona, not two. A CFO is not a fit for a single-site account (the profile's CFO row applies to groups). That is 1 persona and 4 emails.
+**Step 3. Sequences:** Persona selection: 2 of 2 template personas. Row 1 Cemetery General Manager is primary, and row 3 Operations Director is secondary, with its title kept and its contact `[Unknown]`. A CFO is not a fit for a single-site account (the profile's CFO row applies to groups). That is 2 personas and 8 emails, all on HOLD until the two double sales are in writing. The Cemetery General Manager's Email 1 is shown below. The other seven drafts follow the same rules and are left off this page for length.
 
 **Cemetery General Manager, Email 1 (Pain Question). Drafted, held.**
 Subject: Plot lookups across one binder per section
@@ -584,16 +588,16 @@ Tamsin Vale keeps its plot records in one binder per section. When a family asks
 
 Your name
 
-**Step 4. Summary and Recommendation (the non-success):** 1 persona, 4 emails drafted, 0 sent. Recommendation: hold the sequence. The verdict is MANUAL REVIEW, not GREENLIGHT, so Email 1 would put a double-sales question in front of a buyer before anyone has confirmed the double sales. The next step is a discovery call that asks for the two double sales in writing, with plot numbers and dates, and names the person who decides. Release Email 1 only after both are in hand. Evidence tags: `[Call]` for the process, `[Inferred]` for the displacement case, and `[Unknown]` for the decision maker. If the double sales do not hold up, the displacement case is a guess, and it does not go out.
+**Step 4. Summary and Recommendation (the non-success):** 2 personas, 8 drafts, 0 sent, all on HOLD. Recommendation: hold the sequence. The verdict is MANUAL REVIEW, not GREENLIGHT, so Email 1 would put a double-sales question in front of a buyer before anyone has confirmed the double sales. The next step is to find the Cemetery General Manager's name and phone number, then ask for the two double sales in writing, with plot numbers and dates, and ask who decides. The CRM record places that decision with the board above $25K. Release Email 1 only after both are in hand. Evidence tags: `[CRM]` for the process and the touch record, `[Inferred]` for the displacement case, and `[Unknown]` for the decision maker's name. If the double sales do not hold up, the displacement case is a guess, and it does not go out.
 
 Hand-off (read by 02 and 06):
 account: Tamsin Vale Cemetery (TARGET)
 run_date: 2026-10-19
 incumbent_type: manual process (paper plat maps and one binder per section)
 displacement_difficulty: Low (no contract term to exit, test met, directional)
-target_personas: 1 of 2. Row 1 Cemetery General Manager (primary). Row 3 Operations Director not on file, contact [Unknown]
-sequence: 1 persona x 4 emails drafted, 0 sent. On HOLD until the two double sales are in writing
-next_action: Nadia Brandt books a discovery call that asks for the two double sales, plot numbers and dates, by 2026-10-26
+target_personas: 2 of 2. Row 1 Cemetery General Manager (primary). Row 3 Operations Director (secondary), contact [Unknown]
+sequence: 2 personas x 4 emails, 8 drafts, 0 sent. All on HOLD until the two double sales are in writing
+next_action: Nadia Brandt finds the Cemetery General Manager's name and phone number by 2026-10-26, five business days after the run date of 2026-10-19
 report_path: none (inline)
 
 ---
@@ -611,7 +615,7 @@ report_path: none (inline)
 **Steps 1 and 2. Analysis Delivered:**
 - **Incumbent:** Oldgate Ledger Pro, direct software. Confidence: HIGH, because the CRM records the incumbent `[CRM]`.
 - **Difficulty:** Medium. The renewal test is met: March 2027 is inside 180 days `[CRM]`. Directional.
-- **Gap matrix:** mobile use by the grounds crew `[Inferred: research pattern for legacy on-premise systems, illustrative]`, unsold-plot visibility `[Unknown]`, and trust fund records, which need a deeper accounting answer.
+- **Gap matrix:** mobile use by the grounds crew `[Inferred: research pattern for legacy on-premise systems, illustrative]`, unsold-plot visibility, where Oldgate shows sold records only `[Call, 2026-05-19]` (illustrative, the row the Competitive Strategy skill cites), and trust fund records, which need a deeper accounting answer.
 - **Discovery questions for the AE** (both from the profile): "When does your software contract renew, and what did the last quote include for support?" and "Where does the plot map live today, and when was it last updated?"
 - **Proof point:** Fennick Gardens is Illustrative and cannot be used.
 
@@ -693,6 +697,11 @@ report_path: none (inline)
 ---
 
 ## Changelog
+
+### 2.1.6 (2026-10-26)
+- Greyfield's contact status reads the logged touch of 2026-09-24 with no named contact, in place of not yet contacted.
+- Tamsin Vale's second example relies on the CRM record only. The incumbent, the decision path and the contract term (none) are cited to it, and the buyer call is removed. The persona count is two of two, with eight drafts on hold.
+- Oldgate's unsold-plot visibility in the third example cites the dated call row in the Competitive Strategy skill.
 
 ### 2.1.5 (2026-10-26)
 - The competitive research citation is flagged as research estimate, over 90 days old at the run date, and an Epistemic Rule states the flag.

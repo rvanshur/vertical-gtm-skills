@@ -1,6 +1,6 @@
 ---
 name: gtm-daily-prospecting
-version: 2.1.5
+version: 2.1.6
 description: "Builds the morning dial sheet for a BDR or AE: ranks accounts into Hot, Warm, New and Recycle tiers, removes accounts the BDR guard blocks, and writes a pre-call brief for the top eight, read by the rep at the phone and by the meeting prep skill."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,9 +11,12 @@ requires:
   skills: [gtm-meeting-prep]
 mutating: read-write
 change_log:
+  - version: 2.1.6
+    date: 2026-10-26
+    summary: "Consistency pass against the 2.1.5 audit. The Brackhaven board-date ask in the AE example follows the shared next-action rule, the Sable Fork reply date cites the profile's Hot definition, and the zone facts behind Sable Fork and Saltmarsh name their records. The Quill Hollow opener no longer uses its undated records finding, and the dial sheet counts prior contact and lists every account on the day's task list. The 2.1.5 summary's stray quotation mark is removed so the frontmatter parses."
   - version: 2.1.5
     date: 2026-10-26
-    summary: "The Zone 3 MEDIUM cell in Step 4 and the Corrow Ridge reading quote the profile's new wording. "The next action follows the family's one deadline rule: five business days after the run date, or an earlier date the records or the skill's own schedule set for that step, which is named with its source. The Output Contract points to that rule, and each example names the record behind its next action date."
+    summary: "The Zone 3 MEDIUM cell in Step 4 and the Corrow Ridge reading quote the profile's new wording. 'The next action follows the family's one deadline rule: five business days after the run date, or an earlier date the records or the skill's own schedule set for that step, which is named with its source. The Output Contract points to that rule, and each example names the record behind its next action date."
   - version: 2.1.4
     date: 2026-10-26
     summary: "Try-it evidence completed so a strict first run reproduces Example 1. Settles the zone rules a first scorer meets: a HIGH cell with several conditions needs each one on evidence, a board path between 60 days and three months scores MEDIUM, an acquisition that changes the owner of record scores Zone 5 HIGH, and an UNKNOWN zone never blocks GREENLIGHT. Also settles the order of ties, the upstream verdict of a Recycle hold, the status source and the next action when several steps are due. Adds the record facts behind each zone and the status lines. The Fit Grid grade is applied to the tests the records meet."
@@ -150,7 +153,7 @@ When the assistant is connected to the CRM or to a call recorder, the skill offe
 
 #### Account Status, Five Words
 
-Every account carries one status: **TARGET** (researched, not yet contacted), **INBOUND** (they asked us), **ACTIVE** with its stage number (open deal), **LOST** (closed-lost, eligible for reactivation), **OUT** (disqualified). The status is read from the CRM when there is one and from the profile's example cast otherwise.
+Every account carries one status: **TARGET** (researched, no open deal yet, whether or not contacted), **INBOUND** (they asked us), **ACTIVE** with its stage number (open deal), **LOST** (closed-lost, eligible for reactivation), **OUT** (disqualified). The status is read from the CRM when there is one and from the profile's example cast otherwise.
 
 #### The Verdict Words and the Zone Rule
 
@@ -567,7 +570,7 @@ Seven accounts remain. Each is scored against the Fit Grid row for its ICP and t
 - **Sable Fork Cemetery.** INBOUND. Demo request through the website form on Thursday 2026-10-15 (`[CRM]`), four days old. Hot. The profile's Hot definition is "an INBOUND request not yet answered and within 3 business days of arriving." Thursday 2026-10-15 to Monday 2026-10-19 is two business days, so the request meets the definition (`[Inferred]`). No reply from PlotIQ is logged (`[CRM]`), so the request is not yet answered. MANUAL REVIEW, with Zone 3 HIGH, because the GM signs alone under $25K with no board approval step (`[CRM]`, illustrative).
 - **Quill Hollow Memorial Park.** GM Ines Carmody moved here from Lowmoor six months ago with an owner growth mandate (`[CRM]`). Last touch 2026-09-29, 20 days ago, now quiet (`[CRM]`, illustrative). Warm. The records finding in the last state review is `[CRM]` with its date `[Unknown]`. Zone 1 is therefore MEDIUM, because the paper plat maps and lookups that take days fit the MEDIUM cell, and the finding's 24-month test cannot be confirmed, so HIGH is not met. Fit Grid ICP1 Strong, 3 of 4 tests met (8,800 plots, paper plat maps, and an owner who signs under $25K). Zone 3 is HIGH because the owner signs under $25K alone, with no board approval step (`[CRM]`, illustrative). GREENLIGHT stands on Zones 3 and 5. The GM change is dated 2026-04-25 (`[Public: state licensing database]`, illustrative), and the Hot conflict it raises is named in its brief.
 - **Greyfield Memorial Park.** Digital map from Stonemark, a direct software incumbent (`[CRM]`). Pre-need team of three with an intake form on the site (`[Public: company website]`). Social ads feed leads into email (`[CRM]`, illustrative), so all three conditions of the Zone 2 HIGH cell are on record. Fit Grid ICP1 Strong, 2 of 4 tests met (9,000 plots, and an owner who signs under $25K alone). The paper-records test is not met, and the annual filing is `[Unknown]`. Last touch on the account record 2026-09-24 with no named contact (`[CRM]`, illustrative). Warm. GREENLIGHT with Zones 2 and 3 HIGH. Zone 3 is HIGH because the owner signs under $25K alone, with no board approval step (`[CRM]`, illustrative). Zone 5 is MEDIUM, one growth project, and Zone 1 is MEDIUM because the Stonemark map holds no records or trust reporting (`[CRM]`, illustrative). Zone 4 is MEDIUM, because Stonemark holds no records or trust reporting and so fits poorly for this work, and the staff email and shared-drive use is `[Unknown]`, so the HIGH cell is not met.
-- **Saltmarsh Heritage Group.** Owner letter on the company site says all five sites move to one system in 2027 (`[Public: company site, owner letter 2026]`). CFO Hector Ruiz approves budget (`[CRM]`). MANUAL REVIEW because Zone 3 is a must-have at LOW. Zone 2 is HIGH, because the counselors, the website intake form and the social ads are all on record. Zone 5 is HIGH, because the owner letter names a pre-need push, and Zones 1 and 4 are MEDIUM, because the plot records are on paper binders and spreadsheets (`[CRM]`, illustrative). New.
+- **Saltmarsh Heritage Group.** The owner letter on the company site says: "Growth in 2027 means one system for all five sites" (`[Public: company site, owner letter 2026]`). CFO Hector Ruiz approves budget (`[CRM]`). MANUAL REVIEW because Zone 3 is a must-have at LOW. Zone 2 is HIGH, because the counselors, the website intake form and the social ads are all on record. Zone 5 is HIGH, because the owner letter names growth, which is the profile's owner update naming growth. Zones 1 and 4 are MEDIUM, because the plot records are in spreadsheets only (`[Notes]`). New.
 - **Tamsin Vale Cemetery.** 4,200 plots and paper plat maps (`[CRM]`). No phone on file. Who signs is `[Unknown]`. MANUAL REVIEW, Zone 1 HIGH only, because the paper plat maps meet two double sales in the last 24 months (`[CRM]`, illustrative). New.
 - **Lowmoor Memorial Gardens.** Closed-lost to Oldgate on 2026-01-20, nine months ago, with the reason logged as "timing" (`[CRM]`). The champion, Ines Carmody, has moved to Quill Hollow. MANUAL REVIEW on re-score. Recycle, on hold. Its verdict is the one Closed-Loss Reactivation (05) recorded, and this skill does not re-score it.
 
@@ -575,7 +578,7 @@ The Warm tier holds two accounts. Two cases are not a pattern, so the report sta
 
 **Output:**
 
-Dashboard: 7 accounts on the sheet, 6 to dial and 1 on hold. Tiers: 2 Hot, 2 Warm, 2 New, 1 Recycle (hold). Prior touches on 2 of 7 accounts. Net-new first touches on 3 of 7 (Corrow Ridge, Saltmarsh, Tamsin Vale). Inbound on 1 of 7 (Sable Fork). Strongest opportunity: Corrow Ridge, with 10 days left in its trigger window. Exclusions: 3 (two accounts and one contact).
+Dashboard: 7 accounts on the sheet, 6 to dial and 1 on hold. Tiers: 2 Hot, 2 Warm, 2 New, 1 Recycle (hold). Prior contact on 4 of 7 accounts: Sable Fork (INBOUND, the form request not yet answered), Quill Hollow (last touch 2026-09-29), Greyfield (last touch 2026-09-24) and Lowmoor (closed-lost in January, with prior history). Net-new first touches on 3 of 7 (Corrow Ridge, Saltmarsh, Tamsin Vale). Strongest opportunity: Corrow Ridge, with 10 days left in its trigger window. Exclusions: 3 (two accounts and one contact).
 
 **Priority Dial Queue**
 
@@ -583,7 +586,7 @@ Dashboard: 7 accounts on the sheet, 6 to dial and 1 on hold. Tiers: 2 Hot, 2 War
 |---|------|---------|---------|---------------------------|-----------|
 | 1 | Hot | Corrow Ridge Cemetery | No contact on file. The task names none | Strong. GREENLIGHT. Zones 1 HIGH, 2 UNKNOWN, 3 MEDIUM, 4 UNKNOWN, 5 HIGH | Learn whether Harborline runs its own plot system, then book discovery with the site GM before the Q1 2027 integration review |
 | 2 | Hot | Sable Fork Cemetery | Arlen Biggs, General Manager. Requester `[Unknown]` | MANUAL REVIEW. Zones 1 MEDIUM, 2 LOW, 3 HIGH, 4 MEDIUM, 5 LOW | Confirm who filled the website form, then book discovery. No demo yet |
-| 3 | Warm | Quill Hollow Memorial Park | Ines Carmody, General Manager (champion) | Strong. GREENLIGHT. Zones 1 MEDIUM, 2 UNKNOWN, 3 HIGH, 4 UNKNOWN, 5 HIGH | Confirm where the state review finding stands, then book a 15-minute discovery call |
+| 3 | Warm | Quill Hollow Memorial Park | Ines Carmody, General Manager (champion label, Champion Test not yet run) | Strong. GREENLIGHT. Zones 1 MEDIUM, 2 UNKNOWN, 3 HIGH, 4 UNKNOWN, 5 HIGH | Find when the last state review was and what it asked for, then book a 15-minute discovery call |
 | 4 | Warm | Greyfield Memorial Park | No named contact (`[Unknown]`) | Strong. GREENLIGHT. Zones 1 MEDIUM, 2 HIGH, 3 HIGH, 4 MEDIUM, 5 MEDIUM | Find the owner of pre-need intake, and ask who calls back website leads |
 | 5 | New | Saltmarsh Heritage Group | Hector Ruiz, CFO | MANUAL REVIEW. Zones 1 MEDIUM, 2 HIGH, 3 LOW, 4 MEDIUM, 5 HIGH | Ask which system the five sites move to, and when. No email from this dial |
 | 6 | New | Tamsin Vale Cemetery | No name, no phone on file | MANUAL REVIEW. Zones 1 HIGH, 2 LOW, 3 MEDIUM, 4 LOW, 5 MEDIUM | Find who signs, and find a phone number. The first action is a contact search |
@@ -599,7 +602,7 @@ Every zone score in the table rests on a fact in the try-it records, as the zone
 - **Call goal:** Learn whether Harborline runs its own plot system, then book discovery with the site GM before the Q1 2027 integration review.
 
 **Brief for #2 (Sable Fork Cemetery):**
-- **Why this account:** A demo request came through the website form on Thursday 2026-10-15, four days ago (`[CRM]`). Who filled the form is `[Unknown]`. Zone 3 HIGH (the GM signs under $25K, `[CRM]`). Zone 1 MEDIUM (a plot list in a spreadsheet). It meets the profile's Hot definition, which is an INBOUND request not yet answered and within 3 business days of arriving. Two business days have passed. No reply is logged (`[CRM]`), so the request is still unanswered.
+- **Why this account:** A demo request came through the website form on Thursday 2026-10-15, four days ago (`[CRM]`). Who filled the form is `[Unknown]`. Zone 3 HIGH (the GM signs under $25K, `[CRM]`). Zone 1 MEDIUM (a plot list in a spreadsheet). Zone 2 LOW (pre-need: none, `[CRM]`), and Zone 5 LOW (plot sales flat for three years, and no succession plan on the record, `[CRM]`, illustrative). It meets the profile's Hot definition, which is an INBOUND request not yet answered and within 3 business days of arriving. Two business days have passed. No reply is logged (`[CRM]`), so the request is still unanswered.
 - **Opener:** The buyer's own request is the hook. "Hi, it's Nadia Brandt with PlotIQ. Someone at Sable Fork asked for a demo through our website on Thursday. Was that you, or someone on your team?"
 - **Discovery questions:** (1) "Where does the plot map live today, and when was it last updated?" (2) "When a family asks about a plot, where do you look first, and how long does it take?" (3) "What does a 20-minute lookup cost you, versus 20 seconds?"
 - **Objection prep:** "Send me some info." Response: "Happy to, but I want to send the right thing. Can I ask two quick questions so I don't waste your time with generic material?"
@@ -607,11 +610,11 @@ Every zone score in the table rests on a fact in the try-it records, as the zone
 
 **Brief for #3 (Quill Hollow Memorial Park):**
 - **Why this account:** GM Ines Carmody moved here from Lowmoor six months ago with an owner growth mandate (`[CRM]`). Fit Grid ICP1 Strong, 3 of 4 tests met (8,800 plots, paper plat maps and an owner who signs under $25K). Zone 3 HIGH (the owner signs under $25K, alone, with no board approval step, `[CRM]`, illustrative). Zone 5 HIGH (a new GM inside 24 months). Zone 1 MEDIUM, because the records finding in the last state review is `[CRM]` and undated (`[Unknown]`). The finding is never called recent. The role table would put Quill Hollow in Hot: its GM change is dated 2026-04-25 (`[Public: state licensing database]`, illustrative), so its 90 to 180 day window stays open until 2026-10-22, three days from today (`[Inferred]`), and the account is a Strong ICP. The profile's Hot definition needs Zone 1 HIGH, and Zone 1 is MEDIUM, so the profile's definition holds and the account stays Warm. The profile owner decides whether the role table should also require Zone 1.
-- **Opener:** "Hi Ines, it's Nadia Brandt with PlotIQ. I'm guessing the records finding from the state review is still on your list. Is that right?"
-- **Discovery questions:** (1) "What did the state review ask for, and what is still open?" (2) "When a family asks about a plot, where do you look first, and how long does it take?" (3) "Walk me through last year's trust filing. Who pulled the numbers, and from where?"
+- **Opener:** "Hi Ines, it's Nadia Brandt with PlotIQ. New GMs usually inherit the plot map and the filing at the same time. How are the plot records kept at Quill Hollow today?"
+- **Discovery questions:** (1) "When was the last state review, and what did it ask for?" (2) "When a family asks about a plot, where do you look first, and how long does it take?" (3) "Walk me through last year's trust filing. Who pulled the numbers, and from where?"
 - **Objection prep:** "We already have a provider." Response: "That's good to hear. What's working well, and where are the gaps?"
 - **Proof point:** The Fennick Gardens figure is Illustrative and is not cited to a buyer. The research benchmark is cited as context only: most cemeteries your size carry 50 to 100 plots that are sold on paper and unsold on the map (Benchmark, deathcare research, 2026-03-27 to 2026-04-01).
-- **Call goal:** Confirm where the finding stands, then book a 15-minute discovery call.
+- **Call goal:** Find when the last state review was and what it asked for, then book a 15-minute discovery call.
 
 **Brief for #4 (Greyfield Memorial Park):**
 - **Why this account:** A digital map from Stonemark, a direct software incumbent, and a pre-need team of three with a website intake form (`[CRM]`, `[Public: company website]`). Strong: 2 of 4 tests met (9,000 plots, and an owner who signs under $25K). The Stonemark signing date is `[Unknown]`. Zones 2 and 3 HIGH. Warm: the account record shows a touch on 2026-09-24, 25 days ago, with no named contact (`[CRM]`, illustrative).
@@ -621,7 +624,7 @@ Every zone score in the table rests on a fact in the try-it records, as the zone
 - **Call goal:** Find the owner of pre-need intake, and ask how website leads are called back. The Stonemark renewal is not raised on this dial, because Competitive Displacement (12) holds that case.
 
 **Brief for #5 (Saltmarsh Heritage Group):**
-- **Why this account:** The owner letter on the company site says all five sites move to one system in 2027 (`[Public: company site, owner letter 2026]`). Zone 2 HIGH (pre-need counselors at three funeral homes). Zone 3 LOW, a must-have, because the CFO gate runs 6 to 9 months. Zone 5 HIGH. MANUAL REVIEW.
+- **Why this account:** The owner letter on the company site says: "Growth in 2027 means one system for all five sites" (`[Public: company site, owner letter 2026]`). Zone 2 HIGH (pre-need counselors at three funeral homes). Zone 3 LOW, a must-have, because the CFO gate runs 6 to 9 months. Zone 5 HIGH, because the letter names growth. MANUAL REVIEW.
 - **Opener:** "Hi Hector, it's Nadia Brandt with PlotIQ. Your owner letter says all five sites move to one system next year." The persona who acts is the CFO.
 - **Discovery questions:** (1) "Which system do the five sites move to, and when?" (2) "Walk me through last year's trust filing. Who pulled the numbers, and from where?" (3) "When a pre-need lead comes in from one of the funeral homes, who calls them back, and when?"
 - **Objection prep:** "Not a priority right now." Response: "Totally fair. Most teams don't change until something forces the issue. Out of curiosity, when was the last time your team had a close call on the records?"
@@ -651,7 +654,7 @@ Every zone score in the table rests on a fact in the try-it records, as the zone
 
 **End-of-day prompts:** Log the disposition for each dial. Create the follow-up tasks. Add accounts to a sequence in the CRM only after reading the draft.
 
-**Next action:** Nadia Brandt shares today's Brackhaven intel with Owen Pruitt by 2026-10-19. The date is the due date of the Brackhaven task on record, which is the run date and earlier than the five-business-day date of 2026-10-26. It is due first, ahead of the Sable Fork reply that closes 2026-10-20.
+**Next action:** Nadia Brandt shares today's Brackhaven intel with Owen Pruitt by 2026-10-19. The date is the due date of the Brackhaven task on record, which is the run date and earlier than the five-business-day date of 2026-10-26. It is due first, ahead of the Sable Fork reply that closes 2026-10-20. That close comes from the profile's Hot definition: an INBOUND request is answered within 3 business days of arriving, and Thursday 2026-10-15 plus three business days is Tuesday 2026-10-20.
 
 **Report path:** none (inline).
 
@@ -674,51 +677,57 @@ report_path: none (inline)
 
 **Input:** "Prep my dials for today, Owen."
 
-**Process:** `user_role` is AE. There is no BDR guard, so the full book is worked. Each account is scored and tiered on the same facts as Example 1, so the same account lands in the same tier for both roles unless the role table says otherwise.
+**Process:** `user_role` is AE. There is no BDR guard, so the full book is worked. Each account is scored and tiered on the same facts as Example 1, so the same account lands in the same tier for both roles unless the role table says otherwise. The AE view shows every account on the day's task list, so Greyfield Memorial Park and Saltmarsh Heritage Group are added here, both with tasks due today on Nadia Brandt's list. Greyfield has no AE owner on record, so it is labelled TARGET (pending AE assignment). Saltmarsh has no AE owner on record either.
 
-- **Hot:** Brackhaven Memorial Gardens. ACTIVE at Stage 5 Negotiate since 2026-09-09 (`[CRM]`), with a dated action due 2026-10-23 to get the board date. Ruth Ellery has not replied since 2026-10-03, which is 16 days (`[CRM]`). The Warm criterion also applies, and the Hot criterion takes precedence here, so the brief leads with the silence. Corrow Ridge Cemetery, Hot on the same trigger window as Example 1. Sable Fork Cemetery, Hot on the same inbound request as Example 1.
-- **Warm:** Quill Hollow Memorial Park, quiet for 20 days (illustrative).
-- **New:** Tamsin Vale Cemetery.
+- **Hot:** Brackhaven Memorial Gardens. ACTIVE at Stage 5 Negotiate since 2026-09-09 (`[CRM]`), with the board date still to get by 2026-10-26, five business days after the run date, and no earlier date on record. Ruth Ellery has not replied since 2026-10-03, which is 16 days (`[CRM]`). The Warm criterion also applies, and the Hot criterion takes precedence here, so the brief leads with the silence. Corrow Ridge Cemetery, Hot on the same trigger window as Example 1. Sable Fork Cemetery, Hot on the same inbound request as Example 1.
+- **Warm:** Quill Hollow Memorial Park, quiet for 20 days (illustrative), and Greyfield Memorial Park, last touch 2026-09-24, 25 days ago.
+- **New:** Saltmarsh Heritage Group, with no touch yet, and Tamsin Vale Cemetery.
 - **Recycle:** Lowmoor Memorial Gardens, MANUAL REVIEW on re-score, on hold.
 
 **Output:**
 
-Dashboard: 6 dials. 3 Hot, 1 Warm, 1 New, 1 Recycle (hold). No exclusions, because the AE view applies no guard. Strongest opportunity: Brackhaven. It sits at Stage 5, the board meets 2026-11-12, and the Oldgate renewal in March 2027 gives the next call its reason to move. The call should close the board date, not restart discovery.
+Dashboard: 8 dials. 3 Hot, 2 Warm, 2 New, 1 Recycle (hold). No exclusions, because the AE view applies no guard. Strongest opportunity: Brackhaven. It sits at Stage 5, the board meets 2026-11-12, and the Oldgate renewal in March 2027 gives the next call its reason to move. The call should close the board date, not restart discovery.
 
 | # | Tier | Account | Contact | Fit or Verdict, and Zones | Call Goal |
 |---|------|---------|---------|---------------------------|-----------|
-| 1 | Hot | Brackhaven Memorial Gardens | Ruth Ellery, General Manager (champion) | Strong. GREENLIGHT. Zones 1 HIGH, 2 MEDIUM, 3 MEDIUM, 4 MEDIUM, 5 HIGH | Get the board date from Ruth Ellery by 2026-10-23. Hold at Stage 5 |
+| 1 | Hot | Brackhaven Memorial Gardens | Ruth Ellery, General Manager (champion) | Strong. GREENLIGHT. Zones 1 HIGH, 2 MEDIUM, 3 MEDIUM, 4 MEDIUM, 5 HIGH | Get the board date from Ruth Ellery by 2026-10-26. Hold at Stage 5 |
 | 2 | Hot | Corrow Ridge Cemetery | No contact on file | Strong. GREENLIGHT. Zones 1 HIGH, 2 UNKNOWN, 3 MEDIUM, 4 UNKNOWN, 5 HIGH | Learn whether Harborline runs its own plot system, then book discovery with the site GM |
 | 3 | Hot | Sable Fork Cemetery | Arlen Biggs, General Manager. Requester `[Unknown]` | MANUAL REVIEW. Zones 1 MEDIUM, 2 LOW, 3 HIGH, 4 MEDIUM, 5 LOW | Confirm who requested the demo, then book discovery. No demo yet |
-| 4 | Warm | Quill Hollow Memorial Park | Ines Carmody, General Manager | Strong. GREENLIGHT. Zones 1 MEDIUM, 2 UNKNOWN, 3 HIGH, 4 UNKNOWN, 5 HIGH | Confirm where the state review finding stands, then book discovery |
-| 5 | New | Tamsin Vale Cemetery | No name, no phone on file | MANUAL REVIEW. Zones 1 HIGH, 2 LOW, 3 MEDIUM, 4 LOW, 5 MEDIUM | Find who signs, and confirm the paper-map process |
-| 6 | Recycle (hold) | Lowmoor Memorial Gardens | Unknown, champion moved | MANUAL REVIEW. Zones as re-scored in 05 | Do not dial yet. Closed-Loss Reactivation holds it on MONITOR |
+| 4 | Warm | Quill Hollow Memorial Park | Ines Carmody, General Manager | Strong. GREENLIGHT. Zones 1 MEDIUM, 2 UNKNOWN, 3 HIGH, 4 UNKNOWN, 5 HIGH | Find when the last state review was, then book discovery |
+| 5 | Warm | Greyfield Memorial Park | No named contact (`[Unknown]`). TARGET (pending AE assignment) | Strong. GREENLIGHT. Zones 1 MEDIUM, 2 HIGH, 3 HIGH, 4 MEDIUM, 5 MEDIUM | Find the owner of pre-need intake, and ask who calls back website leads |
+| 6 | New | Saltmarsh Heritage Group | Hector Ruiz, CFO | MANUAL REVIEW. Zones 1 MEDIUM, 2 HIGH, 3 LOW, 4 MEDIUM, 5 HIGH | Ask which system the five sites move to, and when. No email from this dial |
+| 7 | New | Tamsin Vale Cemetery | No name, no phone on file | MANUAL REVIEW. Zones 1 HIGH, 2 LOW, 3 MEDIUM, 4 LOW, 5 MEDIUM | Find who signs, and confirm the paper-map process |
+| 8 | Recycle (hold) | Lowmoor Memorial Gardens | Unknown, champion moved | MANUAL REVIEW. Zones as re-scored in 05 | Do not dial yet. Closed-Loss Reactivation holds it on MONITOR |
 
 **Brief for #1 (Brackhaven Memorial Gardens):**
-- **Why this account:** ACTIVE at Stage 5 Negotiate, day 40 in stage (`[CRM]`). The board meets 2026-11-12. Ruth Ellery has not replied for 16 days (`[CRM]`). The dated action is to get the board date by 2026-10-23. If the date is not confirmed by 2026-11-02, the stage rule in the deal skills applies, not this one.
-- **Opener:** "Hi Ruth, it's Owen Pruitt with PlotIQ. Before the board meets on 2026-11-12, I need the date confirmed. Can you get it to me by Friday, 2026-10-23?"
+- **Why this account:** ACTIVE at Stage 5 Negotiate, day 40 in stage (`[CRM]`). The board meets 2026-11-12. Ruth Ellery has not replied for 16 days (`[CRM]`). The board date is to be got by 2026-10-26, five business days after the run date, and no earlier date is on record. If the date is not confirmed by 2026-11-02, the stage rule in the deal skills applies, not this one.
+- **Opener:** "Hi Ruth, it's Owen Pruitt with PlotIQ. Before the board meets on 2026-11-12, I need the date confirmed. Can you get it to me by Monday, 2026-10-26?"
 - **Discovery questions:** (1) "What does the board need to see before it votes on 2026-11-12?" (2) "Walk me through how plot records are kept at both sites." (3) "Who at the site would own the ledger export if the board says yes?"
 - **Objection prep:** "We already have a system." Response: "That's good to hear. What's working, and where do the paper maps still get in the way?"
-- **Call goal:** Get the board date from Ruth Ellery by 2026-10-23. The call closes the date. It does not restart discovery, because the pain is confirmed.
+- **Call goal:** Get the board date from Ruth Ellery by 2026-10-26. The call closes the date. It does not restart discovery, because the pain is confirmed.
 
 **Brief for #2 (Corrow Ridge Cemetery):** Same facts and opener as Example 1, Brief #1. The AE's call goal is the same as the BDR's, because the account has no owner conflict.
 
 **Brief for #3 (Sable Fork Cemetery):** Same facts as Example 1, Brief #2. The AE may book the discovery directly, but the demo waits until the pain is confirmed.
 
-**Brief for #4 (Quill Hollow Memorial Park):** Same facts as Example 1, Brief #3. The finding is undated and is not called recent.
+**Brief for #4 (Quill Hollow Memorial Park):** Same facts and opener as Example 1, Brief #3.
 
-**Brief for #5 (Tamsin Vale Cemetery):** Same facts as Example 1, Brief #6. The first action is still a contact search, because no phone is on file.
+**Brief for #5 (Greyfield Memorial Park):** Same facts as Example 1, Brief #4. The account is TARGET (pending AE assignment), so the AE may book the call, and the Warm reason stands.
 
-**Brief for #6 (Lowmoor Memorial Gardens, hold):** Do not dial. Closed-Loss Reactivation (05) holds the account on MONITOR, and the AE sees the same reason as Example 1, Brief #7.
+**Brief for #6 (Saltmarsh Heritage Group):** Same facts as Example 1, Brief #5. The owner-letter quote is the one Example 1 uses.
+
+**Brief for #7 (Tamsin Vale Cemetery):** Same facts as Example 1, Brief #6. The first action is still a contact search, because no phone is on file.
+
+**Brief for #8 (Lowmoor Memorial Gardens, hold):** Do not dial. Closed-Loss Reactivation (05) holds the account on MONITOR, and the AE sees the same reason as Example 1, Brief #7.
 
 ```text
 Hand-off (read by 06):
 account: the pipeline calls of Owen Pruitt (AE), 2026-10-19
 run_date: 2026-10-19
-dial_sheet: 6 accounts (Hot 3, Warm 1, New 1, Recycle 1 on hold). Brackhaven Memorial Gardens, Corrow Ridge Cemetery, Sable Fork Cemetery, Quill Hollow Memorial Park, Tamsin Vale Cemetery, Lowmoor Memorial Gardens
-pre_call_briefs: 6 (one per account on the sheet)
+dial_sheet: 8 accounts (Hot 3, Warm 2, New 2, Recycle 1 on hold). Brackhaven Memorial Gardens, Corrow Ridge Cemetery, Sable Fork Cemetery, Quill Hollow Memorial Park, Greyfield Memorial Park, Saltmarsh Heritage Group, Tamsin Vale Cemetery, Lowmoor Memorial Gardens
+pre_call_briefs: 8 (one per account on the sheet)
 exclusions: none (AE view, BDR guard not applied)
-next_action: Owen Pruitt gets the board date from Ruth Ellery by 2026-10-23 (the CRM's dated action, earlier than the five-business-day date of 2026-10-26)
+next_action: Owen Pruitt gets the board date from Ruth Ellery by 2026-10-26, five business days after the run date (no earlier date is on record)
 report_path: none (inline)
 ```
 
@@ -791,6 +800,14 @@ report_path: none (inline)
 
 ## Changelog
 
+
+### 2.1.6 (2026-10-26)
+- The board-date ask in the AE example follows the shared next-action rule: five business days after the run date, with no earlier record date. The dated action that named an earlier date is removed.
+- The Sable Fork reply date in the BDR example names its source: the profile's Hot definition for an INBOUND request, counted in business days from arrival.
+- The zone facts behind the Sable Fork and Saltmarsh scores name their records. The Saltmarsh owner letter is quoted in the wording Research Outbound (03) uses, and the Saltmarsh plot records are tagged as notes, as Research Outbound tags them.
+- The Quill Hollow opener uses the profile's own first line for a new general manager. Its discovery question about the state review asks when the review was, and the undated finding is no longer the hook.
+- The prior-contact count on the dial sheet names the accounts it counts, and the AE example lists every account on the day's task list, including the two accounts that a BDR works.
+- Frontmatter: the 2.1.5 change summary carried a stray quotation mark that broke the YAML. It is removed.
 
 ### 2.1.5 (2026-10-26)
 - The Zone 3 MEDIUM cell in Step 4 and the Corrow Ridge reading quote the profile's new wording (GM recommends and the board approves, or the next board meeting is more than 60 days out).

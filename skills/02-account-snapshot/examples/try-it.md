@@ -25,7 +25,7 @@ Company
 - State: [Unknown]
 
 People
-- Ines Carmody, General Manager, champion [CRM] (illustrative). She moved to Quill Hollow from Lowmoor Memorial Gardens six months ago [CRM] (illustrative)
+- Ines Carmody, General Manager, champion [CRM] (illustrative). She moved to Quill Hollow from Lowmoor Memorial Gardens six months ago [Public: state licensing database] (illustrative)
 - Ines Carmody is the only contact on file [CRM]
 - Engagement: two logged replies from Ines Carmody to earlier emails, the last on 2026-09-29 [CRM] (illustrative)
 - Pre-need activity: [Unknown]

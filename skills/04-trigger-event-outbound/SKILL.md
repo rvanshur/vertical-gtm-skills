@@ -1,6 +1,6 @@
 ---
 name: gtm-trigger-event-outbound
-version: 2.1.5
+version: 2.1.6
 description: "Turns one dated business event at a target account into a short outbound sequence, but only after checking the event against its window. Reports when the window has closed or the event date is unknown. Read by the BDR or AE who sends the sequence."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,9 +11,12 @@ requires:
   skills: [gtm-account-snapshot, gtm-closed-loss-reactivation]
 mutating: read-write
 change_log:
+  - version: 2.1.6
+    date: 2026-10-26
+    summary: "Consistency pass across the sales family. Example 1 Email 1 gives the integration review as Q1 2027, and the exact day stays in the records as illustrative. Example 2 labels Ines Carmody as carrying the champion label, with her Champion Test not yet run, and tags her move to the state licensing database. The Day 1 send date, the check date and the window arithmetic are unchanged."
   - version: 2.1.5
     date: 2026-10-26
-    summary: "The Day 1 send date in Example 1 is named as the skill's own schedule, not a record. "The next action follows the family's one deadline rule: five business days after the run date, or an earlier date the records or the skill's own schedule set for that step, which is then named. The skill's own within-five-days wording is replaced by a pointer to that rule. Each example next action carries its date, and an earlier send-date constraint is named as the source of its date."
+    summary: "The Day 1 send date in Example 1 is named as the skill's own schedule, not a record. The next action follows the family's one deadline rule: five business days after the run date, or an earlier date the records or the skill's own schedule set for that step, which is then named. The skill's own within-five-days wording is replaced by a pointer to that rule. Each example next action carries its date, and an earlier send-date constraint is named as the source of its date."
   - version: 2.1.4
     date: 2026-10-26
     summary: "Try-it evidence completed so a strict first run reproduces Example 1. Day 1 is defined as the day after the run date, the disqualifier check gates each email whose claim depends on it, a contact the record does not name is found before its Email 1, the decision tree gains a branch for an acquisition that changes ownership, the Example Cast facts take the tag of their record, and the next action gets a date rule."
@@ -160,7 +163,7 @@ When the assistant is connected to the CRM or to a call recorder, the skill offe
 
 #### Account Status, Five Words
 
-Every account carries one status: **TARGET** (researched, not yet contacted), **INBOUND** (they asked us), **ACTIVE** with its stage number (open deal), **LOST** (closed-lost, eligible for reactivation), **OUT** (disqualified). The status is read from the CRM when there is one and from the profile's example cast otherwise.
+Every account carries one status: **TARGET** (researched, no open deal yet, whether or not contacted), **INBOUND** (they asked us), **ACTIVE** with its stage number (open deal), **LOST** (closed-lost, eligible for reactivation), **OUT** (disqualified). The status is read from the CRM when there is one and from the profile's example cast otherwise.
 
 #### The Verdict Words and the Zone Rule
 
@@ -642,7 +645,7 @@ would go.
 > **Subject:** Corrow Ridge after the Harborline close
 >
 > [first name], the state licensing record shows Harborline Funeral Partners took over Corrow Ridge
-> Cemetery on July 1. The deal notice dated 2026-07-01 sets the integration review for 2027-02-16, inside Q1 2027. Before it, what does the plot map hold? The
+> Cemetery on July 1. Harborline's deal notice puts the integration review in Q1 2027. Before it, what does the plot map hold? The
 > site keeps its plot records on paper plat maps, and a 15-minute look at them would show what the review
 > is likely to ask for. What would the review need from the plot map first? [your name]
 
@@ -686,7 +689,7 @@ next_action: Nadia Brandt finds the acquirer's CFO or controller by 2026-10-20 (
 
 **Context:** Quill Hollow Memorial Park is one site with 8,800 plots (illustrative) and paper plat maps. Its
 last state review produced a records finding (illustrative). The CRM records the finding but not the date of
-the review. The general manager, Ines Carmody, moved here from Lowmoor six months ago and is the champion.
+the review. The general manager, Ines Carmody, moved here from Lowmoor six months ago `[Public: state licensing database]` and carries the champion label `[CRM]`. Her Champion Test has not yet run.
 
 **Input:** "Quill Hollow had a records finding in its last state review. Build trigger outbound."
 
@@ -864,6 +867,10 @@ next_action: Nadia Brandt sends the note to Owen Pruitt by 2026-10-26, after rea
 
 ## Changelog
 
+
+### 2.1.6 (2026-10-26)
+- Example 1 Email 1 names the integration review as Q1 2027, the way the deal notice does. The exact day stays in the records as illustrative, and no email quotes it.
+- Example 2 labels Ines Carmody as carrying the champion label, with her Champion Test not yet run, and tags her move to the state licensing database.
 
 ### 2.1.5 (2026-10-26)
 - The Day 1 send date in Example 1 is named as the skill's own schedule, and the next-action source note says so.

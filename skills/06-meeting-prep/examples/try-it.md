@@ -37,8 +37,8 @@ Upstream From Account Snapshot, Run Earlier
 - account_status: TARGET (then)
 - verdict: GREENLIGHT
 - contact_priority: Ruth Ellery first, Walt Okonkwo second [Inferred] (persona order in the profile's Buyer Personas)
-- pain_hypotheses: plot records on paper, with one double sale [CRM] (illustrative); trust reporting by hand [Inferred]
-- sequence: a four-step sequence for Ruth Ellery, drafted and not sent (illustrative)
+- pain_hypotheses: plot records on paper across two sites (HIGH, [CRM], [Inferred] from the record type), and the Oldgate renewal in March 2027 (MEDIUM, [CRM], [Inferred] from the contract date)
+- sequence: three emails to Ruth Ellery, with call prep, drafted and not sent (illustrative)
 - Research hook for the pain: most cemeteries your size carry 50 to 100 plots sold on paper and unsold on the map (Benchmark, deathcare research, paper-operations note, 2026-04-01)
 
 ## What You Should Get

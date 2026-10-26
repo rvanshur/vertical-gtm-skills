@@ -1,6 +1,6 @@
 ---
 name: gtm-meddpicc-analysis
-version: 2.1.5
+version: 2.1.6
 description: "Scores an active deal across all eight MEDDPICC elements from the CRM record, computes a weighted health score, and recommends ADVANCE, HOLD, DOWNGRADE or DISQUALIFY. The deal's AE and sales manager read the output."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,9 +11,12 @@ requires:
   skills: ["gtm-deal-pulse", "gtm-call-coaching", "gtm-stakeholder-mapping"]
 mutating: read-write
 change_log:
+  - version: 2.1.6
+    date: 2026-10-26
+    summary: "Consistency pass across the sales skills. The second run's element scores are recomputed under the rubric on the record of its run date, so its health score and band change, and its stage line, gap actions and next actions follow from the recomputed elements. The close-date moves are dated, the single-threaded flag is removed, and the Walt Okonkwo pain quote is taken from its own call date. The stage return threshold is unchanged."
   - version: 2.1.5
     date: 2026-10-26
-    summary: "The invented CRM dated-action context line of the second run is removed, and its stage recommendation, gap actions and next action carry the shared rule's date. "The first action is the next action, so its date follows the family's one deadline rule: five business days after the run date, or an earlier date the records or the skill's own schedule set for that step, named with its source. The other four actions keep their own gap timing. The Output Contract points to the rule, the examples name the record behind each earlier date, and the return-to-Stage-5 threshold is stated at the profile's 70 gate."
+    summary: "The invented CRM dated-action context line of the second run is removed, and its stage recommendation, gap actions and next action carry the shared rule's date. The first action is the next action, so its date follows the family's one deadline rule: five business days after the run date, or an earlier date the records or the skill's own schedule set for that step, named with its source. The other four actions keep their own gap timing. The Output Contract points to the rule, the examples name the record behind each earlier date, and the return-to-Stage-5 threshold is stated at the profile's 70 gate."
   - version: 2.1.4
     date: 2026-10-26
     summary: "Try-it evidence completed so a strict first run reproduces Example 1 under the Pass Rule. The champion test dated after the run date is re-dated to a record on or before it, consistent with Stakeholder Mapping and Deal Pulse. Settles five first-run questions in one sentence each: a board chair named by role is a known stakeholder for Decision Process, a profile gate figure applies whatever date the profile gives its decision, the economic buyer title comes from the Buying Committee role-title map, a critical gap is defined for a next-stage blocker, and the HOLD check date is the dated action's deadline. Adds the close-date history to the record, and the try-it promise states the score count and the check date."
@@ -146,7 +149,7 @@ When the assistant is connected to the CRM or to a call recorder, the skill offe
 
 #### Account Status, Five Words
 
-Every account carries one status: **TARGET** (researched, not yet contacted), **INBOUND** (they asked us), **ACTIVE** with its stage number (open deal), **LOST** (closed-lost, eligible for reactivation), **OUT** (disqualified). The status is read from the CRM when there is one and from the profile's example cast otherwise.
+Every account carries one status: **TARGET** (researched, no open deal yet, whether or not contacted), **INBOUND** (they asked us), **ACTIVE** with its stage number (open deal), **LOST** (closed-lost, eligible for reactivation), **OUT** (disqualified). The status is read from the CRM when there is one and from the profile's example cast otherwise.
 
 #### The Verdict Words and the Zone Rule
 
@@ -511,7 +514,7 @@ Write a file only when the user asks for one, named `<account>_gtm-meddpicc-anal
 - **Decision Criteria: 4 of 5.** Must-haves are known from discovery and the deal maps to them strongly `[Call]`. The pre-need module is a nice-to-have `[Call]`.
 - **Decision Process: 4 of 5.** The committee is mapped: board, GM and Operations Director `[CRM]`. The board meets 2026-11-12 `[CRM]`. The approval sequence is partly confirmed `[Notes]`.
 - **Paper Process: 3 of 5.** Aware that legal and vendor review exists `[Notes]`. The steps and timing are not scoped `[Unknown]`.
-- **Identified Pain: 5 of 5.** Two stakeholders each state a quantified pain in their own words. Ruth Ellery, General Manager, on the 2026-09-26 call: "Each double sale costs my staff about 40 hours to unwind" (`[Call, 2026-09-26]`, illustrative), after one double sale in 24 months `[CRM]` (illustrative). Trust fund reporting is done by hand `[Call]`. She named the March 2027 Oldgate renewal as the deadline behind the 2026-11-12 board date `[Call, 2026-09-26]` (illustrative), so the timeline is urgent. Walt Okonkwo, Operations Director, on the 2026-09-17 call: "I lose half a day every time a family asks for a plot and the binder is in the wrong room," about two lookups a week (`[Call, 2026-09-17]`, illustrative). The pain maps to Zone 1, HIGH on the profile: plot records on paper and one double sale in 24 months (profile). Two stakeholders meet the rule for 5.
+- **Identified Pain: 5 of 5.** Two stakeholders each state a quantified pain in their own words. Ruth Ellery, General Manager, on the 2026-09-26 call: "Each double sale costs my staff about 40 hours to unwind" (`[Call, 2026-09-26]`, illustrative), after one double sale in 24 months `[CRM]` (illustrative). Trust fund reporting is done by hand `[Call, date Unknown]`. She named the March 2027 Oldgate renewal as the deadline behind the 2026-11-12 board date `[Call, 2026-09-26]` (illustrative), so the timeline is urgent. Walt Okonkwo, Operations Director, on the 2026-09-17 call: "A double-sale search costs me half a day, and I run about two lookups a week" (`[Call, 2026-09-17]`, illustrative). The pain maps to Zone 1, HIGH on the profile: plot records on paper and one double sale in 24 months (profile). Two stakeholders meet the rule for 5.
 - **Champion: 5 of 5.** Ruth Ellery is Strong: four of seven shared champion tests met, each tagged with its source and date. Offers introductions (she offers to introduce the board chair, `[Call, 2026-09-26]`). Commits to next steps with dates (the 2026-11-12 board date, `[Call, 2026-09-26]`). Explains the internal politics (the chair decides after the family's vote, `[Call, 2026-09-26]`). Defends the solution when we are not in the room (she briefed the board chair on the records fix and forwarded the ledger comparison, `[CRM, 2026-09-25]`, the active selling that row 5 asks for). She also coached us on Walt Okonkwo's objection to tablets `[Call]` (illustrative).
 - **Competition: 4 of 5.** Oldgate Ledger Pro is the incumbent, direct software, renewal March 2027 `[CRM]`. Stonemark was evaluated with no preference stated `[Call]`. A strategy exists and is not yet tested with the buyer `[Notes]`.
 
@@ -558,62 +561,61 @@ report_path: none (inline)
 
 ### Example 2: Same Deal Three Weeks Later, Below the Stage Minimum
 
-**Context:** Brackhaven again, on 2026-10-19, three weeks after Example 1 and day 40 in Stage 5 Negotiate. The board date has slipped twice and is not confirmed. Ruth has not replied since 2026-10-03, which is 16 days `[CRM]`. The board chair has joined one call, in Stage 4 Proposal. The same day's Deal Pulse reads 38, High Risk (08). The CRM still shows Stage 5 Negotiate. This is the non-success case.
+**Context:** Brackhaven again, on 2026-10-19, three weeks after Example 1 and day 40 in Stage 5 Negotiate. The close date has moved twice since 2026-09-28, on 2026-10-07 and 2026-10-14 `[CRM]` (illustrative), each time after the board did not confirm, and the board date is not confirmed. Ruth has not replied since 2026-10-03, which is 16 days `[CRM]`. The board chair has joined one call, in Stage 4 Proposal. The same day's Deal Pulse reads 38, High Risk (08). The CRM still shows Stage 5 Negotiate. This is the non-success case.
 
 **Input:** "MEDDPICC score Brackhaven again. It's still in Negotiate."
 
 **Scoring summary (scored 8 of 8):**
 - **Metrics: 3 of 5.** General pain is quantified `[Call]`, but the ROI numbers have not been updated since the board date moved `[Notes]`.
-- **Economic Buyer: 3 of 5.** The board chair is identified by title, name `[Unknown]`. There has been no direct access since the one call `[CRM]`. We communicate through Ruth only `[Notes]`.
+- **Economic Buyer: 4 of 5.** The board chair is identified by title, name `[Unknown]`, and had direct access on one call `[CRM]`. The Step 2 rule scores a buyer identified by title with direct access on one call at 4, even with the name unknown. There has been no direct access since that call, and we communicate through Ruth only `[Notes]`. The budget is not confirmed, so the score is not 5.
 - **Decision Criteria: 3 of 5.** Some criteria are known `[Call]`. Stonemark is still being evaluated and the criteria it is judged on are not on the record `[Notes]` (illustrative).
 - **Decision Process: 2 of 5.** Ruth said "I'll take it to the board" with no date and no approval sequence `[Notes]`.
 - **Paper Process: 3 of 5.** Aware that legal and vendor steps exist, details unclear `[Notes]`.
-- **Identified Pain: 4 of 5.** The primary pain is clear and partly quantified `[Call]`. The March 2027 Oldgate renewal is the deadline behind the board date `[CRM]`, but the deal has not tied its own date to it.
-- **Champion: 2 of 5.** Champion status is Strong on the 2026-09-28 record, with four of seven shared champion tests met `[Call]`. No test has been repeated on the record since 2026-10-03, and Ruth has been silent for 16 days `[CRM]`. The rubric row for a contact with no championing signs on the current record applies, so the score is 2, not 5.
+- **Identified Pain: 4 of 5.** The primary pain is clear and partly quantified `[Call]`. Walt Okonkwo's quantified account from the 2026-09-17 call is also on record `[Call, 2026-09-17]` (illustrative). The score stays at 4, not 5, because the urgency is not tied to a confirmed date: the March 2027 Oldgate renewal is the deadline behind the board date `[CRM]`, but the board has not confirmed 2026-11-12 and the deal has not tied its own date to it.
+- **Champion: 5 of 5.** Champion status is Strong on the 2026-10-19 record, with four of seven shared champion tests on record, each dated: introductions, dated next steps and internal politics on 2026-09-26 `[Call, 2026-09-26]`, and defending the solution when we are not in the room on 2026-09-25 `[CRM, 2026-09-25]`. The 2026-09-25 briefing of the board chair is the active selling that row 5 asks for. Ruth has been silent for 16 days `[CRM]`, and silence is not a no, so the status and the row are read from the tests on record, and the score is 5, not 4.
 - **Competition: 3 of 5.** Stonemark is still in the evaluation with no preference stated `[Call]`, and no written position against it is on the record `[Notes]` (illustrative).
 
 **Weighted score:**
 | Element | Weight | Score | Weighted (score × weight) |
 |---|---|---|---|
 | Metrics | 15% (0.15) | 3 | 0.45 |
-| Economic Buyer | 20% (0.20) | 3 | 0.60 |
+| Economic Buyer | 20% (0.20) | 4 | 0.80 |
 | Decision Criteria | 10% (0.10) | 3 | 0.30 |
 | Decision Process | 10% (0.10) | 2 | 0.20 |
 | Paper Process | 10% (0.10) | 3 | 0.30 |
 | Identified Pain | 15% (0.15) | 4 | 0.60 |
-| Champion | 15% (0.15) | 2 | 0.30 |
+| Champion | 15% (0.15) | 5 | 0.75 |
 | Competition | 5% (0.05) | 3 | 0.15 |
-| **Total** | **100%** | | **2.90** |
+| **Total** | **100%** | | **3.55** |
 
-**Health:** 2.90 ÷ 5 × 100 = **58, ORANGE** (scored 8 of 8).
+**Health:** 3.55 ÷ 5 × 100 = **71, YELLOW** (scored 8 of 8).
 
-**Stage check:** The PlotIQ profile's Qualification Stage Gates set the Stage 5 Negotiate minimum at 70 or higher, which overrides the table's default of 65, and it is not met at 58. Critical elements failed: Economic Buyer (3, needs 4), Decision Process (2, needs 3) and Champion (2, needs 3).
+**Stage check:** The PlotIQ profile's Qualification Stage Gates set the Stage 5 Negotiate minimum at 70 or higher, which overrides the table's default of 65. Health 71 meets it. The minimum is still not met, because a critical element fails: Decision Process is 2 and needs 3. Economic Buyer (4), Champion (5), Identified Pain (4), Decision Criteria (3), Paper Process (3) and Metrics (3) are at their floors.
 
 **Risk patterns:**
 - Close date fantasy: two slips, and the board date is not confirmed `[CRM]`.
 - Happy ears: "I'll take it to the board" with no date behind it `[Notes]`.
-- Single-threaded: Ruth is the only contact who has replied `[CRM]`.
 
 **Next actions:**
 1. Owen Pruitt asks Ruth Ellery for the board date, by 2026-10-26. Element: Decision Process (2 to 3). Owner: AE. Success: a dated board meeting is on the record.
-2. Owen asks Ruth for a call with the board chair, by 2026-10-26. Element: Economic Buyer (3 to 4). Owner: AE. Success: the chair attends and states the budget.
-3. Lena Vasquez, Sales Manager, joins the next call with Ruth, by 2026-10-26. Element: Champion (2 to 3). Owner: manager. Success: Ruth commits to a dated next step on the call.
+2. Owen asks Ruth for a call with the board chair, by 2026-10-26. Element: Economic Buyer (4 to 5). Owner: AE. Success: the chair attends, states the budget, and the chair's name is recorded.
+3. Lena Vasquez, Sales Manager, joins the next call with Ruth, by 2026-10-26. Element: Decision Process (2 to 3). Owner: manager. Success: the approval steps after the board are named, each with a person.
 4. Owen re-runs the ROI numbers with Ruth now that the board has moved, by 2026-10-26. Element: Metrics (3 to 4). Owner: AE. Success: current-state numbers are on the record.
 5. Owen asks Ruth which criteria Stonemark is being judged on and writes a position against it, by 2026-10-26. Element: Decision Criteria (3 to 4). Owner: AE. Success: the criteria are on the record and a Stonemark position is written.
 
 **Stage Recommendation: HOLD at Stage 5 Negotiate, with a dated action.** Owen asks Ruth for the board date by 2026-10-26, five business days after the run date of 2026-10-19. If the board date is not confirmed by 2026-11-02, the deal moves one stage back to Stage 4 Proposal. It does not return to Stage 2 Discovery, because the Identified Pain is 4 and the pain is confirmed.
 
-At Stage 4 Proposal this deal also misses the Champion minimum, which is 3 or higher, so the stage move does not fix the score. It brings the forecast in line with the buyer's real date. The deal returns to Stage 5 only when health reaches 70, the profile's gate, and the board chair has been met directly.
+At Stage 4 Proposal this deal meets the minimum of 50 and its critical elements: Identified Pain (4), Champion (5) and Decision Criteria (3) are each at 3 or higher. The move brings the forecast in line with the buyer's real date. The deal returns to Stage 5 only when Decision Process reaches 3, health stays at 70 or higher (the profile's gate), and the board chair has been met directly.
 
 ```text
 Hand-off (read by 10, 11 and 14):
 account: Brackhaven Memorial Gardens (ACTIVE, Stage 5 Negotiate)
 run_date: 2026-10-19
-meddpicc_scores: Metrics 3, Economic Buyer 3, Decision Criteria 3, Decision Process 2, Paper Process 3, Identified Pain 4, Champion 2, Competition 3
-health_score: 58 (scored 8 of 8)
-stage_minimum_met: No for Stage 5 Negotiate (70 or higher, from the profile's stage gates). Failed critical elements: Economic Buyer (3, needs 4), Decision Process (2, needs 3), Champion (2, needs 3)
+meddpicc_scores: Metrics 3, Economic Buyer 4, Decision Criteria 3, Decision Process 2, Paper Process 3, Identified Pain 4, Champion 5, Competition 3
+health_score: 71 (scored 8 of 8)
+stage_minimum_met: No for Stage 5 Negotiate (70 or higher, from the profile's stage gates). Failed critical element: Decision Process (2, needs 3)
 stage_recommendation: HOLD
-risk_patterns: Close date fantasy (two slips, board date unconfirmed), happy ears ("I'll take it to the board" with no date), single-threaded
+risk_patterns: Close date fantasy (two moves since 2026-09-28, board date unconfirmed), happy ears ("I'll take it to the board" with no date)
 next_action: Owen Pruitt asks Ruth Ellery for the board date by 2026-10-26 (five business days after the run date of 2026-10-19). If it is not confirmed by 2026-11-02, the stage moves to DOWNGRADE, Stage 4 Proposal
 report_path: none (inline)
 ```
@@ -628,7 +630,7 @@ Deal Pulse scores sixteen signals in four pillars, and this skill scores eight e
 
 ### Pattern: The Same Deal Re-Scored After a Slip
 
-Re-run this analysis after every stage date or close date changes, and compare the two runs element by element. A deal whose score drops while its stage stays the same is showing the slip in the record. Example 2 is that case on 2026-10-19: the score falls from 84 to 58 and the stage holds, which is the signal for the HOLD rule with a dated action.
+Re-run this analysis after every stage date or close date changes, and compare the two runs element by element. A deal whose score drops while its stage stays the same is showing the slip in the record. Example 2 is that case on 2026-10-19: the score falls from 84 to 71 and the stage holds, which is the signal for the HOLD rule with a dated action.
 
 ---
 
@@ -697,6 +699,11 @@ The Business Case & ROI Kit (a paid Guild Pro kit) reads this skill's hand-off b
 
 ## Changelog
 
+
+### 2.1.6 (2026-10-26)
+- Consistency pass across the sales skills. The second run's Economic Buyer and Champion elements are scored by the rubric on the record of the run date, which changes that run's health score and band. Its stage line, gap actions and next actions follow from the recomputed elements.
+- The close-date moves in the second run are dated. The single-threaded flag is removed, because three contacts are on record. The Identified Pain reasoning quotes the stakeholder's call with its own date.
+- Stage thresholds and rules are unchanged. The return-to-Stage-5 condition is stated with the Decision Process element that fails the critical floor.
 
 ### 2.1.5 (2026-10-26)
 - The invented CRM dated-action context line of the second run is removed, and its stage recommendation, gap actions and next action carry the shared rule's date.

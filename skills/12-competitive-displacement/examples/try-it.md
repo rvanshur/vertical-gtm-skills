@@ -9,7 +9,7 @@ Every name, date and number in this file is invented for the PlotIQ example. Not
 - Run date: 2026-10-19. User role: BDR, from the CRM user record [CRM] (illustrative).
 - The BDR who owns the account in the CRM is Nadia Brandt [CRM] (illustrative).
 - Greyfield Memorial Park is a one-site cemetery with 9,000 plots (profile). It runs a digital map from Stonemark, a direct software incumbent (profile). Its three-person pre-need team takes requests through an intake form on the site (profile).
-- CRM check: TARGET, not yet contacted. No open deal and no AE owner.
+- CRM check: TARGET, one touch on 2026-09-24 with no named contact [CRM] (illustrative). No open deal and no AE owner.
 - The account's CRM note names Stonemark as its map vendor [CRM] (illustrative).
 - Stonemark renewal: January 2027 [CRM] (illustrative).
 - Known pain: the pre-need team wants pre-need and records on one system [Notes] (illustrative).
