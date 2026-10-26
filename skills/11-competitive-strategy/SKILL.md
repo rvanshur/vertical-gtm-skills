@@ -1,6 +1,6 @@
 ---
 name: gtm-competitive-strategy
-version: 2.1.3
+version: 2.1.4
 description: "Builds a deal-specific competitive strategy for one open opportunity: the incumbent filed under a shared type, a gap matrix, a displacement playbook and a win plan with a battlecard. The AE who owns the deal runs it, and the sales manager reviews the output."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: [gtm-meddpicc-analysis]
 mutating: read-write
 change_log:
+  - version: 2.1.4
+    date: 2026-10-26
+    summary: "Try-it evidence completed so a strict first run reproduces Example 1 under the Pass Rule. The gap matrix rows for cost and time to live rest on dated buyer statements, so all five rows hold. The win plan's first step is in the checklist. The next action asks the buyer for the open discovery gap, and it has a deadline rule: the Friday of the run week. Settles the job when the buyer names a question, the observation rule for gap matrix rows, and the undated-call rule. Competitive research is cited by its Sources name and date, and the try-it asks name the profile path."
   - version: 2.1.3
     date: 2026-10-26
     summary: "Try-it evidence completed so a strict first run reproduces Example 1. Settles the product-advantage call (Niche against Broad) by the buyer's stated reason to look, and the switching-barrier levels, in one sentence each. Objection scripts are Test and refine until a buyer has tested them, and a research estimate is not labelled a Benchmark. The win plan states that it shows live items, and Example 1 adds the no-Verified-proof item. Try-it asks name the profile path."
@@ -89,7 +92,7 @@ Every run returns the battlecard in the chat, in its eight sections. It writes a
 | `battlecard` | The full reply, in the chat | Eight sections in this order: account and incumbent summary, competitive gap matrix, winning zone strategy with landmines, discovery questions, displacement talk tracks, objection handling, proof points and reference stories, win plan checklist |
 | `win_plan` | Battlecard section 8 | The checklist by stage (pre-meeting, discovery, demo, post-meeting), each item with an owner and a date where one is known |
 | `report_path` | Last line of the battlecard | `none (inline)` unless a file was written |
-| `next_action` | Last line of the battlecard | One step, with its owner and a date. Wrap-Up reads this line |
+| `next_action` | Last line of the battlecard | One step, with its owner and a date. The step asks the buyer for the open discovery gap the battlecard names in Step 6, item 8, and it is due on the Friday of the run week. Wrap-Up reads this line |
 | File, on request | `<account>_gtm-competitive-strategy_<date>.md`, beside the user's account notes | Written only when the user asks, in Markdown. The ask is the approval step |
 
 ---
@@ -312,7 +315,7 @@ Using the calibration in Epistemic Rules, score the five factors. LOW is 1, MEDI
 
 **Contract Status:** Expiring means a renewal within six months (LOW). Active means more than six months to renewal (HIGH). Month-to-month is LOW, and Unknown is MEDIUM.
 
-**Product Advantage:** None means the incumbent holds no advantage over your product in the job the buyer named as the reason to look. Niche means its advantage sits in an adjacent job. Broad means its advantage sits in the job the buyer named. The job the buyer named is the reason the buyer gives, in the buyer's own words, for looking, so for Brackhaven it is the unsold-plot count, and Oldgate's accounting depth is Niche because it sits in the job next to it.
+**Product Advantage:** None means the incumbent holds no advantage over your product in the job the buyer named as the reason to look. Niche means its advantage sits in an adjacent job. Broad means its advantage sits in the job the buyer named. The job the buyer named is the reason the buyer gives, in the buyer's own words, for looking, so for Brackhaven it is the unsold-plot count, and Oldgate's accounting depth is Niche because it sits in the job next to it. Where the buyer's words name a question rather than a count, the job is the answer to that question: Ruth asks which plots are sold, so the job is the count of plots with no recorded sale, and the battlecard quotes her words beside it.
 
 **Switching Barriers:** Minimal means little or nothing has to move by hand. Moderate means the record has to move by hand from a bounded set of places, one per site, and no contract term holds it. Significant means it has to move across several systems or sites, or an early exit from a contract holds it in place.
 
@@ -339,7 +342,7 @@ Build a capability comparison for this deal only, against the identified incumbe
 |------------|-----------|-------------|-------------------------------|
 | [Capability the buyer named, or a failure pattern predicts] | [Status, with its tag] | [Status, with its tag] | [Tied to a stated pain or to the buyer's criteria] |
 
-Include only capabilities that matter to this buyer, not a generic feature matrix. A row whose claim is `[Unknown]` is a discovery question, not a gap.
+Include only capabilities that matter to this buyer, not a generic feature matrix. A row whose claim is `[Unknown]` is a discovery question, not a gap. Each row ties to a pain the buyer stated on a dated call, or to a criterion the buyer named. A failure pattern under five cases may fill the incumbent cell of a row only when that cell says observation, and the row still needs the buyer's stated pain.
 
 #### 3c. Identify Positioning Landmines
 
@@ -407,6 +410,7 @@ Each talk track must:
 Build a checklist for this competitive scenario. The checklist below is the full list. A battlecard shows, under each stage, the items this deal's record makes live, and it says "Live Items" in the stage heading, so the reader knows the rest of the list still applies at that stage.
 
 **Pre-Meeting:**
+- [ ] Ask the buyer to count the plots with no recorded sale, and to bring her own number. Do not estimate it
 - [ ] Review the gap matrix
 - [ ] Prepare three gap-exposing discovery questions
 - [ ] Know the two best Verified proof points cold, or know that none exists
@@ -448,7 +452,7 @@ Build a checklist for this competitive scenario. The checklist below is the full
 8. **Critical discovery gap:** what is still unknown about the buyer's current solution
 9. **Win strategy summary:** two or three sentences on how to win this deal competitively
 10. **Risk assessment:** where the competitor could win, stated honestly
-11. **Recommended next steps:** specific actions with a timeline
+11. **Recommended next steps:** specific actions with a timeline. The next action is the open discovery gap from item 8, asked of the buyer, and it is due on the Friday of the run week, so one run week gives one date
 
 **Produces:** The battlecard in its eight sections, with `battlecard`, `incumbent_type`, `threat_level`, `next_action` and `report_path`. The summary comes last because it draws on every step above it.
 
@@ -465,6 +469,7 @@ This skill has one mode. The default is the battlecard for one open deal.
 - **Every rate carries its n.** Write "2 of 5 cases", never a bare rate.
 - **Five cases before a pattern.** A failure pattern needs five cases with a named source behind it. Fewer than five is an observation, and the battlecard says so in the same sentence.
 - **Silence is not a no.** A blank CRM field or an unanswered question is `[Unknown]`. It is counted in no denominator and is never read as a negative about the incumbent.
+- **An undated call is not a dated fact.** A call with no date is tagged `[Call]` with `[Unknown]` for its date, and it does not place a satisfaction, need or contract fact in time until the date is on the record.
 - **"No difference found" is a finding.** If the buyer's criteria do not separate the incumbent from the rival, the battlecard says the deal is open on those criteria. It does not invent a winning gap.
 - **Every claim carries one of the six evidence tags.** The tags are `[CRM]`, `[Call]`, `[Notes]`, `[Public: source]`, `[Inferred]` and `[Unknown]`. A claim with no tag is removed. Verified is a proof point Status, never a tag.
 - **Only Verified proof reaches a talk track.** The Status rule in Methodology decides this, however good the story is.
@@ -528,19 +533,22 @@ Two worked examples, both on the PlotIQ cast and the chain file. The first is th
 **Step 1: CRM Intelligence:**
 - Account: Brackhaven Memorial Gardens, combination, 2 sites, 11,000 plots, paper plot maps `[CRM]` (illustrative)
 - Deal: Stage 5 Negotiate, $21,576 a year at list, owned by Owen Pruitt, 40 days in stage `[CRM]`
-- Contacts: Ruth Ellery, GM, champion `[Call]`. Walt Okonkwo, Operations Director, skeptical of tablets `[Call]`. Priscilla Dunmore, pre-need manager `[CRM]`. Family board chair, the economic buyer, on one call `[CRM]`, name `[Unknown]`
+- Contacts: Ruth Ellery, GM, champion `[Call, 2026-09-26]`. Walt Okonkwo, Operations Director, skeptical of tablets `[Call, 2026-09-21]`. Priscilla Dunmore, pre-need manager `[CRM]`. Family board chair, the economic buyer, on one call `[CRM]`, name `[Unknown]`
 - Reason to look, in Ruth's words on the 2026-06-16 discovery call (illustrative quote): "We can't tell which plots are sold without going to the binder." `[Call, 2026-06-16]` (illustrative). The unsold-plot count is the job she named.
 - Incumbent: Oldgate Ledger Pro `[CRM]`. Ruth named it on the first call, and the call was logged
-- Discovery call, 2026-06-16 (illustrative), Ruth on the incumbent `[Call]`:
+- Discovery call, 2026-06-16 (illustrative), Ruth on the incumbent `[Call, 2026-06-16]`:
   - "Nobody here is attached to Oldgate. It's just what we've always had." (illustrative)
   - "Oldgate tells us what sold. It doesn't tell us what's left." (illustrative)
   - "The state auditor asks for the trust numbers, and somebody digs them out of the ledger." (illustrative)
   - "The trust numbers come out of Oldgate as one file a year. The plot records stay in the binders." (illustrative). The migration scope of that file is `[Unknown]`
+  - Cost, in Ruth's words on the same call: "Every year we pay Oldgate maintenance on top of the license, and it still doesn't tell us what's left." `[Call, 2026-06-16]` (illustrative)
+  - Timing, in Ruth's words on the same call: "The renewal is in March. If the new system isn't running by then, we pay Oldgate for another year." `[Call, 2026-06-16]` (illustrative)
+- Walt Okonkwo, on the 2026-09-17 call: "I lose half a day every time a family asks for a plot" `[Call, 2026-09-17]` (illustrative), so the grounds crew needs the plot in the field.
 
 **Step 2: Incumbent Profile:**
 - Classification: direct software, the legacy on-premise row in the profile's Competitive Landscape `[Inferred: profile row match]`
-- Their pitch: "Mature, deep accounting." Research weaknesses: $10,000 to $50,000 upfront, plus maintenance at 20% a year, poor mobile, and no AI `[Public: deathcare research, 2026-03-27]`. Not yet checked with this buyer, so these are discovery targets
-- Satisfaction: Neutral. Ruth tolerates it, and Walt works from paper `[Call]` (illustrative)
+- Their pitch: "Mature, deep accounting." Research weaknesses: $10,000 to $50,000 upfront, plus maintenance at 20% a year, poor mobile, and no AI `[Public: Deathcare research project, competitive research note, 2026-03-27]`. Not yet checked with this buyer, so these are discovery targets
+- Satisfaction: Neutral. Ruth tolerates it, and Walt works from paper `[Call, 2026-06-16]` (illustrative)
 - Contract status: renewal in March 2027 `[CRM]`
 - Switching barriers: moderate, by the Step 2c rule (the records move by hand from two sites, one per site, and no early contract exit holds them). The trust numbers leave Oldgate as one yearly file, and the plot records stay in binders at two sites `[Call, 2026-06-16] (illustrative)`. The records must move by hand `[Inferred: from the binder records]`, and the scope of the export is `[Unknown]`
 - Internal champion for the incumbent: none. Ruth says nobody on staff is attached to Oldgate `[Call, 2026-06-16] (illustrative)`
@@ -562,11 +570,11 @@ Two worked examples, both on the PlotIQ cast and the chain file. The first is th
 
 | Capability | Oldgate Ledger Pro | PlotIQ | Why It Matters for Brackhaven |
 |-----------|---------|--------|----------------------|
-| Mobile use by the grounds crew | Poor mobile `[Public: deathcare research, 2026-03-27]` | Mobile field app `[Public: PlotIQ product modules]` | Walt needs work orders in the field, so the crew can find a plot in seconds `[Call]` (illustrative) |
+| Mobile use by the grounds crew | Poor mobile `[Public: Deathcare research project, competitive research note, 2026-03-27]` | Mobile field app `[Public: PlotIQ product modules]` | Walt: "I lose half a day every time a family asks for a plot" `[Call, 2026-09-17]` (illustrative). The grounds crew needs the plot in the field |
 | Unsold-plot visibility | Sold records only, with no view of what is left `[Call, 2026-06-16] (illustrative)` | Plot inventory digitization shows unsold plots `[Public: PlotIQ product modules]` | Ruth's unsold-plot count depends on this, and Oldgate does not show it |
-| Trust fund records | Deep accounting, their pitch `[Public: deathcare research, 2026-03-27]` | Records and Trust Compliance module `[Public: PlotIQ product modules]` | Ruth: "The state auditor asks for the trust numbers, and somebody digs them out of the ledger" `[Call, 2026-06-16] (illustrative)`. A state auditor has to accept the record. Show the output side by side with the filing format |
-| Cost | $10,000 to $50,000 upfront, plus maintenance at 20% a year `[Public: deathcare research, 2026-03-27]` | $899 a month per site, plus $5,000 setup once `[Public: PlotIQ price list]` | Year one at list for two sites is $26,576 with setup (illustrative), above the $25K board line |
-| Time to live | 120 to 180 days `[Public: deathcare research, 2026-03-27]` | 6 weeks `[Public: PlotIQ profile]` | The March 2027 renewal leaves room to go live before the window closes |
+| Trust fund records | Deep accounting, their pitch `[Public: Deathcare research project, competitive research note, 2026-03-27]` | Records and Trust Compliance module `[Public: PlotIQ product modules]` | Ruth: "The state auditor asks for the trust numbers, and somebody digs them out of the ledger" `[Call, 2026-06-16] (illustrative)`. A state auditor has to accept the record. Show the output side by side with the filing format |
+| Cost | $10,000 to $50,000 upfront, plus maintenance at 20% a year `[Public: Deathcare research project, competitive research note, 2026-03-27]` | $899 a month per site, plus $5,000 setup once `[Public: PlotIQ price list]` | Ruth: "Every year we pay Oldgate maintenance on top of the license, and it still doesn't tell us what's left" `[Call, 2026-06-16] (illustrative)`. Year one at list for two sites is $26,576 with setup (illustrative), above the $25K board line |
+| Time to live | 120 to 180 days `[Public: Deathcare research project, competitive research note, 2026-03-27]` | 6 weeks `[Public: PlotIQ profile]` | Ruth: "If the new system isn't running by then, we pay Oldgate for another year" `[Call, 2026-06-16] (illustrative)`. The March 2027 renewal is the date the go-live has to meet |
 
 **Step 3c: Positioning Landmines:**
 
@@ -595,7 +603,7 @@ Two worked examples, both on the PlotIQ cast and the chain file. The first is th
 
 1. "When a family asks about a plot and the answer is in a binder, PlotIQ shows sold and unsold plots on one map, so the answer takes seconds. We can show that on your own plot records in the demo."
 2. "When the state asks for the trust numbers and they come out of the ledger one year at a time, PlotIQ's Records and Trust Compliance module keeps the trust record beside the plots. We can show the output next to your state filing format."
-3. "When the renewal is six months away, the decision has to finish before it. PlotIQ goes live in six weeks, and a legacy system runs 120 to 180 days (research estimate, deathcare research, 2026-03-27). We can plan the evaluation to finish before March 2027."
+3. "When the renewal is six months away, the decision has to finish before it. PlotIQ goes live in six weeks, and a legacy system runs 120 to 180 days (research estimate, Deathcare research project, competitive research note, 2026-03-27). We can plan the evaluation to finish before March 2027."
 
 **Step 4d: Match Proof Points:**
 
@@ -609,9 +617,9 @@ The battlecard names the capability, and the demo shows it on Brackhaven's own c
 **Step 5: Win Plan (Live Items):** The items the record makes live at each stage, with the rest of the Step 5 checklist still applying.
 
 **Pre-Meeting (Live Items)**
-- [ ] Know that no Verified proof point exists, so the demo shows the capability on Brackhaven's own counts and no customer is named. Owner: Owen Pruitt. Date: before the next meeting, `[Unknown]` until it is set
 - [ ] Ask Ruth to pull the count of plots with no recorded sale, and to bring her own number. Do not estimate it. Owner: Owen Pruitt. Date: `[Unknown]` until Ruth agrees
-- [ ] Confirm the Oldgate renewal notice date with Ruth. Do not assume it. Owner: Owen Pruitt. Date: 2026-10-23 (the next action)
+- [ ] Know that no Verified proof point exists, so the demo shows the capability on Brackhaven's own counts and no customer is named. Owner: Owen Pruitt. Date: before the next meeting, `[Unknown]` until it is set
+- [ ] Confirm the exact Oldgate renewal day and the trust-file scope with Ruth. Do not assume either. Owner: Owen Pruitt. Date: 2026-10-23 (the next action)
 - [ ] Prepare a mitigation for each landmine in Step 3c. Owner: Owen Pruitt. Date: before the next meeting, `[Unknown]` until it is set
 
 **During Discovery**
@@ -639,7 +647,7 @@ threat_level: MEDIUM (five factors 2, 1, 2, 1, 2, average 1.6)
 gap_matrix: 5 rows, mobile use, unsold-plot visibility, trust fund records, cost, time to live
 battlecard: 8 sections, inline
 win_plan: 4 stages, pre-meeting to post-meeting, owner on each item, date where known
-next_action: Owen Pruitt asks Ruth Ellery for the board date and the Oldgate renewal notice date by 2026-10-23
+next_action: Owen Pruitt asks Ruth Ellery for the exact Oldgate renewal day and the trust-file scope by 2026-10-23
 report_path: none (inline)
 ```
 
@@ -647,26 +655,26 @@ report_path: none (inline)
 
 ### Example 2: Stonemark, the Evaluated Rival With No Preference Stated (Brackhaven Memorial Gardens)
 
-**Context:** The same deal as Example 1, on the same day. Ruth named Stonemark as one of the options they looked at `[Call]`, and no one has said which tool they prefer `[Call]`. Stonemark has not been ruled out, and Oldgate still renews in March 2027 `[CRM]`. This is the non-success case in a quieter form: the buyer has not chosen a criterion, so the battlecard cannot claim a win, and it must say so.
+**Context:** The same deal as Example 1, on the same day. Ruth named Stonemark as one of the options they looked at `[Call, 2026-09-26]`, and no one has said which tool they prefer `[Call, 2026-09-26]`. Stonemark has not been ruled out, and Oldgate still renews in March 2027 `[CRM]`. This is the non-success case in a quieter form: the buyer has not chosen a criterion, so the battlecard cannot claim a win, and it must say so.
 
 **Input:** "Build the Stonemark battlecard for Brackhaven. Ruth says they also looked at Stonemark, and nobody has said which one they prefer."
 
 **Step 1: CRM Intelligence:**
 - Deal: Stage 5 Negotiate, $21,576 a year at list, owned by Owen Pruitt, 40 days in stage `[CRM]`
-- Contacts: Ruth Ellery, champion, no reply since 2026-10-03, 16 days `[CRM]`. Walt Okonkwo, Operations Director `[Call]`. Family board chair, one call `[CRM]`, name `[Unknown]`
-- Competitors: Oldgate Ledger Pro, the incumbent, renews March 2027 `[CRM]`. Stonemark, evaluated `[Call]`
+- Contacts: Ruth Ellery, champion, no reply since 2026-10-03, 16 days `[CRM]`. Walt Okonkwo, Operations Director `[Call, 2026-09-21]`. Family board chair, one call `[CRM]`, name `[Unknown]`
+- Competitors: Oldgate Ledger Pro, the incumbent, renews March 2027 `[CRM]`. Stonemark, evaluated `[Call, 2026-09-26]`
 
 **Step 2: Rival Profile:**
-- Stonemark is enterprise cemetery mapping, and its pitch is "The best mapping in the category" `[Public: deathcare research, 2026-03-27]`
-- Research estimates: about $1,500 to $2,500 a month, 90 to 120 days to live, no AI `[Public: deathcare research, 2026-03-27]`
-- Its advantage is the depth of its mapping `[Public: deathcare research, 2026-03-27]`
+- Stonemark is enterprise cemetery mapping, and its pitch is "The best mapping in the category" `[Public: Deathcare research project, competitive research note, 2026-03-27]`
+- Research estimates: about $1,500 to $2,500 a month, 90 to 120 days to live, no AI `[Public: Deathcare research project, competitive research note, 2026-03-27]`
+- Its advantage is the depth of its mapping `[Public: Deathcare research project, competitive research note, 2026-03-27]`
 - Its gap is that records and trust compliance are not part of its positioning `[Inferred: profile positioning, not yet tested with the buyer]`
 
 **Step 2c: Threat Assessment (Stonemark, the rival in the deal):**
 
 | Factor | Assessment | Threat |
 |--------|-----------|--------|
-| Buyer's stated preference | None stated `[Call]` | MEDIUM |
+| Buyer's stated preference | None stated `[Call, 2026-09-26]` | MEDIUM |
 | Contract | No contract with Stonemark. The evaluation is open, and Oldgate renews in March 2027 `[CRM]` | MEDIUM |
 | Switching barriers | A new load of Brackhaven's map data `[Inferred: scope of a new load]` | MEDIUM |
 | Internal champion for the rival | None identified `[Inferred: no call on file argues for Stonemark]` | LOW |
@@ -678,11 +686,11 @@ report_path: none (inline)
 
 | Capability | Stonemark | PlotIQ | Why It Matters for Brackhaven |
 |-----------|-----------|--------|-------------------------------|
-| Mapping depth | Enterprise mapping, their core pitch `[Public: deathcare research, 2026-03-27]` | Plot inventory digitization of paper maps and deeds `[Public: PlotIQ product modules]` | The buyer has not said how much map depth decides it. Their strength is real, and the battlecard says so |
+| Mapping depth | Enterprise mapping, their core pitch `[Public: Deathcare research project, competitive research note, 2026-03-27]` | Plot inventory digitization of paper maps and deeds `[Public: PlotIQ product modules]` | The buyer has not said how much map depth decides it. Their strength is real, and the battlecard says so |
 | Records and trust compliance in one system | Not in their positioning `[Inferred: profile positioning]` | Records and Trust Compliance module `[Public: PlotIQ product modules]` | A state auditor reads the trust record. Ask Ruth whether the board will judge on it |
 | Pre-need leads in the same system | `[Unknown]`. Ask | Pre-Need CRM and Lead Scoring `[Public: PlotIQ product modules]` | The pre-need manager's leads land in one place, with a named follow-up owner |
-| Time to live | 90 to 120 days `[Public: deathcare research, 2026-03-27]` | 6 weeks `[Public: PlotIQ profile]` | The timing decides whether a decision can finish before the March 2027 renewal |
-| Price | About $1,500 to $2,500 a month `[Public: deathcare research, 2026-03-27]` | $899 a month per site `[Public: PlotIQ price list]` | Shows the monthly gap without claiming their total cost |
+| Time to live | 90 to 120 days `[Public: Deathcare research project, competitive research note, 2026-03-27]` | 6 weeks `[Public: PlotIQ profile]` | The timing decides whether a decision can finish before the March 2027 renewal |
+| Price | About $1,500 to $2,500 a month `[Public: Deathcare research project, competitive research note, 2026-03-27]` | $899 a month per site `[Public: PlotIQ price list]` | Shows the monthly gap without claiming their total cost |
 
 **Step 3c: Positioning Landmines:**
 
@@ -701,7 +709,7 @@ report_path: none (inline)
 - Ask Ruth to put the decision criteria in writing before any demo, in the board's terms.
 - Put the family board chair on the call where the criteria are set. The economic buyer has been on one call `[CRM]`.
 - Offer no pilot until the buyer asks for one. If asked, scope it to the written criteria only.
-- Finish the decision before the Oldgate renewal in March 2027. Ask Ruth for the renewal notice date. Do not assume it.
+- Finish the decision before the Oldgate renewal in March 2027. Ask Ruth for the exact renewal day. Do not assume it.
 - Re-score the threat once the criteria are written.
 
 **Risk Assessment:** Stonemark could win if the board judges on the map alone. Oldgate renews by default if the decision stalls. Until the buyer states a criterion, the battlecard cannot claim that we beat Stonemark on the map, and it does not.
@@ -797,8 +805,16 @@ report_path: none (inline)
 
 ## Changelog
 
+### 2.1.4 (2026-10-26)
+- Try-it evidence completed so a strict first run reproduces Example 1 under the Pass Rule. The buyer's stated cost and timing pains are added to the record with their call dates, so the cost and time-to-live rows of the gap matrix rest on the buyer, not on the research alone. Undated statements are dated, and the Stonemark mention is dated.
+- Settled in one sentence each: a buyer's question names the job by its answer (Step 2c, Product Advantage), a gap matrix row ties to a stated pain and may use an observation only in the incumbent cell (Step 3b), and an undated call is not a dated fact (Epistemic Rules).
+- The win plan opens with the buyer's own count of plots with no recorded sale, and that step is in the checklist (Step 5).
+- The next action asks the buyer for the open discovery gap, due on the Friday of the run week (Output Contract, Step 6 item 11).
+- Competitive research is cited by its Sources name and date: Deathcare research project, competitive research note, 2026-03-27.
+- The try-it promise names the exact renewal day and the trust-file scope as the next action's ask, and the win plan starts with the plot count.
+
 ### 2.1.3 (2026-10-26)
-- Try-it evidence completed so a strict first run reproduces Example 1. The try-it records and Example 1 date the buyer's reason to look (Ruth, 2026-06-16), which settles Niche for Oldgate: the job named is the unsold-plot count, and accounting depth sits in the job next to it. Step 2c states that sentence and the switching-barrier levels.
+- Try-it evidence completed so a strict first run reproduces Example 1. The try-it records and Example 1 date the buyer's reason to look, which settles Niche for Oldgate: the job named is the unsold-plot count, and accounting depth sits in the job next to it. Step 2c states that sentence and the switching-barrier levels.
 - Objection scripts are Test and refine until a buyer has tested them. The universal rows and Example 1's two Field-tested rows are relabelled, because PlotIQ has no customers yet. The status rule and a research-estimate rule are added to Epistemic Rules.
 - The talk track's 120 to 180 day figure is a research estimate, as the profile calls it, not a Benchmark.
 - The win plan shows live items under each stage, says so in its heading, and Example 1 adds the no-Verified-proof item. The stage headings are capitalized.

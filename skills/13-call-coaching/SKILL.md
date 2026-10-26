@@ -1,7 +1,7 @@
 ---
 name: gtm-call-coaching
 description: "Scores a discovery or demo call against methodology rubrics and returns a coaching report with evidence-graded coaching points, for the rep and the sales manager who reads it"
-version: 2.1.3
+version: 2.1.4
 category: Sales-Methodology
 author: Ryan Vanshur
 license: MIT
@@ -11,6 +11,9 @@ requires:
   skills: ["gtm-meeting-prep", "gtm-deal-pulse"]
 mutating: read-write
 change_log:
+  - version: 2.1.4
+    date: 2026-10-26
+    summary: "Try-it fixes from the blind retest: the Partial Markers rule says a lower-line marker does not block a higher score once the higher line's markers are all shown, the Pre-Call Preparation rule counts prep-sheet facts used on the call, buying signals gain approval and need kinds, the next action takes a date agreed after the call and names an agreed session by its date, the practice exercise covers every cost the focus skill names, and the focus tie-break gives the reason its gate names the skill. The try-it records carry the full transcript check for silence and talk share."
   - version: 2.1.3
     date: 2026-10-26
     summary: "Try-it evidence completed so a strict first run reproduces Example 1: Pre-Call Preparation, Active Listening and Alternatives have their evidence on the record, and one sentence each settles the partial-markers case, the Winning Zone, the post-call date, the champion test about process, the focus-area tie-break and the before read of Deal Health Impact. The try-it notes that its records predate the account's later stage."
@@ -91,7 +94,7 @@ Every run returns the coaching report in the chat, in the eight sections under R
 | `key_moments` | Inline, the Key Moments section | Each moment has its type from the seven key-moment types and the fields that type requires |
 | `champion_status` | Inline, the MEDDIC Status section | Strong, Developing or None, with the shared champion tests met on this call, each tagged |
 | `report_path` | Set only when a file was written | `none (inline)` when the report stayed in the chat |
-| `next_action` | Inline, last line of the report | One step, with its owner and a date. A date not yet agreed is written as `[Unknown]` |
+| `next_action` | Inline, last line of the report | One step, with its owner and a date. A date not yet agreed is written as `[Unknown]`. A date agreed after the call, by email or otherwise, is the step's date, and the line says how it was agreed. A session already agreed is written with its date, and the step names what happens in that session |
 | File, on request | `<account>_gtm-call-coaching_<date>.md`, beside the user's account notes | Written only when the user asks, in Markdown. The ask is the approval step |
 
 ### Report Sections
@@ -400,7 +403,7 @@ Before pulling anything, read the account's folder under `accounts/` (its earlie
 
 **The Unknown Rule.** A category with no evidence is INSUFFICIENT. It carries no value, and it is left out of the total and the count. The total is written `N of M, scored n of 7` (or `scored n of 8` for demo), with N the sum of the scored rows. With five or six categories scored, the total is shown with its scored count and no assessment band is given, because the bands were set for a full call. With fewer than five scored categories there is no overall score, and the report lists the evidence that would score each missing category. Each INSUFFICIENT row says what evidence is missing.
 
-**Partial Markers.** A score is the highest line whose every marker the record shows. Where the record shows some markers of a line but not all, the score is the line below it.
+**Partial Markers.** A score is the highest line whose every marker the record shows. Where the record shows some markers of a line but not all, the score is the line below it. A marker of a lower line that the record also shows does not block a higher score once every marker of the higher line is shown, and the lower marker is named in the evidence line.
 
 **If `call_type = discovery`** (score 7 categories, out of 35):
 
@@ -414,6 +417,8 @@ If the profile's Call Coaching section renames the categories, the report uses t
 | 3 | General awareness but no specific preparation evident |
 | 2 | Generic opening, no personalization, read from script |
 | 1 | No preparation. Asked basic questions already in CRM. |
+
+A prep-sheet fact, or a prep-sheet question, that the rep uses on the call counts as referenced account research. A rep who uses none of them is scored on what the call shows.
 
 #### Category 2: SPIN Discovery Quality (1-5)
 | Score | Evidence |
@@ -635,7 +640,7 @@ Mark each key moment with one of seven types. Capture the fields the type requir
 | Key moment type | Fields to capture |
 |---|---|
 | Objection | Time, quote, resistance type (reactance, skepticism or inertia), the response given |
-| Buying signal | Time, quote, kind (implementation, pricing or timeline question), captured or missed |
+| Buying signal | Time, quote, kind (implementation, pricing, timeline, approval or need), captured or missed. Approval is a question about what the buyer's sign-off needs. Need is the buyer's own statement that the pain is worth solving |
 | Discovery breakthrough | Time, quote, Priority Ladder level reached |
 | Commitment | Time, quote, owner, date. A date that was not set is recorded as `[Unknown]` |
 | Missed opportunity | Time, quote, the question that should have been asked |
@@ -679,7 +684,7 @@ Mark each key moment with one of seven types. Capture the fields the type requir
 
 **Deal Health Impact:** Before and after this call. The key risk. Buying signals to advance. Where the call moves the stage gate in the profile's Qualification Stage Gates, and where it does not.
 
-**Focus Area for Next Call:** One skill only. Prep steps, what to practice, success criteria. Five things at once do not change a habit. When categories tie for the lowest score, the focus area is the one that gates the next stage in the profile's Qualification Stage Gates, as Priority Ladder does for the Stage 2 to 3 gate.
+**Focus Area for Next Call:** One skill only. Prep steps, what to practice, success criteria. Five things at once do not change a habit. The practice exercise covers every cost the focus skill's evidence names, in one exercise, and the focus-area line names each of them. When categories tie for the lowest score, the focus area is the one that gates the next stage in the profile's Qualification Stage Gates, as Priority Ladder does for the Stage 2 to 3 gate, because that gate asks for a quantified problem, which is the Priority Ladder's quantify step.
 
 **Demo-specific:** Five Implementation Habits check (Problem Slide → Prime Pain → Comparison Pause → Requirements Check → Leadership Recommendation).
 
@@ -772,7 +777,7 @@ Assessment: Good, in the 24 to 30 band of the restated scale (see Step 2 for the
 **Key Moments:**
 
 - **Discovery breakthrough (14:20):** Ruth: "We sold section F twice last spring." `[Call]`. Priority Ladder Level 2. The double sale is the note on file (`[CRM]`), now confirmed in her words.
-- **Buying signal, captured (09:15):** Ruth: "We have files that date back to the 1970s." `[Call]`. Owen asked "How far back do they go?"
+- **Buying signal, captured, kind need (09:15):** Ruth: "We have files that date back to the 1970s." `[Call]`. Owen asked "How far back do they go?"
 - **Objection (23:40):** Walt: "I don't want my crew walking around with a tablet in a cemetery." `[Call]`. Type: skepticism. Owen's response: "They're just screens, you can use them at the desk." `[Call]`.
 - **Competitive intelligence (17:05):** Ruth: "We started moving plots into Oldgate and stopped." `[Call]`. Incumbent type: direct software. Oldgate Ledger Pro, renewal March 2027 (`[CRM]`).
 - **Missed opportunity (28:30):** Ruth: "The board takes these things up." Owen: "Great, thanks." `[Call]`. The question that should have followed: "Who sits on the board, and when does it next meet?"
@@ -812,12 +817,12 @@ Assessment: Good, in the 24 to 30 band of the restated scale (see Step 2 for the
 
 **Deal Health Impact:** Before this call: `[Unknown]`, because no Deal Pulse (08) exists for this account in the records. After this call: the Stage 2 to 3 gate in the profile needs the records problem quantified (plots, hours or dollars) and the GM named as the likely economic buyer. Ruth is named as GM and buyer (`[CRM]`). The problem is not yet quantified, so the gate is not met, and this call does not move the deal to a demo.
 
-**Focus Area for Next Call:** Priority Ladder to Level 3 on the cost of a plot lookup. The chair and the date are success criteria in the game plan, not a second focus.
+**Focus Area for Next Call:** Priority Ladder to Level 3 on the cost of a plot lookup and of a double sale. The chair and the date are success criteria in the game plan, not a second focus.
 
 **Next Call Game Plan:**
-- **Prep:** the plot-lookup count and the minutes per lookup, from the discovery notes.
+- **Prep:** the plot-lookup count and the minutes per lookup, and the double-sale count and its cost, from the discovery notes.
 - **Questions:** "How many plot requests come in a week, and how long does each one take?" Then the board question.
-- **Success criteria:** a number for lookups per week, minutes per lookup, the board chair's name, and the meeting date, set before the session ends.
+- **Success criteria:** a number for lookups per week, minutes per lookup, the double-sale count and its cost, the board chair's name, and the meeting date, set before the session ends.
 
 ```text
 Hand-off (read by 08, 09 and 06):
@@ -825,11 +830,11 @@ account: Brackhaven Memorial Gardens (ACTIVE, Stage 2 Discovery)
 run_date: 2026-05-12 (illustrative)
 call_score: 24 of 35, scored 7 of 7
 category_scores: Pre-Call Preparation 4, SPIN Discovery Quality 3, Priority Ladder Execution 3, Active Listening 4, Value Articulation 3, Next Steps and Momentum 3, Alternatives 4
-focus_area: Priority Ladder to Level 3 on the cost of a plot lookup
+focus_area: Priority Ladder to Level 3 on the cost of a plot lookup and of a double sale
 coaching_points: Top 3 Strengths: 1 Strength, Strong (02:10). 2 Owen followed up, Strong (09:15). 3 Owen asked why the move stopped, Strong (17:05). Top 3 Improvements: 1 Quantify the double sale, Strong (14:20). 2 Benchmark for the tablet objection, Moderate (23:40). 3 The board question and the close, Strong, with a Weak part (28:30, no date in the transcript)
 key_moments: discovery breakthrough (14:20), buying signal captured (09:15), objection (23:40), competitive intelligence (17:05), missed opportunity (28:30), red flag MEDIUM (31:10)
 champion_status: Developing, two of seven shared tests met on this call (shares competitor intelligence, asks how to help)
-next_action: Owen Pruitt books a second discovery session with Ruth Ellery to quantify the lookup cost. Owner: Owen Pruitt. Date: 2026-05-19 (illustrative)
+next_action: Owen Pruitt holds the second discovery session with Ruth Ellery on 2026-05-19, agreed by email, and quantifies the lookup cost and the double-sale cost in it. Owner: Owen Pruitt. Date: 2026-05-19 (illustrative)
 report_path: none (inline)
 ```
 
@@ -1081,6 +1086,9 @@ The Business Case & ROI Kit (a paid Guild Pro kit) reads this skill's hand-off b
 ---
 
 ## Changelog
+
+### 2.1.4 (2026-10-26)
+- Try-it fixes from the blind retest. The Partial Markers rule now says whether a lower-line marker blocks a higher score. The Pre-Call Preparation rule says which prep-sheet facts count. Buying signals gain approval and need kinds. The next action takes a date agreed after the call, and an agreed session is written with its date. The practice exercise covers every cost the focus skill names, and the focus tie-break gives the reason its gate names the skill. The try-it records carry the full transcript check for silence and talk share.
 
 ### 2.1.3 (2026-10-26)
 - Try-it evidence completed so a strict first run reproduces Example 1. The records now carry the agenda, the titles, a restatement and the alternatives question, so Pre-Call Preparation scores 4 on its three markers and Active Listening and Alternatives score on what was said. Five sentences settle the open judgments: the partial-markers rule, the Winning Zone, the post-call date, the champion test about process, and the focus-area tie-break. Deal Health Impact states its before read, and the try-it notes that its records predate the account's later stage.

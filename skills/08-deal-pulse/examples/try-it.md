@@ -6,12 +6,13 @@ Every name, date and number in this file is invented for the PlotIQ example. Not
 "Run Deal Pulse on Brackhaven Memorial Gardens using skills/08-deal-pulse/examples/try-it.md and the PlotIQ profile at profiles/examples/plotiq-example.md"
 
 ## The Records
+[Call] facts below come from the 2026-09-26 contract terms call unless the line gives another date (illustrative).
 - Run date: 2026-09-28. Brackhaven Memorial Gardens is a combination of two sites with 11,000 plots (illustrative).
 - Status: ACTIVE at Stage 5 Negotiate since 2026-09-09 [CRM]. Day 19 in stage on 2026-09-28.
 - Amount: $21,576 a year at list (2 sites at $10,788 each) [CRM].
 - Close date: 2026-11-12, the family board's meeting [CRM]. No change to the close date on record [CRM].
 - Owner: Owen Pruitt, Account Executive [CRM].
-- Primary contact: Ruth Ellery, General Manager [CRM]. Walt Okonkwo is the Operations Director and the skeptic. Priscilla Dunmore is the pre-need manager [CRM].
+- Primary contact: Ruth Ellery, General Manager, the buyer contact and the champion [CRM]. Walt Okonkwo is the Operations Director and the skeptic. Priscilla Dunmore is the pre-need manager [CRM].
 - Economic buyer: the family board chair, name [Unknown]. The board chair has joined one call, in Stage 4 [CRM]. Pricing was delivered in Stage 4 [CRM]. The budget is not yet allocated [Notes].
 - Activity: 11 interactions in the last 90 days [CRM] (illustrative): a discovery call, a demo on Brackhaven's own plot records and two contract calls. Three contacts engaged: Ruth Ellery, Walt Okonkwo and Priscilla Dunmore [CRM]. Most recent interaction: a contract terms call with Ruth on 2026-09-26 [Call] (illustrative).
 - Responsiveness: Ruth replies within a day [CRM] (illustrative). Ruth started the 2026-09-22 call request and the ledger-sample email, so her last buyer-initiated contact is 6 days before the run date [CRM] (illustrative).
@@ -19,6 +20,7 @@ Every name, date and number in this file is invented for the PlotIQ example. Not
 - Follow-through, buyer: Ruth sent the trust fund ledger sample on 2026-09-24, before the 2026-09-26 call [Notes] (illustrative). She returned the signed contract-terms markup on 2026-09-25 [Notes] (illustrative).
 - Follow-through, rep: Owen sent the revised contract terms on 2026-09-17, against his 2026-09-18 commitment, and called Walt about the tablet question on 2026-09-21, against his 2026-09-22 commitment [CRM] (illustrative).
 - Double sale: one double sale in the last 24 months is a note in the CRM [CRM] (illustrative). Ruth describes the paper plot records as the reason it happened [Call]. Ruth puts the staff time to unwind one double sale at about 40 hours [Call] (illustrative).
+- Walt Okonkwo, on the 2026-09-21 call about the tablet question, puts a double sale at about a day of searching paper maps [Call] (illustrative).
 - Renewal: Ruth named the March 2027 Oldgate renewal as the deadline [Call]. The renewal date is in the CRM [CRM].
 - Strategic priority: Ruth's stated goal for the cemetery side is one system for plot records before the owner retires [Call] (illustrative), a departmental goal. The owner's retirement within three years is not a company priority the board has confirmed [Unknown].
 - Champion: Ruth Ellery meets four of the shared champion tests, four of seven, each tagged [Call]: she offers introductions to the board chair (2026-09-26), explains the internal politics (the chair decides after the family's vote, 2026-09-26), shares competitor intelligence (Stonemark was shown to the board in August, 2026-09-26), and commits to next steps with dates (the ledger sample by 2026-09-24, and the markup by 2026-09-25). The CRM note of 2026-09-25 records that she briefed the board chair on the records fix and forwarded the ledger comparison [CRM] (illustrative).

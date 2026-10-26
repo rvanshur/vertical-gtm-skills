@@ -1,6 +1,6 @@
 ---
 name: gtm-closed-loss-reactivation
-version: 2.1.3
+version: 2.1.4
 description: "Re-engages closed-lost accounts from the CRM history. Checks the recorded loss reason against the evidence, finds what has changed since the deal died, re-scores fit, and returns REACTIVATE, MONITOR or RETIRE with a history-aware opener for the BDR or AE who owns the next step."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: []
 mutating: read-write
 change_log:
+  - version: 2.1.4
+    date: 2026-10-26
+    summary: "Try-it evidence completed so a strict first run reproduces Example 1. Settles the order of two categories when the AE notes are blank, the timing of a champion's move, unknown zones in the verdict, the anchor of the timing and competitor re-entry windows, the Zone 3 board path after the general manager leaves, and the owner and date of a next step. Oldgate is cited to the competitive research note. Adds the example profile to the try-it pointer in the body."
   - version: 2.1.3
     date: 2026-10-26
     summary: "Try-it evidence completed so a strict first run reproduces Example 1. Adds the stage lost, the original AE and a competitor field that logs the winner, settles the competitor play when two categories fit, writes the MONITOR reminder as its window with both dates, scores a zone with the GM gone from the board path, and points the try-it ask at the example profile."
@@ -69,7 +72,7 @@ You refuse to:
 
 What this skill needs before it starts. **If a required input is missing, ask. Do not guess.**
 
-To try the skill without your own data, use `examples/try-it.md`, which holds the inputs for Example 1.
+To try the skill without your own data, use `examples/try-it.md`, which holds the inputs for Example 1. Run it with the example profile at `profiles/examples/plotiq-example.md`.
 
 | Input | Required | Notes |
 |-------|----------|-------|
@@ -378,6 +381,8 @@ The CRM comes first because the person who logged it heard the buyer. Inference 
 
 When more than one reason applies, classify by the primary reason, the one that ended the deal, and name it first. A second category is named too when the record supports both, with the evidence for each. Note the secondary factors as context. A category takes the `[CRM]` tag when the logged reason maps to it, and any board-date reading stays an `[Inferred]` sub-reason. A winning competitor that the CRM logs in its competitor field is a logged reason for Lost to Competitor, so that category takes the `[CRM]` tag too.
 
+Two rules settle the order and the timing. When the AE's notes are blank, the category that matches the logged reason is named first, because the CRM comes first, and the second category is named as the one the notes must rule in or out. Champion Left applies only when the champion left before the close date. A move after the close is a new opening for that person, and the account keeps its logged reason.
+
 **Produces:** `loss_classification`, which names the category, each fact behind it with its tag, and the question the AE's notes must answer. Two categories can fit. Name both, and tag the evidence for each. The tags carry the confidence: a `[CRM]` fact is a record, and an `[Inferred]` fact is a reasoned judgment with its method shown.
 
 ---
@@ -409,7 +414,7 @@ Use `{Client Profile: Qualification Criteria}` (Buying Triggers) and `{Client Pr
 
 ### Step 4: Re-Qualify Fit and Set the Verdict
 
-Re-score fit against `{Client Profile: ICP Definitions}`. The company may have changed since the original evaluation. Use the profile's verdict words, GREENLIGHT, MANUAL REVIEW or DISQUALIFY, and show what moved against the original score. When the general manager who would recommend has left, a board approval step with its next meeting three or more months out still scores a zone MEDIUM, because the board path is the observable fact.
+Re-score fit against `{Client Profile: ICP Definitions}`. The company may have changed since the original evaluation. Use the profile's verdict words, GREENLIGHT, MANUAL REVIEW or DISQUALIFY, and show what moved against the original score. When the general manager who would recommend has left, the profile's Zone 3 MEDIUM cell still applies, which reads: GM recommends, board approves, next meeting three or more months out. The board path is the observable fact, and the HIGH cell needs a GM or owner who signs under $25K, which no longer describes the account. A zone with no record is UNKNOWN. It counts toward neither HIGH nor LOW, so GREENLIGHT needs two zones HIGH on evidence, and each UNKNOWN zone is named as the evidence still to find.
 
 Then set the reactivation verdict:
 
@@ -429,7 +434,7 @@ For a deeper re-score, run Account Qualification (01). Its `verdict`, `zone_scor
 
 Select the approach from `{Methodology: Reactivation Strategies by Loss Reason}`, using the classification from Step 2 and the verdict from Step 4. The classification must come first, because the strategy is chosen from the loss reason. When Step 2 names two categories and the CRM logs a winning competitor, the play is the competitor play, because the buyer acted on that category. The contact window is set separately, as the paragraph below requires.
 
-Assess the timing as too soon, right time or overdue. Check it against two windows: the strategy's window for the pain, and the re-entry window in Closed-Loss Intelligence for contact. Where the two disagree, say so and name the one that governs. The profile's entry window governs contact. When Step 2 names two categories, contact waits for the later-opening of their two re-entry windows, so the stricter window governs, and a window whose anchor date is `[Unknown]` cannot be placed and holds contact.
+Assess the timing as too soon, right time or overdue. Check it against two windows: the strategy's window for the pain, and the re-entry window in Closed-Loss Intelligence for contact. Where the two disagree, say so and name the one that governs. The profile's entry window governs contact. When Step 2 names two categories, contact waits for the later-opening of their two re-entry windows, so the stricter window governs, and a window whose anchor date is `[Unknown]` cannot be placed and holds contact. A timing window counts from the close date, and a competitor window counts back from the rival's renewal date.
 
 **Produces:** `reactivation_strategy`, with the verdict, the approach, the timing assessment and the entry angle. For a MONITOR, the reopening event.
 
@@ -534,6 +539,8 @@ Present the complete reactivation analysis inline, in this order:
 9. **Coordination Guidance (BDR only):** "Coordinate with the original AE named in Step 0 before sending reactivation outreach."
 10. **Recommended Next Action:** one step, with its owner and date
 
+The owner of the next action is the person who does the step. For a BDR, that is the BDR, who asks the original AE for what the step needs. A step that asks a colleague for an answer is dated within five business days of the run date.
+
 Write a file only when the user asks for one. When they do, the file is the one-page cheatsheet built from this same analysis, in Markdown, named `<account>_gtm-closed-loss-reactivation_<date>.md`, with eight sections in this order: deal history banner, what has changed, reactivation strategy, key contacts, reactivation hooks, discovery questions, objection handling, and call flow. Asking for the file is the approval step.
 
 **Produces:** the inline analysis, and `next_action` with its owner and date. `report_path` reads `none (inline)` unless the user asked for a file.
@@ -610,7 +617,7 @@ The AE's loss notes decide between the two categories. That question goes to the
 - **Account:** Ines Carmody now runs Quill Hollow Memorial Park `[Public: state licensing database]`. That is a new account for the team. It is not a reason to reactivate Lowmoor.
 - **Account:** the current Lowmoor contact is `[Unknown]`. The champion left, and no successor is recorded.
 - **Product:** PlotIQ is in beta, with two beta cemeteries and no paid revenue `[CRM]`. Every proof point in the profile is Illustrative, so none goes into a message a prospect reads. A beta result is not a customer win.
-- **Competitor:** the profile records Oldgate's weak points as upfront cost, weak mobile support and no AI. These are competitor estimates `[Public: deathcare research, 2026-04-01]`. The Oldgate pain after 6 to 12 months is a research pattern `(illustrative)`.
+- **Competitor:** the profile records Oldgate's weak points as upfront cost, weak mobile support and no AI. These are competitor estimates `[Public: deathcare research, competitive research note, 2026-03-27]`. The Oldgate pain after 6 to 12 months is a research pattern `(illustrative)`.
 - **Market:** Oldgate's renewal date for Lowmoor is `[Unknown]`. The profile's Buying Triggers list a rival renewal as a trigger, but without the date no window can be placed.
 
 **Step 4: Re-Qualification.** The re-score is set against the original qualification on the deal record, zone by zone. Only the zones the records speak to are scored, and the rest are `[Unknown]`.
@@ -800,6 +807,9 @@ report_path: none (inline)
 
 ## Changelog
 
+
+### 2.1.4 (2026-10-26)
+- Try-it evidence completed so a strict first run reproduces Example 1. Step 2 names the CRM-logged category first when the AE notes are blank, and states that Champion Left needs a champion who left before the close. Step 4 settles unknown zones, so GREENLIGHT needs two evidenced HIGH zones, and it cites the profile's Zone 3 MEDIUM cell after the general manager leaves. Step 5 counts a timing window from the close date and a competitor window from the rival's renewal date. Step 8 names the owner of a next action and dates a request to a colleague. The Oldgate citation points to the competitive research note. The Input Contract points to the example profile. No output changed.
 
 ### 2.1.3 (2026-10-26)
 - Try-it evidence completed so a strict first run reproduces Example 1. The try-it records gain the stage lost, the original AE and a competitor field that logs Oldgate as the winner. The competitor play governs when two categories fit and the CRM logs a winner. The MONITOR reminder is a window with both dates. A zone keeps MEDIUM when the GM has left and the board path meets three months or more. The try-it ask names the example profile. No output changed.

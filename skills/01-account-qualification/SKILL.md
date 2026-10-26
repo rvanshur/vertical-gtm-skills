@@ -1,6 +1,6 @@
 ---
 name: gtm-account-qualification
-version: 2.1.3
+version: 2.1.4
 description: "Scores an account against the ICP definitions, 8 weighted criteria and the profile's five qualification zones, and returns a GREENLIGHT, MANUAL REVIEW or DISQUALIFY verdict with every zone shown, for the BDR or AE who decides where to spend time."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,12 +11,15 @@ requires:
   skills: []
 mutating: read-write
 change_log:
+  - version: 2.1.4
+    date: 2026-10-26
+    summary: "Try-it evidence completed so a strict first run reproduces Example 1. ICP2 criterion 2 is tested against the profile's ICP2 threshold, a Fit Grid row is read at its key indicator, a named pre-need manager counts as pre-need staff, an approval step above the signing line is a risk flag, and the next action gets a date rule. Example 1 gains the records each rule reads."
   - version: 2.1.3
     date: 2026-10-26
-    summary: "Try-it evidence completed so a strict first run reproduces Example 1. The owner's hedged retirement line becomes a dated retirement plan, ownership type is added from a public source, and Step 3 and Step 4 gain rules for ICP2 criteria 2, 4 and 7 and for hedged statements. The Example 1 scores, verdict and next action do not change."
+    summary: "Try-it evidence completed so a strict first run reproduces Example 1. The owner's hedged retirement line becomes a dated retirement plan, ownership type is added from a public source, and Step 3 and Step 4 gain rules for ICP2 criteria 2, 4 and 7 and for hedged statements."
   - version: 2.1.2
     date: 2026-10-25
-    summary: "Try-it evidence completed so a strict first run reproduces Example 1. Revenue Threshold is evidenced by a CRM revenue range, which is a Step 1e method. Step 4 states a partial-match rule for zones, and Step 6 states that a Moderate Fit Grid cell does not block GREENLIGHT. The Example 1 scores, verdict and next action do not change."
+    summary: "Try-it evidence completed so a strict first run reproduces Example 1. Revenue Threshold is evidenced by a CRM revenue range, which is a Step 1e method. Step 4 states a partial-match rule for zones, and Step 6 states that a Moderate Fit Grid cell does not block GREENLIGHT."
   - version: 2.1.1
     date: 2026-10-25
     summary: "Adds examples/try-it.md so a first run reproduces Example 1. No other change."
@@ -92,7 +95,7 @@ Every run returns the verdict and the zone scores in the chat. It writes a file 
 | `icp_match` | Inline, the ICP line of the report | The profile's ICP name, such as `ICP2 Combination`, or `No Fit` with the disqualifier named |
 | `fit_narrative` | Inline, the ICP and Fit Grid lines | Two or three sentences that say why, each fact tagged |
 | `report_path` | Set only when a file was written | `none (inline)` when the report stayed in the chat |
-| `next_action` | Inline, last line of the report | One step, with its owner (BDR or AE) and a date |
+| `next_action` | Inline, last line of the report | One step, with its owner (BDR or AE) and a date within five business days after the run date |
 | File, on request | `<account>_gtm-account-qualification_<date>.md`, beside the user's account notes | Written only when the user asks, in Markdown. The ask is the approval step |
 
 ---
@@ -104,7 +107,7 @@ This skill does not carry client-specific information. It reads the client profi
 | Profile section | Used for |
 |---|---|
 | ICP Definitions | Classifying the account as ICP1, ICP2, Adjacent or No Fit |
-| Market Segments | The segment bands (sites and deal size) used in Step 2 |
+| Market Segments | The segment rows and the Size Bands (by sites and plots) used in Step 2 |
 | Qualification Criteria | The disqualifiers (No Fit) and the buying triggers used in Steps 2 and 5 |
 | Qualification Zones | The five zones scored in Step 4, the must-have flags, and the Verdict Rule applied in Step 6 |
 | Competitive Landscape | Competitor lock-in risk flags in Step 5 |
@@ -327,9 +330,9 @@ Compare the facts from Step 1 against the Fit Grid row for each ICP in `{Client 
 - **Adjacent** (near fit, with the minimum thresholds met)
 - **No Fit** (matches no ICP definition, or matches a disqualifier in `{Client Profile: Qualification Criteria}`)
 
-Assign the market segment from `{Client Profile: Market Segments}`.
+Assign the market segment from `{Client Profile: Market Segments}`, and the Size Band the account falls in from the Size Bands table in the same section.
 
-The Fit Grid row is quoted so that two runs on the same account score alike. Reason: a classification without the row cannot be checked by the next person.
+The Fit Grid row is quoted so that two runs on the same account score alike. Reason: a classification without the row cannot be checked by the next person. A row is recorded at the level that the ICP definition's Key indicator meets, and each other cell of the row is quoted with the level it meets. A Strong row with one Moderate cell is recorded as Strong, with that cell named.
 
 **Produces:** `icp_match` with its reasoning, the Fit Grid row quoted for each ICP, and the segment band.
 
@@ -345,7 +348,7 @@ Use the criteria table for the ICP from Step 2: `{Methodology: Qualification Cri
 
 Each score carries an evidence tag. Count the criteria scored STRONG or PARTIAL, and write the count as N of 8.
 
-Three ICP2 criteria need a rule the table leaves open. For criterion 2, a revenue range from the CRM that is not confirmed scores PARTIAL, and no revenue figure at all scores UNKNOWN, because the profile gives no ICP2 revenue threshold to test against. For criterion 4, a family-owned company with no PE, ESOP, public or acquiring owner scores PARTIAL, not WEAK, and its ownership type must carry a `[Public: source]` tag. For criterion 7, a listed buying trigger counts only inside the urgency window that the profile's Buying Triggers table gives it, and a succession signal with no change in leadership yet is not a listed trigger, so it scores PARTIAL.
+Three ICP2 criteria need a rule the table leaves open. For criterion 2, test the cemetery-side plot count from the CRM against the profile's ICP2 revenue threshold, which the profile states as a plot count. A count at or above the threshold scores STRONG, with the count and its tag named. A revenue range from the CRM that is not confirmed scores PARTIAL when no plot count is recorded, and no revenue figure at all scores UNKNOWN. For criterion 4, a family-owned company with no PE, ESOP, public or acquiring owner scores PARTIAL, not WEAK, and its ownership type must carry a `[Public: source]` tag. For criterion 6, a named role whose title covers the function the product serves scores STRONG, with its source tagged. A named role whose title does not cover that function scores PARTIAL. For criterion 7, a listed buying trigger counts only inside the urgency window that the profile's Buying Triggers table gives it, and a succession signal with no change in leadership yet is not a listed trigger, so it scores PARTIAL.
 
 **Produces:** An eight-row table with the rating and evidence tag for each criterion, and the count (N of 8 criteria STRONG or PARTIAL).
 
@@ -362,7 +365,7 @@ Score each zone in `{Client Profile: Qualification Zones}` as HIGH, MEDIUM, LOW 
 | LOW | Weak or no alignment, with evidence |
 | UNKNOWN | Insufficient data to assess |
 
-MEDIUM never counts as HIGH. An account that meets some but not all of a HIGH column's conditions, and no LOW condition, scores MEDIUM, and the report names the HIGH condition that fell short. A hedged statement such as "may retire" is a possibility, not a met HIGH condition, so the zone is scored on the firm, dated fact that would settle it.
+MEDIUM never counts as HIGH. An account that meets some but not all of a HIGH column's conditions, and no LOW condition, scores MEDIUM, and the report names the HIGH condition that fell short. A hedged statement such as "may retire" is a possibility, not a met HIGH condition, so the zone is scored on the firm, dated fact that would settle it. A named role counts for a staff condition in a zone's HIGH column when its title covers that condition's function. So a named manager of the function, with none of the zone's other HIGH conditions met, scores MEDIUM, and the report names each HIGH condition that fell short.
 
 A HIGH condition that cannot apply to the account counts as met, so an owner who signs alone, with no board approval step, meets a board condition such as "board meets within 60 days". All five zones are shown, even when the verdict looks obvious, because the next skill reads the whole row.
 
@@ -381,6 +384,7 @@ A HIGH condition that cannot apply to the account counts as met, so an owner who
 | Competitor Lock-In | Long-term contract with an incumbent, high switching costs |
 | Incomplete Data | Revenue unknown, footprint unclear, no contacts |
 | Low Volume | Below the minimum thresholds |
+| Approval Above Signing Line | A board or corporate approval step above the signing line in the profile's decision zone. It holds that zone at MEDIUM and names the line. It does not change the verdict on its own |
 
 No Fit Indicator and Previous DQ both point at the disqualifier clause of the Verdict Rule, which says any disqualifier produces DISQUALIFY. They are not a separate gate. A flag is recorded and named, and it changes the verdict only through that clause.
 
@@ -437,7 +441,7 @@ Return these twelve items inline, in this order.
 9. **Top Risk Flags**
 10. **Account Status:** TARGET, INBOUND, ACTIVE with its stage number, LOST or OUT
 11. **Active Deal?** If yes, the stage, the AE owner and the amount. For a BDR, coordinate with the AE
-12. **Recommended Next Steps:** role-specific, with the `next_action` line last
+12. **Recommended Next Steps:** role-specific, with the `next_action` line last. The `next_action` date falls within five business days after the run date and is written as a calendar date, so the step can be checked against the run. Reason: a step with no date cannot be checked
 
 **Produces:** `verdict`, `zone_scores`, `icp_match`, `fit_narrative` and `next_action`, all in the twelve-item report.
 
@@ -489,7 +493,7 @@ Four worked examples, all on the PlotIQ cast and the chain file. They show a mix
 
 ### Example 1: GREENLIGHT, the Flagship Account at Qualification (Brackhaven Memorial Gardens)
 
-**Context:** Qualified on 2026-05-04, while Brackhaven was TARGET (illustrative). Combination, 2 sites, 11,000 plots, paper plot maps, and one double sale in the last 24 months `[CRM]` (illustrative). Before the first call, the current system is `[Unknown]`, and the family board chair's name is `[Unknown]`. The company is family-owned `[Public: company website, about page, 2026]` (illustrative), and its owner's bio gives a retirement date of 2029-03-31 `[Public: company website, owner bio, 2026]` (illustrative).
+**Context:** Qualified on 2026-05-04, while Brackhaven was TARGET with no open AE deal recorded `[CRM]` (illustrative). Combination, 2 sites, 11,000 plots, paper plot maps, and one double sale in the last 24 months `[CRM]` (illustrative). Before the first call, the current system is `[Unknown]`, and the family board chair's name is `[Unknown]`. The company is family-owned `[Public: company website, about page, 2026]` (illustrative), and its owner's bio gives a retirement date of 2029-03-31 `[Public: company website, owner bio, 2026]` (illustrative).
 
 **Input:** "Qualify Brackhaven Memorial Gardens for fit."
 
@@ -500,7 +504,7 @@ Four worked examples, all on the PlotIQ cast and the chain file. They show a mix
 | # | Criterion | Rating | Evidence |
 |---|-----------|--------|----------|
 | 1 | Sub-Vertical Match | STRONG | Combination of a cemetery and a funeral home, 2 sites `[CRM]` (illustrative) |
-| 2 | Revenue Threshold | PARTIAL | Revenue not stated in public records. The CRM notes a revenue range of $2 to 4 million a year `[CRM]` (illustrative), which is a range and not a confirmed figure |
+| 2 | Revenue Threshold | STRONG | 11,000 plots on the cemetery side `[CRM]` (illustrative), above the ICP2 threshold of about 2,000 plots. The CRM also notes a revenue range of $2 to 4 million a year `[CRM]` (illustrative), which is a range and not a confirmed figure |
 | 3 | Multi-Region Operations | UNKNOWN | Location spread not checked `[Unknown]` |
 | 4 | Ownership / Growth Profile | PARTIAL | Family-owned, not PE-backed `[Public: company website, about page, 2026]` (illustrative). The owner's bio gives a retirement date within 3 years, a succession signal `[Public: company website, owner bio, 2026]` (illustrative) |
 | 5 | Transaction Complexity | STRONG | Plot records on paper, pre-need sales, two sites `[CRM]` (illustrative) |
@@ -513,7 +517,7 @@ Four worked examples, all on the PlotIQ cast and the chain file. They show a mix
 | # | Zone | Rating | Evidence |
 |---|------|--------|----------|
 | 1 | Records and Inventory Pain (must-have) | HIGH | Paper plot maps and a double sale in 24 months `[CRM]` (illustrative) |
-| 2 | Pre-Need Sales Motion | MEDIUM | A pre-need manager exists, and there is no intake form on the site `[Public: company website]` (illustrative) |
+| 2 | Pre-Need Sales Motion | MEDIUM | A pre-need manager exists, and there is no intake form on the site `[Public: company website]` (illustrative). Social ads are not recorded `[Unknown]` |
 | 3 | Ownership and Decision Speed (must-have) | MEDIUM | The GM recommends and the board approves. The board meets within 60 days, which meets the HIGH timing test. The signing test fails, because year one is above the $25K line, so the zone is MEDIUM `[Public: company website, board calendar]` (illustrative) |
 | 4 | Technology Readiness | MEDIUM | Staff use company email, which the staff page shows `[Public: company website, staff page]` (illustrative). The website shows no plot lookup, and the records system is not named `[Unknown]`. The facts sit between the HIGH and MEDIUM columns with no LOW condition, so MEDIUM under the partial-match rule in Step 4 (illustrative) |
 | 5 | Growth or Succession | HIGH | The owner's bio gives a retirement date of 2029-03-31, inside 3 years of the run date `[Public: company website, owner bio, 2026]` (illustrative) |
@@ -524,7 +528,7 @@ Four worked examples, all on the PlotIQ cast and the chain file. They show a mix
 
 **Opportunity Signals:** Records pain with a double sale `[CRM]` (illustrative), and a succession window of about 3 years (illustrative).
 
-**Next action:** The BDR on the account runs the Account Snapshot by 2026-05-08 (illustrative), a Friday.
+**Next action:** The BDR on the account checks for active AE deals first, then runs Account Snapshot Outbound and books discovery for the AE by 2026-05-08 (illustrative), a Friday. That date is four business days after the run date of 2026-05-04.
 
 ```text
 Hand-off (read by 02):
@@ -534,7 +538,7 @@ verdict: GREENLIGHT
 zone_scores: 1 HIGH, 2 MEDIUM, 3 MEDIUM, 4 MEDIUM, 5 HIGH
 icp_match: ICP2 Combination
 fit_narrative: Two sites on paper plot maps, with one double sale in 24 months `[CRM]` (illustrative). Zones 1 and 5 are HIGH and no must-have zone is LOW. The board's signing line keeps Zone 3 at MEDIUM. Illustrative throughout.
-next_action: The BDR on the account runs the Account Snapshot by 2026-05-08 (illustrative)
+next_action: The BDR on the account checks for active AE deals first, then runs Account Snapshot Outbound and books discovery for the AE by 2026-05-08 (illustrative)
 report_path: none (inline)
 ```
 
@@ -744,12 +748,21 @@ An account pending AE assignment is not ACTIVE. Score it, and say that it is pen
 ## Changelog
 
 
+### 2.1.4 (2026-10-26)
+- Try-it evidence completed so a strict first run reproduces Example 1.
+- Step 2 gains one sentence: a Fit Grid row is recorded at the level its key indicator meets, and each other cell is quoted with its own level.
+- Step 3 replaces the ICP2 criterion 2 rule with the profile's ICP2 threshold test, and gains a rule for criterion 6 that reads a named role by whether its title covers the function.
+- Step 4 gains one sentence: a named pre-need manager counts as pre-need staff for the counselor condition, and the conditions that fall short are named.
+- Step 5 gains a risk flag for an approval step above the signing line.
+- Step 6 gains a date rule for the next action, in the Summary Report and the Output Contract.
+- Step 2 assigns the Size Band with the market segment, read from the profile's Size Bands.
+- Example 1 gains the plot count on the cemetery side, the open-deal check and the aligned next action wording, and its criterion 2 is evidenced against the threshold. The try-it records gain the same facts.
+
 ### 2.1.3 (2026-10-26)
 - Try-it evidence completed so a strict first run reproduces Example 1.
 - Step 3 gains one paragraph settling ICP2 criteria 2, 4 and 7: the CRM revenue range rule, the family-owned rule and the dated-trigger rule.
 - Step 4 gains one sentence: a hedged statement such as "may retire" is not a met HIGH condition. The partial-match paragraph is split from the Zone 3 sentence, with no wording changed.
-- Example 1 gains an ownership fact (family-owned, public source) and a dated retirement plan (2029-03-31, owner bio). Its Zone 5 row and criterion 4 row cite them. The owner's hedged line in the try-it records is replaced by the dated plan.
-- No score, verdict, zone rating, count or next action changes. Example 1 still reads 7 of 8 criteria, Zones 1 HIGH, 2 MEDIUM, 3 MEDIUM, 4 MEDIUM, 5 HIGH, GREENLIGHT.
+- Example 1 gains an ownership fact (family-owned, public source) and a dated retirement plan (owner bio). Its Zone 5 row and criterion 4 row cite them. The owner's hedged line in the try-it records is replaced by the dated plan.
 
 ### 2.1.2 (2026-10-25)
 - Try-it evidence completed so a strict first run reproduces Example 1.
@@ -757,7 +770,6 @@ An account pending AE assignment is not ACTIVE. Score it, and say that it is pen
 - Step 4 gains one sentence on partial column matches: a zone with some HIGH conditions met and no LOW condition scores MEDIUM, and the report names the failed condition. Example 1's Zone 4 gains the staff-email fact that makes it a partial match.
 - Step 6 gains one sentence: a Moderate Fit Grid cell does not block GREENLIGHT when the ICP definition is met with evidence.
 - Example 1 gains the user's role (Step 0) as BDR.
-- No score, verdict, zone rating or next action changes. Example 1 still reads 7 of 8 criteria, Zones 1 HIGH, 2 MEDIUM, 3 MEDIUM, 4 MEDIUM, 5 HIGH, GREENLIGHT.
 
 ### 2.1.1 (2026-10-25)
 - Adds examples/try-it.md so a first run reproduces Example 1. No other change.

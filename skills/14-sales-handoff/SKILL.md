@@ -1,6 +1,6 @@
 ---
 name: gtm-sales-handoff
-version: 2.1.3
+version: 2.1.4
 description: "Post-sale implementation readiness check: scores six dimensions, sets the three dates (kickoff, go-live and Full Adoption Date), names risks with mitigations and quick wins, and writes the handoff the implementation lead plans from"
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: [gtm-meddpicc-analysis]
 mutating: read-write
 change_log:
+  - version: 2.1.4
+    date: 2026-10-26
+    summary: "Try-it fixes from the blind retest: the composite formula reads each weight as a decimal, the Yellow kickoff window is the buffer before any IT lead time, a Yellow report with a critical dimension states its conditions, all three dates are labelled proposed before signature, severity and likelihood follow stated rules and every top risk states both, a check before signature is a preview, the next action names the action the owner takes, and the worked examples show the date arithmetic and each risk's likelihood."
   - version: 2.1.3
     date: 2026-10-26
     summary: "Dates recomputed from the profile's typical days (49, illustrative) and IT lead time (14 days, illustrative), with the arithmetic shown. One sentence each settles the Yellow buffer default, the IT lead time reading, the preview scope before signature and the top-three risk ranking. Workflow and Technical rules settle the stated estimate and the constrained IT case, and the try-it records carry the evidence the examples cite."
@@ -85,10 +88,10 @@ Every run returns the readiness report in the chat, in the nine sections of Step
 | Readiness report | Inline, in the chat | The nine sections of Step 7, in order |
 | `readiness_score` | Inline, the composite line of the scorecard | A whole number from 0 to 100, from the formula in Methodology, with its `scored n of 6`. Under the Unknown Rule, a composite with fewer than five scored dimensions is not written |
 | `dimension_scores` | Inline, the scorecard | Six entries, each a score from 1 to 5 or INSUFFICIENT, in the order Stakeholder, Workflow, Technical, Data, Resource, Change Management |
-| `three_dates` | Inline, the three-date plan | Kickoff, go-live and Full Adoption Date, each with its arithmetic shown |
-| `risks` | Inline, the risk section | The top three, each with severity, likelihood and a specific mitigation |
+| `three_dates` | Inline, the three-date plan | Kickoff, go-live and Full Adoption Date, each with its arithmetic shown. Before signature, all three are labelled proposed |
+| `risks` | Inline, the risk section | The top three, each with severity, likelihood and a specific mitigation. Severity and likelihood follow the rules under Risk Categories |
 | `quick_wins` | Inline, the quick win section | A week one item, a month one item and the 90-day criteria |
-| `next_action` | Inline, last line of the report | One step, with its owner and a date |
+| `next_action` | Inline, last line of the report | One step, with its owner and a date. It names the action the owner takes, with a verb such as asks, names or confirms, and never the result |
 | `report_path` | Set only when a file was written | `none (inline)` when the report stayed in the chat |
 | File, on request | `<account>_gtm-sales-handoff_<date>.md`, beside the user's account notes | Written only when the user asks, in Markdown, with the readiness card. The ask is the approval step |
 
@@ -247,14 +250,14 @@ With one known source system and no IT owner named, IT counts as constrained, so
 - **2** = Significant inertia, multiple skeptics during discovery
 - **1** = High resistance, current team sees product as threat, no change champion
 
-**Composite score:** Weighted sum ÷ 5 × 100 = a score from 0 to 100, rounded to a whole number. Under the Unknown Rule below, the weighted sum runs over the scored dimensions only, and the weights are re-scaled to them: composite = (sum of weight × score, over scored dimensions) ÷ (sum of weights, over scored dimensions) ÷ 5 × 100.
+**Composite score:** Weighted sum ÷ 5 × 100 = a score from 0 to 100, rounded to a whole number. Each weight is written as a decimal: 20% is 0.20, 15% is 0.15 and 10% is 0.10. The six decimal weights total 1.00, so the composite stays between 0 and 100. The whole-number weights must never be used as written, because 20, 15 and 10 give a total 100 times too large. Under the Unknown Rule below, the weighted sum runs over the scored dimensions only, and the weights are re-scaled to them: composite = (sum of decimal weight × score, over scored dimensions) ÷ (sum of decimal weights, over scored dimensions) ÷ 5 × 100.
 
 **The Unknown Rule.** A dimension with no evidence is INSUFFICIENT. It carries no value, and it is left out of the composite and the count. The composite is written with its scored count, `scored n of 6`. With five dimensions scored, the composite is given. With fewer than five, there is no composite, and the report lists the evidence that would score each missing dimension. A dimension with some evidence is scored from that evidence, even if the evidence shows a gap. The examples score every dimension, so their composites read `scored 6 of 6`.
 
 | Score | Level | Recommendation |
 |-------|-------|----------------|
 | 80 to 100 | Green: Ready | Proceed to kickoff in the week of the handoff. Standard timeline |
-| 60 to 79 | Yellow: Ready with conditions | Address gaps before kickoff. Kickoff sits two to four weeks after the readiness check |
+| 60 to 79 | Yellow: Ready with conditions | Address gaps before kickoff. Kickoff sits two to four weeks after the readiness check, before any IT lead time (see The Three Dates) |
 | 40 to 59 | Orange: At risk | Significant gaps. Hold kickoff until every critical dimension reaches 3 |
 | 0 to 39 | Red: Not ready | Major failures. Sales re-engages, and no handoff is issued |
 
@@ -296,13 +299,15 @@ Integration advantages to note: the product takes any standard output, most cust
 
 **Ranking the Top Three.** Rank risks by severity, HIGH first. Within a severity, a risk on the lowest-scoring dimension comes first, and a tie goes to the row order of this table.
 
+**Severity and Likelihood.** Severity is HIGH when the risk leaves no named owner for IT or for the sponsor, or when it is a reason kickoff is held. Severity is MEDIUM when the risk can move a date, but an owner is named and kickoff is not held. Severity is LOW when it moves no date. Likelihood is High when a record shows the risk is already present, Medium when a record shows a signal of it, and Low when no record points at it. Each risk states both.
+
 ### The Three Dates
 
 The signature is the handoff trigger, not one of the three dates. The three dates are the ones the implementation lead plans from: kickoff, go-live and Full Adoption Date. Every date shows its arithmetic.
 
 **Date 1: Kickoff.** The day the implementation lead starts. Set by the readiness level:
 - **Green (80 to 100):** kickoff in the week of the handoff.
-- **Yellow (60 to 79):** kickoff two to four weeks after the readiness check. The check date is the anchor, not the signature. A check on 2026-11-02 with a three-week buffer gives 2026-11-02 plus 21 days. Without a dated reason for another point in the window, use three weeks, as the worked example does.
+- **Yellow (60 to 79):** kickoff two to four weeks after the readiness check. The check date is the anchor, not the signature. A check on 2026-11-02 with a three-week buffer gives 2026-11-02 plus 21 days. Without a dated reason for another point in the window, use three weeks, as the worked example does. Under Yellow a critical dimension does not hold kickoff by itself. The report lists the conditions that must be met first, and the kickoff date stays proposed until they are.
 - **Orange (40 to 59) or Red (0 to 39):** no kickoff date is set until every critical dimension reaches 3. Any date shown is marked conditional.
 - **IT lead time:** the profile's IT lead time is added to the kickoff date when no IT owner is yet named. It comes on top of the buffer, so kickoff can fall more than four weeks after the check. It is read on the check date: an IT owner named by then means no lead time is added.
 
@@ -570,7 +575,7 @@ All three examples use the PlotIQ flagship, Brackhaven Memorial Gardens, and the
 | Change Management | 10% | 3 | 0.30 | Ruth is open to the change `[Call]`. Walt is skeptical of tablets `[Call]` |
 | **Total** | **100%** | | **3.00** | |
 
-**Composite:** 3.00 ÷ 5 × 100 = **60 of 100, scored 6 of 6 (Yellow, ready with conditions)**. All six dimensions have evidence, so the Unknown Rule does not apply. The score sits at the bottom of the 60 to 79 band, and Technical is a critical dimension at 2.
+**Composite:** 3.00 ÷ 5 × 100 = **60 of 100, scored 6 of 6 (Yellow, ready with conditions)**. All six dimensions have evidence, so the Unknown Rule does not apply. The score sits at the bottom of the 60 to 79 band, and Technical is a critical dimension at 2. Under Yellow that does not hold kickoff by itself, so the five conditions below must be met before the kickoff date is firm.
 
 **Stakeholder Map:**
 
@@ -598,12 +603,12 @@ All three examples use the PlotIQ flagship, Brackhaven Memorial Gardens, and the
 | Security and compliance | `[Unknown]` | No record |
 | Multi-system complexity | Green | One source system `[CRM]` |
 
-**Three dates:**
+**Three dates, all proposed until the signature:**
 - **Kickoff:** Yellow gives a two to four week buffer from this check on 2026-11-02. Three weeks: 2026-11-02 plus 21 days = **2026-11-23** (Monday). The IT lead time is added when no IT owner is named: 2026-11-23 plus 14 days (illustrative) = **2026-12-07** (Monday). The date is proposed, and it holds only if the conditions below are met.
 - **Go-Live:** 2026-12-07 plus 49 days = **2027-01-25** (Monday). The 49 days is the profile's typical days from kickoff to go-live (illustrative). It is a planning value set from the six-week roadmap plus one week of buffer, not a measured one.
 - **Full Adoption Date:** 2026-12-07 plus two months = 2027-02-07, a Sunday. Rolled to Monday, **2027-02-08**. No other adjustment applies: one source system adds nothing, and an export format the team does not know yet subtracts nothing.
 
-**Risks (top 3):** Technical (HIGH, likelihood high on current evidence): no IT owner and an unscoped export. Mitigation: Oldgate's support runs a test export on a sample file before kickoff. Stakeholder (HIGH): the board chair is unnamed and the sponsor role is not in writing. Mitigation: Owen Pruitt asks Ruth Ellery for the chair's name and a written sponsor confirmation before the 2026-11-12 board. Adoption (MEDIUM): Walt Okonkwo's skepticism of tablets. Mitigation: the work-order pilot is shown to Walt before kickoff.
+**Risks (top 3):** Technical (HIGH, likelihood High): no IT owner and an unscoped export. Mitigation: Oldgate's support runs a test export on a sample file before kickoff. Stakeholder (HIGH, likelihood High): the board chair is unnamed and the sponsor role is not in writing. Mitigation: Owen Pruitt asks Ruth Ellery for the chair's name and a written sponsor confirmation before the 2026-11-12 board. Adoption (MEDIUM, likelihood Medium): Walt Okonkwo's skepticism of tablets. Mitigation: the work-order pilot is shown to Walt before kickoff.
 
 **Conditions before kickoff:**
 1. Brackhaven names an IT owner.
@@ -631,7 +636,7 @@ Implementation Team Confirms:
 - [ ] Integration requirements reviewed: not yet
 - [ ] Risk mitigation plan acknowledged: not yet
 
-**Output:** Composite 60 (Yellow, scored 6 of 6). The block below is the check before signature. It is issued as the handoff only after the re-run after signature.
+**Output:** Composite 60 (Yellow, scored 6 of 6). The block below is the check before signature. It is a preview: it runs before signature, no stage_recommendation is on record, and no handoff is issued until the re-run after signature.
 
 ```text
 Hand-off (read by the implementation lead and Wrap-Up):
@@ -639,7 +644,7 @@ account: Brackhaven Memorial Gardens (ACTIVE, Stage 5 Negotiate)
 run_date: 2026-11-02
 readiness_score: 60, scored 6 of 6
 dimension_scores: Stakeholder 3, Workflow 4, Technical 2, Data 3, Resource 3, Change Management 3
-three_dates: kickoff 2026-12-07 (proposed), go-live 2027-01-25, Full Adoption Date 2027-02-08
+three_dates: all proposed before signature: kickoff 2026-12-07, go-live 2027-01-25, Full Adoption Date 2027-02-08
 risks: Technical (HIGH), Stakeholder (HIGH), Adoption (MEDIUM)
 quick_wins: week one remove one manual step, month one risk audit of open plots, 90 days lookup times at baseline
 next_action: Owen Pruitt asks Ruth Ellery for the board chair's name and written sponsor confirmation by 2026-11-09
@@ -672,7 +677,7 @@ report_path: none (inline)
 - **Kickoff:** The base is 2026-11-23, one week after signature, as this example sets it. The 14-day IT lead time (illustrative) is added because no IT owner is named at this check: 2026-11-23 plus 14 days = **2026-12-07** (Monday). It is held until Technical reaches 3 by Friday 2026-12-04, which needs conditions 1 and 2 below. If it does not, kickoff moves to the first date the conditions clear. If that is Monday 2026-11-30, the lead time is added again: 2026-11-30 plus 14 days = **2026-12-14** (Monday), and the other two dates move with it. Go-live is then 2026-12-14 plus 49 days = **2027-02-01**, and the Full Adoption Date is 2026-12-14 plus two months = 2027-02-14, a Sunday, rolled to **2027-02-15**.
 - **If kickoff holds on 2026-12-07:** go-live **2027-01-25** (49 days, illustrative), and the Full Adoption Date **2027-02-08** (2027-02-07 is a Sunday, rolled to Monday).
 
-**Risks (top 3):** Technical (HIGH): no IT owner and no one briefed on the migration. Mitigation: Eli Marsh asks Ruth Ellery to name an IT owner by 2026-11-20, and Oldgate's support briefs that owner on the export. Stakeholder (HIGH): the sponsor is not named. Mitigation: the board chair's name and written sponsor confirmation are a condition of kickoff. Resource (MEDIUM): the migration and the renewal compete. Mitigation: the renewal date goes on the project plan with a parallel-run window before March 2027.
+**Risks (top 3):** Technical (HIGH, likelihood High): no IT owner and no one briefed on the migration. Mitigation: Eli Marsh asks Ruth Ellery to name an IT owner by 2026-11-20, and Oldgate's support briefs that owner on the export. Stakeholder (HIGH, likelihood High): the sponsor is not named. Mitigation: the board chair's name and written sponsor confirmation are a condition of kickoff. Resource (MEDIUM, likelihood Medium): the migration and the renewal compete. Mitigation: the renewal date goes on the project plan with a parallel-run window before March 2027.
 
 **Conditions before kickoff:**
 1. Brackhaven names an IT owner, by 2026-11-20.
@@ -719,7 +724,7 @@ report_path: none (inline)
 
 **Three dates:** Kickoff, go-live and Full Adoption Date are all **TBD**. The date rules cannot run on an unsigned deal with no confirmed board date.
 
-**Risks (top 3, ranked by the rule under Risk Categories):** Technical (HIGH, dimension 1), Resource (HIGH, dimension 2), Stakeholder (HIGH, dimension 2). Resource ranks above Stakeholder because both sit on a dimension scored 2 and Resource comes first in the table. Adoption is MEDIUM and ranks fourth, because Walt is an influencer (`[CRM]`) and the economic buyer is not in the room.
+**Risks (top 3, ranked by the rule under Risk Categories):** Technical (HIGH, likelihood High, dimension 1), Resource (HIGH, likelihood High, dimension 2), Stakeholder (HIGH, likelihood High, dimension 2). Resource ranks above Stakeholder because both sit on a dimension scored 2 and Resource comes first in the table. Adoption is MEDIUM and ranks fourth, because Walt is an influencer (`[CRM]`) and the economic buyer is not in the room.
 
 **Recommendation:** Do not proceed to kickoff. Sales re-engages first, in this order:
 1. Owen Pruitt asks Ruth Ellery to confirm the board date by 2026-10-23, the dated action the 09 HOLD requires.
@@ -790,7 +795,7 @@ report_path: none (inline)
 - `meddpicc_scores`: the eight elements, used as evidence for Stakeholder and Change Management
 - `health_score`: the deal health read, shown beside the readiness score
 - `stage_minimum_met`: whether the Stage 5 to 6 gate's handoff plan requirement is met
-- `stage_recommendation` (ADVANCE, HOLD, DOWNGRADE or DISQUALIFY): a HOLD or a DOWNGRADE means the check runs as a preview and no handoff is issued
+- `stage_recommendation` (ADVANCE, HOLD, DOWNGRADE or DISQUALIFY): a HOLD or a DOWNGRADE means the check runs as a preview and no handoff is issued. A check before signature is a preview, and no handoff is issued until the signature, whatever the recommendation. When no stage_recommendation is on record, the check is a preview too
 - `risk_patterns`: the recurring deal risks, carried into the Risk Categories as evidence
 
 **Hands to the implementation lead, outside the library, by these field names:**
@@ -821,8 +826,11 @@ The Business Case & ROI Kit (a paid Guild Pro kit) reads this skill's hand-off b
 
 ## Changelog
 
+### 2.1.4 (2026-10-26)
+- Try-it fixes from the blind retest. The composite formula states its weights as decimals, so it reads 0 to 100. The Yellow kickoff window is the buffer, and the IT lead time comes after it. A Yellow report with a critical dimension lists its conditions before kickoff. All three dates are labelled proposed before signature. Severity and likelihood follow stated rules, and each top risk states both. A check before signature is a preview. The next action names the action the owner takes. The worked examples show the date arithmetic and the likelihood of each risk.
+
 ### 2.1.3 (2026-10-26)
-- Try-it evidence completed so a strict first run reproduces Example 1, with one approved output change: the three dates now use the profile's typical days (49, illustrative) and IT lead time (14 days, illustrative). Example 1 kickoff moves from 2026-11-23 to 2026-12-07 (2026-11-02 plus 21 days, then plus 14 days), go-live from 2027-01-11 to 2027-01-25 (plus 49 days), and the Full Adoption Date from 2027-01-25 to 2027-02-08 (2027-02-07 is a Sunday, rolled to Monday). The provisional label and the [RECORD] wording are removed from the dates. Example 2 and the try-it records follow the same arithmetic. Added rules: the Yellow buffer default of three weeks, the IT lead time on top of the buffer and read on the check date, the preview scope before signature, the top-three ranking, the partial Workflow baseline, and the constrained IT case for Technical.
+- Try-it evidence completed so a strict first run reproduces Example 1, with one approved output change: the three dates now use the profile's typical days (49, illustrative) and IT lead time (14 days, illustrative). Example 1 dates now follow the profile's typical days and IT lead time, with the arithmetic shown in the example. The provisional label and the [RECORD] wording are removed from the dates. Example 2 and the try-it records follow the same arithmetic. Added rules: the Yellow buffer default of three weeks, the IT lead time on top of the buffer and read on the check date, the preview scope before signature, the top-three ranking, the partial Workflow baseline, and the constrained IT case for Technical.
 
 ### 2.1.2 (2026-10-25)
 - Try-it evidence completed so a strict first run reproduces Example 1. The Unknown Rule is added: a dimension with no evidence is INSUFFICIENT, the composite re-weights over the scored dimensions and reads with its scored count, and fewer than five scored dimensions gives no composite. Stakeholder is added as a Risk Categories row, which the example's top risk now uses. Example 1 shows the stakeholder map, the workflow baseline, the technical rows, the checklist, and the stated plan and agreed date behind its dates.

@@ -14,7 +14,7 @@ These records are as of 2026-05-12, before Brackhaven's deal reached Stage 5 Neg
 - Prep sheet: the top pain is plot records on paper [Notes]. A double sale is on file in the CRM [CRM].
 - Prep sheet question_bank [Notes] (illustrative): "When a family asks for a plot, where do you look first, and how long does that take?" and "How many plots could you sell today if the records were right?"
 - Prep sheet proof_point [Notes]: the Benchmark that most cemeteries your size carry 50 to 100 plots sold on paper and unsold on the map (deathcare research, 2026-03-27 to 2026-04-01). The Holloway Hills proof point is Illustrative and is not cited.
-- Source: a speaker-labelled transcript. Every excerpt below is verbatim, with its transcript time.
+- Source: a speaker-labelled transcript, checked end to end for silence and talk share. The excerpts below are the lines the score rests on, each verbatim with its transcript time. No pause after any answer ran past two seconds, so no silence was used [Call] (illustrative).
 - Rep talk time: 36% (illustrative) [Call].
 - 00:40, Owen: "Ruth, Walt, thanks for the time." [Call]
 - 00:50, Owen: "Today I'd like to agree the agenda: the lookups, the trust report, and what a good second session would look like." [Call]
@@ -42,5 +42,5 @@ These records are as of 2026-05-12, before Brackhaven's deal reached Stage 5 Neg
 - Call score: 24 of 35, Good (the 24 to 30 band of the restated scale).
 - Category scores: Pre-Call Preparation 4, SPIN Discovery Quality 3, Priority Ladder Execution 3, Active Listening 4, Value Articulation 3, Next Steps and Momentum 3, Alternatives 4.
 - Champion status: Developing, with two of seven shared champion tests met on this call.
-- Focus area for the next call: Priority Ladder to Level 3 on the cost of a plot lookup.
-- Next action: Owen Pruitt books a second discovery session with Ruth Ellery to quantify the lookup cost, by 2026-05-19 (illustrative).
+- Focus area for the next call: Priority Ladder to Level 3 on the cost of a plot lookup and of a double sale.
+- Next action: Owen Pruitt holds the second discovery session with Ruth Ellery on 2026-05-19, agreed by email, and quantifies the lookup cost and the double-sale cost in it (illustrative).
