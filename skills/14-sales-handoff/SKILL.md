@@ -13,7 +13,7 @@ mutating: read-write
 change_log:
   - version: 2.1.6
     date: 2026-10-26
-    summary: "The Technical score follows the constrained-IT rule wherever one known source system has no IT owner named, and the Orange rule governs the dates in the example that sits in that band, with no date set and conditional dates anchored on the readiness check date. The IT owner date in the conditions matches the next action. The adoption risk likelihood is High where a record shows the skepticism. The chair decision wording follows the family's vote, and the ready-to-sign statement is labelled a claim, since no dated record holds it. The YAML summary quote is fixed."
+    summary: "The Technical score follows the constrained-IT rule wherever one known source system has no IT owner named, and the Orange rule governs the dates in the example that sits in that band, with no date set and conditional dates anchored on the readiness check date. The IT owner date in the conditions matches the next action. The adoption risk likelihood is High where a record shows the skepticism. The chair decision wording follows the family's vote, and the ready-to-sign statement is labelled a claim, since no dated record holds it. The YAML summary quote is fixed. Call-sourced facts in the examples now carry their call dates, and a call with no date on record is tagged date Unknown."
   - version: 2.1.5
     date: 2026-10-26
     summary: "The invented CRM dated-action context line of the third run is removed, its next action carries the shared rule's date, and the CUSTOMIZE interview asks for the IT lead time in days. The next action follows the family's one deadline rule: five business days after the run date, or an earlier date the records or the skill's own schedule set for that step, named with its source. The skill's own next-action dates are recomputed under that rule, and the IT-owner condition and its risk mitigation move with the next action so the three agree. The Output Contract points to the rule."
@@ -573,12 +573,12 @@ All three examples use the PlotIQ flagship, Brackhaven Memorial Gardens, and the
 
 | Dimension | Weight | Score (1 to 5) | Weighted | Evidence |
 |---|---|---|---|---|
-| Stakeholder | 20% | 3 | 0.60 | Ruth Ellery is champion `[Call]`. The board chair is unnamed `[Unknown]` and has joined one call `[CRM]`. No sponsor confirmed in writing |
-| Workflow | 20% | 4 | 0.80 | Lookup and trust report steps mapped `[Call]`. Walt's estimate of about two plot lookups a week `[Call, 2026-09-17]` (illustrative), so a partial baseline exists. Lookup times not yet timed |
+| Stakeholder | 20% | 3 | 0.60 | Ruth Ellery is champion `[Call, 2026-10-27]`. The board chair is unnamed `[Unknown]` and has joined one call `[CRM]`. No sponsor confirmed in writing |
+| Workflow | 20% | 4 | 0.80 | Lookup and trust report steps mapped `[Call, 2026-10-27]`. Walt's estimate of about two plot lookups a week `[Call, 2026-09-17]` (illustrative), so a partial baseline exists. Lookup times not yet timed |
 | Technical | 20% | 2 | 0.40 | Oldgate named `[CRM]`. No IT contact on file `[Unknown]`. Ledger export unscoped `[Unknown]` |
-| Data | 15% | 3 | 0.45 | The trust ledger holds both sites' trust numbers in one place `[Notes]` (illustrative). Plot records on paper `[Call]`, with uneven quality and some re-entry by hand during the transition `[Notes]` (illustrative). Deed scans scheduled for weeks 2 to 3 (illustrative) |
+| Data | 15% | 3 | 0.45 | The trust ledger holds both sites' trust numbers in one place `[Notes]` (illustrative). Plot records on paper `[Call, 2026-10-27]`, with uneven quality and some re-entry by hand during the transition `[Notes]` (illustrative). Deed scans scheduled for weeks 2 to 3 (illustrative) |
 | Resource | 15% | 3 | 0.45 | Eli Marsh assigned `[CRM]`, and shared with another implementation through the end of the year `[CRM]` (illustrative). The March 2027 Oldgate renewal competes for the same people `[Notes]` (illustrative) |
-| Change Management | 10% | 3 | 0.30 | Ruth is open to the change `[Call]`. Walt is skeptical of tablets `[Call]` |
+| Change Management | 10% | 3 | 0.30 | Ruth is open to the change `[Call, 2026-10-27]`. Walt is skeptical of tablets `[Call, 2026-09-21]` |
 | **Total** | **100%** | | **3.00** | |
 
 **Composite:** 3.00 ÷ 5 × 100 = **60 of 100, scored 6 of 6 (Yellow, ready with conditions)**. All six dimensions have evidence, so the Unknown Rule does not apply. The score sits at the bottom of the 60 to 79 band, and Technical is a critical dimension at 2. Under Yellow that does not hold kickoff by itself, so the five conditions below must be met before the kickoff date is firm.
@@ -587,15 +587,15 @@ All three examples use the PlotIQ flagship, Brackhaven Memorial Gardens, and the
 
 | Name | Title | Implementation Role | Engagement | Contact |
 |---|---|---|---|---|
-| Ruth Ellery | General Manager | Implementation Champion (also the sales champion) | Active on calls `[Call]` | On file `[CRM]` |
+| Ruth Ellery | General Manager | Implementation Champion (also the sales champion) | Active on calls `[Call, 2026-10-27]` | On file `[CRM]` |
 | Family board chair | Board chair, name `[Unknown]` | Executive Sponsor | Joined one call `[CRM]` | `[Unknown]` |
-| Walt Okonkwo | Operations Director | Power User | Skeptical of tablets `[Call]` | On file `[CRM]` |
+| Walt Okonkwo | Operations Director | Power User | Skeptical of tablets `[Call, 2026-09-21]` | On file `[CRM]` |
 | Priscilla Dunmore | Pre-need manager | Power User, pre-need intake | `[Unknown]` | On file `[CRM]` |
 | `[Unknown]` | No IT contact on file | IT Lead | Not engaged `[Unknown]` | `[Unknown]` |
 | `[Unknown]` | `[Unknown]` | Data Owner | `[Unknown]` | `[Unknown]` |
 | Eli Marsh | Implementation Lead | Implementation owner | Assigned `[CRM]` | Profile |
 
-**Current-State Workflow:** Plot lookups and the trust report are mapped `[Call]`. The trust report is built by hand from the ledger `[Call]`. Walt estimates about two plot lookups a week `[Call, 2026-09-17]` (illustrative). Lookup times have not been timed by the team.
+**Current-State Workflow:** Plot lookups and the trust report are mapped `[Call, 2026-10-27]`. The trust report is built by hand from the ledger `[Call, 2026-10-27]`. Walt estimates about two plot lookups a week `[Call, 2026-09-17]` (illustrative). Lookup times have not been timed by the team.
 
 **Technical Environment:**
 
@@ -604,7 +604,7 @@ All three examples use the PlotIQ flagship, Brackhaven Memorial Gardens, and the
 | Source system identified | Yellow | Oldgate Ledger Pro `[CRM]`, in an export format the team does not know yet |
 | Data export capability | Yellow | The vendor confirms a trust ledger export `[Notes]` (illustrative). IT can run it only once an owner is named |
 | Integration readiness | `[Unknown]` | No record of this team doing an integration |
-| Data quality | Yellow | Paper plot records, uneven in quality `[Call]`, `[Notes]` (illustrative) |
+| Data quality | Yellow | Paper plot records, uneven in quality `[Call, 2026-10-27]`, `[Notes]` (illustrative) |
 | IT availability | Red | No IT owner on file `[Unknown]` |
 | Security and compliance | `[Unknown]` | No record |
 | Multi-system complexity | Green | One source system `[CRM]` |
@@ -669,12 +669,12 @@ report_path: none (inline)
 
 | Dimension | Weight | Score (1 to 5) | Weighted | Evidence |
 |---|---|---|---|---|
-| Stakeholder | 20% | 3 | 0.60 | Ruth Ellery is champion `[Call]`. The board chair is unnamed `[Unknown]`. No sponsor confirmed in writing |
-| Workflow | 20% | 4 | 0.80 | Steps mapped with Walt Okonkwo's team `[Call]`. Lookup times not yet timed |
+| Stakeholder | 20% | 3 | 0.60 | Ruth Ellery is champion `[Call, 2026-10-27]`. The board chair is unnamed `[Unknown]`. No sponsor confirmed in writing |
+| Workflow | 20% | 4 | 0.80 | Steps mapped with Walt Okonkwo's team `[Call, 2026-10-27]`. Lookup times not yet timed |
 | Technical | 20% | 2 | 0.40 | Oldgate confirmed the export `[Notes]`, illustrative. No IT owner `[Unknown]`. Nobody briefed on the migration `[Notes]`, illustrative |
-| Data | 15% | 3 | 0.45 | Export confirmed by the vendor but not tested on a sample. Plot records on paper `[Call]` |
+| Data | 15% | 3 | 0.45 | Export confirmed by the vendor but not tested on a sample. Plot records on paper `[Call, 2026-10-27]` |
 | Resource | 15% | 2 | 0.30 | The migration and the March 2027 renewal compete for the same people (illustrative) |
-| Change Management | 10% | 3 | 0.30 | Ruth champions the change `[Call]`. Walt is skeptical of tablets `[Call]` |
+| Change Management | 10% | 3 | 0.30 | Ruth champions the change `[Call, 2026-10-27]`. Walt is skeptical of tablets `[Call, 2026-09-21]` |
 | **Total** | **100%** | | **2.85** | |
 
 **Composite:** 2.85 ÷ 5 × 100 = **57 of 100 (Orange, at risk)**. Technical and Resource are critical dimensions at 2, so the Orange rule holds kickoff until both reach 3.
@@ -719,12 +719,12 @@ report_path: none (inline)
 
 | Dimension | Weight | Score (1 to 5) | Weighted | Evidence |
 |---|---|---|---|---|
-| Stakeholder | 20% | 2 | 0.40 | Only the sales champion is engaged `[Call]`. No sponsor or IT lead introduced |
+| Stakeholder | 20% | 2 | 0.40 | Only the sales champion is engaged `[Call, 2026-09-26]`. No sponsor or IT lead introduced |
 | Workflow | 20% | 2 | 0.40 | Limited notes. The process is not mapped, and no lookup is timed `[Notes]` |
 | Technical | 20% | 2 | 0.40 | Oldgate named `[CRM]`, one known source system. No IT contact `[Unknown]`, so IT counts as constrained and Technical scores 2. Export not examined `[Unknown]` |
-| Data | 15% | 2 | 0.30 | Paper plot records. The ledger export has not been examined `[Call]` |
+| Data | 15% | 2 | 0.30 | Paper plot records. The ledger export has not been examined `[Call, 2026-09-26]` |
 | Resource | 15% | 2 | 0.30 | The board date is not confirmed, and the champion has been silent for 16 days `[CRM]` |
-| Change Management | 10% | 2 | 0.20 | Walt is skeptical of tablets `[Call]`. The team has not been briefed `[Notes]` |
+| Change Management | 10% | 2 | 0.20 | Walt is skeptical of tablets `[Call, 2026-09-21]`. The team has not been briefed `[Notes]` |
 | **Total** | **100%** | | **2.00** | |
 
 **Composite:** 2.00 ÷ 5 × 100 = **40 of 100 (Orange, at risk)**. Orange holds kickoff. No handoff is issued, because this check runs before signature as a preview.
@@ -839,6 +839,7 @@ The Business Case & ROI Kit (a paid Guild Pro kit) reads this skill's hand-off b
 - The adoption risk likelihood in the first example is High, because the record shows the skepticism.
 - The chair decision wording follows the family's vote. The "ready to sign" statement is labelled a claim, since no dated record holds it.
 - The buyer-contact wording in the third example names the contact who has replied since 2026-10-03.
+- Call-sourced facts in the examples carry their call dates. Each bare call tag is dated to the call that holds the fact, and a call with no date on record is written `[Call, date Unknown]`.
 
 ### 2.1.5 (2026-10-26)
 - The invented CRM dated-action context line of the third run is removed, and its next action and the IT-owner dates in the second run carry the shared rule's dates.

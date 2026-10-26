@@ -14,6 +14,9 @@ change_log:
   - version: 2.1.6
     date: 2026-10-26
     summary: "Consistency pass against the 2.1.5 audit. The Sable Fork example is graded on the discovery call that the BDR booked for the Thursday after the run date, and it is re-dated to match. The demo example is dated to the Stage 3 demo that the record places before the later stages, and its scores are re-checked against the rubric rows, with the band and the total recomputed. The Pre-Call Preparation and Pain Alignment rules are applied as written in both examples."
+  - version: 2.1.6
+    date: 2026-10-26
+    summary: "Call-sourced facts carry their call dates. Each bare [Call] tag that tags a fact in an example now carries the date of the call it comes from: Example 1 and its quotes 2026-05-12, Example 2 2026-10-22, and Example 3 2026-08-20, with its discovery reference to tablets dated 2026-05-12. Tag names in the contract and rule text are unchanged."
   - version: 2.1.5
     date: 2026-10-26
     summary: "The next action follows the family's one deadline rule: five business days after the run date, or an earlier date the records or the call set for that step, named with its source. A date agreed on the call or by email is the step's date, and the line names how it was agreed. The skill's own not-yet-agreed [Unknown] date is replaced by the shared rule. The Example 3 next action carries its recomputed date."
@@ -758,13 +761,13 @@ All three examples use the PlotIQ example company and its cast. Every call-level
 
 | Category | Score (1 to 5) | Evidence |
 |---|---|---|
-| Pre-Call Preparation | 4 | Opened on the prep sheet's top pain, plot records on paper (`[Notes]`), and asked about the lookup at 02:10 (`[Call]`). Referred to both attendees by name at 00:40 (`[Call]`), set the agenda at 00:50 (`[Call]`), and named each attendee's title at 01:10 (`[Call]`). Did not check the double sale on file (`[CRM]`) before asking about it. |
+| Pre-Call Preparation | 4 | Opened on the prep sheet's top pain, plot records on paper (`[Notes]`), and asked about the lookup at 02:10 (`[Call, 2026-05-12]`). Referred to both attendees by name at 00:40 (`[Call, 2026-05-12]`), set the agenda at 00:50 (`[Call, 2026-05-12]`), and named each attendee's title at 01:10 (`[Call, 2026-05-12]`). Did not check the double sale on file (`[CRM]`) before asking about it. |
 | SPIN Discovery Quality | 3 | Situation and Problem well executed. Implication started at 19:05 and was cut short. Need-Payoff not reached. Two phases well executed, one started. |
-| Priority Ladder Execution | 3 | Identified the plot lookup and described it, Level 2 (`[Call]`, 14:20). Not quantified: no count and no time. |
-| Active Listening | 4 | Rep talk time 36% (illustrative), inside the discovery band (`[Call]`). Restated the files at 16:40 and clarified at 09:15 (`[Call]`). No silence used, so one listening technique is missing. One follow-up missing at 21:30, where Ruth described the lookups and Owen moved on. |
-| Value Articulation | 3 | Generic pitch at 25:00 ("it fixes the paper problem," `[Call]`). No proof point used. The double sale was asked about, but not tied to the value. |
-| Next Steps and Momentum | 3 | Owen asked for the approval body's chair and the meeting date at 28:30. Ruth said she would check with the board (`[Call]`). No date set on the call. Vague. |
-| Alternatives | 4 | Asked what was tried before. Ruth said they began moving plots into the Oldgate system and stopped (`[Call]`, 17:05). Owen asked why it stopped. Cost not asked. |
+| Priority Ladder Execution | 3 | Identified the plot lookup and described it, Level 2 (`[Call, 2026-05-12]`, 14:20). Not quantified: no count and no time. |
+| Active Listening | 4 | Rep talk time 36% (illustrative), inside the discovery band (`[Call, 2026-05-12]`). Restated the files at 16:40 and clarified at 09:15 (`[Call, 2026-05-12]`). No silence used, so one listening technique is missing. One follow-up missing at 21:30, where Ruth described the lookups and Owen moved on. |
+| Value Articulation | 3 | Generic pitch at 25:00 ("it fixes the paper problem," `[Call, 2026-05-12]`). No proof point used. The double sale was asked about, but not tied to the value. |
+| Next Steps and Momentum | 3 | Owen asked for the approval body's chair and the meeting date at 28:30. Ruth said she would check with the board (`[Call, 2026-05-12]`). No date set on the call. Vague. |
+| Alternatives | 4 | Asked what was tried before. Ruth said they began moving plots into the Oldgate system and stopped (`[Call, 2026-05-12]`, 17:05). Owen asked why it stopped. Cost not asked. |
 | **Total** | | **24 of 35, scored 7 of 7** |
 
 Assessment: Good, in the 24 to 30 band of the restated scale (see Step 2 for the arithmetic). All seven categories have evidence, so the Unknown Rule does not apply.
@@ -778,48 +781,48 @@ Assessment: Good, in the 24 to 30 band of the restated scale (see Step 2 for the
 | Implication | "So that's a problem for the trust report too?" (19:05) | Weak | "If an auditor asked for last year's trust fund records today, how long would the pull take?" |
 | Need-Payoff | None asked | Missing | "What would it mean for your team if a plot answer took 20 seconds instead of 20 minutes?" |
 
-**Pain Discovery Map:** The plot-records pain, with its depth level. The phrase "We have files that date back to the 1970s" (09:15, `[Call]`) is on the profile's listen-for list for plot records on paper. The pain reached Level 2 (described) at 14:20. It did not reach Level 3, which is the minimum for a strong business case.
+**Pain Discovery Map:** The plot-records pain, with its depth level. The phrase "We have files that date back to the 1970s" (09:15, `[Call, 2026-05-12]`) is on the profile's listen-for list for plot records on paper. The pain reached Level 2 (described) at 14:20. It did not reach Level 3, which is the minimum for a strong business case.
 
 **Key Moments:**
 
-- **Discovery breakthrough (14:20):** Ruth: "We sold section F twice last spring." `[Call]`. Priority Ladder Level 2. The double sale is the note on file (`[CRM]`), now confirmed in her words.
-- **Buying signal, captured, kind need (09:15):** Ruth: "We have files that date back to the 1970s." `[Call]`. Owen asked "How far back do they go?"
-- **Objection (23:40):** Walt: "I don't want my crew walking around with a tablet in a cemetery." `[Call]`. Type: skepticism. Owen's response: "They're just screens, you can use them at the desk." `[Call]`.
-- **Competitive intelligence (17:05):** Ruth: "We started moving plots into Oldgate and stopped." `[Call]`. Incumbent type: direct software. Oldgate Ledger Pro, renewal March 2027 (`[CRM]`).
-- **Missed opportunity (28:30):** Ruth: "The board takes these things up." Owen: "Great, thanks." `[Call]`. The question that should have followed: "Who sits on the board, and when does it next meet?"
-- **Red flag, MEDIUM (31:10):** Ruth: "We don't really have an IT person." `[Call]`. Recovery: ask who installs the system and who holds the ledger data, before the next session.
+- **Discovery breakthrough (14:20):** Ruth: "We sold section F twice last spring." `[Call, 2026-05-12]`. Priority Ladder Level 2. The double sale is the note on file (`[CRM]`), now confirmed in her words.
+- **Buying signal, captured, kind need (09:15):** Ruth: "We have files that date back to the 1970s." `[Call, 2026-05-12]`. Owen asked "How far back do they go?"
+- **Objection (23:40):** Walt: "I don't want my crew walking around with a tablet in a cemetery." `[Call, 2026-05-12]`. Type: skepticism. Owen's response: "They're just screens, you can use them at the desk." `[Call, 2026-05-12]`.
+- **Competitive intelligence (17:05):** Ruth: "We started moving plots into Oldgate and stopped." `[Call, 2026-05-12]`. Incumbent type: direct software. Oldgate Ledger Pro, renewal March 2027 (`[CRM]`).
+- **Missed opportunity (28:30):** Ruth: "The board takes these things up." Owen: "Great, thanks." `[Call, 2026-05-12]`. The question that should have followed: "Who sits on the board, and when does it next meet?"
+- **Red flag, MEDIUM (31:10):** Ruth: "We don't really have an IT person." `[Call, 2026-05-12]`. Recovery: ask who installs the system and who holds the ledger data, before the next session.
 
 **Framework-Specific Coaching:**
 
 **Top 3 Strengths**
 
-1. **Strength, Strong.** At 02:10 Owen asked, "When a family asks for a plot, where do you look first, and how long does that take?" `[Call]`. The question went to the process before the product. Keep it as the opener.
-2. **Owen followed up, Strong.** At 09:15 Ruth said, "We have files that date back to the 1970s." Owen asked, "How far back do they go?" `[Call]`. The follow-up opened the depth of the records.
-3. **Owen asked why the move stopped, Strong.** At 17:05 Ruth said, "We started moving plots into Oldgate and stopped." Owen asked why it stopped `[Call]`. That question is what the Alternatives score rests on.
+1. **Strength, Strong.** At 02:10 Owen asked, "When a family asks for a plot, where do you look first, and how long does that take?" `[Call, 2026-05-12]`. The question went to the process before the product. Keep it as the opener.
+2. **Owen followed up, Strong.** At 09:15 Ruth said, "We have files that date back to the 1970s." Owen asked, "How far back do they go?" `[Call, 2026-05-12]`. The follow-up opened the depth of the records.
+3. **Owen asked why the move stopped, Strong.** At 17:05 Ruth said, "We started moving plots into Oldgate and stopped." Owen asked why it stopped `[Call, 2026-05-12]`. That question is what the Alternatives score rests on.
 
 **Top 3 Improvement Areas**
 
-1. **Quantify the double sale, Strong.** At 14:20 Ruth said, "We sold section F twice last spring." `[Call]`. Owen moved on in the same breath, so the Priority Ladder stopped at Level 2. Practice: "How many plots did that cost you last year, and how long did each lookup take?"
+1. **Quantify the double sale, Strong.** At 14:20 Ruth said, "We sold section F twice last spring." `[Call, 2026-05-12]`. Owen moved on in the same breath, so the Priority Ladder stopped at Level 2. Practice: "How many plots did that cost you last year, and how long did each lookup take?"
 2. **Benchmark for the tablet objection, Moderate.** At 23:40 Walt raised tablets. Owen's answer is paraphrased in the notes, so the grade is Moderate.
-   - **Situation:** Walt's skepticism of tablets, 23:40 (`[Call]`).
+   - **Situation:** Walt's skepticism of tablets, 23:40 (`[Call, 2026-05-12]`).
    - **Proof point:** "most cemeteries your size carry 50 to 100 plots that are sold on paper and unsold on the map" (Benchmark, deathcare research, 2026-03-27 to 2026-04-01). The Holloway Hills proof point is Illustrative, so it is not cited.
    - **Coaching moment:** Say the benchmark, then ask, "How does that compare with what your crew sees?"
-3. **The board question and the close, Strong, with a Weak part.** At 28:30 Ruth said the board takes these things up, and Owen said "Great, thanks" (`[Call]`). The chair's name and the meeting date were both within reach. Ask, "Who sits on the board, and when does it next meet?" The chair is still `[Unknown]` after this call. The last two minutes of the transcript contain no date for the next step. Inferred from what did not happen, so that part is Weak. Practice: set a date before the call ends.
+3. **The board question and the close, Strong, with a Weak part.** At 28:30 Ruth said the board takes these things up, and Owen said "Great, thanks" (`[Call, 2026-05-12]`). The chair's name and the meeting date were both within reach. Ask, "Who sits on the board, and when does it next meet?" The chair is still `[Unknown]` after this call. The last two minutes of the transcript contain no date for the next step. Inferred from what did not happen, so that part is Weak. Practice: set a date before the call ends.
 
 **MEDDIC Status:**
 
 | Element | Grade | Evidence |
 |---|---|---|
-| Metrics | PARTIAL | The double sale is named (14:20, `[Call]`), but no count and no cost. The lookup is at Level 2. |
+| Metrics | PARTIAL | The double sale is named (14:20, `[Call, 2026-05-12]`), but no count and no cost. The lookup is at Level 2. |
 | Economic Buyer | DEVELOPING | Ruth is named as GM and buyer `[CRM]`. The board chair is named by no one `[Unknown]`. |
-| Decision Criteria | PARTIAL | Ruth asks what the board would need (33:00, `[Call]`). The criteria are not stated. |
-| Decision Process | PARTIAL | The board takes these items up (28:30, `[Call]`). No date and no approval steps. |
-| Identified Pain | SURFACE | Plot records on paper, described at Level 2 (14:20, `[Call]`). |
+| Decision Criteria | PARTIAL | Ruth asks what the board would need (33:00, `[Call, 2026-05-12]`). The criteria are not stated. |
+| Decision Process | PARTIAL | The board takes these items up (28:30, `[Call, 2026-05-12]`). No date and no approval steps. |
+| Identified Pain | SURFACE | Plot records on paper, described at Level 2 (14:20, `[Call, 2026-05-12]`). |
 | Champion | DEVELOPING | Two of seven shared tests met (below). |
 
-**Champion status:** Developing. Two of seven shared champion tests met on this call, each tagged: shares competitor intelligence (17:05, `[Call]`: "We started moving plots into Oldgate and stopped.") and asks how to help (33:00, `[Call]`: "What would you need from us to put this in front of the board?"). The 28:30 exchange is about process, the board taking the item up, so it is not counted as a test. Ruth's stronger status comes from later calls, not this one.
+**Champion status:** Developing. Two of seven shared champion tests met on this call, each tagged: shares competitor intelligence (17:05, `[Call, 2026-05-12]`: "We started moving plots into Oldgate and stopped.") and asks how to help (33:00, `[Call, 2026-05-12]`: "What would you need from us to put this in front of the board?"). The 28:30 exchange is about process, the board taking the item up, so it is not counted as a test.
 
-**Competitive Intel Summary:** Current solution: Oldgate Ledger Pro, direct software (`[CRM]`). Contract: renewal in March 2027 (`[CRM]`). Satisfaction: not stated on this call (`[Unknown]`). The gap: the move into Oldgate began and stopped (17:05, `[Call]`), and the cost of the stop was not asked. The probe that went unasked is what the move cost.
+**Competitive Intel Summary:** Current solution: Oldgate Ledger Pro, direct software (`[CRM]`). Contract: renewal in March 2027 (`[CRM]`). Satisfaction: not stated on this call (`[Unknown]`). The gap: the move into Oldgate began and stopped (17:05, `[Call, 2026-05-12]`), and the cost of the stop was not asked. The probe that went unasked is what the move cost.
 
 **Deal Health Impact:** Before this call: `[Unknown]`, because no Deal Pulse (08) exists for this account in the records. After this call: the Stage 2 to 3 gate in the profile needs the records problem quantified (plots, hours or dollars) and the GM named as the likely economic buyer. Ruth is named as GM and buyer (`[CRM]`). The problem is not yet quantified, so the gate is not met, and this call does not move the deal to a demo.
 
@@ -856,13 +859,13 @@ report_path: none (inline)
 
 | Category | Score (1 to 5) | Evidence |
 |---|---|---|
-| Pre-Call Preparation | 4 | Used the prep sheet's hypothesis that the plot list lives in a spreadsheet (`[Inferred]`), and a version of its plot-list question at 06:40 (`[Call]`), which counts as referenced account research. Did not confirm who filled in the website form, which the sheet lists as `[Unknown]`. |
-| SPIN Discovery Quality | 3 | Situation well executed (06:40, `[Call]`). The Problem phase began but the lookup count was not asked. Implication and Need-Payoff not reached. |
-| Priority Ladder Execution | 3 | Described the lookup at Level 2 (19:30, `[Call]`). Not quantified. |
+| Pre-Call Preparation | 4 | Used the prep sheet's hypothesis that the plot list lives in a spreadsheet (`[Inferred]`), and a version of its plot-list question at 06:40 (`[Call, 2026-10-22]`), which counts as referenced account research. Did not confirm who filled in the website form, which the sheet lists as `[Unknown]`. |
+| SPIN Discovery Quality | 3 | Situation well executed (06:40, `[Call, 2026-10-22]`). The Problem phase began but the lookup count was not asked. Implication and Need-Payoff not reached. |
+| Priority Ladder Execution | 3 | Described the lookup at Level 2 (19:30, `[Call, 2026-10-22]`). Not quantified. |
 | Active Listening | 4 | Rep talk time 38% (illustrative), inside the discovery band. Restated the lookups well at 18:30. Missed the count at 18:45. |
-| Value Articulation | 3 | Referred to "other cemeteries" with no figure at 29:00 (`[Call]`). No proof point used. |
+| Value Articulation | 3 | Referred to "other cemeteries" with no figure at 29:00 (`[Call, 2026-10-22]`). No proof point used. |
 | Next Steps and Momentum | 4 | Booked a second discovery session with Arlen Biggs on a named date, 2026-10-29 (illustrative), with Owen as owner. Other attendees not named. |
-| Alternatives | 3 | Asked about the current process only, the spreadsheet (06:40, `[Call]`). Did not ask whether anything else was tried. |
+| Alternatives | 3 | Asked about the current process only, the spreadsheet (06:40, `[Call, 2026-10-22]`). Did not ask whether anything else was tried. |
 | **Total** | | **24 of 35, scored 7 of 7** |
 
 Assessment: Good, in the 24 to 30 band of the restated scale. The Pre-Call Preparation score is 4 because a prep-sheet question the rep used on the call counts as referenced account research.
@@ -878,25 +881,25 @@ Assessment: Good, in the 24 to 30 band of the restated scale. The Pre-Call Prepa
 
 **Key Moments:**
 
-- **Discovery breakthrough (18:30):** Arlen: "I do most of the lookups myself." `[Call]`. Priority Ladder Level 2.
+- **Discovery breakthrough (18:30):** Arlen: "I do most of the lookups myself." `[Call, 2026-10-22]`. Priority Ladder Level 2.
 - **Missed opportunity (18:45):** Owen did not ask how many lookups happen in a week or how long each takes. The question that should have followed is the profile's discovery question for this pain, "What does a 20-minute lookup cost you, versus 20 seconds?"
-- **Buying signal, captured (33:10):** Arlen asked how long setup takes. Owen answered that go-live is in about six weeks (`[Call]`, the profile's roadmap). Captured.
-- **Competitive intelligence (09:20):** The current process is a spreadsheet (`[Call]`). Incumbent type: manual process. Contract status: none.
+- **Buying signal, captured (33:10):** Arlen asked how long setup takes. Owen answered that go-live is in about six weeks (`[Call, 2026-10-22]`, the profile's roadmap). Captured.
+- **Competitive intelligence (09:20):** The current process is a spreadsheet (`[Call, 2026-10-22]`). Incumbent type: manual process. Contract status: none.
 - **Commitment (40:20):** Arlen agreed to a second discovery session with Owen on 2026-10-29 (illustrative). Attendees: Arlen only. Owner: Owen.
-- **Red flag, MEDIUM (44:00):** Arlen: "Nobody else looks at the list." `[Call]`. One person holds the data. Recovery: ask who else needs the list, by role.
+- **Red flag, MEDIUM (44:00):** Arlen: "Nobody else looks at the list." `[Call, 2026-10-22]`. One person holds the data. Recovery: ask who else needs the list, by role.
 
 **Coaching Points:**
 
-1. **Strength, Strong.** At 06:40 Owen asked, "Where does the plot list live, and who updates it?" `[Call]`. Keep the question.
-2. **Count the lookups, Strong.** At 18:30 Arlen said, "I do most of the lookups myself" (`[Call]`). Owen moved to the next topic at 18:45 without a count. Practice: "How many lookups does a typical week include, and how long does each one take?"
+1. **Strength, Strong.** At 06:40 Owen asked, "Where does the plot list live, and who updates it?" `[Call, 2026-10-22]`. Keep the question.
+2. **Count the lookups, Strong.** At 18:30 Arlen said, "I do most of the lookups myself" (`[Call, 2026-10-22]`). Owen moved to the next topic at 18:45 without a count. Practice: "How many lookups does a typical week include, and how long does each one take?"
 3. **Name a proof point without a number, Moderate.** At 29:00 Owen said other cemeteries have the same problem. The notes paraphrase the reply, so the grade is Moderate.
-   - **Situation:** the lookup problem, 29:00 (`[Call]`).
+   - **Situation:** the lookup problem, 29:00 (`[Call, 2026-10-22]`).
    - **Proof point:** Fennick Gardens, 212 unsold plots found in 90 days. Status Illustrative, do not cite. The rep uses the Benchmark instead: "most cemeteries your size carry 50 to 100 plots that are sold on paper and unsold on the map" (Benchmark, deathcare research, 2026-03-27 to 2026-04-01).
    - **Coaching moment:** Say the benchmark, then ask, "How many of those do you think you have?"
-4. **Second discovery, not a demo, Strong.** At 40:20 Owen did not offer a demo. He booked a second discovery session: "I'd like to see the list before I show you anything" (`[Call]`). Keep this. It is the right step while the pain is unconfirmed.
+4. **Second discovery, not a demo, Strong.** At 40:20 Owen did not offer a demo. He booked a second discovery session: "I'd like to see the list before I show you anything" (`[Call, 2026-10-22]`). Keep this. It is the right step while the pain is unconfirmed.
 5. **Who else holds the list, Weak.** After Arlen said, "Nobody else looks at the list" (44:00), Owen did not ask who else needs it. Inferred from the question that did not come, so the grade is Weak. Practice: ask who else needs the list, by role.
 
-**Champion status:** Developing. One of seven shared champion tests met on this call: commits to a next step with a date (40:20, `[Call]`).
+**Champion status:** Developing. One of seven shared champion tests met on this call: commits to a next step with a date (40:20, `[Call, 2026-10-22]`).
 
 **Deal Health Impact:** Sable Fork is INBOUND, so no ACTIVE stage gate applies yet. The pain is not confirmed: the lookup count is missing. The next step is a second discovery session, not a demo. The verdict stays MANUAL REVIEW.
 
@@ -925,7 +928,7 @@ report_path: none (inline)
 
 ### Example 3: Demo Call (Needs Improvement, Non-Success), Brackhaven Memorial Gardens
 
-**Context:** Owen Pruitt (Account Executive, illustrative assignment) demoed to Walt Okonkwo, Operations Director, and two operations staff at Brackhaven Memorial Gardens (`[CRM]`). Ruth Ellery, the General Manager and champion, was not in the room. The deal is ACTIVE at Stage 3 Demo on the call date (`[CRM]`, illustrative). In discovery, Walt said he is skeptical of tablets (`[Call]`). This is the non-success case: the call did not answer the one objection that mattered to the room. The source is the call transcript (illustrative). The call date is 2026-08-20 (illustrative), and the call length is 60 minutes (illustrative).
+**Context:** Owen Pruitt (Account Executive, illustrative assignment) demoed to Walt Okonkwo, Operations Director, and two operations staff at Brackhaven Memorial Gardens (`[CRM]`). Ruth Ellery, the General Manager and champion, was not in the room. The deal is ACTIVE at Stage 3 Demo on the call date (`[CRM]`, illustrative). In discovery, Walt said he is skeptical of tablets (`[Call, 2026-05-12]`). This is the non-success case: the call did not answer the one objection that mattered to the room. The source is the call transcript (illustrative). The call date is 2026-08-20 (illustrative), and the call length is 60 minutes (illustrative).
 
 **Input:** "Coach the demo for Brackhaven Memorial Gardens. call_type = demo"
 
@@ -933,14 +936,14 @@ report_path: none (inline)
 
 | Category | Score (1 to 5) | Evidence |
 |---|---|---|
-| Meeting Opening | 2 | Went to the screen at 03:10 with no reference to the discovery pains (`[Call]`). No agreed outcome. |
-| Meeting Closing | 2 | The close was "Any questions?" at 58:20 (`[Call]`). No owner, no date. |
-| Teach and Tailor | 3 | The trust report and the mobile app were shown in menu order, not in the order of Walt's pain (`[Call]`, 12:00 to 40:00). |
-| Pain Alignment and Proof | 1 | No pain reference at all: no pain named before any workflow, and Ruth's discovery pains not referenced. No proof cited (`[Call]`). Row 1 applies. |
+| Meeting Opening | 2 | Went to the screen at 03:10 with no reference to the discovery pains (`[Call, 2026-08-20]`). No agreed outcome. |
+| Meeting Closing | 2 | The close was "Any questions?" at 58:20 (`[Call, 2026-08-20]`). No owner, no date. |
+| Teach and Tailor | 3 | The trust report and the mobile app were shown in menu order, not in the order of Walt's pain (`[Call, 2026-08-20]`, 12:00 to 40:00). |
+| Pain Alignment and Proof | 1 | No pain reference at all: no pain named before any workflow, and Ruth's discovery pains not referenced. No proof cited (`[Call, 2026-08-20]`). Row 1 applies. |
 | Question the Problem | 2 | No Prime Pain before any workflow, and no requirements check at a transition. The close did not ask what excited the buyer. |
 | Pain-to-Workflow Mapping | 2 | Walt's "zero wrong-plot burials" and "find the plot in seconds" pains never came up. Weak grade: inferred from what did not happen. |
-| Prospect Engagement | 2 | Prospect talk time 34% (illustrative), 16 points under the demo band's 50% floor, so 2 on the rubric. Walt asked two questions, both about tablets (`[Call]`). |
-| Resistance Handling | 3 | Walt's tablet objection met with a reassurance and a second feature, not a question (`[Call]`, 23:40). |
+| Prospect Engagement | 2 | Prospect talk time 34% (illustrative), 16 points under the demo band's 50% floor, so 2 on the rubric. Walt asked two questions, both about tablets (`[Call, 2026-08-20]`). |
+| Resistance Handling | 3 | Walt's tablet objection met with a reassurance and a second feature, not a question (`[Call, 2026-08-20]`, 23:40). |
 | **Total** | | **17 of 40, scored 8 of 8** |
 
 Assessment: Poor, in the 10 to 17 band of the demo scale (feature touring or monologue).
@@ -959,14 +962,14 @@ Assessment: Poor, in the 10 to 17 band of the demo scale (feature touring or mon
 
 **Per-attendee blocks:**
 
-- **Attendee: Walt Okonkwo, Operations Director.** Buying role: influencer (`[CRM]`). Pain they own: paper work orders, and finding the plot in seconds (`[CRM]`, Buyer Personas). Question they asked: two questions, both about tablets, and no question about the plot lookup (`[Call]`). What they need to see: the plot found in seconds, on their own records. Engagement: active on the tablet question, silent on the lookup.
+- **Attendee: Walt Okonkwo, Operations Director.** Buying role: influencer (`[CRM]`). Pain they own: paper work orders, and finding the plot in seconds (`[CRM]`, Buyer Personas). Question they asked: two questions, both about tablets, and no question about the plot lookup (`[Call, 2026-08-20]`). What they need to see: the plot found in seconds, on their own records. Engagement: active on the tablet question, silent on the lookup.
 - **Attendee: two operations staff, names `[Unknown]`.** Buying role: `[Unknown]`. Pain they own: `[Unknown]`. The transcript does not label them, so their engagement is Unknown.
 
 **Technical checklist:**
 
 1. Screen share and audio tested before the start: Unknown. Neither the notes nor the transcript show it.
 2. Every attendee's access confirmed: Unknown.
-3. The data shown was the prospect's own: No. Owen said at 12:00, "this is our sample cemetery" (`[Call]`).
+3. The data shown was the prospect's own: No. Owen said at 12:00, "this is our sample cemetery" (`[Call, 2026-08-20]`).
 4. Backup ready if the screen failed: Unknown.
 5. Attendee names matched the invitation: Partly. Walt's name matched. The two staff names are `[Unknown]`.
 
@@ -974,18 +977,18 @@ Assessment: Poor, in the 10 to 17 band of the demo scale (feature touring or mon
 
 **Key Moments:**
 
-- **Objection (23:40):** Walt: "I don't believe tablets will hold up out there." `[Call]`. Type: skepticism. Response given: a reassurance, "They're rugged, you'll like them." Not captured.
+- **Objection (23:40):** Walt: "I don't believe tablets will hold up out there." `[Call, 2026-08-20]`. Type: skepticism. Response given: a reassurance, "They're rugged, you'll like them." Not captured.
 - **Missed opportunity (12:00 onward):** the paper work-order pain was never raised. The question that should have been asked: "Walk me through what a work order looks like on paper, from the counter to the crew."
-- **Competitive intelligence (31:15):** Walt said the ledger runs on Oldgate `[Call]`. Incumbent type: direct software. Renewal March 2027 (`[CRM]`).
+- **Competitive intelligence (31:15):** Walt said the ledger runs on Oldgate `[Call, 2026-08-20]`. Incumbent type: direct software. Renewal March 2027 (`[CRM]`).
 - **Red flag, HIGH (55:00):** No one in the room can approve the purchase. The economic buyer is the family board chair (`[CRM]`), name `[Unknown]`. Recovery: Ruth briefs Walt on the board's approval path before the next session.
 
 **Coaching Points:**
 
-1. **Telling, not asking, Strong.** At 23:40 Walt said, "I don't believe tablets will hold up out there." Owen replied, "They're rugged, you'll like them" (`[Call]`). That is the Telling Not Asking anti-pattern.
-   - **Situation:** Walt's skepticism, 23:40 (`[Call]`).
+1. **Telling, not asking, Strong.** At 23:40 Walt said, "I don't believe tablets will hold up out there." Owen replied, "They're rugged, you'll like them" (`[Call, 2026-08-20]`). That is the Telling Not Asking anti-pattern.
+   - **Situation:** Walt's skepticism, 23:40 (`[Call, 2026-08-20]`).
    - **Proof point:** the profile has no proof on tablet durability. Say so, and do not borrow a number.
    - **Coaching moment:** Acknowledge ("That makes sense."), then ask, "What would need to be true about the tablets for your crew to use them?"
-2. **Open on the pain, Strong.** At 12:00 Owen opened on the trust report, then the mobile app, in menu order (`[Call]`). Walt's pain never came up. Open with the pain: "In our last call you said finding a plot on paper takes too long at the counter. I'll show you that first."
+2. **Open on the pain, Strong.** At 12:00 Owen opened on the trust report, then the mobile app, in menu order (`[Call, 2026-08-20]`). Walt's pain never came up. Open with the pain the discovery call named, when Ruth described the plot lookup on paper (14:20, `[Call, 2026-05-12]`): "In discovery, Ruth told us a plot lookup on paper takes too long. I'll show you that first."
 3. **Pain-to-workflow map, Weak.** Walt's "zero wrong-plot burials" and "find the plot in seconds" are not in the transcript at any point. Inferred from what did not happen, so the grade is Weak. Practice: build the map from the discovery notes before the next demo.
 4. **Question the Problem, Moderate.** The transcript shows no Prime Pain before any workflow. The first 20 minutes are summarized in the rep's notes, so the grade is Moderate.
 
@@ -1097,6 +1100,7 @@ The Business Case & ROI Kit (a paid Guild Pro kit) reads this skill's hand-off b
 - The discovery example's Pre-Call Preparation scores the rep's use of a prep-sheet question, as the rubric's own rule says, and its total and band are recomputed from the rows.
 - The discovery example's record states the booking that set its call date. The call is dated from its transcript, and the second session is dated to the one agreed on the call.
 - The demo example is dated to the Stage 3 demo, which precedes the account's later negotiation stage. Its Pain Alignment and Proof row scores the rubric's no-pain line, and its Prospect Engagement row scores the band's distance from the demo floor. The total and the band are recomputed once from the rows.
+- Call-sourced facts carry their call dates. Every bare `[Call]` fact tag in the examples and the try-it record now names the date of its call: Example 1 and the try-it record on 2026-05-12, Example 2 on 2026-10-22, and Example 3 on 2026-08-20, with its discovery reference dated 2026-05-12.
 
 ### 2.1.5 (2026-10-26)
 - The next action follows the family's one deadline rule. The Output Contract and the Quality Bar point to that rule, and a date agreed on the call or by email is still the step's date.

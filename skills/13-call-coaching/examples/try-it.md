@@ -14,26 +14,26 @@ These records are as of 2026-05-12, before Brackhaven's deal reached Stage 5 Neg
 - Prep sheet: the top pain is plot records on paper [Notes]. A double sale is on file in the CRM [CRM].
 - Prep sheet question_bank [Notes] (illustrative): "When a family asks for a plot, where do you look first, and how long does that take?" and "How many plots could you sell today if the records were right?"
 - Prep sheet proof_point [Notes]: the Benchmark that most cemeteries your size carry 50 to 100 plots sold on paper and unsold on the map (deathcare research, 2026-03-27 to 2026-04-01). The Holloway Hills proof point is Illustrative and is not cited.
-- Source: a speaker-labelled transcript, checked end to end for silence and talk share. The excerpts below are the lines the score rests on, each verbatim with its transcript time. No pause after any answer ran past two seconds, so no silence was used [Call] (illustrative).
-- Rep talk time: 36% (illustrative) [Call].
-- 00:40, Owen: "Ruth, Walt, thanks for the time." [Call]
-- 00:50, Owen: "Today I'd like to agree the agenda: the lookups, the trust report, and what a good second session would look like." [Call]
-- 01:10, Owen: "Ruth, as general manager you sign off the trust report, right? Walt, as operations director you run the crews?" [Call]
-- 02:10, Owen: "When a family asks for a plot, where do you look first, and how long does that take?" [Call]
-- 09:15, Ruth: "We have files that date back to the 1970s." Owen asked: "How far back do they go?" [Call]
-- 14:20, Owen asked: "What happens when a plot sells twice?" [Call]
-- 14:20, Ruth: "We sold section F twice last spring." [Call]
-- 16:40, Owen: "So the files go back to the 1970s, and they are all paper?" [Call]
-- 16:55, Owen: "What have you tried for the lookups so far?" [Call]
-- 17:05, Ruth: "We started moving plots into Oldgate and stopped." Owen asked why it stopped. Cost was not asked. [Call]
-- 19:05, Owen: "So that's a problem for the trust report too?" [Call]
-- 21:30, Ruth described the lookups. Owen moved on. [Call]
-- 23:40, Walt: "I don't want my crew walking around with a tablet in a cemetery." Owen: "They're just screens, you can use them at the desk." [Call]
-- 25:00, Owen: "it fixes the paper problem." [Call]
-- 28:30, Owen asked for the chair of the approval body and the meeting date. Ruth: "The board takes these things up." Ruth said she would check with the board. Owen: "Great, thanks." [Call]
-- 31:10, Ruth: "We don't really have an IT person." [Call]
-- 33:00, Ruth: "What would you need from us to put this in front of the board?" [Call]
-- The last two minutes of the transcript contain no date for the next step [Call].
+- Source: a speaker-labelled transcript, checked end to end for silence and talk share. The excerpts below are the lines the score rests on, each verbatim with its transcript time. No pause after any answer ran past two seconds, so no silence was used [Call, 2026-05-12] (illustrative).
+- Rep talk time: 36% (illustrative) [Call, 2026-05-12].
+- 00:40, Owen: "Ruth, Walt, thanks for the time." [Call, 2026-05-12]
+- 00:50, Owen: "Today I'd like to agree the agenda: the lookups, the trust report, and what a good second session would look like." [Call, 2026-05-12]
+- 01:10, Owen: "Ruth, as general manager you sign off the trust report, right? Walt, as operations director you run the crews?" [Call, 2026-05-12]
+- 02:10, Owen: "When a family asks for a plot, where do you look first, and how long does that take?" [Call, 2026-05-12]
+- 09:15, Ruth: "We have files that date back to the 1970s." Owen asked: "How far back do they go?" [Call, 2026-05-12]
+- 14:20, Owen asked: "What happens when a plot sells twice?" [Call, 2026-05-12]
+- 14:20, Ruth: "We sold section F twice last spring." [Call, 2026-05-12]
+- 16:40, Owen: "So the files go back to the 1970s, and they are all paper?" [Call, 2026-05-12]
+- 16:55, Owen: "What have you tried for the lookups so far?" [Call, 2026-05-12]
+- 17:05, Ruth: "We started moving plots into Oldgate and stopped." Owen asked why it stopped. Cost was not asked. [Call, 2026-05-12]
+- 19:05, Owen: "So that's a problem for the trust report too?" [Call, 2026-05-12]
+- 21:30, Ruth described the lookups. Owen moved on. [Call, 2026-05-12]
+- 23:40, Walt: "I don't want my crew walking around with a tablet in a cemetery." Owen: "They're just screens, you can use them at the desk." [Call, 2026-05-12]
+- 25:00, Owen: "it fixes the paper problem." [Call, 2026-05-12]
+- 28:30, Owen asked for the chair of the approval body and the meeting date. Ruth: "The board takes these things up." Ruth said she would check with the board. Owen: "Great, thanks." [Call, 2026-05-12]
+- 31:10, Ruth: "We don't really have an IT person." [Call, 2026-05-12]
+- 33:00, Ruth: "What would you need from us to put this in front of the board?" [Call, 2026-05-12]
+- The last two minutes of the transcript contain no date for the next step [Call, 2026-05-12].
 - After the call, on 2026-05-12, Owen emailed Ruth to propose 2026-05-19 for the second session, and Ruth replied that the date works [Notes] (illustrative). The call itself set no date.
 - The board chair's name is [Unknown] after this call.
 - Competitive: Oldgate Ledger Pro, renewal March 2027 [CRM].

@@ -13,7 +13,7 @@ mutating: read-write
 change_log:
   - version: 2.1.6
     date: 2026-10-26
-    summary: "Consistency pass across the sales skills. The upstream MEDDPICC reference in the examples is the revised score for the same day, the pre-need walkthrough is described as a walkthrough and not a demo, the IT ownership fact is tagged Unknown, and the CFO budget approval is tagged to the CRM. No threading score, verdict or next action changes."
+    summary: "Consistency pass across the sales skills. The upstream MEDDPICC reference in the examples is the revised score for the same day, the pre-need walkthrough is described as a walkthrough and not a demo, the IT ownership fact is tagged Unknown, and the CFO budget approval is tagged to the CRM. No threading score, verdict or next action changes. Call-sourced facts in the examples now carry their call dates, and a call with no date on record is tagged date Unknown."
   - version: 2.1.5
     date: 2026-10-26
     summary: "The invented CRM dated-action context line and its try-it line are removed, and the URGENT next action carries the shared rule's date. The URGENT action's date follows the family's one deadline rule (five business days after the run date, or an earlier date the records or the skill's own schedule set for that step, named with its source), in place of the Friday-of-the-run-week rule. HIGH and MEDIUM actions keep their own windows. The examples name the record behind each date, and the Saltmarsh research action carries the shared rule's date."
@@ -662,7 +662,7 @@ The plays come from the profile's Buying Committee section (available plays). A 
 
 ### Example 1: AE Deal Strategy, Brackhaven Memorial Gardens (Stage 5 Negotiate, Board Chair Unnamed)
 
-**Context:** Today is Monday 2026-10-19. Owen Pruitt, Account Executive, owns Brackhaven Memorial Gardens. The deal has been ACTIVE at Stage 5 Negotiate since 2026-09-09 `[CRM]`, a two-site combination with 11,000 plots `[CRM]`. The family board is working to 2026-11-12 `[CRM]`, and the board has not formally confirmed the date `[Notes]`. The account record states annual revenue under $50M `[CRM]` (illustrative), with 60 employees `[CRM]` (illustrative). The second Deal Pulse on this date reads High Risk. Ruth Ellery has not replied since 2026-10-03, 16 days ago `[CRM]`. Owner assignment, dates and interaction counts are illustrative where the profile does not supply them. The family board chair has joined one call, in Stage 4 Proposal `[Call]`, and is not on file by name.
+**Context:** Today is Monday 2026-10-19. Owen Pruitt, Account Executive, owns Brackhaven Memorial Gardens. The deal has been ACTIVE at Stage 5 Negotiate since 2026-09-09 `[CRM]`, a two-site combination with 11,000 plots `[CRM]`. The family board is working to 2026-11-12 `[CRM]`, and the board has not formally confirmed the date `[Notes]`. The account record states annual revenue under $50M `[CRM]` (illustrative), with 60 employees `[CRM]` (illustrative). The second Deal Pulse on this date reads High Risk. Ruth Ellery has not replied since 2026-10-03, 16 days ago `[CRM]`. Owner assignment, dates and interaction counts are illustrative where the profile does not supply them. The family board chair has joined one call, in Stage 4 Proposal `[CRM]`, and is not on file by name.
 
 **Input:** "Build an org map for Brackhaven Memorial Gardens. We're at Negotiate and need to multi-thread before the board meeting."
 
@@ -674,7 +674,7 @@ Contacts on file, `[CRM]`:
 - Priscilla Dunmore, pre-need manager (Sales). End User, Influence LOW, Actively Engaged: a pre-need walkthrough on 2026-10-08, which was not a demo, and a second logged interaction on 2026-10-14, two in the last 30 days `[CRM]` (illustrative).
 
 Ghost nodes, written by role only:
-- "UNKNOWN, family board chair" (Executive). Economic Buyer, identified by role. One call in Stage 4 Proposal `[Call]`, and budget not confirmed `[Call]`.
+- "UNKNOWN, family board chair" (Executive). Economic Buyer, identified by role. One call in Stage 4 Proposal `[CRM]`, and budget not confirmed `[Call, 2026-09-26]`.
 - "UNKNOWN, systems administrator" (Technology). Technical Evaluator. Nobody at Brackhaven owns IT, and no IT contact is on file `[Unknown]`. The Oldgate ledger export has no named owner `[Unknown]`, and only the person who runs the system can say who holds it, an open question only they can answer.
 - "UNKNOWN, funeral home owner" (combination side, Persona 4). `[Inferred]` from the ICP2 Combination pattern, which needs a funeral home side to the account. Persona 4 in the profile names this role, and the combination side needs it, because the pre-need leads run through it (Next Actions below). General counsel and procurement are known only in outline, with legal review and vendor onboarding timing not scoped `[Unknown]` and no open question on the record, so they are named as gaps, not ghost nodes. The CFO persona applies to groups only, and this account has two sites. The revenue table starts at $50M, so at under $50M it adds no ghost rows.
 
@@ -686,14 +686,14 @@ Ghost nodes, written by role only:
 | Champion Identified | 2x | 2 | 4 | Ruth Ellery, Strong: four of seven shared champion tests met, each tagged with its source and date |
 | Department Breadth | 1x | 1 | 1 | Executive, Operations and Sales: 3 departments (the 2 to 3 band) `[CRM]` |
 | Technical Evaluator | 1x | 0 | 0 | No IT contact on file `[Unknown]`. Nobody owns IT `[Notes]` |
-| Economic Buyer Engaged | 2x | 1 | 2 | Identified by role only, one call, budget not confirmed `[Call]` |
+| Economic Buyer Engaged | 2x | 1 | 2 | Identified by role only, one call in Stage 4 Proposal `[CRM]`, budget not confirmed `[Call, 2026-09-26]` |
 | End User Validation | 1x | 2 | 2 | Priscilla Dunmore, Actively Engaged: a pre-need walkthrough on 2026-10-08, which was not a demo, and a second logged interaction on 2026-10-14, two in the last 30 days `[CRM]` (illustrative) |
 | Blocker Mitigation | 1x | 1 | 1 | Walt Okonkwo, a Skeptic with a stated objection, identified, and a strategy exists (a demo on his own work orders) `[Notes]`. Developing under the Skeptic rule in Methodology |
 | **Total** | | | **12 of 20** (scored 7 of 7) | |
 
 Raw total 12 of 20, scored 7 of 7. threading_score = 12 ÷ 2 = **6**, Developing, material gaps. Full C-level credit would give a raw total of 14 and a score of 7. The map withholds that credit because the board chair is not a named contact on file, and one call with an unnamed person is not a relationship the team can plan around.
 
-**Political landscape:** Ruth is top-right (leverage), with Influence HIGH and support Strong `[CRM]`. The "UNKNOWN, family board chair" is HIGH influence, so it sits at the top of the map, on the centre line of support: interested in cost and not yet a supporter, a Skeptic `[Call]`. The chair takes no quadrant until the chair is named. Walt sits on the centre line, not in a quadrant, because his influence is MEDIUM and only HIGH influence takes a quadrant. He is a Skeptic with concerns and no opposition yet `[Call]`, and his daily use decides whether the system survives. Priscilla is LOW influence, so she is not placed on the map, and her support is `[Unknown]` until a conversation shows it.
+**Political landscape:** Ruth is top-right (leverage), with Influence HIGH and support Strong `[CRM]`. The "UNKNOWN, family board chair" is HIGH influence, so it sits at the top of the map, on the centre line of support: interested in cost and not yet a supporter, a Skeptic `[Call, date Unknown]`. The chair takes no quadrant until the chair is named. Walt sits on the centre line, not in a quadrant, because his influence is MEDIUM and only HIGH influence takes a quadrant. He is a Skeptic with concerns and no opposition yet `[Call, 2026-09-21]`, and his daily use decides whether the system survives. Priscilla is LOW influence, so she is not placed on the map, and her support is `[Unknown]` until a conversation shows it.
 
 **Output:** Engagement strategy:
 - URGENT, five business days after the run date of 2026-10-19 (2026-10-26): Owen asks Ruth Ellery for the board date and the board chair's name by 2026-10-26, and asks her to broker a second call with the chair. Why: the economic buyer is unnamed and has been on one call, and the champion has not replied since 2026-10-03 `[CRM]`. How: a short note through Ruth, not a cold message to the chair. Messaging: price and the board line only, year one $26,576 with the $5,000 setup against the $25K line (`profile pricing`). No customer result is cited, because the proof points are Illustrative.
@@ -710,7 +710,7 @@ run_date: 2026-10-19
 threading_score: 6 (scored 7 of 7)
 buying_roles: Champion Ruth Ellery (Strong), Economic Buyer UNKNOWN, family board chair (identified by role, one call), Technical Evaluator UNKNOWN, systems administrator, Influencer Walt Okonkwo (Skeptic), End User Priscilla Dunmore
 ghost_nodes: UNKNOWN, family board chair, UNKNOWN, systems administrator, UNKNOWN, funeral home owner
-champion_status: Strong (Ruth Ellery, four of seven shared champion tests met: offers introductions 2026-09-26 [Call], commits to next steps with dates 2026-09-26 [Call], explains the internal politics 2026-09-26 [Call], defends the solution when we are not in the room 2026-09-25 [CRM])
+champion_status: Strong (Ruth Ellery, four of seven shared champion tests met: offers introductions 2026-09-26 [Call, 2026-09-26], commits to next steps with dates 2026-09-26 [Call, 2026-09-26], explains the internal politics 2026-09-26 [Call, 2026-09-26], defends the solution when we are not in the room 2026-09-25 [CRM])
 next_action: Owen Pruitt asks Ruth Ellery for the board date and the board chair's name by 2026-10-26, five business days after the run date of 2026-10-19
 report_path: none (inline)
 ```
@@ -837,6 +837,7 @@ report_path: none (inline)
 - The IT ownership fact in Example 1 is tagged Unknown, not Notes, consistent with the other skills.
 - Example 2 tags the CFO's budget approval to the CRM.
 - No threading score, verdict or next action changes.
+- Call-sourced facts in the examples carry their call dates. Each bare call tag is dated to the call that holds the fact, and a call with no date on record is written `[Call, date Unknown]`.
 
 ### 2.1.5 (2026-10-26)
 - The invented CRM dated-action context line and its try-it line are removed, and the URGENT next action carries the shared rule's date.

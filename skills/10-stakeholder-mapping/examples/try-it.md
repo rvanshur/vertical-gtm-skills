@@ -22,7 +22,7 @@ Every name, date and number in this file is invented for the PlotIQ example. Not
 - Departments on file: Executive, Operations and Sales [CRM].
 - No IT contact is on the full contact list [CRM], and nobody at Brackhaven owns IT [Unknown].
 - The Oldgate ledger export has no named owner [Unknown].
-- The family board chair is the economic buyer, identified by role. One call in Stage 4 Proposal [Call]. Budget not confirmed [Call]. The chair is interested in cost and is not yet a supporter [Call].
+- The family board chair is the economic buyer, identified by role. One call in Stage 4 Proposal [CRM]. Budget not confirmed [Call, 2026-09-26]. The chair is interested in cost and is not yet a supporter [Call, date Unknown].
 - Combination side: Persona 4 in the profile names the funeral home owner, the role the combination's pre-need leads run through.
 - Strategy for Walt: a demo on his own work orders [Notes].
 
