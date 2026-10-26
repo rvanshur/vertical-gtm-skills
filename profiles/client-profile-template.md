@@ -79,6 +79,8 @@ Define who you sell to (strong, moderate and weak fit) **in numbers, geographies
 
 ### Market Segments
 
+These rows are the size bands every skill uses when it writes an account's scale. Define each band by something a rep can observe (revenue, sites, locations or units), so two runs place an account alike.
+
 | Segment | Revenue Range | Deal Characteristics |
 |---------|--------------|---------------------|
 | SMB | $___M - $___M | [Typical deal size, cycle, stakeholders] |
