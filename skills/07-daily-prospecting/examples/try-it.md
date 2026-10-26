@@ -14,7 +14,7 @@ Open tasks due today: nine (illustrative count), one for each account listed bel
 Brackhaven Memorial Gardens
 - Status: ACTIVE, Stage 5 Negotiate [CRM]
 - AE owner: Owen Pruitt. No yes from Owen on file [CRM]
-- Family board meets 2026-11-12
+- The family board meeting on 2026-11-12, not formally confirmed `[CRM]`
 
 Northvale Memorial Holdings
 - Status: OUT

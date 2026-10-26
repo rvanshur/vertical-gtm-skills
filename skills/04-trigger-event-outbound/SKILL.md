@@ -1,6 +1,6 @@
 ---
 name: gtm-trigger-event-outbound
-version: 2.1.8
+version: 2.1.9
 description: "Turns one dated business event at a target account into a short outbound sequence, but only after checking the event against its window. Reports when the window has closed or the event date is unknown. Read by the BDR or AE who sends the sequence."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: [gtm-account-snapshot, gtm-closed-loss-reactivation]
 mutating: read-write
 change_log:
+  - version: 2.1.9
+    date: 2026-10-26
+    summary: "Round 9 INBOUND rule. An INBOUND account, which asked us first with no open deal, gets its request answered first. Email 1 is a reply to the request that names the event with its tag, with no cold opener. Email 2 and Email 3 follow only if the account goes quiet, meaning no reply within five business days after the reply is sent, and only inside the window. If the window has closed, the status is EXPIRED and no sequence follows, and the reply alone answers the request. The rule sits in Step 0, the Rules For Every Email, the Output Contract, Hard Rule 10, the Quality Bar and a new pattern. No example or try-it account is INBOUND, so no example or promise changes."
   - version: 2.1.8
     date: 2026-10-26
     summary: "Round 8 profile citations, ENGAGED status and labels. Every profile citation is written (profile: Section). ENGAGED is one of six statuses. An ENGAGED account's Email 1 replies in the open thread and names the event, with no cold opener, and the BDR and AE rules, the Output Contract, the Rules for Every Email, Hard Rule 9, the Quality Bar and a new pattern say so. The Quill Hollow example and try-it stay TARGET on 2026-10-19, because no reply is on record before that date. Heading and label capitalization is aligned word by word."
@@ -121,7 +124,7 @@ when the user asks for one.
 | `urgency_window` | Event Summary, inline | Start and end dates, written as calendar dates, for example [short end] to [long end]. "None" with the reason when the event is undated or routed to another skill |
 | `days_remaining` | Event Summary, inline | Days from today to the last day a sequence may still start, as set by the One Window Rule. Zero or fewer means EXPIRED. "None" when no window exists |
 | `event_tag` | Event Summary, inline | One evidence tag for the event, for example `[Public: state licensing database]` |
-| `sequence` | Sequence section, inline | Three emails per persona, each under 100 words, or "none" with the reason. For an ENGAGED account, Email 1 is a reply in the open thread |
+| `sequence` | Sequence section, inline | Three emails per persona, each under 100 words, or "none" with the reason. For an ENGAGED account, Email 1 is a reply in the open thread. For an INBOUND account, Email 1 is a reply to the request, and Email 2 and Email 3 follow only if the account goes quiet |
 | `report_path` | Close section | Set only when a file was written. Otherwise "none (inline)" |
 | `next_action` | Close section | The action, its owner and the date the shared contract's next-action rule gives (What the Close Reads: five business days after the run date, or an earlier date the records or the skill's own schedule set for that step, named with its source) |
 | File option | `<account>_<skill>_<date>.md`, saved beside the user's account notes | Written only when the user asks for a file. Not written by default |
@@ -226,7 +229,7 @@ Rep talk time as a share of the call, by call type: discovery 30% to 40%, demo 5
 
 #### What The Close Reads
 
-Wrap-Up reads by name the **report path** when a file was written, the **verdict** or **score** the session produced, and the **next action** with its owner and date. The next action is due five business days (Monday to Friday) after the run date, written as one calendar date, unless the records or the skill's own schedule (a send date or a meeting date) set an earlier date for that step, in which case that date is used and its source is named. Ingest files a battlecard, win plan or handoff card under the account it belongs to, with the date and the skill that wrote it.
+Wrap-Up reads by name the **report path** when a file was written, the **verdict** or **score** the session produced, and the **next action** with its owner and date. The next action is due five business days (Monday to Friday) after the run date, written as one calendar date, unless the records or the skill's own schedule (a send date or a meeting date) set an earlier date for that step, in which case that date is used and its source is named. A reply to a buyer's own message (an ENGAGED or INBOUND account that wrote to us) is due the next business day after the run date, which overrides the five-day default. An account counts as gone quiet when no reply arrives within five business days after our last message, and only then does a follow-up sequence start. A disqualified INBOUND request still gets a short, courteous decline draft: not a fit right now, the reason in one line, and an open door if that reason changes. The rep reads it before anything goes out. Ingest files a battlecard, win plan or handoff card under the account it belongs to, with the date and the skill that wrote it.
 
 #### Guild Disciplines, Restated
 
@@ -366,6 +369,7 @@ ask: "Are you a BDR or an AE?"
 - **BDR on an ACTIVE account with an AE owner:** no independent sequence. Write a coordination note for the AE (see Hard Rule 6).
 - **AE:** full sequences, and the trigger is used to advance the deal.
 - **BDR or AE on an ENGAGED account** (the account replied or met with us, and no deal is open): the event goes into the open thread. Email 1 is a reply to the last message the account sent, and it names the event with its tag. Email 2 and Email 3 keep their days, and each one is sent as a reply in that thread. The sequence stops when the account asks it to, and no cold opener is written for that account. Reason: the account is already talking to us, and a cold opener about the event reads as if its reply was never read.
+- **BDR or AE on an INBOUND account** (they asked us first, and no deal is open): the request is answered before any trigger sequence. Email 1 is a reply to the request. It names the event with its tag and carries the trigger's angle, with no cold opener. Email 2 and Email 3 follow only if the account goes quiet, which means no reply within five business days after the reply is sent, and only inside the window under Step 1d. If the window has closed, the status is EXPIRED, and the reply alone answers the request. Reason: the account asked first, so the first message answers that request instead of opening a cold trigger sequence.
 
 **Produces:** the user's role (BDR or AE) and the path that applies: full sequences or coordination only.
 
@@ -450,6 +454,7 @@ persona that has to respond, and name any persona that only hears about the even
 - The call to action is framed as time-sensitive, for example "before the review"
 - A known contact is addressed by name. An unknown contact is `[first name]` until research fills it
 - For an ENGAGED account, Email 1 replies in the open thread and names the event, with no cold opener
+- For an INBOUND account, Email 1 replies to the request and names the event with its tag, with no cold opener. Email 2 and Email 3 follow only if the account goes quiet, and only inside the window
 - Only events with a tag that supports them may be referenced directly. Implications are written as questions
 - At most one proof point per email. It must be one the profile marks Verified or Benchmark (profile: Proof Points), named with its source. An Illustrative proof point is never cited
 
@@ -565,6 +570,7 @@ makes a trigger look weaker or stronger than the evidence shows.
 7. **Nothing sends and nothing writes to the CRM.** The rep reads the draft and sends it. Sending is the step where a wrong fact reaches a buyer, so a person must make it.
 8. **No response rate appears in any output.** No response rate in the library has a named, dated source. An unsourced rate sounds like evidence and is not.
 9. **No cold opener to an ENGAGED account.** Reason: a contact who has replied is already in conversation, and a cold opener about the event ignores what they said.
+10. **No cold sequence to an INBOUND account before its request is answered.** Reason: the account asked us first, so a cold trigger sequence ignores the open request. Email 2 and Email 3 wait for the account to go quiet, and they stop when the window closes.
 
 ---
 
@@ -585,6 +591,7 @@ makes a trigger look weaker or stronger than the evidence shows.
 - [ ] The hand-off fields are present: `trigger_type`, `urgency_window`, `days_remaining`, `event_tag` and `sequence`
 - [ ] `next_action` names an owner and a date
 - [ ] An ENGAGED account's Email 1 replies in the open thread, and no cold opener is written
+- [ ] An INBOUND account's Email 1 replies to the request with no cold opener, and Email 2 and Email 3 follow only if the account goes quiet inside the window
 
 ---
 
@@ -806,6 +813,10 @@ next_action: Nadia Brandt sends the note to Owen Pruitt by 2026-10-26, after rea
 ### Pattern: Trigger On An ENGAGED Account
 **When:** A dated event happens at an account that replied or met with us, and no deal is open.
 **Approach:** Put the event into the open thread. Email 1 replies to the account's last message and names the event, and Email 2 and Email 3 follow on their days as replies. No cold opener is written for that account. Reason: the trigger gives the reply a reason to be answered, and a cold opener would ignore it.
+
+### Pattern: Trigger On An INBOUND Account
+**When:** A dated event happens at an account that asked us first, and no deal is open.
+**Approach:** Reply to the request first, with the event named and tagged, and write no cold opener. Email 2 and Email 3 follow only if the account goes quiet inside the window. If the window has closed, no sequence follows, and the reply alone answers the request. Reason: the request is still open, and the event gives the answer a reason to be timely.
 
 ---
 

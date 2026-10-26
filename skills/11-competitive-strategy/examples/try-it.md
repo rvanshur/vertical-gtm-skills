@@ -8,7 +8,7 @@ Every name, date and number in this file is invented for the PlotIQ example. Not
 ## The Records
 - Run date: 2026-10-19. Brackhaven Memorial Gardens is a combination with 2 sites, 11,000 plots and paper plot maps [CRM] (illustrative).
 - Deal: ACTIVE at Stage 5 Negotiate since 2026-09-09. $21,576 a year at list, owned by Owen Pruitt, 40 days in stage [CRM].
-- Account Qualification (01) verdict: GREENLIGHT.
+- Account Qualification (01) verdict: GREENLIGHT `[Notes]`.
 - Contacts: Ruth Ellery, General Manager, champion [Call, 2026-09-26]. Walt Okonkwo, Operations Director, skeptical of tablets [Call, 2026-09-21]. Priscilla Dunmore, pre-need manager [CRM]. The family board chair is the economic buyer, on one call [CRM], name [Unknown].
 - Reason to look, in Ruth's words on the 2026-05-19 discovery call: "We can't tell which plots are sold without going to the binder." [Call, 2026-05-19] (illustrative).
 - Walt Okonkwo, on the 2026-09-17 call: a double-sale search takes half a day, and lookups come to about two a week. [Call, 2026-09-17] (illustrative).
@@ -34,6 +34,6 @@ Every name, date and number in this file is invented for the PlotIQ example. Not
 - Incumbent: direct software, Oldgate Ledger Pro [CRM].
 - Threat level: MEDIUM. The five factors are 2, 1, 2, 1 and 2, with an average of 1.6.
 - Rival: Stonemark, evaluated [Call, 2026-09-26], with no preference on record [Unknown]. The rival record is not scored and does not change the threat level. Its full form is Example 3 in SKILL.md.
-- Gap matrix: five rows, covering mobile use, unsold-plot visibility, trust fund records, cost and time to live.
+- Gap matrix: four rows, covering unsold-plot visibility, trust fund records, cost and time to live. The mobile row is removed, because no buyer statement ties it to a stated pain.
 - Win plan starts with Ruth counting the plots with no recorded sale in her own number, and confirming the exact renewal day and the trust-file scope with her. No estimate is used.
-- Next action: Owen Pruitt asks Ruth Ellery for the exact Oldgate renewal day and the trust-file export scope by 2026-10-26, five business days after the run date of 2026-10-19.
+- Next action: Owen Pruitt asks Ruth Ellery for the exact Oldgate renewal day, the trust-file export scope and the criteria the board will judge Oldgate and Stonemark on, by 2026-10-26, five business days after the run date of 2026-10-19.
