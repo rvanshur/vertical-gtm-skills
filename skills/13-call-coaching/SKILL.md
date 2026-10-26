@@ -1,7 +1,7 @@
 ---
 name: gtm-call-coaching
 description: "Scores a discovery or demo call against methodology rubrics and returns a coaching report with evidence-graded coaching points, for the rep and the sales manager who reads it"
-version: 2.1.8
+version: 2.1.11
 category: Sales-Methodology
 author: Ryan Vanshur
 license: MIT
@@ -11,6 +11,9 @@ requires:
   skills: ["gtm-meeting-prep", "gtm-deal-pulse"]
 mutating: read-write
 change_log:
+  - version: 2.1.11
+    date: 2026-10-26
+    summary: "Round 11 settlement. The focus area is the lowest-scoring category, and a tie goes to the category whose step does the work of the exit criterion from the account's current stage, with the first gate for an account that has no stage. Value Articulation scores 3 for a capability tied to a described pain in general terms, and 2 for a feature list with none. Silence counts as used at a pause of two seconds or more after an answer. Objections are typed by what the objector resists. A transcript's missing marker scores the line below it. The champion count rests on the politics test, which names the board as the body that decides, so Example 1 is Strong on three of seven tests. Example 2 and Example 3 each name one focus area. The try-it records state facts only."
   - version: 2.1.8
     date: 2026-10-26
     summary: "Round 8 citation and status pass. Every profile citation is now written (profile: Section). Deal Health Impact has a status rule: ACTIVE reads the stage gate, ENGAGED applies no gate and names whether the call opened a deal, INBOUND stays INBOUND after a call until a deal opens, and any other status applies no gate. Step 1 reads the account status so the rule has its input. Step 3 points to the one definition of shares competitor intelligence in The Shared Contract instead of restating it, so a named manual process that the CRM does not hold counts as the incumbent, and one example's champion count is rechecked on that test. Headings and labels are capitalized word by word."
@@ -454,7 +457,7 @@ A prep-sheet fact, or a prep-sheet question, that the rep uses on the call count
 | 1 | No Priority Ladder. Jumped from hearing pain to pitching features. |
 
 #### Category 4: Active Listening (1-5)
-Rep talk time is read against the discovery band in The Shared Contract. "Points" below are share points on the call: 5 points is 5% of the call's talk time, measured from the band's nearest edge.
+Rep talk time is read against the discovery band in The Shared Contract. "Points" below are share points on the call: 5 points is 5% of the call's talk time, measured from the band's nearest edge. Silence counts as used when the transcript shows a pause of at least two seconds after a prospect's answer.
 
 | Score | Evidence |
 |-------|----------|
@@ -473,7 +476,7 @@ Rep talk time is read against the discovery band in The Shared Contract. "Points
 | 2 | Feature list without pain connection. Talked about irrelevant capabilities. |
 | 1 | No value articulation or pitched features without discovery. |
 
-The Winning Zone is the part of the call where each capability is tied to a pain the prospect named in their own words. A value claim with no named pain sits outside it.
+The Winning Zone is the part of the call where each capability is tied to a pain the prospect named in their own words. A value claim with no named pain sits outside it. A capability tied in general terms to one pain the prospect described scores 3. A feature list with no pain the prospect described scores 2.
 
 #### Category 6: Next Steps And Momentum (1-5)
 | Score | Evidence |
@@ -603,7 +606,7 @@ Prospect talk time is read against the demo band in The Shared Contract, measure
 
 ### Step 3: Assess MEDDIC Coverage
 
-For each MEDDIC element, assess what was uncovered on this call:
+For each MEDDIC element, assess what was uncovered on this call. Each element uses only the grades in its own row:
 
 | Element | What To Assess | Grade |
 |---------|---------------|-------|
@@ -614,7 +617,7 @@ For each MEDDIC element, assess what was uncovered on this call:
 | Identified Pain | Specific, named, quantified pain? | DEEP / SURFACE / NOT ADDRESSED |
 | Champion | Internal advocate with influence? | STRONG / DEVELOPING / NONE |
 
-**Champion Status** is graded with the shared champion tests in The Shared Contract. Count only the tests met on this call, each with its evidence and tag. A contact who was not in the room cannot meet the tests that need the room, and the report says so. A statement about the buyer's process counts as "explains the internal politics" only when it names who decides or how the decision moves. A statement that names no one does not count. The test "shares competitor intelligence" is met as The Shared Contract defines it (see Champion Tests, One List), and this step applies that one definition to the incumbent the contact describes.
+**Champion Status** is graded with the shared champion tests in The Shared Contract. Count only the tests met on this call, each with its evidence and tag. A contact who was not in the room cannot meet the tests that need the room, and the report says so. The defend test is met only by a statement made when we were not in the room. A statement about the buyer's process counts as "explains the internal politics" only when it names who decides or how the decision moves. A statement that names no one does not count. The test "shares competitor intelligence" is met as The Shared Contract defines it (see Champion Tests, One List), and this step applies that one definition to the incumbent the contact describes.
 
 **Produces:** the six-element coverage grid and the champion status (Strong, Developing or None) with the tests met on this call.
 
@@ -664,6 +667,8 @@ Mark each key moment with one of seven types. Capture the fields the type requir
 | Competitive intelligence | Time, quote, incumbent type from The Shared Contract, contract status |
 | Red flag | Time, quote, risk level (HIGH, MEDIUM or LOW), recovery step |
 
+Type an objection by what the objector resists: the change to their work (inertia), the claim's proof (skepticism), or being pushed (reactance).
+
 **Critical Wins:** What happened, why effective (framework alignment), the quote with its time.
 
 **Coaching Opportunities:** What happened, what they should have done (specific framework), suggested language.
@@ -703,7 +708,7 @@ Mark each key moment with one of seven types. Capture the fields the type requir
 
 **The Status Rule For Deal Health Impact.** The call is scored the same whatever the account's status, because the rubric grades the rep and not the account. Status changes only what this line can say. ACTIVE (open deal): the line reads the call against the stage gate in the profile's Qualification Stage Gates. ENGAGED (two-way contact, no open deal): no stage gate applies. The line names the status and says whether the call gave the buyer a reason to open a deal, a quantified pain or a dated next meeting, each tagged. For an ENGAGED account, the Next Call Game Plan's success criteria name that deal-opening step, because until one is set the account stays in conversation without a deal. INBOUND (they asked us first): the account stays INBOUND after a call until a deal opens, so the line reads it as INBOUND and applies no stage gate. If the record shows TARGET, LOST or OUT, the line names that status and applies no stage gate.
 
-**Focus Area For Next Call:** One skill only. Prep steps, what to practice, success criteria. Five things at once do not change a habit. The practice exercise covers every cost the focus skill's evidence names, in one exercise, and the focus-area line names each of them. When categories tie for the lowest score, the focus area is the tied category that matches an exit criterion of the account's next stage in the profile's Qualification Stage Gates, where the next stage is the one after the account's current stage. The focus-area line quotes that exit criterion, so the choice can be checked against the profile.
+**Focus Area For Next Call:** One skill only. Prep steps, what to practice, success criteria. Five things at once do not change a habit. The practice exercise covers every cost the focus skill's evidence names, in one exercise, and the focus-area line names each of them. The focus area is the lowest-scoring category. When categories tie for the lowest score, the tie-break applies: the focus is the tied category whose defined step does the work of the exit criterion that moves the account from its current stage to the next. That criterion is the row of the profile's Qualification Stage Gates that starts at the account's current stage. An account with no open deal has no stage, so its tie-break reads the first row of those gates. A category matches when its step does the criterion's work, so a criterion that needs a number is the quantify step of Priority Ladder. The focus-area line quotes the criterion, so the choice can be checked against the profile.
 
 **Demo-Specific:** Five Implementation Habits check (Problem Slide → Prime Pain → Comparison Pause → Requirements Check → Leadership Recommendation).
 
@@ -715,7 +720,7 @@ Mark each key moment with one of seven types. Capture the fields the type requir
 
 - **Every Rate Carries Its N.** "3 of 7 shared tests met", "N of L minutes", "5 of 6 unraised objection lines checked." A bare rate is not written.
 - **One Call Is One Observation.** A habit becomes a pattern only with five cases. This skill grades one call, so a habit seen on this call is reported as an observation with its count, never as a trend.
-- **Silence Is Not A No.** A question that was not asked is unknown for that dimension, not a negative. A talk share the source cannot measure is Unknown, not zero. The category it scores is INSUFFICIENT under the Unknown Rule, and it is left out of the total and the count.
+- **Silence Is Not A No.** On a full transcript, a question or marker that does not appear is missing, and the line below it scores. A category is INSUFFICIENT only when the source cannot show it at all. A talk share the source cannot measure is Unknown, not zero, and its category is INSUFFICIENT under the Unknown Rule, left out of the total and the count.
 - **"No Difference Found" Is A Finding.** A call that scores the same as the rep's last call is reported as such.
 - **Every Coaching Point Is Graded.** A quote with its time is Strong. A paraphrase is Moderate. An inference from what did not happen is Weak, and the reasoning is written.
 - **Evidence Over Optimism.** Score what the record proves, not what the rep believes. Under-scoring protects a deal. Over-scoring kills it.
@@ -797,7 +802,7 @@ Assessment: Good, in the 24 to 30 band of the restated scale (see Step 2 for the
 
 - **Discovery Breakthrough (14:20):** Ruth: "We sold section F twice last spring." `[Call, 2026-05-12]`. Priority Ladder Level 2. The double sale is the note on file (`[CRM]`), now confirmed in her words.
 - **Buying Signal, Captured, Kind Need (09:15):** Ruth: "We have files that date back to the 1970s." `[Call, 2026-05-12]`. Owen asked "How far back do they go?"
-- **Objection (23:40):** Walt: "I don't want my crew walking around with a tablet in a cemetery." `[Call, 2026-05-12]`. Type: skepticism. Owen's response: "They're just screens, you can use them at the desk." `[Call, 2026-05-12]`.
+- **Objection (23:40):** Walt: "I don't want my crew walking around with a tablet in a cemetery." `[Call, 2026-05-12]`. Type: inertia. Owen's response: "They're just screens, you can use them at the desk." `[Call, 2026-05-12]`.
 - **Competitive Intelligence (17:05):** Ruth: "We started moving plots into Oldgate and stopped." `[Call, 2026-05-12]`. Incumbent type: direct software. Oldgate Ledger Pro, renewal March 2027 (`[CRM]`).
 - **Missed Opportunity (28:30):** Ruth: "The board takes these things up." Owen: "Great, thanks." `[Call, 2026-05-12]`. The question that should have followed: "Who sits on the board, and when does it next meet?"
 - **Red Flag, MEDIUM (31:10):** Ruth: "We don't really have an IT person." `[Call, 2026-05-12]`. Recovery: ask who installs the system and who holds the ledger data, before the next session.
@@ -828,15 +833,15 @@ Assessment: Good, in the 24 to 30 band of the restated scale (see Step 2 for the
 | Decision Criteria | PARTIAL | Ruth asks what the board would need (33:00, `[Call, 2026-05-12]`). The criteria are not stated. |
 | Decision Process | PARTIAL | The board takes these items up (28:30, `[Call, 2026-05-12]`). No date and no approval steps. |
 | Identified Pain | SURFACE | Plot records on paper, described at Level 2 (14:20, `[Call, 2026-05-12]`). |
-| Champion | DEVELOPING | Two of seven shared tests met (below). |
+| Champion | STRONG | Three of seven shared tests met (below). |
 
-**Champion Status:** Developing. Two of seven shared champion tests met on this call, each tagged: shares competitor intelligence (17:05, `[Call, 2026-05-12]`: "We started moving plots into Oldgate and stopped.") and asks how to help (33:00, `[Call, 2026-05-12]`: "What would you need from us to put this in front of the board?"). The 28:30 exchange is about process, the board taking the item up, so it is not counted as a test.
+**Champion Status:** Strong. Three of seven shared champion tests met on this call, each tagged: explains the internal politics (28:30, `[Call, 2026-05-12]`: "The board takes these things up," which names the board as the body that decides). It also asks how to help (33:00, `[Call, 2026-05-12]`: "What would you need from us to put this in front of the board?"). It also shares competitor intelligence (17:05, `[Call, 2026-05-12]`: "We started moving plots into Oldgate and stopped." That move is not in the CRM).
 
 **Competitive Intel Summary:** Current solution: Oldgate Ledger Pro, direct software (`[CRM]`). Contract: renewal in March 2027 (`[CRM]`). Satisfaction: not stated on this call (`[Unknown]`). The gap: the move into Oldgate began and stopped (17:05, `[Call, 2026-05-12]`), and the cost of the stop was not asked. The probe that went unasked is what the move cost.
 
 **Deal Health Impact:** Before this call: `[Unknown]`, because no Deal Pulse (08) exists for this account in the records. After this call: the Stage 2 to 3 gate in the profile needs the records problem quantified (plots, hours or dollars) and the GM named as the likely economic buyer. Ruth is named as GM and buyer (`[CRM]`). The problem is not yet quantified, so the gate is not met, and this call does not move the deal to a demo.
 
-**Focus Area For Next Call:** Priority Ladder to Level 3 on the cost of a plot lookup and of a double sale. The chair and the date are success criteria in the game plan, not a second focus.
+**Focus Area For Next Call:** Priority Ladder to Level 3 on the cost of a plot lookup and of a double sale. The stage gate it serves is "Records problem quantified (plots, hours or dollars)." The chair and the date are success criteria in the game plan, not a second focus.
 
 **Next Call Game Plan:**
 - **Prep:** the plot-lookup count and the minutes per lookup, and the double-sale count and its cost, from the discovery notes.
@@ -852,7 +857,7 @@ category_scores: Pre-Call Preparation 4, SPIN Discovery Quality 3, Priority Ladd
 focus_area: Priority Ladder to Level 3 on the cost of a plot lookup and of a double sale
 coaching_points: Top 3 Strengths: 1 Strength, Strong (02:10). 2 Owen followed up, Strong (09:15). 3 Owen asked why the move stopped, Strong (17:05). Top 3 Improvements: 1 Quantify the double sale, Strong (14:20). 2 Benchmark for the tablet objection, Moderate (23:40). 3 The board question and the close, Strong, with a Weak part (28:30, no date in the transcript)
 key_moments: discovery breakthrough (14:20), buying signal captured (09:15), objection (23:40), competitive intelligence (17:05), missed opportunity (28:30), red flag MEDIUM (31:10)
-champion_status: Developing, two of seven shared tests met on this call (shares competitor intelligence, asks how to help)
+champion_status: Strong, three of seven shared tests met on this call (explains the internal politics at 28:30, asks how to help at 33:00, shares competitor intelligence at 17:05)
 next_action: Owen Pruitt holds the second discovery session with Ruth Ellery on 2026-05-19, the five-business-day date from the run date, since the records hold no earlier date, and quantifies the lookup cost and the double-sale cost in it. Owner: Owen Pruitt. Date: 2026-05-19 (illustrative)
 report_path: none (inline)
 ```
@@ -913,7 +918,7 @@ Assessment: Good, in the 24 to 30 band of the restated scale. The Pre-Call Prepa
 
 **Deal Health Impact:** Sable Fork is INBOUND. It stays INBOUND after this call, because no deal is open (the status rule in Step 8), so no ACTIVE stage gate applies yet. The pain is not confirmed: the lookup count is missing. The next step is a second discovery session, not a demo. The verdict stays MANUAL REVIEW.
 
-**Focus Area For Next Call:** Ask the lookup-count question, then the who-else-holds-the-list question.
+**Focus Area For Next Call:** Priority Ladder, to count the plot lookups and time them. The stage gate it serves is "Records problem quantified (plots, hours or dollars)." The who-else question stays a coaching point, not the focus.
 
 **Next Call Game Plan:**
 - **Prep:** the spreadsheet's owner and update rhythm, and the form filler's name if the website shows it.
@@ -926,7 +931,7 @@ account: Sable Fork Cemetery (INBOUND)
 run_date: 2026-10-23 (illustrative)
 call_score: 24 of 35, scored 7 of 7
 category_scores: Pre-Call Preparation 4, SPIN Discovery Quality 3, Priority Ladder Execution 3, Active Listening 4, Value Articulation 3, Next Steps and Momentum 4, Alternatives 3
-focus_area: Count the lookups and time them, then ask who else holds the list
+focus_area: Priority Ladder, count the plot lookups and time them (stage gate: records problem quantified)
 coaching_points: 1 Strength, Strong (06:40). 2 Count the lookups, Strong (18:30). 3 Proof point without a number, Moderate (29:00). 4 Second discovery, not a demo, Strong (40:20). 5 Who else holds the list, Weak (no question in the transcript)
 key_moments: discovery breakthrough (18:30), missed opportunity (18:45), buying signal captured (33:10), competitive intelligence (09:20), commitment (40:20), red flag MEDIUM (44:00)
 champion_status: Developing, two of seven shared tests met on this call (shares competitor intelligence, commits to a next step with a date)
@@ -1006,7 +1011,7 @@ Assessment: Poor, in the 10 to 17 band of the demo scale (feature touring or mon
 
 **Deal Health Impact:** The call did not answer the tablet objection, which is the one that matters to the room. The buyer with the authority is the board chair (`[CRM]`), whom this call did not reach. The next session needs the approval path, not another feature tour.
 
-**Focus Area For Next Call:** Build a pain-to-workflow map from the discovery notes and open with Walt's paper work-order pain. Practice Telling Not Asking: replace each reassurance with a question.
+**Focus Area For Next Call:** Pain Alignment and Proof, the lowest score on this call. Name Walt's paper work-order pain before the first workflow, and tie each workflow to a pain.
 
 **Next Call Game Plan:**
 - **Prep:** the pain-to-workflow map, the approval path from Ruth, and a backup plan for the screen.
@@ -1019,7 +1024,7 @@ account: Brackhaven Memorial Gardens (ACTIVE, Stage 3 Demo)
 run_date: 2026-08-20 (illustrative)
 call_score: 17 of 40, scored 8 of 8
 category_scores: Meeting Opening 2, Meeting Closing 2, Teach and Tailor 3, Pain Alignment and Proof 1, Question The Problem 2, Pain-To-Workflow Mapping 2, Prospect Engagement 2, Resistance Handling 3
-focus_area: Build a pain-to-workflow map from the discovery notes, open with Walt's paper work-order pain, and replace reassurance with questions
+focus_area: Pain Alignment and Proof, name Walt's paper work-order pain before the first workflow and tie each workflow to a pain
 coaching_points: 1 Telling not asking, Strong (23:40). 2 Open on the pain, Strong (12:00). 3 Pain-to-workflow map, Weak (absent from the transcript). 4 Question The Problem, Moderate (summarized in notes)
 key_moments: objection (23:40), missed opportunity (12:00), competitive intelligence (31:15), red flag HIGH (55:00)
 champion_status: None on this call (Ruth Ellery not in the room)
@@ -1105,6 +1110,15 @@ The Business Case & ROI Kit (a paid Guild Pro kit) reads this skill's hand-off b
 ---
 
 ## Changelog
+
+### 2.1.11 (2026-10-26)
+- Focus area. The focus is the lowest-scoring category. A tie goes to the category whose step does the work of the exit criterion from the account's current stage, read from the row that starts at that stage, with the first row for an account that has no stage. Each focus-area line quotes the criterion. Example 1 quotes "Records problem quantified", which the tie-break gives to Priority Ladder. Example 2 is now Priority Ladder, and Example 3 is now Pain Alignment and Proof, the lowest score. Each names one focus area.
+- Value Articulation. A capability tied in general terms to one described pain scores 3, and a feature list with no described pain scores 2.
+- Active Listening. Silence counts as used at a pause of two seconds or more after a prospect's answer, so Example 1 scores 4.
+- Champion. The politics test is met when the statement names who decides, and "The board takes these things up" names the board. Example 1 meets three tests and is Strong. The defend test needs a statement made when we were not in the room.
+- Objections. An objection is typed by what the objector resists, so Example 1's objection to tablets is inertia.
+- Silence and missing markers. On a full transcript a missing marker scores the line below it. A category is INSUFFICIENT only when the source cannot show it.
+- Try-it. The records state facts only. The cost line and the champion count are restated as facts, and the focus line quotes its stage gate.
 
 ### 2.1.8 (2026-10-26)
 - Round 8 citation and status pass. Every profile citation is now written (profile: Section). The research benchmark keeps its public source tag.

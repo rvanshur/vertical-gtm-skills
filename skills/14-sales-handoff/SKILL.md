@@ -1,6 +1,6 @@
 ---
 name: gtm-sales-handoff
-version: 2.1.8
+version: 2.1.11
 description: "Post-sale implementation readiness check: scores six dimensions, sets the three dates (kickoff, go-live and Full Adoption Date), names risks with mitigations and quick wins, and writes the handoff the implementation lead plans from"
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: [gtm-meddpicc-analysis]
 mutating: read-write
 change_log:
+  - version: 2.1.11
+    date: 2026-10-26
+    summary: "Round 11 settlement. An adjustment that does not apply, such as a single source system, needs no profile value. A vendor's confirmation of an export is not the team's familiarity with it. Kickoff is stated as one formula: the check date, plus the buffer, plus the IT lead time when no IT owner is named. The composite line states the decimal weights. Risks rank by four keys in a numbered list, and the Preview label is set beside the three dates. The try-it record and Example 1 state the adjustments and the Preview label, and Example 1 tags plot records to the call that holds them. The dates, scores, risks and next action do not change."
   - version: 2.1.8
     date: 2026-10-26
     summary: "Round 8 citation and status pass. Every profile citation is now written (profile: Section), and the Implementation Profile values keep their illustrative mark because the profile marks them that way. An ENGAGED rule is added to Output Contract and Step 1: an ENGAGED or INBOUND account with no deal open gets a gap list instead of three dates, a composite and a Preview. Quick Reference names that case as a don't-use. Every example and try-it record was checked against its run date, and each cast account reads ACTIVE on its run date, so no record needed a relabel. Headings and labels are capitalized word by word."
@@ -266,7 +269,7 @@ While no IT owner is named, IT counts as constrained, and a constrained IT caps 
 
 A named skeptic among the operations lead or the power users holds Change Management at 3, even when leadership is supportive.
 
-**Composite Score:** Weighted sum ÷ 5 × 100 = a score from 0 to 100. Round a fractional result half up to a whole number before the level is read, and a whole number on a level's edge takes the level whose range lists it. Each weight is written as a decimal: 20% is 0.20, 15% is 0.15 and 10% is 0.10. The six decimal weights total 1.00, so the composite stays between 0 and 100. The whole-number weights must never be used as written, because 20, 15 and 10 give a total 100 times too large. Under the Unknown Rule below, the weighted sum runs over the scored dimensions only, and the weights are re-scaled to them: composite = (sum of decimal weight × score, over scored dimensions) ÷ (sum of decimal weights, over scored dimensions) ÷ 5 × 100.
+**Composite Score:** Weighted sum ÷ 5 × 100, where each weight is a decimal (20% is 0.20). The result runs from 0 to 100. Round a fractional result half up to a whole number before the level is read, and a whole number on a level's edge takes the level whose range lists it. Each weight is written as a decimal: 20% is 0.20, 15% is 0.15 and 10% is 0.10. The six decimal weights total 1.00, so the composite stays between 0 and 100. The whole-number weights must never be used as written, because 20, 15 and 10 give a total 100 times too large. Under the Unknown Rule below, the weighted sum runs over the scored dimensions only, and the weights are re-scaled to them: composite = (sum of decimal weight × score, over scored dimensions) ÷ (sum of decimal weights, over scored dimensions) ÷ 5 × 100.
 
 **The Unknown Rule.** A dimension with no evidence is INSUFFICIENT. It carries no value, and it is left out of the composite and the count. The composite is written with its scored count, `scored n of 6`. With five dimensions scored, the composite is given. With fewer than five, there is no composite, and the report lists the evidence that would score each missing dimension. A dimension with some evidence is scored from that evidence, even if the evidence shows a gap.
 
@@ -313,15 +316,19 @@ Integration advantages to note: the product takes any standard output, most cust
 | **Vendor transition** | Existing provider contract still active, overlapping services | Map contract end dates. Plan a parallel-run period. Ensure no service gap |
 | **Stakeholder** | No executive sponsor named, no IT lead, or the champion has gone quiet | Name the sponsor and the IT lead before kickoff. Put the sponsor's written confirmation in the kickoff conditions |
 
-**Ranking The Top Three.** Rank risks by severity, HIGH first. Within a severity, a risk on the lower-scoring dimension comes first. Each risk maps to the dimension it belongs to: Technical to Technical, Data to Data, Stakeholder to Stakeholder, Resource to Resource, and Adoption to Change Management. A risk that maps to no scored dimension (Expectation, Vendor transition) ranks after the dimensioned risks of the same severity. Next, a risk with a High likelihood comes before one with a Medium likelihood. A tie after these keys goes to the row order of the Risk Categories table.
+**Ranking The Top Three.** Sort by these keys in order, and stop at the first key that separates two risks:
+1. Severity: HIGH first, then MEDIUM, then LOW.
+2. Dimension score: within a severity, a risk on the lower-scoring dimension comes first. Each risk maps to its dimension: Technical to Technical, Data to Data, Stakeholder to Stakeholder, Resource to Resource, and Adoption to Change Management. A risk that maps to no scored dimension (Expectation, Vendor transition) ranks after the dimensioned risks of the same severity.
+3. Likelihood: a High likelihood comes before a Medium one.
+4. Row order: a tie on all three keys goes to the row order of the Risk Categories table.
 
 **Severity And Likelihood.** Severity is HIGH when the risk leaves no named owner for IT or for the sponsor, or when it is a reason kickoff is held. Severity is MEDIUM when the risk can move a date, but an owner is named and kickoff is not held. Severity is LOW when it moves no date. Likelihood is High when a record shows the risk is already present, Medium when a record shows a signal of it, and Low when no record points at it. Each risk states both.
 
 ### The Three Dates
 
-The signature is the handoff trigger, not one of the three dates. The three dates are the ones the implementation lead plans from: kickoff, go-live and Full Adoption Date. Every date shows its arithmetic.
+The signature is the handoff trigger, not one of the three dates. The three dates are the ones the implementation lead plans from: kickoff, go-live and Full Adoption Date. Every date shows its arithmetic. Before signature, all three are labelled proposed, and the whole report carries the Preview label.
 
-**Date 1: Kickoff.** The day the implementation lead starts. Set by the readiness level:
+**Date 1: Kickoff.** The day the implementation lead starts. Kickoff equals the check date, plus the buffer, plus the IT lead time when no IT owner is named on the check date. Set by the readiness level:
 - **Green (80 To 100):** kickoff in the week of the handoff.
 - **Yellow (60 To 79):** kickoff two to four weeks after the readiness check. The check date is the anchor, not the signature. Count the buffer forward from the check date, so three weeks is 21 days after it. Without a dated reason for another point in the window, use three weeks. Under Yellow a critical dimension does not hold kickoff by itself. The report lists the conditions that must be met first, and the kickoff date stays proposed until they are.
 - **Orange (40 To 59) Or Red (0 To 39):** no kickoff date is set until every critical dimension reaches 3. Any date shown is marked conditional. A conditional date uses the Yellow rule's three-week buffer from the check date, plus the IT lead time when no IT owner is named, and go-live and the Full Adoption Date follow it as usual.
@@ -330,8 +337,8 @@ The signature is the handoff trigger, not one of the three dates. The three date
 **Date 2: Go-Live.** Kickoff plus the typical days from kickoff to go-live in the Implementation Profile, written as the arithmetic: kickoff date plus N days. The skill ships that value blank. If the profile has no value, go-live is written as `[RECORD]`, and the skill does not estimate it.
 
 **Date 3: Full Adoption Date.** Kickoff plus the default of two months. The two months are this skill's default, and the profile's Full Adoption months may override them. Then each adjustment from the Implementation Profile is applied and shown as its own line:
-- **Source Systems:** each system beyond the first adds the profile's value in weeks.
-- **Export Format Familiar To The Team:** a familiar format subtracts the profile's value in weeks. A format the team has not yet seen in a project counts as new, and a new format subtracts nothing.
+- **Source Systems:** each system beyond the first adds the profile's value in weeks. With one system no adjustment applies, and no profile value is needed.
+- **Export Format Familiar To The Team:** a familiar format subtracts the profile's value in weeks. A format the team has not yet seen in a project counts as new, and a new format subtracts nothing. A vendor's confirmation that the export works is not the team's familiarity, which is the team's own experience with the format.
 - **Phased Rollout:** a subsidiary or business unit on a different system gets its own three-date plan, and its Full Adoption Date is set separately.
 - **Weekend Roll:** if the result falls on a Saturday or Sunday, it moves to the next Monday, and the line says so.
 
@@ -579,7 +586,9 @@ All three examples use the PlotIQ flagship, Brackhaven Memorial Gardens, and the
 
 **Input:** "Run the readiness check for Brackhaven Memorial Gardens before they sign."
 
-**Process:** Ruth Ellery is the champion. Two of seven shared champion tests are visible on the 2026-10-27 call, each tagged `[Call, 2026-10-27]` (illustrative): she explains the internal politics and asks how to help. The family board chair is a role with no name on file (`[Unknown]`) who has joined one call (`[CRM]`). No IT contact is on file (`[Unknown]`). The source is Oldgate Ledger Pro (`[CRM]`), and its ledger export is not yet scoped (`[Unknown]`). Plot records are on paper (`[CRM]`). Walt Okonkwo, Operations Director, is skeptical of tablets (`[Call, 2026-09-21]`). Oldgate's contract renews in March 2027 (`[CRM]`). On the 2026-10-27 call, the board chair's name and a written sponsor confirmation were raised with Ruth (`[Call, 2026-10-27]`, illustrative), and her answer is not recorded. No earlier date is on record, so the next action takes the date the shared rule gives: five business days after the run date of 2026-11-02.
+**Preview:** before the signature (expected 2026-11-16), so the three dates are proposed and the report carries the Preview label.
+
+**Process:** Ruth Ellery is the champion. Two of seven shared champion tests are visible on the 2026-10-27 call, each tagged `[Call, 2026-10-27]` (illustrative): she explains the internal politics and asks how to help. The family board chair is a role with no name on file (`[Unknown]`) who has joined one call (`[CRM]`). No IT contact is on file (`[Unknown]`). The source is Oldgate Ledger Pro (`[CRM]`), and its ledger export is not yet scoped (`[Unknown]`). Plot records are on paper (`[Call, 2026-10-27]`). Walt Okonkwo, Operations Director, is skeptical of tablets (`[Call, 2026-09-21]`). Oldgate's contract renews in March 2027 (`[CRM]`). On the 2026-10-27 call, the board chair's name and a written sponsor confirmation were raised with Ruth (`[Call, 2026-10-27]`, illustrative), and her answer is not recorded. No earlier date is on record, so the next action takes the date the shared rule gives: five business days after the run date of 2026-11-02.
 
 **Scoring:**
 
@@ -627,6 +636,8 @@ All three examples use the PlotIQ flagship, Brackhaven Memorial Gardens, and the
 - **Full Adoption Date:** 2026-12-07 plus two months = 2027-02-07, a Sunday. Rolled to Monday, **2027-02-08**. No other adjustment applies: one source system adds nothing, and an export format the team does not know yet subtracts nothing.
 
 **Risks (Top 3):** Technical (HIGH, likelihood High): no IT owner and an unscoped export. Mitigation: Oldgate's support runs a test export on a sample file before kickoff. Stakeholder (HIGH, likelihood High): the board chair is unnamed and the sponsor role is not in writing. Mitigation: Owen Pruitt asks Ruth Ellery for the chair's name and a written sponsor confirmation before the 2026-11-12 board. Adoption (MEDIUM, likelihood High): Walt Okonkwo's skepticism of tablets. Mitigation: the work-order pilot is shown to Walt before kickoff.
+
+**Ranking:** Technical is first, because it is the lower-scoring of the two HIGH risks. Adoption is third. Resource and Data are also MEDIUM and score 3, so Adoption leads on likelihood, or on row order if they tie, since Adoption is row 2 of the Risk Categories table.
 
 **Conditions Before Kickoff:**
 1. Brackhaven names an IT owner.
@@ -844,6 +855,13 @@ The Business Case & ROI Kit (a paid Guild Pro kit) reads this skill's hand-off b
 ---
 
 ## Changelog
+
+### 2.1.11 (2026-10-26)
+- Source Systems. With one system no adjustment applies, and no profile value is needed. A profile value is required only for an adjustment that applies.
+- Export format. A vendor's confirmation is not the team's familiarity. The format counts as new until the team has worked with it.
+- Kickoff. Kickoff is the check date, plus the buffer, plus the IT lead time when no IT owner is named on the check date.
+- Composite and ranking. The composite line states that its weights are decimals. The risk keys are a numbered list, and row order breaks only a tie on all three keys.
+- Preview. Before signature the three dates are labelled proposed and the report carries the Preview label. Example 1 states this, and its plot-record fact is tagged to the call that holds it.
 
 ### 2.1.8 (2026-10-26)
 - Round 8 citation and status pass. Every profile citation is now written (profile: Section). The 49 day and 14 day Implementation Profile values keep their illustrative mark, because the profile marks them that way.

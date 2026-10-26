@@ -36,5 +36,5 @@ Every name, date and number in this file is invented for the PlotIQ example. Not
 - Health 72 (1,150 ÷ 16 = 71.9, shown as 72), scored 16 of 16. Risk: Medium Risk.
 - Pillar averages: Why Anything 87.5, Why Us 62.5, Why Now 62.5, Execution 75.0. No pillar is below 30, so the pillar step does not apply.
 - Scorecard: 8 GREEN, 7 YELLOW and 1 RED. The RED signal is Technical Readiness.
-- Next action: Owen Pruitt asks Ruth Ellery for a technical discovery session on the Oldgate export by 2026-10-02, the Friday Owen proposed in his notes, which is earlier than the five-business-day date of 2026-10-05 for a 2026-09-28 run.
+- Next action: Owen Pruitt asks Ruth Ellery for a technical discovery session on the Oldgate export by 2026-10-02, the Friday Owen proposed in his notes. A proposed date in the record counts as the step's date and is named as proposed. It is earlier than the five-business-day date of 2026-10-05 for a 2026-09-28 run.
 - Evidence Confidence: Moderate, 10 interactions in the last 90 days (illustrative). It does not change the score.

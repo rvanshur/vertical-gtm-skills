@@ -1,6 +1,6 @@
 ---
 name: gtm-trigger-event-outbound
-version: 2.1.10
+version: 2.1.11
 description: "Turns one dated business event at a target account into a short outbound sequence, but only after checking the event against its window. Reports when the window has closed or the event date is unknown. Read by the BDR or AE who sends the sequence."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: [gtm-account-snapshot, gtm-closed-loss-reactivation]
 mutating: read-write
 change_log:
+  - version: 2.1.11
+    date: 2026-10-26
+    summary: "Round 11 settled judgments. An email depends on a disqualifier condition when its text states or asks about it, so the check's due date is the business day before the first such email, here 2026-10-22. The rep who sends the sequence runs the check, and the next action includes it. Today is the run date, not the system date. A trigger's event tag comes from the source that records the event. The company in the decision tree is the account. Under STALE, the body of Email 1 names the deadline in its source's words, so Example 1 names the 2027-02-16 integration review date. The try-it records no longer carry the event tag or the deadline wording."
   - version: 2.1.10
     date: 2026-10-26
     summary: "Round 10 alignment to the shared contract. Gone quiet is no longer restated here, and Step 0 points to What The Close Reads. An INBOUND account with a disqualifier that applies gets one short decline draft, held for the rep to read, in place of Email 1, with no trigger sequence. The rule sits in Step 0, the Output Contract, Hard Rule 11, the Quality Bar and the INBOUND pattern. No example or try-it promise changes."
@@ -276,7 +279,7 @@ personnel changes first, because a leader's arrival changes who owns the decisio
 
 1. **Is This A Personnel Change?** → New Executive Hire (even if an acquisition triggered it)
 2. **Does It Involve A Financial Event?** → Earnings Miss / Margin Pressure (earnings or margin), PE Investment / Recapitalization (funding or a recapitalization), or Compliance Failure / Costly Error (a costly error or a finding)
-3. **Does It Change The Company's Geographic Footprint?** → Geographic Expansion (even if via acquisition)
+3. **Does It Change The Company's Geographic Footprint?** → Geographic Expansion (even if via acquisition). The company is the account at the trigger, so a change in its owner's footprint does not count at this step
 4. **Does It Involve A Competitor's Contract?** → Competitor Contract Event
 5. **Is It A Project Win Or Award?** → Large Contract Win
 6. **Is it a LinkedIn or social post by an executive?** → Leadership Thought Leadership
@@ -392,12 +395,12 @@ Map the event to `{Methodology: Trigger Type Taxonomy}`. If the event is ambiguo
 
 - **Trigger Type:** one name from the taxonomy
 - **Profile Trigger:** the matching row in the Buying Triggers table, with its persona and routing skill
-- **Event Tag:** one of the six evidence tags. The source decides the tag
+- **Event Tag:** one of the six evidence tags. The source decides the tag. When two sources date the event, the one that records the event itself decides the tag, and the other is cited for any deadline it gives
 
 #### 1C. Search The CRM
 
 Check for an open deal, the account owner and known contacts. Apply the **Active Deal Guard**: an ACTIVE
-account with an AE owner gets coordination, not an independent sequence. A disqualifier (profile: Qualification Criteria) is read with all of its conditions: a consolidator is disqualified only when it is public or PE-backed and runs its own system. Each condition still `[Unknown]` is checked before the first email whose claim depends on it is sent. The check's due date is the business day before that email's send day, and the report names the check and that date. Emails whose claims do not depend on the condition may go out before the check, so the check is never skipped, only timed.
+account with an AE owner gets coordination, not an independent sequence. A disqualifier (profile: Qualification Criteria) is read with all of its conditions: a consolidator is disqualified only when it is public or PE-backed and runs its own system. Each condition still `[Unknown]` is checked before the first email whose claim depends on it is sent. An email depends on a condition when its text states the condition or asks about it. The check's due date is the business day before the send day of the first email that depends on it, and the report names the check and that date. The rep who sends the sequence runs the check. Emails that do not depend on the condition may go out before the check, so the check is never skipped, only timed.
 
 #### 1D. Validate Timeliness
 
@@ -453,7 +456,7 @@ persona that has to respond, and name any persona that only hears about the even
 
 - A subject line that names the event. Generic subject lines are not allowed
 - A body of 100 words or fewer. Urgency demands brevity
-- The first line names the specific event, with enough detail to show awareness
+- The first line names the specific event, with enough detail to show awareness. A Trigger Catalog first line is a starting point, and it is edited to name the event before use
 - The call to action is framed as time-sensitive, for example "before the review"
 - A known contact is addressed by name. An unknown contact is `[first name]` until research fills it
 - For an ENGAGED account, Email 1 replies in the open thread and names the event, with no cold opener
@@ -533,7 +536,7 @@ window length, as set by the One Window Rule.
 
 - **URGENT**: more than 50% of the window remains
 - **CLOSING**: 25% to 50% of the window remains
-- **STALE**: under 25% of the window remains. The sequence still runs, and Email 1 names the deadline. The deadline is the profile's citable date, such as the integration review date in a deal notice. The window's last day is an internal count, and an email names it only when the profile gives it as the deadline
+- **STALE**: under 25% of the window remains. The sequence still runs, and the body of Email 1 names the deadline. The deadline is the profile's citable date, such as the integration review date in a deal notice. The window's last day is an internal count, and an email names it only when the profile gives it as the deadline
 - **EXPIRED**: zero or fewer days remain. No trigger sequence. Only residual relevance can justify a different approach
 - **UNVERIFIED**: the event has no date that can be checked, so no window can exist. No sequence until the date is found
 
@@ -543,7 +546,7 @@ This subsection is the only place the window arithmetic is stated. Every other s
 
 1. The **event date** is the day the event became public, taken from the source. It is not the day you found the event.
 2. The profile's window is a range in days after the event date, for example 60 to 120. The **short end** is the day the window opens. The **long end** is the last day a sequence may still start.
-3. **Days Remaining** are counted from the run date to the long end, which is the last day a sequence may still start. Zero or fewer means EXPIRED. The event date is not the start of the count. The count runs to the long end because a sequence that starts before it still has time to reach its buyer.
+3. **Days Remaining** are counted from the run date to the long end, which is the last day a sequence may still start. Today is the run date that the records or the user set, not the system date. Zero or fewer means EXPIRED. The event date is not the start of the count. The count runs to the long end because a sequence that starts before it still has time to reach its buyer.
 4. **Share Remaining** is days remaining over the window length, which is the long end minus the short end. Print both numbers in the form N of M window days (P%), where N is the days remaining, M is the window length, and P is the share, rounded to a whole number with a % sign.
 5. A window is never computed from an estimated date. An unknown event date makes the trigger UNVERIFIED, and the skill stops there.
 
@@ -636,8 +639,8 @@ site", with the acquirer's CFO or controller as the persona who acts, and the si
 in the CRM `[Unknown]`, so the BDR finds the name in the licensing record or the deal notice before Email 1
 goes out. Harborline's ownership type and whether it runs its own system are both `[Unknown]`. The disqualifier (profile: Qualification Criteria)
 needs both conditions: a public or PE-backed consolidator that runs its own system. Neither is
-confirmed, so the check is due by 2026-10-22. Email 1 asks nothing that depends on it, so Email 1 may go
-before the check. Email 2 waits for it. If both conditions hold, no sequence goes out.
+confirmed, so the check is due by 2026-10-22. Email 1 states and asks nothing that depends on it, so Email 1 may go
+before the check. Email 2 asks which system keeps the records, so it waits for the check. If both conditions hold, no sequence goes out.
 
 **Step 2. Event Intelligence Brief.**
 
@@ -667,7 +670,7 @@ would go.
 > **Subject:** Corrow Ridge after the Harborline close
 >
 > [first name], the state licensing record shows Harborline Funeral Partners took over Corrow Ridge
-> Cemetery on July 1. Harborline's deal notice puts the integration review in Q1 2027. Before it, what does the plot map hold? The
+> Cemetery on July 1. Harborline's deal notice puts the integration review on 2027-02-16. Before it, what does the plot map hold? The
 > site keeps its plot records on paper plat maps, and a 15-minute look at them would show what the review
 > is likely to ask for. What would the review need from the plot map first? [your name]
 
@@ -703,7 +706,7 @@ days_remaining: 10
 event_tag: [Public: state licensing database]
 sequence: six emails, three to the acquirer's CFO or controller (name [Unknown]) and three to the site GM. The GM's three are omitted from this example
 report_path: none (inline)
-next_action: Nadia Brandt finds the acquirer's CFO or controller and the site GM by 2026-10-20, the Day 1 send date in Step 3, then sends Email 1 after reading the draft
+next_action: Nadia Brandt finds the acquirer's CFO or controller and the site GM, sends Email 1 on 2026-10-20 (Day 1) after reading the draft, and completes the Harborline ownership and system check by 2026-10-22, before Email 2
 
 ---
 
@@ -897,6 +900,16 @@ next_action: Nadia Brandt sends the note to Owen Pruitt by 2026-10-26, after rea
 
 ## Changelog
 
+
+### 2.1.11 (2026-10-26)
+- Step 1C defines dependence. An email depends on an unresolved disqualifier condition when its text states the condition or asks about it. The check is due the business day before the first dependent email's send day, so the Corrow Ridge check is due 2026-10-22, before Email 2 on 2026-10-23. The rep who sends the sequence runs it.
+- The next action in Example 1 and the try-it includes the check, with its date, beside the Day 1 send.
+- One Window Rule says that today is the run date the records or the user set, not the system date.
+- Step 1B says that the source which records the event decides its tag. A deal notice that gives only a deadline is cited for the deadline.
+- The decision tree's footprint step reads the company as the account at the trigger.
+- Step 3 says a Trigger Catalog first line is edited to name the event before use. The STALE rule says the body of Email 1 names the deadline.
+- Example 1 Email 1 names the integration review date, 2027-02-16, from the deal notice. This replaces the Q1 2027 wording of version 2.1.6, because a STALE trigger names its deadline.
+- The try-it records state the event date without its tag, so the reader tags it. The promise adds the Email 1 deadline line, and the next action now includes the check.
 
 ### 2.1.10 (2026-10-26)
 - Gone quiet is no longer restated locally. Step 0 points to the shared rule in What The Close Reads.

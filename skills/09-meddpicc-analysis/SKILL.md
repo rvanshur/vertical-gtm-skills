@@ -1,6 +1,6 @@
 ---
 name: gtm-meddpicc-analysis
-version: 2.1.8
+version: 2.1.11
 description: "Scores an active deal across all eight MEDDPICC elements from the CRM record, computes a weighted health score, and recommends ADVANCE, HOLD, DOWNGRADE or DISQUALIFY. The deal's AE and sales manager read the output."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: ["gtm-deal-pulse", "gtm-call-coaching", "gtm-stakeholder-mapping"]
 mutating: read-write
 change_log:
+  - version: 2.1.11
+    date: 2026-10-26
+    summary: "Round 11 settlement. Identified Pain 5 reads an urgent timeline as a deadline the buyer named that the close date is set against, which makes rows 4 and 5 exclusive. A briefing to the holder of a role named only by role counts for Champion 5. Step 3 uses the profile's gate figure for the stage, and Step 5 dates the first action by the shared rule whatever its gap class. An exit criterion sits with the element whose rubric names its fact. The try-it records state facts only, with the Deal Pulse figure, the champion count and the rubric phrases removed. The example scores, verdicts and next actions do not change."
   - version: 2.1.8
     date: 2026-10-26
     summary: "Citations and ENGAGED. A fact taken from the profile is cited (profile: Section) in place of [Notes], and a rep's or AE's own notes keep [Notes]. A Status Check in Step 1 scores only ACTIVE accounts, and an ENGAGED account (two-way contact, no open deal) gets a one-line result with no health score or stage recommendation. The champion tests are applied by pointer to the Shared Contract, which holds the definition of shares competitor intelligence. Headings and labels are capitalized word by word. The example scores, verdicts and next actions do not change."
@@ -305,10 +308,10 @@ A stakeholder is known when its role is on the record, even if its name is not, 
 | 2 | We think there's pain based on profile, but prospect hasn't confirmed. |
 | 1 | No pain identified. Deal is feature-led or relationship-led. |
 
-A score of 5 needs pains from two or more stakeholders on the record, each stated in that stakeholder's own words, so one stakeholder's pains score at most 4.
+A score of 5 needs pains from two or more stakeholders on the record, each stated in that stakeholder's own words, so one stakeholder's pains score at most 4. An urgent timeline is a deadline the buyer named that the close date is set against. Urgency with no named deadline scores 4.
 
 #### C. Champion (Weight: 15%)
-The champion status comes first, from the shared champion tests in the Shared Contract: Strong, Developing or None, read from the record as it stands on the run date. The definition of "shares competitor intelligence" is in the Shared Contract and is not restated here. The rubric row then follows the status and the evidence the record shows today. A test met by active selling inside the buying committee on our behalf, such as a briefing of the economic buyer that the champion gave and the record shows, is the evidence row 5 asks for.
+The champion status comes first, from the shared champion tests in the Shared Contract: Strong, Developing or None, read from the record as it stands on the run date. The definition of "shares competitor intelligence" is in the Shared Contract and is not restated here. The rubric row then follows the status and the evidence the record shows today. A test met by active selling inside the buying committee on our behalf, such as a briefing of the economic buyer that the champion gave and the record shows, is the evidence row 5 asks for. A briefing reaches the holder of a role that the record names only by role, so a briefing to the board chair reaches the economic buyer.
 
 | Score | Evidence Required |
 |-------|------------------|
@@ -430,7 +433,7 @@ Score each element against its rubric in {Methodology: MEDDPICC Scoring Rubrics}
 
 ### Step 3: Compute Weighted Deal Health And The Stage Minimum Check
 
-Multiply each scored element's score by its weight, sum the results, divide by 5 times the sum of the scored weights, multiply by 100, and round to a whole number (the INSUFFICIENT rule in Methodology). Show the table with every row, with its Element, Weight, Score and Weighted columns. An INSUFFICIENT row shows no weighted value and is left out of the Total. State "scored n of 8". If fewer than 6 of 8 are scored, stop here: give no health score and no stage minimum check, and list the evidence that would score the missing elements. Otherwise compare the health score and each critical element to the minimum for the deal's stage.
+Multiply each scored element's score by its weight, sum the results, divide by 5 times the sum of the scored weights, multiply by 100, and round to a whole number (the INSUFFICIENT rule in Methodology). Show the table with every row, with its Element, Weight, Score and Weighted columns. An INSUFFICIENT row shows no weighted value and is left out of the Total. State "scored n of 8". If fewer than 6 of 8 are scored, stop here: give no health score and no stage minimum check, and list the evidence that would score the missing elements. Otherwise compare the health score and each critical element to the minimum for the deal's stage. Use the profile's gate figure for the stage when it states one, and the table default only when it states none (see Stage-Appropriate Minimums).
 
 **Produces:** The weighted table with its Total row, `health_score`, and `stage_minimum_met` (Yes or No, with each failed critical element named and its required score).
 
@@ -449,7 +452,7 @@ Then check the risk patterns in the Methodology table. Name each pattern that th
 
 ### Step 5: Generate Coaching Recommendations
 
-Generate five prioritized next actions, each targeting a specific MEDDPICC gap. Each action names the methodology step it uses from `{Client Profile: Sales Methodology}`, the owner (AE, BDR, SE or manager), a deadline (five business days for critical gaps, ten for moderate ones) and a success criterion that shows the action worked. The first action targets the failed critical element with the lowest score, with ties taken in table order. When no current-stage floor fails, it targets the element that blocks the next stage's floor. A critical gap is one that fails the next stage's critical floor, or the element that carries the next stage's exit criterion in the profile's Qualification Stage Gates, such as the approval date for Stage 6 Closed-Won and Handoff, which sits with Decision Process. Every other gap is moderate. The first action is the next action, so its date is set by the shared contract's next-action rule (five business days after the run date, or an earlier date the records or the skill's own schedule set for that step, named with its source). The other four actions keep the deadline above.
+Generate five prioritized next actions, each targeting a specific MEDDPICC gap. Each action names the methodology step it uses from `{Client Profile: Sales Methodology}`, the owner (AE, BDR, SE or manager), a deadline (five business days for critical gaps, ten for moderate ones) and a success criterion that shows the action worked. The first action targets the failed critical element with the lowest score, with ties taken in table order. When no current-stage floor fails, it targets the element that blocks the next stage's floor. A critical gap is one that fails the next stage's critical floor, or the element that carries the next stage's exit criterion in the profile's Qualification Stage Gates, such as the approval date for Stage 6 Closed-Won and Handoff, which sits with Decision Process. An exit criterion sits with the element whose rubric names the fact it needs. Every other gap is moderate. The first action is the next action, so its date is set by the shared contract's next-action rule (five business days after the run date, or an earlier date the records or the skill's own schedule set for that step, named with its source). The other four actions keep the deadline above. The first action's date is the shared rule's date even when its gap is moderate, so the ten-day deadline never applies to it.
 
 **Produces:** Five actions, each with element targeted, owner, deadline and success criterion.
 
@@ -708,6 +711,13 @@ The Business Case & ROI Kit (a paid Guild Pro kit) reads this skill's hand-off b
 
 ## Changelog
 
+
+### 2.1.11 (2026-10-26)
+- Identified Pain. An urgent timeline is a deadline the buyer named that the close date is set against. Urgency with no named deadline scores 4, so rows 4 and 5 no longer overlap.
+- Champion. A briefing to the holder of a role that the record names only by role reaches that role, so a briefing to the board chair reaches the economic buyer.
+- Stage minimum. Step 3 uses the profile's gate figure for the stage, and the table default applies only where the profile states none.
+- First action. Step 5 dates the first action by the shared rule whatever its gap class. An exit criterion sits with the element whose rubric names its fact.
+- Try-it. The Deal Pulse figure, the champion count and the rubric phrases are removed from the records, and the facts they stated are kept. The example scores, verdicts and next actions do not change.
 
 ### 2.1.8 (2026-10-26)
 - Citations. A fact taken from the profile is cited (profile: Section) with the profile's own section name, in place of [Notes]. A rep's or AE's own notes keep [Notes]. The Context paragraph states the rule.

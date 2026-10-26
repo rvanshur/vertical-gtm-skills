@@ -16,13 +16,15 @@ Role: BDR [CRM] (illustrative)
 
 Company
 - Account: Brackhaven Memorial Gardens
-- Type: Combination, 2 sites
+- Type: Combination, 2 sites [CRM] (illustrative)
 - Plots: 11,000 plots on the cemetery side [CRM] (illustrative)
 - Plot records: Paper plot maps [CRM] (illustrative)
-- Double sales: One double sale in the last 24 months [CRM] (illustrative)
+- Double sales: One double sale, recorded in 2025 [CRM] (illustrative)
 - Revenue: Not stated in public records. The CRM notes a revenue range of $2 to 4 million a year [CRM] (illustrative), which is a range and not a confirmed figure
 - Location spread: [Unknown]
 - Current system: a legacy on-premise ledger from Oldgate [CRM] (illustrative)
+- Oldgate licence: renews in March 2027 [CRM] (illustrative)
+- Pre-need leads come from the funeral side, and they must be matched to plots (profile: ICP Definitions)
 - Family board chair: [Unknown]
 - Ownership: Family-owned, with no private equity, ESOP or public owner [Public: company website, about page, 2026] (illustrative)
 
@@ -36,7 +38,7 @@ People And Decision
 - The owner has a dated retirement plan: retirement on 2029-03-31, stated in the owner bio [Public: company website, owner bio, 2026] (illustrative)
 - The general manager recommends and the board approves [Public: company website, board calendar] (illustrative)
 - The board meets within 60 days [Public: company website, board calendar] (illustrative)
-- Year one with setup, at list price: $26,576 (illustrative) [Inferred: two sites at list price, plus the one-time setup]
+- Pricing: two sites, each priced at the per-site list price, plus a one-time setup per deal (profile: Product Modules)
 
 ## What You Should Get
 

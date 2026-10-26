@@ -1,6 +1,6 @@
 ---
 name: gtm-research-outbound
-version: 2.1.10
+version: 2.1.11
 description: "Builds a sourced point of view and outbound package from a public filing, an owner letter or an earnings call, with an ICP verdict, a signal map, a sourced wedge and persona sequences, for the rep and the meeting-prep skill to read"
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: [gtm-account-snapshot]
 mutating: read-write
 change_log:
+  - version: 2.1.11
+    date: 2026-10-26
+    summary: "Round 11 settled judgments. A persona applies with or without a named contact, and a persona with no name is written by title. The unit of a profile price is a site, cemetery or funeral home alike, because the pre-need module serves funeral homes. A payback unit is one unsold plot, so a plot-count benefit needs its price. A signal with two sources names the source that states the fact. The Saltmarsh records state the facts behind the decision cycle and the mode is read from the source type, not written into the records. Promises are unchanged: MANUAL REVIEW, zones 1 MEDIUM, 2 HIGH, 3 LOW, 4 MEDIUM, 5 HIGH, a wedge of 100 to 200 plots, and 20 held emails."
   - version: 2.1.10
     date: 2026-10-26
     summary: "Round 10 alignment to the shared contract. Gone quiet is no longer restated here, and Step 1b points to What The Close Reads. An INBOUND account with a DISQUALIFY verdict gets one short decline draft to the requesting contact, held for the rep to read, in place of any sequence. The rule sits in Steps 3 and 7, the Output Contract, Hard Rules 6 and 14 and the Quality Bar. No example is an INBOUND account, so no example and no try-it promise changes."
@@ -401,7 +404,7 @@ Extract six to ten signals, ranked by urgency, in this format:
 
 ### Step 3: Score The Zones And Apply The Verdict
 
-Score each of the five zones HIGH, MEDIUM or LOW, from observable facts (profile: Qualification Zones). Apply the Verdict Rule as written (profile: Qualification Zones), so the verdict is GREENLIGHT, MANUAL REVIEW or DISQUALIFY. Show every zone's score beside the verdict, and name any must-have zone that scored LOW in the reason.
+Score each of the five zones HIGH, MEDIUM or LOW, from observable facts (profile: Qualification Zones). Apply the Verdict Rule as written (profile: Qualification Zones), so the verdict is GREENLIGHT, MANUAL REVIEW or DISQUALIFY. Show every zone's score beside the verdict. A must-have zone that scored LOW keeps the verdict out of GREENLIGHT, and the reasons name it.
 
 Four rules apply here. MEDIUM never counts as HIGH. A zone the sources do not speak to is `[Unknown]`, not LOW, because silence is not a no. A zone scored on a checked absence (a search that was run and found nothing, for example) is scored, and the check is named so a reader can repeat it. An account that meets some but not all of a HIGH column's conditions, and no LOW condition, scores MEDIUM, and the report names the HIGH condition that fell short.
 
@@ -416,7 +419,7 @@ Place each signal or fact from Step 2 against the zone it bears on. Build the ta
 | Intelligence Signal | Why It Matters | Qualification Zone | Value Prop | Discovery Question | Source |
 |---------------------|---------------|-------------------|-----------|-------------------|--------|
 
-Each row has one tag in the Source column. Each Discovery Question is something the rep can ask on a call, grounded in the source and not generic.
+Each row has one tag in the Source column. When two sources hold a signal, name the one that states the fact. Each Discovery Question is something the rep can ask on a call, grounded in the source and not generic.
 
 **Produces:** the signal map, six to ten rows, each tagged and placed in a zone. It comes after Step 3 so the zone column matches the scores already given.
 
@@ -431,7 +434,7 @@ Build a wedge only when the sources support the numbers. Show every calculation,
 | A profile Benchmark | Cite the benchmark with its source and date. It is a hook, not a result | `[Public: source, date]` |
 | A figure the sources lack | Write it as unknown, and name it as a discovery question | `[Unknown]` |
 
-Never claim savings as a guarantee. Frame the result as what companies of a similar size typically see, and name the source for that claim. A Benchmark stated per cemetery is multiplied by the number of cemetery sites in the account, and the multiplication is shown. A Benchmark about plot records applies to a site whose plot list is kept by hand, on paper or in a spreadsheet, and the wedge names the record type it was applied to. A unit in a profile price is one site in the account's footprint, cemetery or funeral home alike, because the profile prices per site (profile: Product Modules). A payback figure is written only when the price of the unit it recovers is sourced or in the profile. Otherwise the wedge says that no payback figure is written, and names the missing price.
+Never claim savings as a guarantee. Frame the result as what companies of a similar size typically see, and name the source for that claim. A Benchmark stated per cemetery is multiplied by the number of cemetery sites in the account, and the multiplication is shown. A Benchmark about plot records applies to a site whose plot list is kept by hand, on paper or in a spreadsheet, and the wedge names the record type it was applied to. A unit in a profile price is one site in the account's footprint, cemetery or funeral home alike, because the pre-need module serves funeral homes and the profile prices per site (profile: Product Modules). A payback figure is written only when the price of the unit it recovers is sourced or in the profile. For a benefit counted in plots, that unit is one unsold plot, so its average sale value must be sourced. Otherwise the wedge says that no payback figure is written, and names the missing price.
 
 **Produces:** the wedge as a sentence with its arithmetic, or "Insufficient data" with the missing figure named.
 
@@ -449,7 +452,7 @@ Keep the brief under 500 words, skimmable, with every claim tagged.
 
 ### Step 7: Generate The Persona Sequences
 
-**Count First.** Every persona that applies to this account gets a sequence. The persona count comes from the Buyer Personas (profile: Buyer Personas). A persona applies when the rule the profile sets for it is met (profile: Buyer Personas), such as a group-only persona for a group. A persona also applies when the account runs the business that persona owns, which is the business it serves: a funeral home for the funeral home owner persona. A persona also applies when the trigger row names it, even where the profile limits that persona to another account type. Multiply the applicable personas by the steps for the mode. In a filing or private package, that is personas x 4. The count follows from the profile and the account, so it is never fixed in this skill.
+**Count First.** Every persona that applies to this account gets a sequence. The persona count comes from the Buyer Personas (profile: Buyer Personas). A persona applies when the rule the profile sets for it is met (profile: Buyer Personas), such as a group-only persona for a group. A persona also applies when the account runs the business that persona owns, which is the business it serves: a funeral home for the funeral home owner persona. A persona also applies when the trigger row names it, even where the profile limits that persona to another account type. Multiply the applicable personas by the steps for the mode. In a filing or private package, that is personas x 4. The count follows from the profile and the account, so it is never fixed in this skill. A persona applies whether or not a contact is named. A persona with no named contact is written by title, and its missing name is named in the summary.
 
 **Order By The Trigger.** Match the source's signal to a row in the Buying Triggers table (profile: Qualification Criteria). The row's Persona who acts column names the person who has to respond first. That persona's sequence is listed first, and its Email 1 is the one the rep sends first. When a row names two personas, the one who approves budget leads, as the records name the approver, and the other persona's sequence follows with its own emails. The trigger sets the order and the lead. It does not remove a persona from the count.
 
@@ -589,7 +592,7 @@ All examples use PlotIQ and its cast from the profile's Example Cast. Every figu
   - Social media ads on the group's pages send pre-need enquiries into the group's shared email. `[Public: company social media pages]` (illustrative)
   - The group is family owned. `[CRM]`
   - The CFO, Hector Ruiz, approves budget. `[CRM]`
-  - The group reviews system spend twice a year, so a decision takes 6 to 9 months [CRM], illustrative. This is the Zone 3 LOW cell (profile: Qualification Zones), which the zone scoring applies
+  - The group reviews system spend twice a year, and the decision cycle is 6 to 9 months [CRM], illustrative. This is the Zone 3 LOW cell (profile: Qualification Zones), which the zone scoring applies
   - Which system replaces the spreadsheets, and when the plot records move: `[Unknown]`
 - **Step 3, The Zones And The Verdict.** ICP3 Multi-Location Group, four to ten sites. The five zones (profile: Qualification Zones):
 
@@ -597,7 +600,7 @@ All examples use PlotIQ and its cast from the profile's Example Cast. Every figu
 |---|---|---|
 | 1 Records and Inventory Pain | MEDIUM | Both cemetery sites keep plot records in spreadsheets `[Notes]` (illustrative), which is the MEDIUM basis (profile: Qualification Zones) |
 | 2 Pre-Need Sales Motion | HIGH | Pre-need counselors at three funeral homes `[CRM]`, a pre-need intake form on the company website `[Public: company website]` (illustrative), and social media ads sending enquiries into email `[Public: company social media pages]` (illustrative). All three HIGH conditions are met |
-| 3 Ownership and Decision Speed | LOW | The CFO approves budget `[CRM]`, and the group reviews system spend twice a year, so a decision takes 6 to 9 months `[CRM]`, illustrative. That is the Zone 3 LOW cell (profile: Qualification Zones). A must-have zone |
+| 3 Ownership and Decision Speed | LOW | The CFO approves budget `[CRM]`, and the group reviews system spend twice a year, and the decision cycle is 6 to 9 months `[CRM]`, illustrative. That is the Zone 3 LOW cell (profile: Qualification Zones). A must-have zone |
 | 4 Technology Readiness | MEDIUM | The cemetery sites run on spreadsheets only `[Notes]` (illustrative), which is the MEDIUM basis (profile: Qualification Zones) |
 | 5 Growth or Succession | HIGH | The owner letter names growth as the 2027 plan, one system for all five sites `[Public: company site, owner letter 2026]`. That is the owner update naming growth the HIGH test asks for |
 
@@ -629,7 +632,7 @@ All examples use PlotIQ and its cast from the profile's Example Cast. Every figu
 
   **3. Risks And Complexity Signals**
   - The two cemeteries hold 3,100 and 2,800 plots. `[CRM]` (illustrative)
-  - The CFO, Hector Ruiz, approves budget. The group reviews system spend twice a year, so a decision takes 6 to 9 months `[CRM]`, illustrative. That is the Zone 3 LOW cell (profile: Qualification Zones)
+  - The CFO, Hector Ruiz, approves budget. The group reviews system spend twice a year, and the decision cycle is 6 to 9 months `[CRM]`, illustrative. That is the Zone 3 LOW cell (profile: Qualification Zones)
   - The date the plot records move is not set. `[Unknown]`
 
   **4. Fit Verdict:** MANUAL REVIEW. Zones 2 and 5 are HIGH, but Zone 3, a must-have, is LOW, so GREENLIGHT does not hold. `[Inferred: zone rules, Step 3]`
@@ -666,7 +669,7 @@ Subject: The review date
 
 Hector,
 
-Your 2026 owner letter sets 2027 as the year for one system. The group reviews system spend twice a year (illustrative), so a decision takes six to nine months from the first meeting to sign-off. What would you need to see at the first meeting to put the decision on the next review?
+Your 2026 owner letter sets 2027 as the year for one system. The group reviews system spend twice a year (illustrative), and the decision cycle runs six to nine months from the first meeting to sign-off. What would you need to see at the first meeting to put the decision on the next review?
 
 Email 4, Breakup
 Subject: Should I close this?
@@ -816,7 +819,7 @@ Your 2026 owner letter names the 2027 move, and I have not heard back, so I will
   4. A pre-need intake form on the company website. `[Public: company website]` (illustrative)
   5. Social media ads send pre-need enquiries into one shared email. `[Public: company social media pages]` (illustrative)
   6. Both cemetery sites keep plot records in spreadsheets. `[Notes]` (illustrative)
-  7. The CFO approves budget. The group reviews system spend twice a year, so a decision takes 6 to 9 months `[CRM]`, illustrative. That is the Zone 3 LOW cell (profile: Qualification Zones)
+  7. The CFO approves budget. The group reviews system spend twice a year, and the decision cycle is 6 to 9 months `[CRM]`, illustrative. That is the Zone 3 LOW cell (profile: Qualification Zones)
   8. The first-call hook is 50 to 100 plots per cemetery site. `[Public: deathcare research, 2026-03-27 to 2026-04-01]` (a Benchmark, a hook and not a result)
 
   Research gaps, each a question for a call:
@@ -1095,6 +1098,15 @@ next_action: the rep is told the verdict and its disqualifier by 2026-10-26, and
 ## Changelog
 
 
+### 2.1.11 (2026-10-26)
+- Step 7 states that a persona applies with or without a named contact. A persona with no name is written by title, and its gap is named in the summary.
+- Step 5 states the wedge unit. A profile price counts one site, cemetery or funeral home alike, because the pre-need module serves funeral homes. The count is five sites in the Saltmarsh example, and two cemetery sites is not the unit.
+- Step 5 states the payback unit for a plot-count benefit: one unsold plot, priced at its average sale value, which the account or the profile must source.
+- Step 4 names the one source that states a signal when two sources hold it.
+- Step 3 states that a must-have zone at LOW keeps the verdict out of GREENLIGHT, and the reasons name it.
+- The records state the decision cycle as a fact. The mode comes from the source type, so the records no longer state it, and the Saltmarsh facts stay the same.
+- No try-it promise, verdict, zone score, wedge figure or email count changes.
+
 ### 2.1.10 (2026-10-26)
 - Gone quiet is no longer restated locally. Step 1b points to the shared rule in What The Close Reads.
 - An INBOUND account with a DISQUALIFY verdict gets one short decline draft to the requesting contact, held for the rep to read, in Steps 3 and 7, the Output Contract, Hard Rules 6 and 14 and the Quality Bar.
@@ -1110,7 +1122,7 @@ next_action: the rep is told the verdict and its disqualifier by 2026-10-26, and
 - A MANUAL REVIEW sequence is a held package: its first line is marked Held, nothing in it goes out before a person clears the verdict, and Hard Rule 11 says so. Account Snapshot (02) holds its MANUAL REVIEW sets the same way.
 - ENGAGED is one of six statuses. Step 1b gives an ENGAGED account one reply draft to its open thread for the replying persona, not a cold sequence, and Hard Rule 12, the Quality Bar and the Integration section follow it.
 - The trigger leads every persona's sequence. The first line of each email names the trigger source, and every one of Example 1's twenty emails now opens on the owner letter.
-- Example 1 restores the Saltmarsh decision-cycle fact, in the words the records hold: the group reviews system spend twice a year, so a decision takes 6 to 9 months [CRM], illustrative. Saltmarsh stays Zone 3 LOW and MANUAL REVIEW, and its 20 emails are held.
+- Example 1 restores the Saltmarsh decision-cycle fact, in the words the records hold: the group reviews system spend twice a year, and the decision cycle is 6 to 9 months [CRM], illustrative. Saltmarsh stays Zone 3 LOW and MANUAL REVIEW, and its 20 emails are held.
 - Example 3 stays at 0 emails. Its fallback gate stops before Step 7, so there is no sequence to hold until the research actions close the gap.
 - Headings and labels are capitalized word by word.
 

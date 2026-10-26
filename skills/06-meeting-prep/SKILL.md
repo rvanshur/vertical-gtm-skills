@@ -1,6 +1,6 @@
 ---
 name: gtm-meeting-prep
-version: 2.1.10
+version: 2.1.11
 description: "Prepares a rep for a discovery or demo call with one prep sheet: the top pain, a question bank for each discovery phase, one proof point per attendee, objection scripts, a minute-by-minute call flow and a follow-up email draft. The rep reads it during the call."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: [gtm-account-snapshot, gtm-research-outbound, gtm-trigger-event-outbound, gtm-closed-loss-reactivation, gtm-daily-prospecting, gtm-deal-pulse, gtm-stakeholder-mapping, gtm-competitive-strategy, gtm-competitive-displacement, gtm-call-coaching]
 mutating: read-write
 change_log:
+  - version: 2.1.11
+    date: 2026-10-26
+    summary: "Settles the open readings from the strict retest. A record fact that shows the cost of a pain is evidence for that pain, so a double sale on the plot records is one top pain, and a renewal date is an urgency. The proof line is a usable Verified or Benchmark row from Proof Points, or none usable with a labelled research target, and an Illustrative row is never the proof line. Competition has its own cell rule, green on a stated preference and yellow on a known incumbent with no preference on record. Paper Process and Competition are scored in Example 1 and the try-it. No verdict, question or next action changes."
   - version: 2.1.10
     date: 2026-10-26
     summary: "Round 10 champion alignment. Example 4 reads Ines Carmody as Developing, one of seven behaviours met (she commits to next steps with dates, through the call she booked on 2026-10-27), the same reading Account Snapshot (02) Example 5 gives on the shared Champion Tests. The Context and the hand-off say so, and the reply due date under the shared rule is named as 2026-10-29, with the records silent on whether it went out. The rest of Example 4 still follows, so no verdict, question, next action or try-it promise changes."
@@ -121,7 +124,7 @@ Every run produces one prep sheet with the same sections in the same order. The 
 | `top_pain` | Section 2 of the prep sheet (demo: Section 1) | One line, tagged. Discovery: the highest-ranked hypothesis. Demo: the first confirmed pain. Reads "none confirmed" when discovery has not confirmed one |
 | `question_bank` | Section 3 of the prep sheet (demo: Section 4) | Discovery: the top three questions for each of Situation, Problem and Implication, and the two Need-Payoff questions, each with its listen-for phrase. Demo: four questions per module |
 | `attendees` | Header of the prep sheet | Each attendee's name or `[Unknown]`, title, and buying role as the record names it |
-| `proof_point` | Section 5 of the prep sheet | One proof point per attendee persona, with its Status shown. An Illustrative row is marked "do not cite" |
+| `proof_point` | Section 5 of the prep sheet | One usable proof point per attendee persona, with its Status shown, or a line that says none is usable and gives the research target. An Illustrative row is never the proof line |
 | `next_action` | Last line of the prep sheet | The owner and the date. Wrap-Up reads this line |
 | `report_path` | Header of the prep sheet | `none (inline)` unless a file was written |
 | File option | Written only when the user asks | Named `<account>_<skill>_<date>.md`, saved beside the user's other account notes. Never written by default |
@@ -416,7 +419,7 @@ Branch by meeting type.
 - **Urgency:** the trigger or deadline, tagged, or `[Unknown]`.
 - **Strength:** the strongest tag on the evidence. A pain the buyer named on a call (`[Call]`) outranks one reasoned from other facts (`[Inferred]`).
 
-Rank the hypotheses by that strength, in this tag order: `[Call]`, then `[CRM]`, then `[Notes]`, then `[Public: source]`, then `[Inferred]`. Lead with the strongest. Use the weakest as negative framing questions, not as statements.
+Rank the hypotheses by that strength, in this tag order: `[Call]`, then `[CRM]`, then `[Notes]`, then `[Public: source]`, then `[Inferred]`. Lead with the strongest. Use the weakest as negative framing questions, not as statements. A record fact that shows the cost of a pain is evidence for that pain, not a second hypothesis, and a renewal or deadline is an urgency, not a pain. Two hypotheses that still tie on tag take the order of Core Pain Points.
 
 **Demo.** List every confirmed pain and rank it by:
 
@@ -451,7 +454,7 @@ Apply the follow-up ladder rule from the Methodology. For a vague answer, ask fo
 
 ### Step 5. Frame The Call
 
-**Discovery: Qualification Pre-Fill.** For each element of the team's qualification framework, mark what is known (green), partly known (yellow) or unknown (red). Each yellow or red cell gets the question that fills it. Identified Pain needs at least one pain quantified, which is the stage 3 depth target. Metrics is green when the record holds a figure for the outcome the solution moves and the buyer has agreed it, yellow when that figure is recorded but not agreed, and red when no such figure is recorded, because account size such as a plot count describes the account and never scores the cell. Economic Buyer is green when the record names the person who signs at this deal's value, yellow when a buyer is named but the signer above that buyer's limit is not confirmed, and red when no buyer is named. Identified Pain is green when one pain is quantified, yellow when a pain is named but not quantified, and red when none is named. An incident count does not quantify a pain: a pain is quantified only when its cost is stated in plots, hours or dollars, as the Stage 2 gate in (profile: Qualification Stage Gates) requires. Champion is green on a Strong result from the shared champion tests, yellow on Developing and red on None. Decision Criteria, Decision Process, Paper Process and Competition have no cell rule of their own, so they take the default: known green, partial yellow, unknown red.
+**Discovery: Qualification Pre-Fill.** For each element of the team's qualification framework, mark what is known (green), partly known (yellow) or unknown (red). Each yellow or red cell gets the question that fills it. Identified Pain needs at least one pain quantified, which is the stage 3 depth target. Metrics is green when the record holds a figure for the outcome the solution moves and the buyer has agreed it, yellow when that figure is recorded but not agreed, and red when no such figure is recorded, because account size such as a plot count describes the account and never scores the cell. Economic Buyer is green when the record names the person who signs at this deal's value, yellow when a buyer is named but the signer above that buyer's limit is not confirmed, and red when no buyer is named. Identified Pain is green when one pain is quantified, yellow when a pain is named but not quantified, and red when none is named. An incident count does not quantify a pain: a pain is quantified only when its cost is stated in plots, hours or dollars, as the Stage 2 gate in (profile: Qualification Stage Gates) requires. Champion is green on a Strong result from the shared champion tests, yellow on Developing and red on None. Decision Criteria, Decision Process and Paper Process have no cell rule of their own, so they take the default: known green, partial yellow, unknown red. Competition is green when the incumbent is known and the buyer has stated a preference among the options, yellow when the incumbent is known and no preference is on record, and red when no incumbent is known.
 
 **Demo: Pain-To-Workflow Map And Structure.** Map each pain to a workflow, the differentiating feature, and the proof that makes it land, with its Status. Plan the demo as: the opening (three to five minutes), a problem slide built on the three-beat arc, a block for each pain in order of importance, and a recap and close. Check the five demo habits before the sheet is handed back.
 
@@ -484,9 +487,9 @@ A discovery flow for a 30-minute call (illustrative) looks like this:
 1. **Choose One Proof Point Per Attendee Persona** from Proof Points. Match on persona first, then vertical, size and pain. Use the proof by its Status:
    - **Verified:** may be cited to the prospect.
    - **Benchmark:** context only, with its source and date named. Never "our customer got this."
-   - **Illustrative:** never cited to a prospect. On the sheet, the row is marked "do not cite".
+   - **Illustrative:** never cited to a prospect, and never the proof line.
 
-   Every attendee gets one proof line, including an attendee whose persona is not yet known. That line says the persona is unknown and that no proof is set until it is confirmed. If the profile has no usable proof for a persona, the sheet says so and gives the research target in its place. The research target is the profile figure whose wording matches the persona's Hook Focus, with its research source named. If that figure has no dated source, state it as a target labelled no dated source, and do not present it as a benchmark. An Illustrative row does not make a persona usable: it is shown marked "do not cite", and the research target is given beside it. The reason: a rep who says "we have no proof for this yet" is more credible than one who reaches for a row that does not exist.
+   Every attendee gets one proof line, including an attendee whose persona is not yet known. That line says the persona is unknown and that no proof is set until it is confirmed. If the profile has no usable proof for a persona, the sheet says so and gives the research target in its place. The proof line is a usable row only: a Verified row from Proof Points, or a Benchmark row from Proof Points whose wording matches the persona's Hook Focus. The research target is the profile figure whose wording matches the Hook Focus, with its research source named. If that figure has no dated source, state it as "target, no dated source", and do not present it as a benchmark. An Illustrative row does not make a persona usable, and it is never the proof line. The reason: a rep who says "we have no proof for this yet" is more credible than one who reaches for a row that does not exist.
 2. **Script Two Or Three Feel-Felt-Found Stories:** Feel (validate their concern), Felt (a similar customer felt the same), Found (the outcome, with a metric whose Status allows its use). If no story can carry a Verified or Benchmark result, the Found line uses the Benchmark and says so.
 3. **Prepare Typed Resistance** (demo): Reactance, Skepticism or Inertia, each with its response from the Methodology.
 4. **Prepare The Redirect:** if a buyer asks about something the product does not lead with, acknowledge it and return to the pain they ranked first.
@@ -566,7 +569,7 @@ Done when all are true:
 - [ ] `top_pain` is one line, tagged, and matches the top hypothesis (discovery) or the first confirmed pain (demo).
 - [ ] Every business impact figure carries a source tag, or it reads `[Unknown]`.
 - [ ] Every attendee is named from the record or marked `[Unknown]`, with a buying role.
-- [ ] Each attendee persona has one proof point, with its Status. No Illustrative row is cited to the prospect.
+- [ ] Each attendee has one proof line: a usable row with its Status, or "none usable" with a labelled research target. No Illustrative row is cited to the prospect.
 - [ ] The question bank covers each discovery phase, and each listen-for phrase shows its source.
 - [ ] The follow-up ladder rule is met: stages 1 and 2 on every confirmed pain, stage 3 on the top pain.
 - [ ] The call flow adds up to the call length, or to the stated 30-minute default.
@@ -603,11 +606,11 @@ All four examples use PlotIQ and its cast from the profile's Example Cast. Facts
 
 **Step 3.** Pain hypotheses, ranked by the strength of their tags:
 
-1. **Plot Records On Paper, With A Double Sale.** Top pain. Evidence: the double sale `[CRM]` (illustrative). Business impact: unsold plots nobody knows exist (profile: Core Pain Points). The research hook is 50 to 100 plots `[Public: deathcare research, paper-operations note, 2026-04-01]`. Brackhaven's own count is `[Unknown]`.
+1. **Plot Records On Paper, With A Double Sale.** Top pain. Evidence: paper plot maps `[CRM]`, and one double sale in 24 months `[CRM]` (illustrative). The double sale is the cost of those records, so it is evidence for this pain, not a second hypothesis. Business impact: unsold plots nobody knows exist (profile: Core Pain Points). The research hook is 50 to 100 plots `[Public: deathcare research, paper-operations note, 2026-04-01]`. Brackhaven's own count is `[Unknown]`.
 2. **Trust Fund Reporting By Hand.** `[Inferred]` from the paper records and the annual filing rule in (profile: Industry Context). The filing that applies depends on the state, which is `[Unknown]`.
 3. **Pre-Need Leads Without A Follow-Up Owner.** `[Unknown]`. No pre-need activity is recorded. Negative framing: "Do you take pre-need calls, and who calls back?"
 
-**Top Pain:** plot records on paper, with a double sale `[CRM]`.
+**Top Pain:** plot records on paper, with a double sale `[CRM]` (illustrative).
 
 **Step 4.** Question bank, top three per phase:
 
@@ -626,10 +629,14 @@ Follow-up ladder on the top pain: stages 1 and 2 when confirmed, and stage 3 on 
 - **Decision Process: Red.** The approval body and its meeting dates are `[Unknown]`. Question: "Who has to approve a purchase above the board line, and when does that group meet?"
 - **Identified Pain: Yellow.** One pain is named and not yet quantified. The stage 3 depth target is not met.
 - **Champion: Red.** The shared champion tests cannot be scored from a first discovery call. They are scored after the call.
+- **Paper Process: Red.** No legal, vendor or signing steps are on record.
+- **Competition: Yellow.** The incumbent, Oldgate Ledger Pro, is known `[CRM]`. The second system, Stonemark, was evaluated, and no preference is on record `[Notes]`, undated.
+
+Totals: 0 green, 3 yellow and 5 red, of 8 elements.
 
 **Step 6.** Competitive: the incumbent is Oldgate Ledger Pro `[CRM]`, an incumbent of the direct-software type in the shared list. Renewal is March 2027 `[CRM]`. Probes, as questions: "When does the Oldgate contract renew, and what did the last quote include for support?" and "Where does the plot map live today, and when was it last updated?" Oldgate's mobile weakness matters only if the grounds crew still uses paper work orders `[Inferred]`.
 
-**Step 7.** Proof for Ruth Ellery, the GM: Holloway Hills, zero records findings in its first state review, Status Illustrative. Not cited to Ruth. The row is Illustrative, so the sheet marks it "do not cite" and gives the research target beside it: 50 to 100 plots sold on paper and unsold on the map (Benchmark, deathcare research, paper-operations note, 2026-04-01). For Walt Okonkwo, (profile: Meeting Prep) also names Holloway Hills, Status Illustrative, marked "do not cite". No Verified proof exists for an Operations Director yet, so the research target beside it is a plot answer in 20 seconds, a research target in (profile: Value Propositions), not a customer result.
+**Step 7.** Proof for Ruth Ellery, the GM: none usable. Proof Points holds no Verified row, and its two Benchmarks, the pre-need share and the federal penalty framing, do not match her hook of unsold plots. The research target is 50 to 100 plots sold on paper and unsold on the map (Benchmark, deathcare research, paper-operations note, 2026-04-01). Holloway Hills, Status Illustrative, is not the proof line and is not cited. For Walt Okonkwo, no usable proof exists, so his line gives the target, labelled "target, no dated source": a plot answer in 20 seconds (profile: Value Propositions).
 
 **Step 8.** Open: "Ruth, thanks for making the time. Before we go further, how are the plot records kept at Brackhaven today?" Close: recap the pain in Ruth's words, ask who else belongs in the next conversation, and agree the next date with an owner.
 
@@ -647,7 +654,7 @@ prep_sheet: inline, discovery, seven sections
 top_pain: plot records on paper, with a double sale [CRM] (illustrative)
 question_bank: Situation 3, Problem 3, Implication 3 (top three each), Need-Payoff 2
 attendees: Ruth Ellery, General Manager, buyer. Walt Okonkwo, Operations Director, influencer
-proof_point: Holloway Hills, Status Illustrative, not cited to the prospect
+proof_point: Ruth Ellery, none usable, research target 50 to 100 plots (Benchmark, 2026-04-01). Walt Okonkwo, none usable, target a plot answer in 20 seconds (target, no dated source)
 next_action: Owen Pruitt asks Ruth Ellery who signs above her, and for the next meeting date, on this call. Date: 2026-05-12 (illustrative), the call date on record, which is earlier than the five-business-day date of 2026-05-18. The meeting date is [Unknown] until agreed
 report_path: none (inline)
 ```
@@ -694,7 +701,7 @@ report_path: none (inline)
 
 **Step 6.** Incumbent: none named in the record `[Unknown]`. Probes, as questions: "Where does the plot map live today, and when was it last updated?" and "When does your software contract renew, and what did the last quote include for support?"
 
-**Step 7.** Proof for Arlen Biggs: Fennick Gardens, 212 unsold plots found in 90 days, Status Illustrative, do not cite. The prospect hears the Benchmark line only: "Most cemeteries your size carry 50 to 100 plots that are sold on paper and unsold on the map" (Benchmark, deathcare research, paper-operations note, 2026-04-01).
+**Step 7.** Proof for Arlen Biggs: none usable. Fennick Gardens is Status Illustrative, so it is not the proof line. The research target the prospect hears is the Benchmark line: "Most cemeteries your size carry 50 to 100 plots that are sold on paper and unsold on the map" (Benchmark, deathcare research, paper-operations note, 2026-04-01).
 
 **Step 8.** Open: "Arlen, thanks for making the time. The request came in through the website, so I'd like to learn how the plot records work before I show you anything. How are the plots kept today?" Follow-up email: DRAFT, not sent.
 
@@ -712,7 +719,7 @@ prep_sheet: inline, discovery, seven sections, demo held
 top_pain: none confirmed. Working hypothesis: plot lookups on a spreadsheet, [Inferred]
 question_bank: Situation 3, Problem 3, Implication 3, Need-Payoff 2
 attendees: Arlen Biggs, General Manager, buyer (signs under $25K). Form filler: [Unknown]
-proof_point: Arlen Biggs, Fennick Gardens, Status Illustrative, do not cite. The prospect hears the Benchmark line only. Form filler, no proof until the persona is confirmed
+proof_point: Arlen Biggs, none usable, research target 50 to 100 plots (Benchmark, 2026-04-01). Form filler, no proof until the persona is confirmed
 next_action: the rep on the Thursday call confirms the form filler and runs discovery, not the demo. Owner: that rep. Date: 2026-10-22, the discovery call booked on 2026-10-19 `[CRM]`, which is earlier than the five-business-day date of 2026-10-26
 report_path: none (inline)
 ```
@@ -763,7 +770,7 @@ Because the record is shallow, the sheet names the missing items and returns the
 
 The AE chooses. The skill does not pick (b) by default, because a demo built on unconfirmed pains is a feature tour.
 
-**Step 7.** Proof, one line per attendee. For the General Manager, (profile: Meeting Prep) names Holloway Hills, Status Illustrative, marked "do not cite", and the research target beside it is 50 to 100 plots sold on paper and unsold on the map (Benchmark, deathcare research, paper-operations note, 2026-04-01). For the pre-need manager, the profile has no proof for this persona yet, so the sheet says so. The research target for pre-need follow-up, within an hour (profile: Value Propositions), stands in as the goal, labelled as a target.
+**Step 7.** Proof, one line per attendee. For the General Manager, none usable. The research target is 50 to 100 plots sold on paper and unsold on the map (Benchmark, deathcare research, paper-operations note, 2026-04-01). For the pre-need manager, the profile has no proof for this persona yet, so the sheet says so. The research target for pre-need follow-up, within an hour (profile: Value Propositions), stands in as the goal, labelled "target, no dated source".
 
 **Step 10.** Hand-off:
 
@@ -775,7 +782,7 @@ prep_sheet: not produced as a demo plan. Discovery-first recommendation with two
 top_pain: none confirmed (0 of 2 needed for a demo)
 question_bank: Problem 2 questions and Need-Payoff 2 questions, from Step 4
 attendees: General Manager, name [Unknown], buyer. Pre-Need Sales Manager, name [Unknown], buying role [Unknown]
-proof_point: General Manager, Holloway Hills, Status Illustrative, do not cite, with the 50 to 100 plot Benchmark as the research target. Pre-need manager, no proof in the profile yet, so the research target stands in
+proof_point: General Manager, none usable, research target 50 to 100 plots (Benchmark, 2026-04-01). Pre-need manager, none usable, target within an hour (target, no dated source)
 next_action: the AE confirms discovery or demo with the GM and asks for the pre-need manager's name. Owner: the AE. Date: 2026-11-19, the working day before the Friday meeting on record (2026-11-20), a date the skill's own schedule sets for the confirmation, which is earlier than the five-business-day date of 2026-11-23
 report_path: none (inline)
 ```
@@ -808,7 +815,7 @@ report_path: none (inline)
 - If she says the records are fine, ask for the last audit.
 - If the owner joins, ask about the growth mandate `[CRM]`.
 
-**Step 7.** Proof: (profile: Meeting Prep) puts Holloway Hills first for the general manager. It is Status Illustrative, so it is not cited. The sheet uses the audit question in place of a result.
+**Step 7.** Proof: none usable for the general manager. The research target is 50 to 100 plots sold on paper and unsold on the map (Benchmark, deathcare research, paper-operations note, 2026-04-01). Holloway Hills is Status Illustrative, so it is not cited. The sheet uses the audit question in place of a result.
 
 **Output (short form, no file).** Steps 1 to 4 and Steps 8 and 9 are delivered in short form. No seven-section sheet is produced, because this is a quick prep.
 
@@ -820,7 +827,7 @@ prep_sheet: inline, short form (quick call prep, no file)
 top_pain: unsold plots on paper plat maps, [Inferred]. The records finding is a question, not the hook, because its date is [Unknown] (illustrative)
 question_bank: Situation 1, Problem 1, Implication 1 (three questions, from Step 4)
 attendees: Ines Carmody, General Manager, champion label, Champion Test Developing (1 of 7 met: commits to next steps with dates) [CRM]. The owner signs under $25K
-proof_point: Holloway Hills, Status Illustrative, not cited to the prospect
+proof_point: none usable. Research target 50 to 100 plots (Benchmark, 2026-04-01)
 next_action: the AE asks Ines Carmody when the last state review was and what it asked for. Owner: the AE on the call. Date: 2026-11-02, the call booked on 2026-10-27 `[CRM]`, which is earlier than the five-business-day date of 2026-11-09
 report_path: none (inline)
 ```
@@ -932,6 +939,13 @@ This skill also reads the kit's hand-off block back as optional context: `case_s
 
 ## Changelog
 
+
+### 2.1.11 (2026-10-26)
+- A record fact that shows the cost of a pain is evidence for that pain, not a second hypothesis. A renewal or deadline is an urgency. Ties on tag take the Core Pain Points order, so the double sale and the plot records give one top pain.
+- The proof line is a usable Verified or Benchmark row from Proof Points, or "none usable" with a research target labelled by its source or "target, no dated source". An Illustrative row is never the proof line.
+- Competition has its own cell rule: green on a stated preference, yellow on a known incumbent with no preference on record, red with no incumbent known.
+- Example 1 scores Paper Process and Competition and totals the pre-fill. Examples 1 to 4 and the try-it show the new proof lines.
+- The verdict, questions and next actions are unchanged.
 
 ### 2.1.10 (2026-10-26)
 - Example 4 reads Ines Carmody as Developing, one of seven behaviours met, on the shared Champion Tests. Her booked, dated call is the one behaviour met, and the Context and the hand-off say so, matching Account Snapshot (02) Example 5.
