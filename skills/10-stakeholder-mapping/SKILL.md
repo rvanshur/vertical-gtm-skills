@@ -1,6 +1,6 @@
 ---
 name: gtm-stakeholder-mapping
-version: 2.1.15
+version: 2.1.16
 description: "Maps the buying committee for one account: classifies every contact by buying role, marks each missing decision-maker as an UNKNOWN ghost node, scores multi-threading on seven weighted dimensions, and returns an engagement plan the AE or BDR reads before the next meeting."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: [gtm-meddpicc-analysis]
 mutating: read-write
 change_log:
+  - version: 2.1.16
+    date: 2026-10-27
+    summary: "The shared contract's next-action rule now says which asks travel with the next action: every ask to the same person due on or before its date, counts and figures included, and never a document the person must draft first or an ask due later."
   - version: 2.1.15
     date: 2026-10-27
     summary: "Round 15 acceptance findings. The upstream MEDDPICC read takes the latest run dated on or before the run date and names its date, and an earlier run is listed by date only. A non-buyer becomes a ghost node only for an open question about who holds the function, so a question about timing, terms or scope is named as a gap. One slot holds one ghost node, and a missing IT owner is the Technical Evaluator slot's ghost node, written with the role the profile's role-title map gives that slot, so the systems administrator step stays HIGH. An introduction to the buyer needs the buyer's name on record, so it never travels with the name ask, and the follow-up to the same champion, on the same date, does travel with the next action. The try-it names the upstream run by its date and records the pre-need manager's day-to-day tool use that the End User rule needs. The promise changes only its next action, which drops the brokered call."
@@ -217,7 +220,7 @@ Rep talk time as a share of the call, by call type: discovery 30% to 40%, demo 5
 
 #### What The Close Reads
 
-Wrap-Up reads by name the **report path** when a file was written, the **verdict** or **score** the session produced, and the **next action** with its owner and date. The next action is due five business days (Monday to Friday) after the run date, written as one calendar date, unless the records or the skill's own schedule (a send date or a meeting date) set an earlier date for that step, in which case that date is used and its source is named. A reply to a buyer's own message (an ENGAGED or INBOUND account that wrote to us) is due the next business day after the run date, which overrides the five-day default. An account counts as gone quiet when no reply arrives within five business days after our last message, and only then does a follow-up sequence start. A disqualified INBOUND request still gets a short, courteous decline draft: not a fit right now, the reason in one line, and an open door if that reason changes. The rep reads it before anything goes out. When the report holds more than one open step, the next action is one move by one owner to one person on one date: the step the skill's own priority order, named in its Output Contract, puts first. Asks to that same person that fit in the same message travel with it. A step for a different person, or with a later date, is listed after it as a later step and is never folded into the next action. Ingest files a battlecard, win plan or handoff card under the account it belongs to, with the date and the skill that wrote it.
+Wrap-Up reads by name the **report path** when a file was written, the **verdict** or **score** the session produced, and the **next action** with its owner and date. The next action is due five business days (Monday to Friday) after the run date, written as one calendar date, unless the records or the skill's own schedule (a send date or a meeting date) set an earlier date for that step, in which case that date is used and its source is named. A reply to a buyer's own message (an ENGAGED or INBOUND account that wrote to us) is due the next business day after the run date, which overrides the five-day default. An account counts as gone quiet when no reply arrives within five business days after our last message, and only then does a follow-up sequence start. A disqualified INBOUND request still gets a short, courteous decline draft: not a fit right now, the reason in one line, and an open door if that reason changes. The rep reads it before anything goes out. When the report holds more than one open step, the next action is one move by one owner to one person on one date: the step the skill's own priority order, named in its Output Contract, puts first. Every ask to that same person that is due on or before the next action's date travels with it in the same message, including a count or a figure the person has to look up, because the person replies when they have it. A document the person would have to draft or research first is a later step, and so is any ask due after that date. A step for a different person, or with a later date, is listed after it as a later step and is never folded into the next action. Ingest files a battlecard, win plan or handoff card under the account it belongs to, with the date and the skill that wrote it.
 
 #### Guild Disciplines, Restated
 
@@ -623,7 +626,7 @@ A profile play from the Buying Committee's available plays takes the priority of
 7. **A HIGH Step,** due 14 days after the run date.
 8. **A MEDIUM Step,** due 30 days after the run date.
 
-Kinds 2 to 6 are URGENT and fall due on the shared contract's date. Ties: when two steps of the same kind remain, the earlier due date comes first. On the same date, the step that closes a threading row scored 0 comes before one that raises a row scored 1. Between two steps that each close a row scored 0 on the same date, the step that closes Blocker Mitigation comes first, because an open objection can end the deal while a missing contact can still be found, the same reason an unaddressed Blocker ranks above a ghost node. After that, the order the plan lists them. The shared next-action rule applies to the result: one move, by one owner, to one person, on one date. Asks to that same person that fit in the same message travel with it, even when they come from a later kind, so a follow-up to the champion and the request for the buyer's name, both sent to the champion, are one next action. An introduction to the buyer is a kind 4 ask, and kind 4 needs the buyer's name on record, so an introduction request is never part of the same message as the name ask, and it carries no date until the name is recorded. Only a step for a different person, or one with a later date set by a record or by this skill's own schedule (the 14-day and 30-day windows), is listed after the next action as a later step, and it is never folded in.
+Kinds 2 to 6 are URGENT and fall due on the shared contract's date. Ties: when two steps of the same kind remain, the earlier due date comes first. On the same date, the step that closes a threading row scored 0 comes before one that raises a row scored 1. Between two steps that each close a row scored 0 on the same date, the step that closes Blocker Mitigation comes first, because an open objection can end the deal while a missing contact can still be found, the same reason an unaddressed Blocker ranks above a ghost node. After that, the order the plan lists them. The shared next-action rule applies to the result: one move, by one owner, to one person, on one date. Every ask to that same person that is due on or before the next action's date travels with it, even when it comes from a later kind, so a follow-up to the champion and the request for the buyer's name, both sent to the champion, are one next action. An introduction to the buyer is a kind 4 ask, and kind 4 needs the buyer's name on record, so an introduction request is never part of the same message as the name ask, and it carries no date until the name is recorded. Only a step for a different person, or one with a later date set by a record or by this skill's own schedule (the 14-day and 30-day windows), is listed after the next action as a later step, and it is never folded in.
 
 For each recommended action:
 - **Who:** Contact name or ghost node ("UNKNOWN, role")
@@ -885,6 +888,9 @@ report_path: none (inline)
 ---
 
 ## Changelog
+
+### 2.1.16 (2026-10-27)
+- The shared contract's next-action rule now says which asks travel with the next action: every ask to the same person due on or before its date, counts and figures included, and never a document the person must draft first or an ask due later.
 
 ### 2.1.15 (2026-10-27)
 - The shared contract's Champion Tests section now defines "asks how to help" (the contact asks what the rep can supply to move the internal decision). The PlotIQ profile dates Brackhaven's deal from 2026-05-06, names the economic buyer for the Stage 2 gate the way the Buying Committee does, and limits the $25K board line claim to one-site accounts.

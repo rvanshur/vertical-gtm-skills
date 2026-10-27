@@ -1,6 +1,6 @@
 ---
 name: gtm-research-outbound
-version: 2.1.15
+version: 2.1.16
 description: "Builds a sourced point of view and outbound package from a public filing, an owner letter or an earnings call, with an ICP verdict, a signal map, a sourced wedge and persona sequences, for the rep and the meeting-prep skill to read"
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: [gtm-account-snapshot]
 mutating: read-write
 change_log:
+  - version: 2.1.16
+    date: 2026-10-27
+    summary: "The shared contract's next-action rule now says which asks travel with the next action: every ask to the same person due on or before its date, counts and figures included, and never a document the person must draft first or an ask due later."
   - version: 2.1.15
     date: 2026-10-27
     summary: "The shared contract's Champion Tests section now defines 'asks how to help' (the contact asks what the rep can supply to move the internal decision). The PlotIQ profile dates Brackhaven's deal from 2026-05-06, names the economic buyer for the Stage 2 gate the way the Buying Committee does, and limits the $25K board line claim to one-site accounts."
@@ -229,7 +232,7 @@ Rep talk time as a share of the call, by call type: discovery 30% to 40%, demo 5
 
 #### What The Close Reads
 
-Wrap-Up reads by name the **report path** when a file was written, the **verdict** or **score** the session produced, and the **next action** with its owner and date. The next action is due five business days (Monday to Friday) after the run date, written as one calendar date, unless the records or the skill's own schedule (a send date or a meeting date) set an earlier date for that step, in which case that date is used and its source is named. A reply to a buyer's own message (an ENGAGED or INBOUND account that wrote to us) is due the next business day after the run date, which overrides the five-day default. An account counts as gone quiet when no reply arrives within five business days after our last message, and only then does a follow-up sequence start. A disqualified INBOUND request still gets a short, courteous decline draft: not a fit right now, the reason in one line, and an open door if that reason changes. The rep reads it before anything goes out. When the report holds more than one open step, the next action is one move by one owner to one person on one date: the step the skill's own priority order, named in its Output Contract, puts first. Asks to that same person that fit in the same message travel with it. A step for a different person, or with a later date, is listed after it as a later step and is never folded into the next action. Ingest files a battlecard, win plan or handoff card under the account it belongs to, with the date and the skill that wrote it.
+Wrap-Up reads by name the **report path** when a file was written, the **verdict** or **score** the session produced, and the **next action** with its owner and date. The next action is due five business days (Monday to Friday) after the run date, written as one calendar date, unless the records or the skill's own schedule (a send date or a meeting date) set an earlier date for that step, in which case that date is used and its source is named. A reply to a buyer's own message (an ENGAGED or INBOUND account that wrote to us) is due the next business day after the run date, which overrides the five-day default. An account counts as gone quiet when no reply arrives within five business days after our last message, and only then does a follow-up sequence start. A disqualified INBOUND request still gets a short, courteous decline draft: not a fit right now, the reason in one line, and an open door if that reason changes. The rep reads it before anything goes out. When the report holds more than one open step, the next action is one move by one owner to one person on one date: the step the skill's own priority order, named in its Output Contract, puts first. Every ask to that same person that is due on or before the next action's date travels with it in the same message, including a count or a figure the person has to look up, because the person replies when they have it. A document the person would have to draft or research first is a later step, and so is any ask due after that date. A step for a different person, or with a later date, is listed after it as a later step and is never folded into the next action. Ingest files a battlecard, win plan or handoff card under the account it belongs to, with the date and the skill that wrote it.
 
 #### Guild Disciplines, Restated
 
@@ -508,7 +511,7 @@ List the top eight intelligence items, each as a finding with its tag. Then list
 
 **Ties.** When two steps fall under the same item, the one tied to the earlier buyer message or the earlier due date goes first. A same-day tie between two buyers goes to the lower Buyer Personas number.
 
-**Scope.** The next action is one move, by one owner, to one person, on one date. Asks to that same person that fit in the same message travel with it. A step for a different person, or with a later date, is listed after it as a later step.
+**Scope.** The next action is one move, by one owner, to one person, on one date. Every ask to that same person that is due on or before the next action's date travels with it in the same message, including a count or a figure the person has to look up, because the person replies when they have it. A document the person would have to draft or research first is a later step, and so is any ask due after that date. A step for a different person, or with a later date, is listed after it as a later step.
 
 **Owner Naming.** Write a person's name only when a record names that person for the step. A person the profile's Example Cast names for an internal role, such as the Sales Manager who clears a held package, is on record for that role, so the owner is written with the citation (profile: Example Cast). That person is the company's own staff and is never a buyer on the account.
 
@@ -1126,6 +1129,9 @@ next_action: the requesting rep is told the verdict and its disqualifier by 2026
 ---
 
 ## Changelog
+
+### 2.1.16 (2026-10-27)
+- The shared contract's next-action rule now says which asks travel with the next action: every ask to the same person due on or before its date, counts and figures included, and never a document the person must draft first or an ask due later.
 
 ### 2.1.15 (2026-10-27)
 - The shared contract's Champion Tests section now defines "asks how to help" (the contact asks what the rep can supply to move the internal decision). The PlotIQ profile dates Brackhaven's deal from 2026-05-06, names the economic buyer for the Stage 2 gate the way the Buying Committee does, and limits the $25K board line claim to one-site accounts.
