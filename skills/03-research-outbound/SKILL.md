@@ -13,7 +13,7 @@ mutating: read-write
 change_log:
   - version: 2.1.16
     date: 2026-10-27
-    summary: "The shared contract's next-action rule now says which asks travel with the next action: every ask to the same person due on or before its date, counts and figures included, and never a document the person must draft first or an ask due later."
+    summary: "The shared contract's next-action rule now says which asks travel with the next action: every ask to the same person due on or before its date, counts and figures included, and never a document the person must draft first or an ask due later. The Step 9 gate-stop check and the Example 2 wording now use the same default-date test, and no next action changes. The shared contract's Champion Tests section now defines 'commits to next steps with dates': the contact agrees, on record, to a dated next step in the deal, such as a meeting they book or a date they commit to on a call."
   - version: 2.1.15
     date: 2026-10-27
     summary: "The shared contract's Champion Tests section now defines 'asks how to help' (the contact asks what the rep can supply to move the internal decision). The PlotIQ profile dates Brackhaven's deal from 2026-05-06, names the economic buyer for the Stage 2 gate the way the Buying Committee does, and limits the $25K board line claim to one-site accounts."
@@ -220,7 +220,7 @@ A BDR-facing skill (02, 03, 04, 05, 07, 12) never works an account that is ACTIV
 
 #### Champion Tests, One List
 
-A contact scores **Strong** as a champion when three or more of these are met with evidence, each tagged: creates urgency inside their company, explains the internal politics, offers introductions, asks how to help, defends the solution when we are not in the room, shares competitor intelligence, commits to next steps with dates. "Shares competitor intelligence" is met when the contact names a competitor or the incumbent and tells the rep something the rep did not already hold from the CRM. "Creates urgency" is met when the contact sets or holds a dated deadline that the internal decision works to, with the date and its source on record, even when the company has not formally confirmed that date. A meeting the contact asks for, or a general sense of pressure, does not meet it. "Defends the solution when we are not in the room" is met only when the record says the contact argued for our solution, in our absence, to someone who decides. A briefing or a status update is not a defence. "Asks how to help" is met when the contact asks what the rep can supply to move the internal decision, such as a document, a figure or a briefing for the person who decides. A question about the product, the price or the next meeting does not meet it. A test the skill has not yet run is written "not yet run", never scored. One or two met is **Developing**. None met is **None**. A friendly contact is not a champion. The same list and thresholds are used by 09, 10 and 13.
+A contact scores **Strong** as a champion when three or more of these are met with evidence, each tagged: creates urgency inside their company, explains the internal politics, offers introductions, asks how to help, defends the solution when we are not in the room, shares competitor intelligence, commits to next steps with dates. "Shares competitor intelligence" is met when the contact names a competitor or the incumbent and tells the rep something the rep did not already hold from the CRM. "Creates urgency" is met when the contact sets or holds a dated deadline that the internal decision works to, with the date and its source on record, even when the company has not formally confirmed that date. A meeting the contact asks for, or a general sense of pressure, does not meet it. "Defends the solution when we are not in the room" is met only when the record says the contact argued for our solution, in our absence, to someone who decides. A briefing or a status update is not a defence. "Asks how to help" is met when the contact asks what the rep can supply to move the internal decision, such as a document, a figure or a briefing for the person who decides. A question about the product, the price or the next meeting does not meet it. "Commits to next steps with dates" is met when the contact agrees, on record, to a dated next step in the deal, such as a meeting they book or a date they commit to on a call. A date the contact has not agreed to does not meet it. A test the skill has not yet run is written "not yet run", never scored. One or two met is **Developing**. None met is **None**. A friendly contact is not a champion. The same list and thresholds are used by 09, 10 and 13.
 
 #### Incumbent Types, One List
 
@@ -505,7 +505,7 @@ List the top eight intelligence items, each as a finding with its tag. Then list
 - **3. The Verdict's Step.** One of these applies to the run:
   - GREENLIGHT with a ready package: the rep's first send, Email 1 to the lead persona.
   - MANUAL REVIEW with a held package: the Sales Manager clears the hold. The first send is a later step, after that clearance.
-  - MANUAL REVIEW with no package, because the Insufficient Intelligence gate stopped the run: the research action for a must-have zone with an open fact, with the checks for the other open zones in the same pass when the same person runs them with no separate date. A check for a different person, or with a date that a record or the skill's own schedule sets, is a later step.
+  - MANUAL REVIEW with no package, because the Insufficient Intelligence gate stopped the run: the research action for a must-have zone with an open fact, with the checks for the other open zones in the same pass when the same person runs them and their date, the shared default, is on or before that date. A check for a different person, or due after that date, is a later step.
   - DISQUALIFY with no reply owed: the requesting rep is told the verdict and its disqualifier, and no sequence is drafted.
   Reason: the verdict decides whether anything can go out, so the step that unlocks or closes it comes next.
 
@@ -965,7 +965,7 @@ next_action: Nadia Brandt sends the coordination note to Owen Pruitt by 2026-10-
 
 **Gate:** Insufficient Intelligence Fallback. The output has no point of view brief, no signal map and no sequences, so it has 0 emails. No held package is written here either, because the gate stops before Step 7. Held drafts appear only after the research actions close the gap.
 
-**Output:** What the sources show, and three research actions: find the signer (Zone 3), confirm the pre-need sales (Zone 2), and check what staff use day to day (Zone 4). The signer is the must-have zone with an open fact, so it leads the next action. The rep runs the other two checks in the same pass, because they are the same person's work with no separate date. Recommend `gtm-account-snapshot` as the faster route to a usable profile.
+**Output:** What the sources show, and three research actions: find the signer (Zone 3), confirm the pre-need sales (Zone 2), and check what staff use day to day (Zone 4). The signer is the must-have zone with an open fact, so it leads the next action. The rep runs the other two checks in the same pass, because they are the same person's work and fall due on the same default date, 2026-10-26. Recommend `gtm-account-snapshot` as the faster route to a usable profile.
 
 ```text
 Hand-off (read by 06):
@@ -1131,7 +1131,9 @@ next_action: the requesting rep is told the verdict and its disqualifier by 2026
 ## Changelog
 
 ### 2.1.16 (2026-10-27)
+- The shared contract's Champion Tests section now defines "commits to next steps with dates": the contact agrees, on record, to a dated next step in the deal, such as a meeting they book or a date they commit to on a call.
 - The shared contract's next-action rule now says which asks travel with the next action: every ask to the same person due on or before its date, counts and figures included, and never a document the person must draft first or an ask due later.
+- Next action. Step 9 item 3 replaces "with no separate date" and "a date that a record or the skill's own schedule sets" with the default-date test: a check for the same person travels when its date, the shared default, is on or before the next action's date. Example 2 states the default date, 2026-10-26, as the reason its two checks share the pass. No next action changes.
 
 ### 2.1.15 (2026-10-27)
 - The shared contract's Champion Tests section now defines "asks how to help" (the contact asks what the rep can supply to move the internal decision). The PlotIQ profile dates Brackhaven's deal from 2026-05-06, names the economic buyer for the Stage 2 gate the way the Buying Committee does, and limits the $25K board line claim to one-site accounts.
