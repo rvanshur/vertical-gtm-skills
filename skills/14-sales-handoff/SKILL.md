@@ -1,6 +1,6 @@
 ---
 name: gtm-sales-handoff
-version: 2.1.16
+version: 2.1.17
 description: "Post-sale implementation readiness check: scores six dimensions, sets the three dates (kickoff, go-live and Full Adoption Date), names risks with mitigations and quick wins, and writes the handoff the implementation lead plans from"
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: [gtm-meddpicc-analysis]
 mutating: read-write
 change_log:
+  - version: 2.1.17
+    date: 2026-10-27
+    summary: "The shared contract now says an ask to the next action's person with no date of its own travels with the next action, and defines the champion test 'explains the internal politics' (the contact tells the rep who decides, or how the decision gets made)."
   - version: 2.1.16
     date: 2026-10-27
     summary: "The shared contract's next-action rule now says which asks travel with the next action: every ask to the same person due on or before its date, counts and figures included, and never a document the person must draft first or an ask due later. The Output Contract row and the Bundling rule now state the same test, so a fourth-ranked risk's ask and a count the person must look up travel with the next action when they are due by its date. The shared contract's Champion Tests section now defines 'commits to next steps with dates': the contact agrees, on record, to a dated next step in the deal, such as a meeting they book or a date they commit to on a call."
@@ -208,7 +211,7 @@ A BDR-facing skill (02, 03, 04, 05, 07, 12) never works an account that is ACTIV
 
 #### Champion Tests, One List
 
-A contact scores **Strong** as a champion when three or more of these are met with evidence, each tagged: creates urgency inside their company, explains the internal politics, offers introductions, asks how to help, defends the solution when we are not in the room, shares competitor intelligence, commits to next steps with dates. "Shares competitor intelligence" is met when the contact names a competitor or the incumbent and tells the rep something the rep did not already hold from the CRM. "Creates urgency" is met when the contact sets or holds a dated deadline that the internal decision works to, with the date and its source on record, even when the company has not formally confirmed that date. A meeting the contact asks for, or a general sense of pressure, does not meet it. "Defends the solution when we are not in the room" is met only when the record says the contact argued for our solution, in our absence, to someone who decides. A briefing or a status update is not a defence. "Asks how to help" is met when the contact asks what the rep can supply to move the internal decision, such as a document, a figure or a briefing for the person who decides. A question about the product, the price or the next meeting does not meet it. "Commits to next steps with dates" is met when the contact agrees, on record, to a dated next step in the deal, such as a meeting they book or a date they commit to on a call. A date the contact has not agreed to does not meet it. A test the skill has not yet run is written "not yet run", never scored. One or two met is **Developing**. None met is **None**. A friendly contact is not a champion. The same list and thresholds are used by 09, 10 and 13.
+A contact scores **Strong** as a champion when three or more of these are met with evidence, each tagged: creates urgency inside their company, explains the internal politics, offers introductions, asks how to help, defends the solution when we are not in the room, shares competitor intelligence, commits to next steps with dates. "Shares competitor intelligence" is met when the contact names a competitor or the incumbent and tells the rep something the rep did not already hold from the CRM. "Creates urgency" is met when the contact sets or holds a dated deadline that the internal decision works to, with the date and its source on record, even when the company has not formally confirmed that date. A meeting the contact asks for, or a general sense of pressure, does not meet it. "Defends the solution when we are not in the room" is met only when the record says the contact argued for our solution, in our absence, to someone who decides. A briefing or a status update is not a defence. "Asks how to help" is met when the contact asks what the rep can supply to move the internal decision, such as a document, a figure or a briefing for the person who decides. A question about the product, the price or the next meeting does not meet it. "Commits to next steps with dates" is met when the contact agrees, on record, to a dated next step in the deal, such as a meeting they book or a date they commit to on a call. A date the contact has not agreed to does not meet it. "Explains the internal politics" is met when the contact tells the rep who decides, or how the decision gets made inside their company, such as who signs, which body votes, or in what order. A test the skill has not yet run is written "not yet run", never scored. One or two met is **Developing**. None met is **None**. A friendly contact is not a champion. The same list and thresholds are used by 09, 10 and 13.
 
 #### Incumbent Types, One List
 
@@ -220,7 +223,7 @@ Rep talk time as a share of the call, by call type: discovery 30% to 40%, demo 5
 
 #### What The Close Reads
 
-Wrap-Up reads by name the **report path** when a file was written, the **verdict** or **score** the session produced, and the **next action** with its owner and date. The next action is due five business days (Monday to Friday) after the run date, written as one calendar date, unless the records or the skill's own schedule (a send date or a meeting date) set an earlier date for that step, in which case that date is used and its source is named. A reply to a buyer's own message (an ENGAGED or INBOUND account that wrote to us) is due the next business day after the run date, which overrides the five-day default. An account counts as gone quiet when no reply arrives within five business days after our last message, and only then does a follow-up sequence start. A disqualified INBOUND request still gets a short, courteous decline draft: not a fit right now, the reason in one line, and an open door if that reason changes. The rep reads it before anything goes out. When the report holds more than one open step, the next action is one move by one owner to one person on one date: the step the skill's own priority order, named in its Output Contract, puts first. Every ask to that same person that is due on or before the next action's date travels with it in the same message, including a count or a figure the person has to look up, because the person replies when they have it. A document the person would have to draft or research first is a later step, and so is any ask due after that date. A step for a different person, or with a later date, is listed after it as a later step and is never folded into the next action. Ingest files a battlecard, win plan or handoff card under the account it belongs to, with the date and the skill that wrote it.
+Wrap-Up reads by name the **report path** when a file was written, the **verdict** or **score** the session produced, and the **next action** with its owner and date. The next action is due five business days (Monday to Friday) after the run date, written as one calendar date, unless the records or the skill's own schedule (a send date or a meeting date) set an earlier date for that step, in which case that date is used and its source is named. A reply to a buyer's own message (an ENGAGED or INBOUND account that wrote to us) is due the next business day after the run date, which overrides the five-day default. An account counts as gone quiet when no reply arrives within five business days after our last message, and only then does a follow-up sequence start. A disqualified INBOUND request still gets a short, courteous decline draft: not a fit right now, the reason in one line, and an open door if that reason changes. The rep reads it before anything goes out. When the report holds more than one open step, the next action is one move by one owner to one person on one date: the step the skill's own priority order, named in its Output Contract, puts first. Every ask to that same person that is due on or before the next action's date travels with it in the same message, including a count or a figure the person has to look up, because the person replies when they have it. An ask to that same person with no date of its own travels with it too. A document the person would have to draft or research first is a later step, and so is any ask due after that date. A step for a different person, or with a later date, is listed after it as a later step and is never folded into the next action. Ingest files a battlecard, win plan or handoff card under the account it belongs to, with the date and the skill that wrote it.
 
 #### Guild Disciplines, Restated
 
@@ -673,7 +676,7 @@ All three examples use the PlotIQ flagship, Brackhaven Memorial Gardens, and the
 - **Go-Live:** 2026-12-07 plus 49 days = **2027-01-25** (Monday). The 49 days is the typical days from kickoff to go-live (profile: Implementation Profile, illustrative). It is a planning value set from the six-week roadmap plus one week of buffer, not a measured one.
 - **Full Adoption Date:** 2026-12-07 plus two months = 2027-02-07, a Sunday. Rolled to Monday, **2027-02-08**. No other adjustment applies: one source system adds nothing, and an export format the team does not know yet subtracts nothing.
 
-**Risks (Top 3):** Technical (HIGH, likelihood High): no IT owner and an unscoped export. Mitigation: Oldgate's support runs a test export on a sample file before kickoff. Stakeholder (HIGH, likelihood High): the board chair is unnamed and the sponsor role is not in writing. Mitigation: Owen Pruitt asks Ruth Ellery for the chair's name and a written sponsor confirmation before the 2026-11-12 board. Adoption (MEDIUM, likelihood High): Walt Okonkwo's skepticism of tablets. Mitigation: Ruth names two or three power users for a pilot, and Walt joins the work-order demo before kickoff.
+**Risks (Top 3):** Technical (HIGH, likelihood High): no IT owner and an unscoped export. Mitigation: Oldgate's support runs a test export on a sample file before kickoff. Stakeholder (HIGH, likelihood High): the board chair is unnamed and the sponsor role is not in writing. Mitigation: Owen Pruitt asks Ruth Ellery for the chair's name and a written sponsor confirmation before the 2026-11-12 board. Adoption (MEDIUM, likelihood High): Walt Okonkwo's skepticism of tablets. Mitigation: Ruth names two or three power users for a pilot.
 
 **Ranking:** Technical is first, because it is the lower-scoring of the two HIGH risks. Adoption is third. Resource and Data are also MEDIUM and score 3, so Adoption leads on likelihood, or on row order if they tie, since Adoption is row 2 of the Risk Categories table.
 
@@ -682,7 +685,6 @@ All three examples use the PlotIQ flagship, Brackhaven Memorial Gardens, and the
 2. Oldgate's support runs a test export on a sample file, and the result is reviewed.
 3. The board chair is named and confirms the sponsor role in writing.
 4. Ruth brings a week of plot lookup times, so the baseline is complete.
-5. Walt joins the work-order demo.
 
 **Quick Wins:** Week one, remove one manual step: replace the binder lookup for the top section with a search, and time it. Month one, run a risk audit of open items: check the open plots at both sites for double-sale risk (the double sale is `[CRM]` and illustrative). Ninety days: lookup times at or below Ruth's baseline, and the trust report built from the system with no hand steps.
 
@@ -714,7 +716,7 @@ dimension_scores: Stakeholder 3, Workflow 4, Technical 2, Data 3, Resource 3, Ch
 three_dates: all proposed before signature: kickoff 2026-12-07, go-live 2027-01-25, Full Adoption Date 2027-02-08
 risks: Technical (HIGH), Stakeholder (HIGH), Adoption (MEDIUM)
 quick_wins: week one remove one manual step, month one risk audit of open plots, 90 days lookup times at baseline
-next_action: Owen Pruitt asks Ruth Ellery, in one message and in risk order, to name a Brackhaven IT owner, to name the family board chair and confirm the sponsor in writing, and to name two or three power users for the pilot, by 2026-11-09 (five business days after the run date of 2026-11-02, no earlier date on record). Later steps: the export test with the incumbent's support (team step, Owen Pruitt before signature), Walt Okonkwo joins the work-order demo (a different person), Ruth brings a week of plot lookup times (research first, default date 2026-11-09), and the quick wins
+next_action: Owen Pruitt asks Ruth Ellery, in one message and in risk order, to name a Brackhaven IT owner, to name the family board chair and confirm the sponsor in writing, to name two or three power users for the pilot, and to name the data owner for the Oldgate ledger, by 2026-11-09 (five business days after the run date of 2026-11-02, no earlier date on record). Later steps: the export test with the incumbent's support (team step, Owen Pruitt before signature), Ruth brings a week of plot lookup times (research first, no date set), and the quick wins
 report_path: none (inline)
 ```
 
@@ -751,7 +753,6 @@ report_path: none (inline)
 1. Brackhaven names an IT owner, by 2026-11-23, the date in the next action.
 2. That owner is briefed on the migration by Oldgate's support.
 3. The board chair is named and confirms the sponsor role in writing.
-4. Walt joins the work-order demo, so his pilot is agreed before kickoff.
 
 **Output:** Composite 57 (Orange). The handoff is issued with the kickoff held. The two HIGH risks are the reason it is not Yellow.
 
@@ -764,7 +765,7 @@ dimension_scores: Stakeholder 3, Workflow 4, Technical 2, Data 3, Resource 2, Ch
 three_dates: none set (Orange rule). Conditional, anchored on the check date 2026-11-16: kickoff 2026-12-21, go-live 2027-02-08, Full Adoption Date 2027-02-22
 risks: Technical (HIGH), Stakeholder (HIGH), Resource (MEDIUM)
 quick_wins: week one remove one manual step, month one risk audit of open plots, 90 days lookup times at baseline
-next_action: Eli Marsh asks Ruth Ellery to name a Brackhaven IT owner, and in the same message to name the family board chair and confirm the sponsor in writing, by 2026-11-23 (five business days after the run date of 2026-11-16). Later steps: Oldgate's support briefs the IT owner on the export (a third party), Walt Okonkwo joins the work-order demo (a different person), and the Resource mitigation, which the same owner takes to its own person
+next_action: Eli Marsh asks Ruth Ellery to name a Brackhaven IT owner, and in the same message to name the family board chair and confirm the sponsor in writing, by 2026-11-23 (five business days after the run date of 2026-11-16). Later steps: Oldgate's support briefs the IT owner on the export (a third party), and the Resource mitigation, which the same owner takes to its own person
 report_path: none (inline)
 ```
 
@@ -893,6 +894,10 @@ The Business Case & ROI Kit (a paid Guild Pro kit) reads this skill's hand-off b
 ---
 
 ## Changelog
+
+### 2.1.17 (2026-10-27)
+- Removed the work-order demo with Walt, which no record or rule produces. The undated ledger data-owner ask to Ruth now travels with Example 1's next action, and Ruth's plot lookup times are a later step with no date set. The try-it promise has a Must Match block.
+- The shared contract now says an ask to the next action's person with no date of its own travels with the next action, and defines the champion test "explains the internal politics" (the contact tells the rep who decides, or how the decision gets made).
 
 ### 2.1.16 (2026-10-27)
 - The shared contract's Champion Tests section now defines "commits to next steps with dates": the contact agrees, on record, to a dated next step in the deal, such as a meeting they book or a date they commit to on a call.
