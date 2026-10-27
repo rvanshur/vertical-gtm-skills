@@ -14,7 +14,7 @@ These records are as of 2026-05-12, before Brackhaven's deal reached Stage 5 Neg
 - Prep sheet: the top pain is plot records on paper [Notes]. A double sale is on file in the CRM [CRM].
 - Prep sheet question_bank [Notes] (illustrative): "When a family asks for a plot, where do you look first, and how long does that take?" and "How many plots could you sell today if the records were right?"
 - Prep sheet proof_point [Notes]: the Benchmark that most cemeteries your size carry 50 to 100 plots sold on paper and unsold on the map `[Public: deathcare research, 2026-03-27 to 2026-04-01]` (profile: Proof Points). The Holloway Hills proof point is Illustrative (profile: Proof Points).
-- Source: a speaker-labelled transcript, checked end to end for silence and talk share. The excerpts below are the lines the score rests on, each verbatim with its transcript time. No pause after any answer ran past two seconds [Call, 2026-05-12] (illustrative).
+- Source: a speaker-labelled transcript, checked end to end for pauses and talk share. The excerpts below are the lines the score rests on, each verbatim with its transcript time. The longest pause after any answer by a prospect runs 1.4 seconds on the transcript [Call, 2026-05-12] (illustrative).
 - Rep talk time: 36% (illustrative) [Call, 2026-05-12].
 - 00:40, Owen: "Ruth, Walt, thanks for the time." [Call, 2026-05-12]
 - 00:50, Owen: "Today I'd like to agree the agenda: the lookups, the trust report, and what a good second session would look like." [Call, 2026-05-12]
@@ -25,7 +25,7 @@ These records are as of 2026-05-12, before Brackhaven's deal reached Stage 5 Neg
 - 14:20, Ruth: "We sold section F twice last spring." [Call, 2026-05-12]
 - 16:40, Owen: "So the files go back to the 1970s, and they are all paper?" [Call, 2026-05-12]
 - 16:55, Owen: "What have you tried for the lookups so far?" [Call, 2026-05-12]
-- 17:05, Ruth: "We started moving plots into Oldgate and stopped." Owen asked why it stopped. The lines above hold no question about cost. [Call, 2026-05-12]
+- 17:05, Ruth: "We started moving plots into Oldgate and stopped." Owen asked why it stopped. [Call, 2026-05-12]
 - 19:05, Owen: "So that's a problem for the trust report too?" [Call, 2026-05-12]
 - 21:30, Ruth described the lookups. Owen moved on. [Call, 2026-05-12]
 - 23:40, Walt: "I don't want my crew walking around with a tablet in a cemetery." Owen: "They're just screens, you can use them at the desk." [Call, 2026-05-12]
@@ -33,8 +33,7 @@ These records are as of 2026-05-12, before Brackhaven's deal reached Stage 5 Neg
 - 28:30, Owen asked for the chair of the approval body and the meeting date. Ruth: "The board takes these things up." Ruth said she would check with the board. Owen: "Great, thanks." [Call, 2026-05-12]
 - 31:10, Ruth: "We don't really have an IT person." [Call, 2026-05-12]
 - 33:00, Ruth: "What would you need from us to put this in front of the board?" [Call, 2026-05-12]
-- The last two minutes of the transcript contain no date and no owner for a next step [Call, 2026-05-12].
-- After the call, on 2026-05-12, Owen and Ruth exchanged emails about a second session [Notes] (illustrative). The emails are not in the records, so no agreed date is on record.
+- After the call, on 2026-05-12, Owen and Ruth exchanged emails about a second session [Notes] (illustrative). The emails are not in the records.
 - The board chair's name is [Unknown] after this call.
 - Competitive: Oldgate Ledger Pro, renewal March 2027 [CRM].
 
@@ -43,4 +42,4 @@ These records are as of 2026-05-12, before Brackhaven's deal reached Stage 5 Neg
 - Category scores: Pre-Call Preparation 4, SPIN Discovery Quality 3, Priority Ladder Execution 3, Active Listening 4, Value Articulation 3, Next Steps and Momentum 3, Alternatives 4.
 - Champion status: Strong, with three of seven shared champion tests met on this call: explains the internal politics (28:30), asks how to help (33:00), and shares competitor intelligence (17:05).
 - Focus area for the next call: Priority Ladder to Level 3 on the cost of a plot lookup and of a double sale. The stage gate it serves is "Records problem quantified (plots, hours or dollars)."
-- Next action: Owen Pruitt asks Ruth Ellery, in one message, for the family board chair's name and the date the board takes up the decision, and for the date she will check with the board. The date is 2026-05-19, the five-business-day date from the run date, because no earlier date is on record. In the same message Owen proposes the second discovery session, with its date to be agreed. Later step: the focus-area practice, quantifying the lookup cost and the double-sale cost before that session.
+- Next action: Owen Pruitt sends Ruth Ellery one message. It asks for the family board chair's name, the date the board takes up the decision and the date she will check with the board, and it answers her 33:00 question about what the board needs. The date is 2026-05-19, the five-business-day date from the run date of 2026-05-12, because no earlier date is on record. Later steps, in order: the second discovery session, which has no date yet and is a proposal rather than part of the message. Next, who runs IT and who holds the Oldgate export, a red flag. Last, the focus-area practice, quantifying the lookup cost and the double-sale cost before that session.

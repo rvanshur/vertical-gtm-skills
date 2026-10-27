@@ -1,6 +1,6 @@
 ---
 name: gtm-trigger-event-outbound
-version: 2.1.12
+version: 2.1.13
 description: "Turns one dated business event at a target account into a short outbound sequence, but only after checking the event against its window. Reports when the window has closed or the event date is unknown. Read by the BDR or AE who sends the sequence."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: [gtm-account-snapshot, gtm-closed-loss-reactivation]
 mutating: read-write
 change_log:
+  - version: 2.1.13
+    date: 2026-10-26
+    summary: "Round 13 disqualifier check date. Email 1 and Email 2 never state or ask about an open disqualifier condition, and a question about the buyer's system or ownership is reserved for Email 3, the last email. The check is therefore due the business day before the last send day in every case, so the drafter no longer decides the date. Step 1C, the Rules For Every Email and the Step 4 priority order carry the rule. Example 1 Email 2 asks a different question, its check date moves to the business day before the last send day, the site GM sequence follows the same rule, and the try-it promise follows. The try-it records no longer carry the event tag, which stays in the promise."
   - version: 2.1.12
     date: 2026-10-26
     summary: "Round 12 next-action order and acceptance fixes. The next action is one move: a reply owed to a buyer first, then AE coordination on an AE-owned ACTIVE account, then the earliest time-bound window step (finding an unnamed contact, the Email 1 send, the disqualifier check, later sends), then other steps, with ties broken by the step that gates another. The order sits in the Output Contract and Step 4. Email 1 never states or asks about an open disqualifier condition, so the check is due the business day before the first later email that does, here Email 2 and 2026-10-22. The event tag comes from the record that makes the change (the state licensing database), and the deal notice is cited for the size and the deadline. The long end is the last day any email may go out, so the window and the send rule agree. The Corrow Ridge Email 1 names the 2027-02-16 integration review date, which supersedes the Q1 2027 wording of consistency item C-09 for Email 1. Example 1 and the try-it next action is the earliest step, the names, with the send and the check as later steps. Examples 2 and 3 keep their next actions, which the order gives unchanged. Days remaining stay at 10."
@@ -403,7 +406,7 @@ Map the event to `{Methodology: Trigger Type Taxonomy}`. If the event is ambiguo
 #### 1C. Search The CRM
 
 Check for an open deal, the account owner and known contacts. Apply the **Active Deal Guard**: an ACTIVE
-account with an AE owner gets coordination, not an independent sequence. A disqualifier (profile: Qualification Criteria) is read with all of its conditions: a consolidator is disqualified only when it is public or PE-backed and runs its own system. Each condition still `[Unknown]` is checked before the first email whose claim depends on it is sent. An email depends on a condition when its text states the condition or asks about it. Email 1 never does this while a disqualifier condition is open, because its job is the event and its deadline, and a question about the buyer's system or ownership belongs in a later email. So the check's due date is the business day before the send day of the first later email that depends on it. If the drafter writes Email 1 to depend on the condition anyway, the check moves to the business day before Email 1's send day, and the next action says so. If no email depends on the condition, the check is due the business day before the last send day, so it still runs before the sequence ends. The report names the check and its date. The rep who sends the sequence runs the check. Emails that do not depend on the condition may go out before the check, so the check is never skipped, only timed.
+account with an AE owner gets coordination, not an independent sequence. A disqualifier (profile: Qualification Criteria) is read with all of its conditions: a consolidator is disqualified only when it is public or PE-backed and runs its own system. Each condition still `[Unknown]` is checked before the first email whose claim depends on it is sent. An email depends on a condition when its text states the condition or asks about it. Email 1 and Email 2 never state or ask about an open condition. Their job is the event, its deadline and a question the event raises, and a question about the buyer's system or ownership is reserved for Email 3, the last email. So no email before Email 3 depends on the check, and the check's due date is fixed by the sequence rather than by the drafter: the business day before the last send day, whichever email sends last. If a drafter writes Email 1 or Email 2 to depend on the condition anyway, the check moves to the business day before that email's send day, and the next action says so. The report names the check and its date. The rep who sends the sequence runs the check. Emails that do not depend on the condition may go out before the check, so the check is never skipped, only timed.
 
 #### 1D. Validate Timeliness
 
@@ -464,6 +467,7 @@ persona that has to respond, and name any persona that only hears about the even
 - A known contact is addressed by name. An unknown contact is `[first name]` until research fills it
 - For an ENGAGED account, Email 1 replies in the open thread and names the event, with no cold opener
 - For an INBOUND account, Email 1 replies to the request and names the event with its tag, with no cold opener. Email 2 and Email 3 follow only if the account goes quiet, as What The Close Reads defines it, and only inside the window. A disqualifier that applies gives one decline draft in place of Email 1
+- Email 1 and Email 2 never state or ask about an open disqualifier condition. A question about the buyer's system or ownership is reserved for Email 3 (Step 1C), so the check's due date does not depend on how Email 2 is drafted
 - Only events with a tag that supports them may be referenced directly. Implications are written as questions
 - At most one proof point per email. It must be one the profile marks Verified or Benchmark (profile: Proof Points), named with its source. An Illustrative proof point is never cited
 
@@ -507,7 +511,7 @@ with the reason the status blocks it.
 11. **Next Action Priority Order:** the one move the report gives, chosen from the open steps in this order, the first kind open wins:
     1. **A reply owed to a buyer who wrote to us** (an INBOUND request, or an ENGAGED account's reply). Due the next business day after the run date. Reason: the buyer is waiting on us, and no sequence may run ahead of that reply.
     2. **AE Coordination** on an ACTIVE account with an AE owner (the coordination note, Hard Rule 6). Reason: the AE owns the deal, and the BDR's job is to hand the AE the facts, not to write to the buyer.
-    3. **A Time-Bound Step Inside The Window**, earliest date first. The kinds, in order: finding an unnamed contact (due by that contact's Email 1 send day), sending Email 1 (Day 1), running the disqualifier check (due the business day before the first dependent email), sending Email 2 or Email 3 (Day 4 or Day 8). Reason: each has a date the window forces, and the earliest one is the one that cannot slip.
+    3. **A Time-Bound Step Inside The Window**, earliest date first. The kinds, in order: finding an unnamed contact (due by that contact's Email 1 send day), sending Email 1 (Day 1), running the disqualifier check (due the business day before the last send day, Step 1C), sending Email 2 or Email 3 (Day 4 or Day 8). Reason: each has a date the window forces, and the earliest one is the one that cannot slip.
     4. **Any Other Step**, dated by the shared contract's rule or by a date the record sets. Reason: no clock forces it yet.
 
     Ties: within one kind, the earlier date wins. On the same date, the step that gates another dated step goes first, so a name comes before the send it enables, and a send comes before the check when both fall on one day. Sending is the next action only when every contact it needs is named and the rep has read the draft, because the names gate the send. The report states the chosen move with its owner, one person and one date. An ask to that same person in the same message, with no date of its own, travels with the move. A step for a different person, or with a later date set by a record or the skill's own schedule, is listed after it as a later step with its date.
@@ -649,7 +653,7 @@ site", with the acquirer's CFO or controller as the persona who acts, and the si
 in the CRM `[Unknown]`, so the BDR finds the name in the licensing record or the deal notice before Email 1
 goes out. Harborline's ownership type and whether it runs its own system are both `[Unknown]`. The disqualifier (profile: Qualification Criteria)
 needs both conditions: a public or PE-backed consolidator that runs its own system. Neither is
-confirmed. Email 1 neither states nor asks about either condition, so it goes out on Day 1 without waiting. Email 2 asks which system keeps the records, so Email 2 is the first email that depends on the check, and it waits. The check is due the business day before Email 2's send day, so by 2026-10-22. If both conditions hold, no sequence goes out.
+confirmed. Email 1 and Email 2 neither state nor ask about either condition, so neither depends on the check, and both go out on their days without waiting. Email 3 asks nothing about the system either, so no email depends on the check, and it is due the business day before the last send day, 2026-10-26. If both conditions hold, the rep stops the sequence at the check, so Email 3 does not go out.
 
 **Step 2. Event Intelligence Brief.**
 
@@ -667,7 +671,7 @@ Business implications, each tagged:
 
 **Step 3. Sequence.** The personas are the acquirer's CFO or controller and the site GM, from the Buying
 Triggers row (profile: Qualification Criteria), so two personas with three emails each. This example shows the CFO's three emails. The site
-GM's three emails follow the same rules, ask which system will hold the site's records, and are omitted from
+GM's three emails follow the same rules. Its Email 3 may ask which system will hold the site's records, and its Email 1 and Email 2 do not, so both personas share the same check date. They are omitted from
 this page only.
 
 **Proof Point.** None can be cited. The proof point for this trigger (profile: Trigger Catalog), Fennick Gardens with 212
@@ -683,13 +687,12 @@ would go.
 > site keeps its plot records on paper plat maps, and a 15-minute look at them would show what the review
 > is likely to ask for. What would the review need from the plot map first? [your name]
 
-**Email 2 (Day 4, 2026-10-23)**, sent only after the ownership and system check due 2026-10-22
+**Email 2 (Day 4, 2026-10-23)**, which asks nothing about the buyer's system or ownership, so it does not wait for the check
 
 > **Subject:** Corrow Ridge's plot map before the Harborline review
 >
-> [first name], one question, because the review sets the deadline. Once the review is held, which system
-> keeps Corrow Ridge's plot records: the one the site uses today, or Harborline's? If that is still open,
-> the plot map is the piece to settle first. Would a 15-minute call this week work? [your name]
+> [first name], one question, because the review sets the deadline. Before a review, does anyone at the site know how many plots are sold but not yet on the map?
+> If that is hard to answer today, the plot map is the piece to settle first. Would a 15-minute call this week work? [your name]
 
 **Email 3 (Day 8, 2026-10-27, on or before the long end)**
 
@@ -715,7 +718,7 @@ days_remaining: 10
 event_tag: [Public: state licensing database]
 sequence: six emails, three to the acquirer's CFO or controller (name [Unknown]) and three to the site GM. The GM's three are omitted from this example
 report_path: none (inline)
-next_action: Nadia Brandt finds the acquirer's CFO or controller and the site GM by 2026-10-20, the send day of Email 1. Later steps: send Email 1 on 2026-10-20 (Day 1) after reading the draft. Run the Harborline ownership and system check by 2026-10-22, before Email 2 on 2026-10-23
+next_action: Nadia Brandt finds the acquirer's CFO or controller and the site GM by 2026-10-20, the send day of Email 1. Later steps: send Email 1 on 2026-10-20 (Day 1) after reading the draft. Run the Harborline ownership and system check by 2026-10-26, the business day before the last send day on 2026-10-27
 
 ---
 
@@ -909,6 +912,11 @@ next_action: Nadia Brandt sends the note to Owen Pruitt by 2026-10-26, after rea
 
 ## Changelog
 
+
+### 2.1.13 (2026-10-26)
+- Email 1 and Email 2 never state or ask about an open disqualifier condition. A question about the buyer's system or ownership is reserved for Email 3, so the check is due the business day before the last send day in every case. The drafter no longer decides the date. Step 1C, the Rules For Every Email and the Step 4 priority order carry the rule.
+- Example 1 Email 2 asks a different question, which needs no check. Its check moves to the business day before the last send day, and the GM sequence and the hand-off follow the same rule.
+- The try-it records no longer carry the event tag, which stays in the promise. The try-it promise moves its check date to match Example 1.
 
 ### 2.1.12 (2026-10-26)
 - The Output Contract's `next_action` row and Step 4 item 11 give the priority order for choosing one next action. A reply owed to a buyer comes first, then AE coordination on an AE-owned ACTIVE account, then the earliest time-bound window step in the order names, contact, Email 1, check, later sends, then other steps. Ties go to the step that gates another dated step. The other open steps are listed after the move as later steps.

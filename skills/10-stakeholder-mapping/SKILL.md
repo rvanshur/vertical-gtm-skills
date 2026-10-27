@@ -1,6 +1,6 @@
 ---
 name: gtm-stakeholder-mapping
-version: 2.1.12
+version: 2.1.13
 description: "Maps the buying committee for one account: classifies every contact by buying role, marks each missing decision-maker as an UNKNOWN ghost node, scores multi-threading on seven weighted dimensions, and returns an engagement plan the AE or BDR reads before the next meeting."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: [gtm-meddpicc-analysis]
 mutating: read-write
 change_log:
+  - version: 2.1.13
+    date: 2026-10-26
+    summary: "Round 13 acceptance findings. Several Skeptics or Blockers on one account: the Blocker Mitigation row takes the lowest score among them, so an unplanned Skeptic holds it at 0 even when another Skeptic has a plan. The next-action priority table is exclusive: HIGH is a critical ghost node (Economic Buyer or Technical Evaluator slot), a key department uncontacted, or a step that closes a row scored 0. Every other ghost node is MEDIUM. A profile play takes the priority of the row it closes, so the find-the-plot demo is MEDIUM. The try-it records state what was said and done, not the rubric's own result: the tests are not pre-listed, the Technical Evaluator list is stated as pulled in full, the last reply is a date, the stage recommendation is dated to the run, and the Walt plan and the chair's missing plan are stated as notes. The promise is raw total 11 of 20, threading score 6, with the later steps the rules now give."
   - version: 2.1.12
     date: 2026-10-26
     summary: "Round 12. The next-action priority order is written into the Output Contract and Step 7: a reply owed at an ENGAGED or INBOUND account, an unaddressed Blocker, an Economic Buyer who is a ghost node, a named Economic Buyer not engaged, a champion at risk, an entry point, then HIGH and MEDIUM steps by their windows. Asks to the same person that fit in one message travel with the next action. The role-title map governs a contact's role before the typical-titles column. A briefing to the approver counts as demonstrated seniority for HIGH influence. The full-list rule for a 0 is stated on the record. Upstream MEDDPICC fields and the BDR owner are recorded in the try-it. The example scores, threading score and ghost nodes do not change."
@@ -310,6 +313,8 @@ Champion status is set from the shared champion tests in the Shared Contract, wh
 
 **Skeptics Count Toward Blocker Mitigation.** A contact with a Skeptic position and a stated objection, with a strategy in place, scores 1 on Blocker Mitigation (Developing), because an objection not yet acted on is the early form of a block. The contact keeps the buying role the record evidences (Influencer, when no other role is evidenced). This score does not make the contact a Blocker. The Blocker role needs a contact the record shows acting against the deal, and a stated objection alone does not give it, as the profile's Buying Committee role-title map also says.
 
+**Several Skeptics Or Blockers On One Account.** The Blocker Mitigation row reads every known Skeptic or Blocker, named or ghost node, and takes the lowest score among them. One Skeptic with no strategy holds the row at 0, even when another Skeptic has a strategy, because an open objection is the risk the row measures and under-scoring protects the deal. A Skeptic recorded only on a ghost node counts here, the same as in the Political Landscape.
+
 **End Users Engaged** means at least one end user Actively Engaged under the Engagement Status table, with 2 or more logged interactions in the last 30 days.
 
 **Economic Buyer Engaged** scores 2 only when the buyer has two or more dated interactions in the last 30 days, whether or not the buyer is named. An economic buyer with one call, or with a call whose date is unknown, scores 1.
@@ -589,11 +594,13 @@ Create a prioritized engagement plan:
 | Priority | Criteria | Action Window |
 |----------|---------|---------------|
 | URGENT | Blocker unaddressed, EB not engaged, Champion at risk, no entry point on an account with no two-way contact | Five business days after the run date, or the earlier record date |
-| HIGH | Missing buying role, key department uncontacted, critical ghost node | Next 2 weeks |
-| MEDIUM | Strengthen existing relationship, expand into adjacent department | Next 30 days |
+| HIGH | A critical ghost node (the Economic Buyer or Technical Evaluator slot), a key department uncontacted, or a step that closes a threading row scored 0 | Next 2 weeks |
+| MEDIUM | Strengthen existing relationship, expand into adjacent department, a ghost node in any other slot, or a profile play that closes no row scored 0 | Next 30 days |
 | LOW | Informational contact, maintain awareness | Ongoing |
 
-Deadlines run from the run date. URGENT actions fall due on the date the shared contract's next-action rule gives (five business days after the run date, or an earlier date the records or the skill's own schedule set for that step, named with its source). HIGH actions fall due 14 days after the run date, and MEDIUM actions 30 days after it. A critical ghost node is one in the Economic Buyer or Technical Evaluator slot, the two slots Step 4 checks. A ghost node in any other slot, such as a Buyer Persona row with no named contact, is a MEDIUM step that expands into an adjacent department. A ghost node counts as not engaged, because no named contact exists to engage. This skill starts no follow-up sequence, so the gone-quiet test in the shared contract is not applied here, and a missing date for our last message does not block an action.
+Deadlines run from the run date. URGENT actions fall due on the date the shared contract's next-action rule gives (five business days after the run date, or an earlier date the records or the skill's own schedule set for that step, named with its source). HIGH actions fall due 14 days after the run date, and MEDIUM actions 30 days after it. A critical ghost node is one in the Economic Buyer or Technical Evaluator slot, the two slots Step 4 checks. A ghost node in any other slot, such as a Buyer Persona row with no named contact, is a MEDIUM step that expands into an adjacent department. Each step takes one priority, and the two rows of the table above do not overlap: a ghost node is HIGH only in a critical slot.
+
+A profile play from the Buying Committee's available plays takes the priority of the threading row it closes. It is HIGH when it closes a row scored 0, and MEDIUM otherwise. A Skeptic with no strategy holds the Blocker Mitigation row at 0 (Methodology, Several Skeptics Or Blockers), so the step that sets that strategy closes a 0 row and is HIGH, with the owner setting it and no ask folded into the next action. A ghost node counts as not engaged, because no named contact exists to engage. This skill starts no follow-up sequence, so the gone-quiet test in the shared contract is not applied here, and a missing date for our last message does not block an action.
 
 **Next-Action Priority Order.** When the plan holds more than one open step, the next action is the first kind of step below that applies. The order puts first the step whose delay costs the rep the most.
 
@@ -724,20 +731,21 @@ Ghost nodes, written by role only:
 | Technical Evaluator | 1x | 0 | 0 | No IT contact on the full CRM contact list `[CRM]`, so the rubric's 0 describes the full list and the row is 0, not INSUFFICIENT. Nobody owns IT `[Unknown]` |
 | Economic Buyer Engaged | 2x | 1 | 2 | Identified by role only, one call in Stage 4 Proposal `[CRM]`, budget not confirmed `[Call, 2026-09-26]` |
 | End User Validation | 1x | 2 | 2 | Priscilla Dunmore, Actively Engaged: a pre-need walkthrough on 2026-10-08, which was not a demo, and a second logged interaction on 2026-10-14, two in the last 30 days `[CRM]` |
-| Blocker Mitigation | 1x | 1 | 1 | Walt Okonkwo, a Skeptic with a stated objection, identified, and a strategy exists (a demo on his own work orders) (profile: Buying Committee). Developing under the Skeptic rule in Methodology |
-| **Total** | | | **12 of 20** (scored 7 of 7) | |
+| Blocker Mitigation | 1x | 0 | 0 | Two known Skeptics. Walt Okonkwo, with a stated objection and a plan on record (a demo on his own work orders, profile: Buying Committee), scores 1. The board chair, with a stated cost concern and no plan in the notes, scores 0. The row takes the lowest, 0 (Methodology, Several Skeptics Or Blockers) |
+| **Total** | | | **11 of 20** (scored 7 of 7) | |
 
-Raw total 12 of 20, scored 7 of 7. threading_score = 12 ÷ 2 = **6**, Developing, material gaps. Full C-level credit would give a raw total of 14 and a score of 7. The map withholds that credit because the board chair is not a named contact on file, and one call with an unnamed person is not a relationship the team can plan around.
+Raw total 11 of 20, scored 7 of 7. threading_score = 11 ÷ 20 × 10 = 5.5, rounded half up to **6**, Developing, material gaps. Full C-level credit would give a raw total of 13 and a score of 7. The map withholds that credit because the board chair is not a named contact on file, and one call with an unnamed person is not a relationship the team can plan around.
 
 **Political Landscape:** Ruth is top-right (leverage), with Influence HIGH and support Strong `[CRM]`. The "UNKNOWN, family board chair" is HIGH influence, so it sits at the top of the map, on the centre line of support: interested in cost and not yet a supporter, a Skeptic `[Call, date Unknown]`. The chair takes no quadrant until the chair is named. Walt sits on the centre line, not in a quadrant, because his influence is MEDIUM and only HIGH influence takes a quadrant. He is a Skeptic with concerns and no opposition yet `[Call, 2026-09-21]`, and his daily use decides whether the system survives. Priscilla is LOW influence, so she is not placed on the map, and her support is `[Unknown]` until a conversation shows it.
 
 **Output:** Engagement strategy:
 - Next action, URGENT, five business days after the run date of 2026-10-19 (2026-10-26), with no earlier record date for this step: Owen asks Ruth Ellery for the board chair's name and the board date by 2026-10-26, and in the same message asks her to broker a second call with the chair. Order: no reply is owed (the account is ACTIVE), and no contact is a Blocker, so kind 3 applies first, an economic buyer who is a ghost node, with the name asked first. The same message is the follow-up kind 5 calls for, because Ruth is a champion at risk (Strong, last logged interaction 16 days before the run date). The brokered call is an ask to the same person with no separate date, so it travels in the message after the name. Why: the economic buyer is unnamed and has been on one call, and the champion has not replied since 2026-10-03 `[CRM]`. How: a short note through Ruth, not a cold message to the chair. Messaging: price and the board line only, year one $26,576 with the $5,000 setup against the $25K line (profile: Product Modules). No customer result is cited, because the proof points are Illustrative.
-- Later step, HIGH, by 2026-11-02 (a later date set by this skill's 14-day window, so it is not folded into the next action): ask Ruth who keeps the Oldgate system running and who holds the ledger export. Who: "UNKNOWN, systems administrator", a critical ghost node in the Technical Evaluator slot. It comes before the demo below on the same date, because it closes a threading row scored 0. Why: the Technical Evaluator score is 0, and nobody owns IT. How: Ruth or Walt names one person, and the technical discovery runs before the readiness check on 2026-11-02. Messaging: the export question, not a product claim.
-- Later step, HIGH, by 2026-11-02: a find-the-plot demo on Walt's own work orders. This is the strategy that keeps the Skeptic's stated objection from turning into a block. Message: "Find the plot in seconds," the Operations Director hook (profile: Buyer Personas).
+- Later step, HIGH, by 2026-11-02 (a later date set by this skill's 14-day window, so it is not folded into the next action): ask Ruth who keeps the Oldgate system running and who holds the ledger export. Who: "UNKNOWN, systems administrator", a critical ghost node in the Technical Evaluator slot. It is listed first among the later steps because it closes a threading row scored 0. Why: the Technical Evaluator score is 0, and nobody owns IT. How: Ruth or Walt names one person, and the technical discovery runs before the readiness check on 2026-11-02. Messaging: the export question, not a product claim.
+- Later step, HIGH, by 2026-11-02: Owen writes the answer to the board chair's stated cost concern, for use in the conversation with Ruth. Who: "UNKNOWN, family board chair", the Skeptic whose position holds Blocker Mitigation at 0 until a plan is set. Why: the notes hold no plan for the concern. How: an internal preparation item, with no ask to Ruth in it, so it is not folded into the next action. Messaging: price and the board line only, year one $26,576 against the $25K line (profile: Product Modules).
+- Later step, MEDIUM, by 2026-11-18: a find-the-plot demo on Walt's own work orders. This keeps Walt's stated objection from turning into a block. It closes no row scored 0, so it is MEDIUM under the profile play rule. Message: "Find the plot in seconds," the Operations Director hook (profile: Buyer Personas).
 - Later step, MEDIUM, by 2026-11-18: ask Ruth who the funeral home owner is, since the combination's pre-need leads run through that side. Who: "UNKNOWN, funeral home owner", a Buyer Persona ghost node outside the Economic Buyer and Technical Evaluator slots, so MEDIUM.
 
-Summary: Champion, Strong (Ruth Ellery, four of seven shared tests met). Economic Buyer, a ghost node with one call and no named contact. Blocker, None on the record. Walt Okonkwo is a Skeptic with a stated objection and a mitigation plan, scored 1 on Blocker Mitigation. Top gaps: no named board chair, no IT owner, champion silent 16 days `[CRM]`.
+Summary: Champion, Strong (Ruth Ellery, four of seven shared tests met). Economic Buyer, a ghost node with one call and no named contact. Blocker, None on the record. Two Skeptics: Walt Okonkwo, with a plan, scored 1 on Blocker Mitigation, and the board chair, with a cost concern and no plan, scored 0, so the row reads 0. Top gaps: no named board chair, no IT owner, champion silent 16 days `[CRM]`.
 
 ```text
 Hand-off (read by 09 and 06):
@@ -867,6 +875,12 @@ report_path: none (inline)
 ---
 
 ## Changelog
+
+### 2.1.13 (2026-10-26)
+- Several Skeptics. The Blocker Mitigation row takes the lowest score among every known Skeptic or Blocker, named or ghost. Example 1 has two Skeptics, Walt (1, with a plan) and the board chair (0, no plan in the notes), so the row is 0 and the raw total is 11 of 20. The threading score stays 6.
+- Priority. The HIGH and MEDIUM criteria of Step 7 no longer overlap. HIGH is a critical ghost node (Economic Buyer or Technical Evaluator slot), a key department uncontacted, or a step that closes a row scored 0. A ghost node in any other slot is MEDIUM. The "missing buying role" wording is removed from HIGH.
+- Profile plays. A play takes the priority of the row it closes. The find-the-plot demo closes no 0 row, so it is MEDIUM by 2026-11-18. The chair's cost concern has no plan, so the step that sets one is a HIGH later step by 2026-11-02, owned by Owen and not folded into the next action.
+- Try-it. The records state what was said and done. The champion tests are no longer pre-listed, the last reply is a date, the Technical Evaluator list is stated as pulled in full, the stage recommendation is dated to the run, and the Walt plan and the chair's missing plan are stated as notes. The promise changes raw total from 12 to 11 and the later steps as stated in the try-it.
 
 ### 2.1.12 (2026-10-26)
 - Next action. The Output Contract `next_action` row and Step 7 give the priority order. Asks to the same person in one message travel with the next action, and a different person or a later date makes a later step.

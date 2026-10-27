@@ -35,9 +35,9 @@ People And Decision
 - Social ads for pre-need: not recorded [Unknown]
 - The website shows no plot lookup [Public: company website] (illustrative)
 - Plot records stay on paper maps, not in the Oldgate ledger [CRM] (illustrative)
-- The owner has a dated retirement plan: retirement on 2029-03-31, stated in the owner bio [Public: company website, owner bio, 2026] (illustrative)
-- The general manager recommends and the board approves [Public: company website, board calendar] (illustrative)
-- The board meets within 60 days [Public: company website, board calendar] (illustrative)
+- Owner's retirement date: 2029-03-31, stated in the owner bio [Public: company website, owner bio, 2026] (illustrative)
+- Decision path: the general manager brings proposals to the family board, which holds approval [Notes] (illustrative)
+- Next family board meeting: 2026-06-30 [Public: company website, board calendar] (illustrative)
 - Pricing: two sites, each priced at the per-site list price, plus a one-time setup per deal (profile: Product Modules)
 
 ## What You Should Get

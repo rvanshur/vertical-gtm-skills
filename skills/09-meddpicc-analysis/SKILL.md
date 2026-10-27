@@ -1,6 +1,6 @@
 ---
 name: gtm-meddpicc-analysis
-version: 2.1.12
+version: 2.1.13
 description: "Scores an active deal across all eight MEDDPICC elements from the CRM record, computes a weighted health score, and recommends ADVANCE, HOLD, DOWNGRADE or DISQUALIFY. The deal's AE and sales manager read the output."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: ["gtm-deal-pulse", "gtm-call-coaching", "gtm-stakeholder-mapping"]
 mutating: read-write
 change_log:
+  - version: 2.1.13
+    date: 2026-10-26
+    summary: "Round 13. An ask to the same person from the same owner travels with the next action only when it is due on the next action's date. A step with a later date is a later step even when it goes to the same person, and each gap class sets its date. Where the MEDDPICC section holds a [RECORD] for the paper steps or the metric wording, the rubric is applied to what the record shows and the report says the team's own wording is not yet set. The try-it records state what each person said and did, with dates, and drop the labels and rubric phrases that pre-sorted the tests. No score, verdict, stage recommendation or next action changes."
   - version: 2.1.12
     date: 2026-10-26
     summary: "Round 12. Next-action priority order written into the Output Contract and Step 5: a reply owed to a buyer first, then a failed current-stage critical element, then the next-stage blocker, then other gaps. Asks to the same person from the same owner travel with the next action in one message. a different owner or a later date is a later step. Identified Pain 5 and Decision Process 4 are settled by rule (the close date is set against a named deadline when the buyer ties it to the event the close date sits on. row 4 holds on steps known one by one with an unconfirmed set date). Decision Criteria 4 reads 'strong on most' against recorded must-haves. Deal Pulse absence is shown per field. Example 2 check date moves to 2026-10-26, the dated action's deadline. The example scores, verdicts and health do not change."
@@ -116,7 +119,7 @@ Core commitments: **eight-element scorecard with weighted scores**, **overall he
 | `stage_recommendation` | Inline, the stage section before the actions | One word: ADVANCE, HOLD, DOWNGRADE or DISQUALIFY, with the rationale and the dated action |
 | `risk_patterns` | Inline, the gap analysis | Each pattern flagged from the risk table, with its evidence tag, or the words "none flagged" |
 | Next Actions (Five) | Inline, after the stage recommendation | Action, element targeted, owner, deadline and success criterion, in the priority order of the `next_action` row. The first action is the one the close reads, and the line under the list names which actions travel with it and which are later steps |
-| `next_action` | Last line of the analysis | One move by one owner to one person on one date, with its owner and the date the shared contract's next-action rule gives (five business days after the run date, or an earlier date the records or the skill's own schedule set for that step, named with its source). **Priority order, first to last:** (1) a reply owed to a buyer who wrote to us and has had no answer, due the next business day, when the record holds one, because a buyer waiting on us is the one step that loses ground every day. (2) A failed critical element for the deal's current stage, lowest score first, because the stage the CRM shows is not supported until that floor is met. An INSUFFICIENT critical element counts as failed and comes before any scored one, because the missing evidence is the step. (3) The element that blocks the next stage's critical floor or carries the next stage's exit criterion, lowest score first, because it is what holds the deal where it is. (4) Every other gap, in the Step 4 ranking. Ties at any level go to the lower score, then to the element that comes first in the weighted table. The first step in this order that the record holds is the next action. An ask to the same person from the same owner travels with the next action in the same message. A step for a different person or owner, or with a later date, is listed after it as a later step with its own owner and date, never folded in. The ten-business-day deadline Step 5 gives a moderate gap is this skill's own schedule for that step, so a moderate ask dated later than the next action is a later step. For an account that is not scored (Step 1, Status Check), the next action is the reply when one is owed, and otherwise the step that opens a deal |
+| `next_action` | Last line of the analysis | One move by one owner to one person on one date, with its owner and the date the shared contract's next-action rule gives (five business days after the run date, or an earlier date the records or the skill's own schedule set for that step, named with its source). **Priority order, first to last:** (1) a reply owed to a buyer who wrote to us and has had no answer, due the next business day, when the record holds one, because a buyer waiting on us is the one step that loses ground every day. (2) A failed critical element for the deal's current stage, lowest score first, because the stage the CRM shows is not supported until that floor is met. An INSUFFICIENT critical element counts as failed and comes before any scored one, because the missing evidence is the step. (3) The element that blocks the next stage's critical floor or carries the next stage's exit criterion, lowest score first, because it is what holds the deal where it is. (4) Every other gap, in the Step 4 ranking. Ties at any level go to the lower score, then to the element that comes first in the weighted table. The first step in this order that the record holds is the next action. An ask to the same person from the same owner travels with the next action in the same message only when it is due on the next action's date. A step for a different person or owner, or with a later date, even to the same person, is listed after it as a later step with its own owner and date, never folded in. The ten-business-day deadline Step 5 gives a moderate gap is this skill's own schedule for that step, so a moderate ask dated later than the next action is a later step. For an account that is not scored (Step 1, Status Check), the next action is the reply when one is owed, and otherwise the step that opens a deal |
 | `report_path` | Set only when a file was written | `none (inline)` when the analysis stayed in the chat |
 | File Option | `<account>_gtm-meddpicc-analysis_<date>.md`, saved beside the user's other account notes | Written only when the user asks, in Markdown. The ask is the approval step |
 
@@ -264,7 +267,7 @@ Score each element against its rubric using the evidence in the record. Tag ever
 | 2 | Pain acknowledged but not quantified. No numbers shared. |
 | 1 | No metrics discussion has occurred. |
 
-The current-state numbers in row 4 are the prospect's own: a number the prospect stated on a call, or one the CRM records as the prospect's. A figure taken only from the profile is not the prospect's, so it does not by itself earn row 4. Step 2 applies the same test.
+The current-state numbers in row 4 are the prospect's own: a number the prospect stated on a call, or one the CRM records as the prospect's. A figure taken only from the profile is not the prospect's, so it does not by itself earn row 4. Step 2 applies the same test. Where the MEDDPICC section holds `[RECORD]` for the metric wording, the rubric alone is used, and the report says so.
 
 #### E. Economic Buyer (Weight: 20%)
 | Score | Evidence Required |
@@ -305,6 +308,8 @@ A stakeholder is known when its role is on the record, even if its name is not, 
 | 3 | Aware legal/procurement review exists but details unclear. |
 | 2 | Paper process assumed based on company size, not confirmed. |
 | 1 | No discussion of paper process. |
+
+Where the MEDDPICC section holds `[RECORD]` for the paper steps, Paper Process is scored from the steps the account's record shows, and the report says the team's own steps are not yet set.
 
 #### I. Identified Pain (Weight: 15%)
 | Score | Evidence Required |
@@ -465,7 +470,7 @@ Generate five prioritized next actions, each targeting a specific MEDDPICC gap. 
 3. The element that blocks the next stage's critical floor or carries the next stage's exit criterion, lowest score first.
 4. Every other gap, in the Step 4 ranking.
 
-Ties at any level go to the lower score, then to the element that comes first in the weighted table. The reason for the order: a buyer waiting on us loses ground every day, a failed current floor means the stage the CRM shows is not supported today, and a next-stage blocker is what holds the deal where it is. After the list, write one line naming the next action, the asks that travel with it (same owner, same person, no later date) and the later steps. A critical gap is one that fails the next stage's critical floor, or the element that carries the next stage's exit criterion in the profile's Qualification Stage Gates, such as the approval date for Stage 6 Closed-Won and Handoff, which sits with Decision Process. An exit criterion sits with the element whose rubric names the fact it needs. A failed critical element for the current stage is also a critical gap. Every other gap is moderate. The first action is the next action, so its date is set by the shared contract's next-action rule (five business days after the run date, or an earlier date the records or the skill's own schedule set for that step, named with its source). The other four actions keep the deadline above. The first action's date is the shared rule's date even when its gap is moderate, so the ten-day deadline never applies to it.
+Ties at any level go to the lower score, then to the element that comes first in the weighted table. The reason for the order: a buyer waiting on us loses ground every day, a failed current floor means the stage the CRM shows is not supported today, and a next-stage blocker is what holds the deal where it is. After the list, write one line naming the next action, the asks that travel with it (same owner, same person, same date) and the later steps. A critical gap is one that fails the next stage's critical floor, or the element that carries the next stage's exit criterion in the profile's Qualification Stage Gates, such as the approval date for Stage 6 Closed-Won and Handoff, which sits with Decision Process. An exit criterion sits with the element whose rubric names the fact it needs. A failed critical element for the current stage is also a critical gap. Every other gap is moderate. The first action is the next action, so its date is set by the shared contract's next-action rule (five business days after the run date, or an earlier date the records or the skill's own schedule set for that step, named with its source). The other four actions keep the deadline above. The first action's date is the shared rule's date even when its gap is moderate, so the ten-day deadline never applies to it.
 
 **Produces:** Five actions, each with element targeted, owner, deadline and success criterion.
 
@@ -570,7 +575,7 @@ Write a file only when the user asks for one, named `<account>_gtm-meddpicc-anal
 4. Lena Vasquez, Sales Manager, joins the next call with the board chair, by 2026-10-12. Element: Economic Buyer and happy ears check. Owner: manager. Success: the manager records what the chair commits to.
 5. Owen agrees the ROI framework with Ruth in writing, by 2026-10-12. Element: Metrics. Owner: AE. Success: the framework is agreed by Ruth and filed on the record, moving Metrics to 5.
 
-Next action: action 1. No current-stage floor fails, and Paper Process (3) blocks the Stage 6 floor, so it comes first. Action 2 goes from the same owner to the same person with no later date, so its ask travels in the same message. Actions 3 and 5 are later steps (a later date), and action 4 is a later step (a different owner).
+Next action: action 1. No current-stage floor fails, and Paper Process (3) blocks the Stage 6 floor, so it comes first. Action 2 goes from the same owner to the same person on the same date, so its ask travels in the same message. Actions 3 and 5 are later steps (a later date), and action 4 is a later step (a different owner).
 
 **Stage Recommendation: HOLD at Stage 5 Negotiate, checked 2026-10-05.** The deal passes the Stage 5 minimum and misses the Stage 6 minimum on Paper Process alone. Its dated actions close that gap by 2026-10-05, the date the stage is checked, and the board date sits on the calendar for 2026-11-12. The deal moves to Stage 6 when Paper Process reaches 4 and the board approval date is confirmed.
 
@@ -728,6 +733,11 @@ The Business Case & ROI Kit (a paid Guild Pro kit) reads this skill's hand-off b
 
 ## Changelog
 
+
+### 2.1.13 (2026-10-26)
+- Next action. An ask to the same person from the same owner travels with the next action only when it is due on that action's date. A later date makes a later step, even for the same person. The gap class sets the date: a critical gap is due five business days out and a moderate gap ten.
+- Paper Process and Metrics. Where the MEDDPICC section holds a [RECORD] for the paper steps or the metric wording, the rubric is applied to the record alone, and the report says so.
+- Try-it. The records give what each person said and did, with dates. The labels that pre-sorted the champion tests and the rubric phrases are removed. No score, verdict, stage recommendation or next action changes.
 
 ### 2.1.12 (2026-10-26)
 - Next action. The Output Contract `next_action` row and Step 5 give the priority order: a reply owed to a buyer, then a failed current-stage critical element (INSUFFICIENT first), then the next-stage blocker, then other gaps by the Step 4 ranking. Ties go to the lower score, then to table order. Asks to the same person from the same owner travel in the same message. a different owner or a later date makes a later step.

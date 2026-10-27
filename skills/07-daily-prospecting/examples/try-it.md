@@ -9,7 +9,7 @@ Every name, date and number in this file is invented for the PlotIQ example. Not
 
 Run date: Monday 2026-10-19 (illustrative)
 Rep: Nadia Brandt, BDR, Texas and Oklahoma
-Open tasks due today: nine (illustrative count), one for each account listed below. The opt-out under Lowmoor is an exclusion, not a task.
+Open tasks due today: nine (illustrative count), one for each account listed below.
 
 Brackhaven Memorial Gardens
 - Status: ACTIVE, Stage 5 Negotiate [CRM]
@@ -28,7 +28,7 @@ Lowmoor Memorial Gardens
 - Upstream hand-off from Closed-Loss Reactivation (05), run 2026-10-19 [Notes]: reactivation_strategy MONITOR, reminder window 2026-12-18 to 2027-01-17
 
 A former Lowmoor contact (name withheld)
-- Opted out on 2026-02-14, after the loss [CRM] (illustrative). The opt-out holds for every dial to this contact
+- Opted out on 2026-02-14, after the loss [CRM] (illustrative)
 - The opted-out contact is a different former Lowmoor contact, not Ines Carmody [CRM] (illustrative)
 
 Corrow Ridge Cemetery
@@ -47,8 +47,8 @@ Sable Fork Cemetery
 - No reply from PlotIQ is logged on the request [CRM]
 - Who filled in the form: [Unknown]
 - One site, 2,900 plots, plot list in a spreadsheet [CRM] (illustrative)
-- GM Arlen Biggs signs under $25K [CRM]
-- No board approval step: the GM signs alone [CRM] (illustrative)
+- Contract quote: $10,788 a year plus $5,000 setup, the list price [CRM] (illustrative). GM Arlen Biggs signs it [CRM]
+- Approval path: the GM signs the contract. No other approver is on record [CRM] (illustrative)
 - Pre-need: none. The GM sells plots directly, with no counselor and no intake form [CRM] (illustrative)
 - Plot records live only in the spreadsheet. Staff use email [CRM] (illustrative)
 - Plot sales flat for three years, and no succession plan on the record [CRM] (illustrative)
@@ -60,8 +60,8 @@ Quill Hollow Memorial Park
 - GM Ines Carmody moved here from Lowmoor six months ago, with an owner growth mandate [CRM]
 - Last touch 2026-09-29 [CRM] (illustrative)
 - Records finding in the last state review [CRM]. Its date: [Unknown]
-- Owner signs under $25K [CRM]
-- The owner signs alone, with no board approval step [CRM] (illustrative)
+- Contract quote: $10,788 a year plus $5,000 setup, the list price [CRM] (illustrative)
+- Approval path: the owner signs the contract. No other approver is on record [CRM] (illustrative)
 - GM change on the state licensing record, 2026-04-25 [Public: state licensing database] (illustrative)
 
 Greyfield Memorial Park
@@ -72,7 +72,8 @@ Greyfield Memorial Park
 - Pre-need leads from social ads flow into email [CRM] (illustrative)
 - Staff email and shared drive use: [Unknown]
 - Stonemark signing date: [Unknown]
-- Owner signs under $25K alone, with no board approval step [CRM] (illustrative)
+- Contract quote: $10,788 a year plus $5,000 setup, the list price [CRM] (illustrative)
+- Approval path: the owner signs the contract. No other approver is on record [CRM] (illustrative)
 - The Stonemark map holds no records or trust reporting [CRM] (illustrative)
 - Wants pre-need and records together, with one growth project [CRM] (illustrative)
 - Last touch on the account record 2026-09-24, with no named contact [CRM] (illustrative)

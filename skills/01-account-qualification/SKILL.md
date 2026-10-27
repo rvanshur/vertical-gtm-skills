@@ -1,6 +1,6 @@
 ---
 name: gtm-account-qualification
-version: 2.1.12
+version: 2.1.13
 description: "Scores an account against the ICP definitions, 8 weighted criteria and the profile's five qualification zones, and returns a GREENLIGHT, MANUAL REVIEW or DISQUALIFY verdict with every zone shown, for the BDR or AE who decides where to spend time."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: []
 mutating: read-write
 change_log:
+  - version: 2.1.13
+    date: 2026-10-26
+    summary: "Round 13 acceptance findings. Competitor Lock-In now has a trigger the records can meet: an incumbent with a renewal date on record, and a switching cost on the profile's Competitive Landscape row for that incumbent. The try-it records state the board timing as a dated meeting and the decision path as a fact, not in the words of the Zone 3 cell. The Oldgate flag cites the Competitive Landscape row. Verdict, zones, count, next action and every risk flag in the promise are unchanged."
   - version: 2.1.12
     date: 2026-10-26
     summary: "Round 12 next-action order and acceptance findings. Output Contract and Step 6 item 12 now carry one priority order for the next action: a reply owed to a buyer who wrote to us, then AE coordination for an ACTIVE account, then the verdict's step. Ties, owners and later steps are stated. The account status is read from the record dated on the run date, and a later-dated profile status does not apply to an earlier run. ICP2 criteria 1, 3 and 8 gain rating rules, and criterion 3 and 8 apply to the ICP1 table too. A year-only date is placed in a look-back window only when the whole year falls inside it. A digital tool counts as tried when the account has used it, and the Fit Grid cell the records cannot decide is written Unknown without moving its row. Step 6 item 9 lists every risk flag that applies, with Approval Above Signing Line named. Every worked example and the try-it next action are re-derived under the order. The try-it promise changes its owner, its single move and its risk flag line only."
@@ -404,7 +407,7 @@ A HIGH condition that cannot apply to the account counts as met, so an owner who
 |------|-----------------|
 | No Fit Indicator | Matches a disqualifier in `{Client Profile: Qualification Criteria}`. Points at the disqualifier clause of the Verdict Rule |
 | Previous DQ | Previously disqualified or churned, with the reason still standing. Points at the disqualifier clause while the reason stands |
-| Competitor Lock-In | Long-term contract with an incumbent, high switching costs |
+| Competitor Lock-In | An incumbent with a renewal date on record `[CRM]`, and a switching cost on the profile's Competitive Landscape row for that incumbent, such as an upfront cost or annual maintenance. The switching cost is cited to that row with its research grade, because account records rarely state a contract term. Name the flag when both are on record |
 | Incomplete Data | Revenue unknown, footprint unclear, no contacts |
 | Low Volume | Below the minimum thresholds |
 | Approval Above Signing Line | A board or corporate approval step above the signing line in the decision zone (profile: Qualification Zones). It holds that zone at MEDIUM and names the line. It does not change the verdict on its own |
@@ -548,13 +551,13 @@ Four worked examples, all on the PlotIQ cast and the chain file. They show a mix
 |---|------|--------|----------|
 | 1 | Records and Inventory Pain (must-have) | HIGH | Paper plot maps, and a double sale recorded in 2025. The date is a year only, and all of 2025 falls inside the 24-month window that opens 2024-05-04 (Step 4) `[CRM]` (illustrative) |
 | 2 | Pre-Need Sales Motion | MEDIUM | A pre-need manager exists, and there is no intake form on the site `[Public: company website]` (illustrative). Social ads are not recorded `[Unknown]` |
-| 3 | Ownership and Decision Speed (must-have) | MEDIUM | The GM recommends and the board approves, which is the MEDIUM cell as written (profile: Qualification Zones), so the zone is MEDIUM. The board meets within 60 days `[Public: company website, board calendar]` (illustrative), which meets the HIGH timing test, but the signing test fails, because year one, $26,576 (illustrative, two sites at list price), is above the $25K line (profile: Qualification Zones) |
+| 3 | Ownership and Decision Speed (must-have) | MEDIUM | The GM recommends and the board approves, which is the MEDIUM cell as written (profile: Qualification Zones), so the zone is MEDIUM. The next family board meeting is 2026-06-30 `[Public: company website, board calendar]` (illustrative), 57 days after the run date, which meets the HIGH timing test, but the signing test fails, because year one, $26,576 (illustrative, two sites at list price), is above the $25K line (profile: Qualification Zones) |
 | 4 | Technology Readiness | MEDIUM | Staff use company email, which the staff page shows `[Public: company website, staff page]` (illustrative). The website shows no plot lookup. The Oldgate legacy ledger is a digital tool the account has used, so "has tried a digital tool" is met. The website shows no plot lookup, and the shared drive is not recorded, so the HIGH column is not fully met. The ledger does not hold plot records, which stay on paper maps `[CRM]` (illustrative), so the MEDIUM condition "legacy system that fits poorly" is met. Its licence renews in March 2027 `[CRM]` (illustrative), so the LOW condition of an enterprise system under contract to 2028 is not met. No LOW condition is met, so the zone is MEDIUM under the partial-match rule in Step 4 (illustrative) |
 | 5 | Growth or Succession | HIGH | The owner's bio gives a retirement date of 2029-03-31, inside 3 years of the run date `[Public: company website, owner bio, 2026]` (illustrative) |
 
 **Verdict:** GREENLIGHT. Two zones are HIGH (1 and 5), and no must-have zone is LOW. Seven of eight criteria are STRONG or PARTIAL, which is recorded in `icp_match` and `fit_narrative`. No disqualifier applies.
 
-**Risk Flags:** (1) Approval Above Signing Line: year one, $26,576 (illustrative), is above the $25K board line, so Zone 3 stays MEDIUM, and the flag does not change the verdict on its own. (2) Competitor Lock-In: the Oldgate licence renews in March 2027 `[CRM]` (illustrative), and Oldgate is a multi-year license with annual maintenance (research estimate, profile: Closed-Loss Intelligence). (3) Incomplete Data: the revenue is a range that is not confirmed `[CRM]` (illustrative), and the location spread is `[Unknown]`.
+**Risk Flags:** (1) Approval Above Signing Line: year one, $26,576 (illustrative), is above the $25K board line, so Zone 3 stays MEDIUM, and the flag does not change the verdict on its own. (2) Competitor Lock-In: the Oldgate licence renews in March 2027 `[CRM]` (illustrative), and the profile's Competitive Landscape row for Oldgate gives an upfront cost and maintenance at 20% a year, a switching cost (research estimate, profile: Competitive Landscape). (3) Incomplete Data: the revenue is a range that is not confirmed `[CRM]` (illustrative), and the location spread is `[Unknown]`.
 
 **Opportunity Signals:** Records pain with a double sale `[CRM]` (illustrative), and a succession window of about 3 years (illustrative).
 
@@ -785,6 +788,11 @@ An account pending AE assignment is not ACTIVE. Score it, and say that it is pen
 
 ## Changelog
 
+
+### 2.1.13 (2026-10-26)
+- Competitor Lock-In has a trigger the records can meet, in the Step 5 table. An incumbent with a renewal date on record, and a switching cost on the profile's Competitive Landscape row for that incumbent, names the flag. The switching cost is cited to that row with its grade, because a record seldom states a term.
+- Example 1 cites the Oldgate switching cost to the Competitive Landscape row. Its Zone 3 board timing is a dated next board meeting, 57 days after the run date, not the words of the Zone 3 cell.
+- The try-it records state the owner's retirement date and the decision path as facts. The board timing is a dated meeting. Verdict, zones, count, next action and the promised flags are unchanged.
 
 ### 2.1.12 (2026-10-26)
 - Output Contract and Step 6 item 12 state one next-action priority order: a reply owed to a buyer who wrote to us, then AE coordination for an ACTIVE account with an AE owner, then the verdict's step. The order gives its reasons, the tie rule, and the rule that a same-person ask with no separate date travels with the next action.

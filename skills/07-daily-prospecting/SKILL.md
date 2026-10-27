@@ -1,6 +1,6 @@
 ---
 name: gtm-daily-prospecting
-version: 2.1.12
+version: 2.1.13
 description: "Builds the morning dial sheet for a BDR or AE: ranks accounts into Hot, Warm, New and Recycle tiers, removes accounts the BDR guard blocks, and writes a pre-call brief for the top eight, read by the rep at the phone and by the meeting prep skill."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: [gtm-meeting-prep]
 mutating: read-write
 change_log:
+  - version: 2.1.13
+    date: 2026-10-26
+    summary: "Round 13. A Recycle hold keeps its upstream word, such as MONITOR from Closed-Loss Reactivation (05), which is not one of the three verdict words, and a task due on a held account is listed as held and never dialed. The strongest opportunity is the first dial in the Priority Dial Queue, so its line has one rule. The try-it records state who signs and the approval path as facts, with the contract quote, in place of the rule's own words, and drop the sentence that pre-classified the Lowmoor opt-out as an exclusion. Example 2 carries the Quill Hollow champion label that Example 1 carries. No tier, verdict, next action or dial order changes."
   - version: 2.1.12
     date: 2026-10-26
     summary: "Sets the next-action priority order by kind, as the family order requires: a reply owed to a buyer who wrote to us first, then Hot, Warm and New dials, then the AE-coordination step for an excluded account, then the Recycle hold reminder. The order replaces the earlier due-date order for the next action, so a later step can carry an earlier date and is still listed after the reply. Ties at one rank go to the earlier due date, then to the dial-queue order. A step owned by someone else is listed after the user's own steps. A dial on the day's task list is due on the run date, and an excluded account's coordination step takes its task's date. Settles the Zone 1 reading: a records fact counts toward HIGH only when the record names its type, so the Corrow Ridge fact is a double sale. Settles Zone 4: a failed public search is UNKNOWN, not LOW, and a digital tool holding neither the plot records nor the trust reporting fits poorly. The try-it record, Example 1 and Example 3 name the double sale. Tamsin Vale Zone 4 reads UNKNOWN. Verdicts, tiers and the dial queue are unchanged. The next action changes from the Corrow Ridge dial to the Sable Fork reply."
@@ -438,7 +441,7 @@ Rank every remaining account into one of four tiers. The criteria differ by role
 
 **The Profile's Hot Definition Is Applied First.** The Daily Prospecting section of the profile states what a Hot account is in checkable facts. The role table fills the tiers that definition leaves open. Where the profile's definition and the role table disagree, the brief says so, and the profile owner decides which one holds. The skill never settles that disagreement silently. The role table never moves an account into Hot that the profile's definition does not place there. When it would, the account stays out of Hot and the brief names the disagreement. A trigger inside its window does not make an account Hot on its own, because the profile's definition also needs Zone 1 HIGH or an INBOUND request not yet answered. The definition does not depend on the verdict, so a MANUAL REVIEW account can be Hot. For Warm, a touch logged on the account record counts as a prior conversation even when no contact is named, and the brief names the missing contact. For New, Strong ICP is read from the Fit Grid row, met on at least half its tests, whatever the account's verdict.
 
-**Ordering Within A Tier.** GREENLIGHT accounts come first, sub-ranked Strong, then Moderate, then Weak. MANUAL REVIEW accounts follow, ranked by the count of HIGH zones. A tier can hold both kinds, and the order shows which account the rep should reach first. Within a grade, the account that meets more of its tests comes first. A tie on the HIGH count is broken by the nearest closing deadline, meaning the window or business-day limit that runs out first. An account on hold as Recycle takes its verdict from the upstream skill that set the hold, names that skill and its date, and is not re-scored here.
+**Ordering Within A Tier.** GREENLIGHT accounts come first, sub-ranked Strong, then Moderate, then Weak. MANUAL REVIEW accounts follow, ranked by the count of HIGH zones. A tier can hold both kinds, and the order shows which account the rep should reach first. Within a grade, the account that meets more of its tests comes first. A tie on the HIGH count is broken by the nearest closing deadline, meaning the window or business-day limit that runs out first. An account on hold as Recycle takes its verdict from the upstream skill that set the hold, names that skill and its date, and is not re-scored here. The hold word the upstream skill sets, such as MONITOR from Closed-Loss Reactivation (05), is that skill's own word and is not one of the three verdict words. A held account is never dialed, so a task due on it is listed as held, not as a dial.
 
 **ENGAGED Accounts.** An account with status ENGAGED (the account replied or met with us, and no deal is open) is never placed in New, because New is for accounts with no prior engagement. An ENGAGED account whose last logged touch is 14 to 30 days old is Warm, on the stale-conversation row. Stale is this skill's own measure of how old the last logged touch is, and it sets the tier only. The shared term gone quiet, which What The Close Reads defines as no reply within five business days after our last message, decides only when a follow-up sequence starts, and it never sets a tier. An ENGAGED account whose buyer wrote or called and is still waiting for an answer is Warm too, and its brief leads with that message and its date, because a buyer who has already answered should not get a cold New dial. Hot still follows the Hot definition in (profile: Daily Prospecting), so an unanswered reply does not make an account Hot by itself. An ENGAGED account has no open deal, so the BDR guard does not remove it from the queue.
 
@@ -491,7 +494,7 @@ Based on the stage and the history. Use a response from Common Objections.
 - Total accounts on the sheet, by tier (Hot, Warm, New, Recycle, with holds named)
 - Accounts with prior touches, with n (for example, "2 of 7")
 - Net-new first touches, with n
-- Strongest opportunity today, and why
+- Strongest opportunity today, and why. It is the first dial in the Priority Dial Queue, named with its tier, its verdict and, when it has a trigger window, the days remaining in that window
 
 **2. Priority Dial Queue**
 | # | Tier | Account | Contact | Fit Or Verdict, And Zones | Call Goal |
@@ -598,7 +601,7 @@ Seven accounts remain. Each is scored against the Fit Grid row for its ICP and t
 - **Greyfield Memorial Park.** Digital map from Stonemark, a direct software incumbent (`[CRM]`). Pre-need team of three with an intake form on the site (`[Public: company website]`). Social ads feed leads into email (`[CRM]`, illustrative), so all three conditions of the Zone 2 HIGH cell are on record. Fit Grid ICP1 (profile: Fit Grid): 2 of 4 Strong tests met (9,000 plots, and an owner who signs under $25K alone). The Weak test, a digital plot system signed in the last 24 months, is `[Unknown]` because the Stonemark signing date is not on record, so the fit is held at Moderate. The paper-records test is not met, and the annual filing is `[Unknown]`. Last touch on the account record 2026-09-24 with no named contact (`[CRM]`, illustrative). Warm. GREENLIGHT with Zones 2 and 3 HIGH. Zone 3 is HIGH because the owner signs under $25K alone, with no board approval step (`[CRM]`, illustrative). Zone 5 is MEDIUM, one growth project, and Zone 1 is MEDIUM because the Stonemark map holds no records or trust reporting (`[CRM]`, illustrative). Zone 4 is MEDIUM, because Stonemark holds no records or trust reporting and so fits poorly for this work, and the staff email and shared-drive use is `[Unknown]`, so the HIGH cell is not met.
 - **Saltmarsh Heritage Group.** The owner letter on the company site says: "Growth in 2027 means one system for all five sites" (`[Public: company site, owner letter 2026]`). CFO Hector Ruiz approves budget (`[CRM]`). MANUAL REVIEW, with Zone 3 LOW, a must-have. The CFO gate applies. The record holds the cycle: the group reviews system spend twice a year, so a decision takes 6 to 9 months `[CRM]` (illustrative). Two zones are HIGH, but the Verdict Rule does not give GREENLIGHT while a must-have zone is LOW. Zone 2 is HIGH, because the counselors, the website intake form and the social ads are all on record. Zone 5 is HIGH, because the owner letter names growth, which is the owner update naming growth in (profile: Qualification Criteria). Zones 1 and 4 are MEDIUM, because the plot records are in spreadsheets only (`[Notes]`). New.
 - **Tamsin Vale Cemetery.** 4,200 plots and paper plat maps (`[CRM]`). No phone on file. Who signs is `[Unknown]`. MANUAL REVIEW, Zone 1 HIGH only, because the paper plat maps meet two double sales in the last 24 months (`[CRM]`, illustrative). New.
-- **Lowmoor Memorial Gardens.** Closed-lost to Oldgate on 2026-01-20, nine months ago, with the reason logged as "timing" (`[CRM]`). The champion, Ines Carmody, has moved to Quill Hollow. MANUAL REVIEW on re-score. Recycle, on hold. Its verdict is the one Closed-Loss Reactivation (05) recorded, and this skill does not re-score it.
+- **Lowmoor Memorial Gardens.** Closed-lost to Oldgate on 2026-01-20, nine months ago, with the reason logged as "timing" (`[CRM]`). The champion, Ines Carmody, has moved to Quill Hollow. MANUAL REVIEW on re-score. Recycle, on hold. Its verdict is the one Closed-Loss Reactivation (05) recorded, and this skill does not re-score it. MONITOR is 05's hold word, not one of the three verdict words.
 
 The Warm tier holds two accounts. Two cases are not a pattern, so the report states the two accounts and claims nothing about the tier as a whole.
 
@@ -719,14 +722,14 @@ Dashboard: 8 dials. 3 Hot, 2 Warm, 2 New, 1 Recycle (hold). No exclusions, becau
 | 1 | Hot | Brackhaven Memorial Gardens | Ruth Ellery, General Manager (champion) | Strong. GREENLIGHT. Zones 1 HIGH, 2 MEDIUM, 3 MEDIUM, 4 MEDIUM, 5 HIGH | Get the board date from Ruth Ellery by 2026-10-26. Hold at Stage 5 |
 | 2 | Hot | Corrow Ridge Cemetery | No contact on file | Strong. GREENLIGHT. Zones 1 HIGH, 2 UNKNOWN, 3 MEDIUM, 4 UNKNOWN, 5 HIGH | Learn whether Harborline runs its own plot system, then book discovery with the site GM |
 | 3 | Hot | Sable Fork Cemetery | Arlen Biggs, General Manager. Requester `[Unknown]` | MANUAL REVIEW. Zones 1 MEDIUM, 2 LOW, 3 HIGH, 4 MEDIUM, 5 LOW | Confirm who requested the demo, then book discovery. No demo yet |
-| 4 | Warm | Quill Hollow Memorial Park | Ines Carmody, General Manager | Strong. GREENLIGHT. Zones 1 MEDIUM, 2 UNKNOWN, 3 HIGH, 4 UNKNOWN, 5 HIGH | Find when the last state review was, then book discovery |
+| 4 | Warm | Quill Hollow Memorial Park | Ines Carmody, General Manager (champion label, Champion Test not yet run) | Strong. GREENLIGHT. Zones 1 MEDIUM, 2 UNKNOWN, 3 HIGH, 4 UNKNOWN, 5 HIGH | Find when the last state review was, then book discovery |
 | 5 | Warm | Greyfield Memorial Park | No named contact (`[Unknown]`). TARGET (pending AE assignment) | Moderate, held. GREENLIGHT. Zones 1 MEDIUM, 2 HIGH, 3 HIGH, 4 MEDIUM, 5 MEDIUM | Find the owner of pre-need intake, and ask who calls back website leads |
 | 6 | New | Saltmarsh Heritage Group | Hector Ruiz, CFO | MANUAL REVIEW. Zones 1 MEDIUM, 2 HIGH, 3 LOW, 4 MEDIUM, 5 HIGH | Ask which system the five sites move to, and when. No email from this dial |
 | 7 | New | Tamsin Vale Cemetery | No name, no phone on file | MANUAL REVIEW. Zones 1 HIGH, 2 LOW, 3 MEDIUM, 4 UNKNOWN, 5 MEDIUM | Find who signs, and confirm the paper-map process |
 | 8 | Recycle (hold) | Lowmoor Memorial Gardens | Unknown, champion moved | MANUAL REVIEW. Zones as re-scored in 05 | Do not dial yet. Closed-Loss Reactivation holds it on MONITOR |
 
 **Brief For #1 (Brackhaven Memorial Gardens):**
-- **Why This Account:** ACTIVE at Stage 5 Negotiate, day 40 in stage (`[CRM]`). The family board meeting on 2026-11-12, not formally confirmed `[CRM]`. Ruth Ellery has not replied for 16 days (`[CRM]`). The board date is to be got by 2026-10-26, five business days after the run date, and no earlier date is on record. If the date is not confirmed by 2026-11-02, the stage rule in the deal skills applies, not this one.
+- **Why This Account:** ACTIVE at Stage 5 Negotiate, day 40 in stage (`[CRM]`). The family board meeting on 2026-11-12, not formally confirmed `[CRM]`. Ruth Ellery has not replied for 16 days (`[CRM]`). The board date is to be got by 2026-10-26, five business days after the run date, and no earlier date is on record. If the date is not confirmed by 2026-10-26, the stage rule in the deal skills applies, not this one.
 - **Opener:** "Hi Ruth, it's Owen Pruitt with PlotIQ. Before the family board meeting on 2026-11-12, I need the date confirmed. Can you get it to me by Monday, 2026-10-26?"
 - **Discovery Questions:** (1) "What does the family board need to see before its meeting on 2026-11-12?" (2) "Walk me through how plot records are kept at both sites." (3) "Who at the site would own the ledger export if the board says yes?"
 - **Objection Prep:** "We already have a system." Response: "That's good to hear. What's working, and where do the paper maps still get in the way?"
@@ -908,6 +911,12 @@ report_path: none (inline)
 
 ## Changelog
 
+
+### 2.1.13 (2026-10-26)
+- Recycle hold. The upstream hold word is named as that skill's word and is not a verdict word. A task due on a held account is listed as held, and the account is not dialed.
+- Strongest opportunity. The line names the first dial in the Priority Dial Queue, with its tier, verdict and any days remaining in its window.
+- Try-it. Who signs and the approval path are written as facts, with the contract quote. The sentence that pre-classified the opt-out as an exclusion is removed. The Lowmoor opt-out is still an exclusion, from the rule.
+- Example 2 carries the champion label that Example 1 carries. No tier, verdict, next action or dial order changes.
 
 ### 2.1.12 (2026-10-26)
 - The next action is ranked by kind: a reply owed to a buyer, then a Hot dial, a Warm dial, a New dial, the AE-coordination step for an excluded account, and the Recycle hold reminder. Within one rank, the earlier due date comes first, then the dial-queue order. Asks to the same person in one message travel with the next action.
