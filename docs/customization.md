@@ -6,7 +6,7 @@ Every example on this page uses PlotIQ, the made-up deathcare software company i
 
 ---
 
-## What You Can (and Should) Customize
+## What You Can (And Should) Customize
 
 | How often | What | Where | Effort |
 |---|---|---|---|
@@ -17,7 +17,7 @@ Every example on this page uses PlotIQ, the made-up deathcare software company i
 
 ---
 
-## Step 1: Fill the Profile, in the Right Order
+## Step 1: Fill The Profile, In The Right Order
 
 Your company's data lives in one file, **`profiles/client-profile.md`**, and every skill reads it through its Context section. This is the main customization point, and you touch exactly one file. The [Client Profile Template](../profiles/client-profile-template.md) walks through each section.
 
@@ -40,41 +40,41 @@ Counted from the Context sections of the 14 sales skills. Fill the top rows firs
 | Company | all | Framing only, rarely the bottleneck |
 | Product Modules | 14 Sales Handoff | Implementation scope cannot be sized |
 
-Four columns matter more than their size suggests: "Persona who acts" on Buying Triggers (03 and 04 send the sequence to that person), "Discovery question" on Core Pain Points (06, 07 and 13 ask it), the two post-purchase pain columns on Competitive Landscape (05 uses them on a buyer who chose a rival 6 to 12 months ago), and Status on Proof Points (only a Verified row reaches a prospect).
+Five columns matter more than their size suggests: "Persona Who Acts" on Buying Triggers (03 and 04 send the sequence to that person), "Discovery Question" on Core Pain Points (06, 07 and 13 ask it), the two right-hand columns on Competitive Landscape, "Pain Reported After 6 To 12 Months" and "Proof That Answers It" (05 uses them on a buyer who chose a rival 6 to 12 months ago), and Status on Proof Points (an Illustrative row never reaches a prospect, most skills also allow a Benchmark row with its source, and 05 allows only Verified).
 
-Each sales skill also reads one section of its own, written by that skill's `CUSTOMIZE.md` interview (Fit Grid, Outbound Voice, Industry Context, Trigger Catalog, Closed-Loss Intelligence, Meeting Prep, Daily Prospecting, Deal Health, MEDDPICC, Buying Committee, Competitive Patterns and Trends, Displacement, Call Coaching, Implementation Profile). The operating skills do the same. Both maps are in [How It Fits Together](how-it-fits.md#what-each-skill-reads-from-the-profile).
+Each sales skill also reads one section of its own, written by that skill's `CUSTOMIZE.md` interview (Fit Grid, Outbound Voice, Industry Context, Trigger Catalog, Closed-Loss Intelligence, Meeting Prep, Daily Prospecting, Deal Health, MEDDPICC, Buying Committee, Competitive Patterns And Trends, Displacement, Call Coaching, Implementation Profile). The operating skills do the same. Both maps are in [How It Fits Together](how-it-fits.md#what-each-skill-reads-from-the-profile).
 
-### How to Know the Profile Is Good Enough
+### How To Know The Profile Is Good Enough
 
-Run the three tests at the bottom of the template (the new-hire test, the swap test and the proof-point test). Then run Account Pre-Qualification (01) on three accounts you already know the answer for. If the verdicts match what you know, the ICP section is working. If not, the gap is in the profile, not the skill.
+Run the three tests at the bottom of the template (the new-hire test, the swap test and the proof-point test). Then run Account Qualification (01) on three accounts you already know the answer for. If the verdicts match what you know, the ICP section is working. If not, the gap is in the profile, not the skill.
 
 ---
 
-## Step 2: Run a Skill's CUSTOMIZE.md
+## Step 2: Run A Skill's CUSTOMIZE.md
 
 Every skill, all 29 of them, ships a `CUSTOMIZE.md` next to its `SKILL.md`. It is an interview, not a form:
 
 1. **Run the stock skill first** on 2-3 real accounts. You cannot judge a customization you have not compared to a baseline.
 2. **Open the skill's `CUSTOMIZE.md`**, copy the prompt block into Claude Code (or Claude.ai, or Codex) with the `SKILL.md` attached, and answer the questions one at a time.
-3. **Read section D (or the last section), "the honest part".** It lists the questions you could not answer concretely. For most teams that list is the most useful output, because it shows where the context is missing.
-4. **Save what the interview produces.** For a sales skill, that is usually changes to your profile. For an operating skill, it is one new section in your profile (for example `## Review Process` for Second Opinion), which the skill reads on its next run.
+3. **Read the section headed "The Honest Part". Its letter differs by skill (A to D), so look for the heading, not the letter.** It lists the questions you could not answer concretely. For most teams that list is the most useful output, because it shows where the context is missing.
+4. **Save what the interview produces.** For a sales skill, that is usually changes to your profile. For an operating skill, it is one new section in your profile (for example `## Second Opinion` for O5 Second Opinion), which the skill reads on its next run.
 5. **Verify.** Run the skill again on the same accounts and compare with the baseline. If you cannot see a difference, the customization did not take.
 
 ---
 
 ## Step 3: Swap Sales Methodologies
 
-Start by ticking the right boxes in the profile's **Sales Methodology** section. Meeting Prep, MEDDPICC Analysis and Call Coaching read it and let it take precedence over their defaults. Only edit the skill files when you want the question banks and rubrics themselves to change.
+Start by ticking the right boxes in the profile's **Sales Methodology** section. Meeting Prep, MEDDPICC Deal Analysis and Call Coaching read it and let it take precedence over their defaults. Only edit the skill files when you want the question banks and rubrics themselves to change.
 
-### Replacing SPIN with Another Discovery Framework
+### Replacing SPIN With Another Discovery Framework
 
 Meeting Prep (06) and Call Coaching (13) use SPIN for discovery calls. To swap:
 
-1. Open `skills/06-meeting-prep/SKILL.md` and find `### Discovery: SPIN / Challenger Question Framework` under `## Methodology`.
+1. Open `skills/06-meeting-prep/SKILL.md` and find `### Discovery: SPIN Question Framework` under `## Methodology`.
 2. Replace the question structure with your framework's.
 3. Open `skills/13-call-coaching/SKILL.md` and find `### Discovery: SPIN Selling Framework` under `## Methodology`, plus the discovery rubric in `### Step 2: Score Methodology Execution`. Change the rubric categories so the coaching grades what the new framework asks for.
 
-**Example: SPIN to Sandler Pain Funnel**
+**Example: SPIN To Sandler Pain Funnel**
 
 ```markdown
 ### Discovery Framework: Sandler Pain Funnel
@@ -86,7 +86,7 @@ Meeting Prep (06) and Call Coaching (13) use SPIN for discovery calls. To swap:
 5. **Decision Process:** "If you found the right solution, what happens next?"
 ```
 
-**Example: SPIN to Gap Selling**
+**Example: SPIN To Gap Selling**
 
 ```markdown
 ### Discovery Framework: Gap Selling
@@ -98,9 +98,9 @@ Meeting Prep (06) and Call Coaching (13) use SPIN for discovery calls. To swap:
 5. **Root Cause:** Why the gap exists, and what has already been tried
 ```
 
-### Replacing Challenger with Another Demo Framework
+### Replacing Challenger With Another Demo Framework
 
-Meeting Prep (06, demo mode) and Call Coaching (13) use Challenger principles. Replace the demo section (`### Demo: Demo Framework` in 06, `### Demo: Challenger Sale Framework` in 13) with your framework's steps:
+Meeting Prep (06, demo mode) and Call Coaching (13) use Challenger principles. Replace the demo sections (the three `### Demo:` sections in 06, starting with `### Demo: Five Demo Habits`, and `### Demo: Challenger Sale Framework` in 13) with your framework's steps:
 
 ```markdown
 ### Demo Framework: [Your Framework]
@@ -116,16 +116,16 @@ Then update the demo rubric in Call Coaching so it grades the new steps. The dem
 
 ## Step 4: Modify Scoring (Rarely)
 
-### Deal Pulse: Adding or Removing Signals
+### Deal Pulse: Adding Or Removing Signals
 
 Deal Pulse scores 16 signals across 4 pillars (Why Anything, Why Us, Why Now, Execution). Each signal is GREEN (100), YELLOW (50) or RED (0), the health score is their average, and the risk bands are 85-100 low, 46-84 medium, 0-45 high. To modify:
 
 1. Open `skills/08-deal-pulse/SKILL.md`.
-2. Under `## Methodology`, find the four `### Signal Scoring Rubrics` sections, one per pillar.
+2. Under `## Methodology`, find the four pillar rubrics, headed `### Signal Scoring Rubrics (Why Anything Pillar)`, `(Why Us Pillar)`, `(Why Now Pillar)` and `(Execution Pillar)`.
 3. Add, remove or rewrite signals in the pillar where they belong.
 4. Update `### Health Score Calculation` if the count changes, and add a row for the new signal to `### Recommended Actions Framework`.
 
-**Example: a "Board Date" signal for cemetery deals**
+**Example: A "Board Date" Signal For Cemetery Deals**
 
 PlotIQ deals over the $25K line need a board vote, so the approval date is an execution step. Add under the Execution pillar:
 ```markdown
@@ -139,7 +139,7 @@ PlotIQ deals over the $25K line need a board vote, so the approval date is an ex
 MEDDPICC Analysis scores each of the 8 elements 1-5 and weights them into a 0-100 health score. The default weights are Economic Buyer 20%, Metrics 15%, Identified Pain 15%, Champion 15%, Decision Criteria 10%, Decision Process 10%, Paper Process 10% and Competition 5%. To change them:
 
 1. Open `skills/09-meddpicc-analysis/SKILL.md`.
-2. Edit the table in `### The Eight MEDDPICC Elements and Weights`. Keep the weights adding up to 100%.
+2. Edit the table in `### The Eight MEDDPICC Elements And Weights`. Keep the weights adding up to 100%.
 3. Check `### Stage-Appropriate Minimums` still makes sense for your stages.
 
 **Example:** a team selling into procurement-heavy enterprises might move Paper Process to 15% and Competition to 0%, if competition is rarely a factor and procurement is where deals stall.
@@ -147,7 +147,7 @@ MEDDPICC Analysis scores each of the 8 elements 1-5 and weights them into a 0-10
 ### Call Coaching: Adding Custom Criteria
 
 1. Open `skills/13-call-coaching/SKILL.md`.
-2. In `### Step 2: Score Methodology Execution`, find the discovery rubric (6 categories, /30) or the demo rubric (8 categories, /40).
+2. In `### Step 2: Score Methodology Execution`, find the discovery rubric (7 categories, /35) or the demo rubric (8 categories, /40).
 3. Add a category with behavioral indicators for each score, and update the total and the score bands.
 
 ```markdown
@@ -156,17 +156,17 @@ MEDDPICC Analysis scores each of the 8 elements 1-5 and weights them into a 0-10
 
 ---
 
-## Adding Industry-Specific Qualification Criteria
+## Making The Qualification Criteria Fit Your Vertical
 
-Account Pre-Qualification (01) scores 8 criteria, defined in `### Qualification Criteria (ICP1)` and `### Qualification Criteria (ICP2)` under `## Methodology`. They are written to fit any vertical. Add criteria that are specific to yours.
+Account Qualification (01) scores 8 criteria, defined in `### Qualification Criteria (ICP1)` and `### Qualification Criteria (ICP2)` under `## Methodology`. They are written to fit any vertical. Keep the eight, and rewrite what each one looks for in your market's own words. Do not add a ninth. Every added criterion dilutes the weights of the ones that decide, so when a new fact matters, ask which existing criterion it is evidence for and fold it in there.
 
-**Example: PlotIQ (cemeteries and funeral homes)**
+**Example: PlotIQ (Cemeteries And Funeral Homes)**
 ```markdown
-| 9 | Plot Records Format | Paper maps, binders or pencil maps | Paper records hide unsold plots, which is where the pain lives |
-| 10 | Current Records System | Stonemark Enterprise, Oldgate Ledger Pro, a spreadsheet, or the groundskeeper's memory | Decides which displacement play applies |
+| 7 | Technology Readiness | Names the plot records system in use: Stonemark Enterprise, Oldgate Ledger Pro, a spreadsheet, or none. The system decides which displacement play applies |
+| 8 | Current Solution Gap | Plot records kept on paper maps, binders or pencil maps. Paper hides unsold plots, which is where the pain lives |
 ```
 
-If you add criteria, update the GREENLIGHT and MANUAL REVIEW thresholds in `### Step 6: Deliver Qualification Verdict` (currently 6+ and 4-5 of 8), so the verdicts still mean what they say.
+Rewriting a criterion changes the scorecard, not the verdict. The verdict comes only from the Verdict Rule in your profile's Qualification Zones, applied in `### Step 6: Deliver The Qualification Verdict`, so after you rewrite a criterion, check that the Verdict Rule still says what you mean.
 
 ---
 
@@ -192,16 +192,16 @@ When I ask for a pipeline review:
 ```markdown
 ## New Account Package
 When I ask to package a new account:
-1. Run Account Pre-Qualification (skills/01-account-qualification/SKILL.md)
+1. Run Account Qualification (skills/01-account-qualification/SKILL.md)
 2. If GREENLIGHT: run Account Snapshot (skills/02-account-snapshot/SKILL.md)
 3. Present: qualification verdict, company brief, email sequences, cold call sheet
 ```
 
 ---
 
-## Feeding the Skills External Data
+## Feeding The Skills External Data
 
-### CRM Data (Salesforce, HubSpot and so on)
+### CRM Data (Salesforce, HubSpot And So On)
 
 Skills work best with context. Paste relevant CRM data when you run one:
 
