@@ -1,16 +1,19 @@
 ---
 name: gtm-account-qualification
-version: 2.1.13
+version: 2.1.14
 description: "Scores an account against the ICP definitions, 8 weighted criteria and the profile's five qualification zones, and returns a GREENLIGHT, MANUAL REVIEW or DISQUALIFY verdict with every zone shown, for the BDR or AE who decides where to spend time."
 category: Sales-Methodology
 author: Ryan Vanshur
 license: MIT
-updated: 2026-10-26
+updated: 2026-10-27
 tags: [account-qualification, icp-scoring, pre-qualification, account-fit, prospecting, lead-scoring, qualification-zones]
 requires:
   skills: []
 mutating: read-write
 change_log:
+  - version: 2.1.14
+    date: 2026-10-27
+    summary: "The shared contract's Champion Tests section now defines 'creates urgency' (a dated deadline the decision works to, with its date and source on record) and 'defends the solution' (a recorded case of arguing for us in our absence to someone who decides), and says a test not yet run is never scored."
   - version: 2.1.13
     date: 2026-10-26
     summary: "Round 13 acceptance findings. Competitor Lock-In now has a trigger the records can meet: an incumbent with a renewal date on record, and a switching cost on the profile's Competitive Landscape row for that incumbent. The try-it records state the board timing as a dated meeting and the decision path as a fact, not in the words of the Zone 3 cell. The Oldgate flag cites the Competitive Landscape row. Verdict, zones, count, next action and every risk flag in the promise are unchanged."
@@ -197,7 +200,7 @@ A BDR-facing skill (02, 03, 04, 05, 07, 12) never works an account that is ACTIV
 
 #### Champion Tests, One List
 
-A contact scores **Strong** as a champion when three or more of these are met with evidence, each tagged: creates urgency inside their company, explains the internal politics, offers introductions, asks how to help, defends the solution when we are not in the room, shares competitor intelligence, commits to next steps with dates. "Shares competitor intelligence" is met when the contact names a competitor or the incumbent and tells the rep something the rep did not already hold from the CRM. One or two met is **Developing**. None met is **None**. A friendly contact is not a champion. The same list and thresholds are used by 09, 10 and 13.
+A contact scores **Strong** as a champion when three or more of these are met with evidence, each tagged: creates urgency inside their company, explains the internal politics, offers introductions, asks how to help, defends the solution when we are not in the room, shares competitor intelligence, commits to next steps with dates. "Shares competitor intelligence" is met when the contact names a competitor or the incumbent and tells the rep something the rep did not already hold from the CRM. "Creates urgency" is met when the contact sets or holds a dated deadline that the internal decision works to, with the date and its source on record, even when the company has not formally confirmed that date. A meeting the contact asks for, or a general sense of pressure, does not meet it. "Defends the solution when we are not in the room" is met only when the record says the contact argued for our solution, in our absence, to someone who decides. A briefing or a status update is not a defence. A test the skill has not yet run is written "not yet run", never scored. One or two met is **Developing**. None met is **None**. A friendly contact is not a champion. The same list and thresholds are used by 09, 10 and 13.
 
 #### Incumbent Types, One List
 
@@ -788,6 +791,8 @@ An account pending AE assignment is not ACTIVE. Score it, and say that it is pen
 
 ## Changelog
 
+### 2.1.14 (2026-10-27)
+- The shared contract's Champion Tests section now defines "creates urgency" (a dated deadline the decision works to, with its date and source on record) and "defends the solution" (a recorded case of arguing for us in our absence to someone who decides), and says a test not yet run is never scored.
 
 ### 2.1.13 (2026-10-26)
 - Competitor Lock-In has a trigger the records can meet, in the Step 5 table. An incumbent with a renewal date on record, and a switching cost on the profile's Competitive Landscape row for that incumbent, names the flag. The switching cost is cited to that row with its grade, because a record seldom states a term.

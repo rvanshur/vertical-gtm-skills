@@ -1,16 +1,19 @@
 ---
 name: gtm-competitive-displacement
-version: 2.1.13
+version: 2.1.14
 description: "Plans outbound to displace a known incumbent, by classifying the incumbent, rating how hard the switch is, and drafting persona-tailored four-step email sequences for the rep to read and send, so the BDR or AE who works the account knows what to say and what not to say."
 category: Sales-Methodology
 author: Ryan Vanshur
 license: MIT
-updated: 2026-10-26
+updated: 2026-10-27
 tags: [competitive-displacement, incumbent-displacement, competitive-outbound, competitor-takeout, displacement-sequences, displacement-difficulty]
 requires:
   skills: [gtm-competitive-strategy]
 mutating: read-write
 change_log:
+  - version: 2.1.14
+    date: 2026-10-27
+    summary: "The shared contract's Champion Tests section now defines 'creates urgency' (a dated deadline the decision works to, with its date and source on record) and 'defends the solution' (a recorded case of arguing for us in our absence to someone who decides), and says a test not yet run is never scored."
   - version: 2.1.13
     date: 2026-10-26
     summary: "Round 13 acceptance findings. Email 4's earliest date and its days before the renewal count from one anchor on record: Email 1's send date, or, when no send is recorded, the Email 1 due date the next action sets. A finding that is not complete by the send date never holds the send, so a due email goes to the contact's title on its date. The try-it records state facts only. The CRM status, contact and touch facts are stated without the rule's own labels, the example cast's pattern note and the Fennick January 2027 hold are removed, and the research figure's age is left to the Old Research rule. The promise now states Email 4's earliest date, its days before the renewal and the title fallback. Personas, difficulty, sequence counts and owners do not change."
@@ -202,7 +205,7 @@ A BDR-facing skill (02, 03, 04, 05, 07, 12) never works an account that is ACTIV
 
 #### Champion Tests, One List
 
-A contact scores **Strong** as a champion when three or more of these are met with evidence, each tagged: creates urgency inside their company, explains the internal politics, offers introductions, asks how to help, defends the solution when we are not in the room, shares competitor intelligence, commits to next steps with dates. "Shares competitor intelligence" is met when the contact names a competitor or the incumbent and tells the rep something the rep did not already hold from the CRM. One or two met is **Developing**. None met is **None**. A friendly contact is not a champion. The same list and thresholds are used by 09, 10 and 13.
+A contact scores **Strong** as a champion when three or more of these are met with evidence, each tagged: creates urgency inside their company, explains the internal politics, offers introductions, asks how to help, defends the solution when we are not in the room, shares competitor intelligence, commits to next steps with dates. "Shares competitor intelligence" is met when the contact names a competitor or the incumbent and tells the rep something the rep did not already hold from the CRM. "Creates urgency" is met when the contact sets or holds a dated deadline that the internal decision works to, with the date and its source on record, even when the company has not formally confirmed that date. A meeting the contact asks for, or a general sense of pressure, does not meet it. "Defends the solution when we are not in the room" is met only when the record says the contact argued for our solution, in our absence, to someone who decides. A briefing or a status update is not a defence. A test the skill has not yet run is written "not yet run", never scored. One or two met is **Developing**. None met is **None**. A friendly contact is not a champion. The same list and thresholds are used by 09, 10 and 13.
 
 #### Incumbent Types, One List
 
@@ -739,6 +742,9 @@ next_action: Nadia Brandt sends this analysis to Owen Pruitt by 2026-10-26
 ---
 
 ## Changelog
+
+### 2.1.14 (2026-10-27)
+- The shared contract's Champion Tests section now defines "creates urgency" (a dated deadline the decision works to, with its date and source on record) and "defends the solution" (a recorded case of arguing for us in our absence to someone who decides), and says a test not yet run is never scored.
 
 ### 2.1.13 (2026-10-26)
 - Email 4 date. Email 4's earliest date, its days before the renewal and the Email 2 date count from one anchor on record: Email 1's send date, or the Email 1 due date the next action sets when no send is recorded. Example 1 names 2026-10-26 as the anchor and gives Email 4 no earlier than 2026-11-09, 53 days before 2027-01-01. The promise states both.

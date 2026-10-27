@@ -1,16 +1,19 @@
 ---
 name: gtm-account-snapshot
 description: "One-page account brief for BDRs and AEs: a zone-based verdict, persona-ranked contacts, tagged pain hypotheses, a three-step email draft and call prep, read by the rep before anything is sent."
-version: 2.1.13
+version: 2.1.14
 category: Sales-Methodology
 author: Ryan Vanshur
 license: MIT
-updated: 2026-10-26
+updated: 2026-10-27
 tags: [account-snapshot, bdr-daily-driver, outbound, prospecting, cold-call-prep, email-sequences, cheatsheet, sales-2-0]
 requires:
   skills: [gtm-account-qualification, gtm-competitive-displacement]
 mutating: read-write
 change_log:
+  - version: 2.1.14
+    date: 2026-10-27
+    summary: "Round 14 acceptance findings. The two pain tests are settled on the record. The Trait Test reads the trait the Pain Point column names, and a record of one means does not show another, so plot records on paper meet the paper trait and do not show trust reporting done by hand. The Setting Test reads a fact about how the account operates, so a market figure is not a setting, and a row that names no setting cannot meet the test. An undated event never makes a hypothesis HIGH or MEDIUM, and a hypothesis that depends on one shows the level its dated facts give, with the qualifier. Under this rule Quill Hollow's trust pain is LOW, not MEDIUM, so the try-it promise changes that one level. Sable Fork's and Brackhaven's trust pains move to LOW. Brackhaven's pre-need pain is MEDIUM and enters its top three. The lowest-numbered LOW hypotheses fill any remaining slots."
   - version: 2.1.13
     date: 2026-10-26
     summary: "Round 13 acceptance findings. Pain hypothesis confidence is set by two named tests on tagged facts: the trait test, which asks whether the record shows the trait the Core Pain Points row names in its own words, and the setting test, which asks whether the record shows the setting the row's Frequency or Business Impact names. HIGH needs both, MEDIUM one, LOW neither. Under this rule Quill Hollow's lookup pain is LOW, not MEDIUM, because no lookup time is on record, and Sable Fork and Brackhaven are re-derived. Zone 3 reads the approver of record and derives the year-one signing cost, so the records state who approves, not the signing rule. The try-it promise changes its lookup pain level, its owner wording and the region line."
@@ -210,7 +213,7 @@ A BDR-facing skill (02, 03, 04, 05, 07, 12) never works an account that is ACTIV
 
 #### Champion Tests, One List
 
-A contact scores **Strong** as a champion when three or more of these are met with evidence, each tagged: creates urgency inside their company, explains the internal politics, offers introductions, asks how to help, defends the solution when we are not in the room, shares competitor intelligence, commits to next steps with dates. "Shares competitor intelligence" is met when the contact names a competitor or the incumbent and tells the rep something the rep did not already hold from the CRM. One or two met is **Developing**. None met is **None**. A friendly contact is not a champion. The same list and thresholds are used by 09, 10 and 13.
+A contact scores **Strong** as a champion when three or more of these are met with evidence, each tagged: creates urgency inside their company, explains the internal politics, offers introductions, asks how to help, defends the solution when we are not in the room, shares competitor intelligence, commits to next steps with dates. "Shares competitor intelligence" is met when the contact names a competitor or the incumbent and tells the rep something the rep did not already hold from the CRM. "Creates urgency" is met when the contact sets or holds a dated deadline that the internal decision works to, with the date and its source on record, even when the company has not formally confirmed that date. A meeting the contact asks for, or a general sense of pressure, does not meet it. "Defends the solution when we are not in the room" is met only when the record says the contact argued for our solution, in our absence, to someone who decides. A briefing or a status update is not a defence. A test the skill has not yet run is written "not yet run", never scored. One or two met is **Developing**. None met is **None**. A friendly contact is not a champion. The same list and thresholds are used by 09, 10 and 13.
 
 #### Incumbent Types, One List
 
@@ -291,12 +294,14 @@ These five signals are the one-glance read a rep sees first. They do not set the
 
 ### Confidence In Pain Hypotheses
 
-Each pain is scored on two tests, and each test is read from the profile's Core Pain Points row for that pain, on tagged facts only.
+Each pain is scored on two tests, and each test is read from the profile's Core Pain Points row for that pain, on tagged facts only. The Pain Point column names the trait. The What To Listen For column holds the buyer's words and is not a test.
 
-- **Trait Test:** the record shows the trait the row names, in the row's own words. A trait that is a means, such as plot records kept on paper or trust work kept by hand, is met by a record that shows the means. A spreadsheet is met for the by-hand trait and is not met for the paper trait. A trait that is a time or a cost, such as a lookup that takes minutes to hours, is met only by a recorded time or cost. A paper map is the means of a lookup, not a measure of how long it takes.
-- **Setting Test:** the record shows the setting the row's Frequency or Business Impact column names, such as a cemetery site or an annual state filing. A dated event that the row depends on counts only when its date is on record. An undated event counts toward neither test, and the hypothesis takes "(event date unknown)".
+- **Trait Test:** the record shows the trait the Pain Point names, in the row's own words. A trait that is a means, such as plot records kept on paper, is met by a record that shows that means. A spreadsheet is not paper, so it does not meet a paper trait. A trait that is a time or a cost, such as a lookup that takes minutes to hours, is met only by a recorded time or cost. A paper map is the means of a lookup, not a measure of how long it takes. A record of one means does not meet a trait that names another: plot records kept on paper meet row 1's trait, and they do not show that trust reporting is done by hand, which is row 2's trait.
+- **Setting Test:** the record shows the setting the row's Frequency or Business Impact column names. A setting is a fact about how this account operates, such as a cemetery site, an annual state filing or a pre-need sales line. A market figure about other operators is not the account's setting. A row that names no setting cannot meet the setting test.
 
-Then the level follows the count. **HIGH:** both tests are met. **MEDIUM:** one test is met. It is plausible and needs validation. **LOW:** neither test is met, or the record shows the trait absent. A LOW hypothesis is generic until the record meets a test, so it is shown only to fill the three slots.
+A test the record does not show is not met. A dated event counts when its date is on record. An undated event counts toward neither test at any level. It never makes a hypothesis HIGH or MEDIUM. A hypothesis that depends on an undated event shows the level its dated facts give, takes "(event date unknown)", and names the event in Why Likely. So an undated event can never lift a hypothesis to HIGH or MEDIUM, and it leaves a LOW hypothesis LOW.
+
+Then the level follows the count, on facts with their dates on record or with no date needed. **HIGH:** both tests are met. **MEDIUM:** one test is met. It is plausible and needs validation. **LOW:** neither test is met, or the record shows the trait absent. A LOW hypothesis is generic until the record meets a test, so it is shown only to fill the three slots. When more LOW hypotheses than slots remain, the lowest Core Pain Points numbers fill them.
 
 ### Region Map
 
@@ -365,7 +370,7 @@ Rank the contacts by four rules, in order: known contacts with engagement histor
 
 ### Step 4: Generate Pain Hypotheses
 
-Write from three to five pain hypotheses from the Core Pain Points (profile: Core Pain Points). Show every hypothesis that scores HIGH or MEDIUM, up to five. A LOW hypothesis is shown only to reach three. For each hypothesis, give:
+Write from three to five pain hypotheses from the Core Pain Points (profile: Core Pain Points). Show every hypothesis that scores HIGH or MEDIUM, up to five. A LOW hypothesis is shown only to reach three, and the lowest Core Pain Points numbers among the LOW ones fill those slots. For each hypothesis, give:
 
 - **Pain Point:** the name exactly as the Core Pain Points taxonomy writes it (profile: Core Pain Points). When the hypothesis depends on a dated event, add the event and its date in brackets, for example "Trust fund and records reporting by hand (state review finding, 2026-03-14)" (date illustrative). When the event's date is `[Unknown]`, add "(event date unknown)" and name the event in Why Likely. A hypothesis that depends on no event carries no qualifier.
 - **Why Likely:** the reasoning, with its tag. Every pain hypothesis carries the `[Inferred]` tag, because it is a reasoned guess from the profile until a call confirms it (Methodology: Evidence Tags For Rapid Research)
@@ -564,8 +569,8 @@ Ines Carmody ranks first. She is the only named contact and runs the site now, a
 **Step 4: Pain Hypotheses.**
 
 1. **Plot Records On Paper, Binders Or Pencil Maps.** HIGH confidence. Both tests are met: the trait, plot records on paper `[CRM]`, and the setting, a cemetery site (profile: Core Pain Points, row 1). `[Inferred]`, by reasoning from the record type: a paper map cannot show which plots are sold without a walk of the grounds. Discovery question: "How do you check today which plots are open?" Value prop: plot inventory matched against sold records.
-2. **Trust fund and records reporting by hand (event date unknown).** MEDIUM confidence. `[Inferred]`. The last state review found a records problem `[CRM]`, and its date is `[Unknown]`. The trait test is met, because the paper maps are records kept by hand `[CRM]`. The setting test is not met, because the annual state filing that the row names is not on record: the state is `[Unknown]`. The undated finding counts toward neither test, so the hypothesis is MEDIUM. The finding is a discovery question only, and no email or call opener uses it. Discovery question: "When was the last state review, and what did it ask you to fix?" Value prop: plot and trust records a state auditor accepts (profile: Value Propositions, Value Proposition 2).
-3. **Plot Lookups Take Minutes To Hours.** LOW confidence. `[Inferred]`. The trait test is not met: no lookup time is on record, and a paper map is the means of a lookup, not a measure of its length. The row names no setting. It is shown only to fill the third slot (profile: Core Pain Points, Pain 3). Discovery question: "When a family asks about a plot, how long does the lookup take?" Value Prop: a plot answer in seconds (profile: Value Propositions, Value Proposition 3).
+2. **Trust fund and records reporting by hand (event date unknown).** LOW confidence. `[Inferred]`. The last state review found a records problem `[CRM]`, and its date is `[Unknown]`. The trait test is not met, because no trust fund or state records reporting done by hand is on record. The paper plat maps `[CRM]` show plot records, which is row 1's trait, not row 2's. The setting test is not met, because the annual state filing that the row names is not on record: the state is `[Unknown]`. The undated finding counts toward neither test, so the hypothesis stays LOW and takes the qualifier. The finding is a discovery question only, and no email or call opener uses it. Discovery question: "When was the last state review, and what did it ask you to fix?" Value prop: plot and trust records a state auditor accepts (profile: Value Propositions, Value Proposition 2).
+3. **Plot Lookups Take Minutes To Hours.** LOW confidence. `[Inferred]`. The trait test is not met: no lookup time is on record, and a paper map is the means of a lookup, not a measure of its length. The row names no setting, so the setting test cannot be met. It is shown to fill the third slot, the next lowest number after pain 2 (profile: Core Pain Points, Pain 3). Pain 4 (pre-need leads go cold) is LOW, because pre-need activity is `[Unknown]`, and pain 5 is LOW with nothing on record, so neither is shown. Discovery question: "When a family asks about a plot, how long does the lookup take?" Value Prop: a plot answer in seconds (profile: Value Propositions, Value Proposition 3).
 
 **Step 5: Sequence (Ines Carmody, General Manager).**
 
@@ -637,7 +642,7 @@ account_status: TARGET
 verdict: GREENLIGHT
 zone_scores: 1 MEDIUM, 2 UNKNOWN, 3 HIGH, 4 UNKNOWN, 5 HIGH (illustrative)
 contact_priority: 1 Ines Carmody (General Manager, champion), 2 Pre-need manager, name Unknown (gap), 3 Operations Director, name Unknown (gap), signer: owner, name Unknown (economic buyer gap)
-pain_hypotheses: 1 Plot records on paper, binders or pencil maps (HIGH, Inferred), 2 Trust fund and records reporting by hand (event date unknown) (MEDIUM, Inferred), 3 Plot lookups take minutes to hours (LOW, Inferred)
+pain_hypotheses: 1 Plot records on paper, binders or pencil maps (HIGH, Inferred), 2 Trust fund and records reporting by hand (event date unknown) (LOW, Inferred), 3 Plot lookups take minutes to hours (LOW, Inferred)
 sequence: three emails to Ines Carmody, with call prep
 report_path: none (inline)
 next_action: Nadia Brandt sends Email 1 to Ines Carmody by 2026-10-26
@@ -668,10 +673,10 @@ Region map: no tier, because the state is not recorded `[Unknown]`.
 **Step 4: Pain Hypotheses.**
 
 1. **Plot Records On Paper, Binders Or Pencil Maps.** MEDIUM confidence. `[Inferred]`. The setting test is met, because the operator is a cemetery site `[CRM]`. The trait test is not met, because the plot list is a spreadsheet, not paper, binders or pencil maps `[CRM]`. Discovery question: "Where does the plot list live today, and when was it last updated?"
-2. **Trust Fund And Records Reporting By Hand.** MEDIUM confidence. `[Inferred]`. The trait test is met, because the plot list is kept by hand `[CRM]`. The setting test is not met, because no annual state filing is on record and the state is `[Unknown]`. Discovery question: "Walk me through last year's trust filing. Who pulled the numbers, and from where?"
-3. **Plot Lookups Take Minutes To Hours.** LOW confidence. `[Inferred]`. No lookup time is on record (Zone 1 notes that lookup time is not measured), so the trait test is not met. It is shown only to fill the third slot. Discovery question: "When someone asks for a plot, how long does it take to find it today?"
+2. **Trust Fund And Records Reporting By Hand.** LOW confidence. `[Inferred]`. The trait test is not met: the plot list is a spreadsheet `[CRM]`, which is plot records, not trust reporting done by hand, and no trust filing is on record. The setting test is not met, because no annual state filing is on record and the state is `[Unknown]`. Discovery question: "Walk me through last year's trust filing. Who pulled the numbers, and from where?"
+3. **Plot Lookups Take Minutes To Hours.** LOW confidence. `[Inferred]`. No lookup time is on record (Zone 1 notes that lookup time is not measured), so the trait test is not met. The row names no setting, so the setting test cannot be met. It is shown only to fill the third slot. Discovery question: "When someone asks for a plot, how long does it take to find it today?"
 
-Pre-need leads are not shown. The record says pre-need is none `[CRM]`, so the trait test is ruled out, and the pain is LOW with three slots already filled.
+Pre-need leads are not shown. The record says pre-need is none `[CRM]`, so the pre-need sales line the setting test needs is absent, the trait is ruled out, and the pain is LOW with three slots already filled.
 
 **Step 6: Call Prep.**
 
@@ -697,7 +702,7 @@ account_status: INBOUND
 verdict: MANUAL REVIEW
 zone_scores: 1 MEDIUM, 2 LOW, 3 HIGH, 4 MEDIUM, 5 LOW (illustrative)
 contact_priority: 1 Arlen Biggs (General Manager, signs under $25K), 2 Form filler, name Unknown
-pain_hypotheses: 1 Plot records on paper, binders or pencil maps (MEDIUM, Inferred), 2 Trust fund and records reporting by hand (MEDIUM, Inferred), 3 Plot lookups take minutes to hours (LOW, Inferred)
+pain_hypotheses: 1 Plot records on paper, binders or pencil maps (MEDIUM, Inferred), 2 Trust fund and records reporting by hand (LOW, Inferred), 3 Plot lookups take minutes to hours (LOW, Inferred)
 sequence: none, Quick Call Prep mode. The request reply went on 2026-10-19 `[CRM]`, so no INBOUND reply is outstanding
 report_path: none (inline)
 next_action: Owen Pruitt runs the discovery call with Arlen Biggs on 2026-10-22 (the call date on record)
@@ -779,8 +784,8 @@ The family board chair is recorded as a gap, not as a person: no name is on file
 **Step 4: Pain Hypotheses.**
 
 1. **Plot Records On Paper, Binders Or Pencil Maps.** HIGH confidence. Paper plot maps at both sites `[CRM]`. `[Inferred]`, by reasoning from the record type: two sites on paper mean two lists, so a sale on one list can be missed on the other. Discovery question: "Which site's plot list do your staff check first?"
-2. **Trust Fund And Records Reporting By Hand.** MEDIUM confidence. `[Inferred]`. The trait test is met, because the plot records are kept by hand on paper maps `[CRM]`. The setting test is not met, because the state, and so any annual state filing, is `[Unknown]`. The Oldgate renewal in March 2027 `[CRM]` is an angle for Email 2, not a pain. Discovery question: "Walk me through last year's trust filing. Who pulled the numbers, and from where?" Value prop: plot and trust records a state auditor accepts (profile: Value Propositions, Value Proposition 2).
-3. **Plot Lookups Take Minutes To Hours.** LOW confidence. `[Inferred]`. No lookup time is on record, so the trait test is not met. It is shown only to reach the third slot. Discovery question: "When a family asks about a plot, how long does the lookup take?" Value prop: a plot answer in seconds (profile: Value Propositions, Value Proposition 3).
+2. **Pre-Need Leads Go Cold.** MEDIUM confidence. `[Inferred]`. The setting test is met: a pre-need manager runs the pre-need side `[Notes]` (illustrative), so pre-need sales is a line this account runs. The trait test is not met, because no lead that went cold is on record and the intake form is `[Unknown]`. One test met gives MEDIUM. Discovery question: "When a pre-need lead comes in from the website, who calls them back, and when?" Value prop: pre-need leads worked within an hour (profile: Value Propositions, Value Proposition 4).
+3. **Trust Fund And Records Reporting By Hand.** LOW confidence. `[Inferred]`. The trait test is not met: the plot records are kept on paper maps `[CRM]`, which is row 1's trait, and no trust reporting done by hand is on record. The setting test is not met, because the state, and so any annual state filing, is `[Unknown]`. The Oldgate renewal in March 2027 `[CRM]` is an angle for Email 2, not a pain. Discovery question: "Walk me through last year's trust filing. Who pulled the numbers, and from where?" Value prop: plot and trust records a state auditor accepts (profile: Value Propositions, Value Proposition 2). Plot lookups (profile: Core Pain Points, Pain 3) is also LOW and is not shown, because the lowest-numbered LOW hypothesis, this one, fills the last slot.
 
 **Step 5: Sequence (Ruth Ellery, General Manager).**
 
@@ -845,7 +850,7 @@ account_status: TARGET
 verdict: GREENLIGHT
 zone_scores: 1 HIGH, 2 MEDIUM, 3 MEDIUM, 4 MEDIUM, 5 HIGH (illustrative)
 contact_priority: 1 Ruth Ellery (General Manager, buyer), 2 Walt Okonkwo (Operations Director, influencer), 3 Priscilla Dunmore (pre-need manager, end user)
-pain_hypotheses: 1 Plot records on paper across two sites (HIGH, CRM and Inferred), 2 Trust fund and records reporting by hand (MEDIUM, Inferred), 3 Plot lookups take minutes to hours (LOW, Inferred)
+pain_hypotheses: 1 Plot records on paper across two sites (HIGH, CRM and Inferred), 2 Pre-need leads go cold (MEDIUM, Inferred), 3 Trust fund and records reporting by hand (LOW, Inferred)
 sequence: three emails to Ruth Ellery, with call prep
 report_path: none (inline)
 next_action: Nadia Brandt sends Email 1 to Ruth Ellery by 2026-05-11, asking for 15 minutes with Owen Pruitt (illustrative)
@@ -893,7 +898,7 @@ Ines Carmody ranks first, because she is the only named contact, she replied, an
 **Step 4: Pain Hypotheses.** The reply adds no pain fact, so the three hypotheses are Example 1's, ranked by confidence and then by Core Pain Points number (profile: Core Pain Points):
 
 1. **Plot Records On Paper, Binders Or Pencil Maps.** HIGH confidence. Paper plat maps `[CRM]`. `[Inferred]`, reasoned from the record type: a paper map cannot show which plots are sold without a walk of the grounds. Discovery question: "How do you check today which plots are open?" Value prop: plot inventory matched against sold records (profile: Value Propositions).
-2. **Trust fund and records reporting by hand (event date unknown).** MEDIUM confidence. `[Inferred]`. The last state review found a records problem `[CRM]`, and its date is `[Unknown]`. The finding is a discovery question only, never the hook. Discovery question: "When was the last state review, and what did it ask you to fix?"
+2. **Trust fund and records reporting by hand (event date unknown).** LOW confidence. `[Inferred]`. The last state review found a records problem `[CRM]`, and its date is `[Unknown]`. Neither test is met, because no trust reporting done by hand is on record and the state, so any annual state filing, is `[Unknown]`. The undated finding counts toward neither test, so the hypothesis stays LOW. The finding is a discovery question only, never the hook. Discovery question: "When was the last state review, and what did it ask you to fix?"
 3. **Plot Lookups Take Minutes To Hours.** LOW confidence. `[Inferred]`. No lookup time is on record, so the trait test is not met, and the row names no setting. It is shown only to fill the third slot (profile: Core Pain Points, Pain 3). Discovery question: "When a family asks about a plot, how long does the lookup take?"
 
 **Step 5: The Reply, Not A Sequence.** Quill Hollow is ENGAGED, so there is no cold sequence. Email 1 is not sent again as a cold touch, and Emails 2 and 3 are not drafted (Hard Rule 11). The one draft replies to her message.
@@ -932,7 +937,7 @@ account_status: ENGAGED
 verdict: GREENLIGHT
 zone_scores: 1 MEDIUM, 2 UNKNOWN, 3 HIGH, 4 UNKNOWN, 5 HIGH (illustrative)
 contact_priority: 1 Ines Carmody (General Manager, champion label, Developing, 1 of 7 met), 2 Pre-need manager, name Unknown (gap), 3 Operations Director, name Unknown (gap), signer: owner, name Unknown (economic buyer gap)
-pain_hypotheses: 1 Plot records on paper, binders or pencil maps (HIGH, Inferred), 2 Trust fund and records reporting by hand (event date unknown) (MEDIUM, Inferred), 3 Plot lookups take minutes to hours (LOW, Inferred)
+pain_hypotheses: 1 Plot records on paper, binders or pencil maps (HIGH, Inferred), 2 Trust fund and records reporting by hand (event date unknown) (LOW, Inferred), 3 Plot lookups take minutes to hours (LOW, Inferred)
 sequence: one reply draft to Ines Carmody's reply of 2026-10-27, ready (GREENLIGHT). No cold sequence, because the account is ENGAGED
 report_path: none (inline)
 next_action: Nadia Brandt sends the reply to Ines Carmody by 2026-10-29, the next business day after the run date (a reply to a buyer's own message, with no earlier record date)
@@ -1046,6 +1051,14 @@ The Business Case & ROI Kit (a paid Guild Pro kit) reads this skill's hand-off b
 
 ## Changelog
 
+
+### 2.1.14 (2026-10-27)
+- The shared contract's Champion Tests section now defines "creates urgency" (a dated deadline the decision works to, with its date and source on record) and "defends the solution" (a recorded case of arguing for us in our absence to someone who decides), and says a test not yet run is never scored.
+- The Trait Test reads the trait the Pain Point column names. A record of one means does not meet a trait that names another, so plot records on paper meet row 1 and do not show trust reporting by hand, which is row 2.
+- The Setting Test reads a fact about how the account operates. A market figure about other operators is not a setting, and a row that names no setting cannot meet the test. Brackhaven's pre-need pain meets the test through its pre-need sales line, and Quill Hollow's does not, because its pre-need activity is unknown.
+- An undated event counts toward neither test at any level. It never makes a hypothesis HIGH or MEDIUM. A hypothesis that depends on one takes "(event date unknown)" at the level its dated facts give.
+- The lowest-numbered LOW hypotheses fill the slots left after the HIGH and MEDIUM ones.
+- Quill Hollow's trust pain is LOW, not MEDIUM. Example 1, Example 5 and the try-it promise change that one level. Sable Fork's trust pain moves to LOW the same way, and Brackhaven's trust pain moves to LOW while its pre-need pain enters the top three at MEDIUM.
 
 ### 2.1.13 (2026-10-26)
 - Pain hypothesis confidence is set by a Trait Test and a Setting Test, each read from the profile's Core Pain Points row on tagged facts. HIGH needs both, MEDIUM one, LOW neither. A dated event counts only when dated, and an undated event takes "(event date unknown)" and counts toward neither test.

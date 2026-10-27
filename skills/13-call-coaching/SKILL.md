@@ -1,16 +1,19 @@
 ---
 name: gtm-call-coaching
 description: "Scores a discovery or demo call against methodology rubrics and returns a coaching report with evidence-graded coaching points, for the rep and the sales manager who reads it"
-version: 2.1.13
+version: 2.1.14
 category: Sales-Methodology
 author: Ryan Vanshur
 license: MIT
-updated: 2026-10-26
+updated: 2026-10-27
 tags: [call-coaching, discovery-coaching, demo-coaching, sales-methodology, call-scoring, coaching-scorecard]
 requires:
   skills: ["gtm-meeting-prep", "gtm-deal-pulse"]
 mutating: read-write
 change_log:
+  - version: 2.1.14
+    date: 2026-10-27
+    summary: "Round 14, third acceptance test. The focus-area costs are read from the Priority Ladder evidence line, which now names each Core Pain Point the call identified and its level, so the cost set is written down and no longer left to the scorer. Brackhaven's focus covers the plot lookups and the paper records, and the double sale sits inside the paper-records cost. Later steps keep their order: a red flag's recovery and an undated proposal rank as the next step the call never set, and the call's items come before the email's. A rep question the buyer answers without a date, name or figure is a fair chance, so the line is Not raised. A single named event is not a figure for Metrics. Example 2 lists its later steps. Example 3's next action has one owner and one person, and its approval-path brief is a later step. Example 1 no longer names the Oldgate export holder, which the records do not hold. No score, band or due date changes."
   - version: 2.1.13
     date: 2026-10-26
     summary: "Round 13, second acceptance test. The next action bundle is settled: the buyer's open question is answered in the same message as the asks to that buyer, a session nobody has dated is a later step, and a red flag's recovery step is a later step. The focus-area costs are the pains the category's own evidence line names. The try-it record drops three rubric results from its facts (the silence verdict, the cost verdict and the last-two-minutes verdict), and it states the timed longest pause instead. Example 1's next action now answers Ruth Ellery's 33:00 question in the one message, with the second session and the red flag as later steps. No score, band or due date changes. The shared contract is unchanged."
@@ -132,12 +135,13 @@ Every run returns the coaching report in the chat, in the eight sections under R
 
 Ties inside a kind go to the item raised earliest on the call, then to the buyer with the higher role in the profile's Buying Committee role map. Every ask to the same buyer that fits in one message travels with the next action, as the shared rule says, whatever its kind, unless a record or this skill's schedule sets it a later date of its own. When a kind 3 session with that same buyer falls on or before the date the higher kind is due, the open items are raised in that session and the session is the next action. A step for another person, a step with a later date set by a record or the schedule, and the focus-area practice are listed after it as later steps. The senior buyer is the one with the higher role in that same map.
 
-**Four Settled Readings For The Bundle.** These decide what travels with the next action, so two reviewers of the same call build the same message.
+**Five Settled Readings For The Bundle.** These decide what travels with the next action, so two reviewers of the same call build the same message.
 
 - **Fits One Message.** An ask fits when the buyer can answer it in one reply from what they already know, with no document, lookup or meeting first. Naming a person or confirming a date the buyer holds are examples. An ask that needs a count, a lookup or a meeting first is a later step.
 - **The Buyer's Open Question.** A question the buyer asked that has no reply on record is answered in the same message as the asks to that buyer. It is an open exchange in its own right, so it is never a second message.
 - **An Undated Session Is A Proposal.** A session or a send that neither the call nor a later email has dated is a proposal, not a kind 3 step. It is a later step until a date is agreed, and it never joins the next action.
 - **A Red Flag's Recovery Is A Later Step.** A red flag is a finding about the deal, not a buyer's open item. Its recovery step is listed after the next action, even when the same buyer could answer it.
+- **Later Steps Keep Their Order.** A red flag's recovery and an undated proposal both rank as the next step the call never set (kind 4). Within a kind, a step the call produced comes before one that came from an email after the call, and ties go to the earliest item on the call. The focus-area practice is always last.
 
 ### Report Sections
 
@@ -237,7 +241,7 @@ A BDR-facing skill (02, 03, 04, 05, 07, 12) never works an account that is ACTIV
 
 #### Champion Tests, One List
 
-A contact scores **Strong** as a champion when three or more of these are met with evidence, each tagged: creates urgency inside their company, explains the internal politics, offers introductions, asks how to help, defends the solution when we are not in the room, shares competitor intelligence, commits to next steps with dates. "Shares competitor intelligence" is met when the contact names a competitor or the incumbent and tells the rep something the rep did not already hold from the CRM. One or two met is **Developing**. None met is **None**. A friendly contact is not a champion. The same list and thresholds are used by 09, 10 and 13.
+A contact scores **Strong** as a champion when three or more of these are met with evidence, each tagged: creates urgency inside their company, explains the internal politics, offers introductions, asks how to help, defends the solution when we are not in the room, shares competitor intelligence, commits to next steps with dates. "Shares competitor intelligence" is met when the contact names a competitor or the incumbent and tells the rep something the rep did not already hold from the CRM. "Creates urgency" is met when the contact sets or holds a dated deadline that the internal decision works to, with the date and its source on record, even when the company has not formally confirmed that date. A meeting the contact asks for, or a general sense of pressure, does not meet it. "Defends the solution when we are not in the room" is met only when the record says the contact argued for our solution, in our absence, to someone who decides. A briefing or a status update is not a defence. A test the skill has not yet run is written "not yet run", never scored. One or two met is **Developing**. None met is **None**. A friendly contact is not a champion. The same list and thresholds are used by 09, 10 and 13.
 
 #### Incumbent Types, One List
 
@@ -380,7 +384,7 @@ Six lines, scored for every discovery and demo call. Each line is Raised, Not ra
 - Timing
 - Authority
 
-A line marked Not raised is a finding only when the call gave the buyer a fair chance to raise it. Otherwise it is Unknown. A fair chance is a rep question on that line's subject: cost or price for Budget, the move or the rollout for Implementation, a date or a timeline for Timing, who decides for Authority. A buyer's statement that they lack a role the change needs (no IT person, no one to run the move) counts as Implementation raised.
+A line marked Not raised is a finding only when the call gave the buyer a fair chance to raise it. Otherwise it is Unknown. A fair chance is a rep question on that line's subject: cost or price for Budget, the move or the rollout for Implementation, a date or a timeline for Timing, who decides for Authority. A buyer who answers that question without a date, name or figure has had the chance and did not raise the subject, so the line is Not raised. A buyer's statement that they lack a role the change needs (no IT person, no one to run the move) counts as Implementation raised.
 
 ### Universal: Three Types Of Resistance
 | Type | Definition | Response |
@@ -481,6 +485,8 @@ A prep-sheet fact, or a prep-sheet question, that the rep uses on the call count
 | 3 | Identified pain but didn't prioritize or quantify. Surface-level. |
 | 2 | Accepted first answer without going deeper. Moved on too quickly. |
 | 1 | No Priority Ladder. Jumped from hearing pain to pitching features. |
+
+**Priority Ladder Evidence Names Its Pains.** The evidence line for this category names each Core Pain Point the call identified, with its time and tag. A pain counts as identified when the Pain Discovery Map (Step 4) records it at Level 1 or 2 from a heard phrase or a provisional record. The line says, for each one named, whether it reached Level 3. A pain the call did not identify is not named, and no other profile pain is named here. The Step 8 focus-area costs are read from this line, so this line is where the cost set is written.
 
 #### Category 4: Active Listening (1-5)
 Rep talk time is read against the discovery band in The Shared Contract. "Points" below are share points on the call: 5 points is 5% of the call's talk time, measured from the band's nearest edge. Silence counts as used when the transcript shows a pause of at least two seconds after a prospect's answer.
@@ -650,7 +656,7 @@ For each MEDDIC element, assess what was uncovered on this call. Each element us
 | Identified Pain | Specific, named, quantified pain? | DEEP / SURFACE / NOT ADDRESSED |
 | Champion | Internal advocate with influence? | STRONG / DEVELOPING / NONE |
 
-**Metrics, By Its Grades.** COVERED when a figure for a pain (a count, a time or a cost) is on record. PARTIAL when a pain that could carry a figure was discussed and no figure is on record. NOT ADDRESSED when no such pain was discussed. A grade that rests on a provisional pain (Step 4) says so.
+**Metrics, By Its Grades.** COVERED when a figure for a pain (a count, a time or a cost) is on record. A single named event is not a figure, because the count has to measure how often or how much of the pain happens across the operation. PARTIAL when a pain that could carry a figure was discussed and no figure is on record. NOT ADDRESSED when no such pain was discussed. A grade that rests on a provisional pain (Step 4) says so.
 
 **Champion Status** is graded with the shared champion tests in The Shared Contract. Count only the tests met on this call, each with its evidence and tag. A contact who was not in the room cannot meet the tests that need the room, and the report says so. The defend test is met only by a statement made when we were not in the room. A statement about the buyer's process counts as "explains the internal politics" only when it names who decides or how the decision moves. One clear statement that does so is enough to meet the test. A statement that names no one does not count. The test "shares competitor intelligence" is met as The Shared Contract defines it (see Champion Tests, One List), and this step applies that one definition to the incumbent the contact describes.
 
@@ -749,7 +755,7 @@ Type an objection by what the objector resists: the change to their work (inerti
 
 **The Status Rule For Deal Health Impact.** The call is scored the same whatever the account's status, because the rubric grades the rep and not the account. Status changes only what this line can say. ACTIVE (open deal): the line reads the call against the stage gate in the profile's Qualification Stage Gates. ENGAGED (two-way contact, no open deal): no stage gate applies. The line names the status and says whether the call gave the buyer a reason to open a deal, a quantified pain or a dated next meeting, each tagged. For an ENGAGED account, the Next Call Game Plan's success criteria name that deal-opening step, because until one is set the account stays in conversation without a deal. INBOUND (they asked us first): the account stays INBOUND after a call until a deal opens, so the line reads it as INBOUND and applies no stage gate. If the record shows TARGET, LOST or OUT, the line names that status and applies no stage gate.
 
-**Focus Area For Next Call:** One skill only. Prep steps, what to practice, success criteria. Five things at once do not change a habit. The practice exercise covers every cost the focus skill's evidence names, in one exercise, and the focus-area line names each of them. A cost is named when the focus category's evidence line identifies a pain and leaves it unquantified, so each such pain gives one cost to practice. The evidence line is the one written for that category in Step 2. A pain the call raised that this line does not name gives no cost to practice, whatever else the transcript holds. The focus area is the lowest-scoring category. When categories tie for the lowest score, the tie-break applies: the focus is the tied category whose defined step does the work of the exit criterion that moves the account from its current stage to the next. That criterion is the row of the profile's Qualification Stage Gates that starts at the account's current stage. An account with no open deal has no stage, so its tie-break reads the first row of those gates. A category matches when its step does the criterion's work, so a criterion that needs a number is the quantify step of Priority Ladder. The focus-area line quotes the criterion, so the choice can be checked against the profile.
+**Focus Area For Next Call:** One skill only. Prep steps, what to practice, success criteria. Five things at once do not change a habit. The practice exercise covers every cost the focus skill's evidence names, in one exercise, and the focus-area line names each of them. A cost is named when the focus category's evidence line identifies a pain and leaves it unquantified, so each such pain gives one cost to practice. The evidence line is the one the Step 2 rule writes for that category, which names each Core Pain Point the call identified. A pain the call raised that this line does not name gives no cost to practice, whatever else the transcript holds. An event the call raised under a named pain is part of that pain's cost, not a second cost, and the cost names the event. The focus area is the lowest-scoring category. When categories tie for the lowest score, the tie-break applies: the focus is the tied category whose defined step does the work of the exit criterion that moves the account from its current stage to the next. That criterion is the row of the profile's Qualification Stage Gates that starts at the account's current stage. An account with no open deal has no stage, so its tie-break reads the first row of those gates. A category matches when its step does the criterion's work, so a criterion that needs a number is the quantify step of Priority Ladder. The focus-area line quotes the criterion, so the choice can be checked against the profile.
 
 **Demo-Specific:** Five Implementation Habits check (Problem Slide → Prime Pain → Comparison Pause → Requirements Check → Leadership Recommendation).
 
@@ -821,7 +827,7 @@ All three examples use the PlotIQ example company and its cast. Every call-level
 |---|---|---|
 | Pre-Call Preparation | 4 | Opened on the prep sheet's top pain, plot records on paper (`[Notes]`), and asked about the lookup at 02:10 (`[Call, 2026-05-12]`). Referred to both attendees by name at 00:40 (`[Call, 2026-05-12]`), set the agenda at 00:50 (`[Call, 2026-05-12]`), and named each attendee's title at 01:10 (`[Call, 2026-05-12]`). Did not check the double sale on file (`[CRM]`) before asking about it. |
 | SPIN Discovery Quality | 3 | Situation well executed: an open question at 02:10 drew the 1970s files at 09:15 (`[Call, 2026-05-12]`). Problem well executed: an open question at 14:20 drew the section F double sale (`[Call, 2026-05-12]`). Implication started at 19:05 with one leading question, so it counts as started. Need-Payoff not reached. Two phases well executed, one started. |
-| Priority Ladder Execution | 3 | Identified the double sale (14:20, `[Call, 2026-05-12]`) and the plot lookups, which Ruth described at 21:30 (`[Call, 2026-05-12]`, her words not on record), both Level 2. Neither prioritized nor quantified: no count, no time and no cost. |
+| Priority Ladder Execution | 3 | Identified two Core Pains, both Level 2 and neither quantified. Pain 1, plot records on paper, at 09:15 (`[Call, 2026-05-12]`). The double sale at 14:20 is a consequence of it and is not a second pain. Pain 3, plot lookups, which Ruth described at 21:30 (`[Call, 2026-05-12]`, her words not on record), provisional. No count, no time and no cost on record for either. |
 | Active Listening | 4 | Rep talk time 36% (illustrative), inside the discovery band (`[Call, 2026-05-12]`). Restated the files at 16:40 and clarified at 09:15 (`[Call, 2026-05-12]`). No silence used, so one listening technique is missing. One follow-up missing at 21:30, where Ruth described the lookups and Owen moved on. |
 | Value Articulation | 3 | Generic pitch at 25:00 ("it fixes the paper problem," `[Call, 2026-05-12]`). No proof point used. The double sale was asked about, but not tied to the value. |
 | Next Steps and Momentum | 3 | Owen asked for the approval body's chair and the meeting date at 28:30. Ruth said she would check with the board (`[Call, 2026-05-12]`). No date set on the call. Vague. |
@@ -858,7 +864,7 @@ No pain reached Level 3, which is the minimum for a strong business case.
 - **Objection (23:40):** Walt: "I don't want my crew walking around with a tablet in a cemetery." `[Call, 2026-05-12]`. Type: inertia. Owen's response: "They're just screens, you can use them at the desk." `[Call, 2026-05-12]`.
 - **Competitive Intelligence (17:05):** Ruth: "We started moving plots into Oldgate and stopped." `[Call, 2026-05-12]`. Incumbent type: direct software. Oldgate Ledger Pro, renewal March 2027 (`[CRM]`).
 - **Missed Opportunity (28:30):** Ruth: "The board takes these things up." Owen: "Great, thanks." `[Call, 2026-05-12]`. The question that should have followed: "Who sits on the board, and when does it next meet?"
-- **Red Flag, MEDIUM (31:10):** Ruth: "We don't really have an IT person." `[Call, 2026-05-12]`. Recovery: ask who installs the system and who holds the ledger data, before the next session.
+- **Red Flag, MEDIUM (31:10):** Ruth: "We don't really have an IT person." `[Call, 2026-05-12]`. Recovery: ask who runs IT for the change, before the next session.
 
 **Framework-Specific Coaching:**
 
@@ -894,12 +900,12 @@ No pain reached Level 3, which is the minimum for a strong business case.
 
 **Deal Health Impact:** Before this call: `[Unknown]`, because no Deal Pulse (08) exists for this account in the records. After this call: the Stage 2 to 3 gate in the profile needs the records problem quantified (plots, hours or dollars) and the GM named as the likely economic buyer. Ruth is named as GM and buyer (`[CRM]`). The problem is not yet quantified, so the gate is not met, and this call does not move the deal to a demo.
 
-**Focus Area For Next Call:** Priority Ladder to Level 3 on the cost of a plot lookup and of a double sale. The stage gate it serves is "Records problem quantified (plots, hours or dollars)." The chair and the date are success criteria in the game plan, not a second focus.
+**Focus Area For Next Call:** Priority Ladder to Level 3 on the cost of a plot lookup and on the cost of the paper records (plots missing from the map, and any plot sold twice). The stage gate it serves is "Records problem quantified (plots, hours or dollars)." The chair and the date are success criteria in the game plan, not a second focus.
 
 **Next Call Game Plan:**
-- **Prep:** the plot-lookup count and the minutes per lookup, and the double-sale count and its cost, from the discovery notes.
+- **Prep:** the plot-lookup count and the minutes per lookup, and the count of plots missing from the map and of plots sold twice, each with its cost, from the discovery notes.
 - **Questions:** "How many plot requests come in a week, and how long does each one take?" Then the board question.
-- **Success Criteria:** a number for lookups per week, minutes per lookup, the double-sale count and its cost, the board chair's name, and the meeting date, set before the session ends.
+- **Success Criteria:** a number for lookups per week, minutes per lookup, plots missing from the map, plots sold twice and what each costs, the board chair's name, and the meeting date, set before the session ends.
 
 ```text
 Hand-off (read by 08, 09 and 06):
@@ -907,11 +913,11 @@ account: Brackhaven Memorial Gardens (ACTIVE, Stage 2 Discovery)
 run_date: 2026-05-12 (illustrative)
 call_score: 24 of 35, scored 7 of 7
 category_scores: Pre-Call Preparation 4, SPIN Discovery Quality 3, Priority Ladder Execution 3, Active Listening 4, Value Articulation 3, Next Steps and Momentum 3, Alternatives 4
-focus_area: Priority Ladder to Level 3 on the cost of a plot lookup and of a double sale
+focus_area: Priority Ladder to Level 3 on the cost of a plot lookup and on the cost of the paper records (plots missing from the map, and any plot sold twice)
 coaching_points: Top 3 Strengths: 1 Strength, Strong (02:10). 2 Owen followed up, Strong (09:15). 3 Owen asked why the move stopped, Strong (17:05). Top 3 Improvements: 1 Quantify the double sale, Strong (14:20). 2 Benchmark for the tablet objection, Moderate (23:40). 3 The board question and the close, Strong, with a Weak part (28:30, no date in the transcript)
 key_moments: discovery breakthrough (14:20), buying signal captured (09:15), objection (23:40), competitive intelligence (17:05), missed opportunity (28:30), red flag MEDIUM (31:10)
 champion_status: Strong, three of seven shared tests met on this call (explains the internal politics at 28:30, asks how to help at 33:00, shares competitor intelligence at 17:05)
-next_action: Owen Pruitt answers Ruth Ellery's 33:00 question about what the board needs, and in the same message asks her for the family board chair's name, the date the board takes up the decision, and the date she will check with the board, by 2026-05-19. The 28:30 ask and the 33:00 question are open exchanges with the buyer, and her check date is a commitment left undated, so all three travel together. The date is the five-business-day date from the run date, since the records hold no earlier date. Owner: Owen Pruitt. Person: Ruth Ellery. Date: 2026-05-19. Later steps, in order: (1) the second discovery session, which no one has dated, so it is a proposal and not part of the message. (2) Who runs IT and who holds the Oldgate export, a red flag's recovery step. (3) The focus-area practice, quantifying the lookup cost and the double-sale cost before that session, which is coaching for the rep and not a buyer step.
+next_action: Owen Pruitt answers Ruth Ellery's 33:00 question about what the board needs, and in the same message asks her for the family board chair's name, the date the board takes up the decision, and the date she will check with the board, by 2026-05-19. The 28:30 ask and the 33:00 question are open exchanges with the buyer, and her check date is a commitment left undated, so all three travel together. The date is the five-business-day date from the run date, since the records hold no earlier date. Owner: Owen Pruitt. Person: Ruth Ellery. Date: 2026-05-19. Later steps, in order: (1) Who runs IT for the change, a red flag's recovery step, which the call raised and no one has answered. (2) The second discovery session, which no one has dated, so it is a proposal and not part of the message. (3) The focus-area practice, quantifying the lookup cost and the paper-records cost before that session, which is coaching for the rep and not a buyer step.
 report_path: none (inline)
 ```
 
@@ -929,7 +935,7 @@ report_path: none (inline)
 |---|---|---|
 | Pre-Call Preparation | 4 | Used the prep sheet's hypothesis that the plot list lives in a spreadsheet (`[Inferred]`), and a version of its plot-list question at 06:40 (`[Call, 2026-10-22]`), which counts as referenced account research. Did not confirm who filled in the website form, which the sheet lists as `[Unknown]`. |
 | SPIN Discovery Quality | 3 | Situation well executed (06:40, `[Call, 2026-10-22]`). The Problem phase began but the lookup count was not asked. Implication and Need-Payoff not reached. |
-| Priority Ladder Execution | 3 | Described the lookup at Level 2 (19:30, `[Call, 2026-10-22]`). Not quantified. |
+| Priority Ladder Execution | 3 | Identified one Core Pain: plot lookups (pain 3), at 18:30 and 19:30 (`[Call, 2026-10-22]`), Level 2. Not quantified, and the line does not reach Level 3. |
 | Active Listening | 4 | Rep talk time 38% (illustrative), inside the discovery band. Restated the lookups well at 18:30. Missed the count at 18:45. |
 | Value Articulation | 3 | Referred to "other cemeteries" with no figure at 29:00 (`[Call, 2026-10-22]`). No proof point used. |
 | Next Steps and Momentum | 4 | Booked a second discovery session with Arlen Biggs on a named date, 2026-10-29 (illustrative), with Owen as owner. Other attendees not named. |
@@ -971,7 +977,7 @@ Assessment: Good, in the 24 to 30 band of the restated scale. The Pre-Call Prepa
 
 **Deal Health Impact:** Sable Fork is INBOUND. It stays INBOUND after this call, because no deal is open (the status rule in Step 8), so no ACTIVE stage gate applies yet. The pain is not confirmed: the lookup count is missing. The next step is a second discovery session, not a demo. The verdict stays MANUAL REVIEW.
 
-**Focus Area For Next Call:** Priority Ladder, to count the plot lookups and time them. The stage gate it serves is "Records problem quantified (plots, hours or dollars)." The who-else question stays a coaching point, not the focus.
+**Focus Area For Next Call:** Priority Ladder, to count the plot lookups and time them, the one cost the evidence line names. The stage gate it serves is "Records problem quantified (plots, hours or dollars)." The who-else question stays a coaching point, not the focus.
 
 **Next Call Game Plan:**
 - **Prep:** the spreadsheet's owner and update rhythm, and the form filler's name if the website shows it.
@@ -988,7 +994,7 @@ focus_area: Priority Ladder, count the plot lookups and time them (stage gate: r
 coaching_points: 1 Strength, Strong (06:40). 2 Count the lookups, Strong (18:30). 3 Proof point without a number, Moderate (29:00). 4 Second discovery, not a demo, Strong (40:20). 5 Who else holds the list, Weak (no question in the transcript)
 key_moments: discovery breakthrough (18:30), missed opportunity (18:45), buying signal captured (33:10), competitive intelligence (09:20), commitment (40:20), red flag MEDIUM (44:00)
 champion_status: Developing, two of seven shared tests met on this call (shares competitor intelligence, commits to a next step with a date)
-next_action: Owen Pruitt holds a second discovery session with Arlen Biggs to count the lookups and time them. No demo until the pain is confirmed. Owner: Owen Pruitt. Date: 2026-10-29, the session Arlen Biggs agreed to on the call (`[Call, 2026-10-22]`), which is earlier than the five-business-day date of 2026-10-30
+next_action: Owen Pruitt holds a second discovery session with Arlen Biggs to count the lookups and time them. No demo until the pain is confirmed. Owner: Owen Pruitt. Date: 2026-10-29, the session Arlen Biggs agreed to on the call (`[Call, 2026-10-22]`), which is earlier than the five-business-day date of 2026-10-30. Later steps, in order: (1) Who else needs the list, by role, a red flag's recovery step (MEDIUM, 44:00). (2) The focus-area practice, counting and timing the lookups before the session, which is coaching for the rep and not a buyer step.
 report_path: none (inline)
 ```
 
@@ -1056,7 +1062,7 @@ Assessment: Poor, in the 10 to 17 band of the demo scale (feature touring or mon
    - **Situation:** Walt's skepticism, 23:40 (`[Call, 2026-08-20]`).
    - **Proof Point:** the profile has no proof on tablet durability. Say so, and do not borrow a number.
    - **Coaching Moment:** Acknowledge ("That makes sense."), then ask, "What would need to be true about the tablets for your crew to use them?"
-2. **Open On The Pain, Strong.** At 12:00 Owen opened on the trust report, then the mobile app, in menu order (`[Call, 2026-08-20]`). Walt's pain never came up. Open with the pain the discovery call named, when Ruth described the plot lookup on paper (14:20, `[Call, 2026-05-12]`): "In discovery, Ruth told us a plot lookup on paper takes too long. I'll show you that first."
+2. **Open On The Pain, Strong.** At 12:00 Owen opened on the trust report, then the mobile app, in menu order (`[Call, 2026-08-20]`). Walt's pain never came up. Open with the pain the discovery call named, when Ruth described the plot lookups (21:30, `[Call, 2026-05-12]`, her words not on record). Name that pain before the first workflow, in the rep's own words: "In discovery we talked about how long a plot lookup takes. I'll show you that first."
 3. **Pain-To-Workflow Map, Weak.** Walt's "zero wrong-plot burials" and "find the plot in seconds" are not in the transcript at any point. Inferred from what did not happen, so the grade is Weak. Practice: build the map from the discovery notes before the next demo.
 4. **Question The Problem, Moderate.** The transcript shows no Prime Pain before any workflow. The first 20 minutes are summarized in the rep's notes, so the grade is Moderate.
 
@@ -1081,7 +1087,7 @@ focus_area: Pain Alignment and Proof, name Walt's paper work-order pain before t
 coaching_points: 1 Telling not asking, Strong (23:40). 2 Open on the pain, Strong (12:00). 3 Pain-to-workflow map, Weak (absent from the transcript). 4 Question The Problem, Moderate (summarized in notes)
 key_moments: objection (23:40), missed opportunity (12:00), competitive intelligence (31:15), red flag HIGH (55:00)
 champion_status: None on this call (Ruth Ellery not in the room)
-next_action: Owen Pruitt sends Walt Okonkwo the pain-to-workflow map for the next demo, and Ruth Ellery briefs Walt on the board's approval path. Owner: Owen Pruitt. Date: 2026-08-27 (illustrative), five business days after the run date of 2026-08-20, with no earlier date on the record
+next_action: Owen Pruitt asks Walt Okonkwo, in one message, for a date for the next session and for Ruth Ellery to join it. The call closed with "Any questions?" and set no step, so this is the next step the call never set, asked of the senior buyer on the call. Owner: Owen Pruitt. Person: Walt Okonkwo. Date: 2026-08-27 (illustrative), five business days after the run date of 2026-08-20, with no earlier date on the record. Later steps, in order: (1) Ruth Ellery briefs Walt on the board's approval path, a red flag's recovery step (HIGH, 55:00). (2) The focus-area practice, building the pain-to-workflow map from the discovery notes before the next demo, which is coaching for the rep and not a buyer step
 report_path: none (inline)
 ```
 
@@ -1163,6 +1169,16 @@ The Business Case & ROI Kit (a paid Guild Pro kit) reads this skill's hand-off b
 ---
 
 ## Changelog
+
+### 2.1.14 (2026-10-27)
+- The shared contract's Champion Tests section now defines "creates urgency" (a dated deadline the decision works to, with its date and source on record) and "defends the solution" (a recorded case of arguing for us in our absence to someone who decides), and says a test not yet run is never scored.
+- Focus-area costs. The Step 2 Priority Ladder rule says the evidence line names each Core Pain Point the call identified, at Level 1 or 2 on the Pain Discovery Map, and whether it reached Level 3. Step 8 reads the focus costs from that line. An event raised under a named pain is part of that pain's cost.
+- Brackhaven focus. The cost set is the plot lookups and the paper records, with the double sale inside the paper-records cost. Example 1, the game plan and the try-it promise change to match.
+- Later steps. A new reading orders them: a red flag's recovery and an undated proposal rank as kind 4, the call's items come before the email's, and the focus practice is always last. Example 1's later steps move the red flag ahead of the second session, and drop the Oldgate export holder, which the records do not hold.
+- Unraised objections. A rep question the buyer answers without a date, name or figure is a fair chance, so the line is Not raised.
+- Metrics. A single named event is not a figure for COVERED.
+- Examples. Example 2 lists its later steps. Example 3's next action has one owner and one person, Owen asking Walt for the next date and attendees, and its approval-path brief is a later step. Example 3 no longer quotes Ruth's lookup words, which the record holds as not on record.
+- No score, band or due date changes.
 
 ### 2.1.13 (2026-10-26)
 - Next action bundle. Four readings are now written under the Next-Action Priority Order. An ask fits one message when the buyer can answer it in one reply from what they know. A buyer's open question with no reply on record is answered in the same message as the asks to that buyer. A session nobody has dated is a proposal and a later step. A red flag's recovery step is a later step.

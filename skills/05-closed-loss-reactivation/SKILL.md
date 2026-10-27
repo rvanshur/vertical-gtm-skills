@@ -1,16 +1,19 @@
 ---
 name: gtm-closed-loss-reactivation
-version: 2.1.13
+version: 2.1.14
 description: "Re-engages closed-lost accounts from the CRM history. Checks the recorded loss reason against the evidence, finds what has changed since the deal died, re-scores fit, and returns REACTIVATE, MONITOR or RETIRE with a history-aware opener for the BDR or AE who owns the next step."
 category: Sales-Methodology
 author: Ryan Vanshur
 license: MIT
-updated: 2026-10-26
+updated: 2026-10-27
 tags: [closed-loss, reactivation, win-back, lost-deal, re-engagement, deal-recovery]
 requires:
   skills: []
 mutating: read-write
 change_log:
+  - version: 2.1.14
+    date: 2026-10-27
+    summary: "The shared contract's Champion Tests section now defines 'creates urgency' (a dated deadline the decision works to, with its date and source on record) and 'defends the solution' (a recorded case of arguing for us in our absence to someone who decides), and says a test not yet run is never scored."
   - version: 2.1.13
     date: 2026-10-26
     summary: "Round 13 next action on a lost account. The original AE's ask is the next action unless the moved champion is warm or the loss category is Champion Left. Warm is defined: a reply from her to us or a call with her on record in the 90 days before the run date. Otherwise routing her to Account Snapshot (02) is a later step on the same date as the ask, and the rank list no longer points to a removed example. The AE ask asks for the current contact's name when the record names none. The Context table names the ICP Definitions and the new account's folder as the source for the fit check, so the rank list reads only facts a rep can see. Example 1 names the routing as a later step, Example 3 re-derives its next action and hand-off, and the try-it records state the contact history and the new account's facts. The verdict, the dates and the reminder window are unchanged."
@@ -210,7 +213,7 @@ A BDR-facing skill (02, 03, 04, 05, 07, 12) never works an account that is ACTIV
 
 #### Champion Tests, One List
 
-A contact scores **Strong** as a champion when three or more of these are met with evidence, each tagged: creates urgency inside their company, explains the internal politics, offers introductions, asks how to help, defends the solution when we are not in the room, shares competitor intelligence, commits to next steps with dates. "Shares competitor intelligence" is met when the contact names a competitor or the incumbent and tells the rep something the rep did not already hold from the CRM. One or two met is **Developing**. None met is **None**. A friendly contact is not a champion. The same list and thresholds are used by 09, 10 and 13.
+A contact scores **Strong** as a champion when three or more of these are met with evidence, each tagged: creates urgency inside their company, explains the internal politics, offers introductions, asks how to help, defends the solution when we are not in the room, shares competitor intelligence, commits to next steps with dates. "Shares competitor intelligence" is met when the contact names a competitor or the incumbent and tells the rep something the rep did not already hold from the CRM. "Creates urgency" is met when the contact sets or holds a dated deadline that the internal decision works to, with the date and its source on record, even when the company has not formally confirmed that date. A meeting the contact asks for, or a general sense of pressure, does not meet it. "Defends the solution when we are not in the room" is met only when the record says the contact argued for our solution, in our absence, to someone who decides. A briefing or a status update is not a defence. A test the skill has not yet run is written "not yet run", never scored. One or two met is **Developing**. None met is **None**. A friendly contact is not a champion. The same list and thresholds are used by 09, 10 and 13.
 
 #### Incumbent Types, One List
 
@@ -839,6 +842,8 @@ report_path: none (inline)
 
 ## Changelog
 
+### 2.1.14 (2026-10-27)
+- The shared contract's Champion Tests section now defines "creates urgency" (a dated deadline the decision works to, with its date and source on record) and "defends the solution" (a recorded case of arguing for us in our absence to someone who decides), and says a test not yet run is never scored.
 
 ### 2.1.13 (2026-10-26)
 - The original AE's ask is the next action unless the moved champion is warm or the loss category is Champion Left. Warm is defined in the Output Contract: a reply from her to us, or a call with her, on record in the 90 days before the run date. Otherwise routing her to Account Snapshot (02) is a later step on the same date as the ask.

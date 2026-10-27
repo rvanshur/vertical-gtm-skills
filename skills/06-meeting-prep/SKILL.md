@@ -1,16 +1,19 @@
 ---
 name: gtm-meeting-prep
-version: 2.1.13
+version: 2.1.14
 description: "Prepares a rep for a discovery or demo call with one prep sheet: the top pain, a question bank for each discovery phase, one proof point per attendee, objection scripts, a minute-by-minute call flow and a follow-up email draft. The rep reads it during the call."
 category: Sales-Methodology
 author: Ryan Vanshur
 license: MIT
-updated: 2026-10-26
+updated: 2026-10-27
 tags: [meeting-prep, discovery-prep, demo-prep, call-prep, discovery-questions, meeting-scripts, objection-handling, meddpicc]
 requires:
   skills: [gtm-account-snapshot, gtm-research-outbound, gtm-trigger-event-outbound, gtm-closed-loss-reactivation, gtm-daily-prospecting, gtm-deal-pulse, gtm-stakeholder-mapping, gtm-competitive-strategy, gtm-competitive-displacement, gtm-call-coaching]
 mutating: read-write
 change_log:
+  - version: 2.1.14
+    date: 2026-10-27
+    summary: "The shared contract's Champion Tests section now defines 'creates urgency' (a dated deadline the decision works to, with its date and source on record) and 'defends the solution' (a recorded case of arguing for us in our absence to someone who decides), and says a test not yet run is never scored."
   - version: 2.1.13
     date: 2026-10-26
     summary: "Round 13 upstream and status rules. An upstream field is read as of its own run date, and where it conflicts with a rule here the rule governs and the sheet names the conflict. A renewal or deadline in an upstream pain list is urgency, never a ranked pain. The header reads the CRM status on the run date and states the date the deal opened when the CRM holds it, so an upstream TARGET labelled then does not set the header. The example and try-it records take the deal's opening date, drop the upstream pre-ranking and the renewal listed as a pain, and drop the note that pointed to a later stage and the note that pre-scored the Stonemark evaluation. The question bank, the scores, the proof lines and the next action are unchanged."
@@ -242,7 +245,7 @@ A BDR-facing skill (02, 03, 04, 05, 07, 12) never works an account that is ACTIV
 
 #### Champion Tests, One List
 
-A contact scores **Strong** as a champion when three or more of these are met with evidence, each tagged: creates urgency inside their company, explains the internal politics, offers introductions, asks how to help, defends the solution when we are not in the room, shares competitor intelligence, commits to next steps with dates. "Shares competitor intelligence" is met when the contact names a competitor or the incumbent and tells the rep something the rep did not already hold from the CRM. One or two met is **Developing**. None met is **None**. A friendly contact is not a champion. The same list and thresholds are used by 09, 10 and 13.
+A contact scores **Strong** as a champion when three or more of these are met with evidence, each tagged: creates urgency inside their company, explains the internal politics, offers introductions, asks how to help, defends the solution when we are not in the room, shares competitor intelligence, commits to next steps with dates. "Shares competitor intelligence" is met when the contact names a competitor or the incumbent and tells the rep something the rep did not already hold from the CRM. "Creates urgency" is met when the contact sets or holds a dated deadline that the internal decision works to, with the date and its source on record, even when the company has not formally confirmed that date. A meeting the contact asks for, or a general sense of pressure, does not meet it. "Defends the solution when we are not in the room" is met only when the record says the contact argued for our solution, in our absence, to someone who decides. A briefing or a status update is not a defence. A test the skill has not yet run is written "not yet run", never scored. One or two met is **Developing**. None met is **None**. A friendly contact is not a champion. The same list and thresholds are used by 09, 10 and 13.
 
 #### Incumbent Types, One List
 
@@ -946,6 +949,8 @@ This skill also reads the kit's hand-off block back as optional context: `case_s
 
 ## Changelog
 
+### 2.1.14 (2026-10-27)
+- The shared contract's Champion Tests section now defines "creates urgency" (a dated deadline the decision works to, with its date and source on record) and "defends the solution" (a recorded case of arguing for us in our absence to someone who decides), and says a test not yet run is never scored.
 
 ### 2.1.13 (2026-10-26)
 - An upstream field is read as of its own run date, and a conflict with a rule here is named on the sheet with the rule governing. A renewal or deadline in an upstream pain list is urgency, never a ranked pain.

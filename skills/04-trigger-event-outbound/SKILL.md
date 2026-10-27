@@ -1,16 +1,19 @@
 ---
 name: gtm-trigger-event-outbound
-version: 2.1.13
+version: 2.1.14
 description: "Turns one dated business event at a target account into a short outbound sequence, but only after checking the event against its window. Reports when the window has closed or the event date is unknown. Read by the BDR or AE who sends the sequence."
 category: Sales-Methodology
 author: Ryan Vanshur
 license: MIT
-updated: 2026-10-26
+updated: 2026-10-27
 tags: [trigger-event, acquisition, leadership-change, compliance-finding, urgency-window, outbound-sequence, event-driven-prospecting]
 requires:
   skills: [gtm-account-snapshot, gtm-closed-loss-reactivation]
 mutating: read-write
 change_log:
+  - version: 2.1.14
+    date: 2026-10-27
+    summary: "The shared contract's Champion Tests section now defines 'creates urgency' (a dated deadline the decision works to, with its date and source on record) and 'defends the solution' (a recorded case of arguing for us in our absence to someone who decides), and says a test not yet run is never scored."
   - version: 2.1.13
     date: 2026-10-26
     summary: "Round 13 disqualifier check date. Email 1 and Email 2 never state or ask about an open disqualifier condition, and a question about the buyer's system or ownership is reserved for Email 3, the last email. The check is therefore due the business day before the last send day in every case, so the drafter no longer decides the date. Step 1C, the Rules For Every Email and the Step 4 priority order carry the rule. Example 1 Email 2 asks a different question, its check date moves to the business day before the last send day, the site GM sequence follows the same rule, and the try-it promise follows. The try-it records no longer carry the event tag, which stays in the promise."
@@ -229,7 +232,7 @@ A BDR-facing skill (02, 03, 04, 05, 07, 12) never works an account that is ACTIV
 
 #### Champion Tests, One List
 
-A contact scores **Strong** as a champion when three or more of these are met with evidence, each tagged: creates urgency inside their company, explains the internal politics, offers introductions, asks how to help, defends the solution when we are not in the room, shares competitor intelligence, commits to next steps with dates. "Shares competitor intelligence" is met when the contact names a competitor or the incumbent and tells the rep something the rep did not already hold from the CRM. One or two met is **Developing**. None met is **None**. A friendly contact is not a champion. The same list and thresholds are used by 09, 10 and 13.
+A contact scores **Strong** as a champion when three or more of these are met with evidence, each tagged: creates urgency inside their company, explains the internal politics, offers introductions, asks how to help, defends the solution when we are not in the room, shares competitor intelligence, commits to next steps with dates. "Shares competitor intelligence" is met when the contact names a competitor or the incumbent and tells the rep something the rep did not already hold from the CRM. "Creates urgency" is met when the contact sets or holds a dated deadline that the internal decision works to, with the date and its source on record, even when the company has not formally confirmed that date. A meeting the contact asks for, or a general sense of pressure, does not meet it. "Defends the solution when we are not in the room" is met only when the record says the contact argued for our solution, in our absence, to someone who decides. A briefing or a status update is not a defence. A test the skill has not yet run is written "not yet run", never scored. One or two met is **Developing**. None met is **None**. A friendly contact is not a champion. The same list and thresholds are used by 09, 10 and 13.
 
 #### Incumbent Types, One List
 
@@ -912,6 +915,8 @@ next_action: Nadia Brandt sends the note to Owen Pruitt by 2026-10-26, after rea
 
 ## Changelog
 
+### 2.1.14 (2026-10-27)
+- The shared contract's Champion Tests section now defines "creates urgency" (a dated deadline the decision works to, with its date and source on record) and "defends the solution" (a recorded case of arguing for us in our absence to someone who decides), and says a test not yet run is never scored.
 
 ### 2.1.13 (2026-10-26)
 - Email 1 and Email 2 never state or ask about an open disqualifier condition. A question about the buyer's system or ownership is reserved for Email 3, so the check is due the business day before the last send day in every case. The drafter no longer decides the date. Step 1C, the Rules For Every Email and the Step 4 priority order carry the rule.
