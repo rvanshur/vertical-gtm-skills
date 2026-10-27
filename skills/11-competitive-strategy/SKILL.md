@@ -1,16 +1,19 @@
 ---
 name: gtm-competitive-strategy
-version: 2.1.13
+version: 2.1.14
 description: "Builds a deal-specific competitive strategy for one open opportunity: the incumbent filed under a shared type, a gap matrix, a displacement playbook and a win plan with a battlecard. The AE who owns the deal runs it, and the sales manager reviews the output."
 category: Sales-Methodology
 author: Ryan Vanshur
 license: MIT
-updated: 2026-10-26
+updated: 2026-10-27
 tags: [competitive-strategy, battlecard, competitive-analysis, win-plan, competitive-positioning, incumbent-classification, compete]
 requires:
   skills: [gtm-meddpicc-analysis]
 mutating: read-write
 change_log:
+  - version: 2.1.14
+    date: 2026-10-27
+    summary: "Round 14 acceptance findings. Zone 4 MEDIUM reads a legacy system from the incumbent's own profile row, and it fits poorly on the buyer's dated named failure, so the zone is settled on the record. The buyer for a gap row is the contact the profile marks as the buyer, and an influencer's pain is a second pain until the buyer states it. An open gap is a fact a live win-plan item asks the buyer to confirm, the trust-file scope has its own live item, and the gaps are ordered by the win plan. A renewal with no early-exit term is a timing, not an early exit. Upstream MEDDPICC fields not on record are written Unknown in Step 1. The Satisfaction and Neutral rules no longer quote the example's own words, which the try-it records repeated. In an example, tagged illustrative records count as recorded, so the examples and the try-it reproduce under the same rules."
   - version: 2.1.13
     date: 2026-10-26
     summary: "Round 13 acceptance findings. The skill states no verdict: the verdict belongs to Account Qualification (01), so two skills cannot give two verdicts for one account, and the battlecard shows the zones beside it. Zone 3 MEDIUM rests on the GM's recommendation, which the try-it records now carry as Ruth's dated statement. The incumbent's type cites the profile row it matches, with no evidence tag, and an Inferred tag is used only when no row fits. A timing the buyer states on a dated call is a criterion, so a time-to-live row qualifies on Ruth's timing statement and a research figure never qualifies a row alone. A research price whose basis is Unknown is marked not like for like. The try-it records drop the trigger wording (the count-as-test sentence, the above-the-line comparison and the Stonemark sentence) and keep every fact the rules read. The promise drops GREENLIGHT and tags the type to its profile row."
@@ -266,7 +269,7 @@ A BDR-facing skill (02, 03, 04, 05, 07, 12) never works an account that is ACTIV
 
 #### Champion Tests, One List
 
-A contact scores **Strong** as a champion when three or more of these are met with evidence, each tagged: creates urgency inside their company, explains the internal politics, offers introductions, asks how to help, defends the solution when we are not in the room, shares competitor intelligence, commits to next steps with dates. "Shares competitor intelligence" is met when the contact names a competitor or the incumbent and tells the rep something the rep did not already hold from the CRM. One or two met is **Developing**. None met is **None**. A friendly contact is not a champion. The same list and thresholds are used by 09, 10 and 13.
+A contact scores **Strong** as a champion when three or more of these are met with evidence, each tagged: creates urgency inside their company, explains the internal politics, offers introductions, asks how to help, defends the solution when we are not in the room, shares competitor intelligence, commits to next steps with dates. "Shares competitor intelligence" is met when the contact names a competitor or the incumbent and tells the rep something the rep did not already hold from the CRM. "Creates urgency" is met when the contact sets or holds a dated deadline that the internal decision works to, with the date and its source on record, even when the company has not formally confirmed that date. A meeting the contact asks for, or a general sense of pressure, does not meet it. "Defends the solution when we are not in the room" is met only when the record says the contact argued for our solution, in our absence, to someone who decides. A briefing or a status update is not a defence. A test the skill has not yet run is written "not yet run", never scored. One or two met is **Developing**. None met is **None**. A friendly contact is not a champion. The same list and thresholds are used by 09, 10 and 13.
 
 #### Incumbent Types, One List
 
@@ -391,7 +394,9 @@ From the CRM, the interaction history and the discovery notes:
 
 For an ACTIVE account, if the incumbent is unknown, the run stops after this step. It flags the incumbent as the critical discovery gap and returns the discovery questions that identify it (Common Patterns, Unknown Incumbent). Steps 2 to 6 do not run until the incumbent is named.
 
-**Produces:** The account record, the open deal and the incumbent identification, each fact tagged, with every unknown written as `[Unknown]`. Step 1 comes first because the classification in Step 2 depends on what the CRM and the calls already say.
+**Upstream Read:** Read the MEDDPICC fields the Integration section names (`meddpicc_scores`, `risk_patterns`, `stage_recommendation`) from the 09 output. Each field not on record is written `[Unknown]` in this step, the competition element is not read, and the run goes on. A missing upstream field does not stop the run, and it is never rebuilt here.
+
+**Produces:** The account record, the open deal, the incumbent identification and the upstream read, each fact tagged, with every unknown written as `[Unknown]`. Step 1 comes first because the classification in Step 2 depends on what the CRM and the calls already say.
 
 ### Step 2: Profile The Incumbent
 
@@ -421,7 +426,7 @@ Using the calibration in Epistemic Rules, score the five factors. LOW is 1, MEDI
 
 Every factor row scores Unknown as MEDIUM. A factor scores LOW or HIGH only when a recorded fact sets it, because silence is not a no.
 
-**Satisfaction:** Frustrated means the buyer names specific failures of the incumbent, in their own words, on a dated call. A failure is something the incumbent does not do, or a cost the buyer resents. A dated buyer statement that the incumbent does not show or tell them something they need is a named failure, so "it doesn't tell us what's left" counts. Neutral means the buyer describes the incumbent without naming a failure, and indifference alone, such as "it's just what we've always had", is Neutral. Satisfied means the buyer names what works and no failure. Unknown means no dated buyer statement on satisfaction is on record. A rep's own view does not count, and a rival's evaluation never counts (Rival Method).
+**Satisfaction:** Frustrated means the buyer names specific failures of the incumbent, in their own words, on a dated call. A failure is something the incumbent does not do, or a cost the buyer resents. A dated buyer statement that the incumbent does not show or tell them something they need is a named failure, whatever the words. Neutral means the buyer describes the incumbent without naming a failure, and indifference alone, with no failure named, is Neutral. Satisfied means the buyer names what works and no failure. Unknown means no dated buyer statement on satisfaction is on record. A rep's own view does not count, and a rival's evaluation never counts (Rival Method).
 
 **Internal Champion For Incumbent:** None means a dated buyer statement that no one on staff is attached to the incumbent. Confirmed means a named advocate, with the date the buyer named them. Suspected means a dated hint that someone may advocate for the incumbent, short of a named advocate. Unknown means no dated statement, which scores MEDIUM. Silence is not None.
 
@@ -434,7 +439,7 @@ Every factor row scores Unknown as MEDIUM. A factor scores LOW or HIGH only when
 
 Broad needs the buyer's own dated statement that the part works. A rep's view that the incumbent is strong does not count, and neither does the incumbent's own pitch.
 
-**Switching Barriers:** Minimal means little or nothing has to move by hand. Moderate means the record has to move by hand from a bounded set of places, one per site, and no contract term holds it. Significant means it has to move across two or more software systems, or an early exit from a contract holds it in place. Paper binders and sites are places, not systems, so two sites of binders with one software system is Moderate.
+**Switching Barriers:** Minimal means little or nothing has to move by hand. Moderate means the record has to move by hand from a bounded set of places, one per site, and no contract term holds it. Significant means it has to move across two or more software systems, or an early exit from a contract holds it in place. Paper binders and sites are places, not systems, so paper records kept at more than one site, with one software system, is Moderate. A renewal date with no early-exit term on record is a timing, not an early exit.
 
 **Overall Threat Level:** Average the five scores and round to the nearest level: below 1.5 is LOW, 1.5 up to 2.5 is MEDIUM, and 2.5 or above is HIGH. Show the sum and the average. Then check the calibration clauses in Epistemic Rules. A HIGH clause can raise the level one band, and only on a recorded fact that no factor row already scored. LOW clauses never lower it. The battlecard names each clause it checked, and whether it was met. A rival evaluated alongside the incumbent is not one of the five factors and is not read here. Step 2D records it.
 
@@ -457,7 +462,9 @@ Rank `{Client Profile: Qualification Zones}` by relevance to this deal:
 | 1 | [Zone] | [Assessment] | [How To Position] |
 | ... | ... | ... | ... |
 
-Each zone takes the highest cell, as the profile's Qualification Zones write it, whose every condition is on record. An Unknown condition is not on record, so a HIGH cell with one Unknown condition does not match, and the zone takes the MEDIUM cell only when every condition of that cell is on record. A zone with no cell fully on record is UNKNOWN, and the battlecard names the fact still to find. In an example, a fact from the profile's Example Cast counts as a recorded fact when the example tags it (illustrative). In a live run, only the CRM, calls and notes count. A zone scored UNKNOWN neither earns nor blocks a verdict. This skill states zones and no verdict. The verdict belongs to Account Qualification (01), so one account never carries two verdicts from two skills, and the battlecard names the zones so the reader can see what 01's verdict rests on.
+Each zone takes the highest cell, as the profile's Qualification Zones write it, whose every condition is on record. An Unknown condition is not on record, so a HIGH cell with one Unknown condition does not match, and the zone takes the MEDIUM cell only when every condition of that cell is on record. A zone with no cell fully on record is UNKNOWN, and the battlecard names the fact still to find. Which records count is set by the Example Records rule in Epistemic Rules. A zone scored UNKNOWN neither earns nor blocks a verdict. This skill states zones and no verdict. The verdict belongs to Account Qualification (01), so one account never carries two verdicts from two skills, and the battlecard names the zones so the reader can see what 01's verdict rests on.
+
+**Zone 4 Fit:** The MEDIUM cell's legacy condition is read from the incumbent, because the account runs the incumbent. The incumbent's row in `{Client Profile: Competitive Landscape}` says whether it is a legacy system, cited as the profile row. The condition "fits poorly" is met when the buyer names, on a dated call, a job the system does not do. That is the named-failure test in Step 2C, so a rep's view that the system fits poorly does not count. A legacy system the buyer names no failure of is not met, and the zone takes the cell its facts meet in full.
 
 #### 3B. Competitive Gap Matrix
 
@@ -467,7 +474,7 @@ Build a capability comparison for this deal only, against the identified incumbe
 |------------|-----------|-------------|-------------------------------|
 | [Capability the buyer named, or a failure pattern predicts] | [Status, with its tag] | [Status, with its tag] | [Tied to a stated pain or to the buyer's criteria] |
 
-Include only capabilities that matter to this buyer, not a generic feature matrix. A row whose claim is `[Unknown]` is a discovery question, not a gap. Each row ties to a pain the buyer stated on a dated call, or to a criterion the buyer named on a dated call. A cost row qualifies only on a cost the buyer stated as a pain. A price comparison is written in the cell with its basis, and when the basis is `[Unknown]` the cell says not like for like, and the comparison is never the gap's proof. A research price whose per-site or per-plot basis is not on record has a basis of `[Unknown]`, whether or not the buyer raised the cost. A timing the buyer states on a dated call, such as a renewal the decision must finish before, is a criterion, so a time-to-live row qualifies on it. A research figure may fill a cell, but it never qualifies a row on its own. A failure pattern under five cases may fill the incumbent cell of a row only when that cell says observation, and the row still needs the buyer's stated pain.
+Include only capabilities that matter to this buyer, not a generic feature matrix. A row whose claim is `[Unknown]` is a discovery question, not a gap. Each row ties to a pain the buyer stated on a dated call, or to a criterion the buyer named on a dated call. The buyer is the contact the profile's Buyer Personas table marks as the buyer, and the economic buyer when one is named. A pain an influencer or a user states on a dated call is a second pain: it stays in Step 1 with its tag, and it becomes a row when the buyer states it too. A cost row qualifies only on a cost the buyer stated as a pain. A price comparison is written in the cell with its basis, and when the basis is `[Unknown]` the cell says not like for like, and the comparison is never the gap's proof. A research price whose per-site or per-plot basis is not on record has a basis of `[Unknown]`, whether or not the buyer raised the cost. A timing the buyer states on a dated call, such as a renewal the decision must finish before, is a criterion, so a time-to-live row qualifies on it. A research figure may fill a cell, but it never qualifies a row on its own. A failure pattern under five cases may fill the incumbent cell of a row only when that cell says observation, and the row still needs the buyer's stated pain.
 
 #### 3C. Identify Positioning Landmines
 
@@ -551,6 +558,7 @@ Build a checklist for this competitive scenario. The checklist below is the full
 - [ ] Ask the gap-exposing questions with genuine curiosity, not as an interrogation
 - [ ] Listen for pain signals about the incumbent: frustration, workarounds, complaints
 - [ ] Confirm the contract status and the renewal date with the buyer, rather than assuming it
+- [ ] Confirm the scope of any data the switch must move, such as a trust file or an export, when the records mark that scope `[Unknown]`
 - [ ] Ask the buyer to state the criteria the decision will use, in their own words, before any demo
 - [ ] Note the exact words the buyer uses for the pain, and mirror them back
 
@@ -579,7 +587,7 @@ Build a checklist for this competitive scenario. The checklist below is the full
 5. **Top Three Competitive Gaps To Exploit:** the gaps the incumbent cannot close, each meeting the Step 3B test, a pain the buyer stated on a dated call or a criterion the buyer named on a dated call. A gap is a matrix row that meets that test. A claimed win also needs the board's written criteria. When no gap yet meets that test, name the top three candidates as gaps to test, and say that none is claimed
 6. **Positioning Landmines:** where the conversation could go badly, with mitigations
 7. **Displacement Proof Point:** the most relevant Verified proof point, or a note that none exists, with its Status shown
-8. **Critical Discovery Gap:** one line for each open gap. An open gap is a fact about the buyer's current solution that the records mark `[Unknown]` and that the Step 5 win plan cannot run without. A profile question with no `[Unknown]` on record is asked in discovery and is not listed here. The board's written criteria and the family board chair's name are not current-solution facts, so they are not lines in this item. They have no date of their own, so they travel with the next action in the same message to the same person (item 11)
+8. **Critical Discovery Gap:** one line for each open gap. An open gap is a fact about the buyer's current solution that the records mark `[Unknown]` and that a live Step 5 item asks the buyer to confirm, so the win plan cannot run without it. A fact that no live item names is not listed here, and it is asked in discovery. The gaps are listed in the order their live items come, earliest stage first and, within a stage, in the item's order, and an item that names two facts lists them in the order the item names them. A profile question with no `[Unknown]` on record is asked in discovery and is not listed here. The board's written criteria and the family board chair's name are not current-solution facts, so they are not lines in this item. They have no date of their own, so they travel with the next action in the same message to the same person (item 11)
 9. **Win Strategy Summary:** two or three sentences on how to win this deal competitively
 10. **Risk Assessment:** where the competitor could win, stated honestly
 11. **Recommended Next Step:** the first live step in the Output Contract's priority order. For an ACTIVE account it asks the buyer for each open gap in item 8, in one message or call, under one owner and one date, with the gaps in the order item 8 lists them. Its date comes from the shared contract's next-action rule (five business days after the run date, or an earlier date the records or the skill's own schedule set for that step). A reply owed to a buyer who wrote to us comes before it. Asks to the same person with no separate date travel in the same message, and a step for a different person or with a later dated record follows as a later step
@@ -599,6 +607,7 @@ This skill has one mode. The default is the battlecard for one open deal.
 - **Every Rate Carries Its N.** Write "2 of 5 cases", never a bare rate.
 - **Five Cases Before A Pattern.** A failure pattern needs five cases with a named source behind it. Fewer than five is an observation, and the battlecard says so in the same sentence.
 - **Silence Is Not A No.** A blank CRM field or an unanswered question is `[Unknown]`. It is counted in no denominator and is never read as a negative about the incumbent.
+- **Example Records Are The Record.** In an example, the tagged records are the record for every rule. A buyer quote on a dated call, or a fact from the Example Cast, that the example tags `(illustrative)` counts as recorded. In a live run, only the CRM, calls and notes count as records of the buyer, and the profile supplies the incumbent's type and the zone cells, cited to their section.
 - **An Undated Call Is Not A Dated Fact.** A call whose date is not on record is tagged `[Call, date Unknown]`, and it does not place a satisfaction, need or contract fact in time until the date is on the record.
 - **"No Difference Found" Is A Finding.** If the buyer's criteria do not separate the incumbent from the rival, the battlecard says the deal is open on those criteria. It does not invent a winning gap.
 - **Every fact carries an evidence tag or a profile citation.** The six tags are `[CRM]`, `[Call]`, `[Notes]`, `[Public: source]`, `[Inferred]` and `[Unknown]`. A fact from the profile is cited `(profile: Section)` and needs no tag. A fact with neither is removed. Verified is a proof point Status, never a tag.
@@ -690,8 +699,9 @@ Three worked examples, all on the PlotIQ cast and the chain file. The first is t
   - "The trust numbers come out of Oldgate as one file a year. The plot records stay in the binders." (illustrative). The migration scope of that file is `[Unknown]`
   - Cost, in Ruth's words on the same call: "Every year we pay Oldgate maintenance on top of the license, and it still doesn't tell us what's left." `[Call, 2026-05-19]` (illustrative)
   - Timing, in Ruth's words on the same call: "The renewal is in March. If the new system isn't running by then, we pay Oldgate for another year." `[Call, 2026-05-19]` (illustrative)
-- Walt Okonkwo, on the 2026-09-17 call: a double-sale search takes half a day, and lookups come to about two a week `[Call, 2026-09-17]` (illustrative).
+- Walt Okonkwo, on the 2026-09-17 call: a double-sale search takes half a day, and lookups come to about two a week `[Call, 2026-09-17]` (illustrative). Walt is an influencer, not the buyer, so this is a second pain, and it is not a gap row.
 - Rival: Stonemark was also evaluated `[Call, 2026-09-26]`. No preference is on record `[Unknown]`, and no criterion for comparing the two tools is on record `[Unknown]`. Its rival record is in Step 2D.
+- Upstream MEDDPICC fields (09): none on record, so each is written `[Unknown]` and the competition element is not read.
 
 **Step 2: Incumbent Profile:**
 - Classification: direct software, the legacy on-premise row in `(profile: Competitive Landscape)`
@@ -745,7 +755,7 @@ Classification: direct software `(profile: Competitive Landscape)`. Research est
 | Cost | Research range of $10,000 to $50,000 upfront, plus maintenance at 20% a year `[Public: Deathcare research project, competitive research note, 2026-03-27] (research estimate, over 90 days old at the run date)`. Oldgate's basis for Brackhaven is `[Unknown]`, so the comparison is not like for like | $899 a month per site, plus $5,000 setup once `(profile: Product Modules)`. Year one at list for two sites is $26,576 with setup `(profile: Product Modules, arithmetic)`, above the $25K board line | Ruth: "Every year we pay Oldgate maintenance on top of the license, and it still doesn't tell us what's left" `[Call, 2026-05-19] (illustrative)`. The cost pain is hers. The figures are not compared as like for like until Oldgate's basis for Brackhaven is known |
 | Time To Live | 120 to 180 days `[Public: Deathcare research project, competitive research note, 2026-03-27] (research estimate, over 90 days old at the run date)` | Six-week target, go-live in week 6 of the roadmap, with no completed deal yet `(profile: Value Propositions)` | Ruth: "If the new system isn't running by then, we pay Oldgate for another year" `[Call, 2026-05-19] (illustrative)`. The March 2027 renewal is the date the go-live has to meet |
 
-All four rows qualify on a buyer statement on a dated call. The time-to-live row qualifies on Ruth's timing statement, and its research figure fills only the incumbent cell.
+All four rows qualify on a buyer statement on a dated call. The time-to-live row qualifies on Ruth's timing statement, and its research figure fills only the incumbent cell. Walt's lookup pain is a second pain from an influencer, so it is not a fifth row.
 
 **Section 3: Winning Zone Strategy And Landmines**
 
@@ -757,7 +767,7 @@ All four rows qualify on a buyer statement on a dated call. The time-to-live row
 | 2 | Zone 5, Growth or Succession | HIGH. The owner retires within 3 years `(profile: Example Cast)` `(illustrative)`, which meets the retirement condition of the HIGH cell `(profile: Qualification Zones)` | Ask who inherits the system decision after the owner retires. Do not position on succession until Ruth raises it |
 | 3 | Zone 3, Ownership and Decision Speed (must-have) | MEDIUM. The family board chair is the economic buyer `[CRM]`. Year one at list for two sites is $26,576 with setup `(profile: Product Modules, $21,576 for two sites plus the $5,000 setup, arithmetic)`, above the $25K board line `(profile: Product Modules)`, so the board approves. Ruth recommends the proposal to the board `[Call, 2026-09-26]`, which is the first condition of the MEDIUM cell `(profile: Qualification Zones)`. The HIGH cell fails, because the GM does not sign alone. The family board meeting is set for 2026-11-12, not formally confirmed by the board `[CRM]` | Give Ruth the board's path in writing before the proposal |
 | 4 | Zone 2, Pre-Need Sales Motion | UNKNOWN. The record names a pre-need manager, Priscilla Dunmore `[CRM]`. It holds no intake form, no social leads feeding email and no lead tracking `[Unknown]`, so the facts match neither the HIGH cell nor the MEDIUM cell in full. The missing fact is how a pre-need lead reaches a counselor | Ask how a pre-need lead reaches a counselor. Do not lead with pre-need until Priscilla raises it |
-| 5 | Zone 4, Technology Readiness | MEDIUM. Oldgate is a legacy on-premise system `(profile: Competitive Landscape)` that fits poorly on the job: it does not show what is left `[Call, 2026-05-19] (illustrative)`. The HIGH cell is not matched, because staff email and shared-drive use is `[Unknown]` | Position on fit with the records the team already keeps, not on the tool |
+| 5 | Zone 4, Technology Readiness | MEDIUM. The incumbent is a legacy on-premise system `(profile: Competitive Landscape)`, and the buyer names a job it does not do on a dated call: it does not show what is left `[Call, 2026-05-19] (illustrative)`. That is the named-failure test, so the system fits poorly. The HIGH cell is not matched, because staff email and shared-drive use is `[Unknown]` | Position on fit with the records the team already keeps, not on the tool |
 
 Zones 1 and 5 are HIGH, and Zones 3 and 4 are MEDIUM. Zone 2 is UNKNOWN, which neither earns nor blocks a verdict. This skill states no verdict (Step 3A). Account Qualification (01) carries the verdict for this account.
 
@@ -825,10 +835,11 @@ The battlecard names the capability, and the demo shows it on Brackhaven's own c
 **Pre-Meeting (Live Items)**
 - [ ] Ask Ruth to answer the question she named as her reason to look, which plots are sold and which are open, from her own records. Use her own count of plots with no recorded sale as the test of that answer, and do not estimate it. Owner: Owen Pruitt. Date: 2026-10-26, the next action, which asks for this count first
 - [ ] Know that no Verified proof point exists, so the demo shows the capability on Brackhaven's own counts and no customer is named. Owner: Owen Pruitt. Date: before the next meeting, `[Unknown]` until it is set
-- [ ] Confirm the exact Oldgate renewal day and the trust-file scope with Ruth. Do not assume either. Owner: Owen Pruitt. Date: 2026-10-26 (the next action, five business days after the run date of 2026-10-19)
+- [ ] Confirm the exact Oldgate renewal day with Ruth. Do not assume it. Owner: Owen Pruitt. Date: 2026-10-26 (the next action, five business days after the run date of 2026-10-19)
 - [ ] Prepare a mitigation for each landmine in Step 3C, the rival rows included. Owner: Owen Pruitt. Date: before the next meeting, `[Unknown]` until it is set
 
 **During Discovery**
+- [ ] Confirm the scope of the trust file the switch must move, with Ruth. Do not assume it. Owner: Owen Pruitt. Date: 2026-10-26 (the next action's date)
 - [ ] Ask Ruth to put the board's decision criteria in her own words, in the next action's message. Owner: Owen Pruitt. Date: 2026-10-26
 - [ ] Plan the evaluation to finish before the March 2027 renewal decision. The 60 to 90 day evaluation window is an illustrative assumption to calibrate with Ruth. Owner: Owen Pruitt, with Ruth. Date: `[Unknown]`
 - [ ] Confirm the economic buyer: the family board chair, who has been on one call `[CRM]`. Ruth builds the case. Owner: Owen Pruitt, through Ruth, in the next action's message. Date: 2026-10-26
@@ -850,7 +861,7 @@ Risk: the "deep accounting" argument lands with the board chair, and the mitigat
 5. **Top Three Competitive Gaps To Exploit:** (a) Unsold-plot visibility, the job Ruth named as her reason to look, which Oldgate does not show `[Call, 2026-05-19] (illustrative)`. (b) Trust numbers an auditor reads, Ruth's stated pain on the same call `[Call, 2026-05-19] (illustrative)`. (c) Time to live against the March 2027 renewal, from Ruth's timing statement on the same call `[Call, 2026-05-19] (illustrative)`, set against the research estimate of 120 to 180 days for Oldgate (Deathcare research project, competitive research note, 2026-03-27, over 90 days old at the run date) and the six-week target `(profile: Value Propositions)`. Each gap meets the Step 3B test, a pain the buyer stated on a dated call. None is claimed as a win, because the board has not written its criteria `[Unknown]`
 6. **Positioning Landmines:** see Step 3C, rival rows included
 7. **Displacement Proof Point:** none is Verified. Fennick Gardens is the closest match on unsold plots, and it is Illustrative, so it is marked do not cite
-8. **Critical Discovery Gap:** three open gaps, one line each, in this order: Ruth's count of plots with no recorded sale `[Unknown]`, the exact Oldgate renewal day `[Unknown]`, and the trust-file export scope `[Unknown]`. The board's written criteria and the family board chair's name are not current-solution facts, so they are not gap lines. They have no date of their own, so they travel with the three gaps in the same message to Ruth Ellery (see item 11)
+8. **Critical Discovery Gap:** three open gaps, one line each, in the order their live win-plan items come: Ruth's count of plots with no recorded sale `[Unknown]` (Pre-Meeting item 1), the exact Oldgate renewal day `[Unknown]` (Pre-Meeting item 3), and the trust-file export scope `[Unknown]` (During Discovery, first item). The board's written criteria and the family board chair's name are not current-solution facts, so they are not gap lines. They have no date of their own, so they travel with the three gaps in the same message to Ruth Ellery (see item 11)
 9. **Win Strategy Summary:** have Ruth answer her question, which plots are sold and which are open, from her own records, and use her count of plots with no recorded sale to test the answer. Then show the sold and unsold view on Brackhaven's own records. Confirm the renewal day and the trust-file scope before the proposal
 10. **Risk Assessment:** Oldgate's accounting depth could land with the board chair, and the paper process could stay the default `[Inferred]`. Ruth says nobody is attached to Oldgate `[Call, 2026-05-19] (illustrative)`, which is not the same as resisting change. The question that tests it is what the team would stop doing if the binders went. A MEDIUM threat means the incumbent holds on the sold records. It does not mean the board has chosen
 11. **Recommended Next Step:** Owen Pruitt asks Ruth Ellery for the three gaps in item 8, in one message, by 2026-10-26, five business days after the run date of 2026-10-19. No reply is owed on record, so the gap ask is the first live step. The same message also asks Ruth Ellery for the board's written criteria for the two tools, and for the family board chair's name with the dates that depend on it. Both have no date of their own, so both travel with the next action. No other step is listed after it
@@ -1197,6 +1208,17 @@ report_path: none (inline)
 ---
 
 ## Changelog
+
+### 2.1.14 (2026-10-27)
+- The shared contract's Champion Tests section now defines "creates urgency" (a dated deadline the decision works to, with its date and source on record) and "defends the solution" (a recorded case of arguing for us in our absence to someone who decides), and says a test not yet run is never scored.
+- Zone 4. Step 3A reads the legacy condition from the incumbent's profile row, because the account runs the incumbent, and "fits poorly" is met by the buyer's dated named failure, the Step 2C test. Example 1's Zone 4 cites both, and it stays MEDIUM.
+- Gap rows. The buyer is the contact the profile's Buyer Personas table marks as the buyer, and the economic buyer when one is named. An influencer's pain is a second pain until the buyer states it. Example 1 keeps four rows, and it names Walt's lookup pain as a second pain.
+- Open gaps. An open gap is a fact that a live Step 5 item asks the buyer to confirm. Step 5 During Discovery gains the data-scope item, Example 1's trust-file scope moves to it, and item 8 lists the gaps in the order their live items come. Example 1 still asks for three gaps.
+- Switching barriers. A renewal date with no early-exit term on record is a timing, not an early exit.
+- Upstream read. Step 1 writes each MEDDPICC field not on record as `[Unknown]`, does not read the competition element, and runs on. Example 1 says so.
+- Satisfaction and Neutral. The rule no longer quotes the example's own sentences, so the records and the rule do not share wording. Frustrated is a named failure whatever the words.
+- Example Records. In an example, a buyer quote on a dated call that the example tags illustrative counts as recorded, the same as an Example Cast fact.
+- Try-it. The records keep every fact the rules read, and the "Zone facts" label is renamed to say what the facts are.
 
 ### 2.1.13 (2026-10-26)
 - Verdict. The skill states zones and no verdict. Example 1 and Example 2 lose their GREENLIGHT lines, and the verdict is named as Account Qualification's (01). One account never carries two verdicts.

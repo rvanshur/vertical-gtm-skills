@@ -13,7 +13,7 @@ Every name, date and number in this file is invented for the PlotIQ example. Not
 - Account Qualification (01) verdict: GREENLIGHT `[Notes]`.
 - Contacts: Ruth Ellery, General Manager, champion [Call, 2026-09-26]. On the same call she said she recommends the proposal to the family board, which approves above $25K [Call, 2026-09-26]. Walt Okonkwo, Operations Director, skeptical of tablets [Call, 2026-09-21]. Priscilla Dunmore, pre-need manager [CRM]. The family board chair is the economic buyer, on one call [CRM], name [Unknown].
 - Pre-need: no pre-need intake form, and no social leads feeding email, are on record [Unknown].
-- Zone facts (profile: Example Cast, illustrative): one double sale in the last 24 months, and the owner retires within 3 years.
+- Owner and history facts (profile: Example Cast, illustrative): one double sale in the last 24 months, and the owner retires within 3 years.
 - Reason to look, in Ruth's words on the 2026-05-19 discovery call: "We can't tell which plots are sold, or which are open, without going to the binder." [Call, 2026-05-19] (illustrative).
 - Walt Okonkwo, on the 2026-09-17 call: a double-sale search takes half a day, and lookups come to about two a week. [Call, 2026-09-17] (illustrative).
 - Incumbent: Oldgate Ledger Pro [CRM]. Ruth named it in discovery, and the call was logged. Renewal in March 2027 [CRM]. The exact renewal day is [Unknown]. Oldgate is a legacy on-premise system (profile: Competitive Landscape).
@@ -39,7 +39,8 @@ Every name, date and number in this file is invented for the PlotIQ example. Not
 - Incumbent: direct software (profile: Competitive Landscape), Oldgate Ledger Pro [CRM].
 - Threat level: MEDIUM. The five factors are 1, 1, 2, 1 and 3. The sum is 8, and the average is 8 ÷ 5 = 1.6. Satisfaction is Frustrated. Product advantage is Broad. The two LOW clauses that are met (actively frustrated, already evaluating alternatives) have no effect at MEDIUM. No HIGH clause raises the level.
 - Rival: Stonemark, evaluated [Call, 2026-09-26], with no preference on record [Unknown]. Its rival record is in section 1, its rows are in section 3, and its test questions are in section 4. It is not scored, and it does not change the threat level.
-- Zones: Zones 1 and 5 are HIGH. Zones 3 and 4 are MEDIUM. Zone 2 is UNKNOWN. The verdict is not stated here, and it stays with Account Qualification (01).
-- Gap matrix: four rows, unsold-plot visibility, trust fund records, cost and time to live. The cost row is marked not like for like. The time-to-live row qualifies on Ruth's timing statement, and the research figure fills only the incumbent cell.
-- Win plan starts with Ruth's own count of plots with no recorded sale. No estimate is used.
+- Upstream MEDDPICC fields: none on record, so Step 1 writes each one as `[Unknown]`, does not read the competition element, and the run goes on.
+- Zones: Zones 1 and 5 are HIGH. Zones 3 and 4 are MEDIUM. Zone 2 is UNKNOWN. Zone 4 is MEDIUM because the incumbent is a legacy system in its profile row, and Ruth names on a dated call a job it does not do. The verdict is not stated here, and it stays with Account Qualification (01).
+- Gap matrix: four rows, unsold-plot visibility, trust fund records, cost and time to live. The cost row is marked not like for like. The time-to-live row qualifies on Ruth's timing statement, and the research figure fills only the incumbent cell. Walt's lookup pain is a second pain from the Operations Director, so it is not a fifth row.
+- Win plan starts with Ruth's own count of plots with no recorded sale. No estimate is used. Its live items include the exact renewal day (Pre-Meeting) and the trust-file scope (During Discovery).
 - Next action: Owen Pruitt asks Ruth Ellery, in one message, for three open gaps, in this order: her count of plots with no recorded sale, the exact Oldgate renewal day and the trust-file export scope, by 2026-10-26, five business days after the run date of 2026-10-19. The same message also asks Ruth for the board's written criteria and the family board chair's name, which have no date of their own, so they travel with the next action.
