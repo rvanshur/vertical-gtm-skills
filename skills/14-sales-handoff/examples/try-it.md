@@ -19,7 +19,7 @@ Every name, date and number in this file is invented for the PlotIQ example. Not
 - Family board chair: a role with no name on file [Unknown]. The chair has joined one call [CRM]. No sponsor is confirmed in writing.
 - Pre-need manager Priscilla Dunmore is on file [CRM].
 - No IT contact is on file [Unknown].
-- Source system: Oldgate Ledger Pro [CRM]. The ledger export is not yet scoped [Unknown]. The export format is not yet known to the implementation team.
+- Source system: Oldgate Ledger Pro [CRM]. The ledger export is not yet scoped [Unknown]. No data owner is named for the ledger [Unknown]. The export format is not yet known to the implementation team.
 - Oldgate's contract renews in March 2027 [CRM].
 - Ruth's team also runs the Oldgate renewal in the same months [Notes] (illustrative).
 - Plot records are on paper [Call, 2026-10-27]. Lookup and trust report steps are mapped [Call, 2026-10-27]. Lookup times have not been timed. Walt estimates about two plot lookups a week [Call, 2026-09-17] (illustrative).
@@ -39,4 +39,4 @@ Every name, date and number in this file is invented for the PlotIQ example. Not
 - Preview: the signature is expected 2026-11-16, after this check, so the report carries the Preview label at the top and all three dates are labelled proposed.
 - Full Adoption adjustments: Source Systems adds nothing, because Brackhaven has one system. The export format is new to the team, so it subtracts nothing. The Sunday result rolls to Monday.
 - Top risks: Technical (HIGH), Stakeholder (HIGH) and Adoption (MEDIUM).
-- Next action: Owen Pruitt asks Ruth Ellery, in one message, to name a Brackhaven IT owner, and to name the family board chair and confirm the sponsor in writing. The date is 2026-11-09, five business days after the run date of 2026-11-02, since no earlier date is on record. The IT owner comes first because Technical is the top-ranked risk. Later steps: the export test with the incumbent's support and the quick wins.
+- Next action: Owen Pruitt asks Ruth Ellery, in one message, to name a Brackhaven IT owner, to name the family board chair and confirm the sponsor in writing, and to name two or three power users for the pilot. The date is 2026-11-09, five business days after the run date of 2026-11-02, since no earlier date is on record. The asks run in risk order: the IT owner first because Technical is the top-ranked risk, then the sponsor, then the power users for Adoption. Later steps: the export test with the incumbent's support and the quick wins.

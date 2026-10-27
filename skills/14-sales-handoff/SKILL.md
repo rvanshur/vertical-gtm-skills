@@ -1,6 +1,6 @@
 ---
 name: gtm-sales-handoff
-version: 2.1.12
+version: 2.1.13
 description: "Post-sale implementation readiness check: scores six dimensions, sets the three dates (kickoff, go-live and Full Adoption Date), names risks with mitigations and quick wins, and writes the handoff the implementation lead plans from"
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: [gtm-meddpicc-analysis]
 mutating: read-write
 change_log:
+  - version: 2.1.13
+    date: 2026-10-26
+    summary: "Round 13, second acceptance test. Three settlements. A data gap with no named data owner is MEDIUM, not HIGH, unless one of the two HIGH tests applies, so the top three is unchanged. The Data row names the Data Owner as its first mitigation step. A new export format needs no profile value. The asks that travel in the next action are the asks for the top three risks only, and a fourth-ranked risk's ask is a later step. Example 1's next action adds the power-user ask for the Adoption risk, which the rule places in the same message, and its Adoption mitigation names the power users. The try-it promise states the same message. No score, level, date or risk ranking changes."
   - version: 2.1.12
     date: 2026-10-26
     summary: "Round 12. The next action now follows a written priority order: a reply owed to a buyer first, then the ask that mitigates the highest-ranked risk needing a buyer-side person, then the next-ranked one, then steps for our own team or a third party. Asks to the same person that they can answer from what they know travel in one message. Under it, Example 1 and the try-it ask Ruth Ellery for the IT lead as well as the chair and the written sponsor, Example 2 adds the chair and the sponsor to the IT owner ask, and Example 3 asks for the IT contact, the board date and the chair in one message. Rules now settle who counts as introduced for Stakeholder, how far a partial baseline lifts Workflow, why no IT owner holds Technical at 2, the unit of the volume projection, a skeptic's severity, the week-one quick win, and an answer that was never recorded. Example 3 is titled Orange, its Stakeholder score moves from 2 to 3 under the introduced rule, and its composite moves from 40 to 44, still Orange. Example 1 and the try-it scores, level, dates and risks do not change."
@@ -318,7 +321,7 @@ Integration advantages to note: the product takes any standard output, most cust
 | **Technical** | Integration delays, unfamiliar format, IT bandwidth | Ask the buyer to name an IT owner before kickoff when none is named. Fallback: manual upload during setup. Request an IT timeline at kickoff. Engage engineering early for unfamiliar systems |
 | **Adoption** | Team resistance, "we've always done it this way" | Champion-led change management. Identify two or three power users for a pilot. Show quick wins in week one |
 | **Resource** | Key person on leave, competing projects, seasonal constraints | Build a timeline buffer. Identify backup contacts. Set availability commitments at kickoff |
-| **Data** | Poor quality, missing fields, duplicates | Data quality audit in week one. Cleanup sprint before go-live. Accept manual workarounds at first |
+| **Data** | Poor quality, missing fields, duplicates | Ask the buyer to name the Data Owner who holds the source records, before the audit. Data quality audit in week one. Cleanup sprint before go-live. Accept manual workarounds at first |
 | **Expectation** | Unrealistic timeline promises, expecting immediate ROI | Align expectations at kickoff. Reference the typical timeline. Set 30, 60 and 90 day milestones |
 | **Vendor transition** | Existing provider contract still active, overlapping services | Map contract end dates. Plan a parallel-run period. Ensure no service gap |
 | **Stakeholder** | No executive sponsor named, no IT lead, or the champion has gone quiet | Name the sponsor and the IT lead before kickoff. Put the sponsor's written confirmation in the kickoff conditions |
@@ -329,7 +332,7 @@ Integration advantages to note: the product takes any standard output, most cust
 3. Likelihood: a High likelihood comes before a Medium one.
 4. Row order: a tie on all three keys goes to the row order of the Risk Categories table.
 
-**Severity And Likelihood.** Severity is HIGH when the risk leaves no named owner for IT or for the sponsor, or when it is a reason kickoff is held. Severity is MEDIUM when the risk can move a date, but an owner is named and kickoff is not held. Severity is LOW when it moves no date. Likelihood is High when a record shows the risk is already present, Medium when a record shows a signal of it, and Low when no record points at it. Each risk states both.
+**Severity And Likelihood.** Severity is HIGH when the risk leaves no named owner for IT or for the sponsor, or when it is a reason kickoff is held. Severity is MEDIUM when the risk can move a date, but an owner is named and kickoff is not held. A data gap with no named data owner is MEDIUM, not HIGH, because it moves a date and its first mitigation step is naming that owner. It becomes HIGH only under one of the two HIGH tests above. Severity is LOW when it moves no date. Likelihood is High when a record shows the risk is already present, Medium when a record shows a signal of it, and Low when no record points at it. Each risk states both.
 
 The same severity test applies to every other risk, a named skeptic included. A skeptic's resistance can move a dated step, such as the pilot or go-live. It is MEDIUM while a named owner, such as the champion, manages it, and HIGH when no one owns it.
 
@@ -347,7 +350,7 @@ The signature is the handoff trigger, not one of the three dates. The three date
 
 **Date 3: Full Adoption Date.** Kickoff plus the default of two months. The two months are this skill's default, and the profile's Full Adoption months may override them. Then each adjustment from the Implementation Profile is applied and shown as its own line:
 - **Source Systems:** each system beyond the first adds the profile's value in weeks. With one system no adjustment applies, and no profile value is needed.
-- **Export Format Familiar To The Team:** a familiar format subtracts the profile's value in weeks. A format the team has not yet seen in a project counts as new, and a new format subtracts nothing. A vendor's confirmation that the export works is not the team's familiarity, which is the team's own experience with the format.
+- **Export Format Familiar To The Team:** a familiar format subtracts the profile's value in weeks. A format the team has not yet seen in a project counts as new, and a new format subtracts nothing. A vendor's confirmation that the export works is not the team's familiarity, which is the team's own experience with the format. So a new format needs no profile value, and no `[RECORD]` is written for it.
 - **Phased Rollout:** a subsidiary or business unit on a different system gets its own three-date plan, and its Full Adoption Date is set separately.
 - **Weekend Roll:** if the result falls on a Saturday or Sunday, it moves to the next Monday, and the line says so.
 
@@ -550,7 +553,7 @@ Volume projection, one line.
 
 The rest of the rule:
 - **The Person.** The ask goes to the buyer-side person the mitigation names. When the mitigation needs someone the buyer has not yet named, such as an IT lead or a sponsor, the ask goes to the contact who can name them: the champion, unless the record names another.
-- **Bundling.** Asks of kinds 2 and 3 that go to the same person on the same date travel in one message, in risk order. An ask fits that message when the person can answer it from what they already know, such as naming a person or confirming a role in writing. An ask that needs days of work first, such as timing a week of lookups or running an export, has a later date and is a later step.
+- **Bundling.** Asks of kinds 2 and 3 that go to the same person on the same date travel in one message, in risk order. An ask fits that message when the person can answer it from what they already know, such as naming a person or confirming a role in writing. An ask that needs days of work first, such as timing a week of lookups or running an export, has a later date and is a later step. The asks in the message are the asks for the top three risks only. A risk ranked fourth or lower has its ask listed as a later step, even when the same person could answer it.
 - **Ties.** The risk ranking keys (severity, dimension score, likelihood, row order) already separate every pair of risks, so the order needs no other tie-break.
 - **The Owner.** The AE owns the next action before the signature. From the signature on, the implementation lead who takes the handoff owns it.
 - **The Date.** The shared contract's next-action rule sets it. A later dated event in the records, such as a board meeting or the expected signature, does not move it.
@@ -661,7 +664,7 @@ All three examples use the PlotIQ flagship, Brackhaven Memorial Gardens, and the
 - **Go-Live:** 2026-12-07 plus 49 days = **2027-01-25** (Monday). The 49 days is the typical days from kickoff to go-live (profile: Implementation Profile, illustrative). It is a planning value set from the six-week roadmap plus one week of buffer, not a measured one.
 - **Full Adoption Date:** 2026-12-07 plus two months = 2027-02-07, a Sunday. Rolled to Monday, **2027-02-08**. No other adjustment applies: one source system adds nothing, and an export format the team does not know yet subtracts nothing.
 
-**Risks (Top 3):** Technical (HIGH, likelihood High): no IT owner and an unscoped export. Mitigation: Oldgate's support runs a test export on a sample file before kickoff. Stakeholder (HIGH, likelihood High): the board chair is unnamed and the sponsor role is not in writing. Mitigation: Owen Pruitt asks Ruth Ellery for the chair's name and a written sponsor confirmation before the 2026-11-12 board. Adoption (MEDIUM, likelihood High): Walt Okonkwo's skepticism of tablets. Mitigation: the work-order pilot is shown to Walt before kickoff.
+**Risks (Top 3):** Technical (HIGH, likelihood High): no IT owner and an unscoped export. Mitigation: Oldgate's support runs a test export on a sample file before kickoff. Stakeholder (HIGH, likelihood High): the board chair is unnamed and the sponsor role is not in writing. Mitigation: Owen Pruitt asks Ruth Ellery for the chair's name and a written sponsor confirmation before the 2026-11-12 board. Adoption (MEDIUM, likelihood High): Walt Okonkwo's skepticism of tablets. Mitigation: Ruth names two or three power users for a pilot, and Walt joins the work-order demo before kickoff.
 
 **Ranking:** Technical is first, because it is the lower-scoring of the two HIGH risks. Adoption is third. Resource and Data are also MEDIUM and score 3, so Adoption leads on likelihood, or on row order if they tie, since Adoption is row 2 of the Risk Categories table.
 
@@ -702,7 +705,7 @@ dimension_scores: Stakeholder 3, Workflow 4, Technical 2, Data 3, Resource 3, Ch
 three_dates: all proposed before signature: kickoff 2026-12-07, go-live 2027-01-25, Full Adoption Date 2027-02-08
 risks: Technical (HIGH), Stakeholder (HIGH), Adoption (MEDIUM)
 quick_wins: week one remove one manual step, month one risk audit of open plots, 90 days lookup times at baseline
-next_action: Owen Pruitt asks Ruth Ellery to name a Brackhaven IT owner, and in the same message to name the family board chair and confirm the sponsor in writing, by 2026-11-09 (five business days after the run date of 2026-11-02, no earlier date on record). Later steps: the export test with the incumbent's support (team step, Owen Pruitt before signature) and the quick wins
+next_action: Owen Pruitt asks Ruth Ellery, in one message and in risk order, to name a Brackhaven IT owner, to name the family board chair and confirm the sponsor in writing, and to name two or three power users for the pilot, by 2026-11-09 (five business days after the run date of 2026-11-02, no earlier date on record). Later steps: the export test with the incumbent's support (team step, Owen Pruitt before signature) and the quick wins
 report_path: none (inline)
 ```
 
@@ -881,6 +884,12 @@ The Business Case & ROI Kit (a paid Guild Pro kit) reads this skill's hand-off b
 ---
 
 ## Changelog
+
+### 2.1.13 (2026-10-26)
+- Severity. A data gap with no named data owner is MEDIUM, because it moves a date and its first mitigation step names the owner. It is HIGH only under the IT or sponsor test, or when it is a reason kickoff is held. The Data row of Risk Categories now names the Data Owner as its first mitigation step.
+- Export format. A new format needs no profile value, because it subtracts nothing.
+- Bundling. The asks in the next action are the asks for the top three risks. A fourth-ranked risk's ask is a later step.
+- Example 1 and the try-it. The next action asks Ruth Ellery, in risk order, for the IT owner, the chair with the sponsor in writing, and two or three power users for the pilot, by 2026-11-09. The Adoption mitigation names the power users. Risks, ranking, dates and scores do not change.
 
 ### 2.1.12 (2026-10-26)
 - Next action. The Output Contract row and Step 7 give the order: a reply owed to a buyer, then the ask that mitigates the top-ranked risk needing a buyer-side person, then the next-ranked one, then our team's own steps. Asks of the same kind to the same person on the same date travel in one message, in risk order.

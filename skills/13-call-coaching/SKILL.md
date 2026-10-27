@@ -1,7 +1,7 @@
 ---
 name: gtm-call-coaching
 description: "Scores a discovery or demo call against methodology rubrics and returns a coaching report with evidence-graded coaching points, for the rep and the sales manager who reads it"
-version: 2.1.12
+version: 2.1.13
 category: Sales-Methodology
 author: Ryan Vanshur
 license: MIT
@@ -11,6 +11,9 @@ requires:
   skills: ["gtm-meeting-prep", "gtm-deal-pulse"]
 mutating: read-write
 change_log:
+  - version: 2.1.13
+    date: 2026-10-26
+    summary: "Round 13, second acceptance test. The next action bundle is settled: the buyer's open question is answered in the same message as the asks to that buyer, a session nobody has dated is a later step, and a red flag's recovery step is a later step. The focus-area costs are the pains the category's own evidence line names. The try-it record drops three rubric results from its facts (the silence verdict, the cost verdict and the last-two-minutes verdict), and it states the timed longest pause instead. Example 1's next action now answers Ruth Ellery's 33:00 question in the one message, with the second session and the red flag as later steps. No score, band or due date changes. The shared contract is unchanged."
   - version: 2.1.12
     date: 2026-10-26
     summary: "Round 12. The next action now follows a written priority order: an open exchange with a buyer from the call comes first, then a buyer's undated commitment, then an agreed dated step, then a next step the call never set, and the focus-area practice is always a later step. Ties go to the earliest item on the call, then the buyer with the higher buying-committee role. The run date is the date the records give for today, or the call date. New written rules settle what the testers split on: a pain described with no recorded words, a buying signal with no reply on record, satisfaction from an indirect signal, red-flag risk levels, the politics test met by one clear line, the four question-review ratings, a missing role as an Implementation objection, the costs the focus practice covers, what makes a SPIN phase well executed, the Metrics grades and a fair chance in the unraised objections checklist. Example 1's next action is now Owen's one message to Ruth Ellery, and Example 3's next action has one owner and one person. Example 1 also stops saying Owen never asked for the chair and the date, because he did. No score, band or due date changes. The shared contract is unchanged."
@@ -128,6 +131,13 @@ Every run returns the coaching report in the chat, in the eight sections under R
 5. **The Focus-Area Practice.** Coaching for the rep, not a buyer step. It is always listed as a later step and is never the next action.
 
 Ties inside a kind go to the item raised earliest on the call, then to the buyer with the higher role in the profile's Buying Committee role map. Every ask to the same buyer that fits in one message travels with the next action, as the shared rule says, whatever its kind, unless a record or this skill's schedule sets it a later date of its own. When a kind 3 session with that same buyer falls on or before the date the higher kind is due, the open items are raised in that session and the session is the next action. A step for another person, a step with a later date set by a record or the schedule, and the focus-area practice are listed after it as later steps. The senior buyer is the one with the higher role in that same map.
+
+**Four Settled Readings For The Bundle.** These decide what travels with the next action, so two reviewers of the same call build the same message.
+
+- **Fits One Message.** An ask fits when the buyer can answer it in one reply from what they already know, with no document, lookup or meeting first. Naming a person or confirming a date the buyer holds are examples. An ask that needs a count, a lookup or a meeting first is a later step.
+- **The Buyer's Open Question.** A question the buyer asked that has no reply on record is answered in the same message as the asks to that buyer. It is an open exchange in its own right, so it is never a second message.
+- **An Undated Session Is A Proposal.** A session or a send that neither the call nor a later email has dated is a proposal, not a kind 3 step. It is a later step until a date is agreed, and it never joins the next action.
+- **A Red Flag's Recovery Is A Later Step.** A red flag is a finding about the deal, not a buyer's open item. Its recovery step is listed after the next action, even when the same buyer could answer it.
 
 ### Report Sections
 
@@ -739,7 +749,7 @@ Type an objection by what the objector resists: the change to their work (inerti
 
 **The Status Rule For Deal Health Impact.** The call is scored the same whatever the account's status, because the rubric grades the rep and not the account. Status changes only what this line can say. ACTIVE (open deal): the line reads the call against the stage gate in the profile's Qualification Stage Gates. ENGAGED (two-way contact, no open deal): no stage gate applies. The line names the status and says whether the call gave the buyer a reason to open a deal, a quantified pain or a dated next meeting, each tagged. For an ENGAGED account, the Next Call Game Plan's success criteria name that deal-opening step, because until one is set the account stays in conversation without a deal. INBOUND (they asked us first): the account stays INBOUND after a call until a deal opens, so the line reads it as INBOUND and applies no stage gate. If the record shows TARGET, LOST or OUT, the line names that status and applies no stage gate.
 
-**Focus Area For Next Call:** One skill only. Prep steps, what to practice, success criteria. Five things at once do not change a habit. The practice exercise covers every cost the focus skill's evidence names, in one exercise, and the focus-area line names each of them. A cost is named when the focus category's evidence line identifies a pain and leaves it unquantified, so each such pain gives one cost to practice. The focus area is the lowest-scoring category. When categories tie for the lowest score, the tie-break applies: the focus is the tied category whose defined step does the work of the exit criterion that moves the account from its current stage to the next. That criterion is the row of the profile's Qualification Stage Gates that starts at the account's current stage. An account with no open deal has no stage, so its tie-break reads the first row of those gates. A category matches when its step does the criterion's work, so a criterion that needs a number is the quantify step of Priority Ladder. The focus-area line quotes the criterion, so the choice can be checked against the profile.
+**Focus Area For Next Call:** One skill only. Prep steps, what to practice, success criteria. Five things at once do not change a habit. The practice exercise covers every cost the focus skill's evidence names, in one exercise, and the focus-area line names each of them. A cost is named when the focus category's evidence line identifies a pain and leaves it unquantified, so each such pain gives one cost to practice. The evidence line is the one written for that category in Step 2. A pain the call raised that this line does not name gives no cost to practice, whatever else the transcript holds. The focus area is the lowest-scoring category. When categories tie for the lowest score, the tie-break applies: the focus is the tied category whose defined step does the work of the exit criterion that moves the account from its current stage to the next. That criterion is the row of the profile's Qualification Stage Gates that starts at the account's current stage. An account with no open deal has no stage, so its tie-break reads the first row of those gates. A category matches when its step does the criterion's work, so a criterion that needs a number is the quantify step of Priority Ladder. The focus-area line quotes the criterion, so the choice can be checked against the profile.
 
 **Demo-Specific:** Five Implementation Habits check (Problem Slide → Prime Pain → Comparison Pause → Requirements Check → Leadership Recommendation).
 
@@ -865,7 +875,7 @@ No pain reached Level 3, which is the minimum for a strong business case.
    - **Situation:** Walt's skepticism of tablets, 23:40 (`[Call, 2026-05-12]`).
    - **Proof Point:** "most cemeteries your size carry 50 to 100 plots that are sold on paper and unsold on the map" (Benchmark, `[Public: deathcare research, 2026-03-27 to 2026-04-01]`, profile: Proof Points). The Holloway Hills proof point is Illustrative (profile: Proof Points), so it is not cited.
    - **Coaching Moment:** Say the benchmark, then ask, "How does that compare with what your crew sees?"
-3. **The Board Question And The Close, Strong, With A Weak Part.** At 28:30 Ruth said the board takes these things up, and Owen said "Great, thanks" (`[Call, 2026-05-12]`). The chair's name and the meeting date were both within reach. Ask, "Who sits on the board, and when does it next meet?" The chair is still `[Unknown]` after this call. The last two minutes of the transcript contain no date for the next step. Inferred from what did not happen, so that part is Weak. Practice: set a date before the call ends.
+3. **The Board Question And The Close, Strong, With A Weak Part.** At 28:30 Ruth said the board takes these things up, and Owen said "Great, thanks" (`[Call, 2026-05-12]`). The chair's name and the meeting date were both within reach. Ask, "Who sits on the board, and when does it next meet?" The chair is still `[Unknown]` after this call. The excerpts after the 28:30 ask (31:10 and 33:00) contain no date for the next step. Inferred from what did not happen, so that part is Weak. Practice: set a date before the call ends.
 
 **MEDDIC Status:**
 
@@ -901,7 +911,7 @@ focus_area: Priority Ladder to Level 3 on the cost of a plot lookup and of a dou
 coaching_points: Top 3 Strengths: 1 Strength, Strong (02:10). 2 Owen followed up, Strong (09:15). 3 Owen asked why the move stopped, Strong (17:05). Top 3 Improvements: 1 Quantify the double sale, Strong (14:20). 2 Benchmark for the tablet objection, Moderate (23:40). 3 The board question and the close, Strong, with a Weak part (28:30, no date in the transcript)
 key_moments: discovery breakthrough (14:20), buying signal captured (09:15), objection (23:40), competitive intelligence (17:05), missed opportunity (28:30), red flag MEDIUM (31:10)
 champion_status: Strong, three of seven shared tests met on this call (explains the internal politics at 28:30, asks how to help at 33:00, shares competitor intelligence at 17:05)
-next_action: Owen Pruitt asks Ruth Ellery for the family board chair's name and the date the board takes up the decision, and asks what date she will check with the board, by 2026-05-19. This is the open exchange from 28:30, owed to the buyer, and the five-business-day date from the run date, since the records hold no earlier date. In the same message Owen proposes the second discovery session, with its date to be agreed. Owner: Owen Pruitt. Person: Ruth Ellery. Date: 2026-05-19. Later step: the focus-area practice, quantifying the lookup cost and the double-sale cost before that session, which is coaching for the rep and not a buyer step.
+next_action: Owen Pruitt answers Ruth Ellery's 33:00 question about what the board needs, and in the same message asks her for the family board chair's name, the date the board takes up the decision, and the date she will check with the board, by 2026-05-19. The 28:30 ask and the 33:00 question are open exchanges with the buyer, and her check date is a commitment left undated, so all three travel together. The date is the five-business-day date from the run date, since the records hold no earlier date. Owner: Owen Pruitt. Person: Ruth Ellery. Date: 2026-05-19. Later steps, in order: (1) the second discovery session, which no one has dated, so it is a proposal and not part of the message. (2) Who runs IT and who holds the Oldgate export, a red flag's recovery step. (3) The focus-area practice, quantifying the lookup cost and the double-sale cost before that session, which is coaching for the rep and not a buyer step.
 report_path: none (inline)
 ```
 
@@ -1153,6 +1163,12 @@ The Business Case & ROI Kit (a paid Guild Pro kit) reads this skill's hand-off b
 ---
 
 ## Changelog
+
+### 2.1.13 (2026-10-26)
+- Next action bundle. Four readings are now written under the Next-Action Priority Order. An ask fits one message when the buyer can answer it in one reply from what they know. A buyer's open question with no reply on record is answered in the same message as the asks to that buyer. A session nobody has dated is a proposal and a later step. A red flag's recovery step is a later step.
+- Focus area. The costs for the focus practice are the pains that the focus category's own evidence line names, each left unquantified.
+- Example 1 and the try-it. The next action answers the 33:00 question and asks the chair and the board dates in one message to Ruth Ellery, dated 2026-05-19. The undated second session and the IT and export question are later steps. No score, band or due date changes.
+- Try-it record. Three rubric results are removed from the record's facts: the silence verdict, the cost verdict and the verdict on the last two minutes. The record states the longest timed pause instead.
 
 ### 2.1.12 (2026-10-26)
 - Next action. The Output Contract row and the Next-Action Priority Order give the order: an open exchange with a buyer from the call, a buyer's commitment left undated, a buyer-facing step with its date on record, a next step the call never set, then the focus-area practice as a later step. Same-buyer asks that fit one message travel with the next action.

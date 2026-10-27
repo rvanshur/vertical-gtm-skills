@@ -1,6 +1,6 @@
 ---
 name: gtm-meeting-prep
-version: 2.1.12
+version: 2.1.13
 description: "Prepares a rep for a discovery or demo call with one prep sheet: the top pain, a question bank for each discovery phase, one proof point per attendee, objection scripts, a minute-by-minute call flow and a follow-up email draft. The rep reads it during the call."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: [gtm-account-snapshot, gtm-research-outbound, gtm-trigger-event-outbound, gtm-closed-loss-reactivation, gtm-daily-prospecting, gtm-deal-pulse, gtm-stakeholder-mapping, gtm-competitive-strategy, gtm-competitive-displacement, gtm-call-coaching]
 mutating: read-write
 change_log:
+  - version: 2.1.13
+    date: 2026-10-26
+    summary: "Round 13 upstream and status rules. An upstream field is read as of its own run date, and where it conflicts with a rule here the rule governs and the sheet names the conflict. A renewal or deadline in an upstream pain list is urgency, never a ranked pain. The header reads the CRM status on the run date and states the date the deal opened when the CRM holds it, so an upstream TARGET labelled then does not set the header. The example and try-it records take the deal's opening date, drop the upstream pre-ranking and the renewal listed as a pain, and drop the note that pointed to a later stage and the note that pre-scored the Stonemark evaluation. The question bank, the scores, the proof lines and the next action are unchanged."
   - version: 2.1.12
     date: 2026-10-26
     summary: "Settles the strict retest readings. Identified Pain scores on what the buyer has named in their own words, so a pain the rep infers from the CRM or the profile is a hypothesis for the call and scores red until the buyer names it. Example 1 moves Identified Pain from yellow to red and its totals to 0 green, 2 yellow and 6 red. The next action follows a written priority order, with the reply owed to a buyer first, then a confirmation the meeting cannot run without, then the ask for the buyer's words on the top pain, then the signer ask, then the follow-up draft. Asks to the same person in the same message travel together, so Example 1 bundles the pain ask with the signer and meeting-date ask. The rep input row settles who owns the next action when the rep is not named. A profile label never sets a champion or signer cell, and a research target keeps the status its profile figure carries. Example 1's next action keeps its owner and date and changes its wording. Examples 2 to 4 and the try-it follow the settled rules."
@@ -393,8 +396,8 @@ Before pulling anything, open the account's folder under `accounts/` in the Know
 
 1. **Confirm Inputs:** account name, meeting type, attendees with titles, call date and length, other team members attending.
 2. **Read The Profile Sections** named in Context. Take the stage names from Qualification Stage Gates.
-3. **Read The Upstream Fields By Name** if they are present, as listed in Integration With Other Skills. Report any missing one as missing.
-4. **Build The Account Profile:** company, vertical, size, states, status, deal amount, the rep, and the attendees with buying role. The status is one of the status words in the Shared Contract. An ENGAGED account is labelled so in the header, and its reply is listed as a finding in Step 2.
+3. **Read The Upstream Fields By Name** if they are present, as listed in Integration With Other Skills. Report any missing one as missing. An upstream field is read as of its own run date. Where it conflicts with a rule here, the rule here governs, and the sheet names the conflict. A renewal or deadline in an upstream pain list is read as urgency, not a pain, and it is never ranked as a hypothesis.
+4. **Build The Account Profile:** company, vertical, size, states, status, deal amount, the rep, and the attendees with buying role. The status is one of the status words in the Shared Contract, read from the CRM on the run date. When the CRM holds the date the deal opened, the header states it. An upstream status such as TARGET is labelled "then" with the date of its own run, and it does not set the header. An ENGAGED account is labelled so in the header, and its reply is listed as a finding in Step 2.
 
 **Produces:** the account profile table and the attendee table. Each attendee has a name or `[Unknown]`, a title, and a buying role as the record names it.
 
@@ -599,7 +602,7 @@ All four examples use PlotIQ and its cast from the profile's Example Cast. Facts
 
 **Step 0.** `meeting_type = discovery`. The demo prerequisite does not apply.
 
-**Step 1.** Account profile: combination, two sites, 11,000 plots `[CRM]`. Status ACTIVE, Stage 2 Discovery `[CRM]`. Upstream from Account Snapshot (02), run when the account was TARGET: `account_status: TARGET (then)` and `verdict: GREENLIGHT`. Its `contact_priority` ranks Ruth Ellery first and Walt Okonkwo second `[Inferred]`, from the persona order in (profile: Buyer Personas). Its `pain_hypotheses` are plot records on paper across two sites (HIGH, `[CRM]`, `[Inferred]` from the record type) and the Oldgate renewal in March 2027 (MEDIUM, `[CRM]`, `[Inferred]` from the contract date). Its `sequence` is three emails to Ruth Ellery, with call prep, drafted and not sent (illustrative). Attendees:
+**Step 1.** Account profile: combination, two sites, 11,000 plots `[CRM]`. Status ACTIVE, Stage 2 Discovery `[CRM]`, with the deal opened on 2026-05-06 `[CRM]` (illustrative). Upstream from Account Snapshot (02), run on 2026-05-04 when the account was TARGET: `account_status: TARGET (then)` and `verdict: GREENLIGHT`. Its `contact_priority` ranks Ruth Ellery first and Walt Okonkwo second `[Inferred]`, from the persona order in (profile: Buyer Personas). Its `pain_hypotheses` are plot records on paper across two sites `[CRM]`, and its urgency is the Oldgate renewal in March 2027 `[CRM]`, which is an urgency and not a pain (Step 1, item 3). Its `sequence` is three emails to Ruth Ellery, with call prep, drafted and not sent (illustrative). Attendees:
 
 | Name | Title | Buying Role |
 |------|-------|-------------|
@@ -943,6 +946,12 @@ This skill also reads the kit's hand-off block back as optional context: `case_s
 
 ## Changelog
 
+
+### 2.1.13 (2026-10-26)
+- An upstream field is read as of its own run date, and a conflict with a rule here is named on the sheet with the rule governing. A renewal or deadline in an upstream pain list is urgency, never a ranked pain.
+- The header reads the CRM status on the run date and states the date the deal opened when the CRM holds it. An upstream TARGET labelled then does not set the header.
+- Example 1 and the try-it records state the deal's opening date, carry the upstream pain list without its pre-ranking, and list the renewal as urgency. The try-it drops the sentence that pointed to a later stage and the sentence that pre-scored the Stonemark evaluation.
+- The question bank, the qualification scores, the proof lines and the next action are unchanged.
 
 ### 2.1.12 (2026-10-26)
 - Identified Pain is scored on what the buyer has named in their own words. A pain the rep infers from the CRM or the profile is a hypothesis, and it scores red until the buyer names it. Example 1 moves to red, and its totals move to 0 green, 2 yellow and 6 red.

@@ -2,7 +2,7 @@
 
 Every name, date and number in this file is invented for the PlotIQ example. Nothing here is a real company.
 
-These records are as of 2026-05-11, before Brackhaven reached Stage 5 Negotiate. The profile's Example Cast shows where the account stands later.
+These records are as of 2026-05-11.
 
 ## Ask Your Assistant
 "Run Meeting Prep on Brackhaven Memorial Gardens using skills/06-meeting-prep/examples/try-it.md and the PlotIQ profile at profiles/examples/plotiq-example.md"
@@ -20,10 +20,10 @@ The Account
 - Plots: 11,000 plots [CRM] (illustrative)
 - Plot records: Paper plot maps [CRM]
 - Double sales: One double sale in the last 24 months [CRM] (illustrative)
-- Status at the time of the call: ACTIVE, Stage 2 Discovery [CRM] (illustrative)
+- Status at the time of the call: ACTIVE, Stage 2 Discovery [CRM] (illustrative). The deal opened on 2026-05-06 [CRM] (illustrative)
 - AE owner: Owen Pruitt
 - Incumbent: Oldgate Ledger Pro, logged [CRM]. Renewal in March 2027 [CRM]
-- Second system evaluated: Stonemark mapping [Notes], undated (Owen Pruitt's note). The note records the evaluation only
+- Second system evaluated: Stonemark mapping [Notes], undated (Owen Pruitt's note)
 - Pre-need manager: Priscilla Dunmore, the end user. She is not on this call [CRM]
 - Economic buyer, the signer above the GM: [Unknown]. Buyer contact: Ruth Ellery [CRM]. The approval process: [Unknown]
 - Plot loss figure: [Unknown]
@@ -34,10 +34,11 @@ The People
 - Walt Okonkwo, Operations Director. Influencer [CRM]. Skeptical of tablets [Notes]
 
 Upstream From Account Snapshot, Run Earlier
-- account_status: TARGET (then)
+- account_status: TARGET (then), from the run dated 2026-05-04 [CRM] (illustrative)
 - verdict: GREENLIGHT
 - contact_priority: Ruth Ellery first, Walt Okonkwo second [Inferred] (profile: Buyer Personas)
-- pain_hypotheses: plot records on paper across two sites (HIGH, [CRM], [Inferred] from the record type), and the Oldgate renewal in March 2027 (MEDIUM, [CRM], [Inferred] from the contract date)
+- pain_hypotheses: plot records on paper across two sites [CRM]
+- urgency: the Oldgate renewal in March 2027 [CRM]
 - sequence: three emails to Ruth Ellery, with call prep, drafted and not sent (illustrative)
 
 ## What You Should Get

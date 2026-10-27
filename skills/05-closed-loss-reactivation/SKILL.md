@@ -1,6 +1,6 @@
 ---
 name: gtm-closed-loss-reactivation
-version: 2.1.12
+version: 2.1.13
 description: "Re-engages closed-lost accounts from the CRM history. Checks the recorded loss reason against the evidence, finds what has changed since the deal died, re-scores fit, and returns REACTIVATE, MONITOR or RETIRE with a history-aware opener for the BDR or AE who owns the next step."
 category: Sales-Methodology
 author: Ryan Vanshur
@@ -11,6 +11,9 @@ requires:
   skills: []
 mutating: read-write
 change_log:
+  - version: 2.1.13
+    date: 2026-10-26
+    summary: "Round 13 next action on a lost account. The original AE's ask is the next action unless the moved champion is warm or the loss category is Champion Left. Warm is defined: a reply from her to us or a call with her on record in the 90 days before the run date. Otherwise routing her to Account Snapshot (02) is a later step on the same date as the ask, and the rank list no longer points to a removed example. The AE ask asks for the current contact's name when the record names none. The Context table names the ICP Definitions and the new account's folder as the source for the fit check, so the rank list reads only facts a rep can see. Example 1 names the routing as a later step, Example 3 re-derives its next action and hand-off, and the try-it records state the contact history and the new account's facts. The verdict, the dates and the reminder window are unchanged."
   - version: 2.1.12
     date: 2026-10-26
     summary: "Adds the next-action priority order to the Output Contract and Step 8, and re-derives every example's next action under it. The order ranks a reply owed to a buyer first, then a warm champion who moved to an ICP account and is routed to Account Snapshot, then the original AE's answer that a held outreach waits on, then the search for a named contact, then a dated reminder or CRM entry. Settles three first-run readings: a general manager who has left with no successor is not a new general manager, the Zone 3 MEDIUM cell holds with or without a successor, and Zone 4 scores the account's own system and never the winning competitor's. The logged reason names the primary category, the winner sets the strategy, and the pain question follows the strategy's category. Example 1 names one next action and lists the others as later steps. No verdict, date or next action changes."
@@ -117,7 +120,7 @@ Every run returns the reactivation analysis inline, in the order of Step 8. The 
 | `history_opener` | Inline, Step 7 | The opener that names the prior conversation. Marked held when a MONITOR or REACTIVATE account's contact or facts are not yet checked. Written as `none` when the verdict is RETIRE or the account is ENGAGED |
 | Email sequences | Inline, Step 6 | One four-step sequence per persona with a named contact. Drafts only. Empty, with the reason, when no contact is known |
 | Call prep | Inline, Step 7 | Opener, talk track, voicemail, objection handling, and the pain question checked against the AE's notes |
-| `next_action` | Inline, Step 8 | One step, with its owner and date. It is the open step with the highest rank in this order, and every other open step is a later step listed after it. (1) A reply owed to a buyer who wrote to us, routed to Account Snapshot (02) the next business day. (2) A warm champion who moved to an ICP account, routed to 02 as a new account (Track A in Example 3). (3) The ask to the original AE that a held outreach waits on. (4) The search for a named contact that releases a held sequence. (5) The dated MONITOR reminder or the CRM entry for a disqualifier. Ties at one rank go to the step that releases more held output, and then to the step the user owns over one a colleague owns |
+| `next_action` | Inline, Step 8 | One step, with its owner and date. It is the open step with the highest rank in this order, and every other open step is a later step listed after it. (1) A reply owed to a buyer who wrote to us, routed to Account Snapshot (02) the next business day. (2) Routing a champion who moved to an ICP account to 02 as a new account. This rank applies only when the champion is warm, meaning she replied to us or had a call with us, and that is on record in the 90 days before the run date, or when the loss category is Champion Left. Otherwise the routing is a later step, listed on the same date as the ask in rank (3). (3) The ask to the original AE that a held outreach waits on. The ask asks for the loss notes, the anchor date of any held window, and the current contact's name when the record names no current contact. (4) The search for a named contact that releases a held sequence. (5) The dated MONITOR reminder or the CRM entry for a disqualifier. Ties at one rank go to the step that releases more held output, and then to the step the user owns over one a colleague owns |
 | `report_path` | Set only when a file was written | `none (inline)` otherwise |
 | Reactivation file | Written only when the user asks | `<account>_gtm-closed-loss-reactivation_<date>.md`, the one-page cheatsheet built from the same analysis |
 
@@ -133,14 +136,14 @@ Throughout this skill, `{Client Profile: X}` means "section X of `profiles/clien
 
 | Profile Section | Used For |
 |---|---|
-| ICP Definitions | Re-scoring fit after the loss (Step 4) |
+| ICP Definitions | Re-scoring fit after the loss (Step 4). The fit test on a champion's new account (Output Contract, rank 2), where the new account's own facts come from the CRM or its account folder |
 | Qualification Criteria | Buying Triggers, to check for market changes since the loss (Step 3). Disqualifiers, for the RETIRE path (Step 4) |
 | Buyer Personas | Persona-matched sequences. The persona count sets how many sequences are written (Step 6) |
 | Competitive Landscape | The "Pain reported after 6 to 12 months" and "Proof that answers it" columns, for a buyer who chose a rival (Step 6) |
 | Proof Points | The Status of each proof point, so that only Verified rows reach a prospect (Step 6) |
 | Industry Context | Sourced market facts for Step 3. An unsourced fact is dropped |
 | Closed-Loss Intelligence | Loss taxonomy mapping, re-entry windows, reopening events and incumbent renewal cycles. Written by this skill's CUSTOMIZE interview |
-| Knowledge Base | The Location field of the base, and the base items this skill opens: the lost account's folder under `accounts/` (notes, calls and decisions from the original deal), read in Step 1 as the deal history |
+| Knowledge Base | The Location field of the base, and the base items this skill opens: the lost account's folder under `accounts/` (notes, calls and decisions from the original deal), read in Step 1 as the deal history. For rank (2) of the next action, the new account's folder is opened the same way |
 
 If the Closed-Loss Intelligence section is missing, this skill runs uncustomized. It says so once at the start, uses the Loss Reason Taxonomy and the reactivation strategies in Methodology as written, and marks every re-entry window and reopening event as `[Unknown]` until the section exists.
 
@@ -562,7 +565,7 @@ Present the complete reactivation analysis inline, in this order:
 9. **Coordination Guidance (BDR only):** "Coordinate with the original AE named in Step 0 before sending reactivation outreach."
 10. **Recommended Next Action:** one step, with its owner and date, chosen by the priority order in the Output Contract. Every other open step is listed after it as a later step
 
-The next action is the highest-ranked open step in the Output Contract's priority order, and every other open step is listed after it with its owner and date. The owner of the next action is the person who does the step. For a BDR, that is the BDR, who asks the original AE for what the step needs. A step that asks a colleague for an answer is dated by the shared contract's next-action rule (five business days after the run date, or an earlier date the records or the skill's own schedule set for that step). The request to the original AE asks for the AE loss notes, which settle the category, and for the fact that anchors a held window. An optional fact such as deal value is not requested in that step.
+The next action is the highest-ranked open step in the Output Contract's priority order, and every other open step is listed after it with its owner and date. The owner of the next action is the person who does the step. For a BDR, that is the BDR, who asks the original AE for what the step needs. A step that asks a colleague for an answer is dated by the shared contract's next-action rule (five business days after the run date, or an earlier date the records or the skill's own schedule set for that step). The request to the original AE asks for the AE loss notes, which settle the category, for the fact that anchors a held window, and for the current contact's name when the record names none. An optional fact such as deal value is not requested in that step.
 
 Write a file only when the user asks for one. When they do, the file is the one-page cheatsheet built from this same analysis, in Markdown, named `<account>_gtm-closed-loss-reactivation_<date>.md`, with eight sections in this order: deal history banner, what has changed, reactivation strategy, key contacts, reactivation hooks, discovery questions, objection handling, and call flow. Asking for the file is the approval step.
 
@@ -667,12 +670,12 @@ The held `history_opener` is: "When we last spoke, you went with Oldgate. Curiou
 
 **Summary: MONITOR.** Lowmoor Memorial Gardens.
 
-**Next Action:** The BDR asks the original AE, Owen Pruitt, for the loss notes, the Oldgate renewal date, and the name of the current Lowmoor contact, in one message, by 2026-10-26 (five business days after the run date of 2026-10-19, a Monday, and the records set no earlier date for this step). A held outreach waits on this answer, so it is priority 3 in the Output Contract's order, and no higher-ranked step is open in this report.
+**Next Action:** The BDR asks the original AE, Owen Pruitt, for the loss notes, the Oldgate renewal date, and the name of the current Lowmoor contact, in one message, by 2026-10-26 (five business days after the run date of 2026-10-19, a Monday, and the records set no earlier date for this step). A held outreach waits on this answer, so it is priority 3 in the Output Contract's order. Priority 2 does not apply: the records show no reply or call with Ines Carmody in the 90 days before the run date, and the loss category is not Champion Left.
 
 **Later Steps:**
 1. The current Lowmoor contact is asked of Owen in the next action, so it travels with that ask and has no separate step. If Owen does not name anyone, the BDR's search for the contact becomes the next action, by the shared five-business-day rule.
 2. The BDR sets the reminder for the window 2026-12-18 to 2027-01-17 to check the reopening events.
-3. Quill Hollow is a separate account. Its routing is the Track A step in Example 3, and it is not a step in this report.
+3. Route Ines Carmody and Quill Hollow Memorial Park to Account Snapshot (02) as a new account, by 2026-10-26, on the same date as the AE ask. The routing is a later step because she is not warm and the loss was not Champion Left. Example 3 sets out the routing.
 
 ```text
 Hand-off (read by 04 and 06):
@@ -682,7 +685,7 @@ loss_classification: Budget / Timing [CRM] (logged reason "timing"). No board-da
 change_assessment: account, Ines Carmody now at Quill Hollow [Public: state licensing database]. product, beta with no paid revenue (profile: Company). market, Oldgate renewal date [Unknown]
 reactivation_strategy: MONITOR (Buyer's Remorse play selected, and contact held until the Oldgate renewal date is found)
 history_opener: held. Oldgate loss [CRM], dated 2026-01-20. Written when a reopening event fires and the AE's notes confirm the area
-next_action: BDR asks the original AE for the loss notes and the Oldgate renewal date, by 2026-10-26
+next_action: BDR asks the original AE for the loss notes, the Oldgate renewal date and the current Lowmoor contact's name, in one message, by 2026-10-26
 report_path: none (inline)
 ```
 
@@ -720,7 +723,7 @@ report_path: none (inline)
 
 ### Example 3: The Champion Moves To An ICP Account (Ines Carmody, Lowmoor to Quill Hollow)
 
-**Context:** Ines Carmody, Lowmoor's champion, now runs Quill Hollow Memorial Park. Quill Hollow is a TARGET account with a GREENLIGHT verdict. Its status and verdict come from (profile: Example Cast) (illustrative). No reply from Quill Hollow is on record on the run date of 2026-10-19, so it stays TARGET. It has 8,800 plots on paper plat maps, and its owner signs under $25K.
+**Context:** Ines Carmody, Lowmoor's champion, now runs Quill Hollow Memorial Park. The records show no reply from her and no call with her since the close, so she is not warm on the run date of 2026-10-19. Quill Hollow is TARGET on the run date, with no reply on record, and its fit is scored in Account Snapshot (02), not here. Its records hold 8,800 plots on paper plat maps, which meets the ICP1 plot threshold of about 2,000 plots or more and keeps plot records on paper (profile: ICP Definitions).
 
 **Input:** "Our champion from Lowmoor is now at Quill Hollow. What do we do?"
 
@@ -728,11 +731,11 @@ report_path: none (inline)
 
 **Step 4: Verdict For Lowmoor.** MONITOR, unchanged. Quill Hollow is a separate account, scored on its own zones.
 
-**Step 5: Strategy.** The Champion Follow pattern applies, because the champion now runs a GREENLIGHT account `[Public: state licensing database]`. Two tracks run in parallel:
-- **Track A: Follow Ines Carmody To Quill Hollow.** This is a new-account play, so route it to Account Snapshot (02) as a new account. Reference Lowmoor only if she raises it.
+**Step 5: Strategy.** The Champion Follow routing applies, because her new account is an ICP account. She is not warm on this record and the loss category is not Champion Left, so the routing is a later step, not the next action. Two tracks run in parallel:
+- **Track A: Follow Ines Carmody To Quill Hollow.** A new-account play, routed to Account Snapshot (02) as a new account on the same date as the AE ask. Reference Lowmoor only if she raises it. It moves above the AE ask once she is warm, meaning she replies to us or takes a call with us, on record in the 90 days before the run date.
 - **Track B: Find The Current Lowmoor Contact.** This stays in this skill, on MONITOR, until the open items in Example 1 close.
 
-Track A has priority, because she already knows the product from the evaluation, and her new account fits the ICP. Under the Output Contract's order, Track A is priority 2 and is the next action. Track B's ask to the original AE (Example 1) is priority 3 and is a later step.
+The next action is the ask to the original AE (Example 1), at rank (3). Rank (2) needs a warm champion or a Champion Left loss, and neither holds on this record, so Track A is a later step on the same date. If she becomes warm, Track A moves above the ask.
 
 **Step 6: Sequences.** Track A's sequence is written in Account Snapshot, not here. Track B has 0 emails, because no contact is named.
 
@@ -741,11 +744,11 @@ Hand-off (read by 04 and 06):
 account: Lowmoor Memorial Gardens (LOST), with the champion now at Quill Hollow Memorial Park (TARGET)
 run_date: 2026-10-19
 loss_classification: unchanged from Example 1 (Budget / Timing and Lost to Competitor). Champion Left does not apply
-change_assessment: champion now at Quill Hollow [Public: state licensing database]. Quill Hollow status TARGET with a GREENLIGHT verdict [CRM] (illustrative, from the example cast)
+change_assessment: champion now at Quill Hollow [Public: state licensing database]. Quill Hollow TARGET, no reply on record [CRM]. 8,800 plots and paper plat maps [CRM] (illustrative)
 reactivation_strategy: MONITOR for Lowmoor (Track B only). Track A goes to Account Snapshot (02) as a new account
 history_opener: held for Track B. Track A's opener is written in Account Snapshot
-next_action: BDR routes Track A to Account Snapshot, by 2026-10-26
-later_steps: BDR asks the original AE for the Lowmoor loss notes and the Oldgate renewal date (Track B), by 2026-10-26
+next_action: BDR asks the original AE for the Lowmoor loss notes, the Oldgate renewal date and the current contact's name, in one message, by 2026-10-26
+later_steps: BDR routes Track A to Account Snapshot (02) as a new account, on the same date, by 2026-10-26
 report_path: none (inline)
 ```
 
@@ -762,8 +765,8 @@ report_path: none (inline)
 **Action:** Always surface the original AE. Include the line "Coordinate with the original AE before sending reactivation outreach." The AE has context the BDR does not, and may know why re-engagement is or is not appropriate.
 
 ### Pattern: Champion Follow
-**When:** The loss reason was "Champion Left" and the champion moved to another company in the ICP.
-**Action:** Run two parallel tracks. Track A follows the champion to the new company, and Track B finds a replacement at the original account. Prioritize Track A, because the champion already knows the product's value.
+**When:** The champion moved to another company in the ICP, and either the champion is warm or the loss reason is "Champion Left". These are the two conditions of rank (2) in the Output Contract.
+**Action:** Run two parallel tracks. Track A follows the champion to the new company, routed to Account Snapshot (02) as a new account, and Track B finds a replacement at the original account. When a condition of rank (2) holds, Track A ranks above the AE ask. When neither holds, Track A is a later step on the same date as the AE ask, and Track B stays in this skill.
 
 ---
 
@@ -836,6 +839,14 @@ report_path: none (inline)
 
 ## Changelog
 
+
+### 2.1.13 (2026-10-26)
+- The original AE's ask is the next action unless the moved champion is warm or the loss category is Champion Left. Warm is defined in the Output Contract: a reply from her to us, or a call with her, on record in the 90 days before the run date. Otherwise routing her to Account Snapshot (02) is a later step on the same date as the ask.
+- The rank list no longer points to a removed example. Rank (2) states its own conditions.
+- The AE ask asks for the current contact's name when the record names none, which settles the open reading in Step 8.
+- The Context table names ICP Definitions for the fit check on the new account, and the new account's facts come from the CRM or its account folder.
+- Example 1 names the routing as a later step. Example 3 re-derives its next action, its strategy and its hand-off under the same order, and drops the GREENLIGHT verdict that belongs to Account Snapshot.
+- The try-it records state the contact history since the close and the new account's status and facts. The try-it promise lists the routing as a later step.
 
 ### 2.1.12 (2026-10-26)
 - The Output Contract's next_action row and Step 8 carry the priority order: a reply owed to a buyer, a warm moved champion routed to 02, the original AE's answer a held outreach waits on, a named-contact search, then a dated reminder or CRM entry. Ties go to the step that releases more held output, then to the user's own step.

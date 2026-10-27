@@ -21,10 +21,10 @@ Company
 - Pre-need intake form: The company website has a pre-need intake form [Public: company website] (illustrative)
 - Pre-need leads from ads: Social media ads on the group's pages send pre-need enquiries into the group's shared email [Public: company social media pages] (illustrative)
 - Budget: The CFO, Hector Ruiz, approves budget [CRM]
-- The group reviews system spend twice a year, and the decision cycle is 6 to 9 months [CRM], illustrative
+- The group reviews system spend twice a year, and its last system decision ran seven months from first meeting to signed contract [CRM] (illustrative)
 - Status: TARGET. No open deal and no AE owner
 - Plot records method: Both cemetery sites keep plot records in spreadsheets [Notes] (illustrative)
-- Current system: Spreadsheets only, at the two cemetery sites [Notes] (illustrative)
+- Current system at the two cemetery sites: plot lists kept in a spreadsheet [Notes] (illustrative)
 - When the plot records move: [Unknown]
 
 Owner Letter
@@ -40,4 +40,4 @@ Owner Letter
 - Wedge, cost basis line: all five sites, cemetery and funeral home alike, at $10,788 a year at list = $53,940 a year, plus $5,000 setup once [Inferred: units x profile list price]. No payback figure, because the price of an unsold plot is [Unknown].
 - Sequences: 5 personas x 4 emails = 20 emails, held. The verdict is MANUAL REVIEW, so the package is marked Held and nothing goes out until the Sales Manager clears the hold. Email 1 goes to the CFO, Hector Ruiz, with the subject "One system across five sites in 2027".
 - Open items: which system the group picks and when the plot records move, who in the family signs the 2027 plan besides the CFO, and which state's filing applies to each cemetery site (the records give no state for either site, so this is open, not a result).
-- Next action: Lena Vasquez (Sales Manager) clears the held package by 2026-10-26, five business days after the run date of 2026-10-19. Later step, after that clearance: Nadia Brandt sends Email 1 to Hector Ruiz.
+- Next action: Lena Vasquez (Sales Manager, profile: Example Cast) clears the held package by 2026-10-26, five business days after the run date of 2026-10-19. Later step, after that clearance: Nadia Brandt sends Email 1 to Hector Ruiz.

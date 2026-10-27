@@ -1,7 +1,7 @@
 ---
 name: gtm-account-snapshot
 description: "One-page account brief for BDRs and AEs: a zone-based verdict, persona-ranked contacts, tagged pain hypotheses, a three-step email draft and call prep, read by the rep before anything is sent."
-version: 2.1.12
+version: 2.1.13
 category: Sales-Methodology
 author: Ryan Vanshur
 license: MIT
@@ -11,6 +11,9 @@ requires:
   skills: [gtm-account-qualification, gtm-competitive-displacement]
 mutating: read-write
 change_log:
+  - version: 2.1.13
+    date: 2026-10-26
+    summary: "Round 13 acceptance findings. Pain hypothesis confidence is set by two named tests on tagged facts: the trait test, which asks whether the record shows the trait the Core Pain Points row names in its own words, and the setting test, which asks whether the record shows the setting the row's Frequency or Business Impact names. HIGH needs both, MEDIUM one, LOW neither. Under this rule Quill Hollow's lookup pain is LOW, not MEDIUM, because no lookup time is on record, and Sable Fork and Brackhaven are re-derived. Zone 3 reads the approver of record and derives the year-one signing cost, so the records state who approves, not the signing rule. The try-it promise changes its lookup pain level, its owner wording and the region line."
   - version: 2.1.12
     date: 2026-10-26
     summary: "Round 12 next-action order and acceptance findings. The Output Contract and Step 7 give one priority order for the next action: a reply owed to a buyer who wrote to us comes first, then AE coordination for an ACTIVE account with an AE owner, then the first send of a GREENLIGHT sequence, then a meeting already on the calendar, then the first send of a MANUAL REVIEW package after a person clears it, and last a DISQUALIFY with no reply owed. Ties go to the earlier due date, then the earlier buyer message, then the account name. Step 3 defines an applicable persona and the top three, so Persona 3 is a gap when it has no contact. Step 4 names pain hypotheses from the Core Pain Points taxonomy, with the event qualifier, and every hypothesis carries the Inferred tag. The primary-fit signal is Partial when part of its key indicator is Unknown. The Quill Hollow example and try-it use the taxonomy names and the three persona gaps, the Sable Fork example and the Brackhaven example are re-derived, and the verdicts, zone scores and statuses do not change."
@@ -260,7 +263,7 @@ A fact that the Example Cast supplies (profile: Example Cast) takes the tag of t
 
 ### Zone Scores And The Verdict
 
-Score each of the five zones HIGH, MEDIUM or LOW from tagged facts, using the Qualification Zones definitions (profile: Qualification Zones). Score a zone UNKNOWN when the record is silent. UNKNOWN is a fourth zone value that this skill adds for a zone no source speaks to, on top of the profile's HIGH, MEDIUM and LOW. It is never a guess. UNKNOWN is not LOW, because a blank field may only mean nobody recorded it. A HIGH condition that cannot apply to the account counts as met, so an owner who signs alone, with no board approval step, meets a board condition such as "board meets within 60 days". Zones 1 and 3 are must-haves. A zone that meets some but not all of a HIGH column's conditions, and no LOW condition, scores MEDIUM, as in Account Qualification (01) Step 4, and the report names the HIGH condition that fell short. The regulatory signal and Zone 1 ask different questions. The signal asks whether a finding is on the record, at any date. Zone 1 HIGH needs a records finding dated inside the last 24 months, as the profile's Zone 1 HIGH cell states, so an undated finding leaves Zone 1 at MEDIUM and its date is named as an open fact.
+Score each of the five zones HIGH, MEDIUM or LOW from tagged facts, using the Qualification Zones definitions (profile: Qualification Zones). Score a zone UNKNOWN when the record is silent. UNKNOWN is a fourth zone value that this skill adds for a zone no source speaks to, on top of the profile's HIGH, MEDIUM and LOW. It is never a guess. UNKNOWN is not LOW, because a blank field may only mean nobody recorded it. A HIGH condition that cannot apply to the account counts as met, so an owner who signs alone, with no board approval step, meets a board condition such as "board meets within 60 days". Zones 1 and 3 are must-haves. A zone that meets some but not all of a HIGH column's conditions, and no LOW condition, scores MEDIUM, as in Account Qualification (01) Step 4, and the report names the HIGH condition that fell short. Where a Zone 3 HIGH condition asks whether the owner or GM signs under $25K, the year-one cost is the per-site list price times the sites, plus the one-time setup (profile: Product Modules), tagged `[Inferred: arithmetic]`. A record that names the approver therefore settles the signing test without stating a signing limit. The regulatory signal and Zone 1 ask different questions. The signal asks whether a finding is on the record, at any date. Zone 1 HIGH needs a records finding dated inside the last 24 months, as the profile's Zone 1 HIGH cell states, so an undated finding leaves Zone 1 at MEDIUM and its date is named as an open fact.
 
 Apply the Verdict Rule as written:
 
@@ -288,9 +291,12 @@ These five signals are the one-glance read a rep sees first. They do not set the
 
 ### Confidence In Pain Hypotheses
 
-- **HIGH:** the hypothesis matches the profile on three or more signals, such as size, vertical, footprint and CRM history. A signal whose date is `[Unknown]` does not count toward the three when the hypothesis depends on a recent event, and the hypothesis is then scored on its other signals.
-- **MEDIUM:** it matches on one or two signals. It is plausible and needs validation.
-- **LOW:** it is generic and could describe any company in the industry. Rewrite it to be specific, or flag it as weak. A hypothesis with no signal and no record data is LOW, because it fits neither HIGH nor MEDIUM.
+Each pain is scored on two tests, and each test is read from the profile's Core Pain Points row for that pain, on tagged facts only.
+
+- **Trait Test:** the record shows the trait the row names, in the row's own words. A trait that is a means, such as plot records kept on paper or trust work kept by hand, is met by a record that shows the means. A spreadsheet is met for the by-hand trait and is not met for the paper trait. A trait that is a time or a cost, such as a lookup that takes minutes to hours, is met only by a recorded time or cost. A paper map is the means of a lookup, not a measure of how long it takes.
+- **Setting Test:** the record shows the setting the row's Frequency or Business Impact column names, such as a cemetery site or an annual state filing. A dated event that the row depends on counts only when its date is on record. An undated event counts toward neither test, and the hypothesis takes "(event date unknown)".
+
+Then the level follows the count. **HIGH:** both tests are met. **MEDIUM:** one test is met. It is plausible and needs validation. **LOW:** neither test is met, or the record shows the trait absent. A LOW hypothesis is generic until the record meets a test, so it is shown only to fill the three slots.
 
 ### Region Map
 
@@ -353,7 +359,7 @@ Build the company brief, the quick-score signals, the zone scores with the verdi
 
 Map the known CRM contacts to the Buyer Personas (profile: Buyer Personas). For each persona, record the name or Unknown, the title, the engagement level, the last activity and a priority from 1 to 5.
 
-Rank the contacts by four rules, in order: known contacts with engagement history come before cold ones, persona relevance to the likely pain comes next, recent activity counts above old activity, and prior deal context breaks ties. A champion label in the CRM is recorded as a label, tagged `[CRM]`. The Champion Test in the shared contract decides whether a contact is a champion, and a snapshot does not call a contact Strong on the label alone. The test is the shared list of seven behaviours: three or more met with evidence is Strong, one or two is Developing, and none is None. When the records hold none of the seven behaviours, the Champion Test is reported as not yet run, not as None, because silence is not a no. None is reported only after a call or note has been checked against the seven. A persona applies when the profile's Buyer Personas row allows it for the account's structure. Persona 4 (funeral home owner) applies only where the account runs a funeral side, Persona 5 (CFO or Controller) applies only to a group, and the other personas apply to every account. Rank the applicable personas by who signs first, then by the persona whose hook is a HIGH pain in Step 4 (the hook is read from the Buyer Personas table), then by buying role, with a champion ahead of an influencer. The top three are the first three applicable personas in that ranking, whether or not a contact is on file. For an independent cemetery, that means Personas 1, 2 and 3. Recommend the top two or three personas to target first, with the reason for each. The persona gaps are the top-three personas with no contact on file, plus the economic buyer when the record names who signs but not the person. The signer is the owner when the record says the owner signs, even if the GM is the champion. A GM is the signer only when the record says the GM signs. A persona outside the top three is listed as not targeted, not as a gap.
+Rank the contacts by four rules, in order: known contacts with engagement history come before cold ones, persona relevance to the likely pain comes next, recent activity counts above old activity, and prior deal context breaks ties. A champion label in the CRM is recorded as a label, tagged `[CRM]`. The Champion Test in the shared contract decides whether a contact is a champion, and a snapshot does not call a contact Strong on the label alone. The test is the shared list of seven behaviours: three or more met with evidence is Strong, one or two is Developing, and none is None. When the records hold none of the seven behaviours, the Champion Test is reported as not yet run, not as None, because silence is not a no. None is reported only after a call or note has been checked against the seven. A persona applies when the profile's Buyer Personas row allows it for the account's structure. Persona 4 (funeral home owner) applies only where the account runs a funeral side, Persona 5 (CFO or Controller) applies only to a group, and the other personas apply to every account. Rank the applicable personas by who signs first, then by the persona whose hook is a HIGH pain in Step 4 (the hook is read from the Buyer Personas table), then by buying role, with a champion ahead of an influencer. The top three are the first three applicable personas in that ranking, whether or not a contact is on file. For an independent cemetery, that means Personas 1, 2 and 3. Recommend the top two or three personas to target first, with the reason for each. The persona gaps are the top-three personas with no contact on file, plus the economic buyer when the record names who signs but not the person. The signer is the owner when the record names the owner as the approver, even if the GM is the champion. A GM is the signer only when the record says the GM signs. A persona outside the top three is listed as not targeted, not as a gap.
 
 **Produces:** `contact_priority`, a ranked list of contacts with persona and buying role, and the persona gaps.
 
@@ -524,7 +530,7 @@ These examples use the PlotIQ example cast, and every fact is tagged as the tag 
 
 **Step 0: Role Detection.** The user is a BDR. The CRM shows the account, status TARGET `[CRM]`, and no open deal `[CRM]`. Clear to proceed.
 
-**Step 1: Intelligence Gathering.** One site, 8,800 plots, paper plat maps `[CRM]`. One contact on file: Ines Carmody, General Manager, champion `[CRM]`. The owner signs under $25K `[CRM]`, alone (illustrative), so the board condition counts as met. The owner's name is `[Unknown]`. A records finding appears in the last state review `[CRM]`, and its date is `[Unknown]` (both illustrative). The owner brought a growth mandate when Ines Carmody arrived `[CRM]`. The state is not recorded `[Unknown]`, so no region tier yet. The BDR owner is Nadia Brandt `[CRM]` (illustrative).
+**Step 1: Intelligence Gathering.** One site, 8,800 plots, paper plat maps `[CRM]`. One contact on file: Ines Carmody, General Manager, champion `[CRM]`. The approver of record is the owner `[CRM]` (illustrative). The owner's name is `[Unknown]`. A records finding appears in the last state review `[CRM]`, and its date is `[Unknown]` (both illustrative). The owner brought a growth mandate when Ines Carmody arrived `[CRM]`. The state is not recorded `[Unknown]`, so no region tier yet. The BDR owner is Nadia Brandt `[CRM]` (illustrative).
 
 **Step 2: Account Snapshot.**
 
@@ -536,7 +542,7 @@ Zone scores (illustrative), with the verdict:
 
 - Zone 1, Records and Inventory Pain: MEDIUM. Paper plat maps `[CRM]`. The records finding has no date `[Unknown]`, so the HIGH test (a finding in the last 24 months) is not met.
 - Zone 2, Pre-Need Sales Motion: UNKNOWN. No pre-need activity is recorded `[Unknown]`. Silence is not a no.
-- Zone 3, Ownership and Decision Speed: HIGH. The owner signs under $25K alone `[CRM]` (illustrative), so the board condition counts as met.
+- Zone 3, Ownership and Decision Speed: HIGH. The approver of record is the owner `[CRM]` (illustrative). The year-one cost at one site is $15,788, under $25K `[Inferred: arithmetic]` (profile: Product Modules), and the board condition cannot apply to an owner who approves, so it counts as met.
 - Zone 4, Technology Readiness: UNKNOWN. Website and tools are not yet checked `[Unknown]`.
 - Zone 5, Growth or Succession: HIGH. A new GM in the last 24 months `[CRM]` (illustrative) meets the HIGH column. The owner's growth mandate `[CRM]` is context, not a second condition.
 
@@ -551,15 +557,15 @@ Region map: no tier, because the state is not recorded `[Unknown]`.
 | General Manager, champion | Ines Carmody | Labelled champion at her last site `[CRM]`. No reply to PlotIQ on record `[CRM]`. Champion Test not yet run | Not recorded `[Unknown]` | 1 |
 | Pre-Need Sales Manager, champion | Unknown, no contact found `[Unknown]` | n/a | n/a | 2 |
 | Operations Director, influencer | Unknown, no contact found `[Unknown]` | n/a | n/a | 3 |
-| Signer, owner (signs under $25K) | Unknown, no contact found `[Unknown]` | n/a | n/a | Not ranked (signer, not a persona) |
+| Signer, owner (approver of record) | Unknown, no contact found `[Unknown]` | n/a | n/a | Not ranked (signer, not a persona) |
 
-Ines Carmody ranks first. She is the only named contact and runs the site now, and Persona 1's hook matches the HIGH pain. No persona signs, because the owner signs, so the signing rule ranks no one. The pre-need manager (Persona 2) and the Operations Director (Persona 3) follow. Neither hook is a HIGH pain, so the champion ranks ahead of the influencer. Both have no contact on file, so both are gaps, and the owner is the economic buyer gap. Her champion label stays a label until the Champion Test runs.
+Ines Carmody ranks first. She is the only named contact and runs the site now, and Persona 1's hook matches the HIGH pain. No persona signs, because the owner is the approver, so the signing rule ranks no one. The pre-need manager (Persona 2) and the Operations Director (Persona 3) follow. Neither hook is a HIGH pain, so the champion ranks ahead of the influencer. Both have no contact on file, so both are gaps, and the owner is the economic buyer gap. Her champion label stays a label until the Champion Test runs.
 
 **Step 4: Pain Hypotheses.**
 
-1. **Plot Records On Paper, Binders Or Pencil Maps.** HIGH confidence. The plot map is on paper `[CRM]`. `[Inferred]`, by reasoning from the record type: a paper map cannot show which plots are sold without a walk of the grounds. Discovery question: "How do you check today which plots are open?" Value prop: plot inventory matched against sold records.
-2. **Trust fund and records reporting by hand (event date unknown).** MEDIUM confidence. `[Inferred]`. The last state review found a records problem `[CRM]`, and its date is `[Unknown]`. The pressure is real, but its timing is not. Because the hypothesis depends on when the finding happened, the undated finding does not count toward the three signals, so size and vertical are the two signals that count, and the hypothesis stays at MEDIUM. The finding is a discovery question only, and no email or call opener uses it. Discovery question: "When was the last state review, and what did it ask you to fix?" Value prop: plot and trust records a state auditor accepts (profile: Value Propositions, Value Proposition 2).
-3. **Plot Lookups Take Minutes To Hours.** MEDIUM confidence. `[Inferred]`, by reasoning from the record type and the plot count: a paper map of 8,800 plots makes each lookup a search, which matches Core Pain Point 3 on two signals (profile: Core Pain Points). Discovery question: "When a family asks about a plot, how long does the lookup take?" Value Prop: a plot answer in seconds (profile: Value Propositions, Value Proposition 3).
+1. **Plot Records On Paper, Binders Or Pencil Maps.** HIGH confidence. Both tests are met: the trait, plot records on paper `[CRM]`, and the setting, a cemetery site (profile: Core Pain Points, row 1). `[Inferred]`, by reasoning from the record type: a paper map cannot show which plots are sold without a walk of the grounds. Discovery question: "How do you check today which plots are open?" Value prop: plot inventory matched against sold records.
+2. **Trust fund and records reporting by hand (event date unknown).** MEDIUM confidence. `[Inferred]`. The last state review found a records problem `[CRM]`, and its date is `[Unknown]`. The trait test is met, because the paper maps are records kept by hand `[CRM]`. The setting test is not met, because the annual state filing that the row names is not on record: the state is `[Unknown]`. The undated finding counts toward neither test, so the hypothesis is MEDIUM. The finding is a discovery question only, and no email or call opener uses it. Discovery question: "When was the last state review, and what did it ask you to fix?" Value prop: plot and trust records a state auditor accepts (profile: Value Propositions, Value Proposition 2).
+3. **Plot Lookups Take Minutes To Hours.** LOW confidence. `[Inferred]`. The trait test is not met: no lookup time is on record, and a paper map is the means of a lookup, not a measure of its length. The row names no setting. It is shown only to fill the third slot (profile: Core Pain Points, Pain 3). Discovery question: "When a family asks about a plot, how long does the lookup take?" Value Prop: a plot answer in seconds (profile: Value Propositions, Value Proposition 3).
 
 **Step 5: Sequence (Ines Carmody, General Manager).**
 
@@ -631,7 +637,7 @@ account_status: TARGET
 verdict: GREENLIGHT
 zone_scores: 1 MEDIUM, 2 UNKNOWN, 3 HIGH, 4 UNKNOWN, 5 HIGH (illustrative)
 contact_priority: 1 Ines Carmody (General Manager, champion), 2 Pre-need manager, name Unknown (gap), 3 Operations Director, name Unknown (gap), signer: owner, name Unknown (economic buyer gap)
-pain_hypotheses: 1 Plot records on paper, binders or pencil maps (HIGH, Inferred), 2 Trust fund and records reporting by hand (event date unknown) (MEDIUM, Inferred), 3 Plot lookups take minutes to hours (MEDIUM, Inferred)
+pain_hypotheses: 1 Plot records on paper, binders or pencil maps (HIGH, Inferred), 2 Trust fund and records reporting by hand (event date unknown) (MEDIUM, Inferred), 3 Plot lookups take minutes to hours (LOW, Inferred)
 sequence: three emails to Ines Carmody, with call prep
 report_path: none (inline)
 next_action: Nadia Brandt sends Email 1 to Ines Carmody by 2026-10-26
@@ -661,9 +667,11 @@ Region map: no tier, because the state is not recorded `[Unknown]`.
 
 **Step 4: Pain Hypotheses.**
 
-1. **Plot Lookups Take Minutes To Hours.** MEDIUM confidence. `[Inferred]`, by reasoning from the record type: a 2,900-plot list in a spreadsheet is harder to check against sold records than a digital system. Discovery question: "When someone asks for a plot, how long does it take to find it today?"
-2. **Trust Fund And Records Reporting By Hand.** LOW confidence. `[Inferred]`. No records owner is named `[Unknown]`, and no record ties the list to a filing. Discovery question: "Who maintains the list today?"
-3. **Pre-Need Leads Go Cold.** LOW confidence. `[Inferred]`. The record says pre-need is none `[CRM]`, so there is no follow-up process to repair. Ask only to confirm, and do not lead with it.
+1. **Plot Records On Paper, Binders Or Pencil Maps.** MEDIUM confidence. `[Inferred]`. The setting test is met, because the operator is a cemetery site `[CRM]`. The trait test is not met, because the plot list is a spreadsheet, not paper, binders or pencil maps `[CRM]`. Discovery question: "Where does the plot list live today, and when was it last updated?"
+2. **Trust Fund And Records Reporting By Hand.** MEDIUM confidence. `[Inferred]`. The trait test is met, because the plot list is kept by hand `[CRM]`. The setting test is not met, because no annual state filing is on record and the state is `[Unknown]`. Discovery question: "Walk me through last year's trust filing. Who pulled the numbers, and from where?"
+3. **Plot Lookups Take Minutes To Hours.** LOW confidence. `[Inferred]`. No lookup time is on record (Zone 1 notes that lookup time is not measured), so the trait test is not met. It is shown only to fill the third slot. Discovery question: "When someone asks for a plot, how long does it take to find it today?"
+
+Pre-need leads are not shown. The record says pre-need is none `[CRM]`, so the trait test is ruled out, and the pain is LOW with three slots already filled.
 
 **Step 6: Call Prep.**
 
@@ -689,7 +697,7 @@ account_status: INBOUND
 verdict: MANUAL REVIEW
 zone_scores: 1 MEDIUM, 2 LOW, 3 HIGH, 4 MEDIUM, 5 LOW (illustrative)
 contact_priority: 1 Arlen Biggs (General Manager, signs under $25K), 2 Form filler, name Unknown
-pain_hypotheses: 1 Plot lookups take minutes to hours (MEDIUM, Inferred), 2 Trust fund and records reporting by hand (LOW, Inferred), 3 Pre-need leads go cold (LOW, Inferred, CRM: pre-need none)
+pain_hypotheses: 1 Plot records on paper, binders or pencil maps (MEDIUM, Inferred), 2 Trust fund and records reporting by hand (MEDIUM, Inferred), 3 Plot lookups take minutes to hours (LOW, Inferred)
 sequence: none, Quick Call Prep mode. The request reply went on 2026-10-19 `[CRM]`, so no INBOUND reply is outstanding
 report_path: none (inline)
 next_action: Owen Pruitt runs the discovery call with Arlen Biggs on 2026-10-22 (the call date on record)
@@ -771,7 +779,8 @@ The family board chair is recorded as a gap, not as a person: no name is on file
 **Step 4: Pain Hypotheses.**
 
 1. **Plot Records On Paper, Binders Or Pencil Maps.** HIGH confidence. Paper plot maps at both sites `[CRM]`. `[Inferred]`, by reasoning from the record type: two sites on paper mean two lists, so a sale on one list can be missed on the other. Discovery question: "Which site's plot list do your staff check first?"
-2. **The Oldgate Renewal In March 2027.** MEDIUM confidence. The renewal date is `[CRM]`. `[Inferred]`, from the contract date: the renewal opens a decision window. Discovery question: "What happens at the Oldgate renewal, and who decides?"
+2. **Trust Fund And Records Reporting By Hand.** MEDIUM confidence. `[Inferred]`. The trait test is met, because the plot records are kept by hand on paper maps `[CRM]`. The setting test is not met, because the state, and so any annual state filing, is `[Unknown]`. The Oldgate renewal in March 2027 `[CRM]` is an angle for Email 2, not a pain. Discovery question: "Walk me through last year's trust filing. Who pulled the numbers, and from where?" Value prop: plot and trust records a state auditor accepts (profile: Value Propositions, Value Proposition 2).
+3. **Plot Lookups Take Minutes To Hours.** LOW confidence. `[Inferred]`. No lookup time is on record, so the trait test is not met. It is shown only to reach the third slot. Discovery question: "When a family asks about a plot, how long does the lookup take?" Value prop: a plot answer in seconds (profile: Value Propositions, Value Proposition 3).
 
 **Step 5: Sequence (Ruth Ellery, General Manager).**
 
@@ -836,7 +845,7 @@ account_status: TARGET
 verdict: GREENLIGHT
 zone_scores: 1 HIGH, 2 MEDIUM, 3 MEDIUM, 4 MEDIUM, 5 HIGH (illustrative)
 contact_priority: 1 Ruth Ellery (General Manager, buyer), 2 Walt Okonkwo (Operations Director, influencer), 3 Priscilla Dunmore (pre-need manager, end user)
-pain_hypotheses: 1 Plot records on paper across two sites (HIGH, CRM and Inferred), 2 The Oldgate renewal in March 2027 (MEDIUM, CRM and Inferred)
+pain_hypotheses: 1 Plot records on paper across two sites (HIGH, CRM and Inferred), 2 Trust fund and records reporting by hand (MEDIUM, Inferred), 3 Plot lookups take minutes to hours (LOW, Inferred)
 sequence: three emails to Ruth Ellery, with call prep
 report_path: none (inline)
 next_action: Nadia Brandt sends Email 1 to Ruth Ellery by 2026-05-11, asking for 15 minutes with Owen Pruitt (illustrative)
@@ -852,7 +861,7 @@ next_action: Nadia Brandt sends Email 1 to Ruth Ellery by 2026-05-11, asking for
 
 **Step 0: Role Detection.** The user is a BDR, Nadia Brandt `[CRM]` (illustrative). The CRM shows status ENGAGED `[CRM]`, the reply of 2026-10-27 `[CRM]` and no open deal `[CRM]`. The BDR guard does not apply, because the account is not ACTIVE. The ENGAGED path applies: one reply draft, and no cold sequence.
 
-**Step 1: Intelligence Gathering.** One site, 8,800 plots, paper plat maps `[CRM]` (illustrative). One contact on file: Ines Carmody, General Manager, champion label `[CRM]`. She moved to Quill Hollow from Lowmoor Memorial Gardens six months ago `[Public: state licensing database]` (illustrative). The owner signs under $25K, alone `[CRM]` (illustrative), so the board condition counts as met. The owner's name is `[Unknown]`. A records finding appears in the last state review `[CRM]`, and its date is `[Unknown]` (illustrative). The owner brought a growth mandate when Ines Carmody arrived `[CRM]`. The state is `[Unknown]`, so there is no region tier yet. The new records are the reply of 2026-10-27 and the booked call of 2026-11-02, both `[CRM]` (illustrative).
+**Step 1: Intelligence Gathering.** One site, 8,800 plots, paper plat maps `[CRM]` (illustrative). One contact on file: Ines Carmody, General Manager, champion label `[CRM]`. She moved to Quill Hollow from Lowmoor Memorial Gardens six months ago `[Public: state licensing database]` (illustrative). The approver of record is the owner `[CRM]` (illustrative). The owner's name is `[Unknown]`. A records finding appears in the last state review `[CRM]`, and its date is `[Unknown]` (illustrative). The owner brought a growth mandate when Ines Carmody arrived `[CRM]`. The state is `[Unknown]`, so there is no region tier yet. The new records are the reply of 2026-10-27 and the booked call of 2026-11-02, both `[CRM]` (illustrative).
 
 **Step 2: Account Snapshot.**
 
@@ -862,7 +871,7 @@ Zone scores (illustrative), with the verdict. The reply adds no zone fact, and t
 
 - Zone 1, Records and Inventory Pain: MEDIUM. Paper plat maps `[CRM]`. The records finding has no date `[Unknown]`, so the HIGH test (a dated finding inside 24 months) is not met (profile: Qualification Zones).
 - Zone 2, Pre-Need Sales Motion: UNKNOWN. No pre-need activity is recorded `[Unknown]`. Silence is not a no.
-- Zone 3, Ownership and Decision Speed: HIGH. The owner signs under $25K alone `[CRM]` (illustrative), so the board condition counts as met.
+- Zone 3, Ownership and Decision Speed: HIGH. The approver of record is the owner `[CRM]` (illustrative). The year-one cost at one site is $15,788, under $25K `[Inferred: arithmetic]` (profile: Product Modules), and the board condition cannot apply to an owner who approves, so it counts as met.
 - Zone 4, Technology Readiness: UNKNOWN. Website and tools are not checked `[Unknown]`.
 - Zone 5, Growth or Succession: HIGH. A new GM in the last 24 months `[Public: state licensing database]` (illustrative) meets the HIGH column. The growth mandate is context, not a second condition.
 
@@ -877,7 +886,7 @@ Region map: no tier, because the state is `[Unknown]`.
 | General Manager, champion label | Ines Carmody | Replied to Email 1 `[CRM]` (illustrative). Booked a call for 2026-11-02 `[CRM]` (illustrative) | 2026-10-27 `[CRM]` (illustrative) | 1 |
 | Pre-Need Sales Manager, champion | Unknown, no contact found `[Unknown]` | n/a | n/a | 2 |
 | Operations Director, influencer | Unknown, no contact found `[Unknown]` | n/a | n/a | 3 |
-| Signer, owner (signs under $25K) | Unknown, no contact found `[Unknown]` | n/a | n/a | Not ranked (signer, not a persona) |
+| Signer, owner (approver of record) | Unknown, no contact found `[Unknown]` | n/a | n/a | Not ranked (signer, not a persona) |
 
 Ines Carmody ranks first, because she is the only named contact, she replied, and she runs the site now. The Champion Test counts seven behaviours. The dated booking is one of them, "commits to next steps with dates" `[CRM]` (illustrative), so one is met, and the status reads **Developing** (one or two met). The other six are not on record, so she is not Strong, and her champion label stays a label.
 
@@ -885,7 +894,7 @@ Ines Carmody ranks first, because she is the only named contact, she replied, an
 
 1. **Plot Records On Paper, Binders Or Pencil Maps.** HIGH confidence. Paper plat maps `[CRM]`. `[Inferred]`, reasoned from the record type: a paper map cannot show which plots are sold without a walk of the grounds. Discovery question: "How do you check today which plots are open?" Value prop: plot inventory matched against sold records (profile: Value Propositions).
 2. **Trust fund and records reporting by hand (event date unknown).** MEDIUM confidence. `[Inferred]`. The last state review found a records problem `[CRM]`, and its date is `[Unknown]`. The finding is a discovery question only, never the hook. Discovery question: "When was the last state review, and what did it ask you to fix?"
-3. **Plot Lookups Take Minutes To Hours.** MEDIUM confidence. `[Inferred]`, reasoned from the record type and the plot count: a paper map of 8,800 plots makes each lookup a search (profile: Core Pain Points, Pain 3). Discovery question: "When a family asks about a plot, how long does the lookup take?"
+3. **Plot Lookups Take Minutes To Hours.** LOW confidence. `[Inferred]`. No lookup time is on record, so the trait test is not met, and the row names no setting. It is shown only to fill the third slot (profile: Core Pain Points, Pain 3). Discovery question: "When a family asks about a plot, how long does the lookup take?"
 
 **Step 5: The Reply, Not A Sequence.** Quill Hollow is ENGAGED, so there is no cold sequence. Email 1 is not sent again as a cold touch, and Emails 2 and 3 are not drafted (Hard Rule 11). The one draft replies to her message.
 
@@ -923,7 +932,7 @@ account_status: ENGAGED
 verdict: GREENLIGHT
 zone_scores: 1 MEDIUM, 2 UNKNOWN, 3 HIGH, 4 UNKNOWN, 5 HIGH (illustrative)
 contact_priority: 1 Ines Carmody (General Manager, champion label, Developing, 1 of 7 met), 2 Pre-need manager, name Unknown (gap), 3 Operations Director, name Unknown (gap), signer: owner, name Unknown (economic buyer gap)
-pain_hypotheses: 1 Plot records on paper, binders or pencil maps (HIGH, Inferred), 2 Trust fund and records reporting by hand (event date unknown) (MEDIUM, Inferred), 3 Plot lookups take minutes to hours (MEDIUM, Inferred)
+pain_hypotheses: 1 Plot records on paper, binders or pencil maps (HIGH, Inferred), 2 Trust fund and records reporting by hand (event date unknown) (MEDIUM, Inferred), 3 Plot lookups take minutes to hours (LOW, Inferred)
 sequence: one reply draft to Ines Carmody's reply of 2026-10-27, ready (GREENLIGHT). No cold sequence, because the account is ENGAGED
 report_path: none (inline)
 next_action: Nadia Brandt sends the reply to Ines Carmody by 2026-10-29, the next business day after the run date (a reply to a buyer's own message, with no earlier record date)
@@ -1037,6 +1046,14 @@ The Business Case & ROI Kit (a paid Guild Pro kit) reads this skill's hand-off b
 
 ## Changelog
 
+
+### 2.1.13 (2026-10-26)
+- Pain hypothesis confidence is set by a Trait Test and a Setting Test, each read from the profile's Core Pain Points row on tagged facts. HIGH needs both, MEDIUM one, LOW neither. A dated event counts only when dated, and an undated event takes "(event date unknown)" and counts toward neither test.
+- Quill Hollow's lookup pain is LOW, not MEDIUM, because no lookup time is on record and a paper map is the means, not the measure. Example 1, Example 5 and the try-it promise change that one level. Pains 1 and 2 keep their levels.
+- Sable Fork's three pains are re-derived under the two tests: plot records on paper MEDIUM (a spreadsheet is not paper), trust reporting by hand MEDIUM, and plot lookups LOW. Its hand-off changes to match.
+- Brackhaven's second pain is named from the Core Pain Points taxonomy, Trust fund and records reporting by hand, MEDIUM, in place of the Oldgate renewal, which becomes an Email 2 angle and not a pain. A LOW third pain, plot lookups, is added so the example shows three pains, as the Step 4 rule requires.
+- Zone 3 HIGH reads the approver of record, and the year-one signing cost is derived from the profile's list price, so the records name who approves and not the signing rule. Example 1 and Example 5 say "approver of record" where they said "signs under $25K alone". Step 3 names the approver as the signer.
+- The try-it records remove the champion-label rule clause, and the try-it promise's region line uses the Output Contract's wording, "Region tier: no tier yet".
 
 ### 2.1.12 (2026-10-26)
 - The Output Contract's next_action row and Step 7 give one priority order for the next action. (1) A reply owed to a buyer who wrote to us. (2) AE coordination for an ACTIVE account with an AE owner. (3) The first send of a GREENLIGHT sequence. (4) A meeting already on the calendar. (5) The first send of a MANUAL REVIEW package, after a person clears it. (6) A DISQUALIFY with no reply owed, with no outreach. A meeting ranks ahead of a held package because a held package cannot go out until it is cleared.
