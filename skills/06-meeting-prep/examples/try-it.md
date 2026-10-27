@@ -45,9 +45,13 @@ Upstream From Account Snapshot, Run Earlier
 
 The lines below are the checked ones. The full sheet also holds the call flow, the meeting scripts and a DRAFT follow-up email, as the Output Contract requires.
 
+### Must Match
 - Meeting type: discovery. The demo check does not apply.
 - Top pain: plot records on paper, with a double sale [CRM] (illustrative).
-- Question bank: Situation 3, Problem 3, Implication 3 (top three each), Need-Payoff 2.
+- Next Action: Owen Pruitt asks Ruth Ellery on this call, in her own words, what the paper records and the double sale cost in plots, hours or dollars. Date: 2026-05-12 (illustrative), the call date on record, which is earlier than the five-business-day date of 2026-05-18 for a 2026-05-11 run.
+
+### Also In The Report
 - Qualification pre-fill: Metrics red. Economic buyer yellow. Decision criteria red. Decision process red. Paper process red. Identified pain red (no pain named by the buyer on record. The plot records and the double sale are CRM facts, so they are the hypothesis the call tests). Champion red. Competition yellow. Totals: 0 green, 2 yellow and 6 red, of 8.
+- Question bank: Situation 3, Problem 3, Implication 3 (top three each), Need-Payoff 2.
 - Proof for the attendees, one line each: Ruth Ellery (General Manager): none usable. The research target is 50 to 100 plots sold on paper and unsold on the map (Benchmark, deathcare research, paper-operations note, 2026-04-01). Walt Okonkwo (Operations Director): none usable. The target is a plot answer in 20 seconds (target, no dated source, from (profile: Value Propositions)), not a customer result.
-- Next action: Owen Pruitt asks Ruth Ellery on this call, in her own words, what the paper records and the double sale cost in plots, hours or dollars. In the same message he asks who signs above her and for the next meeting date. Owner and date are unchanged. The ask for the pain ranks first because Identified Pain is red. Date: 2026-05-12 (illustrative), the call date on record, which is earlier than the five-business-day date of 2026-05-18 for a 2026-05-11 run. The meeting date is [Unknown] until agreed.
+- In the same message he asks who signs above her and for the next meeting date. Owner and date are unchanged. The ask for the pain ranks first because Identified Pain is red. The meeting date is [Unknown] until agreed.

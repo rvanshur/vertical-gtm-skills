@@ -38,9 +38,14 @@ Our Product And Market
 
 ## What You Should Get
 
+### Must Match
+- Verdict: MONITOR.
+- Reminder set for 2026-12-18 to 2027-01-17.
+- Next Action: The BDR asks the original AE for the loss notes, the Oldgate renewal date and the current Lowmoor contact, in one message, by 2026-10-26, five business days after the run date of 2026-10-19.
+
+### Also In The Report
 - Loss classification: Budget / Timing [CRM] (the logged reason is "timing"), with no board-date sub-reason, because the records show no board date that passed before the close, and Lost to Competitor [CRM], with Oldgate named as the winner. Champion Left does not apply, because her move came after the loss.
-- Verdict: MONITOR. Days since close: 272 (nine months, counted to 2026-10-19). Reminder set for 2026-12-18 to 2027-01-17.
+- Days since close: 272 (nine months, counted to 2026-10-19).
 - Reopening events: a new general manager in the licensing record, an audit finding, or a consolidator purchase.
 - Strategy: the Buyer's Remorse play, selected (Lost to competitor, 6 to 12 months from close). Contact and history opener: held, because no contact is named and the Oldgate window cannot be placed. 0 emails are written.
-- Next action: The BDR asks the original AE for the loss notes, the Oldgate renewal date and the current Lowmoor contact, in one message, by 2026-10-26, five business days after the run date of 2026-10-19.
 - Later step: The BDR routes Ines Carmody and Quill Hollow Memorial Park to Account Snapshot (02) as a new account, by 2026-10-26, on the same date as the ask. She is not warm on this record, and the loss was not Champion Left, so the routing waits behind the ask.

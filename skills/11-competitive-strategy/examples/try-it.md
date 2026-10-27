@@ -34,8 +34,14 @@ Every name, date and number in this file is invented for the PlotIQ example. Not
 - Time to live: the incumbent at 120 to 180 days [Public: Deathcare research project, competitive research note, 2026-03-27] (research estimate, over 90 days old at the run date). PlotIQ's target is six weeks, with go-live in week 6 of the roadmap and no completed deal yet (profile: Value Propositions).
 
 ## What You Should Get
+
+### Must Match
+- Threat level: MEDIUM, average 1.6 across five factors.
+- Next Action: Owen Pruitt asks Ruth Ellery for the open gaps by 2026-10-26.
+
+### Also In The Report
 - Incumbent: direct software (profile: Competitive Landscape), Oldgate Ledger Pro [CRM].
-- Threat level: MEDIUM. The five factors are 1, 1, 2, 1 and 3. The sum is 8, and the average is 8 ÷ 5 = 1.6. Satisfaction is Frustrated. Product advantage is Broad. The two LOW clauses that are met (actively frustrated, already evaluating alternatives) have no effect at MEDIUM. No HIGH clause raises the level. The entrenchment clause is not met, because the start date is [Unknown]. A start date two years or more back would raise the level to HIGH, and discovery question 3, through its follow-up sentence about how long Oldgate has been in place, asks for it.
+- Threat level: MEDIUM. The five factors are 1, 1, 2, 1 and 3. The sum is 8, and the average is 8 ÷ 5 = 1.6. Satisfaction is Frustrated. Product advantage is Broad. The two LOW clauses that are met (actively frustrated, already evaluating alternatives) have no effect at MEDIUM. No HIGH clause raises the level. The entrenchment clause is not met, because the start date is [Unknown]. A start date two years or more back would raise the level to HIGH, and the start date is asked as the contract-status gap of Step 1B, not by the contract-renewal question in the profile.
 - Rival: Stonemark, evaluated [Call, 2026-09-26], with no preference on record [Unknown]. Its rival record is in section 1, its rows are in section 3, and its test questions are in section 4. It is not scored, and it does not change the threat level.
 - Upstream MEDDPICC fields: none on record, so Step 1 writes each one as `[Unknown]`, does not read the competition element, and the run goes on.
 - Zones: Zones 1 and 5 are HIGH. Zones 3 and 4 are MEDIUM. Zone 2 is UNKNOWN. Zone 4 is MEDIUM because the incumbent is a legacy system in its profile row, and Ruth names on a dated call a job it does not do. The verdict is not stated here, and it stays with Account Qualification (01).

@@ -27,12 +27,17 @@ The Account
 
 ## What You Should Get
 
+### Must Match
+- Urgency window: 2026-08-30 to 2026-10-29. Days remaining: 10.
+- Trigger status: STALE, so the sequence runs.
+- Next Action: Nadia Brandt finds the acquirer's CFO or controller and the site GM by 2026-10-20, the send day of Email 1.
+
+### Also In The Report
 - Trigger type: Acquisition / M&A (profile trigger: consolidator buys the site, profile: Qualification Criteria). Event tag: [Public: state licensing database].
-- Urgency window: 2026-08-30 to 2026-10-29. Days remaining: 10. Share remaining: 10 of 60 window days (17%). Trigger status: STALE, so the sequence runs.
+- Share remaining: 10 of 60 window days (17%).
 - Sequence: two personas, three emails each, six emails in total: the acquirer's CFO or controller, whose name is [Unknown], and the site GM, whose name is [Unknown].
 - Email 1 on 2026-10-20 (Day 1), subject "Corrow Ridge after the Harborline close". Email 2 on 2026-10-23 (Day 4). Email 3 on 2026-10-27 (Day 8).
 - Proof point: none. The proof point for this trigger (profile: Trigger Catalog) is Illustrative, so no figure goes into any email.
 - Disqualifier check: Harborline's ownership type and its system are [Unknown]. Email 1 and Email 2 neither state nor ask about either one, so both go out on their days without waiting. No email asks about the system, so the check is due 2026-10-26, the business day before the last send day, 2026-10-27.
 - Deadline in Email 1: the integration review date, 2027-02-16, from the deal notice, because the trigger is STALE. The body of Email 1 names it.
-- Next action: Nadia Brandt finds the acquirer's CFO or controller and the site GM by 2026-10-20, the send day of Email 1.
 - Later steps: send Email 1 on 2026-10-20 (Day 1) after reading the draft. Run the Harborline ownership and system check by 2026-10-26, before Email 3 on 2026-10-27.

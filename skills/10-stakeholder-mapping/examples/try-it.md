@@ -28,8 +28,14 @@ Every name, date and number in this file is invented for the PlotIQ example. Not
 - The rep's plan for Walt is a demo on his own work orders (profile: Buying Committee). The notes hold no plan for the chair's cost concern [Notes].
 
 ## What You Should Get
-- Threading score 6 (scored 7 of 7; raw total 11 of 20, Blocker Mitigation 0 because the board chair's cost concern has no plan), Developing, with material gaps. Full C-level credit is withheld, because the board chair is not a named contact on file.
-- Champion: Strong (Ruth Ellery, four of seven shared champion tests met).
+
+### Must Match
+- Threading score 6 (scored 7 of 7; raw total 11 of 20, Blocker Mitigation 0 because the board chair's cost concern has no plan), Developing, with material gaps.
 - Ghost Nodes: UNKNOWN, family board chair (the economic buyer slot), UNKNOWN, systems administrator and UNKNOWN, funeral home owner.
+- Next Action: Owen Pruitt asks Ruth Ellery, by 2026-10-26, five business days after the 2026-10-19 run date, for the board chair's name first.
+
+### Also In The Report
+- Full C-level credit is withheld, because the board chair is not a named contact on file.
+- Champion: Strong (Ruth Ellery, four of seven shared champion tests met).
 - Economic Buyer: a ghost node with one call and no named contact.
-- Next Action: Owen Pruitt asks Ruth Ellery, by 2026-10-26, five business days after the 2026-10-19 run date, for the board chair's name first. In the same message he asks her to confirm the 2026-11-12 board date and follows up on her silence since her 2026-10-03 reply. The introduction to the chair is not part of this message, because the name is not on record yet. Later steps, in order: Owen's preparation of the answer to the board chair's cost concern (HIGH, by 2026-11-02), the systems administrator (HIGH, by 2026-11-02), the funeral home owner (MEDIUM, by 2026-11-18) and the find-the-plot demo on Walt's work orders (MEDIUM, by 2026-11-18).
+- In the same message he asks her to confirm the 2026-11-12 board date and follows up on her silence since her 2026-10-03 reply. The introduction to the chair is not part of this message, because the name is not on record yet. Later steps, in order: Owen's preparation of the answer to the board chair's cost concern (HIGH, by 2026-11-02), the systems administrator (HIGH, by 2026-11-02), the funeral home owner (MEDIUM, by 2026-11-18) and the find-the-plot demo on Walt's work orders (MEDIUM, by 2026-11-18).

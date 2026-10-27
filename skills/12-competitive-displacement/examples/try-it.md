@@ -21,7 +21,13 @@ Every name, date and number in this file is invented for the PlotIQ example. Not
 - Proof Points: Fennick Gardens (212 unsold plots found in 90 days) and Holloway Hills (zero records findings in its first state review) each carry their own Status and Displaced vendor (profile: Proof Points).
 
 ## What You Should Get
-- Incumbent: direct software, Stonemark. Difficulty: Medium, because the renewal test is met (January 2027 is inside 180 days). The rating is directional.
+
+### Must Match
+- Incumbent: direct software, Stonemark. Difficulty: Medium, because the renewal test is met (January 2027 is inside 180 days).
 - Personas: 2 of 5 profile rows. Pre-Need Sales Manager is primary, and Cemetery General Manager is secondary. Both contacts are [Unknown].
+- Next Action: Nadia Brandt finds the Pre-Need Sales Manager's name, then reviews and sends Email 1 by 2026-10-26, five business days after the run date of 2026-10-19.
+
+### Also In The Report
+- The rating is directional.
 - Sequences: 2 personas, 4 emails each, 8 written. Two are on HOLD, Email 3 for each persona, until a proof point is Verified, and 6 are drafted. Pre-Need Sales Manager Email 1 is shown in full, with the subject "Pre-need requests from the intake form" and its one question, "Which system runs the pre-need side, and who maintains it?" The other drafts follow the same rules and are left off the page: Pre-Need Sales Manager Emails 2 and 4, and the four Cemetery General Manager emails, of which Emails 1, 2 and 4 are drafted and Email 3 is on HOLD.
-- Next Action: Nadia Brandt finds the Pre-Need Sales Manager's name, then reviews and sends Email 1 by 2026-10-26, five business days after the run date of 2026-10-19. The finding and the send are one move with one owner and one date. If no name is found by 2026-10-26, Email 1 goes to the title on that date, because a missing name never holds a due email. Later steps: Nadia Brandt finds the Cemetery General Manager's name and sends that persona's Email 1, and Email 2 to the Pre-Need Sales Manager goes no earlier than five business days after Email 1 (2026-11-02, counted from the Email 1 anchor of 2026-10-26). Email 4 for the Pre-Need Sales Manager goes no earlier than 2026-11-09, which is 53 days before the renewal on 2027-01-01, counted from the same anchor, and that is short of the 60 to 90 day aim, so the spacing wins.
+- The finding and the send are one move with one owner and one date. If no name is found by 2026-10-26, Email 1 goes to the title on that date, because a missing name never holds a due email. Later steps: Nadia Brandt finds the Cemetery General Manager's name and sends that persona's Email 1, and Email 2 to the Pre-Need Sales Manager goes no earlier than five business days after Email 1 (2026-11-02, counted from the Email 1 anchor of 2026-10-26). Email 4 for the Pre-Need Sales Manager goes no earlier than 2026-11-09, which is 53 days before the renewal on 2027-01-01, counted from the same anchor, and that is short of the 60 to 90 day aim, so the spacing wins.

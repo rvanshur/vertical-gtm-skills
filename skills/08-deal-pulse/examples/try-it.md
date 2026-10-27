@@ -45,9 +45,16 @@ Every name, date and number in this file is invented for the PlotIQ example. Not
 - Economic buyer: the family board chair, whose name is [Unknown].
 
 ## What You Should Get
+
+### Must Match
 - Health 72 (1,150 ÷ 16 = 71.9, shown as 72), scored 16 of 16. Risk: Medium Risk.
+- The one RED signal is Technical Readiness, and the next action is the step that addresses it.
+- Next Action: Owen Pruitt asks Ruth Ellery for the IT owner and a technical discovery on the Oldgate export by 2026-10-02 (proposed, not yet agreed).
+
+### Also In The Report
 - Pillar averages: Why Anything 87.5, Why Us 62.5, Why Now 62.5, Execution 75.0. No pillar is below 30, so the pillar step does not apply.
-- Scorecard: 8 GREEN, 7 YELLOW and 1 RED. The RED signal is Technical Readiness.
-- Next action: Owen Pruitt asks Ruth Ellery, in one message, who runs IT at Brackhaven and for a technical discovery on the Oldgate export on Friday 2026-10-02. The Friday is the date Owen proposed in his notes, so it is the step's date, named as proposed. It is earlier than the five-business-day date of 2026-10-05 for a 2026-09-28 run. Later step: Owen asks Ruth Ellery to confirm the family board's approval date, by 2026-10-05. The second call with the board chair is YELLOW evidence, due on the default date of 2026-10-05, so it is a later step as well.
+- Scorecard: 8 GREEN, 7 YELLOW and 1 RED.
+- Next action date: The Friday is the date Owen proposed in his notes, so it is the step's date, named as proposed. It is earlier than the five-business-day date of 2026-10-05 for a 2026-09-28 run.
+- Travelling asks, in the same message to Ruth Ellery: Owen also asks her to confirm the family board's approval date, which is the Stage 5 exit criterion, and to take up her offer to introduce the board chair for a second call, which is YELLOW evidence. The profile does not date either ask, and the close date has not moved, so the second-slip stage rule does not set a date. Neither ask has a date of its own, so both travel with the next action.
 - Interactions in the last 30 days: 8, all dated in the records (illustrative).
 - Evidence Confidence: Moderate, 8 dated interactions in the last 90 days, with 1 more undated (illustrative). It does not change the score.

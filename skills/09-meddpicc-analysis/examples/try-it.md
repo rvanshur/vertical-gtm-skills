@@ -24,11 +24,17 @@ Every name, date and number in this file is invented for the PlotIQ example. Not
 - Competition: Oldgate Ledger Pro is the incumbent, direct software, with renewal in March 2027 [CRM]. The rep's notes say Stonemark was also evaluated, with no preference stated [Notes]. The strategy is in the rep's notes and has not been put to the buyer [Notes].
 
 ## What You Should Get
+
+### Must Match
 - Health 84, scored 8 of 8, GREEN (4.20 ÷ 5 × 100 = 84).
+- Stage Recommendation: HOLD at Stage 5 Negotiate, checked 2026-10-05.
+- Next Action: Owen Pruitt asks Ruth Ellery to walk through the legal and vendor steps by 2026-10-05.
+
+### Also In The Report
 - Element Scores: Metrics 4, Economic Buyer 4, Decision Criteria 4, Decision Process 4, Paper Process 3, Identified Pain 5, Champion 5, Competition 4.
 - Champion: Strong, four of seven shared champion tests met, each tagged and dated: creates urgency, explains the internal politics, offers introductions, and commits to next steps with dates (she agreed to the 2026-11-12 board date on the 2026-09-26 call).
 - Scoring Basis: the metric wording and the team's paper steps are [RECORD] in the profile, so the report says the rubric alone is used for Metrics and Paper Process, and that the team's own paper steps are not yet set.
 - Stage Check: the Stage 5 Negotiate minimum of 70 is met. The Stage 6 Closed-Won and Handoff minimum of 75 is met on health but not on the critical elements, because Paper Process is 3 and needs 4.
-- Stage Recommendation: HOLD at Stage 5 Negotiate, checked 2026-10-05. The top risk is Paper Process at 3.
-- Next Action: Owen Pruitt asks Ruth Ellery to walk through the legal and vendor steps by 2026-10-05, five business days after the run date of 2026-09-28, with no earlier record date. In the same message he asks for the board's approval sequence and the confirmation of the 2026-11-12 meeting. That ask is also due 2026-10-05, because Decision Process carries the Stage 6 approval-date exit criterion, which makes it a critical gap, so it travels with the next action. The Metrics (ROI), Economic Buyer (second call with the board chair) and Decision Criteria (written criteria) actions are later steps dated 2026-10-12.
+- Top Risk: The top risk is Paper Process at 3.
+- Next Action Basis: The date is five business days after the run date of 2026-09-28, with no earlier record date. In the same message he asks for the board's approval sequence and the confirmation of the 2026-11-12 meeting. That ask is also due 2026-10-05, because Decision Process carries the Stage 6 approval-date exit criterion, which makes it a critical gap, so it travels with the next action. The Metrics (ROI), Economic Buyer (second call with the board chair) and Decision Criteria (written criteria) actions are later steps dated 2026-10-12.
 - Deal Pulse Field: Deal Pulse (08), 2026-09-28: Pulse health [Unknown], risk_level [Unknown]. No comparison is made.

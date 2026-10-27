@@ -33,10 +33,20 @@ Every name, date and number in this file is invented for the PlotIQ example. Not
 - Team quick win types: not recorded for Brackhaven.
 
 ## What You Should Get
+
+### Must Match
 - Composite readiness: 60 of 100, scored 6 of 6, Yellow (ready with conditions).
+- Kickoff: 2026-12-07, proposed before the signature.
+- Next Action: Owen Pruitt asks Ruth Ellery to name a Brackhaven IT owner by 2026-11-09.
+
+### Also In The Report
 - Dimension scores: Stakeholder 3, Workflow 4, Technical 2, Data 3, Resource 3, Change Management 3.
-- Three dates, all proposed before signature: kickoff 2026-12-07 (2026-11-02 plus 21 days is 2026-11-23, then plus the 14-day IT lead time is 2026-12-07), go-live 2027-01-25 (2026-12-07 plus 49 days), Full Adoption Date 2027-02-08 (2026-12-07 plus two months is 2027-02-07, a Sunday, so it rolls to Monday 2027-02-08).
+- Kickoff arithmetic: 2026-11-02 plus 21 days is 2026-11-23, then plus the 14-day IT lead time is 2026-12-07.
+- Go-live: 2027-01-25 (2026-12-07 plus 49 days).
+- Full Adoption Date: 2027-02-08 (2026-12-07 plus two months is 2027-02-07, a Sunday, so it rolls to Monday 2027-02-08).
 - Preview: the signature is expected 2026-11-16, after this check, so the report carries the Preview label at the top and all three dates are labelled proposed.
 - Full Adoption adjustments: Source Systems adds nothing, because Brackhaven has one system. The export format is new to the team, so it subtracts nothing. The Sunday result rolls to Monday.
 - Top risks: Technical (HIGH), Stakeholder (HIGH) and Adoption (MEDIUM).
-- Next action: Owen Pruitt asks Ruth Ellery, in one message, to name a Brackhaven IT owner, to name the family board chair and confirm the sponsor in writing, and to name two or three power users for the pilot. The date is 2026-11-09, five business days after the run date of 2026-11-02, since no earlier date is on record. The asks run in risk order: the IT owner first because Technical is the top-ranked risk, then the sponsor, then the power users for Adoption. Later steps: the export test with the incumbent's support, Walt Okonkwo joins the work-order demo (a different person), Ruth brings a week of plot lookup times (research first, default date 2026-11-09), and the quick wins.
+- Next action date: 2026-11-09 is five business days after the run date of 2026-11-02, since no earlier date is on record.
+- Bundled asks, in the same message: the family board chair is named and the sponsor confirmed in writing (Stakeholder), two or three power users are named for the pilot (Adoption), and the data owner for the Oldgate ledger is named (Data). The IT owner ask leads, because Technical is the top-ranked risk.
+- Later steps: the export test with the incumbent's support, Ruth brings a week of plot lookup times (research first, no date set), and the quick wins.

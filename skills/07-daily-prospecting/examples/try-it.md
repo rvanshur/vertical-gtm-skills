@@ -104,9 +104,14 @@ Tamsin Vale Cemetery
 
 ## What You Should Get
 
-- Dashboard: 7 accounts on the sheet, 6 to dial and 1 on hold. Tiers: 2 Hot, 2 Warm, 2 New, 1 Recycle (hold). Strongest opportunity: Corrow Ridge Cemetery, with 10 days left in its trigger window.
-- Exclusions: 3 (Brackhaven Memorial Gardens by the BDR guard, Northvale Memorial Holdings as OUT, and one opted-out contact at Lowmoor).
+### Must Match
+- Dashboard: 7 accounts on the sheet, 6 to dial and 1 on hold. Tiers: 2 Hot, 2 Warm, 2 New, 1 Recycle (hold).
 - Priority dial queue, top three: 1 Corrow Ridge Cemetery (Hot, GREENLIGHT). 2 Sable Fork Cemetery (Hot, MANUAL REVIEW). 3 Quill Hollow Memorial Park (Warm, GREENLIGHT).
+- Next Action: Nadia Brandt replies to the Sable Fork demo request by 2026-10-20, the next business day after the run date, and asks who sent the form.
+
+### Also In The Report
+- Strongest opportunity: Corrow Ridge Cemetery, with 10 days left in its trigger window.
+- Exclusions: 3 (Brackhaven Memorial Gardens by the BDR guard, Northvale Memorial Holdings as OUT, and one opted-out contact at Lowmoor).
 - Lowmoor Memorial Gardens is on hold as Recycle. Closed-Loss Reactivation holds it on MONITOR.
-- Next action: Nadia Brandt replies to the Sable Fork demo request by 2026-10-20, the next business day after the run date, and asks who sent the form. A reply owed to a buyer ranks first in the order. Also under her name today: the Corrow Ridge dial and the Brackhaven intel share to Owen Pruitt, each due 2026-10-19 on its task record.
+- A reply owed to a buyer ranks first in the order. Also under her name today: the Corrow Ridge dial and the Brackhaven intel share to Owen Pruitt, each due 2026-10-19 on its task record.
 - Report path: none (inline).

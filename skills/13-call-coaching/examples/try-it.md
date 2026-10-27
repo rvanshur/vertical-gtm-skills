@@ -38,8 +38,13 @@ These records are as of 2026-05-12, before Brackhaven's deal reached Stage 5 Neg
 - Competitive: Oldgate Ledger Pro, renewal March 2027 [CRM].
 
 ## What You Should Get
+
+### Must Match
 - Call score: 24 of 35, scored 7 of 7, Good (the 24 to 30 band of the restated scale).
-- Category scores: Pre-Call Preparation 4, SPIN Discovery Quality 3, Priority Ladder Execution 3, Active Listening 4, Value Articulation 3, Next Steps and Momentum 3, Alternatives 4.
+- Next Action: Owen Pruitt sends Ruth Ellery one message. The date is 2026-05-19, the five-business-day date from the run date of 2026-05-12, because no earlier date is on record.
+
+### Also In The Report
 - Champion status: Strong, with three of seven shared champion tests met on this call: explains the internal politics (28:30), asks how to help (33:00), and shares competitor intelligence (17:05).
+- Category scores: Pre-Call Preparation 4, SPIN Discovery Quality 3, Priority Ladder Execution 3, Active Listening 4, Value Articulation 3, Next Steps and Momentum 3, Alternatives 4.
 - Focus area for the next call: Priority Ladder to Level 3 on the cost of a plot lookup and on the cost of the paper records, with the section F double sale inside the paper-records cost. The stage gate it serves is "Records problem quantified (plots, hours or dollars)."
-- Next action: Owen Pruitt sends Ruth Ellery one message. It answers her 33:00 question about what the rep needs from her side to put it before the board. It asks for the family board chair's name, the date the board takes up the decision, the date she will check with the board, and who on her side would own the technical set-up, since the call records no IT person. The date is 2026-05-19, the five-business-day date from the run date of 2026-05-12, because no earlier date is on record. Later steps, in order: first, the second discovery session, which has no date yet and is a proposal rather than part of the message. Last, the focus-area practice, quantifying the lookup cost and the paper-records cost before that session.
+- It answers her 33:00 question about what the rep needs from her side to put it before the board. It asks for the family board chair's name, the date the board takes up the decision, the date she will check with the board, and who on her side would own the technical set-up, since the call records no IT person. Later steps, in order: first, the second discovery session, which has no date yet and is a proposal rather than part of the message. Last, the focus-area practice, quantifying the lookup cost and the paper-records cost before that session.
