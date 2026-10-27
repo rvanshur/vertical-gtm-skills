@@ -198,8 +198,8 @@ cp profiles/examples/plotiq-example.md profiles/client-profile.md
 |------|-----------------|
 | **BDR / SDR** | Account Snapshot (02) · Trigger Event Outbound (04) · Daily Prospecting (07) |
 | **AE** | Meeting Prep (06) · Deal Pulse (08) · Stakeholder Mapping (10) |
-| **Sales Manager / VP** | Account Pre-Qualification (01) · Deal Pulse (08) · Call Coaching (13) |
-| **RevOps / Enablement** | Account Pre-Qualification (01) · MEDDPICC Analysis (09) · Sales-to-CS Handoff (14) |
+| **Sales Manager / VP** | Account Qualification (01) · Deal Pulse (08) · Call Coaching (13) |
+| **RevOps / Enablement** | Account Qualification (01) · MEDDPICC Analysis (09) · Sales Handoff (14) |
 
 ### Step 4: Run Your First Skill
 Open Claude Code in the cloned folder and try:
@@ -247,7 +247,7 @@ Skills compound when used together. A typical first 30 days, following one accou
 
 | Day | Action | Skills Used |
 |-----|--------|-------------|
-| 1 | Qualify your target list | Account Pre-Qualification |
+| 1 | Qualify your target list | Account Qualification |
 | 3 | Build outbound packages for the GREENLIGHT accounts | Account Snapshot |
 | 7 | Deep-dive your top enterprise targets | Research-Driven Outbound |
 | 14 | SPIN discovery prep | Meeting Prep |
