@@ -317,7 +317,7 @@ Read by Daily Prospecting (07).
 
 - **Hot Definition:** a trigger inside its window plus Zone 1 HIGH, or an INBOUND request not yet answered and within 3 business days of arriving
 - **Daily Capacity:** [RECORD]. No figure is recorded for PlotIQ
-- **Exclusion Rules:** ACTIVE with an AE owner unless that AE said yes (Brackhaven, owned by Owen Pruitt). OUT accounts. Opt-outs. Any account contacted in the last 14 days with no reply
+- **Exclusion Rules:** ACTIVE with an AE owner unless that AE said yes (Brackhaven once its deal opens, owned by Owen Pruitt). OUT accounts. Opt-outs. Any account contacted in the last 14 days with no reply
 - **Opener, Verbatim (illustrative):** "I work with cemetery general managers whose plot maps are still on paper. One question: how many plots could you sell today if the records were right?"
 - **Trustworthy CRM Fields:** [RECORD]. PlotIQ's CRM has two beta accounts and no history to grade
 
@@ -463,7 +463,7 @@ Every worked example in this library, its skill pages and its Guild articles use
 | **Sable Fork Cemetery** | 1 site, 2,900 plots, plot list in a spreadsheet. GM Arlen Biggs signs under $25K | INBOUND. Requested a demo through the website form after a search | Inbound request: quick call prep |
 | **Greyfield Memorial Park** | 1 site, 9,000 plots. Digital map from Stonemark. Pre-need team of 3 with an intake form on the site | TARGET. Stonemark contract renews January 2027. Wants pre-need and records together | Competitive displacement against Stonemark |
 | **Lowmoor Memorial Gardens** | 1 site, 7,500 plots. GM Ines Carmody until April 2026 | LOST. Closed-lost to Oldgate nine months ago on "timing" | Closed-loss reactivation |
-| **Quill Hollow Memorial Park** | 1 site, 8,800 plots, paper plat maps and a records finding in its last state review (illustrative). GM Ines Carmody moved here from Lowmoor 6 months ago with an owner growth mandate | TARGET until Ines Carmody replies to Email 1 on 2026-10-27, then ENGAGED. Ines Carmody, the Lowmoor GM during that deal, now runs this site. Owner signs under $25K | Follow-the-champion play |
+| **Quill Hollow Memorial Park** | 1 site, 8,800 plots, paper plat maps and a records finding in its last state review (illustrative). GM Ines Carmody moved here from Lowmoor 6 months ago with an owner growth mandate | TARGET. In the example story, Email 1 goes out by 2026-10-26 and Ines Carmody replies on 2026-10-27, which makes the account ENGAGED. Ines Carmody, the Lowmoor GM during that deal, now runs this site. Owner signs under $25K | Follow-the-champion play |
 | **Northvale Memorial Holdings** | Public consolidator, about 240 funeral homes and 90 cemeteries, runs its own in-house system | OUT. Not a fit | A hard disqualifier |
 
 Where an example needs a number this table does not supply, label it illustrative in the example itself. Never present an example number as a real PlotIQ result.
