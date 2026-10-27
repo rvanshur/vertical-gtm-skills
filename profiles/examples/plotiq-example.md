@@ -111,7 +111,7 @@ Not used as the lead line: "AI-powered cemetery management." Article 51 tested i
 | 2 | Plot and trust records a state auditor accepts | Pain #2 | Holloway Hills: zero records findings in its first state review (illustrative) |
 | 3 | A plot answer in seconds, not 20 minutes | Pain #3 | Target of 20 seconds (research). No customer proof yet |
 | 4 | Pre-need leads worked within an hour | Pain #4 | Target only. Most operators take 24 hours or more (research) |
-| 5 | Live in six weeks, one price | Pain #5 | Go-live in week 6 of the roadmap. Year one under the $25K board line |
+| 5 | Live in six weeks, one price | Pain #5 | Go-live in week 6 of the roadmap. Year one under the $25K board line for a one-site account. A two-site combination goes above it |
 
 ## Product Modules
 
@@ -216,7 +216,7 @@ Stages: 1 Target, 2 Discovery, 3 Demo, 4 Proposal, 5 Negotiate, 6 Closed-Won and
 
 | Stage | Exit Criteria | Required Evidence |
 |-------|-------------|-------------------|
-| 2 Discovery to 3 Demo | Records problem quantified (plots, hours or dollars). GM named as likely economic buyer | Discovery notes with numbers and a named GM |
+| 2 Discovery to 3 Demo | Records problem quantified (plots, hours or dollars). Economic buyer named (the family board chair at a combination, or the GM where the GM signs under $25K) | Discovery notes with numbers and the named economic buyer |
 | 3 Demo to 4 Proposal | Board date known. Top pain shown on the prospect's own plot records | Buying reasons captured |
 | 4 Proposal to 5 Negotiate | MEDDPICC at 70 or higher. Trust fund reporting process mapped | MEDDPICC analysis run |
 | 5 Negotiate to 6 Closed-Won and Handoff | Board or CFO approval date set. Handoff plan agreed | Handoff readiness checked |
@@ -456,7 +456,7 @@ Every worked example in this library, its skill pages and its Guild articles use
 
 | Account | Profile | Situation And Status | Used For |
 |---|---|---|---|
-| **Brackhaven Memorial Gardens** | Combination, 2 sites, 11,000 plots, paper plot maps, one double sale in 24 months (illustrative). GM Ruth Ellery. Operations Director Walt Okonkwo is skeptical of tablets. Pre-need manager Priscilla Dunmore. Family board chair is the economic buyer | TARGET on 2026-05-04, then ACTIVE once a deal opens, at Stage 5 Negotiate from 2026-09-09. Legacy on-premise system from Oldgate, renewal March 2027. Also evaluated Stonemark mapping. Owner retires within 3 years (illustrative). Handoff to Eli Marsh on signature | Flagship deal: qualification, snapshot, triggers, meeting prep, deal pulse, MEDDPICC, stakeholder map, competitive strategy and handoff |
+| **Brackhaven Memorial Gardens** | Combination, 2 sites, 11,000 plots, paper plot maps, one double sale in 24 months (illustrative). GM Ruth Ellery. Operations Director Walt Okonkwo is skeptical of tablets. Pre-need manager Priscilla Dunmore. Family board chair is the economic buyer | TARGET on 2026-05-04, ACTIVE at Stage 2 Discovery from 2026-05-06 when its deal opened, and Stage 5 Negotiate from 2026-09-09. Legacy on-premise system from Oldgate, renewal March 2027. Also evaluated Stonemark mapping. Owner retires within 3 years (illustrative). Handoff to Eli Marsh on signature | Flagship deal: qualification, snapshot, triggers, meeting prep, deal pulse, MEDDPICC, stakeholder map, competitive strategy and handoff |
 | **Saltmarsh Heritage Group** | Family-owned group, 5 sites (2 cemeteries, 3 funeral homes). CFO Hector Ruiz approves budget | TARGET. Its annual owner letter, posted on the company site, says all five sites move to one system in 2027. Three funeral homes run pre-need counselors | Multi-location operator, research-driven outbound from the owner letter |
 | **Corrow Ridge Cemetery** | 1 site, 14,000 plots, paper plat maps. A double sale in 2025, one plot sold twice (illustrative). Acquired 4 months ago by Harborline Funeral Partners, a 14-site regional consolidator | TARGET. GM keeps site budget until the integration review in Q1 2027 | Ownership-change trigger outbound |
 | **Tamsin Vale Cemetery** | 1 site, 4,200 plots, paper plat maps and one binder per section. Two double sales in 2 years (illustrative) | TARGET | Paper-maps manual process: snapshot, found plots |
