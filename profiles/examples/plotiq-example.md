@@ -196,7 +196,7 @@ PlotIQ is in beta and has no real customers yet. Status is one of Verified (the 
 | Holloway Hills Memorial Park (beta) | Zero records findings in first state review | Independent cemetery | [Unknown] | Compliance objection, Operations Director | Illustrative (GM on video, pending permission) |
 | Brackhaven Memorial Gardens | No result yet (flagship, in negotiation) | Combination | Oldgate Ledger Pro (direct software), if signed | Do not cite until signed, and not before a full year of numbers | Illustrative (none yet) |
 | Industry, not a customer | Independents capture pre-need on 20% to 35% of at-need volume, the largest public operator about 60% | All | none | Pre-need conversation framing | Benchmark (deathcare research, 2026-03-27 to 2026-04-01) |
-| Industry, not a customer | Federal Funeral Rule penalties up to $53,088 per violation | All | none | Compliance framing | Benchmark (deathcare research, regulatory landscape note, 2026-03-27) |
+| Industry, not a customer | Federal Funeral Rule penalties up to $53,088 per violation | All | none | Compliance framing | Benchmark (FTC maximum for a knowing rule violation, 16 CFR 1.98(d), checked 2026-11-13) |
 
 The Fennick Gardens case study waits until its numbers cover a full year (January 2027), as article 51 requires.
 
@@ -250,8 +250,8 @@ Read by Research Outbound (03), Trigger Event Outbound (04) and Closed-Loss Reac
   - 29,015 U.S. funeral homes (deathcare research, 2026)
   - $139.2M cemetery management software market (deathcare research, 2025)
   - 61.9% cremation rate (deathcare research, 2024)
-  - Federal Funeral Rule penalties up to $53,088 per violation (deathcare research, regulatory landscape note, 2026-03-27)
-  - California annual trust filing due May 1. New York annual CPA audit due December 31 (deathcare research, regulatory landscape note, 2026-03-27)
+  - Federal Funeral Rule penalties up to $53,088 per violation (FTC Act section 5(m)(1)(A), 16 CFR 1.98(d), checked 2026-11-13)
+  - California endowment care fund annual report, with a CPA-signed audit, due June 1, or within five months after the fiscal year closes (Cemetery and Funeral Bureau annual report form, BPC section 7612.6, checked 2026-11-13). New York annual financial report due within 90 days after the fiscal year closes, with a CPA audit or CPA review for larger cemeteries (New York Division of Cemeteries, checked 2026-11-13)
 - **The Number We Move:** unsold plots found. First-call hook of 50 to 100 plots (deathcare research, paper-operations note, 2026-04-01, a Benchmark). 212 in 90 days at Fennick Gardens (illustrative)
 - **Vertical Financial Signals:** a consolidator's public filing (site count and the system it runs, which can disqualify). An owner letter naming a systems move (a dated project). A pre-need counselor job posting (a pre-need motion starting). A legacy-platform job posting (a renewal coming)
 - **Private-Company Sources:** the state licensing database (ownership and the GM of record, lag of weeks). The company website (pre-need intake form, staff page, no lag). Local press (double sales and findings, lag of days). Job boards (postings, lag of days)
@@ -275,7 +275,7 @@ Read by Account Snapshot (02).
 - **Reference Email (illustrative):** "Ruth, most cemeteries your size are carrying 50 to 100 plots that are sold on paper but unsold on the map, or the other way round. If a 15-minute look at how your plot maps are kept would be useful, I can show you what the first sites found. Nadia" (The 50 to 100 figure is a research Benchmark. No PlotIQ result is cited, because every PlotIQ proof point is Illustrative today.)
 - **Vertical Research Sources:** the state licensing database (ownership, GM of record). The company website (pre-need form, staff page, plot information). Job boards (counselor and legacy-platform postings). Local press (double sales, findings, ownership changes)
 - **Call-Today Triggers:** a state audit letter in the news, a double sale in the local press, a new GM in the licensing record, an INBOUND form not yet answered
-- **Region Map:** Tier A, states with an annual trust filing and an audit (California, filing due May 1. New York, CPA audit due December 31. Source: deathcare research, regulatory landscape note, 2026-03-27). Tier B, states with a filing and no audit: [RECORD]. Tier C, no annual filing: [RECORD]. The cost of a missed rule is highest in Tier A, so Tier A accounts rank first
+- **Region Map:** Tier A, states with an annual trust filing and an audit (California, report and CPA audit due June 1 or five months after the fiscal year closes. New York, annual report due 90 days after the fiscal year closes, with a CPA audit or review for larger cemeteries. Sources: the sourced facts above, checked 2026-11-13). Tier B, states with a filing and no audit: [RECORD]. Tier C, no annual filing: [RECORD]. The cost of a missed rule is highest in Tier A, so Tier A accounts rank first
 
 ## Trigger Catalog
 
@@ -283,7 +283,7 @@ Read by Trigger Event Outbound (04). One row per trigger in Buying Triggers. A d
 
 | Trigger | Rule Or Deadline It Creates (citation) | Proof Point That Fits | Credible First Line |
 |---|---|---|---|
-| Audit finding on records or trust fund | The state's correction deadline, from the audit letter. California trust filing due May 1, New York CPA audit due December 31 (deathcare research, regulatory landscape note, 2026-03-27). Other states: [RECORD] | Holloway Hills, zero records findings (illustrative) | "Your state review flagged the records. Here is how one site cleared its next one." |
+| Audit finding on records or trust fund | The state's correction deadline, from the audit letter. California report and CPA audit due June 1 or five months after the fiscal year closes, New York annual report due 90 days after the fiscal year closes (checked 2026-11-13). Other states: [RECORD] | Holloway Hills, zero records findings (illustrative) | "Your state review flagged the records. Here is how one site cleared its next one." |
 | Consolidator buys the site | The integration review date in the deal notice, when one is published. No statutory deadline | Fennick Gardens, 212 plots (illustrative) | "Before the integration review, it helps to know what the plot map is worth." |
 | Double-sold plot or wrong-plot burial | No statutory deadline. The window is the local press cycle, 30 to 60 days (profile estimate) | Holloway Hills (illustrative) | "A double sale is a records problem, not a people problem. Here is what fixed it elsewhere." |
 | General manager or owner change | None. The window is the new leader's first 90 to 180 days | Fennick Gardens (illustrative) | "New GMs usually inherit the plot map and the filing at the same time." |
@@ -372,7 +372,7 @@ Written for the PlotIQ example, on the chain file's facts. Every figure is marke
 | Trend | Dated Source | What It Means For The Incumbent's Customers |
 |---|---|---|
 | Independents capture pre-need on 20% to 35% of at-need volume, and the largest public operator about 60% | Deathcare research, 2026-03-27 to 2026-04-01 (Benchmark) | The counselor's sale needs the plot record in the same system, so a legacy incumbent without pre-need loses that conversation |
-| Federal Funeral Rule penalties up to $53,088 per violation | Deathcare research, regulatory landscape note, 2026-03-27 (Benchmark) | Compliance framing works against manual and legacy incumbents. Cite it as a Benchmark only |
+| Federal Funeral Rule penalties up to $53,088 per violation | FTC maximum for a knowing rule violation, 16 CFR 1.98(d), checked 2026-11-13 (Benchmark) | Compliance framing works against manual and legacy incumbents. Cite it as a Benchmark only |
 | Regional consolidators buy single sites | [RECORD]: no dated source on how often yet, so no number is written. The trigger catalog's 60 to 120 day window is in the profile's Buying Triggers | A consolidator inherits the site's system decision, and an incumbent renewal can fall inside that window |
 
 **Proof Point Status:** the Status of each row in the profile's Proof Points table. No PlotIQ row is Verified, so no talk track names a customer figure.
@@ -432,7 +432,7 @@ PlotIQ has no won deals yet. The two timing values below that carry numbers are 
 
 ## Sources
 
-- **Market And Regulatory Facts:** Deathcare research project, industry landscape, regulatory landscape and cremation trends notes (2026-03-27 to 2026-04-01). Includes the $20.8B funeral service market (2025), 29,015 U.S. funeral homes (2026), $139.2M cemetery management software market (2025), 61.9% cremation rate (2024), federal Funeral Rule penalties up to $53,088 per violation, California's annual trust filing (due May 1) and New York's annual CPA audit (due December 31).
+- **Market And Regulatory Facts:** Deathcare research project, industry landscape, regulatory landscape and cremation trends notes (2026-03-27 to 2026-04-01). Includes the $20.8B funeral service market (2025), 29,015 U.S. funeral homes (2026), $139.2M cemetery management software market (2025), 61.9% cremation rate (2024), federal Funeral Rule penalties up to $53,088 per violation, California's annual endowment care report and CPA audit (due June 1 or five months after the fiscal year closes) and New York's annual financial report (due 90 days after the fiscal year closes). The state dates were corrected against the Cemetery and Funeral Bureau and the New York Division of Cemeteries on 2026-11-13.
 - **Competitive Research:** Deathcare research project, competitive research note (2026-03-27). Competitor pricing, contract terms, implementation times (90 to 120 days for Stonemark Enterprise, 120 to 180 days for Oldgate Ledger Pro) and the weaknesses buyers report. Every figure from it is a research estimate, cited with this name and date. It is over 90 days old, so it is refreshed before publishing (Quick Validation Checklist).
 - **Pain Language:** Forum posts and software review sites, mined in the research (2026-04-01).
 - **PlotIQ Facts And Open Bets:** Guild article 51 and its Discovery 2.0 revision (2026-10-12). Competitor figures are research estimates, and competitor names are invented.
