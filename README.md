@@ -265,6 +265,7 @@ Skills compound when used together. A typical first 30 days, following one accou
 | **[Getting Started](docs/getting-started.md)** | Role-based setup (BDR, AE, Manager, consultant), first-week playbook, ways to run the skills |
 | **[Client Profile Template](profiles/client-profile-template.md)** | Blank template with instructions for every section |
 | **[PlotIQ Example Profile](profiles/examples/plotiq-example.md)** | A completed profile, plus the cast of accounts every worked example uses |
+| **[PlotIQ Source Documents](profiles/examples/plotiq-sources/)** | Three invented documents (a state rules note, a case story, a loss review) to feed Ingest when you build PlotIQ's knowledge base with Context OS Setup |
 | **[Customization Guide](docs/customization.md)** | Which profile sections to fill first, how to swap methodologies, adjust scoring and add criteria |
 | **[Skill Reference](docs/skill-reference.md)** | Decision tree, input/output specs, chaining patterns, scoring systems |
 | **[Starter Kit](starter-kit/)** | Folder layouts, a project `CLAUDE.md` template and a weekly operating checklist |

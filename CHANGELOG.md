@@ -5,6 +5,14 @@ bottom of its `SKILL.md`, with the detail.
 
 ---
 
+## 2026-11-13: PlotIQ Source Documents
+
+**Something to ingest.** `profiles/examples/plotiq-sources/` holds three invented PlotIQ documents: a state audit rules note, the Holloway Hills case story and the Lowmoor loss review. Run Context OS Setup (O11) on the PlotIQ profile, then Ingest (O9) once per document, and you build the same knowledge base the Vertical GTM Guild course builds in Module 2. `state-and-federal-rules.md` beside them holds the agency quotes and links for the three real rules the note uses. It is a citation, not a fourth document to ingest.
+
+**State filing dates corrected.** The PlotIQ profile's California and New York dates were checked against the state agencies: California's endowment care report is due June 1 (or five months after the fiscal year closes), and New York's annual report is due 90 days after the fiscal year closes.
+
+---
+
 ## 2026-10-25: Sales 2.1 (All 14 Sales Skills)
 
 **The sales skills read the knowledge base.** A new part of the Shared Contract, The Knowledge Base and Connectors, has every sales skill read the base that Context OS Setup builds, through the `Location` field of the profile's `## Knowledge Base` section, the same way the operating skills do. Each skill's Context table names the base items it opens (the account's folder under `accounts/`, and where it needs them, competitors under `gtm/` and personas under `people/`). A fact taken from the base keeps its grade, so an `assumed` item is never used as the claim.
